@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F010001Params extends UserImpl {
-
 	/**
 	 * 密码是否正确
 	 */
