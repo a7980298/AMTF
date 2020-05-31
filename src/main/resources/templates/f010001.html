@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		var errlist = new Array();
+		errlist = $('#errMessageList').val();
+		setErrList(errlist);
+	});
+</script>
+</head>
+<body>
+	<form class="" th:action="@{/f010001T001}" method="post" style="height:100%;">
+		<div class="d-flex">
+			<div class="col-md-7">
+				<img th:src="@{/imgs/longin_img.png}" alt="佛" class="img-thumbnail center-block" style="height:100%;">
+			</div>
+			<div class="col-md-5">
+				<div class="p-auto" style="padding-top:50%;">
+					<div class="form-group col-md-5">
+						<input type="text" class="form-control" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${F010001Params.User_Account}">
+					</div>
+					<div class="form-group col-md-5">
+						<input type="password" class="form-control" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
+					</div>
+					<button type="submit" class="btn btn-info col-md-2">登录</button>
+					<button type="submit" class="btn btn-primary ml-5 col-md-2">注册</button>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" th:value="${errMessageList}" name="errMessageList" id="errMessageList"/>
+	</form>
+</body>
+</html>
