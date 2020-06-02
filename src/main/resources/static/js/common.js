@@ -1,5 +1,5 @@
-
 var CONTEXT_PATH = "/amtf";
+var TARGET = "_self";
 
 function setErrList(errlist) {
 	if (errlist.length > 0) {
@@ -12,8 +12,8 @@ function setErrList(errlist) {
 	}
 }
 
-function amtf_submit(form,url,target) {
-	form.action = CONTEXT_PATH + url;
-	form.target = target;
+function amtf_submit(form,action) {
+	form.action = CONTEXT_PATH + action;
+	form.target = "_self";
 	form.submit();
 }
