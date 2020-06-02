@@ -1,4 +1,6 @@
 
+var CONTEXT_PATH = "/amtf";
+
 function setErrList(errlist) {
 	if (errlist.length > 0) {
 		var lists = errlist.split(',');
@@ -8,4 +10,10 @@ function setErrList(errlist) {
 			$('input[name=' + _id + "]").after("<div style='color:red;'>" + _val + "</div>");
 		}
 	}
+}
+
+function amtf_submit(form,url,target) {
+	form.action = CONTEXT_PATH + url;
+	form.target = target;
+	form.submit();
 }

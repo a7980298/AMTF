@@ -41,7 +41,7 @@ public class f010001Controller extends ValiDationUtil {
 	 * @parameter F010001Params params
 	 * @return String
 	 */
-	@RequestMapping("/f010001T001")
+	@RequestMapping("/f010001/T001")
 	public String f010001T001(F010001Params params, Model model, HttpServletRequest request) {
 
 		if (!ValiDateParams(params, model)) {
@@ -72,7 +72,7 @@ public class f010001Controller extends ValiDationUtil {
 	 * @parameter F010001Params params
 	 * @return String
 	 */
-	@RequestMapping("/f010001T002")
+	@RequestMapping("/f010001/T002")
 	public String f010001T002() {
 
 		return "f010001";

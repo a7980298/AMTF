@@ -15,10 +15,13 @@
 		errlist = $('#errMessageList').val();
 		setErrList(errlist);
 	});
+	function amtf_login(){
+		amtf_submit(amtf_form,'/f010001/T001','_self');
+	}
 </script>
 </head>
 <body>
-	<form class="" th:action="@{/f010001T001}" method="post" style="height:100%;">
+	<form class="" th:action="@{/f010001}" method="post" style="height:100%;" id="amtf_form">
 		<div class="d-flex">
 			<div class="col-md-7">
 				<img th:src="@{/imgs/longin_img.png}" alt="佛" class="img-thumbnail center-block" style="height:100%;">
@@ -31,7 +34,7 @@
 					<div class="form-group col-md-5">
 						<input type="password" class="form-control" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
 					</div>
-					<button type="submit" class="btn btn-info col-md-2">登录</button>
+					<button type="submit" class="btn btn-info col-md-2" onclick="amtf_login()">登录</button>
 					<button type="submit" class="btn btn-primary ml-5 col-md-2">注册</button>
 				</div>
 			</div>
