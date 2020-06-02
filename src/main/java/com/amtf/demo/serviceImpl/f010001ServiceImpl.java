@@ -15,11 +15,14 @@ import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.FixedNumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class f010001ServiceImpl implements f010001Service {
 
 	@Autowired
-	private f010001Dao f010001dao;
+	private final f010001Dao f010001dao;
 
 	public F01001entityOut service01(F010001entityIn entityIn, HttpServletRequest request) {
 

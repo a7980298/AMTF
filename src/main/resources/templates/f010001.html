@@ -11,12 +11,11 @@
 <script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
 <script type="text/javascript">
 	$(function(){
-		var errlist = new Array();
-		errlist = $('#errMessageList').val();
-		setErrList(errlist);
+		setErrList("[[${errMessageList}]]");
 	});
+	//登录按钮押下
 	function amtf_login(){
-		amtf_submit(amtf_form,'/f010001/T001','_self');
+		amtf_submit(amtf_form , '/f010001/T001' , '_self');
 	}
 </script>
 </head>
@@ -39,7 +38,6 @@
 				</div>
 			</div>
 		</div>
-		<input type="hidden" th:value="${errMessageList}" name="errMessageList" id="errMessageList"/>
 	</form>
 </body>
 </html>
