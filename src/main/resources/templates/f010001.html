@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <title>佛</title>
 <style type="text/css">
-
-#mod1class{
-	top:30%
+.mod1class{
+	padding-top:10%;
+	width:100%;
 }
 </style>
-<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script th:src="@{/js/jquery.min.js}"></script>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
 <script type="text/javascript">
@@ -22,31 +21,37 @@
 	function amtf_login(){
 		amtf_submit(amtf_form , '/f010001/T001');
 	}
-	
+	function show_modal() {
+		$('#myModal').modal('show');
+	}
 
 </script>
 </head>
 <body>
-	<form class="" th:action="@{/f010001}" method="post" style="height:100%;" id="amtf_form">
-		<div class="d-flex">
-			<div class="col-md-7">
-				<img th:src="@{/imgs/longin_img.png}" alt="佛" class="img-thumbnail center-block" style="height:100%;">
-			</div>
-			<div class="col-md-5">
-				<div class="p-auto" style="padding-top:50%;">
-					<div class="form-group col-md-5">
-						<input type="text" class="form-control" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${F010001Params.User_Account}">
+	<div style="height:100%;">
+		<form class="" th:action="@{/f010001}" method="post" style="height:100%;" id="amtf_form">
+			<div class="d-flex">
+				<div class="col-md-7">
+					<img th:src="@{/imgs/longin_img.png}" alt="佛" class="img-thumbnail center-block" style="height:100%;">
+				</div>
+				<div class="col-md-5">
+					<div class="p-auto" style="padding-top:50%;">
+						<div class="form-group col-md-5">
+							<input type="text" class="form-control" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${F010001Params.User_Account}">
+						</div>
+						<div class="form-group col-md-5">
+							<input type="password" class="form-control" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
+						</div>
+						<button type="submit" class="btn btn-info col-md-2" onclick="amtf_login()">登录</button>
+						
+						
 					</div>
-					<div class="form-group col-md-5">
-						<input type="password" class="form-control" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
-					</div>
-					<button type="submit" class="btn btn-info col-md-2" onclick="amtf_login()">登录</button>
-					
 				</div>
 			</div>
-		</div>
-	</form>
-	<button class="btn btn-primary ml-5 col-md-2" data-toggle="modal" data-target="#myModal">注册</button>
-	<div th:block th:replace="mod1 :: mymod1" id="mod1class"></div>
+		</form>
+		<button class="btn btn-primary ml-5 col-md-2 adminA" onclick="show_modal()">注册</button>
+		<th:block th:replace="~{mod1 :: mod1}"></th:block>
+	</div>
 </body>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </html>

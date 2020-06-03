@@ -13,6 +13,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		// 和页面有关的静态目录都放在项目的static目录下
 		registry.addResourceHandler("/imgs/**").addResourceLocations("classpath:/static/imgs/");
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 		super.addResourceHandlers(registry);
 
 	}
