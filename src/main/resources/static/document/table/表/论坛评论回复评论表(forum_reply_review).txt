@@ -1,0 +1,25 @@
+CREATE TABLE AMTF_Forum_Reply_Review(
+      --id
+      Review_Reply_id number(20) not null,
+
+     --评论id
+      Reply_id number(20),	
+
+      --内容
+      Review_Reply_Text varchar2(100),
+      
+      --时间
+      Review_Reply_Date Date,
+      
+      --User账户id
+      User_id number(20)     
+  )
+
+create sequence AMTF_Forum_Reply_Review_id start with 1 increment by 1;
+
+create or replace trigger AMTF_AMTF_Forum_Reply_Review
+before insert on AMTF_Forum_Reply_Review
+for each row  
+begin  
+    select AMTF_Forum_Reply_Review_id .nextval into :new.Review_Reply_id  from dual; 
+end ;

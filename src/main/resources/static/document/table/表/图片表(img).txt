@@ -1,0 +1,26 @@
+CREATE TABLE AMTF_Img(
+      --id
+      Img_id number(20) not null,
+ 
+      --标题
+      Img_Head varchar(50),
+
+      --路径
+      Img_Text varchar2(500),
+      
+      --时间
+      Img_Date Date,
+      
+      --User账户id
+      User_id number(20)     
+  )
+
+create sequence AMTF_Img_id start with 1 increment by 1;
+    
+create or replace trigger AMTF_AMTF_Img
+before insert on AMTF_Img    
+for each row  
+begin  
+    select AMTF_Img_id.nextval into :new.Img_id from dual; 
+end ;
+

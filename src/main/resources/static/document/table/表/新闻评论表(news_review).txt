@@ -1,0 +1,30 @@
+CREATE TABLE AMTF_News_Review(
+      --id
+      News_Review_id number(20) not null,
+      
+      --新闻id
+      News_id number(20),
+      
+      --内容
+      News_Review_Text varchar2(200),
+      
+      --照片
+      News_Img varchar2(20),
+      
+      --时间
+      News_Date Date,
+      
+      --User账户id
+      User_id number(20)     
+  )
+
+
+    
+create sequence AMTF_News_Review_id start with 1 increment by 1;
+    
+create or replace trigger AMTF_AMTF_News_Review
+before insert on AMTF_News_Review    
+for each row  
+begin  
+    select AMTF_News_Review_id.nextval into :new.News_Review_id from dual; 
+end ;

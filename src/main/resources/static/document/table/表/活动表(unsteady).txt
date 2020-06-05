@@ -1,0 +1,27 @@
+CREATE TABLE AMTF_Unsteady(
+      --id
+      Unsteady_id number(20) not null,
+ 
+      --标题
+      Unsteady_Head varchar2(50),
+
+      --内容
+      Unsteady_Text varchar2(1000),
+      
+      --时间
+      Unsteady_Date Date,
+      
+      --User账户id
+      User_id number(20)     
+  )
+
+
+
+create sequence AMTF_Unsteady_id start with 1 increment by 1;
+    
+create or replace trigger AMTF_AMTF_Unsteady  
+before insert on AMTF_Unsteady  
+for each row  
+begin  
+    select AMTF_Unsteady_id .nextval into :new.Unsteady_id  from dual; 
+end ;

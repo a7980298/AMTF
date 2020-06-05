@@ -1,0 +1,28 @@
+CREATE TABLE AMTF_Forum(
+      --id
+      Forum_id number(20) not null,
+      
+      --标题
+      Forum_Head varchar(50),
+      
+      --内容
+      Forum_Text varchar2(500),
+      
+      --时间
+      Forum_Date Date,
+      
+      --User账户id
+      User_id number(20)     
+  )
+
+
+
+create sequence AMTF_Forum_id start with 1 increment by 1;
+    
+
+create or replace trigger AMTF_AMTF_Forum 
+before insert on AMTF_Forum  
+for each row  
+begin  
+    select AMTF_Forum_id.nextval into :new.Forum_id from dual; 
+end ;

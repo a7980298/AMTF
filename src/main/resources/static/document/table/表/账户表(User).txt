@@ -1,0 +1,34 @@
+CREATE TABLE AMTF_User(
+      --id
+      User_id number(20) primary key not null ,
+
+      --账户
+      User_Account Varchar2(20) ,
+
+      --密码
+      User_Password varchar2(10) ,
+
+      --真实姓名
+      User_Name varchar2(10) ,
+
+      --法号
+      User_FH varchar2(10) ,
+
+      --家庭住址
+      User_HomeAddress varchar2(50) ,
+
+      --电话
+      User_Phone char(11) ,
+
+      --认证
+      User_Attestation char(1) 
+  )
+
+create sequence AMTF_User_id start with 1 increment by 1;
+
+create or replace trigger AMTF_AMTF_User
+before insert on AMTF_User    
+for each row  
+begin  
+    select User_id.nextval into :new.User_id from dual; 
+end ;

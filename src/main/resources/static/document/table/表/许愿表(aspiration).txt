@@ -1,0 +1,23 @@
+CREATE TABLE AMTF_Aspiration(
+      --id
+      Aspiration_id number(20) not null,
+ 
+      --内容
+      Aspiration_Text varchar2(200),
+      
+      --时间
+      Aspiration_Date Date,
+      
+      --User账户id
+      User_id number(20)     
+  )
+
+
+create sequence AMTF_Aspiration_id start with 1 increment by 1;
+    
+create or replace trigger AMTF_AMTF_Aspiration
+before insert on AMTF_Aspiration    
+for each row  
+begin  
+    select AMTF_Aspiration_id.nextval into :new.Aspiration_id from dual; 
+end ;
