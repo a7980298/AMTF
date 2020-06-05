@@ -21,7 +21,12 @@ public class CommonUtil {
 	public static Integer toIntegerUtil(String str) {
 		Integer integer = 0;
 		if (!CommonUtil.isEmpty(str)) {
-			integer = Integer.valueOf(str);
+			try {
+				integer = Integer.valueOf(str);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return integer;
+			}
 		}
 		return integer;
 	}
@@ -32,7 +37,13 @@ public class CommonUtil {
 	public static Float toFloatUtil(String str) {
 		Float floats = 0.0f;
 		if (!CommonUtil.isEmpty(str)) {
-			floats = Float.valueOf(str);
+			try {
+				floats = Float.valueOf(str);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return floats;
+			}
+
 		}
 		return floats;
 	}
