@@ -15,4 +15,25 @@ public class CommonUtil {
 		return false;
 	}
 
+	/**
+	 * String强转Integer
+	 */
+	public static Integer toIntegerUtil(String str) {
+		Integer integer = 0;
+		if (!CommonUtil.isEmpty(str)) {
+			integer = Integer.valueOf(str);
+		}
+		return integer;
+	}
+
+	/**
+	 * String强转Float
+	 */
+	public static Float toFloatUtil(String str) {
+		Float floats = 0.0f;
+		if (!CommonUtil.isEmpty(str)) {
+			floats = Float.valueOf(str);
+		}
+		return floats;
+	}
 }
