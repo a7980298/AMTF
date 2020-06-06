@@ -9,6 +9,7 @@ import org.springframework.util.DigestUtils;
 import com.amtf.demo.dao.f010001Dao;
 import com.amtf.demo.entityin.F010001entityIn;
 import com.amtf.demo.entityout.F01001entityOut;
+import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.util.CommonUtil;
@@ -24,7 +25,7 @@ public class f010001ServiceImpl implements f010001Service {
 	@Autowired
 	private final f010001Dao f010001dao;
 
-	public F01001entityOut service01(F010001entityIn entityIn, HttpServletRequest request) {
+	public F01001entityOut service01(F010001entityIn entityIn, HttpServletRequest request) throws ErrListException {
 
 		F01001entityOut entityout = new F01001entityOut();
 
@@ -37,7 +38,8 @@ public class f010001ServiceImpl implements f010001Service {
 
 			// 判断用户密码是否正确
 			if (CommonUtil.isEmpty(select1entity)) {
-				entityout.setPwdbol(FixedNumberUtil.STR_0);
+				// entityout.setPwdbol(FixedNumberUtil.STR_0);
+				throw new ErrListException(entityIn, "账户密码输入不正确!");
 			} else {
 				ParameterUtil.setSession(entityIn, request);
 				entityout.setPwdbol(FixedNumberUtil.STR_1);

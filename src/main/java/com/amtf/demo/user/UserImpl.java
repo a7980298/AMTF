@@ -11,6 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserImpl {
+
+	private String IViewId;
+
 	private Integer User_id;
 
 	/**

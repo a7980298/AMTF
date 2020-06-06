@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amtf.demo.entityin.F010001entityIn;
 import com.amtf.demo.entityout.F01001entityOut;
+import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.util.FixedNumberUtil;
@@ -30,7 +31,7 @@ public class f010001Controller extends ValiDationUtil {
 	@RequestMapping("/f010001")
 	public String f01000001S001(F010001Params params, Model model) {
 
-		model.addAttribute("F010001Params", params);
+		model.addAttribute("f010001Params", params);
 
 		return "f010001";
 	}
@@ -40,9 +41,10 @@ public class f010001Controller extends ValiDationUtil {
 	 * 
 	 * @parameter F010001Params params
 	 * @return String
+	 * @throws ErrListException
 	 */
 	@RequestMapping("/f010001/T001")
-	public String f010001T001(F010001Params params, Model model, HttpServletRequest request) {
+	public String f010001T001(F010001Params params, Model model, HttpServletRequest request) throws ErrListException {
 
 		if (!ValiDateParams(params, model)) {
 			return "f010001";
@@ -57,7 +59,7 @@ public class f010001Controller extends ValiDationUtil {
 		// 将值copy赋值
 		ParameterUtil.copyParameter(params, entityOut);
 
-		model.addAttribute("F010001Params", params);
+		model.addAttribute("f010001Params", params);
 		// 用户密码是否正确
 		if (FixedNumberUtil.STR_1.equals(params.getPwdbol())) {
 			return "f010002";

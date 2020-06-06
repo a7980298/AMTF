@@ -14,6 +14,6 @@ function setErrList(errlist) {
 
 function amtf_submit(form,action) {
 	form.action = CONTEXT_PATH + action;
-	form.target = "_self";
+	form.target = TARGET;
 	form.submit();
 }

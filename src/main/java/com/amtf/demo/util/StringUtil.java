@@ -34,4 +34,15 @@ public class StringUtil {
 		}
 		return str;
 	}
+
+	/**
+	 * Long强转String
+	 */
+	public static String toStr(Object obj) {
+		String str = "";
+		if (!CommonUtil.isEmpty(obj)) {
+			str = String.valueOf(obj);
+		}
+		return str;
+	}
 }

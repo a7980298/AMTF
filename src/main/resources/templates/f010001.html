@@ -10,12 +10,15 @@
 }
 </style>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<script th:src="@{/js/jquery.min.js}"></script>
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="application/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
+<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
+
 <script type="text/javascript">
 	$(function(){
 		setErrList("[[${errMessageList}]]");
+		setCodeErrList("[[${codemsg}]]");
 	});
 	//登录按钮押下
 	function amtf_login(){
@@ -39,11 +42,17 @@
 			$('#lookpwd_img').attr('src','/amtf/imgs/view_pwd.jpg');
 		}
 	}
+
+	function closeModl(){
+		$("#myModal_codeErr").css("display","none");
+		$(".modal-backdrop.fade").hide();
+	}
 </script>
 </head>
 <body>
 	<div style="height:100%;">
 		<form class="" th:action="@{/f010001}" method="post" style="height:100%;" id="amtf_form">
+			<input type="hidden" name="IViewId" value="f010001"/>
 			<div class="d-flex">
 				<div class="col-md-7">
 					<img th:src="@{/imgs/longin_img.png}" alt="佛" class="img-thumbnail center-block" style="height:100%;">
@@ -51,10 +60,10 @@
 				<div class="col-md-5">
 					<div class="p-auto" style="padding-top:50%;">
 						<div class="form-group col-md-6">
-							<input type="text" class="form-control col-md-10" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${F010001Params.User_Account}">
+							<input type="text" class="form-control col-md-10" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${f010001Params.User_Account}">
 						</div>
 						<div class="form-group col-md-6 d-flex">
-							<input type="password" class="form-control col-md-10" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
+							<input type="password" class="form-control col-md-10" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${f010001Params.User_Password}">
 							<button type="button" class="btn col-md-2" value="查看密码" onclick="lookpwd(this)">
 								<img th:src="@{/imgs/view_pwd.jpg}" id="lookpwd_img" alt="密码" class="img-responsive" style="width:20px;height:20px;"/>
 							</button>
@@ -66,8 +75,9 @@
 				</div>
 			</div>
 			<th:block th:replace="~{mod1 :: mod1}"></th:block>
+			<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		</form>
 	</div>
 </body>
-<script th:src="@{/js/bootstrap.min.js}"></script>
+<script type="application/javascript" src="/amtf/js/bootstrap.min.js"></script>
 </html>
