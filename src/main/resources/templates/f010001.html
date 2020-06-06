@@ -25,7 +25,20 @@
 	function show_modal() {
 		$('#myModal').modal('show');
 	}
-
+	var lookpwdindex = 0;
+	function lookpwd(thisid){
+		if (lookpwdindex == 0) {
+			lookpwdindex = 1;
+			$('#userpassword').attr('type','text');
+			$(thisid).val('隐藏密码');
+			$('#lookpwd_img').attr('src','/amtf/imgs/block_pwd.jpg');
+		} else {
+			lookpwdindex = 0;
+			$('#userpassword').attr('type','password');
+			$(thisid).val('查看密码');
+			$('#lookpwd_img').attr('src','/amtf/imgs/view_pwd.jpg');
+		}
+	}
 </script>
 </head>
 <body>
@@ -37,11 +50,14 @@
 				</div>
 				<div class="col-md-5">
 					<div class="p-auto" style="padding-top:50%;">
-						<div class="form-group col-md-5">
-							<input type="text" class="form-control" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${F010001Params.User_Account}">
+						<div class="form-group col-md-6">
+							<input type="text" class="form-control col-md-10" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${F010001Params.User_Account}">
 						</div>
-						<div class="form-group col-md-5">
-							<input type="password" class="form-control" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
+						<div class="form-group col-md-6 d-flex">
+							<input type="password" class="form-control col-md-10" id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${F010001Params.User_Password}">
+							<button type="button" class="btn col-md-2" value="查看密码" onclick="lookpwd(this)">
+								<img th:src="@{/imgs/view_pwd.jpg}" id="lookpwd_img" alt="密码" class="img-responsive" style="width:20px;height:20px;"/>
+							</button>
 						</div>
 						<button type="submit" class="btn btn-info col-md-2" onclick="amtf_login()">登录</button>
 						<button class="btn btn-primary ml-5 col-md-2 adminA" type="button" data-target="#myModal" onclick="show_modal()">注册</button>
