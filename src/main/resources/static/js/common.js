@@ -17,3 +17,9 @@ function amtf_submit(form,action) {
 	form.target = TARGET;
 	form.submit();
 }
+
+function setCodeErrList(codeErrList){
+	if (codeErrList != null && codeErrList != '') {
+		$('#myModal_codeErr').modal('show');
+	}
+}
