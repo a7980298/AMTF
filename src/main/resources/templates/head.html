@@ -4,18 +4,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script type="application/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
+<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
 </head>
 <body>
 	<div th:fragment="myhead">
 		<div class="footer">
-			<div class="d-flex">
-				<input th:value="*{F010001Params.User_Account}"/>
-				<input th:value="*{F010001Params.User_Password}"/>
-				<input th:value="*{F010001Params.User_id}"/>
+			<div class="d-flex bg-warning" style="height:45px;">
+				<!-- <input th:value="*{f010001Params.User_Account}"/>
+				<input th:value="*{f010001Params.User_Password}"/>
+				<input th:value="*{f010001Params.User_id}"/> -->
+				<div class="col-md-11"></div>
+				<div class="col-md-1" style="height:100%;">
+					<button type="button" class="btn btn-default" title="用户信息">
+						<img th:src="@{/imgs/userimg.jpg}" alt="用户" class="img-responsive" style="width:40px;height:30px;"/>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<script type="application/javascript" src="/amtf/js/bootstrap.min.js"></script>
 </html>
