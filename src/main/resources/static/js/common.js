@@ -23,3 +23,7 @@ function setCodeErrList(codeErrList){
 		$('#myModal_codeErr').modal('show');
 	}
 }
+
+function amtf_fenye(thisid) {
+	
+}

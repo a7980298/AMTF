@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class F01001entityOut extends UserImpl {
+public class F010001entityOut extends UserImpl {
 
 	/**
 	 * 密码是否正确

@@ -8,7 +8,7 @@ import org.springframework.util.DigestUtils;
 
 import com.amtf.demo.dao.f010001Dao;
 import com.amtf.demo.entityin.F010001entityIn;
-import com.amtf.demo.entityout.F01001entityOut;
+import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.service.f010001Service;
@@ -25,9 +25,9 @@ public class f010001ServiceImpl implements f010001Service {
 	@Autowired
 	private final f010001Dao f010001dao;
 
-	public F01001entityOut service01(F010001entityIn entityIn, HttpServletRequest request) throws ErrListException {
+	public F010001entityOut service01(F010001entityIn entityIn, HttpServletRequest request) throws ErrListException {
 
-		F01001entityOut entityout = new F01001entityOut();
+		F010001entityOut entityout = new F010001entityOut();
 
 		if (!CommonUtil.isEmpty(entityIn.getUser_Password())) {
 			// MD5加密
