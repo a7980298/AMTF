@@ -3,18 +3,21 @@ package com.amtf.demo.labelDialect;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
-import com.amtf.demo.label.iFneyeLabel;
+import com.amtf.demo.label.iFormLabel;
 
-public class iFneyeLabelDialect extends AbstractProcessorDialect {
+@Component
+public class iLabelDialect extends AbstractProcessorDialect {
 
-	private final static String NAME = "ifneyelabel";
+	private final static String NAME = "i";
+	private final static int PRECEDENCE = 10000;
 
-	public iFneyeLabelDialect() {
-		super(NAME, null, StandardDialect.PROCESSOR_PRECEDENCE);
+	public iLabelDialect() {
+		super(NAME, NAME, StandardDialect.PROCESSOR_PRECEDENCE);
 	}
 
 	@Override
@@ -25,7 +28,8 @@ public class iFneyeLabelDialect extends AbstractProcessorDialect {
 	private Set<IProcessor> createStandardProcessorsSet(String dialectPrefix) {
 		LinkedHashSet<IProcessor> processors = new LinkedHashSet<IProcessor>();
 		// 添加自定义标签处理器，可添加多个
-		processors.add(new iFneyeLabel(dialectPrefix));
+		// processors.add(new iFneyeLabel(dialectPrefix, "fenye", PRECEDENCE));
+		processors.add(new iFormLabel(dialectPrefix, "form", PRECEDENCE));
 		return processors;
 	}
 

@@ -10,6 +10,7 @@ import com.amtf.demo.entityout.F010002entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
+import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
 @Controller
@@ -45,7 +46,8 @@ public class f010002Controller extends ValiDationUtil {
 		F010002entityIn entityin = new F010002entityIn();
 
 		F010002entityOut entityOut = f010002service.service02(entityin);
-
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
 		model.addAttribute("f010002Params", params);
 		return "f010002";
 	}

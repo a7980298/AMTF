@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
-<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
-</head>
-<body>
-	<div th:fragment="myhead">
+<th:block th:fragment="myhead">
+	<head>
+		<meta charset="UTF-8">
+		<title>head</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+		<!-- Optional theme -->
+		<link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}">
+		<!-- Latest compiled and minified JavaScript -->
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
+		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
+	</head>
+	<body>
 		<div class="footer">
 			<div class="d-flex" style="height:45px;">
 				<!-- <input th:value="*{f010001Params.User_Account}"/>
@@ -29,6 +29,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</body>
+</th:block>
 </html>

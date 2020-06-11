@@ -24,6 +24,8 @@ function setCodeErrList(codeErrList){
 	}
 }
 
-function amtf_fenye(thisid) {
-	
+function amtf_fenye(form,thisid) {
+	form.action = $(thisid).parent('#fenye').attr('action');
+	form.target = TARGET;
+	form.submit();
 }

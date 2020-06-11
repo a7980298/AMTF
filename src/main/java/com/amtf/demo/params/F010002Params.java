@@ -3,6 +3,7 @@ package com.amtf.demo.params;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.user.UserImpl;
+import com.amtf.demo.util.FenYe;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,8 +12,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F010002Params extends UserImpl {
-	/**
-	 * 密码是否正确
-	 */
-	public String pwdbol;
+	public FenYe fenye;
 }

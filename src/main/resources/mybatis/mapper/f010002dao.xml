@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amtf.demo.dao.f010002Dao">
+	<select id="f010002_Select1" resultType="com.amtf.demo.f010002entity.f010002_select1entity">
+		SELECT
+			 *
+		FROM 
+			AMTF_NEWS	
+		LIMIT ${start},${end}
+	</select>
+	
+	<select id="f010002_Select1Count" resultType="int">
+		SELECT
+			 COUNT(*)
+		FROM 
+			AMTF_NEWS
+	</select>
+</mapper>
