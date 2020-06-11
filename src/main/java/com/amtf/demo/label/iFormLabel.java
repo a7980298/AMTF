@@ -14,6 +14,7 @@ import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 import com.amtf.demo.util.CommonUtil;
+import com.amtf.demo.util.RequestUtils;
 
 public class iFormLabel extends AbstractElementModelProcessor {
 
@@ -38,7 +39,7 @@ public class iFormLabel extends AbstractElementModelProcessor {
 				prepareAttribute(attributes, ab.getAttributeCompleteName(), ab.getValue());
 			}
 		}
-
+		RequestUtils.getRequestValue("f010001Params");
 		prepareAttribute(attributes, "onsubmit", "return false");
 		prepareAttribute(attributes, "id", options.get("id"));
 		prepareAttribute(attributes, "name", options.get("name"));
