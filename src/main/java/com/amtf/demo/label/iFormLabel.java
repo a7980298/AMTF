@@ -24,7 +24,7 @@ public class iFormLabel extends AbstractElementModelProcessor {
 
 	@Override
 	protected void doProcess(ITemplateContext context, IModel iModel, IElementModelStructureHandler structureHandler) {
-		// TODO Auto-generated method stub
+		//
 		Map<String, String> options = new HashMap<String, String>();
 
 		Map<String, String> attributes = new HashMap<String, String>();
@@ -33,6 +33,7 @@ public class iFormLabel extends AbstractElementModelProcessor {
 
 		IAttribute[] allAttributes = tag.getAllAttributes();
 
+		// 获取标签上的属性
 		for (IAttribute ab : allAttributes) {
 			options.put(ab.getAttributeCompleteName(), ab.getValue());
 			if (ab.getAttributeCompleteName().startsWith("th:")) {
@@ -40,6 +41,7 @@ public class iFormLabel extends AbstractElementModelProcessor {
 			}
 		}
 		RequestUtils.getRequestValue("f010001Params");
+		// 给标签添加可识别的属性
 		prepareAttribute(attributes, "onsubmit", "return false");
 		prepareAttribute(attributes, "id", options.get("id"));
 		prepareAttribute(attributes, "name", options.get("name"));
@@ -48,6 +50,7 @@ public class iFormLabel extends AbstractElementModelProcessor {
 		prepareAttribute(attributes, "action", options.get("action"));
 		prepareAttribute(attributes, "method", options.get("method"));
 
+		// 从开始的form标签截取
 		iModel.replace(0, modelFactory.createOpenElementTag("form", attributes, AttributeValueQuotes.DOUBLE, false));
 
 		StringBuffer addsb = new StringBuffer();
@@ -60,14 +63,14 @@ public class iFormLabel extends AbstractElementModelProcessor {
 		} /*
 			 * else { resultViewId = StringUtil.toStr(RequestUtil.getViewid()); }
 			 */
+		// 添加其他标签
 		addsb.append("");
 		iModel.insert(1, modelFactory.createText(addsb.toString()));
-
+		// 到结束的form标签结束
 		iModel.replace(iModel.size() - 1, modelFactory.createCloseElementTag("form"));
 	}
 
 	protected void prepareAttribute(Map<String, String> handlers, String name, String value) {
-
 		if (value != null) {
 			handlers.put(name, value);
 		}

@@ -15,6 +15,7 @@ import lombok.Setter;
 public class RequestUtils {
 
 	public static Map<String, Object> getRequestValue(String params) {
+		// 创建Requset域对象
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
 

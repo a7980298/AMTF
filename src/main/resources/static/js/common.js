@@ -1,6 +1,7 @@
 var CONTEXT_PATH = "/amtf";
 var TARGET = "_self";
 
+//添加错误信息，并改变颜色
 function setErrList(errlist) {
 	if (errlist.length > 0) {
 		var lists = errlist.split(',');
@@ -13,12 +14,14 @@ function setErrList(errlist) {
 	}
 }
 
+//表单提交
 function amtf_submit(form,action) {
 	form.action = CONTEXT_PATH + action;
 	form.target = TARGET;
 	form.submit();
 }
 
+//打开modal模态框
 function setCodeErrList(codeErrList){
 	if (codeErrList != null && codeErrList != '') {
 		$('#myModal_codeErr').modal('show');
