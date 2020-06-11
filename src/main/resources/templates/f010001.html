@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>佛</title>
+<th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
 	.mod1class{
 		padding-top:10%;
@@ -44,7 +45,6 @@
 </script>
 </head>
 <body>
-	<th:block th:replace="import :: myimport"></th:block>
 	<div style="height:100%;">
 		<i-form class="" th:action="@{/f010001}" method="post" style="height:100%;" id="amtf_form">
 			<input type="hidden" name="IViewId" value="f010001"/>

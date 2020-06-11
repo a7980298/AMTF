@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
+<th:block th:replace="head :: myhead"></th:block>
 <script type="text/javascript">
 function aaa(){
 	amtf_submit(amtf_form , '/f010002/F001');
@@ -10,7 +11,6 @@ function aaa(){
 </script>
 </head>
 <body>
-	<th:block th:replace="head :: myhead"></th:block>
 	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form" >
 		<div class="d-flex">
 			<button type="submit" value="提交" onclick="aaa()"></button>
