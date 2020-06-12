@@ -1,6 +1,8 @@
 package com.amtf.demo.label;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.servlet.support.RequestContext;
@@ -27,6 +29,7 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 		super(TemplateMode.HTML, dialectPrefix, elementName, dialectPrefix != null, null, false, precedence);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doProcess(ITemplateContext context, IProcessableElementTag tag,
 			IElementTagStructureHandler structureHandler) {
@@ -46,12 +49,29 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 			options.put(ab.getAttributeCompleteName(), ab.getValue());
 		}
 
-		Map<String, Object> model = requestContext.getModel();
+		// Map<String, Object> model = requestContext.getModel();
 
 		String name = options.get("name");
 		String prop = options.get("property");
 		String propValue = "";
-		RequestUtils.getRequestValue(name, prop);
+		// 获取Params的值
+		Map<String, Object> valueMap = RequestUtils.getRequestValue(name, prop);
+
+		List<String> valueLists = new ArrayList<String>();
+
+		for (int i = 0; i < valueMap.size(); i++) {
+			valueLists = (List<String>) valueMap.get(prop);
+		}
+		// 需要的内镶嵌的标签
+		StringBuffer addsb = new StringBuffer();
+		addsb.append("<select id='iSelectParamsId' class='col-md-1'>");
+		for (int i = 0; i < valueLists.size(); i++) {
+			addsb.append("<option value=" + i + ">" + valueLists.get(i) + "</option>");
+		}
+		addsb.append("</select>");
+
+		// iModel.insert(1, modelFactory.createText(addsb.toString()));
+
 		if (options.containsKey("property")) {
 			// propValue = getObjectValue(model, name, prop);
 		}
@@ -61,11 +81,8 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 		}
 
 		// map = getOptionDate(model, options, propValue);
-
-	}
-
-	private void getObjectValue(Map<String, Object> model, String options, String prop) {
-
+		// 将标签添加
+		structureHandler.replaceWith(addsb, false);
 	}
 
 	@SuppressWarnings("unused")
