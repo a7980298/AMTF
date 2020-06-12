@@ -14,12 +14,13 @@ import lombok.Setter;
 @Setter
 public class RequestUtils {
 
-	public static Map<String, Object> getRequestValue(String params) {
+	public static Map<String, Object> getRequestValue(String params, String value) {
 		// 创建Requset域对象
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
+		// 获取需要的Requser域对象
+		Object boj = request.getAttribute(params);
 
-		request.getAttribute(params);
 		return null;
 	}
 }

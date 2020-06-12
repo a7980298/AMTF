@@ -9,6 +9,7 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
 import com.amtf.demo.label.iFormLabel;
+import com.amtf.demo.label.iSelectLabel;
 
 @Component
 public class iLabelDialect extends AbstractProcessorDialect {
@@ -30,6 +31,7 @@ public class iLabelDialect extends AbstractProcessorDialect {
 		// 添加自定义标签处理器，可添加多个
 		// processors.add(new iFneyeLabel(dialectPrefix, "fenye", PRECEDENCE));
 		processors.add(new iFormLabel(dialectPrefix, "form", PRECEDENCE));
+		processors.add(new iSelectLabel(dialectPrefix, "select", PRECEDENCE));
 		return processors;
 	}
 

@@ -11,16 +11,19 @@
 	}
 </style>
 <script type="text/javascript">
+	//初始化方法
 	$(function(){
 		setErrList("[[${errMessageList}]]");
 		setCodeErrList("[[${codemsg}]]");
 	});
+
 	//登录按钮押下
 	function amtf_login(){
 		amtf_submit(amtf_form , '/f010001/T001');
 	}
 	//打开模态框
 	function show_modal() {
+		$('.dropdown-toggle').dropdown();
 		$('#myModal').modal('show');
 	}
 	var lookpwdindex = 0;
@@ -38,10 +41,10 @@
 		}
 	}
 
-	function closeModl(){
+/* 	function closeModl(){
 		$("#myModal_codeErr").css("display","none");
 		$(".modal-backdrop.fade").hide();
-	}
+	} */
 </script>
 </head>
 <body>
@@ -83,6 +86,7 @@
 			</div>
 			<th:block th:replace="~{mod1 :: mod1}"></th:block>
 			<th:block th:replace="~{codeErr :: codeErr}"></th:block>
+			<i-select name="f010001Params" property="select1"></i-select>
 		</i-form>
 	</div>
 </body>
