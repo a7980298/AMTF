@@ -64,7 +64,7 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 		}
 		// 需要的内镶嵌的标签
 		StringBuffer addsb = new StringBuffer();
-		addsb.append("<select id='iSelectParamsId' class='col-md-1'>");
+		addsb.append("<select id='iSelectParamsId' class='col-md-12'>");
 		for (int i = 0; i < valueLists.size(); i++) {
 			addsb.append("<option value=" + i + ">" + valueLists.get(i) + "</option>");
 		}
