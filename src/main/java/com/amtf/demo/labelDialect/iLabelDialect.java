@@ -26,6 +26,12 @@ public class iLabelDialect extends AbstractProcessorDialect {
 		return createStandardProcessorsSet(dialectPrefix);
 	}
 
+	/**
+	 * 添加方言
+	 * 
+	 * @param dialectPrefix
+	 * @return
+	 */
 	private Set<IProcessor> createStandardProcessorsSet(String dialectPrefix) {
 		LinkedHashSet<IProcessor> processors = new LinkedHashSet<IProcessor>();
 		// 添加自定义标签处理器，可添加多个

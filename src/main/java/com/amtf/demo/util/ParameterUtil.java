@@ -9,20 +9,24 @@ import com.amtf.demo.user.UserImpl;
 
 public class ParameterUtil {
 
-	public static HttpServletRequest httpRequest;
-
 	// 赋值
 	public static Object copyParameter(Object obj1, Object obj2) {
+		// 创建Field数组接收反射的所有属性
 		Field[] fieldobj1 = obj1.getClass().getDeclaredFields();
 		Field[] fieldobj2 = obj2.getClass().getDeclaredFields();
 
 		for (int i = 0; i < fieldobj2.length; i++) {
+			// 开启权限
 			fieldobj2[i].setAccessible(true);
 			for (int j = 0; j < fieldobj1.length; j++) {
+				// 开启权限
 				fieldobj1[j].setAccessible(true);
+				// 判断两个反射Class中的属性是否一致
 				if (fieldobj1[j].getName().equals(fieldobj2[i].getName())) {
 					try {
+						// 开启权限
 						fieldobj1[i].setAccessible(true);
+						// 一致的化进行赋值
 						fieldobj1[i].set(obj1, fieldobj2[j].get(obj2));
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -35,6 +39,7 @@ public class ParameterUtil {
 		return obj1;
 	}
 
+	// 给User用户表进行赋值
 	public static Object setUser(Object obj1, Object obj2) {
 
 		UserImpl user1 = (UserImpl) obj1;
