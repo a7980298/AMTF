@@ -13,8 +13,6 @@ import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.FixedNumberUtil;
-import com.amtf.demo.util.ParameterUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,16 +38,14 @@ public class f010001ServiceImpl implements f010001Service {
 			if (CommonUtil.isEmpty(select1entity)) {
 				// entityout.setPwdbol(FixedNumberUtil.STR_0);
 				throw new ErrListException(entityIn, "账户密码输入不正确!");
-			} else {
-				ParameterUtil.setSession(entityIn, request);
-				entityout.setPwdbol(FixedNumberUtil.STR_1);
 			}
 		} else {
-			entityout.setPwdbol(FixedNumberUtil.STR_0);
+			throw new ErrListException(entityIn, "账户密码输入不能是空!");
 		}
 
+		// 账户
 		entityout.setUser_Account(entityIn.getUser_Account());
-
+		// 密码
 		entityout.setUser_Password(entityIn.getUser_Password());
 
 		return entityout;

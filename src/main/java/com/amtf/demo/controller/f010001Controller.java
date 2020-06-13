@@ -12,7 +12,6 @@ import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.service.f010001Service;
-import com.amtf.demo.util.FixedNumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
@@ -61,11 +60,11 @@ public class f010001Controller extends ValiDationUtil {
 
 		model.addAttribute("f010001Params", params);
 		// 用户密码是否正确
-		if (FixedNumberUtil.STR_1.equals(params.getPwdbol())) {
-			return "f010002";
-		}
+		/*
+		 * if (FixedNumberUtil.STR_1.equals(params.getPwdbol())) { return "f010002"; }
+		 */
 
-		return "f010001";
+		return "f010002";
 	}
 
 	/**
