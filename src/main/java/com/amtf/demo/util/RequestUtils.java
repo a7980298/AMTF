@@ -42,7 +42,7 @@ public class RequestUtils {
 	 * @return Object
 	 */
 	@SuppressWarnings("unused")
-	private static Object getParamsRequestValue(Object obj, String name) {
+	public static Object getParamsRequestValue(Object obj, String name) {
 		// 创建Field数组接收反射的Class的属性
 		Field[] fieldobj1 = obj.getClass().getDeclaredFields();
 		// 定义返回值

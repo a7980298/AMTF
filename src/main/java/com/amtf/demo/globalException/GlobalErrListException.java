@@ -25,8 +25,9 @@ public class GlobalErrListException {
 		 * JSONObject result = new JSONObject(); result.put("codemsg", e.getMessage());
 		 */
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(e.getEntity().getIViewId());
-		mav.addObject(e.getEntity().getIViewId() + "Params", e.getEntity());
+		String IViewId = e.getIViewId();
+		mav.setViewName(IViewId);
+		mav.addObject(IViewId + "Params", e.getEntity());
 		mav.addObject("codemsg", e.getMessage());
 		return mav;
 	}

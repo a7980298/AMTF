@@ -37,10 +37,10 @@ public class f010001ServiceImpl implements f010001Service {
 			// 判断用户密码是否正确
 			if (CommonUtil.isEmpty(select1entity)) {
 				// entityout.setPwdbol(FixedNumberUtil.STR_0);
-				throw new ErrListException(entityIn, "账户密码输入不正确!");
+				throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不正确!");
 			}
 		} else {
-			throw new ErrListException(entityIn, "账户密码输入不能是空!");
+			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
 
 		// 账户
