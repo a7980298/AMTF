@@ -49,8 +49,7 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 			options.put(ab.getAttributeCompleteName(), ab.getValue());
 		}
 
-		// Map<String, Object> model = requestContext.getModel();
-
+		Map<String, Object> model = requestContext.getModel();
 		String name = options.get("name");
 		String prop = options.get("property");
 		String propValue = "";
@@ -80,7 +79,7 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 			propValue = options.get("selectValue");
 		}
 
-		// map = getOptionDate(model, options, propValue);
+		drawSelectTag(model, options, propValue, modelFactory, iModel);
 		// 将标签添加
 		structureHandler.replaceWith(addsb, false);
 	}
@@ -96,8 +95,8 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 			prepareAttribute(attrbutes, "disabled", "disabled");
 		}
 
-		// 设置style属性
-		if ("style".equals(options.get("style"))) {
+		String stykeString = options.get("style");
+		if (!CommonUtil.isEmpty(options.get("style"))) {
 			prepareAttribute(attrbutes, "style", options.get("style"));
 		}
 
@@ -128,14 +127,14 @@ public class iSelectLabel extends AbstractElementTagProcessor {
 		this.drawOptions(model, options, propValue, modlFactory, iModel);
 		iModel.add(modlFactory.createCloseElementTag("SELECT"));
 
-		for (int i = 0; i < map.size(); i++) {
-			attrbutes = new HashMap<>();
-			prepareAttribute(attrbutes, "value", map.get(StringUtil.toStr(i)));
-			prepareAttribute(attrbutes, "name", options.get("name"));
-			prepareAttribute(attrbutes, "type", "hidden");
-			iModel.add(modlFactory.createOpenElementTag("INPUT", attrbutes, null, false));
-			// iModel.add(modlFactory.createText());
-		}
+		/*
+		 * for (int i = 0; i < map.size(); i++) { attrbutes = new HashMap<>();
+		 * prepareAttribute(attrbutes, "value", map.get(StringUtil.toStr(i)));
+		 * prepareAttribute(attrbutes, "name", options.get("name"));
+		 * prepareAttribute(attrbutes, "type", "hidden");
+		 * iModel.add(modlFactory.createOpenElementTag("INPUT", attrbutes, null,
+		 * false)); // iModel.add(modlFactory.createText()); }
+		 */
 
 	}
 
