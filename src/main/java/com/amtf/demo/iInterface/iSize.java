@@ -1,4 +1,4 @@
-package com.amtf.demo.customInterFace;
+package com.amtf.demo.iInterface;
 
 public @interface iSize {
 

@@ -20,7 +20,7 @@ public class ParameterUtil {
 			fieldobj2[i].setAccessible(true);
 			for (int j = 0; j < fieldobj1.length; j++) {
 				fieldobj1[j].setAccessible(true);
-				if (fieldobj1[i].getName().equals(fieldobj2[j].getName())) {
+				if (fieldobj1[j].getName().equals(fieldobj2[i].getName())) {
 					try {
 						fieldobj1[i].setAccessible(true);
 						fieldobj1[i].set(obj1, fieldobj2[j].get(obj2));

@@ -1,8 +1,5 @@
 package com.amtf.demo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +30,7 @@ public class f010001Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f010001")
 	public String f010001S001(F010001Params params, Model model) {
-		List<String> select1 = new ArrayList<String>();
-		select1.add("1");
-		select1.add("2");
-		select1.add("3");
 
-		params.setSelect1(select1);
 		model.addAttribute("f010001Params", params);
 
 		return "f010001";
