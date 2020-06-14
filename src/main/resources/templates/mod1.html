@@ -2,8 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8"></meta>
 <th:block th:fragment="mod1">
-	<script>
-
+	<style type="text/css">
+	.modal_contain{
+	   width : 500px;
+	   
+	}
+	
+	
+	</style>
+	<script type="text/javascript">
+	function IsMan(){
+		if($('#woman').is(':checked')){
+			$('#man').prop('checked','');		
+		} 
+		else {
+			$('#man').attr('checked','true');		
+		} 
+	}
+	
+	function IsWoman(){
+	if($('#man').is(':checked')){
+			$('#woman').prop('checked','');		
+		} 
+		else {
+			$('#woman').attr('checked','true');		
+		} 
+	}
 	</script>
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -11,17 +35,35 @@
 		style="z-index: 111111;">
 		<div class="mod1class">
 			<div class="" style="padding-left:35%;" id="modthis">
-				<div class="modal-content" style="width: 400px;">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
-					</div>
-					<div class="modal-body">在这里添加一些文本</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">提交更改</button>
-					</div>
+				<div class="modal-content modal_contain">
+					<table style="width:300px;margin:0 auto">
+						<tr>
+						<td colspan="2" style="text-align:center">注册</td>
+						</tr>
+						<tr>
+							<td>用户名：</td>
+							<td><input class="form-control required" type="text" placeholder="账户" name="regist_user_name" autofocus="autofocus" maxlength="20" id="regist_user_name" /></td>
+						</tr>
+						<tr>
+							<td>密码：</td>
+							<td><input class="form-control required" type="password" placeholder="密码" name="regist_user_password" maxlength="8" id="regist_user_password" /></td>
+						</tr>
+						<tr>
+							<td>确认密码：</td>
+							<td><input class="form-control required" type="password" placeholder="确认密码" name="regist_confirm_user_password" maxlength="8" id="regist_confirm_user_password" /></td>
+						</tr>
+						<tr>
+							<td>性别：</td>
+							<td><input type="checkbox" value="男" name="1" id="man" onclick="IsMan()">男&nbsp;&nbsp;<input type="checkbox" value="女" name="0" id="woman" onclick="IsWoman()">女</td>
+						</tr>
+						<tr>
+							<td>联系电话：</td>
+							<td><input class="form-control required" type="text" placeholder="联系电话" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" /></td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center"><input type="button" value="提交"></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
