@@ -12,7 +12,7 @@ import com.amtf.demo.HandlerInterceptorUtil.IfGeiSession;
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
 	// 拦截器排除路径
-	final String[] notLoginInterceptPaths = { "/", "/f010001", "/err" };
+	final String[] notLoginInterceptPaths = { "/", "/f010001", "/f010001/T001", "/err" };
 
 	@Autowired
 	private IfGeiSession ifgeisession;
