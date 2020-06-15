@@ -5,6 +5,9 @@ import java.lang.reflect.Field;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import com.amtf.demo.user.UserImpl;
 
 public class ParameterUtil {
@@ -58,12 +61,14 @@ public class ParameterUtil {
 		user1.setUser_HomeAddress(user2.getUser_HomeAddress());
 		user1.setUser_Phone(user2.getUser_Phone());
 		user1.setUser_Attestation(user2.getUser_Attestation());
-
+		setSession(user2);
 		return obj1;
 	}
 
 	// 给Session赋值
-	public static void setSession(UserImpl user, HttpServletRequest httpRequest) {
+	public static void setSession(UserImpl user) {
+		HttpServletRequest httpRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
 		HttpSession session = httpRequest.getSession();
 
 		session.setAttribute("userId",
