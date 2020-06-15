@@ -1,5 +1,6 @@
 package com.amtf.demo.webMvcConfigurer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -9,6 +10,12 @@ import com.amtf.demo.HandlerInterceptorUtil.IfGeiSession;
 
 @Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
+
+	// 拦截器排除路径
+	final String[] notLoginInterceptPaths = { "/", "/f010001", "/err" };
+
+	@Autowired
+	private IfGeiSession ifgeisession;
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -25,6 +32,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new IfGeiSession()).addPathPatterns("/**").excludePathPatterns("/a.do");
+		// 注册拦截器
+		// 拦截路径 排除路径
+		registry.addInterceptor(ifgeisession).addPathPatterns("/**").excludePathPatterns(notLoginInterceptPaths);
 	}
 }

@@ -69,13 +69,13 @@
 		if (lookpwdindex == 0) {
 			lookpwdindex = 1;
 			$('#userpassword').attr('type','text');
-			$(thisid).val('隐藏密码');
-			$('#lookpwd_img').attr('src','/amtf/imgs/block_pwd.jpg');
+			$(thisid).text('隐藏密码');
+			//$('#lookpwd_img').attr('src','/amtf/imgs/block_pwd.jpg');
 		} else {
 			lookpwdindex = 0;
 			$('#userpassword').attr('type','password');
-			$(thisid).val('查看密码');
-			$('#lookpwd_img').attr('src','/amtf/imgs/view_pwd.jpg');
+			$(thisid).text('查看密码');
+			//$('#lookpwd_img').attr('src','/amtf/imgs/view_pwd.jpg');
 		}
 	}
 
@@ -100,6 +100,7 @@
                     <div class="form-group">  
                             <i class="fa fa-lock fa-lg"></i>  
                             <input class="form-control required" type="password" placeholder="密码" name="User_Password" maxlength="8" id="userpassword" th:value="${f010001Params.User_Password}"/>  
+                    		<button type="button" class="btn btn-info" onclick="lookpwd(this)">查看密码</button>
                     </div>  
                     <div class="form-group">  
                         <label class="checkbox">  
