@@ -1,4 +1,4 @@
-package com.amtf.demo.webMvcConfigurer;
+package com.amtf.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.amtf.demo.HandlerInterceptorUtil.IfGeiSession;
 
 @Configuration
-public class MyWebMvcConfigurer implements WebMvcConfigurer {
+public class MyConfig implements WebMvcConfigurer {
 
 	// 拦截器排除路径
 	final String[] notLoginInterceptPaths = { "/", "/f010001", "/f010001/T001", "/err" };
