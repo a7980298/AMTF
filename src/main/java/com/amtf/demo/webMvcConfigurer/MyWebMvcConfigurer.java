@@ -2,11 +2,10 @@ package com.amtf.demo.webMvcConfigurer;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@SuppressWarnings("deprecation")
 @Configuration
-public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
+public class MyWebMvcConfigurer implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -14,7 +13,6 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/imgs/**").addResourceLocations("classpath:/static/imgs/");
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
-		super.addResourceHandlers(registry);
 
 	}
 }

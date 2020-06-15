@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ErrListException extends Exception {
+public class ErrListException extends RuntimeException {
 
 	/**
 	 * 

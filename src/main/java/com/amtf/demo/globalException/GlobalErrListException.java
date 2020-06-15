@@ -21,9 +21,6 @@ public class GlobalErrListException {
 	@ExceptionHandler(ErrListException.class)
 	public ModelAndView passwordMistake(ErrListException e) throws JSONException {
 		log.error("错误信息：" + e.getMessage());
-		/*
-		 * JSONObject result = new JSONObject(); result.put("codemsg", e.getMessage());
-		 */
 		ModelAndView mav = new ModelAndView();
 		String IViewId = e.getIViewId();
 		mav.setViewName(IViewId);
