@@ -1,6 +1,7 @@
 package com.amtf.demo.params;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -18,5 +19,8 @@ public class F010001Params extends UserImpl {
 	 */
 	public String pwdbol;
 
-	public List<String> select1;
+	/**
+	 * 导航栏
+	 */
+	public Map<String, List<String>> navigation_bar;
 }

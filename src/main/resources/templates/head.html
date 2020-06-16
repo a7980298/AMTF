@@ -31,10 +31,14 @@
         		 </div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-			            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
-			            <li><a href="#"><span class="glyphicon glyphicon-lock"></span> 管理员</a></li>
-			            <li><a href="#"><span class="glyphicon glyphicon-list"></span> 栏目设置</a></li>
-			            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 网站设置</a></li>
+			            <li th:each="mapkey:${f010001Params.navigation_bar}">
+				            <a href="#">
+					            <select class="selectpicker" data-style="btn-danger">
+					            	<option>[[${mapkey.key}]]</option>
+					            	<option th:each="fileInfo: ${mapkey.value}">[[${fileInfo}]]</option>
+							    </select>
+				            </a>
+			            </li>
 					</ul>
 		          	<ul class="nav navbar-nav navbar-right">
 			            <li>

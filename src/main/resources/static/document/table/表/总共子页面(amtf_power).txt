@@ -1,0 +1,6 @@
+CREATE TABLE AMTF_POWER(
+	power_id INT NOT NULL, 画面序号
+	power_name VARCHAR(50), 画面名称
+	power_type VARCHAR(20), 画面类型
+	power_pow CHAR(1)	权限
+)

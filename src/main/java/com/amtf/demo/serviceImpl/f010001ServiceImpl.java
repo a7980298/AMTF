@@ -1,5 +1,10 @@
 package com.amtf.demo.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -9,6 +14,7 @@ import com.amtf.demo.entityin.F010001entityIn;
 import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
+import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.util.CommonUtil;
 
@@ -25,12 +31,13 @@ public class f010001ServiceImpl implements f010001Service {
 
 		F010001entityOut entityout = new F010001entityOut();
 
+		f010001_select1entity select1entity = new f010001_select1entity();
 		if (!CommonUtil.isEmpty(entityIn.getUser_Password())) {
 			// MD5加密
 			String md5pwd = DigestUtils.md5DigestAsHex(entityIn.getUser_Password().getBytes());
 
 			// 用户是否正确
-			f010001_select1entity select1entity = f010001dao.f010001_Select1(entityIn.getUser_Account(), md5pwd);
+			select1entity = f010001dao.f010001_Select1(entityIn.getUser_Account(), md5pwd);
 
 			// 判断用户密码是否正确
 			if (CommonUtil.isEmpty(select1entity)) {
@@ -40,11 +47,26 @@ public class f010001ServiceImpl implements f010001Service {
 		} else {
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
+		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(select1entity.getUser_power());
+
+		Map<String, List<String>> navigation_bar = select2.stream()
+				.collect(Collectors.toMap(f010001_select2entity::getPower_type, s -> {
+					List<String> studentNameList = new ArrayList<>();
+					studentNameList.add(s.getPower_name());
+					return studentNameList;
+				},
+						// 重复时将现在的值全部加入到之前的值内
+						(List<String> value1, List<String> value2) -> {
+							value1.addAll(value2);
+							return value1;
+						}));
 
 		// 账户
 		entityout.setUser_Account(entityIn.getUser_Account());
 		// 密码
 		entityout.setUser_Password(entityIn.getUser_Password());
+		// 导航栏
+		entityout.setNavigation_bar(navigation_bar);
 
 		return entityout;
 	}

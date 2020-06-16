@@ -57,10 +57,6 @@ public class f010001Controller extends ValiDationUtil {
 		ParameterUtil.copyParameter(params, entityOut);
 
 		model.addAttribute("f010001Params", params);
-		// 用户密码是否正确
-		/*
-		 * if (FixedNumberUtil.STR_1.equals(params.getPwdbol())) { return "f010002"; }
-		 */
 
 		return "f010002";
 	}
