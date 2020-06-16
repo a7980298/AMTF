@@ -39,7 +39,7 @@
 			<version>1.5.9.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
