@@ -68,8 +68,20 @@ public class f010001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@RequestMapping("/f010001/T002")
-	public String f010001T002() {
+	public String f010001T002(F010001Params params, Model model) throws ErrListException {
+		if (!ValiDateParams(params, model)) {
+			return "f010001";
+		}
+		F010001entityIn entityin = new F010001entityIn();
 
+		ParameterUtil.copyParameter(entityin, params);
+
+		F010001entityOut entityOut = f010001service.service02(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010001Params", params);
 		return "f010001";
 	}
 }

@@ -70,4 +70,11 @@ public class f010001ServiceImpl implements f010001Service {
 
 		return entityout;
 	}
+	
+
+	public F010001entityOut service02(F010001entityIn entityIn) throws ErrListException {
+		F010001entityOut entityout = new F010001entityOut();
+		
+		return entityout;
+	}
 }

@@ -5,13 +5,12 @@
 	<style type="text/css">
 	.modal_contain{
 	   width : 500px;
-	   
 	}
 	tr{
-	height:68px;
+		height:68px;
 	}
 	#modal_content_id{
-	background: url("/amtf/imgs/regist8.jpg") no-repeat center fixed; 
+		background: url("/amtf/imgs/regist8.jpg") no-repeat center fixed; 
 		background-size: <span style="font-family: 微软雅黑; rgb(239, 239, 239);">cover</span>;
 	 	font-size: 16px;
 	 	background-position: center 0;
@@ -22,17 +21,20 @@
 		-o-background-size: cover;
 		-moz-background-size: cover;
 		-ms-background-size: cover;
-	 	
 	}
-	
 	</style>
 	<script type="text/javascript" >
+		//复选框的唯一选择
 		$(function(){
-		$(":checkbox").click(function(){
-		$(this).attr("checked",true);
-		$(this).siblings().attr("checked",false);
+			$(":checkbox").click(function(){
+				$(this).attr("checked",true);
+				$(this).siblings().attr("checked",false);
+			})
 		})
-		})
+		//注册按钮押下
+		function amtf_regist(){
+			amtf_submit(amtf_form , '/f010001/T002');
+		}
 	</script>
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -47,11 +49,11 @@
 						</tr>
 						<tr>
 							<td>用户名：</td>
-							<td><input class="form-control required" type="text" placeholder="账户" name="regist_user_name" autofocus="autofocus" maxlength="20" id="regist_user_name" /></td>
+							<td><input class="form-control required" type="text" placeholder="账户" name="regist_user_name" autofocus="autofocus" maxlength="20" id="regist_user_name" th:value="${f010001Params.regist_user_name}"/></td>
 						</tr>
 						<tr>
 							<td>密码：</td>
-							<td><input class="form-control required" type="password" placeholder="密码" name="regist_user_password" maxlength="8" id="regist_user_password" /></td>
+							<td><input class="form-control required" type="password" placeholder="密码" name="regist_user_password" maxlength="8" id="regist_user_password" th:value="${f010001Params.regist_user_password}"/></td>
 						</tr>
 						<tr>
 							<td>确认密码：</td>
@@ -59,14 +61,14 @@
 						</tr>
 						<tr>
 							<td>性别：</td>
-							<td><input type="checkbox" value="男" name="1" id="man" checked="true">男&nbsp;&nbsp;<input type="checkbox" value="女" name="0" id="woman">女</td>
+							<td><input type="checkbox" value="男" name="man" id="man" checked="true">男&nbsp;&nbsp;<input type="checkbox" value="女" name="woman" id="woman">女</td>
 						</tr>
 						<tr>
 							<td>联系电话：</td>
 							<td><input class="form-control required" type="text" placeholder="联系电话" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" /></td>
 						</tr>
 						<tr>
-							<td colspan="2" style="text-align:center"><input type="button" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" onclick="window.location.reload('f010001.html')"></td>
+							<td colspan="2" style="text-align:center"><input type="button" value="提交" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
 						</tr>
 					</table>
 				</div>
