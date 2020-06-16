@@ -23,4 +23,6 @@ public class f010001_select1entity {
 
 	private String User_Attestation;
 
+	private String User_power;
+
 }

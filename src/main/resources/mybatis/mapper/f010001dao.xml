@@ -11,4 +11,13 @@
 		AND
 			USER_PASSWORD=#{userpwd}
 	</select>
+	
+	<select id="f010001_Select2" resultType="com.amtf.demo.f010001entity.f010001_select2entity">
+		SELECT
+			 *
+		FROM 
+			AMTF_POWER
+		WHERE 
+			power_pow &lt;= CONVERT(#{pow} USING gb2312)
+	</select>
 </mapper>

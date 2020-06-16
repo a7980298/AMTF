@@ -17,9 +17,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class experimentServiceImpl implements experimentService {
 
-	@Autowired
-	private final experimentDao experimentdao;
-
 	public experimententityOut service01(experimententityIn entityIn, HttpServletRequest request)
 			throws ErrListException {
 
