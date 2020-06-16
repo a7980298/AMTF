@@ -2,22 +2,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="myhead">
 <head>
-
+<meta charset="UTF-8">
+<title>head</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+		body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+        .body-content {
+            margin-top:20px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+</style>
 </head>
 <body>
-	<th:block th:replace="import :: myimport"></th:block>
 	<div class="footer">
-		<div class="d-flex" style="height:45px;">
-			<!-- <input th:value="*{f010001Params.User_Account}"/>
-			<input th:value="*{f010001Params.User_Password}"/>
-			<input th:value="*{f010001Params.User_id}"/> -->
-			<div class="col-md-11"></div>
-			<div class="col-md-1" style="height:100%;">
-				<button type="button" class="btn btn-default" title="用户信息">
-					<img th:src="@{/imgs/userimg.jpg}" alt="用户" class="img-responsive" style="width:40px;height:30px;"/>
-				</button>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+        		 <div class="navbar-header">
+           			<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+			             <span class="icon-bar"></span>
+			             <span class="icon-bar"></span>
+			             <span class="icon-bar"></span>
+         			</button>
+          			 <a href="#" class="navbar-brand">管理后台</a>
+        		 </div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+			            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
+			            <li><a href="#"><span class="glyphicon glyphicon-lock"></span> 管理员</a></li>
+			            <li><a href="#"><span class="glyphicon glyphicon-list"></span> 栏目设置</a></li>
+			            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 网站设置</a></li>
+					</ul>
+		          	<ul class="nav navbar-nav navbar-right">
+			            <li>
+			              <a href="#">
+			                <span class="glyphicon glyphicon-envelop"></span>[[${f010001Params.User_Account}]]
+			              </a>
+			            </li>
+			            <li>
+			              <a href="#">
+			                <span class="glyphicon glyphicon-log-out"></span> 退出
+			              </a>
+			            </li>
+		          	</ul>
+		        </div>
 			</div>
-		</div>
+    	 </div>
+	    <div class="container body-content">
+	      <div class="row">
+	        <div class="col-lg-3 col-md-3 col-sm-4">
+				侧边栏
+	        </div>
+	        <div class="col-lg-9 col-md-9 col-sm-8">
+				内容区域
+	        </div>
+	      </div>
+	      <hr>
+	    </div>
 	</div>
 </body>
 </th:block>

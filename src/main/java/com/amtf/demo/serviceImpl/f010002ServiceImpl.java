@@ -1,7 +1,5 @@
 package com.amtf.demo.serviceImpl;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +20,7 @@ public class f010002ServiceImpl implements f010002Service {
 	@Autowired
 	private final f010002Dao f010002dao;
 
-	public F010002entityOut service01(F010002entityIn entityIn, HttpServletRequest request) throws ErrListException {
+	public F010002entityOut service01(F010002entityIn entityIn) throws ErrListException {
 
 		F010002entityOut entityout = new F010002entityOut();
 

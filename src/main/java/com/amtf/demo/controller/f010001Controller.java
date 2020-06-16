@@ -1,7 +1,5 @@
 package com.amtf.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +41,7 @@ public class f010001Controller extends ValiDationUtil {
 	 * @throws ErrListException
 	 */
 	@RequestMapping("/f010001/T001")
-	public String f010001T001(F010001Params params, Model model, HttpServletRequest request) throws ErrListException {
+	public String f010001T001(F010001Params params, Model model) throws ErrListException {
 
 		if (!ValiDateParams(params, model)) {
 			return "f010001";
@@ -53,7 +51,7 @@ public class f010001Controller extends ValiDationUtil {
 
 		ParameterUtil.copyParameter(entityin, params);
 
-		F010001entityOut entityOut = f010001service.service01(entityin, request);
+		F010001entityOut entityOut = f010001service.service01(entityin);
 
 		// 将值copy赋值
 		ParameterUtil.copyParameter(params, entityOut);
