@@ -52,7 +52,7 @@ public class ParameterUtil {
 
 		UserImpl user2 = (UserImpl) obj2;
 
-		user1.setIViewId(user2.getIViewId());
+		// user1.setIViewId(user2.getIViewId());
 		user1.setUser_Account(user2.getUser_Account());
 		user1.setUser_id(user2.getUser_id());
 		user1.setUser_Password(user2.getUser_Password());
