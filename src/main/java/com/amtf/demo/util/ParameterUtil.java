@@ -20,18 +20,18 @@ public class ParameterUtil {
 
 		if (!CommonUtil.isEmpty(fieldobj2)) {
 			for (int i = 0; i < fieldobj2.length; i++) {
-				// 开启权限
-				fieldobj2[i].setAccessible(true);
 				for (int j = 0; j < fieldobj1.length; j++) {
-					// 开启权限
-					fieldobj1[j].setAccessible(true);
 					// 判断两个反射Class中的属性是否一致
 					if (fieldobj1[j].getName().equals(fieldobj2[i].getName())) {
 						try {
 							// 开启权限
-							fieldobj1[i].setAccessible(true);
-							// 一致的化进行赋值
-							fieldobj1[i].set(obj1, fieldobj2[j].get(obj2));
+							fieldobj1[j].setAccessible(true);
+							fieldobj2[i].setAccessible(true);
+							if (CommonUtil.isEmpty(fieldobj2[i].get(obj2))) {
+								fieldobj1[j].set(obj1, null);
+							} else {
+								fieldobj1[j].set(obj1, fieldobj2[i].get(obj2));
+							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
