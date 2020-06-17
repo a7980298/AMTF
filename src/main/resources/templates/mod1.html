@@ -33,7 +33,14 @@
 		})
 		//注册按钮押下
 		function amtf_regist(){
-			amtf_submit(amtf_form , '/f010001/T002');
+			$('#pwderrmsage').remove();
+			var password1=$('#regist_user_password').val();
+			var password2=$('#regist_confirm_user_password').val();
+			if(password1 != password2){
+				$('input[name=' + 'regist_confirm_user_password' + "]").after("<div id='pwderrmsage' style='color:red;'>" + '密码不一致，请重输!' + "</div>");
+			}else {
+				amtf_submit(amtf_form , '/f010001/T002');
+			}
 		}
 	</script>
 	<!-- 模态框（Modal） -->
@@ -57,7 +64,7 @@
 						</tr>
 						<tr>
 							<td>确认密码：</td>
-							<td><input class="form-control required" type="password" placeholder="确认密码" name="regist_confirm_user_password" maxlength="8" id="regist_confirm_user_password" /></td>
+							<td><input class="form-control required" type="password" placeholder="确认密码" name="regist_confirm_user_password" maxlength="8" id="regist_confirm_user_password" th:value="${f010001Params.regist_confirm_user_password}"/></td>
 						</tr>
 						<tr>
 							<td>性别：</td>
