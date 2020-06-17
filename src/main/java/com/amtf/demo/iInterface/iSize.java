@@ -24,9 +24,7 @@ import com.amtf.demo.util.CommonUtil;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface iSize {
 
-	String message()
-
-	default SizeValidator.message;
+	String message() default "";
 
 	int min();
 
@@ -43,7 +41,6 @@ public @interface iSize {
 		public static final String message = "必须在";
 
 		// 错误信息
-		@SuppressWarnings("unused")
 		private String msg;
 		// 约束大小
 		private int min, max;
@@ -51,7 +48,7 @@ public @interface iSize {
 		private String name;
 
 		public void initialize(iSize constraintAnnotation) {
-			msg = constraintAnnotation.message();
+			msg = message;
 			min = CommonUtil.isEmpty(constraintAnnotation.min()) ? 0 : constraintAnnotation.min();
 			max = constraintAnnotation.max();
 			name = constraintAnnotation.name();

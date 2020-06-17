@@ -47,8 +47,10 @@ public class f010001ServiceImpl implements f010001Service {
 		} else {
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
+		// 根据权限获取导航栏
 		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(select1entity.getUser_power());
 
+		// 将导航栏数据整合成map
 		Map<String, List<String>> navigation_bar = select2.stream()
 				.collect(Collectors.toMap(f010001_select2entity::getPower_type, s -> {
 					List<String> studentNameList = new ArrayList<>();
@@ -70,11 +72,10 @@ public class f010001ServiceImpl implements f010001Service {
 
 		return entityout;
 	}
-	
 
 	public F010001entityOut service02(F010001entityIn entityIn) throws ErrListException {
 		F010001entityOut entityout = new F010001entityOut();
-		
+
 		return entityout;
 	}
 }

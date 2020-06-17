@@ -44,10 +44,11 @@ public class ValiDationUtil {
 		List<String> messageList = new ArrayList<>();
 		// 遍历错误信息
 		for (ConstraintViolation<T> constraintViolation : constraintViolations) {
-			// name是页面上标签绑定的name值，err是错误信息
-			messageList.add("{name:" + constraintViolation.getPropertyPath() + "}{err:"
-					+ constraintViolation.getMessage() + "+}");
-
+			if (!CommonUtil.isEmpty(constraintViolation.getMessage())) {
+				// name是页面上标签绑定的name值，err是错误信息
+				messageList.add("{name:" + constraintViolation.getPropertyPath() + "}{err:"
+						+ constraintViolation.getMessage() + "+}");
+			}
 		}
 		return messageList;
 	}
