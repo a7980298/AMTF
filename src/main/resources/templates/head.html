@@ -16,6 +16,11 @@
             padding-right: 15px;
         }
 </style>
+<script type="text/javascript">
+	function amtf_close(){
+		amtf_submit(amtf_form , '/f010001');
+	}
+</script>
 </head>
 <body>
 	<div class="footer">
@@ -47,7 +52,7 @@
 			              </a>
 			            </li>
 			            <li>
-			              <a href="#">
+			              <a href="#" onclick="amtf_close()">
 			                <span class="glyphicon glyphicon-log-out"></span> 退出
 			              </a>
 			            </li>
