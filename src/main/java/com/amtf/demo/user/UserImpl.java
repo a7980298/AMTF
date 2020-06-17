@@ -3,7 +3,9 @@ package com.amtf.demo.user;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import com.amtf.demo.iInterface.iName;
+import com.amtf.demo.iInterface.iSize;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,15 +21,15 @@ public class UserImpl {
 	/**
 	 * 账户
 	 */
-	@NotNull
-	@Size(max = 3)
+	@iName(value = "1111232323")
+	@iSize(name = "账户", max = 3, min = 0)
 	private String User_Account;
 
 	/**
 	 * 密码
 	 */
 	@NotNull
-	@Size(max = 3)
+	@iSize(name = "密码", max = 3, min = 0)
 	private String User_Password;
 
 	private String User_Name;
