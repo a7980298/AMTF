@@ -33,11 +33,11 @@
 		})
 		//注册按钮押下
 		function amtf_regist(){
-			$('#pwderrmsage').remove();
+			$('#regist_confirm_user_password_err').remove();
 			var password1=$('#regist_user_password').val();
 			var password2=$('#regist_confirm_user_password').val();
 			if(password1 != password2){
-				$('input[name=' + 'regist_confirm_user_password' + "]").after("<div id='pwderrmsage' style='color:red;'>" + '密码不一致，请重输!' + "</div>");
+				setErrList("{name:regist_confirm_user_password}{err:密码不一致，请重输!+}");
 			}else {
 				amtf_submit(amtf_form , '/f010001/T002');
 			}

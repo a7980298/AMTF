@@ -48,6 +48,7 @@ public @interface iSize {
 		private String name;
 
 		public void initialize(iSize constraintAnnotation) {
+			// 获取注解中的值
 			msg = message;
 			min = CommonUtil.isEmpty(constraintAnnotation.min()) ? 0 : constraintAnnotation.min();
 			max = constraintAnnotation.max();
@@ -59,16 +60,20 @@ public @interface iSize {
 			if (CommonUtil.isEmpty(value)) {
 				return true;
 			}
-
+			// 如果最小值不是0
 			if (min != 0) {
+				// 判断是否大于规定范围
 				if (value.length() < min || value.length() > max) {
+					// 创建约束信息
 					String mes = name + msg + min + "~" + max + "之间";
 					context.disableDefaultConstraintViolation();
 					context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();
 					return false;
 				}
 			} else {
+				// 判断是否大于规定范围
 				if (value.length() > max) {
+					// 创建约束信息
 					String mes = name + msg + max + "之内";
 					context.disableDefaultConstraintViolation();
 					context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();

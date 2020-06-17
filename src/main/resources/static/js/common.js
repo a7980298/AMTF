@@ -9,7 +9,7 @@ function setErrList(errlist) {
 			var _id = lists[i].substring(lists[i].indexOf('name:') + 5,lists[i].indexOf('}'));
 			var _val = lists[i].substring(lists[i].indexOf('err:') + 4,lists[i].indexOf('+'));
 			$('input[name=' + _id + ']').css('border','1px solid red');
-			$('input[name=' + _id + "]").after("<div style='color:red;'>" + _val + "</div>");
+			$('input[name=' + _id + "]").after("<div id='"+_id+"_err' style='color:red;'><span>" + _val + "</span></div>");
 		}
 	}
 }
