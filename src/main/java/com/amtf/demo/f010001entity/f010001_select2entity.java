@@ -15,4 +15,6 @@ public class f010001_select2entity {
 
 	private String power_pow;
 
+	private String power_path;
+
 }

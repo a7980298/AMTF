@@ -51,14 +51,14 @@ public class f010001ServiceImpl implements f010001Service {
 		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(select1entity.getUser_power());
 
 		// 将导航栏数据整合成map
-		Map<String, List<String>> navigation_bar = select2.stream()
+		Map<String, List<f010001_select2entity>> navigation_bar = select2.stream()
 				.collect(Collectors.toMap(f010001_select2entity::getPower_type, s -> {
-					List<String> studentNameList = new ArrayList<>();
-					studentNameList.add(s.getPower_name());
+					List<f010001_select2entity> studentNameList = new ArrayList<>();
+					studentNameList.add(s);
 					return studentNameList;
 				},
 						// 重复时将现在的值全部加入到之前的值内
-						(List<String> value1, List<String> value2) -> {
+						(List<f010001_select2entity> value1, List<f010001_select2entity> value2) -> {
 							value1.addAll(value2);
 							return value1;
 						}));

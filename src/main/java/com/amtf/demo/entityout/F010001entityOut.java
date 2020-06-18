@@ -3,6 +3,7 @@ package com.amtf.demo.entityout;
 import java.util.List;
 import java.util.Map;
 
+import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class F010001entityOut extends UserImpl {
 	/**
 	 * 导航栏
 	 */
-	public Map<String, List<String>> navigation_bar;
+	public Map<String, List<f010001_select2entity>> navigation_bar;
 
 	/**
 	 * 注册账号

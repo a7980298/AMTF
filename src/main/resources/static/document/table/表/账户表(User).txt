@@ -1,26 +1,18 @@
 CREATE TABLE AMTF_User(
-      --id
-      User_id number(20) primary key not null ,
+      User_id int not null ,
 
-      --账户
-      User_Account Varchar2(20) ,
+      User_Account varchar(20) ,
 
-      --密码
-      User_Password varchar2(10) ,
+      User_Password varchar(80) ,
 
-      --真实姓名
-      User_Name varchar2(10) ,
+      User_Name varchar(10) ,
 
-      --法号
-      User_FH varchar2(10) ,
+      User_FH varchar(10) ,
 
-      --家庭住址
-      User_HomeAddress varchar2(50) ,
+      User_HomeAddress varchar(50) ,
 
-      --电话
       User_Phone char(11) ,
 
-      --认证
       User_Attestation char(1) 
   )
 

@@ -2,5 +2,13 @@ CREATE TABLE AMTF_POWER(
 	power_id INT NOT NULL, 画面序号
 	power_name VARCHAR(50), 画面名称
 	power_type VARCHAR(20), 画面类型
-	power_pow int	权限
+	power_pow int,	权限
+	power_path VARCHAR(50)
 )
+
+1001	观看视频	影视	0	f010001
+1002	享受音乐	音乐	0	f030001
+1003	畅想快聊	论坛	0	f040001
+1004	最新资讯	新闻	0	f050001
+1005	现场直播	影视	0	f060001
+9999	会员管理	管理	1	f900000
