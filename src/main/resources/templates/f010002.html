@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="head :: myhead"></th:block>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
-<th:block th:replace="head :: myhead"></th:block>
+<title></title>
 <script type="text/javascript">
 function aaa(){
 	amtf_submit(amtf_form , '/f010002/F001');
@@ -12,8 +12,29 @@ function aaa(){
 </head>
 <body>
 	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form" >
+	 	<div class="container body-content">
+		   <div class="row">
+				<div id="imgs" data-interval="2000" data-ride="carousel" class="carousel slide" style="width: 100%">
+					<div class="carousel-inner">
+						<div class="item active">
+							<img th:src="@{/imgs/longin.jpg}" style="width: 100%;height: 500px;">
+						</div>
+						<div class="item">
+							<img th:src="@{/imgs/regist8.jpg}"  style="width: 100%;height: 500px;">
+						</div>
+						<ul class="carousel-indicators">
+							<li data-target="#imgs" data-slide-to="0" class="active"></li>
+							<li data-target="#imgs" data-slide-to="1"></li>
+						</ul>
+					</div>
+					<a href="#imgs" data-slide="prev" class="carousel-control left" style="margin-top:180px;height:0px;color:#fff;"><</a>
+					<a href="#imgs" data-slide="next" class="carousel-control right" style="margin-top:180px;height:0px;color:#fff;">></a>
+				</div>
+			</div>
+	    </div>
 		<footer class="navbar navbar-fixed-bottom text-center bg-primary">
-        	<p>© [[${f010001Params.User_Account}]] </p>
+        	<p>© [[${f010001Params.User_Account}]] <br/>开发人员：王意鑫  方军  张春程  王杰</p>
+        	
 		</footer>
 	</i-form>
 </body>
