@@ -1,26 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8"></meta>
-<th:block th:fragment="mod1">
+<th:block th:fragment="f010003_modl">
 	<style type="text/css">
 	.modal_contain{
 	   width : 500px;
 	}
 	tr{
 		height:68px;
-	}
-	#modal_content_id{
-		background: url("/amtf/imgs/regist8.jpg") no-repeat center fixed; 
-		background-size: <span style="font-family: 微软雅黑; rgb(239, 239, 239);">cover</span>;
-	 	font-size: 16px;
-	 	background-position: center 0;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
-		-webkit-background-size: cover;
-		-o-background-size: cover;
-		-moz-background-size: cover;
-		-ms-background-size: cover;
 	}
 	</style>
 	<script type="text/javascript" >
@@ -44,7 +31,7 @@
 		}
 	</script>
 	<!-- 模态框（Modal） -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="f010003" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
 		style="z-index: 111111;">
 		<div class="mod1class">
@@ -52,7 +39,7 @@
 				<div class="modal-content modal_contain" id="modal_content_id">
 					<table style="width:300px;margin:0 auto">
 						<tr>
-						<td colspan="2" style="text-align:center">注册</td>
+						<td colspan="2" style="text-align:center">用户详细信息</td>
 						</tr>
 						<tr>
 							<td>用户名：</td>
@@ -75,7 +62,7 @@
 							<td><input class="form-control required" type="text" placeholder="联系电话" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" /></td>
 						</tr>
 						<tr>
-							<td colspan="2" style="text-align:center"><input type="button" value="提交" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
+							<td colspan="2" style="text-align:center"><input type="button" value="修改" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
 						</tr>
 					</table>
 				</div>
