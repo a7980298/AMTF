@@ -25,6 +25,12 @@
 				var path = $(thisid).children('option:selected').val(); 
 				amtf_submit(amtf_form , '/' + path);
 			}
+			
+			//打开模态框
+			function show_modal() {
+				$('.dropdown-toggle').dropdown();
+				$('#f010003').modal('show');
+			}
 		</script>
 		</head>
 		<body>
@@ -54,7 +60,7 @@
 							</ul>
 				          	<ul class="nav navbar-nav navbar-right">
 					            <li>
-					              <a href="#">
+					              <a href="#" id="" class="" data-target="#f010003" onclick="show_modal()">
 					                <span class="glyphicon glyphicon-envelop"></span>用户：[[${f010001Params.User_Account}]]
 					              </a>
 					            </li>

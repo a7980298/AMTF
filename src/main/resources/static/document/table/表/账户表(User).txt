@@ -13,7 +13,8 @@ CREATE TABLE AMTF_User(
 
       User_Phone char(11) ,
 
-      User_Attestation char(1) 
+      User_Attestation char(1),
+      User_power char(1)
   )
 
 create sequence AMTF_User_id start with 1 increment by 1;
