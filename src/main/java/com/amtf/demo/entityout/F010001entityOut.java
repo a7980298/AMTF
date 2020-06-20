@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
+import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -91,4 +92,8 @@ public class F010001entityOut extends UserImpl {
 	 * 注册电话号码
 	 */
 	public String phone_number;
+	/**
+	 * 最新发布的通知
+	 */
+	f010001_select3entity select4;
 }

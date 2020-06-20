@@ -1,4 +1,4 @@
-package com.amtf.demo.f020002entity;
+package com.amtf.demo.f020001entity;
 
 import lombok.Getter;
 import lombok.Setter;

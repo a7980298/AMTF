@@ -41,6 +41,7 @@
 	$(function(){
 		setErrList("[[${errMessageList}]]");
 		setCodeErrList("[[${codemsg}]]");
+		setCodeSuccess("[[${codemsg}]]");
 	
 	});
 
@@ -84,7 +85,8 @@
 			dateType: 'html',
 			async: false,
 			data: {
-				search_name: $('#search_name').val()
+				search_name: $('#search_name').val(),
+				select_state: $('#select_state option:selected').val()
 			},
 			success: function (result) {
 				$('#select1').replaceWith(result);
@@ -100,6 +102,39 @@
 		/* $('#f020002_modl').modal('show'); */
 		$('#select1' + index).remove();
 	}
+	
+	//多选和非选
+	var checkbol= 0;
+	function amtf_wholecheck(){
+		if (checkbol == 0) {
+			$('#select1 input[type=checkbox]').prop('checked',true);
+			checkbol=1;
+		} else {
+			$('#select1 input[type=checkbox]').prop('checked',false);
+			checkbol=0;
+		}
+		
+	}
+	
+	//发布更新通知
+	function amtf_release(){
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T003',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				release_name: $('#release_name').val()
+			},
+			success: function (result) {
+				$('#success_id').text('发布成功');
+				$('#myModal_success').modal('show');
+			},
+			error: function (res, textStaus) {
+				
+			},
+		});
+	}
 </script>
 </head>
 <body>
@@ -107,6 +142,7 @@
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 		<input type="hidden" name="IViewId" value="f010001"/>
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
+		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
         <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
@@ -165,6 +201,22 @@
 	                        	设置
 	                        </li>
 	                    </ol>
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                         		   更新通知
+	                        </div>
+	                        <div class="panel-body">
+	                            <form role="form" class="form-inline">
+	                                <div class="form-group">
+	                                    <label for="name">内容</label>
+	                                    <input type="text" class="form-control" id="release_name" placeholder="请输入内容">
+	                                </div>
+	                                <div class="form-group">
+	                                    <button type="submit" class="btn btn-default" onclick="amtf_release()">发布</button>
+	                                </div>
+	                            </form>
+	                        </div>
+	                    </div>
 	                </div>
            			<div class="col-sm-10 tab-pane" id="classification">
            				<ol class="breadcrumb">
@@ -192,14 +244,15 @@
 	                        <div class="panel-body">
 	                            <form role="form" class="form-inline">
 	                                <div class="form-group">
-	                                    <label for="name">名称</label>
-	                                    <input type="text" class="form-control" id="search_name" placeholder="请输入名称">
+	                                    <label for="name">姓名</label>
+	                                    <input type="text" class="form-control" id="search_name" placeholder="请输入姓名">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="name">状态</label>
-	                                    <select class="form-control">
-	                                        <option>认证</option>
-	                                        <option>未认证</option>
+	                                    <select class="form-control" name="select_state" id="select_state">
+	                                    	<option value="2">全部</option>
+	                                        <option value="1">认证</option>
+	                                        <option value="0">未认证</option>
 	                                    </select>
 	                                </div>
 	                                <div class="form-group">
@@ -220,7 +273,8 @@
 	                                    <th>电话</th>
 	                                    <th>状态</th>
 	                                    <th>操作</th>
-	                                    <th><button type="button">登录</button></th>
+	                                    <th><span onclick="amtf_wholecheck()">选择</span></th>
+	                                    <th><button type="button">登录</button><button type="button">删除</button></th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -230,11 +284,17 @@
 	                                    	<img th:src="@{/imgs/userimg.jpg}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path == ''}" src="NoImg"/>
 	                                        <img th:src="@{/istatic/{fileName}(fileName=${entity.User_path})}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path != ''}"/>
 	                                    </td>
-	                                    <td><span th:filed="${f020001Params.select1[__${idx.index}__].User_Name}"></span>[[${entity.User_Name}]]</td>
+	                                    <td>
+	                                    	<span th:filed="${f020001Params.select1[__${idx.index}__].User_Name}"></span>[[${entity.User_Name}]]
+	                                    </td>
 	                                    <td>[[${entity.User_HomeAddress}]]</td>
 	                                    <td>[[${entity.User_Phone}]]</td>
-	                                    <td th:if="${entity.User_Attestation == '1'}"><a style="color:green;" onclick="amtf_attestation(this)" href="javascript:return false;">√认证</a></td>
-	                                    <td th:if="${entity.User_Attestation != '1'}"><a style="color:red;" onclick="amtf_attestation(this)" href="#">×未认证</a></td>
+	                                    <td th:if="${entity.User_Attestation == '1'}">
+	                                    	<a style="color:green;" onclick="amtf_attestation(this)" href="javascript:return false;">√认证</a>
+	                                    </td>
+	                                    <td th:if="${entity.User_Attestation != '1'}">
+	                                    	<a style="color:red;" onclick="amtf_attestation(this)" href="#">×未认证</a>
+	                                    </td>
 	                                    <td>
 	                                        <div class="btn-group">
 	                                           <!--  <a href="" class="btn btn-default">修改</a> -->
@@ -242,9 +302,10 @@
 	                                            <a href="#" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'">删除</a>
 	                                        </div>
 	                                    </td>
+	                                    <th><input type="checkbox"/></th>
 	                                    <td>
 	                                        <div class="btn-group">
-	                                        	<a href="" class="btn btn-default">修改</a>
+	                                        	<a href="#" class="btn btn-default">修改</a>
 	                                        </div>
 	                                    </td>
 	                                </tr>
@@ -297,6 +358,26 @@
 	                        	设置
 	                        </li>
 	                    </ol>
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                         		   个人信息
+	                        </div>
+	                        <div class="panel-body">
+	                            <form role="form" class="form-inline">
+	                                <div class="form-group">
+	                                	<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.imgPath == ''}"/>
+				                        <img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="180px" th:if="${f020001Params.imgPath != ''}"/>
+				                    </div>
+	                                <div class="form-group">
+	                               		<label for="name">姓名</label>
+	                               		<input type="text" class="form-control" id="search_name" th:value="${f020001Params.User_Name}">
+	                                </div>
+	                                <div class="form-group">
+	                                    <button type="submit" class="btn btn-default">修改</button>
+	                                </div>
+	                            </form>
+	                        </div>
+	                    </div>
            			</div>
            		</div>
             </div>

@@ -20,5 +20,20 @@
 		AND
 			USER_Name like '%${name}%'
 		</if>
+		<if	test="selectval != 2">
+		AND
+			USER_Attestation = #{selectval}
+		</if>
 	</select>
+	<insert id="f020001_insert3">
+		INSERT 
+		INTO
+			AMTF_updnotice
+		VALUES(
+			#{id}
+			,#{head}
+			,#{text}
+			,NOW()
+		)
+	</insert>
 </mapper>

@@ -16,6 +16,7 @@ import com.amtf.demo.entityin.F010002entityIn;
 import com.amtf.demo.entityout.F010002entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select2entity;
+import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.FenYe;
@@ -63,6 +64,10 @@ public class f010002ServiceImpl implements f010002Service {
 		entityout.setUser_Password(loginfo.getUser_Password());
 		// 导航栏
 		entityout.setNavigation_bar(navigation_bar);
+
+		f010001_select3entity select4 = f010001dao.f010001_Select3();
+
+		entityout.setSelect4(select4);
 		return entityout;
 	}
 

@@ -84,4 +84,14 @@ public class F020001entityIn extends UserImpl {
 	 */
 	public String search_name;
 
+	/**
+	 * 用户搜索的状态
+	 */
+	public String select_state;
+
+	/**
+	 * 发布通知
+	 */
+	public String release_name;
+
 }

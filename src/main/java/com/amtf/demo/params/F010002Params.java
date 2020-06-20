@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
+import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.user.UserImpl;
 import com.amtf.demo.util.FenYe;
 
@@ -65,6 +66,10 @@ public class F010002Params extends UserImpl {
 	 * 导航栏
 	 */
 	public Map<String, List<f010001_select2entity>> navigation_bar;
+	/**
+	 * 最新发布的通知
+	 */
+	f010001_select3entity select4;
 
 	public FenYe fenye;
 }

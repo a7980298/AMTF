@@ -2,7 +2,7 @@ package com.amtf.demo.entityout;
 
 import java.util.List;
 
-import com.amtf.demo.f020002entity.f020001_select1entity;
+import com.amtf.demo.f020001entity.f020001_select1entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;

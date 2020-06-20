@@ -20,4 +20,15 @@
 		WHERE 
 			power_pow &lt;= CONVERT(#{pow} USING gb2312)
 	</select>
+	
+	<select id="f010001_Select3" resultType="com.amtf.demo.f010001entity.f010001_select3entity">
+		SELECT
+			 *
+		FROM 
+			AMTF_updnotice
+			
+		GROUP BY 
+			updnotice_time DESC 
+		LIMIT 0,1
+	</select>
 </mapper>

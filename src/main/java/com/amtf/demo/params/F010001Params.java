@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
+import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.iInterface.iName;
 import com.amtf.demo.iInterface.iSize;
 import com.amtf.demo.user.UserImpl;
@@ -67,4 +68,8 @@ public class F010001Params extends UserImpl {
 	 */
 	@iSize(name = "电话号码", max = 6, min = 0)
 	public String phone_number;
+	/**
+	 * 最新发布的通知
+	 */
+	f010001_select3entity select4;
 }

@@ -27,3 +27,10 @@ function setCodeErrList(codeErrList){
 		$('#myModal_codeErr').modal('show');
 	}
 }
+
+//打开modal模态框
+function setCodeSuccess(CodeSuccess){
+	if (CodeSuccess != null && CodeSuccess != '') {
+		$('#myModal_success').modal('show');
+	}
+}

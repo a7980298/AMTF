@@ -15,6 +15,7 @@ import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010001entity.f010001_select2entity;
+import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.ParameterUtil;
@@ -72,6 +73,9 @@ public class f010001ServiceImpl implements f010001Service {
 		entityout.setNavigation_bar(navigation_bar);
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);
+		f010001_select3entity select4 = f010001dao.f010001_Select3();
+
+		entityout.setSelect4(select4);
 
 		return entityout;
 	}

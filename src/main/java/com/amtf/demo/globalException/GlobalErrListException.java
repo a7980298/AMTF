@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.exception.SuccessException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,15 @@ public class GlobalErrListException {
 		mav.setViewName(IViewId);
 		mav.addObject(IViewId + "Params", e.getEntity());
 		mav.addObject("codemsg", e.getMessage());
+		return mav;
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(SuccessException.class)
+	public ModelAndView getSuccessException(SuccessException e) throws JSONException {
+		log.error("错误信息：" + e.getMessage());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("success", e.getMessage());
 		return mav;
 	}
 }
