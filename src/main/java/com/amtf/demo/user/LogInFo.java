@@ -51,4 +51,9 @@ public class LogInFo {
 	 * 是否认证
 	 */
 	private String User_Attestation;
+
+	/**
+	 * 
+	 */
+	private String User_power;
 }

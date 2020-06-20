@@ -97,9 +97,15 @@ public class ParameterUtil {
 			// 电话
 			loginfo.setUser_Phone(
 					!CommonUtil.isEmpty(user.getUser_Phone()) ? user.getUser_Phone() : FixedNumberUtil.EMPTY);
-			// 权限
+			// 姓名
 			loginfo.setUser_Name(
 					!CommonUtil.isEmpty(user.getUser_Name()) ? user.getUser_Name() : FixedNumberUtil.EMPTY);
+			// 姓名
+			loginfo.setUser_Name(
+					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : FixedNumberUtil.EMPTY);
+			// 权限
+			loginfo.setUser_power(
+					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : FixedNumberUtil.EMPTY);
 			// 存入session
 			session.setAttribute("loginfo", loginfo);
 

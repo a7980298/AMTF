@@ -28,6 +28,15 @@ public class f010002Controller extends ValiDationUtil {
 	@RequestMapping("/f010002")
 	public String f010002S001(F010002Params params, Model model) {
 
+		F010002entityIn entityin = new F010002entityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F010002entityOut entityOut = f010002service.service01(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
 		model.addAttribute("f010002Params", params);
 
 		return "f010002";

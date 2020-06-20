@@ -1,5 +1,9 @@
 package com.amtf.demo.entityout;
 
+import java.util.List;
+import java.util.Map;
+
+import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.user.UserImpl;
 import com.amtf.demo.util.FenYe;
 
@@ -53,6 +57,11 @@ public class F010002entityOut extends UserImpl {
 	 * 是否认证
 	 */
 	private String User_Attestation;
+
+	/**
+	 * 导航栏
+	 */
+	public Map<String, List<f010001_select2entity>> navigation_bar;
 
 	public FenYe fenye;
 }

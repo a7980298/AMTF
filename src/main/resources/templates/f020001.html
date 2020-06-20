@@ -53,6 +53,11 @@
 		$('.dropdown-toggle').dropdown();
 		$('#myModal').modal('show');
 	}
+	
+	//返回
+	function amtf_return(){
+		amtf_submit(amtf_form , '/f010002');
+	}
 </script>
 </head>
 <body>
@@ -90,7 +95,7 @@
 		                </li>
                         <li><a>[[${f020001Params.User_Name}]]</a>
                         </li>
-                        <li><a href="/amtf/f010001">返回</a>
+                        <li><a href="#" onclick="amtf_return()">返回</a>
                         </li>
                     </ul>
                 </div>
@@ -191,7 +196,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <ul class="pagination" style="float: right;">
+                  <!--   <ul class="pagination" style="float: right;">
                         <li><a href="#">&laquo;</a>
                         </li>
                         <li class="active"><a href="#">1</a>
@@ -206,7 +211,7 @@
                         </li>
                         <li><a href="#">&raquo;</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

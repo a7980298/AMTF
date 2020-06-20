@@ -47,7 +47,7 @@
 		        		 </div>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-					            <li th:each="mapkey,idx:${f010001Params.navigation_bar}">
+					            <li th:each="mapkey,idx:${f010002Params.navigation_bar}">
 					            	<a href="#">
 							            <select class="selectpicker" data-style="btn-danger" th:id="${idx.index + 'select_nav'}" onchange="amtf_skip(this)">
 							            	<option>[[${mapkey.key}]]</option>
@@ -61,7 +61,7 @@
 				          	<ul class="nav navbar-nav navbar-right">
 					            <li>
 					              <a href="#" id="" class="" data-target="#f010003" onclick="show_modal()">
-					                <span class="glyphicon glyphicon-envelop"></span>User：[[${f010001Params.User_Account}]]
+					                <span class="glyphicon glyphicon-envelop"></span>User：[[${f010002Params.User_Account}]]
 					              </a>
 					            </li>
 					            <li>
