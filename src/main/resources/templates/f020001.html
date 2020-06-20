@@ -59,6 +59,7 @@
 		amtf_submit(amtf_form , '/f010002');
 	}
 	
+	//top点击时去掉所有的active样式(选中的样式)并给自己添加active
 	function amtf_activeclick(thisid){
 		$('.active').removeClass("active"); 
 		$(thisid).addClass("active");
