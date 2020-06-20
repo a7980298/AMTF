@@ -58,6 +58,11 @@
 	function amtf_return(){
 		amtf_submit(amtf_form , '/f010002');
 	}
+	
+	function amtf_activeclick(thisid){
+		$('.active').removeClass("active"); 
+		$(thisid).addClass("active");
+	}
 </script>
 </head>
 <body>
@@ -67,23 +72,19 @@
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
         <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-                        <span class="sr-only">切换导航</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a class="icon-bar" href="#">网站设置</a>
+                        <li class="active">
+                        	<a class="icon-bar" href="#setup" data-toggle="tab" onclick="amtf_activeclick(this)">网站设置</a>
                         </li>
-                        <li><a href="#">分类管理</a>
+                        <li>
+                        	<a href="#classification" data-toggle="tab" onclick="amtf_activeclick(this)">分类管理</a>
                         </li>
-                        <li><a href="#">人员管理</a>
+                        <li>
+                        	<a href="#personnel" data-toggle="tab" onclick="amtf_activeclick(this)">人员管理</a>
                         </li>
-                        <li><a href="#">广告栏设置</a>
+                        <li>
+                        	<a href="#advertisement" data-toggle="tab" onclick="amtf_activeclick(this)">广告栏设置</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -93,9 +94,11 @@
 		                        <img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="100%" th:if="${f020001Params.imgPath != ''}"/>
 		                    </a>
 		                </li>
-                        <li><a>[[${f020001Params.User_Name}]]</a>
+                        <li>
+                        	<a>[[${f020001Params.User_Name}]]</a>
                         </li>
-                        <li><a href="#" onclick="amtf_return()">返回</a>
+                        <li>
+                        	<a href="#" onclick="amtf_return()">返回</a>
                         </li>
                     </ul>
                 </div>
@@ -103,124 +106,155 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
+            	 <!--左边菜单栏-->
                 <div class="col-sm-2">
-                    <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>商品管理
+                    <a href="#picture" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+                    	<span class="glyphicon glyphicon-home">
+                    	</span>图片管理
                     </a>
-                    <a href="#" class="list-group-item">
-                    <!-- 小图标样式设置 -->
-                        <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    </span>客户查询</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>客户录入</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-camera" aria-hidden="true">
-                    </span>客户消费</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-                    </span>客户增加</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true">
-                    </span>客户删除</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    </span>客户注销</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true">
-                    </span>个人设置</a>
+                    <a href="#personal" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+                        <span class="glyphicon glyphicon-user">
+                    	</span>个人设置
+                    </a>
                 </div>
-                <!--左边菜单栏-->
-                <div class="col-sm-10">
-                    <ol class="breadcrumb">
-                        <li class="active">菜单
-                        </li>
-                        <li class="active">vip客户信息
-                        </li>
-                    </ol>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                         		   搜索
-                        </div>
-                        <div class="panel-body">
-                            <form role="form" class="form-inline">
-                                <div class="form-group">
-                                    <label for="name">名称</label>
-                                    <input type="text" class="form-control" id="name" placeholder="请输入名称">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">状态</label>
-                                    <select class="form-control">
-                                        <option>上架</option>
-                                        <option>下架</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-default">开始搜索</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- 列表展示 -->
-                    <div class="table-responsive">
-                        <table class="table table-striped ">
-                            <thead>
-                                <tr>
-                                    <th>编号</th>
-                                    <th>图标</th>
-                                    <th>名称</th>
-                                    <th>价格</th>
-                                    <th>邮费</th>
-                                    <th>状态</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>15</td>
-                                    <td>
-                                        <img src="images/a.jpg" class="img-thumbnail" style="height: 30px;" />
-                                    </td>
-                                    <td>宝马</td>
-                                    <td>1800000.00￥</td>
-                                    <td>1800000.00￥</td>
-                                    <td>上架</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="" class="btn btn-default">修改</a><a href="" class="btn btn-default">下架</a><a href="" class="btn btn-danger">删除</a>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                  <!--   <ul class="pagination" style="float: right;">
-                        <li><a href="#">&laquo;</a>
-                        </li>
-                        <li class="active"><a href="#">1</a>
-                        </li>
-                        <li class="disabled"><a href="#">2</a>
-                        </li>
-                        <li><a href="#">3</a>
-                        </li>
-                        <li><a href="#">4</a>
-                        </li>
-                        <li><a href="#">5</a>
-                        </li>
-                        <li><a href="#">&raquo;</a>
-                        </li>
-                    </ul> -->
-                </div>
+                <div id="myTabContent" class="tab-content">
+	                <div class="col-sm-10 tab-pane active" id="setup">
+	                    <ol class="breadcrumb">
+	                        <li class="active">
+	                        	网站
+	                        </li>
+	                        <li class="active">
+	                        	设置
+	                        </li>
+	                    </ol>
+	                </div>
+           			<div class="col-sm-10 tab-pane" id="classification">
+           				<ol class="breadcrumb">
+	                        <li class="active">
+	                        	分类
+	                        </li>
+	                        <li class="active">
+	                        	管理
+	                        </li>
+	                    </ol>
+           			</div>
+           			<div class="col-sm-10 tab-pane" id="personnel">
+           				<ol class="breadcrumb">
+	                        <li class="active">
+	                        	人员
+	                        </li>
+	                        <li class="active">
+	                        	管理
+	                        </li>
+	                    </ol>
+           				<div class="panel panel-default">
+	                        <div class="panel-heading">
+	                         		   搜索
+	                        </div>
+	                        <div class="panel-body">
+	                            <form role="form" class="form-inline">
+	                                <div class="form-group">
+	                                    <label for="name">名称</label>
+	                                    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+	                                </div>
+	                                <div class="form-group">
+	                                    <label for="name">状态</label>
+	                                    <select class="form-control">
+	                                        <option>认证</option>
+	                                        <option>未认证</option>
+	                                    </select>
+	                                </div>
+	                                <div class="form-group">
+	                                    <button type="submit" class="btn btn-default">开始搜索</button>
+	                                </div>
+	                            </form>
+	                        </div>
+	                    </div>
+	                    <!-- 列表展示 -->
+	                    <div class="table-responsive">
+	                        <table class="table table-striped ">
+	                            <thead>
+	                                <tr>
+	                                    <th>账户</th>
+	                                    <th>图片</th>
+	                                    <th>姓名</th>
+	                                    <th>地址</th>
+	                                    <th>电话</th>
+	                                    <th>状态</th>
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <tr>
+	                                    <td>123</td>
+	                                    <td>
+	                                        <img src="images/a.jpg" class="img-thumbnail" style="height: 30px;" />
+	                                    </td>
+	                                    <td>阿玛</td>
+	                                    <td>北京市故宫</td>
+	                                    <td>11111884664</td>
+	                                    <td>认证</td>
+	                                    <td>
+	                                        <div class="btn-group">
+	                                            <a href="" class="btn btn-default">修改</a>
+	                                            <!-- <a href="" class="btn btn-default">下架</a> -->
+	                                            <a href="" class="btn btn-danger">删除</a>
+	                                        </div>
+	                                    </td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                         <!--   <ul class="pagination" style="float: right;">
+	                        <li><a href="#">&laquo;</a>
+	                        </li>
+	                        <li class="active"><a href="#">1</a>
+	                        </li>
+	                        <li class="disabled"><a href="#">2</a>
+	                        </li>
+	                        <li><a href="#">3</a>
+	                        </li>
+	                        <li><a href="#">4</a>
+	                        </li>
+	                        <li><a href="#">5</a>
+	                        </li>
+	                        <li><a href="#">&raquo;</a>
+	                        </li>
+	                   		</ul> -->
+	                    </div>
+           			</div>
+           			<div class="col-sm-10 tab-pane" id="advertisement">
+           				<ol class="breadcrumb">
+	                        <li class="active">
+	                        	广告栏
+	                        </li>
+	                        <li class="active">
+	                        	设置
+	                        </li>
+	                    </ol>
+           			</div>
+           			<div class="col-sm-10 tab-pane" id="picture">
+           				<ol class="breadcrumb">
+	                        <li class="active">
+	                        	图片
+	                        </li>
+	                        <li class="active">
+	                        	管理
+	                        </li>
+	                    </ol>
+           			</div>
+           			<div class="col-sm-10 tab-pane" id="personal">
+           				<ol class="breadcrumb">
+	                        <li class="active">
+	                        	个人
+	                        </li>
+	                        <li class="active">
+	                        	管理
+	                        </li>
+	                    </ol>
+           			</div>
+           		</div>
             </div>
         </div>
-          <!-- 底部页脚部分 
-		 <div class="footer">
-		     <p class="text-center">
-		         2018 &copy; 柒晓白.
-		     </p>
-		 </div>-->
 	</i-form>
 	</div>
 </body>
