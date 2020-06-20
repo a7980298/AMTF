@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>AMTF管理画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	.mod1class{
+		padding-top:10%;
+		width:100%;
+	}
+	body{background: url("/amtf/imgs/longin.jpg") no-repeat center fixed;
+	 	background-size: <span style="font-family: 微软雅黑; rgb(239, 239, 239);">cover</span>;
+	 	font-size: 16px;
+	 	background-position: center 0;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		-webkit-background-size: cover;
+		-o-background-size: cover;
+		-moz-background-size: cover;
+		-ms-background-size: cover;
+	}
+   .form{
+		background: rgba(255,255,255,0.2);
+		width:400px;margin:100px auto;
+	}  
+	#login_form{
+		display: block;
+	}  
+	#register_form{
+		display: none;
+	}  
+	.fa{
+		display: inline-block;
+		top: 27px;
+		left: 6px;
+		position: relative;
+		color: #ccc;
+	}  
+   input[type="text"],input[type="password"]{
+		padding-left:26px;
+	}  
+	.checkbox{
+		padding-left:21px;
+	}  
+	.padding-top-3{
+		padding-top: 10%
+	}
+</style>
+<script type="text/javascript">
+	//初始化方法
+	$(function(){
+		setErrList("[[${errMessageList}]]");
+		setCodeErrList("[[${codemsg}]]");
+	
+	});
+
+	//登录按钮押下
+	function amtf_login(){
+		amtf_submit(amtf_form , '/f010001/T001');
+	}
+	//打开模态框
+	function show_modal() {
+		$('.dropdown-toggle').dropdown();
+		$('#myModal').modal('show');
+	}
+</script>
+</head>
+<body>
+	<div class="row bg col-md-12">
+		<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
+		<input type="hidden" name="IViewId" value="f010001"/>
+		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
+			<div class="form row">  
+				管理页面
+			</div> 
+		</i-form>
+	</div>
+</body>
+</html>
