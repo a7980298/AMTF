@@ -1,8 +1,0 @@
-  create table AMTF_Permission(
-
-      --等级（会员0-管理1-师傅2）
-      Permission_Grade char(1) not null,
-
-      --User账户id
-      User_id number(20) not null
-  )
