@@ -16,6 +16,10 @@ CREATE TABLE AMTF_User(
       User_Attestation char(1),
       User_power char(1)
   )
+123	202cb962ac59075b964b07152d234b70	王意鑫1	阿鑫1	苏州	18438742726	1	1
+111	202cb962ac59075b964b07152d234b70	222	12	123	3	1	0
+999	202cb962ac59075b964b07152d234b70	王意鑫2	阿鑫2	苏州	15638582399	1	1
+
 
 create sequence AMTF_User_id start with 1 increment by 1;
 
