@@ -100,9 +100,6 @@ public class ParameterUtil {
 			// 姓名
 			loginfo.setUser_Name(
 					!CommonUtil.isEmpty(user.getUser_Name()) ? user.getUser_Name() : FixedNumberUtil.EMPTY);
-			// 姓名
-			loginfo.setUser_Name(
-					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : FixedNumberUtil.EMPTY);
 			// 权限
 			loginfo.setUser_power(
 					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : FixedNumberUtil.EMPTY);
