@@ -3,8 +3,6 @@ package com.amtf.demo.params;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
@@ -32,7 +30,6 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 密码
 	 */
-	@NotNull
 	@iSize(name = "密码", max = 3, min = 0)
 	private String User_Password;
 	/**
@@ -46,13 +43,11 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 注册账号
 	 */
-	@NotNull
 	@iSize(name = "注册账户", max = 3, min = 0)
 	public String regist_user_name;
 	/**
 	 * 注册密码
 	 */
-	@NotNull
 	@iSize(name = "注册密码", max = 3, min = 0)
 	public String regist_user_password;
 	/**
