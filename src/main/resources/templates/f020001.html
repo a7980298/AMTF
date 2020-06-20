@@ -48,6 +48,7 @@
 	function amtf_login(){
 		amtf_submit(amtf_form , '/f010001/T001');
 	}
+	
 	//打开模态框
 	function show_modal() {
 		$('.dropdown-toggle').dropdown();
@@ -64,6 +65,41 @@
 		$('.active').removeClass("active"); 
 		$(thisid).addClass("active");
 	}
+	
+	//修改认证
+	function amtf_attestation(thisid){
+		var text = $(thisid).text();
+		if (text == '×未认证') {
+			$(thisid).css('color','green');
+			$(thisid).text('√认证');
+			$(thisid).attr('href','javascript:return false;');
+		}
+	}
+
+	//搜索按钮押下
+	function amtf_search(){
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T002',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				search_name: $('#search_name').val()
+			},
+			success: function (result) {
+				$('#select1').replaceWith(result);
+			},
+			error: function (res, textStaus) {
+				
+			},
+		});
+	}
+
+	//删除按钮押下
+	function amtf_personnel_del(index){
+		/* $('#f020002_modl').modal('show'); */
+		$('#select1' + index).remove();
+	}
 </script>
 </head>
 <body>
@@ -71,6 +107,7 @@
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 		<input type="hidden" name="IViewId" value="f010001"/>
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
+		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
         <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
@@ -156,7 +193,7 @@
 	                            <form role="form" class="form-inline">
 	                                <div class="form-group">
 	                                    <label for="name">名称</label>
-	                                    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+	                                    <input type="text" class="form-control" id="search_name" placeholder="请输入名称">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="name">状态</label>
@@ -166,13 +203,13 @@
 	                                    </select>
 	                                </div>
 	                                <div class="form-group">
-	                                    <button type="submit" class="btn btn-default">开始搜索</button>
+	                                    <button type="submit" class="btn btn-default" onclick="amtf_search()">开始搜索</button>
 	                                </div>
 	                            </form>
 	                        </div>
 	                    </div>
 	                    <!-- 列表展示 -->
-	                    <div class="table-responsive">
+	                    <div class="table-responsive" th:fragment="select1" id="select1">
 	                        <table class="table table-striped ">
 	                            <thead>
 	                                <tr>
@@ -183,23 +220,31 @@
 	                                    <th>电话</th>
 	                                    <th>状态</th>
 	                                    <th>操作</th>
+	                                    <th><button type="button">登录</button></th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-	                                <tr>
-	                                    <td>123</td>
+	                                <tr th:each="entity,idx:${f020001Params.select1}" th:id="select1+${idx.index}">
+	                                    <td>[[${entity.User_Account}]]</td>
 	                                    <td>
-	                                        <img src="images/a.jpg" class="img-thumbnail" style="height: 30px;" />
+	                                    	<img th:src="@{/imgs/userimg.jpg}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path == ''}" src="NoImg"/>
+	                                        <img th:src="@{/istatic/{fileName}(fileName=${entity.User_path})}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path != ''}"/>
 	                                    </td>
-	                                    <td>阿玛</td>
-	                                    <td>北京市故宫</td>
-	                                    <td>11111884664</td>
-	                                    <td>认证</td>
+	                                    <td><span th:filed="${f020001Params.select1[__${idx.index}__].User_Name}"></span>[[${entity.User_Name}]]</td>
+	                                    <td>[[${entity.User_HomeAddress}]]</td>
+	                                    <td>[[${entity.User_Phone}]]</td>
+	                                    <td th:if="${entity.User_Attestation == '1'}"><a style="color:green;" onclick="amtf_attestation(this)" href="javascript:return false;">√认证</a></td>
+	                                    <td th:if="${entity.User_Attestation != '1'}"><a style="color:red;" onclick="amtf_attestation(this)" href="#">×未认证</a></td>
 	                                    <td>
 	                                        <div class="btn-group">
-	                                            <a href="" class="btn btn-default">修改</a>
+	                                           <!--  <a href="" class="btn btn-default">修改</a> -->
 	                                            <!-- <a href="" class="btn btn-default">下架</a> -->
-	                                            <a href="" class="btn btn-danger">删除</a>
+	                                            <a href="#" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'">删除</a>
+	                                        </div>
+	                                    </td>
+	                                    <td>
+	                                        <div class="btn-group">
+	                                        	<a href="" class="btn btn-default">修改</a>
 	                                        </div>
 	                                    </td>
 	                                </tr>
@@ -249,7 +294,7 @@
 	                        	个人
 	                        </li>
 	                        <li class="active">
-	                        	管理
+	                        	设置
 	                        </li>
 	                    </ol>
            			</div>

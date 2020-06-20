@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amtf.demo.dao.f020001Dao">
+	<select id="f020001_Select1" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
+		SELECT
+			 *
+		FROM 
+			AMTF_User
+		WHERE 
+			USER_power &lt; CONVERT(#{pow} USING gb2312)
+	</select>
+	<select id="f020001_Select2" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
+		SELECT
+			 *
+		FROM 
+			AMTF_User
+		WHERE 
+			USER_power &lt; CONVERT(#{pow} USING gb2312)
+		<if test="name != ''">
+		AND
+			USER_Name like '%${name}%'
+		</if>
+	</select>
+</mapper>

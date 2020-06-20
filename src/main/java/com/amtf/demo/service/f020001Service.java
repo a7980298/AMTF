@@ -10,4 +10,6 @@ public interface f020001Service {
 
 	public F020001entityOut service02(F020001entityIn entityin) throws ErrListException;
 
+	public F020001entityOut service03(F020001entityIn entityin) throws ErrListException;
+
 }

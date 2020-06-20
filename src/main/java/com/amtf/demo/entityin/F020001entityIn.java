@@ -79,4 +79,9 @@ public class F020001entityIn extends UserImpl {
 	 */
 	public String phone_number;
 
+	/**
+	 * 用户搜索的名字
+	 */
+	public String search_name;
+
 }

@@ -1,5 +1,8 @@
 package com.amtf.demo.entityout;
 
+import java.util.List;
+
+import com.amtf.demo.f020002entity.f020001_select1entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -53,6 +56,14 @@ public class F020001entityOut extends UserImpl {
 	 */
 	private String User_Attestation;
 
+	/**
+	 * 用户图片
+	 */
 	private String imgPath;
+
+	/**
+	 * 可操作的用户信息
+	 */
+	List<f020001_select1entity> select1;
 
 }
