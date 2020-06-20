@@ -13,7 +13,7 @@ public class IfGeiSession implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
 		// 获取session中的user账户是否存在
-		Object account = request.getSession().getAttribute("userAccount");
+		Object account = request.getSession().getAttribute("loginfo");
 		// 不存在的情况
 		if (account == null) {
 			// 重定向到登陆页面

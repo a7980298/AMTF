@@ -1,7 +1,5 @@
 package com.amtf.demo.user;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +7,14 @@ import lombok.Setter;
 @Setter
 public class LogInFo {
 
+	/**
+	 * 画面id
+	 */
 	private String IViewId;
 
+	/**
+	 * 用户id
+	 */
 	private Integer User_id;
 
 	/**
@@ -23,15 +27,28 @@ public class LogInFo {
 	 */
 	private String User_Password;
 
+	/**
+	 * 姓名
+	 */
 	private String User_Name;
 
+	/**
+	 * 别名
+	 */
 	private String User_FH;
 
+	/**
+	 * 地址
+	 */
 	private String User_HomeAddress;
 
+	/**
+	 * 电话
+	 */
 	private String User_Phone;
 
+	/**
+	 * 是否认证
+	 */
 	private String User_Attestation;
-
-	private List<String> messageList;
 }

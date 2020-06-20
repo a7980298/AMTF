@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
+import com.amtf.demo.iInterface.iName;
 import com.amtf.demo.iInterface.iSize;
 import com.amtf.demo.user.UserImpl;
 
@@ -19,10 +20,25 @@ import lombok.Setter;
 @Setter
 public class F010001Params extends UserImpl {
 	/**
+	 * 页面id
+	 */
+	private String IViewId;
+	/**
+	 * 账户
+	 */
+	@iName(value = "1111232323")
+	@iSize(name = "账户", max = 3, min = 0)
+	private String User_Account;
+	/**
+	 * 密码
+	 */
+	@NotNull
+	@iSize(name = "密码", max = 3, min = 0)
+	private String User_Password;
+	/**
 	 * 密码是否正确
 	 */
 	public String pwdbol;
-
 	/**
 	 * 导航栏
 	 */

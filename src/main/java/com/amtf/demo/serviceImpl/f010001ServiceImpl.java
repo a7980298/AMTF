@@ -17,6 +17,7 @@ import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.util.CommonUtil;
+import com.amtf.demo.util.ParameterUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -69,6 +70,8 @@ public class f010001ServiceImpl implements f010001Service {
 		entityout.setUser_Password(entityIn.getUser_Password());
 		// 导航栏
 		entityout.setNavigation_bar(navigation_bar);
+		// 用户信息存入Session
+		ParameterUtil.setSession(select1entity);
 
 		return entityout;
 	}
