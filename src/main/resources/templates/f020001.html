@@ -9,7 +9,7 @@
 		padding-top:10%;
 		width:100%;
 	}
-   .form{
+	.form{
 		background: rgba(255,255,255,0.2);
 		width:400px;margin:100px auto;
 	}  
@@ -18,7 +18,7 @@
 	}  
 	#register_form{
 		display: none;
-	}  
+	}
 	.fa{
 		display: inline-block;
 		top: 27px;
@@ -26,49 +26,41 @@
 		position: relative;
 		color: #ccc;
 	}  
-   input[type="text"],input[type="password"]{
+	input[type="text"],input[type="password"]{
 		padding-left:26px;
-	}  
+	}
 	.checkbox{
 		padding-left:21px;
-	}  
+	}
 	.padding-top-3{
 		padding-top: 10%
 	}
 </style>
 <script type="text/javascript">
-	//初始化方法
-	$(function(){
-		setErrList("[[${errMessageList}]]");
-		setCodeErrList("[[${codemsg}]]");
-		setCodeSuccess("[[${success}]]");
-	
-	});
-
 	//登录按钮押下
-	function amtf_login(){
+	function amtf_login() {
 		amtf_submit(amtf_form , '/f010001/T001');
 	}
-	
+
 	//打开模态框
 	function show_modal() {
 		$('.dropdown-toggle').dropdown();
 		$('#myModal').modal('show');
 	}
-	
+
 	//返回
-	function amtf_return(){
+	function amtf_return() {
 		amtf_submit(amtf_form , '/f010002');
 	}
-	
+
 	//top点击时去掉所有的active样式(选中的样式)并给自己添加active
-	function amtf_activeclick(thisid){
+	function amtf_activeclick(thisid) {
 		$('.active').removeClass("active"); 
 		$(thisid).addClass("active");
 	}
-	
+
 	//修改认证
-	function amtf_attestation(thisid){
+	function amtf_attestation(thisid) {
 		var text = $(thisid).text();
 		if (text == '×未认证') {
 			$(thisid).css('color','green');
@@ -78,7 +70,7 @@
 	}
 
 	//搜索按钮押下
-	function amtf_search(){
+	function amtf_search() {
 		$.ajax({
 			url: CONTEXT_PATH + '/f020001/T002',
 			type: 'post',
@@ -98,26 +90,28 @@
 	}
 
 	//删除按钮押下
-	function amtf_personnel_del(index){
+	function amtf_personnel_del(index) {
 		/* $('#f020002_modl').modal('show'); */
 		$('#select1' + index).remove();
 	}
-	
+
 	//多选和非选
 	var checkbol= 0;
-	function amtf_wholecheck(){
+	function amtf_wholecheck(thisid) {
 		if (checkbol == 0) {
 			$('#select1 input[type=checkbox]').prop('checked',true);
+			$(thisid).text('非选');
 			checkbol=1;
 		} else {
 			$('#select1 input[type=checkbox]').prop('checked',false);
+			$(thisid).text('全选');
 			checkbol=0;
 		}
 		
 	}
-	
+
 	//发布更新通知
-	function amtf_release(){
+	function amtf_release() {
 		$.ajax({
 			url: CONTEXT_PATH + '/f020001/T003',
 			type: 'post',
@@ -144,245 +138,245 @@
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                        	<a class="icon-bar" href="#setup" data-toggle="tab" onclick="amtf_activeclick(this)">网站设置</a>
-                        </li>
-                        <li>
-                        	<a href="#classification" data-toggle="tab" onclick="amtf_activeclick(this)">分类管理</a>
-                        </li>
-                        <li>
-                        	<a href="#personnel" data-toggle="tab" onclick="amtf_activeclick(this)">人员管理</a>
-                        </li>
-                        <li>
-                        	<a href="#advertisement" data-toggle="tab" onclick="amtf_activeclick(this)">广告栏设置</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                    	<li>
-		                    <a class="navbar-brand" href="#">
-		                    	<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.imgPath == ''}"/>
-		                        <img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="100%" th:if="${f020001Params.imgPath != ''}"/>
-		                    </a>
-		                </li>
-                        <li>
-                        	<a>[[${f020001Params.User_Name}]]</a>
-                        </li>
-                        <li>
-                        	<a href="#" onclick="amtf_return()">返回</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container-fluid">
-            <div class="row">
-            	 <!--左边菜单栏-->
-                <div class="col-sm-2">
-                    <a href="#picture" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
-                    	<span class="glyphicon glyphicon-home">
-                    	</span>图片管理
-                    </a>
-                    <a href="#personal" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
-                        <span class="glyphicon glyphicon-user">
-                    	</span>个人设置
-                    </a>
-                </div>
-                <div id="myTabContent" class="tab-content">
-	                <div class="col-sm-10 tab-pane active" id="setup">
-	                    <ol class="breadcrumb">
-	                        <li class="active">
-	                        	网站
-	                        </li>
-	                        <li class="active">
-	                        	设置
-	                        </li>
-	                    </ol>
-	                    <div class="panel panel-default">
-	                        <div class="panel-heading">
-	                         		   更新通知
-	                        </div>
-	                        <div class="panel-body">
-	                            <form role="form" class="form-inline">
-	                                <div class="form-group">
-	                                    <label for="name">内容</label>
-	                                    <input type="text" class="form-control" id="release_name" placeholder="请输入内容">
-	                                </div>
-	                                <div class="form-group">
-	                                    <button type="button" class="btn btn-default" onclick="amtf_release()">发布</button>
-	                                </div>
-	                            </form>
-	                        </div>
-	                    </div>
-	                </div>
-           			<div class="col-sm-10 tab-pane" id="classification">
-           				<ol class="breadcrumb">
-	                        <li class="active">
-	                        	分类
-	                        </li>
-	                        <li class="active">
-	                        	管理
-	                        </li>
-	                    </ol>
-           			</div>
-           			<div class="col-sm-10 tab-pane" id="personnel">
-           				<ol class="breadcrumb">
-	                        <li class="active">
-	                        	人员
-	                        </li>
-	                        <li class="active">
-	                        	管理
-	                        </li>
-	                    </ol>
-           				<div class="panel panel-default">
-	                        <div class="panel-heading">
-	                         		   搜索
-	                        </div>
-	                        <div class="panel-body">
-                                <div class="form-group">
-                                    <label for="name">姓名</label>
-                                    <input type="text" class="form-control" id="search_name" placeholder="请输入姓名">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">状态</label>
-                                    <select class="form-control" name="select_state" id="select_state">
-                                    	<option value="2">全部</option>
-                                        <option value="1">认证</option>
-                                        <option value="0">未认证</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-default" onclick="amtf_search()">开始搜索</button>
-                                </div>
-	                        </div>
-	                    </div>
-	                    <!-- 列表展示 -->
-	                    <div class="table-responsive" th:fragment="select1" id="select1">
-	                        <table class="table table-striped ">
-	                            <thead>
-	                                <tr>
-	                                    <th>账户</th>
-	                                    <th>图片</th>
-	                                    <th>姓名</th>
-	                                    <th>地址</th>
-	                                    <th>电话</th>
-	                                    <th>状态</th>
-	                                    <th>操作</th>
-	                                    <th><span onclick="amtf_wholecheck()">选择</span></th>
-	                                    <th><button type="button">登录</button><button type="button">删除</button></th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                <tr th:each="entity,idx:${f020001Params.select1}" th:id="select1+${idx.index}">
-	                                    <td>[[${entity.User_Account}]]</td>
-	                                    <td>
-	                                    	<img th:src="@{/imgs/userimg.jpg}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path == ''}" src="NoImg"/>
-	                                        <img th:src="@{/istatic/{fileName}(fileName=${entity.User_path})}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path != ''}"/>
-	                                    </td>
-	                                    <td>
-	                                    	<span th:filed="${f020001Params.select1[__${idx.index}__].User_Name}"></span>[[${entity.User_Name}]]
-	                                    </td>
-	                                    <td>[[${entity.User_HomeAddress}]]</td>
-	                                    <td>[[${entity.User_Phone}]]</td>
-	                                    <td th:if="${entity.User_Attestation == '1'}">
-	                                    	<a style="color:green;" onclick="amtf_attestation(this)" href="javascript:return false;">√认证</a>
-	                                    </td>
-	                                    <td th:if="${entity.User_Attestation != '1'}">
-	                                    	<a style="color:red;" onclick="amtf_attestation(this)" href="#">×未认证</a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="btn-group">
-	                                           <!--  <a href="" class="btn btn-default">修改</a> -->
-	                                            <!-- <a href="" class="btn btn-default">下架</a> -->
-	                                            <a href="#" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'">删除</a>
-	                                        </div>
-	                                    </td>
-	                                    <th><input type="checkbox"/></th>
-	                                    <td>
-	                                        <div class="btn-group">
-	                                        	<a href="#" class="btn btn-default">修改</a>
-	                                        </div>
-	                                    </td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-	                         <!--   <ul class="pagination" style="float: right;">
-	                        <li><a href="#">&laquo;</a>
-	                        </li>
-	                        <li class="active"><a href="#">1</a>
-	                        </li>
-	                        <li class="disabled"><a href="#">2</a>
-	                        </li>
-	                        <li><a href="#">3</a>
-	                        </li>
-	                        <li><a href="#">4</a>
-	                        </li>
-	                        <li><a href="#">5</a>
-	                        </li>
-	                        <li><a href="#">&raquo;</a>
-	                        </li>
-	                   		</ul> -->
-	                    </div>
-           			</div>
-           			<div class="col-sm-10 tab-pane" id="advertisement">
-           				<ol class="breadcrumb">
-	                        <li class="active">
-	                        	广告栏
-	                        </li>
-	                        <li class="active">
-	                        	设置
-	                        </li>
-	                    </ol>
-				     	<div class="col-sm-4">
-				          <div style="width: 100%;height:20%;">
-				             <input id="input-file-commit" name="input-file-commit" type="file" class="file">
-				          </div>
-				      	</div>
-           			</div>
-           			<div class="col-sm-10 tab-pane" id="picture">
-           				<ol class="breadcrumb">
-	                        <li class="active">
-	                        	图片
-	                        </li>
-	                        <li class="active">
-	                        	管理
-	                        </li>
-	                    </ol>
-           			</div>
-           			<div class="col-sm-10 tab-pane" id="personal">
-           				<ol class="breadcrumb">
-	                        <li class="active">
-	                        	个人
-	                        </li>
-	                        <li class="active">
-	                        	设置
-	                        </li>
-	                    </ol>
-	                    <div class="panel panel-default">
-	                        <div class="panel-heading">
-	                         		   个人信息
-	                        </div>
-	                        <div class="panel-body">
-                                <div class="form-group d-flex">
-                                	<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.imgPath == ''}"/>
-			                        <img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="180px" th:if="${f020001Params.imgPath != ''}"/>
-			                    </div>
-                                <div class="form-group">
-                               		<label for="name">姓名</label>
-                               		<input type="text" class="form-control" id="search_name" th:value="${f020001Params.User_Name}">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-default">修改</button>
-                                </div>
-	                        </div>
-	                    </div>
-           			</div>
-           		</div>
-            </div>
-        </div>
+		<nav class="navbar navbar-inverse" role="navigation">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="example-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a class="icon-bar" href="#setup" data-toggle="tab" onclick="amtf_activeclick(this)">网站设置</a>
+						</li>
+						<li>
+							<a href="#classification" data-toggle="tab" onclick="amtf_activeclick(this)">分类管理</a>
+						</li>
+						<li>
+							<a href="#personnel" data-toggle="tab" onclick="amtf_activeclick(this)">人员管理</a>
+						</li>
+						<li>
+							<a href="#advertisement" data-toggle="tab" onclick="amtf_activeclick(this)">广告栏设置</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a class="navbar-brand" href="#">
+								<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.imgPath == ''}"/>
+								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="100%" th:if="${f020001Params.imgPath != ''}"/>
+							</a>
+						</li>
+						<li>
+							<a>[[${f020001Params.User_Name}]]</a>
+						</li>
+						<li>
+							<a href="#" onclick="amtf_return()">返回</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<!--左边菜单栏-->
+				<div class="col-sm-2">
+					<a href="#picture" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+						<span class="glyphicon glyphicon-home">
+						</span>图片管理
+					</a>
+					<a href="#personal" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+						<span class="glyphicon glyphicon-user">
+						</span>个人设置
+					</a>
+				</div>
+				<div id="myTabContent" class="tab-content">
+					<div class="col-sm-10 tab-pane active" id="setup">
+						<ol class="breadcrumb">
+							<li class="active">
+								网站
+							</li>
+							<li class="active">
+								设置
+							</li>
+						</ol>
+						<div class="panel panel-default">
+						<div class="panel-heading">
+								更新通知
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label for="name">内容</label>
+									<input type="text" class="form-control" id="release_name" placeholder="请输入内容">
+								</div>
+								<div class="form-group">
+									<button type="button" class="btn btn-default" onclick="amtf_release()">发布</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-10 tab-pane" id="classification">
+						<ol class="breadcrumb">
+							<li class="active">
+								分类
+							</li>
+							<li class="active">
+								管理
+							</li>
+						</ol>
+					</div>
+					<div class="col-sm-10 tab-pane" id="personnel">
+						<ol class="breadcrumb">
+							<li class="active">
+								人员
+							</li>
+							<li class="active">
+								管理
+							</li>
+						</ol>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								 搜索
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label for="name">姓名</label>
+									<input type="text" class="form-control" id="search_name" placeholder="请输入姓名">
+								</div>
+								<div class="form-group">
+									<label for="name">状态</label>
+									<select class="form-control" name="select_state" id="select_state">
+										<option value="2">全部</option>
+										<option value="1">认证</option>
+										<option value="0">未认证</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<button type="button" class="btn btn-default" onclick="amtf_search()">开始搜索</button>
+								</div>
+							</div>
+						</div>
+						<!-- 列表展示 -->
+						<div class="table-responsive" th:fragment="select1" id="select1">
+							<table class="table table-striped ">
+								<thead>
+									<tr>
+										<th>账户</th>
+										<th>图片</th>
+										<th>姓名</th>
+										<th>地址</th>
+										<th>电话</th>
+										<th>状态</th>
+										<th>操作</th>
+										<th><span onclick="amtf_wholecheck(this)">全选</span></th>
+										<th><button type="button">登录</button><button type="button">删除</button></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="entity,idx:${f020001Params.select1}" th:id="select1+${idx.index}">
+										<td>[[${entity.User_Account}]]</td>
+										<td>
+											<img th:src="@{/imgs/userimg.jpg}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path == ''}" src="NoImg"/>
+											<img th:src="@{/istatic/{fileName}(fileName=${entity.User_path})}" class="img-thumbnail" style="height: 30px;" th:if="${entity.User_path != ''}"/>
+										</td>
+										<td>
+											<span th:filed="${f020001Params.select1[__${idx.index}__].User_Name}"></span>[[${entity.User_Name}]]
+										</td>
+										<td>[[${entity.User_HomeAddress}]]</td>
+										<td>[[${entity.User_Phone}]]</td>
+										<td th:if="${entity.User_Attestation == '1'}">
+											<a style="color:green;" onclick="amtf_attestation(this)" href="javascript:return false;">√认证</a>
+										</td>
+										<td th:if="${entity.User_Attestation != '1'}">
+											<a style="color:red;" onclick="amtf_attestation(this)" href="#">×未认证</a>
+										</td>
+										<td>
+											<div class="btn-group">
+												<!--  <a href="" class="btn btn-default">修改</a> -->
+												<!-- <a href="" class="btn btn-default">下架</a> -->
+												<a href="#" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'">删除</a>
+											</div>
+										</td>
+										<td>
+											<input type="checkbox"/>
+										</td>
+										<td>
+											<div class="btn-group">
+												<a href="#" class="btn btn-default">修改</a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<!--   <ul class="pagination" style="float: right;">
+							<li><a href="#">&laquo;</a>
+							</li>
+							<li class="active"><a href="#">1</a>
+							</li>
+							<li class="disabled"><a href="#">2</a>
+							</li>
+							<li><a href="#">3</a>
+							</li>
+							<li><a href="#">4</a>
+							</li>
+							<li><a href="#">5</a>
+							</li>
+							<li><a href="#">&raquo;</a>
+							</li>
+							</ul> -->
+						</div>
+					</div>
+					<div class="col-sm-10 tab-pane" id="advertisement">
+						<ol class="breadcrumb">
+							<li class="active">
+								广告栏
+							</li>
+							<li class="active">
+								设置
+							</li>
+						</ol>
+						<div class="col-sm-4">
+							<div style="width: 100%;height:20%;">
+								<input id="input-file-commit" name="input-file-commit" type="file" class="file">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-10 tab-pane" id="picture">
+						<ol class="breadcrumb">
+							<li class="active">
+								图片
+							</li>
+							<li class="active">
+								管理
+							</li>
+					</ol>
+					</div>
+					<div class="col-sm-10 tab-pane" id="personal">
+						<ol class="breadcrumb">
+							<li class="active">
+								个人
+							</li>
+							<li class="active">
+								设置
+							</li>
+						</ol>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								个人信息
+							</div>
+							<div class="panel-body">
+								<div class="form-group d-flex">
+									<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.imgPath == ''}"/>
+									<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="180px" th:if="${f020001Params.imgPath != ''}"/>
+								</div>
+								<div class="form-group">
+									<label for="name">姓名</label>
+									<input type="text" class="form-control" id="search_name" th:value="${f020001Params.User_Name}">
+								</div>
+								<div class="form-group">
+									<button type="button" class="btn btn-default">修改</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</i-form>
 	</div>
 </body>

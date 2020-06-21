@@ -16,6 +16,14 @@
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
 		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
+		<script type="text/javascript">
+			//初始化方法
+			$(function() {
+				setErrList("[[${errMessageList}]]");
+				setCodeErrList("[[${codemsg}]]");
+				setCodeSuccess("[[${success}]]");
+			});
+		</script>
 	</head>
 	<body>
 	</body>
