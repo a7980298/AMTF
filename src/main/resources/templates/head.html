@@ -55,7 +55,7 @@
 						           <ul class="dropdown-menu" role="menu">
 						           		<li th:each="fileInfo,idxs: ${mapkey.value}" th:attr="onclick='amtf_skip('+ ${idx.index} +','+ ${idxs.index} +');'">
 						            		<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
-						            		<span>[[${fileInfo.power_name}]]</span>
+						            		<a href="#">[[${fileInfo.power_name}]]</a>
 						            	</li>
 								   </ul >
 					            </li>
