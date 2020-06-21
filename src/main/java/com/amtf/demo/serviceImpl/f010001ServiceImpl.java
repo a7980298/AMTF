@@ -1,5 +1,6 @@
 package com.amtf.demo.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -73,9 +74,13 @@ public class f010001ServiceImpl implements f010001Service {
 		entityout.setNavigation_bar(navigation_bar);
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);
-		f010001_select3entity select4 = f010001dao.f010001_Select3();
-
-		entityout.setSelect4(select4);
+		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
+		
+		select4.sort((a, b) -> 
+				b.getUpdnotice_time().replace("-","").replace(" ","").replace(":","").compareTo( a.getUpdnotice_time().replace("-","").replace(" ","").replace(":","")));
+		
+		f010001_select3entity select3entity=select4.get(0);
+		entityout.setSelect4(select3entity);
 
 		return entityout;
 	}

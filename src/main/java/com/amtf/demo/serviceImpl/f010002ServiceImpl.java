@@ -65,9 +65,13 @@ public class f010002ServiceImpl implements f010002Service {
 		// 导航栏
 		entityout.setNavigation_bar(navigation_bar);
 
-		f010001_select3entity select4 = f010001dao.f010001_Select3();
-
-		entityout.setSelect4(select4);
+		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
+		
+		select4.sort((a, b) -> Integer.valueOf(a.getUpdnotice_time()) - Integer.valueOf(b.getUpdnotice_time()));
+		
+		f010001_select3entity select3entity=select4.get(0);
+		entityout.setSelect4(select3entity);
+		
 		return entityout;
 	}
 

@@ -16,5 +16,5 @@ public interface f010001Dao {
 
 	List<f010001_select2entity> f010001_Select2(@Param("pow") String pow);
 
-	f010001_select3entity f010001_Select3();
+	List<f010001_select3entity> f010001_Select3();
 }

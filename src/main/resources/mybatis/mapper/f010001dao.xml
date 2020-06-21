@@ -26,9 +26,5 @@
 			 *
 		FROM 
 			AMTF_updnotice
-			
-		GROUP BY 
-			updnotice_time DESC 
-		LIMIT 0,1
 	</select>
 </mapper>
