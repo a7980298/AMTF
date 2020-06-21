@@ -12,7 +12,7 @@
 	.form{
 		background: rgba(255,255,255,0.2);
 		width:400px;margin:100px auto;
-	}  
+	}
 	#login_form{
 		display: block;
 	}  
@@ -25,7 +25,7 @@
 		left: 6px;
 		position: relative;
 		color: #ccc;
-	}  
+	}
 	input[type="text"],input[type="password"]{
 		padding-left:26px;
 	}
@@ -134,7 +134,7 @@
 <body>
 	<div class="row bg col-md-12">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
-		<input type="hidden" name="IViewId" value="f010001"/>
+		<input type="hidden" name="IViewId" value="f020001"/>
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
