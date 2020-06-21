@@ -1,0 +1,3 @@
+INSERT INTO `amtf_user`(`User_id`, `User_Account`, `User_Password`, `User_Name`, `User_FH`, `User_HomeAddress`, `User_Phone`, `User_Attestation`, `User_power`) VALUES (12, '123', '202cb962ac59075b964b07152d234b70', '王意123', NULL, NULL, NULL, NULL, '1');
+INSERT INTO `amtf_user`(`User_id`, `User_Account`, `User_Password`, `User_Name`, `User_FH`, `User_HomeAddress`, `User_Phone`, `User_Attestation`, `User_power`) VALUES (1, '1', '202cb962ac59075b964b07152d234b70', '王', NULL, NULL, NULL, '1', '0');
+INSERT INTO `amtf_user`(`User_id`, `User_Account`, `User_Password`, `User_Name`, `User_FH`, `User_HomeAddress`, `User_Phone`, `User_Attestation`, `User_power`) VALUES (2, '2', '202cb962ac59075b964b07152d234b70', '意', NULL, NULL, NULL, '0', '0');
