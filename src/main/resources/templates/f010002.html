@@ -5,16 +5,17 @@
 <meta charset="UTF-8">
 <title></title>
 <script type="text/javascript">
-function aaa(){
-	amtf_submit(amtf_form , '/f010002/F001');
-}
+	function aaa() {
+		amtf_submit(amtf_form , '/f010002/F001');
+	}
 </script>
 </head>
 <body>
-	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form" >
+	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form">
+		<input type="hidden" name="IViewId" value="f010002"/>
 		<th:block th:replace="~{f010004 :: f010003_modl}"></th:block>
-	 	<div class="container body-content">
-		   <div class="row">
+		<div class="container body-content">
+			<div class="row">
 				<div id="imgs" data-interval="2000" data-ride="carousel" class="carousel slide" style="width: 100%">
 					<div class="carousel-inner">
 						<div class="item active">
@@ -33,39 +34,39 @@ function aaa(){
 				</div>
 			</div>
 			<hr>
-	    </div>
-	 	<div class="container body-content">
-	   		<div class="row">
-	   			<ol class="breadcrumb">
-                     <li class="active">
-                  		   最新通知
-                     </li>
-	            </ol>
-	            [[${f010002Params.select4.updnotice_text}]]
-	   		</div>
-	   		<hr>
-	    </div>
-	    <div class="container body-content">
-	   		<div class="row">
-	   			动听音乐
-	   		</div>
-	   		<hr>
-	    </div>
-	    <div class="container body-content">
-	   		<div class="row">
-	   			精彩视频
-	   		</div>
-	   		<hr>
-	    </div>
-	    <div class="container body-content">
-	   		<div class="row">
-	   			最火帖子
-	   		</div>
-	   		<hr>
-	    </div>
-	    <div style="height:40px;">
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				<ol class="breadcrumb">
+					<li class="active">
+						 最新通知
+					</li>
+				</ol>
+				[[${f010002Params.select4.updnotice_text}]]
+			</div>
+			<hr>
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				动听音乐
+			</div>
+			<hr>
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				精彩视频
+			</div>
+			<hr>
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				最火帖子
+			</div>
+			<hr>
+		</div>
+		<div style="height:40px;">
 			<footer class="navbar navbar-fixed-bottom text-center bg-primary">
-	        	<p>© [[${f010002Params.User_Account}]] <br/>本网站开发人员：王意鑫  方军  张春程  王杰 李方方 倪捷扬</p>
+				<p>© [[${f010002Params.User_Account}]] <br/>本网站开发人员：王意鑫  方军  张春程  王杰 李方方 倪捷扬</p>
 			</footer>
 		</div>
 	</i-form>
