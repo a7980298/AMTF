@@ -67,8 +67,9 @@ public class f010002ServiceImpl implements f010002Service {
 
 		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
 		
-		select4.sort((a, b) -> Integer.valueOf(a.getUpdnotice_time()) - Integer.valueOf(b.getUpdnotice_time()));
-		
+		select4.sort((a, b) -> 
+		b.getUpdnotice_time().replace("-","").replace(" ","").replace(":","").compareTo( a.getUpdnotice_time().replace("-","").replace(" ","").replace(":","")));
+
 		f010001_select3entity select3entity=select4.get(0);
 		entityout.setSelect4(select3entity);
 		
