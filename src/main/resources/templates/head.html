@@ -21,8 +21,8 @@
 				amtf_submit(amtf_form , '/f010001');
 			}
 			
-			function amtf_skip(thisid){
-				var path = $(thisid).children('option:selected').val(); 
+			function amtf_skip(ulid,liid){
+				var path = $('#ul' + ulid +'_li' + liid).val(); 
 				amtf_submit(amtf_form , '/' + path);
 			}
 			
@@ -46,16 +46,18 @@
 		          			 <a href="#" class="navbar-brand">Alma life system</a>
 		        		 </div>
 						<div class="navbar-collapse collapse">
-							<ul class="nav navbar-nav">
-					            <li th:each="mapkey,idx:${f010002Params.navigation_bar}">
-					            	<a href="#">
-							            <select class="selectpicker" data-style="btn-danger" th:id="${idx.index + 'select_nav'}" onchange="amtf_skip(this)">
-							            	<option>[[${mapkey.key}]]</option>
-							            	<option th:each="fileInfo: ${mapkey.value}" th:value="${fileInfo.power_path}">
-							            		[[${fileInfo.power_name}]]
-							            	</option>
-									    </select>
-									 </a>
+							<ul class="nav navbar-nav navbar-btn list-inline">
+					            <li th:each="mapkey,idx:${f010002Params.navigation_bar}" class="">
+					            	<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									[[${mapkey.key}]] <span class="caret"></span>
+									</button>
+						           <ul class="dropdown-menu" role="menu">
+						           		<li th:each="fileInfo,idxs: ${mapkey.value}" th:attr="onclick='amtf_skip('+ ${idx.index} +','+ ${idxs.index} +');'">
+						            		<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
+						            		<span>[[${fileInfo.power_name}]]</span>
+						            	</li>
+								   </ul >
 					            </li>
 							</ul>
 				          	<ul class="nav navbar-nav navbar-right">
