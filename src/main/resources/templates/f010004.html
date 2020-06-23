@@ -39,27 +39,37 @@
 				<div class="modal-content modal_contain" id="modal_content_id">
 					<table style="width:300px;margin:0 auto">
 						<tr>
-						<td colspan="2" style="text-align:center">用户详细信息</td>
+							<td colspan="2" style="text-align:center">用户详细信息</td>
 						</tr>
 						<tr>
 							<td>用户名：</td>
-							<td><input class="form-control required" type="text" placeholder="账户" name="regist_user_name" autofocus="autofocus" maxlength="20" id="regist_user_name" /></td>
+							<td>
+								<input class="form-control required" type="text" placeholder="账户" name="upd_user_name" autofocus="autofocus" maxlength="20" id="upd_user_name" th:value="${f010002Params.logInFo.User_Account}"/>
+							</td>
 						</tr>
 						<tr>
 							<td>密码：</td>
-							<td><input class="form-control required" type="password" placeholder="密码" name="regist_user_password" maxlength="8" id="regist_user_password"/></td>
-						</tr>
-						<tr>
-							<td>确认密码：</td>
-							<td><input class="form-control required" type="password" placeholder="确认密码" name="regist_confirm_user_password" maxlength="8" id="regist_confirm_user_password" /></td>
+							<td>
+								<input class="form-control required" type="password" placeholder="密码" name="upd_user_password" maxlength="8" id="upd_user_password"/>
+							</td>
 						</tr>
 						<tr>
 							<td>性别：</td>
-							<td><input type="checkbox" value="男" name="man" id="man" checked="true">男&nbsp;&nbsp;<input type="checkbox" value="女" name="woman" id="woman">女</td>
+							<td>
+								<input class="form-control required" type="text" th:value="${f010002Params.logInFo.User_Attestation == '1' ? '已认证':'未认证'}" name="upd_user_attestation" id="upd_user_attestation" disabled>
+							</td>
 						</tr>
 						<tr>
 							<td>联系电话：</td>
-							<td><input class="form-control required" type="text" placeholder="联系电话" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" /></td>
+							<td>
+								<input class="form-control required" type="text" placeholder="联系电话" name="upd_phone_number" autofocus="autofocus" maxlength="20" id="upd_phone_number" th:value="${f010002Params.logInFo.User_Phone}" disabled/>
+							</td>
+						</tr>
+						<tr>
+							<td>住址：</td>
+							<td>
+								<input class="form-control required" type="text" placeholder="住址" name="upd_user_homeaddress" autofocus="autofocus" maxlength="20" id="upd_user_homeaddress" th:value="${f010002Params.logInFo.User_HomeAddress}"/>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align:center"><input type="button" value="修改" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>

@@ -17,16 +17,18 @@
 			}
 		</style>
 		<script type="text/javascript">
+			// Exit押下
 			function amtf_close(){
 				amtf_submit(amtf_form , '/f010002/T001');
 			}
-			
+
+			// 导航栏页面跳转
 			function amtf_skip(ulid,liid){
 				var path = $('#ul' + ulid +'_li' + liid).val(); 
 				amtf_submit(amtf_form , '/' + path);
 			}
-			
-			//打开模态框
+
+			// 打开模态框
 			function show_modal() {
 				$('.dropdown-toggle').dropdown();
 				$('#f010003').modal('show');
@@ -37,44 +39,44 @@
 			<div class="footer">
 				<div class="navbar navbar-default navbar-fixed-top">
 					<div class="container">
-		        		 <div class="navbar-header">
-		           			<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-					             <span class="icon-bar"></span>
-					             <span class="icon-bar"></span>
-					             <span class="icon-bar"></span>
-		         			</button>
-		          			<a href="#" class="navbar-brand">Alma life system</a>
-		        		 </div>
+						<div class="navbar-header">
+							<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a href="#" class="navbar-brand">Alma life system</a>
+						</div>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav navbar-btn list-inline">
-					            <li th:each="mapkey,idx:${f010002Params.navigation_bar}" class="">
-					            	<button type="button" class="btn"
+								<li th:each="mapkey,idx:${f010002Params.navigation_bar}" class="">
+									<button type="button" class="btn"
 									data-toggle="dropdown">
 									[[${mapkey.key}]] <span class="caret"></span>
 									</button>
-						           <ul class="dropdown-menu" role="menu">
-						           		<li th:each="fileInfo,idxs: ${mapkey.value}" th:attr="onclick='amtf_skip('+ ${idx.index} +','+ ${idxs.index} +');'">
-						            		<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
-						            		<a href="#">[[${fileInfo.power_name}]]</a>
-						            	</li>
-								   </ul >
-					            </li>
+									<ul class="dropdown-menu" role="menu">
+										<li th:each="fileInfo,idxs: ${mapkey.value}" th:attr="onclick='amtf_skip('+ ${idx.index} +','+ ${idxs.index} +');'">
+											<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
+											<a href="#">[[${fileInfo.power_name}]]</a>
+										</li>
+									</ul >
+								</li>
 							</ul>
-				          	<ul class="nav navbar-nav navbar-right">
-					            <li>
-					              <a href="#" id="" class="" data-target="#f010003" onclick="show_modal()">
-					                <span class="glyphicon glyphicon-envelop"></span>User：[[${f010002Params.User_Account}]]
-					              </a>
-					            </li>
-					            <li>
-					              <a href="#" onclick="amtf_close()">
-					                <span class="glyphicon glyphicon-log-out"></span> Exit
-					              </a>
-					            </li>
-				          	</ul>
-				        </div>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="#" id="" class="" data-target="#f010003" onclick="show_modal()">
+										<span class="glyphicon glyphicon-envelop"></span>User：[[${f010002Params.User_Account}]]
+									</a>
+								</li>
+								<li>
+									<a href="#" onclick="amtf_close()">
+										<span class="glyphicon glyphicon-log-out"></span> Exit
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-		    	 </div>
+				</div>
 			</div>
 		</body>
 	</th:block>

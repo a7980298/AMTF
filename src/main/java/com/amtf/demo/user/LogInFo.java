@@ -8,11 +8,6 @@ import lombok.Setter;
 public class LogInFo {
 
 	/**
-	 * 画面id
-	 */
-	private String IViewId;
-
-	/**
 	 * 用户id
 	 */
 	private Integer User_id;
@@ -53,7 +48,7 @@ public class LogInFo {
 	private String User_Attestation;
 
 	/**
-	 * 
+	 * 权限
 	 */
 	private String User_power;
 }

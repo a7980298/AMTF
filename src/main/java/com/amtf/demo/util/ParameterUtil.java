@@ -41,13 +41,35 @@ public class ParameterUtil {
 					}
 				}
 			}
+			setSuperClass(obj1, obj2);
 		}
 		return obj1;
 	}
 
 	// 给User用户表进行赋值
-	public static Object setUser(Object obj1, Object obj2) {
+	public static Object setSuperClass(Object obj1, Object obj2) {
+		// 创建Field数组接收反射的所有属性
+		Field[] fieldobj1 = obj1.getClass().getSuperclass().getDeclaredFields();
+		Field[] fieldobj2 = obj2.getClass().getSuperclass().getDeclaredFields();
 
+		if (!CommonUtil.isEmpty(fieldobj2)) {
+			for (int i = 0; i < fieldobj2.length; i++) {
+				for (int j = 0; j < fieldobj1.length; j++) {
+					// 判断两个反射Class中的属性是否一致
+					if (fieldobj1[j].getName().equals(fieldobj2[i].getName())) {
+						try {
+							// 开启权限
+							fieldobj1[j].setAccessible(true);
+							fieldobj2[i].setAccessible(true);
+
+							fieldobj1[j].set(obj1, fieldobj2[i].get(obj2));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
 		return obj1;
 	}
 

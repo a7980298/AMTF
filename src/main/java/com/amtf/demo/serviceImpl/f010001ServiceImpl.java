@@ -35,13 +35,13 @@ public class f010001ServiceImpl implements f010001Service {
 		F010001entityOut entityout = new F010001entityOut();
 
 		f010001_select1entity select1entity = new f010001_select1entity();
-		LogInFo logInFo = new LogInFo();
-		logInFo.setUser_Account(entityIn.getUser_Account());
-		logInFo.setUser_Password(entityIn.getUser_Password());
+		LogInFo loginfo = new LogInFo();
+		loginfo.setUser_Account(entityIn.getUser_Account());
+		loginfo.setUser_Password(entityIn.getUser_Password());
 		// 判断是否需要保存密码
 		if (!CommonUtil.isEmpty(entityIn.getRemember())) {
 			// 存入Cookie中
-			ParameterUtil.setCookie(logInFo);
+			ParameterUtil.setCookie(loginfo);
 		}
 		if (!CommonUtil.isEmpty(entityIn.getUser_Password())) {
 			// MD5加密
@@ -77,10 +77,9 @@ public class f010001ServiceImpl implements f010001Service {
 							return value1;
 						}));
 
-		// 账户
-		entityout.setUser_Account(entityIn.getUser_Account());
-		// 密码
-		entityout.setUser_Password(entityIn.getUser_Password());
+		ParameterUtil.copyParameter(loginfo, select1entity);
+		// 用户信息
+		entityout.setLogInFo(loginfo);
 		// 导航栏
 		entityout.setNavigation_bar(navigation_bar);
 		// 用户信息存入Session

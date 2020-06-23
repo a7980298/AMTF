@@ -55,10 +55,8 @@ public class f010002ServiceImpl implements f010002Service {
 							value1.addAll(value2);
 							return value1;
 						}));
-		// 账户
-		entityout.setUser_Account(loginfo.getUser_Account());
-		// 密码
-		entityout.setUser_Password(loginfo.getUser_Password());
+		// 用户信息
+		entityout.setLogInFo(loginfo);
 		// 导航栏
 		entityout.setNavigation_bar(navigation_bar);
 
