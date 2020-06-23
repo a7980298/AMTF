@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.amtf.demo.entityin.F010002entityIn;
 import com.amtf.demo.entityout.F010002entityOut;
 import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.util.ParameterUtil;
@@ -40,6 +41,24 @@ public class f010002Controller extends ValiDationUtil {
 		model.addAttribute("f010002Params", params);
 
 		return "f010002";
+	}
+
+	/**
+	 * 分页
+	 * 
+	 * @parameter F010002Params params
+	 * @return String
+	 * @throws ErrListException
+	 */
+	@RequestMapping("/f010002/T001")
+	public String f010002T001(F010002Params params, Model model) throws ErrListException {
+
+		ParameterUtil.closeSession();
+		F010001Params f01params = new F010001Params();
+
+		model.addAttribute("f010001Params", f01params);
+
+		return "f010001";
 	}
 
 	/**

@@ -2,7 +2,9 @@ package com.amtf.demo.util;
 
 import java.lang.reflect.Field;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.request.RequestContextHolder;
@@ -39,7 +41,6 @@ public class ParameterUtil {
 					}
 				}
 			}
-			// setUser(obj1, obj2);
 		}
 		return obj1;
 	}
@@ -47,23 +48,6 @@ public class ParameterUtil {
 	// 给User用户表进行赋值
 	public static Object setUser(Object obj1, Object obj2) {
 
-		// UserImpl user1 = (UserImpl) obj1;
-
-		// UserImpl user2 = (UserImpl) obj2;
-
-//		user1.setIViewId(user2.getIViewId());
-//		user1.setUser_Account(user2.getUser_Account());
-//		user1.setUser_id(user2.getUser_id());
-//		user1.setUser_Password(user2.getUser_Password());
-//		user1.setUser_Name(user2.getUser_Name());
-//		user1.setUser_FH(user2.getUser_FH());
-//		user1.setUser_HomeAddress(user2.getUser_HomeAddress());
-//		user1.setUser_Phone(user2.getUser_Phone());
-//		user1.setUser_Attestation(user2.getUser_Attestation());
-
-		// user1.setLogInFo(loginfo);
-
-		// setSession(user2);
 		return obj1;
 	}
 
@@ -109,12 +93,47 @@ public class ParameterUtil {
 		}
 	}
 
-	// 将用户信息存入进入Session
+	// 将用户信息从Session中取出
 	public static LogInFo getSession() {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
 		LogInFo loginfo = new LogInFo();
 		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		return loginfo;
+	}
+
+	// 清楚session
+	public static void closeSession() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+		request.getSession().invalidate();
+		request.getSession().removeAttribute("loginfo");
+	}
+
+	// 将用户信息存入Cookie中
+	public static void setCookie(LogInFo loginfo) {
+		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getResponse();
+		response.addCookie(new Cookie("user_account", loginfo.getUser_Account()));
+		response.addCookie(new Cookie("user_pwd", loginfo.getUser_Password()));
+
+	}
+
+	// 将用户信息Cookie中取出
+	public static LogInFo getCookie() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+		LogInFo loginfo = new LogInFo();
+		Cookie[] cookies = request.getCookies();
+		if (!CommonUtil.isEmpty(cookies)) {
+			for (Cookie cookie : cookies) {
+				if ("user_account".equals(cookie.getName())) {
+					loginfo.setUser_Account(cookie.getValue());
+				} else if ("user_pwd".equals(cookie.getName())) {
+					loginfo.setUser_Password(cookie.getValue());
+				}
+			}
+		}
 		return loginfo;
 	}
 }

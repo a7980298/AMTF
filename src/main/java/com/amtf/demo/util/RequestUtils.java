@@ -9,11 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class RequestUtils {
 
 	/**

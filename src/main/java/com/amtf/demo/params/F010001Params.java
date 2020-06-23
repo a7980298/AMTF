@@ -31,7 +31,7 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 密码
 	 */
-	@iSize(name = "密码", max = 3, min = 0)
+
 	private String User_Password;
 	/**
 	 * 记住账户密码

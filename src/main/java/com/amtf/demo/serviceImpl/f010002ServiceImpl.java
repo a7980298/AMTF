@@ -17,6 +17,7 @@ import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
+import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.FenYe;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
@@ -62,11 +63,15 @@ public class f010002ServiceImpl implements f010002Service {
 		entityout.setNavigation_bar(navigation_bar);
 
 		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
+		f010001_select3entity select3entity = new f010001_select3entity();
+		if (!CommonUtil.isEmpty(select4)) {
 
-		select4.sort((a, b) -> b.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")
-				.compareTo(a.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")));
+			select4.sort((a, b) -> b.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")
+					.compareTo(a.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")));
 
-		f010001_select3entity select3entity = select4.get(0);
+			select3entity = select4.get(0);
+
+		}
 		entityout.setSelect4(select3entity);
 
 		return entityout;
@@ -84,5 +89,11 @@ public class f010002ServiceImpl implements f010002Service {
 		fenYe.setPages(fenYe.getCount() / fenYe.getFrequency());
 		entityout.setFenye(fenYe);
 		return entityout;
+	}
+
+	@Override
+	public F010002entityOut service03(F010002entityIn entityin) throws ErrListException {
+
+		return null;
 	}
 }

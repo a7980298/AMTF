@@ -17,6 +17,7 @@ import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010001Service;
+import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.ParameterUtil;
 
@@ -34,6 +35,14 @@ public class f010001ServiceImpl implements f010001Service {
 		F010001entityOut entityout = new F010001entityOut();
 
 		f010001_select1entity select1entity = new f010001_select1entity();
+		LogInFo logInFo = new LogInFo();
+		logInFo.setUser_Account(entityIn.getUser_Account());
+		logInFo.setUser_Password(entityIn.getUser_Password());
+		// 判断是否需要保存密码
+		if (!CommonUtil.isEmpty(entityIn.getRemember())) {
+			// 存入Cookie中
+			ParameterUtil.setCookie(logInFo);
+		}
 		if (!CommonUtil.isEmpty(entityIn.getUser_Password())) {
 			// MD5加密
 			String md5pwd = DigestUtils.md5DigestAsHex(entityIn.getUser_Password().getBytes());
@@ -49,8 +58,8 @@ public class f010001ServiceImpl implements f010001Service {
 		} else {
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
-		if (!CommonUtil.isEmpty(entityIn.getRemember())) {
-
+		if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
+			throw new ErrListException(entityIn, entityIn.getIViewId(), "该用户已登录!");
 		}
 		// 根据权限获取导航栏
 		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(select1entity.getUser_power());
@@ -77,11 +86,12 @@ public class f010001ServiceImpl implements f010001Service {
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);
 		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
-
+		// 因为Mysql5.8之后排序有些问题，所以用Java进行排序
 		select4.sort((a, b) -> b.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")
 				.compareTo(a.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")));
-
+		// 获取倒序的第一条数据
 		f010001_select3entity select3entity = select4.get(0);
+
 		entityout.setSelect4(select3entity);
 
 		return entityout;
