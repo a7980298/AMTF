@@ -88,6 +88,14 @@ public class F020001entityIn extends UserImpl {
 	 * 用户搜索的状态
 	 */
 	public String select_state;
+	/**
+	 * 用户搜索的账户
+	 */
+	public String search_account;
+	/**
+	 * 用户搜索的电话
+	 */
+	public String search_phone;
 
 	/**
 	 * 发布通知

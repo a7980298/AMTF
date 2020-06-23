@@ -3,8 +3,6 @@ package com.amtf.demo.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +12,11 @@ import com.amtf.demo.entityout.F020001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select1entity;
+import com.amtf.demo.f020001entity.f020001_select2entityIn;
 import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.ImgUtil;
+import com.amtf.demo.util.ParameterUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,15 +27,13 @@ public class f020001ServiceImpl implements f020001Service {
 	@Autowired
 	private final f020001Dao f020001dao;
 
-	@Autowired
-	HttpServletRequest request;
-
 	@Override
 	public F020001entityOut service01(F020001entityIn entityin) throws ErrListException {
+
 		F020001entityOut entityOut = new F020001entityOut();
 
 		LogInFo loginfo = new LogInFo();
-		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		loginfo = ParameterUtil.getSession();
 
 		entityOut.setUser_Name(loginfo.getUser_Name());
 
@@ -89,10 +87,16 @@ public class f020001ServiceImpl implements f020001Service {
 		F020001entityOut entityOut = new F020001entityOut();
 
 		LogInFo loginfo = new LogInFo();
-		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		loginfo = ParameterUtil.getSession();
 
-		List<f010001_select1entity> select1 = f020001dao.f020001_Select2(loginfo.getUser_power(),
-				entityin.getSearch_name(), entityin.getSelect_state());
+		f020001_select2entityIn selecentityIn = new f020001_select2entityIn();
+		selecentityIn.setPow(loginfo.getUser_power());
+		selecentityIn.setSearch_account(entityin.getSearch_account());
+		selecentityIn.setSearch_name(entityin.getSearch_name());
+		selecentityIn.setSearch_phone(entityin.getSearch_phone());
+		selecentityIn.setSelect_state(entityin.getSelect_state());
+
+		List<f010001_select1entity> select1 = f020001dao.f020001_Select2(selecentityIn);
 
 		List<f020001_select1entity> select1_view = new ArrayList<f020001_select1entity>();
 
@@ -131,7 +135,7 @@ public class f020001ServiceImpl implements f020001Service {
 		F020001entityOut entityOut = new F020001entityOut();
 
 		LogInFo loginfo = new LogInFo();
-		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		loginfo = ParameterUtil.getSession();
 
 		try {
 			f020001dao.f020001_insert3(loginfo.getUser_Phone(), "更新通知", entityin.getRelease_name());

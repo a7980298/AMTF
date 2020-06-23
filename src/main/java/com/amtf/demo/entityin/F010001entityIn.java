@@ -30,6 +30,11 @@ public class F010001entityIn extends UserImpl {
 	private String User_Password;
 
 	/**
+	 * 记住账户密码
+	 */
+	private String remember;
+
+	/**
 	 * 姓名
 	 */
 	private String User_Name;

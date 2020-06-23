@@ -78,7 +78,9 @@
 			async: false,
 			data: {
 				search_name: $('#search_name').val(),
-				select_state: $('#select_state option:selected').val()
+				select_state: $('#select_state option:selected').val(),
+				search_account: $('#search_account').val(),
+				search_phone: $('#search_phone').val()
 			},
 			success: function (result) {
 				$('#select1').replaceWith(result);

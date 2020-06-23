@@ -108,4 +108,13 @@ public class ParameterUtil {
 
 		}
 	}
+
+	// 将用户信息存入进入Session
+	public static LogInFo getSession() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+		LogInFo loginfo = new LogInFo();
+		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		return loginfo;
+	}
 }

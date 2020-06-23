@@ -15,14 +15,22 @@
 		FROM 
 			AMTF_User
 		WHERE 
-			USER_power &lt; CONVERT(#{pow} USING gb2312)
-		<if test="name != ''">
+			USER_power &lt; CONVERT(#{select2.pow} USING gb2312)
+		<if test="select2.search_name != ''">
 		AND
-			USER_Name like '%${name}%'
+			USER_Name like '%${select2.search_name}%'
 		</if>
-		<if	test="selectval != 2">
+		<if	test="select2.select_state != 2">
 		AND
-			USER_Attestation = #{selectval}
+			USER_Attestation = #{select2.select_state}
+		</if>
+		<if	test="select2.search_account != ''">
+		AND
+			User_Account like '%${select2.search_account}%'
+		</if>
+		<if	test="select2.search_phone != ''">
+		AND
+			User_Phone like '%${select2.search_phone}%'
 		</if>
 	</select>
 	<insert id="f020001_insert3">

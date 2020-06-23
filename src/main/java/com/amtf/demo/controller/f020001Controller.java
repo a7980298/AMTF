@@ -74,12 +74,17 @@ public class f020001Controller extends ValiDationUtil {
 	 */
 	@PostMapping("/f020001/T002")
 	public String f010001T002(@RequestParam("search_name") String search_name,
-			@RequestParam("select_state") String select_state, Model model) {
+			@RequestParam("select_state") String select_state, @RequestParam("search_account") String search_account,
+			@RequestParam("search_phone") String search_phone, Model model) {
 		F020001Params params = new F020001Params();
 
 		F020001entityIn entityin = new F020001entityIn();
 
 		entityin.setSearch_name(search_name);
+
+		entityin.setSearch_account(search_account);
+
+		entityin.setSearch_phone(search_phone);
 
 		entityin.setSelect_state(select_state);
 

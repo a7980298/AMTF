@@ -34,6 +34,10 @@ public class F010001Params extends UserImpl {
 	@iSize(name = "密码", max = 3, min = 0)
 	private String User_Password;
 	/**
+	 * 记住账户密码
+	 */
+	private String remember;
+	/**
 	 * 密码是否正确
 	 */
 	public String pwdbol;

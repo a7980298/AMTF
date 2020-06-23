@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +18,7 @@ import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.FenYe;
+import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -27,9 +26,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class f010002ServiceImpl implements f010002Service {
-
-	@Autowired
-	HttpServletRequest request;
 
 	@Autowired
 	private final f010001Dao f010001dao;
@@ -42,7 +38,7 @@ public class f010002ServiceImpl implements f010002Service {
 		F010002entityOut entityout = new F010002entityOut();
 
 		LogInFo loginfo = new LogInFo();
-		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		loginfo = ParameterUtil.getSession();
 		// 根据权限获取导航栏
 		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(loginfo.getUser_power());
 
@@ -66,13 +62,13 @@ public class f010002ServiceImpl implements f010002Service {
 		entityout.setNavigation_bar(navigation_bar);
 
 		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
-		
-		select4.sort((a, b) -> 
-		b.getUpdnotice_time().replace("-","").replace(" ","").replace(":","").compareTo( a.getUpdnotice_time().replace("-","").replace(" ","").replace(":","")));
 
-		f010001_select3entity select3entity=select4.get(0);
+		select4.sort((a, b) -> b.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")
+				.compareTo(a.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")));
+
+		f010001_select3entity select3entity = select4.get(0);
 		entityout.setSelect4(select3entity);
-		
+
 		return entityout;
 	}
 
