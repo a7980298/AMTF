@@ -148,9 +148,6 @@
 	<div class="row bg col-md-12">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 		<input type="hidden" name="IViewId" value="f020001"/>
-		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
-		<th:block th:replace="~{wait :: wait}"></th:block>
-		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
 		<th:block th:replace="~{f020003 :: f020003_modl}"></th:block>
 		<nav class="navbar navbar-inverse" role="navigation">

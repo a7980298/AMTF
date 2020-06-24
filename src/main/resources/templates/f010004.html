@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8"></meta>
-<th:block th:fragment="f010003_modl">
+<th:block th:fragment="f010004_modl">
 	<style type="text/css">
 	.modal_contain{
 	   width : 500px;
@@ -11,13 +11,6 @@
 	}
 	</style>
 	<script type="text/javascript" >
-		//复选框的唯一选择
-		$(function(){
-			$(":checkbox").click(function(){
-				$(this).attr("checked",true);
-				$(this).siblings().attr("checked",false);
-			})
-		})
 		//注册按钮押下
 		function amtf_regist(){
 			$('#regist_confirm_user_password_err').remove();
@@ -31,7 +24,7 @@
 		}
 	</script>
 	<!-- 模态框（Modal） -->
-	<div class="modal fade" id="f010003" tabindex="-1" role="dialog"
+	<div class="modal fade" id="f010004" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
 		style="z-index: 111111;">
 		<div class="mod1class">
