@@ -38,9 +38,11 @@ function setCodeSuccess(CodeSuccess){
 function evenOff(){
 	$('#myModal_wait').modal('hide');
 	$('button').removeAttr('disabled');
+	$('body').css('pointer-events','');
 }
 //打开遮罩
 function evenOn(){
 	$('#myModal_wait').modal('show');
 	$('button').attr('disabled','disabled');
+	$('body').css('pointer-events','none');
 }

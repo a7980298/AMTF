@@ -84,13 +84,13 @@
 				search_phone: $('#search_phone').val()
 			},
 			success: function (result) {
+				evenOff();
 				$('#select1').replaceWith(result);
 			},
 			error: function (res, textStaus) {
-				
+				evenOff();
 			},
 		});
-		evenOff();
 	}
 
 	//删除按钮押下
@@ -116,6 +116,7 @@
 
 	//发布更新通知
 	function amtf_release() {
+		evenOn();
 		$.ajax({
 			url: CONTEXT_PATH + '/f020001/T003',
 			type: 'post',
@@ -125,11 +126,12 @@
 				release_name: $('#release_name').val()
 			},
 			success: function (result) {
+				evenOff();
 				$('#success_id').text('发布成功');
 				$('#myModal_success').modal('show');
 			},
 			error: function (res, textStaus) {
-				
+				evenOff();
 			},
 		});
 	}
