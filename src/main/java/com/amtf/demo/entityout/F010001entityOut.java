@@ -93,6 +93,10 @@ public class F010001entityOut extends UserImpl {
 	 */
 	public String phone_number;
 	/**
+	 * 是否跳转02画面
+	 */
+	public String bol02;
+	/**
 	 * 最新发布的通知
 	 */
 	f010001_select3entity select4;

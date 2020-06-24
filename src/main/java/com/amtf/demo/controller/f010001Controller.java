@@ -66,9 +66,15 @@ public class f010001Controller extends ValiDationUtil {
 		// 将值copy赋值
 		ParameterUtil.copyParameter(params, entityOut);
 
-		model.addAttribute("f010002Params", params);
+		// 判断账户密码是否通过
+		if (!CommonUtil.isEmpty(params.getBol02())) {
+			// 重定向到f010002
+			return "redirect:/f010002";
+		}
 
-		return "f010002";
+		model.addAttribute("f010001Params", params);
+
+		return "f010001";
 	}
 
 	/**

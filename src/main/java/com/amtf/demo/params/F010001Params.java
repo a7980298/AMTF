@@ -73,6 +73,10 @@ public class F010001Params extends UserImpl {
 	@iSize(name = "电话号码", max = 6, min = 0)
 	public String phone_number;
 	/**
+	 * 是否跳转02画面
+	 */
+	public String bol02;
+	/**
 	 * 最新发布的通知
 	 */
 	f010001_select3entity select4;
