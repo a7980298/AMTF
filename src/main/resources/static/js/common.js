@@ -34,3 +34,13 @@ function setCodeSuccess(CodeSuccess){
 		$('#myModal_success').modal('show');
 	}
 }
+//关闭遮罩
+function evenOff(){
+	$('#myModal_wait').modal('hide');
+	$('button').removeAttr('disabled');
+}
+//打开遮罩
+function evenOn(){
+	$('#myModal_wait').modal('show');
+	$('button').attr('disabled','disabled');
+}
