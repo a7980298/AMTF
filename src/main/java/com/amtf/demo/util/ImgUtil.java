@@ -16,4 +16,17 @@ public class ImgUtil {
 		}
 		return "";
 	}
+
+	// 上传图片
+	public static String CommitImg(String name) {
+		File fileOut = new File(name);
+		File fileIn = new File(name);
+
+		fileOut.getName();
+
+		if (!fileOut.exists()) {
+
+		}
+		return "";
+	}
 }

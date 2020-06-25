@@ -52,4 +52,14 @@ public class F010002entityIn extends UserImpl {
 	 * 是否认证
 	 */
 	private String User_Attestation;
+
+	/**
+	 * 修改：用户名
+	 */
+	public String upd_user_name;
+
+	/**
+	 * 修改：地址
+	 */
+	public String upd_user_homeaddress;
 }

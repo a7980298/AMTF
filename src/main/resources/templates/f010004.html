@@ -12,15 +12,8 @@
 	</style>
 	<script type="text/javascript" >
 		//注册按钮押下
-		function amtf_regist(){
-			$('#regist_confirm_user_password_err').remove();
-			var password1=$('#regist_user_password').val();
-			var password2=$('#regist_confirm_user_password').val();
-			if(password1 != password2){
-				setErrList("{name:regist_confirm_user_password}{err:密码不一致，请重输!+}");
-			}else {
-				amtf_submit(amtf_form , '/f010001/T002');
-			}
+		function amtf_upduser(){
+			amtf_submit(amtf_form , '/f010001/T002');
 		}
 	</script>
 	<!-- 模态框（Modal） -->
@@ -65,7 +58,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" style="text-align:center"><input type="button" value="修改" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
+							<td colspan="2" style="text-align:center"><input type="button" value="修改" onclick="amtf_upduser()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
 						</tr>
 					</table>
 				</div>

@@ -72,4 +72,12 @@ public class F010002Params extends UserImpl {
 	f010001_select3entity select4;
 
 	public FenYe fenye;
+	/**
+	 * 修改：用户名
+	 */
+	public String upd_user_name;
+	/**
+	 * 修改：地址
+	 */
+	public String upd_user_homeaddress;
 }
