@@ -29,9 +29,15 @@
 			}
 
 			// 打开模态框
-			function show_modal() {
+			function show_f010004modal() {
 				$('.dropdown-toggle').dropdown();
 				$('#f010004').modal('show');
+			}
+			
+			// 打开模态框
+			function show_f010005modal() {
+				$('.dropdown-toggle').dropdown();
+				$('#f010005').modal('show');
 			}
 		</script>
 		</head>
@@ -64,12 +70,17 @@
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<a href="#" id="" class="" data-target="#f010003" onclick="show_modal()">
+									<a href="#" id="" class="" data-target="#f010003" onclick="show_f010004modal()" title="详细信息">
 										<span class="glyphicon glyphicon-envelop"></span>User：[[${f010002Params.logInFo.User_Account}]]
 									</a>
 								</li>
 								<li>
-									<a href="#" onclick="amtf_close()">
+									<a class="navbar-brand" href="#" onclick="show_f010005modal()" title="任务">
+										<img th:src="@{/imgs/task.jpg}" height="100%"/>
+									</a>
+								</li>
+								<li>
+									<a href="#" onclick="amtf_close()" title="注销">
 										<span class="glyphicon glyphicon-log-out"></span> Exit
 									</a>
 								</li>
