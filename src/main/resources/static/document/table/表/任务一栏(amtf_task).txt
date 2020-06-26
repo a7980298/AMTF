@@ -1,8 +1,10 @@
 CREATE TABLE AMTF_task(
 	task_user VARCHAR(4), -- 发布人
 	task_name VARCHAR(20), -- 任务名称
-	task_type VARCHAR(200), -- 任务内容
+	task_text VARCHAR(200), -- 任务内容
 	task_startDate DateTime, -- 有效期开始时间
 	task_endDate DateTime, -- 有效期结束时间
+	task_type char(1),-- 任务类型
+	task_timing TIME,-- 每日最晚时间
 	task_date DateTime -- 发布时间
 )

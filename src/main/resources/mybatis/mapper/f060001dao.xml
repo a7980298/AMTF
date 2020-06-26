@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amtf.demo.dao.f060001Dao">
+	<select id="f060001_Select1" resultType="com.amtf.demo.f060001entity.f060001_select1entity">
+		SELECT
+			*
+		FROM
+			AMTF_TASK
+	</select>
+</mapper>

@@ -32,7 +32,7 @@ public class DateUtil {
 
 	public final static String DATE_TOSTR_second = "ss";
 
-	public static String strToDate(Date date, String format) {
+	public static String dateToStr(Date date, String format) {
 		String str = "";
 		try {
 			str = new SimpleDateFormat(format).format(date);
@@ -40,5 +40,10 @@ public class DateUtil {
 			return "";
 		}
 		return str;
+	}
+
+	public static void strTostr(String str) {
+
+		str.replace("-", "").replace(" ", "").replace(":", "");
 	}
 }
