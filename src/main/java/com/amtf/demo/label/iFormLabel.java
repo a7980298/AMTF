@@ -48,6 +48,7 @@ public class iFormLabel extends AbstractElementModelProcessor {
 		prepareAttribute(attributes, "target", options.get("target"));
 		prepareAttribute(attributes, "action", options.get("action"));
 		prepareAttribute(attributes, "method", options.get("method"));
+		prepareAttribute(attributes, "enctype", options.get("enctype"));
 
 		// 从开始的form标签截取
 		iModel.replace(0, modelFactory.createOpenElementTag("form", attributes, AttributeValueQuotes.DOUBLE, false));

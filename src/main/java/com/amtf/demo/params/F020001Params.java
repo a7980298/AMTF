@@ -39,4 +39,9 @@ public class F020001Params extends UserImpl {
 	 * 最新发布的通知
 	 */
 	f010001_select3entity select4;
+
+	/**
+	 * 上传图片
+	 */
+	public String input_file_commit;
 }

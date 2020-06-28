@@ -102,4 +102,9 @@ public class F020001entityIn extends UserImpl {
 	 */
 	public String release_name;
 
+	/**
+	 * 上传图片
+	 */
+	public String input_file_commit;
+
 }

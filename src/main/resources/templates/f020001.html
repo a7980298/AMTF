@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
 <meta charset="UTF-8">
 <title>AMTF管理画面</title>
 <th:block th:replace="import :: myimport"></th:block>
@@ -142,11 +143,70 @@
 		$('#f020003-modl-img').attr('src',imgsrc);
 		$('#f020003_modl').modal('show');
 	}
+
+	function initFileInput(ctrlName, uploadUrl) {
+		var control = $('#' + ctrlName);
+		control.fileinput({
+			resizeImage : true,
+			maxImageWidth : 200,
+			maxImageHeight : 200,
+			resizePreference : 'width',
+			language : 'zh', //设置语言
+			uploadUrl : uploadUrl,
+			uploadAsync : true,
+			allowedFileExtensions : [ 'jpg', 'png', 'gif' ],//接收的文件后缀
+			showUpload : true, //是否显示上传按钮
+			showCaption : true,//是否显示标题
+			browseClass : "btn btn-primary", //按钮样式
+			previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
+			maxFileCount : 3,
+			msgFilesTooMany : "选择图片超过了最大数量",
+			maxFileSize : 2000,
+			 layoutTemplates:{
+            	 actionDelete: '',//去除上传预览的缩列图中的删除图标	
+                 actionUpload: '',//去除上传预览的缩列图中的上传图标	
+               //  actionZoom: '',//去除上传预览的缩列图中的预览图标	
+            },
+            uploadExtraData: function(previewId, index) {   //额外参数的关键点
+                var data = {
+            		messageTitle : $("#messageTitle").val(),
+           	    };
+                return data;
+            },
+        }).on('filebatchpreupload', function(event, data) {
+        	if($("#messageTitle").val()==''|| $("#messageTitle").val()==null){ 
+        		return {
+                      message: "上传失败，请填写标题！", 
+                      data:{} 
+                  };
+          }else{
+	            var n = data.files.length, files = n > 1 ? n + '个文件' : '1个文件';
+	            if (!window.confirm("确定上传 " + files + "?")) {
+	                return {
+	                    message: "上传取消!!", // upload error message
+	                    data:{} // any other data to send that can be referred in `filecustomerror`
+	                };
+	            }else{
+	            	if(data.success==false){
+	            		 return {
+			                message: data.error, // upload error message
+			                data:{} // any other data to send that can be referred in `filecustomerror`
+			             };
+	            	}
+	            }
+        	}
+        }); 
+	};
+	//初始化控件initFileInput(id,uploadurl)控件id，与上传路径
+	$(function(){
+		initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
+	})
+
 </script>
 </head>
 <body>
 	<div class="row bg col-md-12">
-	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
+	<i-form class="" th:action="@{/f020001/T004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 		<input type="hidden" name="IViewId" value="f020001"/>
 		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
 		<th:block th:replace="~{f020003 :: f020003_modl}"></th:block>
@@ -349,11 +409,7 @@
 								设置
 							</li>
 						</ol>
-						<div class="col-sm-4">
-							<div style="width: 100%;height:20%;">
-								<input id="input-file-commit" name="input-file-commit" type="file" class="file">
-							</div>
-						</div>
+						<input id="file-file" class="file" type="file" name="file" multiple data-show-upload="true" data-show-caption="true">
 					</div>
 					<div class="col-sm-10 tab-pane" id="picture">
 						<ol class="breadcrumb">
@@ -363,7 +419,7 @@
 							<li class="active">
 								管理
 							</li>
-					</ol>
+						</ol>
 					</div>
 					<div class="col-sm-10 tab-pane" id="personal">
 						<ol class="breadcrumb">

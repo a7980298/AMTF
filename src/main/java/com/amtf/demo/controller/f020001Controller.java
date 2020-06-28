@@ -1,16 +1,21 @@
 package com.amtf.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.amtf.demo.entityin.F020001entityIn;
 import com.amtf.demo.entityout.F020001entityOut;
 import com.amtf.demo.params.F020001Params;
 import com.amtf.demo.service.f020001Service;
+import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
@@ -99,7 +104,7 @@ public class f020001Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 搜索
+	 * 发布更新通知
 	 * 
 	 * @parameter F020001Params params
 	 * @return String
@@ -122,4 +127,16 @@ public class f020001Controller extends ValiDationUtil {
 		return "f020001";
 	}
 
+	/**
+	 * 上传图片
+	 * 
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f020001/T004")
+	@ResponseBody
+	public void f010001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		ImgUtil.CommitImg(file);
+
+	}
 }

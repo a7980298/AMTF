@@ -144,4 +144,11 @@ public class f020001ServiceImpl implements f020001Service {
 		}
 		return entityOut;
 	}
+
+	@Override
+	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
+		F020001entityOut entityOut = new F020001entityOut();
+
+		return entityOut;
+	}
 }

@@ -13,4 +13,9 @@ public class MybootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MybootApplication.class, args);
 	}
+	/*
+	 * @Bean MultipartConfigElement multipartConfigElement() {
+	 * MultipartConfigFactory factory = new MultipartConfigFactory();
+	 * factory.setLocation("/app/tmp"); return factory.createMultipartConfig(); }
+	 */
 }

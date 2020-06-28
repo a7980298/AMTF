@@ -1,6 +1,9 @@
 package com.amtf.demo.config;
 
+import javax.servlet.MultipartConfigElement;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -26,6 +29,7 @@ public class MyConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 		registry.addResourceHandler("/istatic/**").addResourceLocations("file:C:/imgs/");
+		registry.addResourceHandler("/temp-rainy/**").addResourceLocations("file:D:/temp-rainy/");
 
 	}
 
@@ -37,5 +41,11 @@ public class MyConfig implements WebMvcConfigurer {
 		// 注册拦截器
 		// 拦截路径 排除路径
 		registry.addInterceptor(ifgeisession).addPathPatterns("/**").excludePathPatterns(notLoginInterceptPaths);
+	}
+
+	MultipartConfigElement multipartConfigElement() {
+		MultipartConfigFactory factory = new MultipartConfigFactory();
+		factory.setLocation("/app/pttms/tmp");
+		return factory.createMultipartConfig();
 	}
 }
