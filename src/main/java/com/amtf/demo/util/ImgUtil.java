@@ -60,17 +60,17 @@ public class ImgUtil {
 		String suffixName = fileName.substring(fileName.lastIndexOf("."));
 		// 上传后的路径
 		String filePath = "D://temp-rainy//";
-		// 新文件名
+		// 随机一个文件名
 		fileName = UUID.randomUUID() + suffixName;
 		// 创建流
 		File dest = new File(filePath + fileName);
 		// 判断文件夹是否存在
 		if (!dest.getParentFile().exists()) {
-			// 新建文件夹
+			// 新建生成所有目录
 			dest.getParentFile().mkdirs();
 		}
 		try {
-			// 读入文件
+			// 将上传文件写到服务器上指定的文件。
 			file.transferTo(dest);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,5 +1,8 @@
 package com.amtf.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,8 +138,12 @@ public class f020001Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f020001/T004")
 	@ResponseBody
-	public void f010001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+	public Map<String, Object> f010001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 		ImgUtil.CommitImg(file);
 
+		Map<String, Object> map = new HashMap<String, Object>();
+		String name = "ok";
+		map.put("成功了", name);
+		return map;
 	}
 }
