@@ -15,6 +15,32 @@
 		function amtf_upduser(){
 			amtf_submit(amtf_form , '/f010001/T002');
 		}
+
+		$(function(){
+			$('#file0').change(function(){
+				//获取图片途径
+				var objUrl = getObjectURL(this.files[0]) ;
+				//判断是否存在
+				if (objUrl) {
+					$("#img1").attr("src", objUrl) ;
+					$("#img1").show() ;
+				}
+			}) ;
+		})
+
+		//根据浏览器获取图片路径
+		function getObjectURL(file) {
+			var url = null ;
+
+			if (window.createObjectURL!=undefined) { // basic
+				url = window.createObjectURL(file) ;
+			} else if (window.URL!=undefined) { // mozilla(firefox) 火狐
+				url = window.URL.createObjectURL(file) ;
+			} else if (window.webkitURL!=undefined) { // webkit or chrome 谷歌
+				url = window.webkitURL.createObjectURL(file) ;
+			}
+			return url ;
+		}
 	</script>
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="f010004" tabindex="-1" role="dialog"
@@ -26,6 +52,14 @@
 					<table style="width:300px;margin:0 auto">
 						<tr>
 							<td colspan="2" style="text-align:center">用户详细信息</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="text-center">
+								<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" width="80px" height="80px" id="img1"/>
+								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" width="80px" height="80px" id="img1"/>
+								<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">更换头像</button>
+								<input type="file" name="file0" id="file0" multiple="multiple" style="display:none;"/>
+							</td>
 						</tr>
 						<tr>
 							<td>用户名：</td>

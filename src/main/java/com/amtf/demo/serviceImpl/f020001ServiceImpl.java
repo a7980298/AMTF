@@ -35,11 +35,9 @@ public class f020001ServiceImpl implements f020001Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		entityOut.setUser_Name(loginfo.getUser_Name());
-
 		String imgpath = ImgUtil.getImgPath(loginfo.getUser_Phone());
 
-		entityOut.setImgPath(imgpath);
+		loginfo.setImgpath(imgpath);
 
 		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(loginfo.getUser_power());
 
@@ -69,6 +67,8 @@ public class f020001ServiceImpl implements f020001Service {
 
 			select1_view.add(f02_select);
 		}
+
+		entityOut.setLogInFo(loginfo);
 
 		entityOut.setSelect1(select1_view);
 

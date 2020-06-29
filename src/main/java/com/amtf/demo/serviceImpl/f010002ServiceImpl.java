@@ -19,6 +19,7 @@ import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.FenYe;
+import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
 
@@ -55,6 +56,8 @@ public class f010002ServiceImpl implements f010002Service {
 							value1.addAll(value2);
 							return value1;
 						}));
+		String imgpath = ImgUtil.getImgPath(loginfo.getUser_Phone());
+		loginfo.setImgpath(imgpath);
 		// 用户信息
 		entityout.setLogInFo(loginfo);
 		// 导航栏

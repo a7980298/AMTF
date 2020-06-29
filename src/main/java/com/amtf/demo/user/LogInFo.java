@@ -51,4 +51,9 @@ public class LogInFo {
 	 * 权限
 	 */
 	private String User_power;
+
+	/**
+	 * 头像路径
+	 */
+	private String imgpath;
 }

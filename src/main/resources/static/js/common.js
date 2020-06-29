@@ -69,7 +69,7 @@ function initFileInput(ctrlName, uploadUrl) {
 		layoutTemplates:{
 			actionDelete: '',//去除上传预览的缩列图中的删除图标	
 			actionUpload: '',//去除上传预览的缩列图中的上传图标	
-			//actionZoom: '',//去除上传预览的缩列图中的预览图标	
+			actionZoom: '',//去除上传预览的缩列图中的预览图标	
 		},
 		uploadExtraData: function(previewId, index) {//额外参数的关键点
 			var data = {
@@ -106,4 +106,42 @@ function initFileInput(ctrlName, uploadUrl) {
 			}
 		}
 	});*/
+};
+
+// 仅显示图片和选择按钮
+function initFileInputCommit(ctrlName, uploadUrl) {
+	var control = $('#' + ctrlName);
+	control.fileinput({
+		resizeImage : true,
+		maxImageWidth : 80,
+		maxImageHeight : 80,
+		resizePreference : 'width',
+		language : 'zh', //设置语言
+		uploadUrl : uploadUrl,
+		uploadAsync : true,
+		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],//接收的文件后缀
+		showUpload : false, //是否显示上传按钮
+		showCaption : false,//是否显示标题
+		dropZoneEnabled: false,
+		browseClass : "btn", //按钮样式
+		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
+		maxFileCount : 3,
+		msgFilesTooMany : "选择图片超过了最大数量",
+		maxFileSize : 2000,
+		layoutTemplates:{
+			actionDelete: '',//去除上传预览的缩列图中的删除图标	
+			actionUpload: '',//去除上传预览的缩列图中的上传图标	
+			actionZoom: '',//去除上传预览的缩列图中的预览图标	
+		},
+		uploadExtraData: function(previewId, index) {//额外参数的关键点
+			var data = {
+				messageTitle : $("#messageTitle").val(),
+			};
+			return data;
+		},
+	}).on('fileuploaded', function (event, data) {//异步上传成功结果处理
+		if(data.name != ''){
+			
+		}
+	})
 };

@@ -178,12 +178,12 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a class="navbar-brand" href="#">
-								<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.imgPath == ''}" onclick="amtf_openimg(this)"/>
-								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="100%" th:if="${f020001Params.imgPath != ''}" onclick="amtf_openimg(this)"/>
+								<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.logInFo.imgpath == ''}" onclick="amtf_openimg(this)"/>
+								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="100%" th:if="${f020001Params.logInFo.imgpath != ''}" onclick="amtf_openimg(this)"/>
 							</a>
 						</li>
 						<li>
-							<a>[[${f020001Params.User_Name}]]</a>
+							<a>[[${f020001Params.logInFo.User_Name}]]</a>
 						</li>
 						<li>
 							<a href="#" onclick="amtf_return()">返回</a>
