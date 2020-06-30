@@ -10,9 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ImgUtil {
 
+	// 图片格式
+	final static String[] suffix = { ".jpg", ".png" };
+
 	// 获取照片地址
 	public static String getImgPath(String name) {
-		String[] suffix = { ".jpg", ".png" };
 
 		for (int i = 0; i < suffix.length; i++) {
 			File file = new File("C:/imgs/" + name + suffix[i]);
@@ -47,33 +49,54 @@ public class ImgUtil {
 			wreter.close();
 			reader.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	// 图片上传
-	public static void CommitImg(MultipartFile file) {
+	public static void CommitImg(MultipartFile file, String isuser) {
 		// 文件名
 		String fileName = file.getOriginalFilename();
-		// 后缀名
-		String suffixName = fileName.substring(fileName.lastIndexOf("."));
-		// 上传后的路径
-		String filePath = "D://temp-rainy//";
-		// 随机一个文件名
-		fileName = UUID.randomUUID() + suffixName;
-		// 创建流
-		File dest = new File(filePath + fileName);
-		// 判断文件夹是否存在
-		if (!dest.getParentFile().exists()) {
-			// 新建生成所有目录
-			dest.getParentFile().mkdirs();
-		}
-		try {
-			// 将上传文件写到服务器上指定的文件。
-			file.transferTo(dest);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!CommonUtil.isEmpty(fileName)) {
+			// 后缀名
+			String suffixName = fileName.substring(fileName.lastIndexOf("."));
+			// 上传后的路径
+			String filePath = "D://temp-rainy//";
+
+			// 随机一个文件名
+			fileName = UUID.randomUUID().toString();
+
+			if (FixedNumberUtil.STR_1.equals(isuser)) {
+				filePath = "C:/imgs/";
+				fileName = ParameterUtil.getSession().getUser_Phone();
+			}
+
+			filePath += fileName;
+
+			boolean filetextbol = true;
+			// 创建流
+			File dest = null;
+			for (int i = 0; i < suffix.length; i++) {
+				dest = new File(filePath + suffix[i]);
+				// 判断文件夹是否存在
+				if (dest.getParentFile().exists()) {
+					filetextbol = false;
+					dest.delete();
+				}
+			}
+
+			if (filetextbol) {
+				dest = new File(filePath + suffixName);
+				// 新建生成所有目录
+				dest.getParentFile().mkdirs();
+			}
+
+			try {
+				// 将上传文件写到服务器上指定的文件。
+				file.transferTo(dest);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

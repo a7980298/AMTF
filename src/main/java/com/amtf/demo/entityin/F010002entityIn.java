@@ -1,5 +1,7 @@
 package com.amtf.demo.entityin;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -62,4 +64,14 @@ public class F010002entityIn extends UserImpl {
 	 * 修改：地址
 	 */
 	public String upd_user_homeaddress;
+
+	/**
+	 * 修改：用户照片
+	 */
+	public MultipartFile file0;
+
+	/**
+	 * 是否修改成功
+	 */
+	public String isUpdatUserOk;
 }

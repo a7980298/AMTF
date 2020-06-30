@@ -80,4 +80,9 @@ public class F010002entityOut extends UserImpl {
 	 * 修改：地址
 	 */
 	public String upd_user_homeaddress;
+
+	/**
+	 * 是否修改成功
+	 */
+	public String isUpdatUserOk;
 }

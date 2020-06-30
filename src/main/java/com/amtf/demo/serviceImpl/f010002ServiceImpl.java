@@ -13,12 +13,14 @@ import com.amtf.demo.dao.f010002Dao;
 import com.amtf.demo.entityin.F010002entityIn;
 import com.amtf.demo.entityout.F010002entityOut;
 import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.FenYe;
+import com.amtf.demo.util.FixedNumberUtil;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
@@ -79,9 +81,8 @@ public class f010002ServiceImpl implements f010002Service {
 	}
 
 	@Override
-	public F010002entityOut service02(F010002entityIn entityin) throws ErrListException {
+	public F010002entityOut service02(F010002entityIn entityIn) throws ErrListException {
 		F010002entityOut entityout = new F010002entityOut();
-		// TODO Auto-generated method stub
 		FenYe fenYe = new FenYe();
 		fenYe.setFrequency(3);
 		fenYe.setCount(f010002dao.f010002_Select1Count());
@@ -93,8 +94,33 @@ public class f010002ServiceImpl implements f010002Service {
 	}
 
 	@Override
-	public F010002entityOut service03(F010002entityIn entityin) throws ErrListException {
+	public F010002entityOut service03(F010002entityIn entityIn) throws ErrListException {
+		F010002entityOut entityout = new F010002entityOut();
 
-		return null;
+		ImgUtil.CommitImg(entityIn.getFile0(), FixedNumberUtil.STR_1);
+
+		LogInFo loginfo = new LogInFo();
+
+		loginfo.setUser_Account(entityIn.getUpd_user_name());
+
+		loginfo.setUser_HomeAddress(entityIn.getUpd_user_homeaddress());
+
+		loginfo.setUser_id(ParameterUtil.getSession().getUser_id());
+
+		Integer update2 = f010002dao.f010002_update2(loginfo);
+
+		if (update2 < 0) {
+
+			throw new ErrListException(entityIn, entityIn.getIViewId(), "更改信息时发生错误");
+		}
+
+		f010001_select1entity select3entity = f010002dao.f010002_Select3(loginfo);
+
+		// 用户信息存入Session
+		ParameterUtil.setSession(select3entity);
+
+		entityout.setIsUpdatUserOk(FixedNumberUtil.STR_1);
+
+		return entityout;
 	}
 }

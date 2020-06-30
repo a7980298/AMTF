@@ -15,4 +15,23 @@
 		FROM 
 			AMTF_NEWS
 	</select>
+	
+	<update id="f010002_update2">
+		UPDATE 
+			amtf_user 
+		SET 
+			User_Account = #{loginfo.User_Account}
+			,User_HomeAddress = #{loginfo.User_HomeAddress}
+		WHERE
+			User_id = #{loginfo.User_id}
+	</update>
+	
+	<select id="f010002_Select3" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
+		SELECT
+			 *
+		FROM 
+			amtf_user	
+		WHERE
+			User_id = #{loginfo.User_id}
+	</select>
 </mapper>

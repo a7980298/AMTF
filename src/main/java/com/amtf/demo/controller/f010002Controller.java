@@ -3,6 +3,7 @@ package com.amtf.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amtf.demo.entityin.F010002entityIn;
@@ -86,7 +87,7 @@ public class f010002Controller extends ValiDationUtil {
 	 * @parameter F010002Params params
 	 * @return String
 	 */
-	@RequestMapping("/f010002/T002")
+	@PostMapping("/f010002/T002")
 	public String f010002T002(F010002Params params, Model model) {
 
 		F010002entityIn entityin = new F010002entityIn();
@@ -95,7 +96,12 @@ public class f010002Controller extends ValiDationUtil {
 
 		F010002entityOut entityOut = f010002service.service03(entityin);
 
-		// 将值copy赋值
+		String isUpdatUserOk = entityOut.getIsUpdatUserOk();
+
+		entityOut = f010002service.service01(entityin);
+
+		entityOut.setIsUpdatUserOk(isUpdatUserOk);
+
 		ParameterUtil.copyParameter(params, entityOut);
 
 		model.addAttribute("f010002Params", params);

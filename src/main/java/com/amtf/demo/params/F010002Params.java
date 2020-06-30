@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
@@ -80,4 +81,13 @@ public class F010002Params extends UserImpl {
 	 * 修改：地址
 	 */
 	public String upd_user_homeaddress;
+	/**
+	 * 修改：用户照片
+	 */
+	public MultipartFile file0;
+
+	/**
+	 * 是否修改成功
+	 */
+	public String isUpdatUserOk;
 }

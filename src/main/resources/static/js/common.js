@@ -145,3 +145,17 @@ function initFileInputCommit(ctrlName, uploadUrl) {
 		}
 	})
 };
+
+//根据浏览器获取图片路径
+function getObjectURL(file) {
+	var url = null ;
+
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox) 火狐
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome 谷歌
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
+}

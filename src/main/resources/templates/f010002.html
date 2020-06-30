@@ -110,10 +110,17 @@
 	function aaa() {
 		amtf_submit(amtf_form , '/f010002/F001');
 	}
+
+	$(function(){
+		if ("[[${f010002Params.isUpdatUserOk}]]" == '1') {
+			$('#success_id').text('修改成功');
+			$('#myModal_success').modal('show');
+		}
+	})
 </script>
 </head>
 <body>
-	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form">
+	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form" enctype="multipart/form-data">
 		<input type="hidden" name="IViewId" value="f010002"/>
 		<th:block th:replace="~{f010004 :: f010004_modl}"></th:block>
 		<th:block th:replace="~{f010005 :: f010005_modl}"></th:block>

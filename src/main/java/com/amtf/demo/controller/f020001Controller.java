@@ -18,6 +18,7 @@ import com.amtf.demo.entityin.F020001entityIn;
 import com.amtf.demo.entityout.F020001entityOut;
 import com.amtf.demo.params.F020001Params;
 import com.amtf.demo.service.f020001Service;
+import com.amtf.demo.util.FixedNumberUtil;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
@@ -139,7 +140,7 @@ public class f020001Controller extends ValiDationUtil {
 	@RequestMapping("/f020001/T004")
 	@ResponseBody
 	public Map<String, Object> f010001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-		ImgUtil.CommitImg(file);
+		ImgUtil.CommitImg(file, FixedNumberUtil.STR_0);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		String name = "ok";
