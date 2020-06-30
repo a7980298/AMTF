@@ -45,6 +45,10 @@
 							<td colspan="2" class="text-center">
 								<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" width="80px" height="80px" id="img1"/>
 								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" width="80px" height="80px" id="img1"/>
+							</td>
+						</tr>
+							<tr>
+							<td colspan="2" class="text-center">
 								<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">更换头像</button>
 								<input type="file" name="file0" id="file0" multiple="multiple" style="display:none;"/>
 							</td>
