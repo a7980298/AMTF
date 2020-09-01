@@ -148,8 +148,6 @@
 	$(function(){
 		initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
 	})
-	
-
 </script>
 </head>
 <body>
@@ -161,20 +159,6 @@
 		<nav class="navbar navbar-inverse" role="navigation">
 			<div class="container-fluid">
 				<div class="collapse navbar-collapse" id="example-navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a class="icon-bar" href="#setup" data-toggle="tab" onclick="amtf_activeclick(this)">网站设置</a>
-						</li>
-						<li>
-							<a href="#classification" data-toggle="tab" onclick="amtf_activeclick(this)">分类管理</a>
-						</li>
-						<li>
-							<a href="#personnel" data-toggle="tab" onclick="amtf_activeclick(this)">人员管理</a>
-						</li>
-						<li>
-							<a href="#advertisement" data-toggle="tab" onclick="amtf_activeclick(this)">广告栏设置</a>
-						</li>
-					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a class="navbar-brand" href="#">
@@ -194,15 +178,25 @@
 		</nav>
 		<div class="container-fluid">
 			<div class="row">
-				<!--左边菜单栏-->
 				<div class="col-sm-2">
+					<!--左边菜单栏-->
+					<a href="#setup" class="list-group-item active"data-toggle="tab" onclick="amtf_activeclick(this)">
+						网站设置
+					</a>
+					<a href="#classification" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+						分类管理
+					</a>
+					<a href="#personnel" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+						人员管理
+					</a>
+					<a href="#advertisement" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+						广告栏设置
+					</a>
 					<a href="#picture" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
-						<span class="glyphicon glyphicon-home">
-						</span>图片管理
+						图片管理
 					</a>
 					<a href="#personal" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
-						<span class="glyphicon glyphicon-user">
-						</span>个人设置
+						个人设置
 					</a>
 				</div>
 				<div id="myTabContent" class="tab-content">
@@ -384,12 +378,12 @@
 							</div>
 							<div class="panel-body">
 								<div class="form-group d-flex">
-									<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.imgPath == ''}"/>
-									<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="180px" th:if="${f020001Params.imgPath != ''}"/>
+									<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.logInFo.imgpath == ''}"/>
+									<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="180px" th:if="${f020001Params.logInFo.imgpath != ''}"/>
 								</div>
 								<div class="form-group">
 									<label for="name">姓名</label>
-									<input type="text" class="form-control" id="search_name" th:value="${f020001Params.User_Name}">
+									<input type="text" class="form-control" id="search_name" th:value="${f020001Params.logInFo.User_Name}">
 								</div>
 								<div class="form-group">
 									<button type="button" class="btn btn-default">修改</button>

@@ -21,6 +21,13 @@ function amtf_submit(form,action) {
 	form.submit();
 }
 
+function amtf_form_head(){
+	var form = $("#amtf_form_head");
+	form.action = CONTEXT_PATH + "/f010002";
+	form.target = TARGET;
+	form.submit();
+}
+
 //打开modal模态框
 function setCodeErrList(codeErrList){
 	if (codeErrList != null && codeErrList != '') {

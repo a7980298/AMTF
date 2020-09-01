@@ -12,14 +12,7 @@
 	<div class="modal fade" id="f020003_modl" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
 		style="z-index: 111111;">
-		<div class="mod1class">
-			<div class="" style="padding-left:33%;width:500px;" id="modthis">
-				<div class="" id="modal_content_id">
-					<input type="button" class="btn" value="×" data-dismiss="modal">
-					<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" height="400px" width="500px" id="f020003-modl-img"/>
-				</div>
-			</div>
-		</div>
+		<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.imgPath})}" class="img-responsive center-block" style="margin-top: 200px;" height="400px" width="500px" id="f020003-modl-img"/>
 	</div>
 </th:block>
 </html>
