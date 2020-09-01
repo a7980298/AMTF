@@ -19,4 +19,9 @@ public class UserImpl {
 	 */
 	private List<String> messageList;
 
+	/**
+	 * 管理页面
+	 */
+	private Admin admin;
+
 }

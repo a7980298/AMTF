@@ -11,6 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.amtf.demo.f010001entity.f010001_select1entity;
+import com.amtf.demo.user.Admin;
 import com.amtf.demo.user.LogInFo;
 
 public class ParameterUtil {
@@ -157,5 +158,14 @@ public class ParameterUtil {
 			}
 		}
 		return loginfo;
+	}
+
+	// 将管理信息从Session中取出
+	public static Admin getAdmin() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+		Admin admin = new Admin();
+		admin.setUsercount(StringUtil.toStr(NumberUtil.toInt(request.getSession().getAttribute("admin"))));
+		return admin;
 	}
 }

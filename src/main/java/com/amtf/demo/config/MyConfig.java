@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.amtf.demo.HandlerInterceptorUtil.IfGeiSession;
+import com.amtf.demo.HandlerInterceptorUtil.getAdmin;
 
 @Configuration
 public class MyConfig implements WebMvcConfigurer {
@@ -17,9 +18,13 @@ public class MyConfig implements WebMvcConfigurer {
 	// 拦截器排除路径
 	final String[] notLoginInterceptPaths = { "/", "/f010001", "/f010001/T001", "/f010001/T002", "/err", "/js/**",
 			"/css/**", "/imgs/**" };
+	final String[] getAdminPaths = { "/", "/err", "/js/**", "/css/**", "/imgs/**" };
 
 	@Autowired
 	private IfGeiSession ifgeisession;
+
+	@Autowired
+	private getAdmin getadmin;
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -30,7 +35,6 @@ public class MyConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 		registry.addResourceHandler("/istatic/**").addResourceLocations("file:C:/imgs/");
 		registry.addResourceHandler("/temp-rainy/**").addResourceLocations("file:D:/temp-rainy/");
-
 	}
 
 	/**
@@ -41,6 +45,7 @@ public class MyConfig implements WebMvcConfigurer {
 		// 注册拦截器
 		// 拦截路径 排除路径
 		registry.addInterceptor(ifgeisession).addPathPatterns("/**").excludePathPatterns(notLoginInterceptPaths);
+		registry.addInterceptor(getadmin).addPathPatterns("/amtf/f010001").excludePathPatterns(getAdminPaths);
 	}
 
 	MultipartConfigElement multipartConfigElement() {

@@ -72,6 +72,8 @@ public class f020001ServiceImpl implements f020001Service {
 
 		entityOut.setSelect1(select1_view);
 
+		entityOut.setAdmin(ParameterUtil.getAdmin());
+
 		return entityOut;
 	}
 
