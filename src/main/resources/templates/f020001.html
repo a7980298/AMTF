@@ -39,6 +39,9 @@
 </style>
 <script type="text/javascript">
 	$(function(){
+		$('#img1').attr('src',$('#img1').attr('src') + '?r=' + Math.random());
+		$('#img2').attr('src',$('#img2').attr('src') + '?r=' + Math.random());
+		
 		var E = window.wangEditor
 		var editor = new E('#editor')
 		// 或者 var editor = new E( document.getElementById('editor') )
@@ -190,8 +193,8 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a class="navbar-brand" href="#">
-								<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.logInFo.imgpath == ''}" onclick="amtf_openimg(this)"/>
-								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="100%" th:if="${f020001Params.logInFo.imgpath != ''}" onclick="amtf_openimg(this)"/>
+								<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.logInFo.imgpath == ''}" onclick="amtf_openimg(this)" id="img1"/>
+								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="100%" th:if="${f020001Params.logInFo.imgpath != ''}" onclick="amtf_openimg(this)" id="img1"/>
 							</a>
 						</li>
 						<li>
@@ -414,8 +417,8 @@
 							</div>
 							<div class="panel-body">
 								<div class="form-group d-flex">
-									<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.logInFo.imgpath == ''}"/>
-									<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="180px" th:if="${f020001Params.logInFo.imgpath != ''}"/>
+									<img th:src="@{/imgs/userimg.jpg}" height="180px" th:if="${f020001Params.logInFo.imgpath == ''}" id="img2"/>
+									<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="180px" th:if="${f020001Params.logInFo.imgpath != ''}" id="img2"/>
 								</div>
 								<div class="form-group">
 									<label for="name">姓名</label>
