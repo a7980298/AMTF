@@ -4,6 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<style type="text/css">
+	.leftdiv{
+		width: 100px;
+		height: 100px;
+		background: #f5f5f5;
+		position: fixed;
+		left: 60px;
+		top: 100px;
+		z-index: 100;
+	}
+
+
+</style>
 <script type="text/javascript">
 	!(function() {
 		function n(n, e, t) {
@@ -145,16 +158,15 @@
 			</div>
 			<hr>
 		</div>
-		<div class="container body-content">
-			<div class="row">
-				<ol class="breadcrumb">
-					<li class="active">
-						 最新通知
-					</li>
-				</ol>
-				[[${f010002Params.select4.updnotice_text}]]
-			</div>
-			<hr>
+		<div class="leftdiv">
+			<ol class="breadcrumb">
+				<li class="active">
+					 最新通知
+				</li>
+				<li class="active">
+					 [[${f010002Params.select4.updnotice_text}]]
+				</li>
+			</ol>
 		</div>
 		<div class="container body-content">
 			<div class="row">
