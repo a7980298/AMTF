@@ -33,10 +33,10 @@ public class f010001ServiceImpl implements f010001Service {
 		loginfo.setUser_Account(entityIn.getUser_Account());
 		loginfo.setUser_Password(entityIn.getUser_Password());
 		// 判断是否需要保存密码
-		if (!CommonUtil.isEmpty(entityIn.getRemember())) {
-			// 存入Cookie中
-			ParameterUtil.setCookie(loginfo);
-		}
+		/*
+		 * if (!CommonUtil.isEmpty(entityIn.getRemember())) { // 存入Cookie中
+		 * ParameterUtil.setCookie(loginfo); }
+		 */
 		if (!CommonUtil.isEmpty(entityIn.getUser_Password())) {
 			// MD5加密
 			String md5pwd = DigestUtils.md5DigestAsHex(entityIn.getUser_Password().getBytes());
