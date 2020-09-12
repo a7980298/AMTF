@@ -1,7 +1,7 @@
 package com.amtf.demo.util;
 
 @SuppressWarnings("unused")
-public class FixedNumberUtil {
+public class Constant {
 
 	public static final String EMPTY = "";
 

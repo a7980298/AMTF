@@ -100,4 +100,8 @@ public class F010001entityOut extends UserImpl {
 	 * 最新发布的通知
 	 */
 	f010001_select3entity select4;
+	/**
+	 * 验证码
+	 */
+	public String verifyCode;
 }

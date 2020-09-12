@@ -20,7 +20,7 @@ import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.FenYe;
-import com.amtf.demo.util.FixedNumberUtil;
+import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
@@ -97,7 +97,7 @@ public class f010002ServiceImpl implements f010002Service {
 	public F010002entityOut service03(F010002entityIn entityIn) throws ErrListException {
 		F010002entityOut entityout = new F010002entityOut();
 
-		ImgUtil.CommitImg(entityIn.getFile0(), FixedNumberUtil.STR_1);
+		ImgUtil.CommitImg(entityIn.getFile0(), Constant.STR_1);
 
 		LogInFo loginfo = new LogInFo();
 
@@ -119,7 +119,7 @@ public class f010002ServiceImpl implements f010002Service {
 		// 用户信息存入Session
 		ParameterUtil.setSession(select3entity);
 
-		entityout.setIsUpdatUserOk(FixedNumberUtil.STR_1);
+		entityout.setIsUpdatUserOk(Constant.STR_1);
 
 		return entityout;
 	}

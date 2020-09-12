@@ -10,10 +10,12 @@ import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.service.f010001Service;
+import com.amtf.demo.service.mailService;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.FixedNumberUtil;
+import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
+import com.amtf.demo.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,8 +26,10 @@ public class f010001ServiceImpl implements f010001Service {
 	@Autowired
 	private final f010001Dao f010001dao;
 
-	public F010001entityOut service01(F010001entityIn entityIn) throws ErrListException {
+	@Autowired
+	private mailService mailService;
 
+	public F010001entityOut service01(F010001entityIn entityIn) throws ErrListException {
 		F010001entityOut entityout = new F010001entityOut();
 
 		f010001_select1entity select1entity = new f010001_select1entity();
@@ -58,7 +62,7 @@ public class f010001ServiceImpl implements f010001Service {
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);
 
-		entityout.setBol02(FixedNumberUtil.STR_1);
+		entityout.setBol02(Constant.STR_1);
 		return entityout;
 	}
 
@@ -67,4 +71,19 @@ public class f010001ServiceImpl implements f010001Service {
 
 		return entityout;
 	}
+
+	/**
+	 * 获取邮箱验证码
+	 */
+	@Override
+	public F010001entityOut service03(F010001entityIn entityin) throws ErrListException {
+		F010001entityOut entityout = new F010001entityOut();
+
+		int round = (int) Math.round((Math.random() + 1) * 1000);
+
+		entityout.setVerifyCode(mailService.sendSimpleMail(entityin.getPhone_number(), StringUtil.toStr(round)));
+
+		return entityout;
+	}
+
 }

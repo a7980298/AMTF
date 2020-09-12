@@ -42,6 +42,25 @@
 				amtf_submit(amtf_form , '/f010001/T002');
 			}
 		}
+		
+		function amtf_getmail() {
+			$.ajax({
+				url: CONTEXT_PATH + '/f010001/T003',
+				type: 'post',
+				data: {
+					phone_number:$('#phone_number').val()
+				},
+				success: function (result) {
+					evenOff();
+					if('0' == result){
+						alert('发送失败');
+					}
+				},
+				error: function (res, textStaus) {
+					evenOff();
+				},
+			});
+		}
 	</script>
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -71,8 +90,11 @@
 							<td><input type="checkbox" value="男" name="man" id="man" checked="true">男&nbsp;&nbsp;<input type="checkbox" value="女" name="woman" id="woman">女</td>
 						</tr>
 						<tr>
-							<td>联系电话：</td>
-							<td><input class="form-control required" type="text" placeholder="联系电话" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" /></td>
+							<td>邮箱：</td>
+							<td>
+								<input class="form-control required" type="text" placeholder="邮箱" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" />
+								<input type="button" value="发送验证码" onclick="amtf_getmail()"/>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align:center"><input type="button" value="提交" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>

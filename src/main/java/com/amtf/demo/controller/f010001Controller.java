@@ -3,7 +3,10 @@ package com.amtf.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amtf.demo.entityin.F010001entityIn;
 import com.amtf.demo.entityout.F010001entityOut;
@@ -12,7 +15,7 @@ import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.service.f010001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.FixedNumberUtil;
+import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
@@ -35,7 +38,7 @@ public class f010001Controller extends ValiDationUtil {
 		if (!CommonUtil.isEmpty(logInFo.getUser_Account()) && !CommonUtil.isEmpty(logInFo.getUser_Password())) {
 			params.setUser_Account(logInFo.getUser_Account());
 			params.setUser_Password(logInFo.getUser_Password());
-			params.setRemember(FixedNumberUtil.STR_1);
+			params.setRemember(Constant.STR_1);
 		}
 
 		model.addAttribute("f010001Params", params);
@@ -99,5 +102,22 @@ public class f010001Controller extends ValiDationUtil {
 
 		model.addAttribute("f010001Params", params);
 		return "f010001";
+	}
+
+	/**
+	 * 验证码
+	 * 
+	 * @parameter F010001Params params
+	 * @return String
+	 */
+	@PostMapping("/f010001/T003")
+	@ResponseBody
+	public String f010001T003(@RequestParam("phone_number") String phone_number) throws ErrListException {
+		F010001entityIn entityin = new F010001entityIn();
+		entityin.setPhone_number(phone_number);
+
+		F010001entityOut entityOut = f010001service.service03(entityin);
+
+		return entityOut.getVerifyCode();
 	}
 }

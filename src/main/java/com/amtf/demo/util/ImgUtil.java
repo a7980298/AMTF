@@ -66,7 +66,7 @@ public class ImgUtil {
 			// 随机一个文件名
 			fileName = UUID.randomUUID().toString();
 
-			if (FixedNumberUtil.STR_1.equals(isuser)) {
+			if (Constant.STR_1.equals(isuser)) {
 				filePath = "C:/imgs/";
 				fileName = ParameterUtil.getSession().getUser_Phone();
 			}

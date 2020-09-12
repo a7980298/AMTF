@@ -32,7 +32,7 @@ public class ParameterUtil {
 							fieldobj1[j].setAccessible(true);
 							fieldobj2[i].setAccessible(true);
 							if (CommonUtil.isEmpty(fieldobj2[i].get(obj2))) {
-								fieldobj1[j].set(obj1, FixedNumberUtil.EMPTY);
+								fieldobj1[j].set(obj1, Constant.EMPTY);
 							} else {
 								fieldobj1[j].set(obj1, fieldobj2[i].get(obj2));
 							}
@@ -86,30 +86,30 @@ public class ParameterUtil {
 
 		if (!CommonUtil.isEmpty(user)) {
 			// 用户id
-			loginfo.setUser_id(!CommonUtil.isEmpty(user.getUser_id()) ? user.getUser_id() : FixedNumberUtil.INT_0);
+			loginfo.setUser_id(!CommonUtil.isEmpty(user.getUser_id()) ? user.getUser_id() : Constant.INT_0);
 			// 账户
 			loginfo.setUser_Account(
-					!CommonUtil.isEmpty(user.getUser_Account()) ? user.getUser_Account() : FixedNumberUtil.EMPTY);
+					!CommonUtil.isEmpty(user.getUser_Account()) ? user.getUser_Account() : Constant.EMPTY);
 			// 密码
 			loginfo.setUser_Password(
-					!CommonUtil.isEmpty(user.getUser_Password()) ? user.getUser_Password() : FixedNumberUtil.EMPTY);
+					!CommonUtil.isEmpty(user.getUser_Password()) ? user.getUser_Password() : Constant.EMPTY);
 			// 别名
-			loginfo.setUser_FH(!CommonUtil.isEmpty(user.getUser_FH()) ? user.getUser_FH() : FixedNumberUtil.EMPTY);
+			loginfo.setUser_FH(!CommonUtil.isEmpty(user.getUser_FH()) ? user.getUser_FH() : Constant.EMPTY);
 			// 地址
 			loginfo.setUser_HomeAddress(!CommonUtil.isEmpty(user.getUser_HomeAddress()) ? user.getUser_HomeAddress()
-					: FixedNumberUtil.EMPTY);
+					: Constant.EMPTY);
 			// 认证
 			loginfo.setUser_Attestation(!CommonUtil.isEmpty(user.getUser_Attestation()) ? user.getUser_Attestation()
-					: FixedNumberUtil.EMPTY);
+					: Constant.EMPTY);
 			// 电话
 			loginfo.setUser_Phone(
-					!CommonUtil.isEmpty(user.getUser_Phone()) ? user.getUser_Phone() : FixedNumberUtil.EMPTY);
+					!CommonUtil.isEmpty(user.getUser_Phone()) ? user.getUser_Phone() : Constant.EMPTY);
 			// 姓名
 			loginfo.setUser_Name(
-					!CommonUtil.isEmpty(user.getUser_Name()) ? user.getUser_Name() : FixedNumberUtil.EMPTY);
+					!CommonUtil.isEmpty(user.getUser_Name()) ? user.getUser_Name() : Constant.EMPTY);
 			// 权限
 			loginfo.setUser_power(
-					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : FixedNumberUtil.EMPTY);
+					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : Constant.EMPTY);
 			// 存入session
 			session.setAttribute("loginfo", loginfo);
 

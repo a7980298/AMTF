@@ -9,7 +9,7 @@ public class CommonUtil {
 		if (obj == null) {
 			return true;
 		}
-		if (FixedNumberUtil.EMPTY.equals(obj)) {
+		if (Constant.EMPTY.equals(obj)) {
 			return true;
 		}
 		return false;

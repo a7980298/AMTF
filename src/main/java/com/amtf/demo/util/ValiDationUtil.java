@@ -18,7 +18,7 @@ public class ValiDationUtil {
 		// 获取需要绑定错误信息的name和err
 		List<String> messageList = validate(t);
 		// 判断是否有错误信息
-		if (messageList.size() != FixedNumberUtil.INT_0) {
+		if (messageList.size() != Constant.INT_0) {
 			// 将错误信息放入Request域中
 			model.addAttribute("errMessageList", messageList);
 			// 将错误信息前的所有数据再次返回页面
