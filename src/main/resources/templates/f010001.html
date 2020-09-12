@@ -57,10 +57,12 @@
 		var storage=window.localStorage;
 		var name=storage.name;
 		var pwd=storage.pwd;
-		if (name != null && pwd != null) {
+		if (name != '' && pwd != '') {
 			$('#username').val(name);
 			$('#userpassword').val(pwd);
 			$('#remember_checkbox').attr('checked','true');
+		} else {
+			$('#remember_checkbox').removeAttr('checked');
 		}
 		if ("[[${f010001Params.yesorno}]]" != "") {
 			alert('注册成功');
@@ -69,18 +71,20 @@
 
 	//登录按钮押下
 	function amtf_login() {
-		if($('#remember_checkbox').is(':checked')){
-			if(!window.localStorage){
-				alert("浏览器支持localstorage");
-				return false;
-			}else{
-				var storage=window.localStorage;
+		if(!window.localStorage){
+			alert("浏览器支持localstorage");
+			return false;
+		}else{
+			var storage=window.localStorage;
+			if($('#remember_checkbox').is(':checked')){
 				storage.name=$('#username').val();
-				//写入c字段
 				storage.pwd=$('#userpassword').val();
-				console.log(typeof storage["name"]);
-				console.log(typeof storage["pwd"]);
+			} else {
+				storage.name='';
+				storage.pwd='';
 			}
+			console.log(typeof storage["name"]);
+			console.log(typeof storage["pwd"]);
 		}
 		amtf_submit(amtf_form , '/f010001/T001');
 	}
