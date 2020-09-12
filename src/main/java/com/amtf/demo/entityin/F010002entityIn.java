@@ -74,4 +74,5 @@ public class F010002entityIn extends UserImpl {
 	 * 是否修改成功
 	 */
 	public String isUpdatUserOk;
+
 }

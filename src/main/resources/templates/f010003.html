@@ -38,7 +38,9 @@
 			var password2=$('#regist_confirm_user_password').val();
 			if(password1 != password2){
 				setErrList("{name:regist_confirm_user_password}{err:密码不一致，请重输!+}");
-			}else {
+			} else if ($('#mailcode').val() == '') {
+				setErrList("{name:mailcode}{err:验证码不可为空!+}");
+			} else {
 				amtf_submit(amtf_form , '/f010001/T002');
 			}
 		}
@@ -51,10 +53,23 @@
 					phone_number:$('#phone_number').val()
 				},
 				success: function (result) {
-					evenOff();
+					var data_s=60;
 					if('0' == result){
 						alert('发送失败');
+					} else {
+						setInterval(function(){
+							if(data_s > 0) {
+								$('#submitMail').text('重发验证（' + data_s + ')');
+								$('#submitMail').attr('disabled','true');
+							} else {
+								$('#submitMail').text('发送验证码');
+								$('#submitMail').removeAttr('disabled');
+								
+							}
+							data_s-=1; 
+						}, 1000);
 					}
+					evenOff();
 				},
 				error: function (res, textStaus) {
 					evenOff();
@@ -92,12 +107,21 @@
 						<tr>
 							<td>邮箱：</td>
 							<td>
-								<input class="form-control required" type="text" placeholder="邮箱" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" />
-								<input type="button" value="发送验证码" onclick="amtf_getmail()"/>
+								<input type="text" class="form-control required input-small" placeholder="邮箱" name="phone_number" autofocus="autofocus" maxlength="20" id="phone_number" />
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" style="text-align:center"><input type="button" value="提交" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
+							<td>邮箱验证：</td>
+							<td>
+								<input type="text" class="" placeholder="验证码" id="mailcode" name="verifyCode" style="width:90px;"/>
+								<button class="btn btn-small" id="submitMail" onclick="amtf_getmail()" style="width: 120px; right: 1px;">发送验证码</button>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center">
+								<input type="button" value="提交" class="btn btn-small" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="button" value="返回" class="btn btn-small" data-dismiss="modal">
+							</td>
 						</tr>
 					</table>
 				</div>

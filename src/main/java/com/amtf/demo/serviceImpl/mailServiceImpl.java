@@ -23,7 +23,7 @@ public class mailServiceImpl implements mailService {
 			// 主题
 			message.setSubject("AMTF");
 			// 验证码
-			message.setText("验证码：" + verifyCode);
+			message.setText("艾玛天府提醒您，您的验证码是：" + verifyCode);
 
 			mailSender.send(message);
 		} catch (Exception e) {

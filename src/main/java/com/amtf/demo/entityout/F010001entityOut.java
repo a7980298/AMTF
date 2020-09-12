@@ -104,4 +104,8 @@ public class F010001entityOut extends UserImpl {
 	 * 验证码
 	 */
 	public String verifyCode;
+	/**
+	 * 注册成功
+	 */
+	public String yesorno;
 }

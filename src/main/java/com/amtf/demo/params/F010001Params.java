@@ -70,7 +70,7 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 注册电话号码
 	 */
-	@iSize(name = "电话号码", max = 6, min = 0)
+	@iSize(name = "电话号码", max = 18, min = 0)
 	public String phone_number;
 	/**
 	 * 是否跳转02画面
@@ -84,4 +84,8 @@ public class F010001Params extends UserImpl {
 	 * 验证码
 	 */
 	public String verifyCode;
+	/**
+	 * 注册成功
+	 */
+	public String yesorno;
 }

@@ -22,19 +22,19 @@
 		<!-- 共通js包-->
 		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
 		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
-		<script type="text/javascript">
-			//初始化方法
-			$(function() {
-				setErrList("[[${errMessageList}]]");
-				setCodeErrList("[[${codemsg}]]");
-				setCodeSuccess("[[${success}]]");
-			});
-		</script>
 	</head>
 	<body>
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{wait :: wait}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 	</body>
+	<script type="text/javascript">
+		//初始化方法
+		$(function() {
+			setErrList("[[${errMessageList}]]");
+			setCodeErrList("[[${codemsg}]]");
+			setCodeSuccess("[[${success}]]");
+		});
+	</script>
 </th:block>
 </html>

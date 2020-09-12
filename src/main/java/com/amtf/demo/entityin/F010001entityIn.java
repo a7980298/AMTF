@@ -83,5 +83,12 @@ public class F010001entityIn extends UserImpl {
 	 * 注册电话号码
 	 */
 	public String phone_number;
-
+	/**
+	 * 验证码
+	 */
+	public String verifyCode;
+	/**
+	 * 注册成功
+	 */
+	public String yesorno;
 }
