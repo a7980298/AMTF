@@ -129,7 +129,7 @@
 			success: function (result) {
 				evenOff();
 				$('#success_id').text('发布成功');
-				$('#myModal_success').modal('show');
+				$('#success').modal('show');
 			},
 			error: function (res, textStaus) {
 				evenOff();
@@ -148,12 +148,35 @@
 	$(function(){
 		initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
 	})
+	
+	//生成PDF
+	function amtf_getPdf() {
+		evenOn();
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T005',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				release_name: $('#release_name').val()
+			},
+			success: function (result) {
+				evenOff();
+				$('#success_id').text('发布成功');
+				$('#success').modal('show');
+			},
+			error: function (res, textStaus) {
+				evenOff();
+			},
+		});
+	}
 </script>
 </head>
 <body>
 	<div class="row bg col-md-12">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 		<input type="hidden" name="IViewId" value="f020001"/>
+		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 		<th:block th:replace="~{f020002 :: f020002_modl}"></th:block>
 		<th:block th:replace="~{f020003 :: f020003_modl}"></th:block>
 		<nav class="navbar navbar-inverse" role="navigation">
@@ -167,7 +190,9 @@
 							</a>
 						</li>
 						<li>
-							<a>[[${f020001Params.logInFo.User_Name}]]</a>
+							<a href="#personal" class="" data-toggle="tab" onclick="amtf_activeclick($('#getuser'))">
+								[[${f020001Params.logInFo.User_Name}]]
+							</a>
 						</li>
 						<li>
 							<a href="#" onclick="amtf_return()">返回</a>
@@ -195,7 +220,7 @@
 					<a href="#picture" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
 						图片管理
 					</a>
-					<a href="#personal" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)">
+					<a href="#personal" class="list-group-item" data-toggle="tab" onclick="amtf_activeclick(this)" id="getuser">
 						个人设置
 					</a>
 				</div>
@@ -287,11 +312,13 @@
 										<th class="text-center">图片</th>
 										<th class="text-center">姓名</th>
 										<th class="text-center">地址</th>
-										<th class="text-center">电话</th>
+										<th class="text-center">电话|邮箱</th>
 										<th class="text-center">状态</th>
 										<th class="text-center">操作</th>
 										<th class="text-center"><span onclick="amtf_wholecheck(this)">全选</span></th>
-										<th class="text-center"><button type="button" class="btn btn-default">登录</button><button type="button" class="btn btn-default">删除</button></th>
+										<th class="text-center">
+											<button type="button" class="btn btn-default" onclick="amtf_getPdf()">生成PDF</button>
+										</th>
 									</tr>
 								</thead>
 								<tbody>

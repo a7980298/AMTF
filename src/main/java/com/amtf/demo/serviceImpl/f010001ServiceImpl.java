@@ -92,7 +92,8 @@ public class f010001ServiceImpl implements f010001Service {
 				throw new ErrListException(entityIn, entityIn.getIViewId(), "验证码不正确!");
 			}
 			f010001_insert4entityIn insert4entityin = new f010001_insert4entityIn();
-			insert4entityin.setUserid(commdao.common_Select1() + 1);
+			Integer common_select1 = commdao.common_Select1();
+			insert4entityin.setUserid(CommonUtil.isEmpty(common_select1) ? 0 : common_select1 + 1);
 			insert4entityin.setUseraccount(entityIn.getRegist_user_name());
 			insert4entityin.setUserpwd(DigestUtils.md5DigestAsHex(entityIn.getRegist_user_password().getBytes()));
 			insert4entityin.setUseratt(CommonUtil.isEmpty(entityIn.getMan()) ? Constant.STR_0 : Constant.STR_1);
