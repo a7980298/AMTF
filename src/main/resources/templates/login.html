@@ -63,6 +63,52 @@
 			_href = _href.replace('#','');
 			$('#' + _href).removeClass('dispaly_none');
 			$('#' + _href).addClass('container');
+			if (_href == 'userregister') {
+				$('#logintext').text('注册 页面');
+				$('#login_image').css('background-image',"url('/amtf/img/register.jpg')");
+			} else if (_href == 'userlogin') {
+				$('#logintext').text('登录 页面');
+				$('#login_image').css('background-image',"url('/amtf/img/login.jpg')");
+			} else if (_href == 'menubar') {
+				$('#logintext').text('菜单 选项');
+				$('#login_image').css('background-image',"url('/amtf/img/bg-pricing.jpg')");
+			} else if (_href == 'locking') {
+				$('#logintext').text('锁定 页面');
+				$('#login_image').css('background-image',"url('/amtf/img/lock.jpg')");
+			}
+		}
+		//发送验证码
+		function amtf_submitYFCode(_this){
+			$.ajax({
+				url: CONTEXT_PATH + '/f010001/T003',
+				type: 'post',
+				data: {
+					phone_number:$('#email_id').val()
+				},
+				success: function (result) {
+					var data_s=60;
+					if('0' == result){
+						alert('发送失败');
+					} else {
+						$('#yfcode').removeClass('dispaly_none');
+						setInterval(function(){
+							if(data_s > 0) {
+								$(_this).val('重发验证（' + data_s + ')');
+								$(_this).attr('disabled','true');
+							} else {
+								$(_this).val('发送验证码');
+								$(_this).removeAttr('disabled');
+								
+							}
+							data_s-=1; 
+						}, 1000);
+					}
+					evenOff();
+				},
+				error: function (res, textStaus) {
+					evenOff();
+				},
+			});
 		}
 		</script>
 		<style>
@@ -85,7 +131,7 @@
 		<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
 			<div class="container">
 				<div class="navbar-wrapper">
-					<a class="navbar-brand" href="javascript:;">登录 页面</a>
+					<a class="navbar-brand" href="javascript:;" id="logintext">登录 页面</a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
 				 aria-label="Toggle navigation">
@@ -97,7 +143,7 @@
 				<div class="collapse navbar-collapse justify-content-end">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a href="#" class="nav-link loginhead" onclick="amtf_loginhead(this)">
+							<a href="#menubar" class="nav-link loginhead" onclick="amtf_loginhead(this)">
 								<i class="material-icons">dashboard</i>
 								菜单栏
 							</a>
@@ -114,8 +160,8 @@
 								登录
 							</a>
 						</li>
-						<li class="nav-item" onclick="amtf_loginhead(this)">
-							<a href="#" class="nav-link loginhead">
+						<li class="nav-item">
+							<a href="#locking" class="nav-link loginhead" onclick="amtf_loginhead(this)">
 								<i class="material-icons">lock_open</i>
 								锁定
 							</a>
@@ -126,7 +172,7 @@
 		</nav>
 		<!-- End Navbar -->
 		<div class="wrapper wrapper-full-page">
-			<div class="page-header login-page header-filter" filter-color="black" style="background-image: url('/amtf/img/login.jpg'); background-size: cover; background-position: top center;">
+			<div class="page-header login-page header-filter" filter-color="black" id="login_image" style="background-image: url('/amtf/img/login.jpg'); background-size: cover; background-position: top center;">
 				<!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
 				<div class="container" data-toggle="collapse" id="userlogin">
 					<div class="row">
@@ -179,6 +225,17 @@
 												<input type="password" class="form-control" placeholder="请输入密码..." name="User_Password" maxlength="8" id="userpassword" th:value="${f010001Params.User_Password}">
 											</div>
 										</span>
+										<span class="bmd-form-group">
+											<div class="form-check">
+												<label class="form-check-label">
+													<input class="form-check-input" type="checkbox" value="" checked="">
+													<span class="form-check-sign">
+													<span class="check"></span>
+													</span>
+													保存账户密码
+												</label>
+											</div>
+										</span>
 									</div>
 									<div class="card-footer justify-content-center">
 										<a href="#pablo" class="btn btn-rose btn-link btn-lg" onclick="amtf_login()">登录</a>
@@ -192,7 +249,7 @@
 			        <div class="row">
 			          <div class="col-md-10 ml-auto mr-auto">
 			            <div class="card card-signup">
-			              <h2 class="card-title text-center">Register</h2>
+			              <h2 class="card-title text-center">注册</h2>
 			              <div class="card-body">
 			                <div class="row">
 			                  <div class="col-md-5 ml-auto">
@@ -201,9 +258,9 @@
 			                        <i class="material-icons">timeline</i>
 			                      </div>
 			                      <div class="description">
-			                        <h4 class="info-title">Marketing</h4>
+			                        <h4 class="info-title">营销学</h4>
 			                        <p class="description">
-			                          We've created the marketing campaign of the website. It was a very interesting collaboration.
+			                          	我们已经创建了网站的营销活动。 这是一次非常有趣的合作。
 			                        </p>
 			                      </div>
 			                    </div>
@@ -212,9 +269,9 @@
 			                        <i class="material-icons">code</i>
 			                      </div>
 			                      <div class="description">
-			                        <h4 class="info-title">Fully Coded in HTML5</h4>
+			                        <h4 class="info-title">HTML5完全编码</h4>
 			                        <p class="description">
-			                          We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+			                          	我们使用HTML5和CSS3开发了该网站。 客户端可以使用GitHub访问代码。
 			                        </p>
 			                      </div>
 			                    </div>
@@ -223,9 +280,9 @@
 			                        <i class="material-icons">group</i>
 			                      </div>
 			                      <div class="description">
-			                        <h4 class="info-title">Built Audience</h4>
+			                        <h4 class="info-title">内置观众</h4>
 			                        <p class="description">
-			                          There is also a Fully Customizable CMS Admin Dashboard for this product.
+			                        	  此产品还有一个完全可自定义的CMS管理员仪表板。
 			                        </p>
 			                      </div>
 			                    </div>
@@ -241,7 +298,7 @@
 			                      <button class="btn btn-just-icon btn-round btn-facebook">
 			                        <i class="fa fa-facebook"> </i>
 			                      </button>
-			                      <h4 class="mt-3"> or be classical </h4>
+			                      <h4 class="mt-3"> 第三方登录 </h4>
 			                    </div>
 			                    <form class="form" method="" action="">
 			                      <div class="form-group has-default">
@@ -251,7 +308,7 @@
 			                              <i class="material-icons">face</i>
 			                            </span>
 			                          </div>
-			                          <input type="text" class="form-control" placeholder="First Name...">
+			                          <input type="text" class="form-control" placeholder="用户名...">
 			                        </div>
 			                      </div>
 			                      <div class="form-group has-default">
@@ -261,7 +318,18 @@
 			                              <i class="material-icons">mail</i>
 			                            </span>
 			                          </div>
-			                          <input type="text" class="form-control" placeholder="Email...">
+			                          <input type="text" class="form-control" placeholder="邮箱..." id="email_id">
+			                          <input type="button" class="" value="发送验证码" onclick="amtf_submitYFCode(this)">
+			                        </div>
+			                      </div>
+			                      <div class="form-group has-default dispaly_none" id="yfcode">
+			                        <div class="input-group">
+			                          <div class="input-group-prepend">
+			                            <span class="input-group-text">
+			                              <i class="material-icons">mail</i>
+			                            </span>
+			                          </div>
+			                          <input type="text" class="form-control" placeholder="验证码...">
 			                        </div>
 			                      </div>
 			                      <div class="form-group has-default">
@@ -271,7 +339,7 @@
 			                              <i class="material-icons">lock_outline</i>
 			                            </span>
 			                          </div>
-			                          <input type="password" placeholder="Password..." class="form-control">
+			                          <input type="password" placeholder="密码..." class="form-control">
 			                        </div>
 			                      </div>
 			                      <div class="form-check">
@@ -280,12 +348,12 @@
 			                          <span class="form-check-sign">
 			                            <span class="check"></span>
 			                          </span>
-			                          I agree to the
-			                          <a href="#something">terms and conditions</a>.
+			                          	我同意
+			                          <a href="#something">条款和条件</a>.
 			                        </label>
 			                      </div>
 			                      <div class="text-center">
-			                        <a href="#pablo" class="btn btn-primary btn-round mt-4">Get Started</a>
+			                        <a href="#pablo" class="btn btn-primary btn-round mt-4">开始使用</a>
 			                      </div>
 			                    </form>
 			                  </div>
@@ -326,7 +394,7 @@
 							<script>
 								document.write(new Date().getFullYear())
 							</script>, made with <i class="material-icons">favorite</i> by
-							<a href="#" target="_blank">Creative Tim</a> for a better web.
+							<a href="#" target="_blank">王 意鑫</a> for a better web.
 						</div>
 					</div>
 				</footer>

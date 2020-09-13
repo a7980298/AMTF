@@ -205,13 +205,13 @@
 											<div class="col-md-3">
 												<div class="form-group">
 													<label class="bmd-label-floating">用户名</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.User_Account}" maxlength="20">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">Email 地址</label>
-													<input type="email" class="form-control">
+													<label class="bmd-label-floating">Email 地址 | 电话</label>
+													<input type="email" class="form-control" th:value="${f010002Params.logInFo.User_Phone}" maxlength="30">
 												</div>
 											</div>
 										</div>
@@ -219,7 +219,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="bmd-label-floating">名 字</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.User_Name}">
 												</div>
 											</div>
 											<div class="col-md-6">
