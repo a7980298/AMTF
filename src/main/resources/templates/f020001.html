@@ -159,24 +159,8 @@
 	
 	//生成PDF
 	function amtf_getPdf() {
-		evenOn();
-		$.ajax({
-			url: CONTEXT_PATH + '/f020001/T005',
-			type: 'post',
-			dateType: 'html',
-			async: false,
-			data: {
-				release_name: $('#release_name').val()
-			},
-			success: function (result) {
-				evenOff();
-				$('#success_id').text('发布成功');
-				$('#success').modal('show');
-			},
-			error: function (res, textStaus) {
-				evenOff();
-			},
-		});
+		window.location.href = "/upload/13.pdf"; 
+		$('.pdf1').media({width:800, height:600});
 	}
 </script>
 </head>
@@ -325,7 +309,7 @@
 										<th class="text-center">操作</th>
 										<th class="text-center"><span onclick="amtf_wholecheck(this)">全选</span></th>
 										<th class="text-center">
-											<button type="button" class="btn btn-default" onclick="amtf_getPdf()">生成PDF</button>
+											<a type="button" class="btn btn-default pdf1" onclick="amtf_getPdf()" href="upload/13.pdf">生成PDF</a>
 										</th>
 									</tr>
 								</thead>
