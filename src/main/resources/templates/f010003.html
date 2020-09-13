@@ -39,7 +39,7 @@
 			if(password1 != password2){
 				setErrList("{name:regist_confirm_user_password}{err:密码不一致，请重输!+}");
 			} else if ($('#mailcode').val() == '') {
-				setErrList("{name:mailcode}{err:验证码不可为空!+}");
+				setErrList("{name:verifyCode}{err:验证码不可为空!+}");
 			} else {
 				amtf_submit(amtf_form , '/f010001/T002');
 			}
@@ -113,8 +113,10 @@
 						<tr>
 							<td>邮箱验证：</td>
 							<td>
-								<input type="text" class="" placeholder="验证码" id="mailcode" name="verifyCode" style="width:90px;"/>
-								<button class="btn btn-small" id="submitMail" onclick="amtf_getmail()" style="width: 120px; right: 1px;">发送验证码</button>
+								<div class="parentClass">
+									<input type="text" class="" placeholder="验证码" id="mailcode" name="verifyCode" style="width:90px;"/>
+									<button class="btn btn-small" id="submitMail" onclick="amtf_getmail()" style="width: 120px; right: 1px;">发送验证码</button>
+								</div>
 							</td>
 						</tr>
 						<tr>

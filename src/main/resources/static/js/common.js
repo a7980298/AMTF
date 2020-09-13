@@ -3,13 +3,19 @@ var TARGET = "_self";
 
 //添加错误信息，并改变颜色
 function setErrList(errlist) {
+	$('.errlist').remove();
+	$('.errclass').removeClass('errclass');
 	if (errlist.length > 0) {
 		var lists = errlist.split(',');
 		for (var i = 0; i < lists.length; i++) {
 			var _id = lists[i].substring(lists[i].indexOf('name:') + 5,lists[i].indexOf('}'));
 			var _val = lists[i].substring(lists[i].indexOf('err:') + 4,lists[i].indexOf('+'));
-			$('input[name=' + _id + ']').css('border','1px solid red');
-			$('input[name=' + _id + "]").after("<div id='"+_id+"_err' style='color:red;'><span>" + _val + "</span></div>");
+			if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
+				$('input[name=' + _id + ']').parent().after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
+			} else {
+				$('input[name=' + _id + ']').after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
+			}
+			$('input[name=' + _id + ']').addClass('errclass');
 		}
 	}
 }
