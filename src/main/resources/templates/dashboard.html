@@ -15,6 +15,13 @@
 <link th:href="@{/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
+<style type="text/css">
+	#wrapperid::-webkit-scrollbar{
+	width: 2px;
+	background: none;
+	}
+
+</style>
 <script type="text/javascript">
 	//返回
 	function amtf_return() {
@@ -32,7 +39,7 @@
 					CT </a> <a href="#"
 					class="simple-text logo-normal"> 菜单栏 </a>
 			</div>
-			<div class="sidebar-wrapper" style="overflow:-Scroll;overflow-y:hidden">
+			<div class="sidebar-wrapper" id="wrapperid">
 				<div class="user">
 					<div class="photo">
 						<img th:src="@{/imgs/userimg.jpg}" th:if="${f020001Params.logInFo.imgpath == ''}" id="img1"/>

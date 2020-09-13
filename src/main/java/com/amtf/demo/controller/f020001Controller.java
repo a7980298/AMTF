@@ -35,7 +35,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @parameter F020001Params params
 	 * @return String
 	 */
-	@RequestMapping("/dashboard")
+	@RequestMapping("/f020001")
 	public String f010001S001(F020001Params params, Model model) {
 
 		F020001entityIn entityin = new F020001entityIn();
