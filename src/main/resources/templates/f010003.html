@@ -76,6 +76,10 @@
 				},
 			});
 		}
+		function amtf_closeModl(){
+			$("#myModal").css("display","none");
+			$(".modal-backdrop.fade").hide();
+		}
 	</script>
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -122,7 +126,7 @@
 						<tr>
 							<td colspan="2" style="text-align:center">
 								<input type="button" value="提交" class="btn btn-small" onclick="amtf_regist()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" value="返回" class="btn btn-small" data-dismiss="modal">
+								<input type="button" value="返回" class="btn btn-small" onclick="amtf_closeModl()">
 							</td>
 						</tr>
 					</table>

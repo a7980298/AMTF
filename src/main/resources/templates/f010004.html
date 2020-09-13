@@ -28,6 +28,9 @@
 			}) ;
 			$('#img1').attr('src',$('#img1').attr('src') + '?r=' + Math.random());
 		})
+		function amtf_closeModl(){
+			$('#f010004').modal('hide');
+		}
 	</script>
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="f010004" tabindex="-1" role="dialog"
@@ -83,7 +86,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" style="text-align:center"><input type="button" value="修改" onclick="amtf_upduser()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="返回" data-dismiss="modal"></td>
+							<td colspan="2" style="text-align:center"><input type="button" value="修改" onclick="amtf_upduser()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value="返回" onclick="amtf_closeModl()" data-dissmiss="modal"></td>
 						</tr>
 					</table>
 				</div>
