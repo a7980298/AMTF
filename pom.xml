@@ -47,11 +47,11 @@
 			<version>1.1.1</version>
 		</dependency>
 		<!-- 加载OracleJdbc驱动包 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.1</version>
-		</dependency>
+		</dependency> -->
 		<!-- 引入Jdbc支持 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
