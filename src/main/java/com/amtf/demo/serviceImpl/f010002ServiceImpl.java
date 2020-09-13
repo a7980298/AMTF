@@ -19,8 +19,8 @@ import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.FenYe;
 import com.amtf.demo.util.Constant;
+import com.amtf.demo.util.FenYe;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
@@ -67,12 +67,12 @@ public class f010002ServiceImpl implements f010002Service {
 
 		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
 		f010001_select3entity select3entity = new f010001_select3entity();
-		if (!CommonUtil.isEmpty(select4)) {
+		if (!CommonUtil.isEmptyList(select4)) {
 
 			select4.sort((a, b) -> b.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")
 					.compareTo(a.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")));
 
-			select3entity = select4.get(0);
+			select3entity = CommonUtil.isEmptyList(select4) ? null : select4.get(0);
 
 		}
 		entityout.setSelect4(select3entity);

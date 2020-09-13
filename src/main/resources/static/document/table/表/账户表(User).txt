@@ -11,7 +11,7 @@ CREATE TABLE AMTF_User(
 
       User_HomeAddress varchar(50) ,
 
-      User_Phone char(11) ,
+      User_Phone char(30) ,
 
       User_Attestation char(1),
       User_power char(1)

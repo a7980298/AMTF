@@ -43,7 +43,7 @@ public class f010001Controller extends ValiDationUtil {
 
 		model.addAttribute("f010001Params", params);
 
-		return "f010001";
+		return "login";
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class f010001Controller extends ValiDationUtil {
 	public String f010001T001(F010001Params params, Model model) throws ErrListException {
 
 		if (!ValiDateParams(params, model)) {
-			return "f010001";
+			return "login";
 		}
 
 		F010001entityIn entityin = new F010001entityIn();
@@ -77,7 +77,7 @@ public class f010001Controller extends ValiDationUtil {
 
 		model.addAttribute("f010001Params", params);
 
-		return "f010001";
+		return "login";
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class f010001Controller extends ValiDationUtil {
 		ParameterUtil.copyParameter(params, entityOut);
 
 		model.addAttribute("f010001Params", params);
-		return "f010001";
+		return "login";
 	}
 
 	/**

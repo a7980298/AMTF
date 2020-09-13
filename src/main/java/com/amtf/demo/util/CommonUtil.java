@@ -48,6 +48,15 @@ public class CommonUtil {
 		return floats;
 	}
 
+	/**
+	 * 非空判断
+	 */
+	public static boolean isEmptyList(java.util.List<?> obj) {
+		if (obj == null || obj.size() == 0) {
+			return true;
+		}
+		return false;
+	}
 	/*
 	 * @SuppressWarnings("unused") public static Object getObjectClassValue(Object
 	 * obj, String name) { // 创建Field数组接收反射的Class的属性 Field[] fieldobj1 =
