@@ -27,6 +27,10 @@
 	function amtf_return() {
 		amtf_submit(amtf_form , '/f010002');
 	}
+	// 锁定页面
+	function amtf_golock(){
+		amtf_submit(amtf_form , '/f010002/T003');
+	}
 </script>
 <body class="">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
@@ -388,7 +392,7 @@
 									<p class="d-lg-none d-md-block">Account</p>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-									<a class="dropdown-item" href="#">锁定</a>
+									<a class="dropdown-item" href="#" onclick="amtf_golock()">锁定</a>
 									<a class="dropdown-item" href="#" onclick="amtf_return()">返回</a>
 								</div>
 							</li>

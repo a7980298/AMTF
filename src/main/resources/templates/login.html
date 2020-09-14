@@ -32,12 +32,14 @@
 		});
 		// 查看密码
 		var pwsShowFlag = true; 
-		function lookpwd() {
+		function lookpwd(_this) {
 			if (pwsShowFlag == true) {
 				pwsShowFlag = false;
+				$(_this).text('lock_open');
 				$('#userpassword').attr('type','text');
 			} else {
 				pwsShowFlag = true;
+				$(_this).text('lock_outline');
 				$('#userpassword').attr('type','password');
 			}
 		}
@@ -270,7 +272,7 @@
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text">
-														<i class="material-icons pointer" onclick="lookpwd()">lock_outline</i>
+														<i class="material-icons pointer" onclick="lookpwd(this)">lock_outline</i>
 													</span>
 												</div>
 												<input type="password" class="form-control" placeholder="请输入密码..." name="user_password" maxlength="8" id="userpassword" th:value="${f010001Params.user_password}">
