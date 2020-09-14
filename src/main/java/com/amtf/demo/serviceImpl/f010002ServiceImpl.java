@@ -97,13 +97,13 @@ public class f010002ServiceImpl implements f010002Service {
 	public F010002entityOut service03(F010002entityIn entityIn) throws ErrListException {
 		F010002entityOut entityout = new F010002entityOut();
 
-		ImgUtil.CommitImg(entityIn.getFile0(), Constant.STR_1);
-
+		ImgUtil.CommitImg(entityIn.getUpd_user_img(), Constant.STR_1);
+		
 		LogInFo loginfo = new LogInFo();
 		//id
 		loginfo.setUser_id(ParameterUtil.getSession().getUser_id());
 		//账户
-		loginfo.setUser_account(entityIn.getUpd_user_name());
+		loginfo.setUser_account(entityIn.getUpd_user_account());
 		//名字
 		loginfo.setUser_name(entityIn.getUpd_user_name());
 		//国家
@@ -124,7 +124,6 @@ public class f010002ServiceImpl implements f010002Service {
 		Integer update2 = f010002dao.f010002_update2(loginfo);
 
 		if (update2 < 0) {
-
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "更改信息时发生错误");
 		}
 

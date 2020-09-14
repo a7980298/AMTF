@@ -1,5 +1,7 @@
 package com.amtf.demo.controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -106,6 +108,6 @@ public class f010002Controller extends ValiDationUtil {
 
 		model.addAttribute("f010002Params", params);
 
-		return "f010002";
+		return "main";
 	}
 }

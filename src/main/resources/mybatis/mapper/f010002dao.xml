@@ -40,6 +40,6 @@
 		FROM 
 			amtf_user	
 		WHERE
-			User_id = #{loginfo.User_id}
+			User_id = #{loginfo.user_id}
 	</select>
 </mapper>

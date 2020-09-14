@@ -48,6 +48,10 @@
 	function amtf_upduser(){
 		amtf_submit(amtf_formupduser , '/f010002/T002');
 	}
+	
+	function amtf_uploadFile() {
+		amtf_submit(amtf_formupfile , '/f010002/T003');
+	}
 </script>
 <body class="">
 	<div class="wrapper">
@@ -199,9 +203,9 @@
 				</div>
 			</nav>
 			<div class="content">
-				<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser">
 				<div class="collapse" id="userformaction">
 					<div class="container-fluid">
+					<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="card">
@@ -291,6 +295,7 @@
 										<div class="clearfix"></div>
 									</div>
 								</div>
+								
 							</div>
 							<div class="col-md-4">
 								<div class="card card-profile">
@@ -301,8 +306,8 @@
 										</a>
 									</div>
 									<div class="card-body">
-										<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">更换头像</button>
-										<input type="file" name="file0" id="file0" multiple="multiple" style="display:none;"/>
+										<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">修改头像</button>
+										<input type="file" name="upd_user_img" id="file0" multiple="multiple" style="display:none;"/>
 										<h6 class="card-category text-gray">Web开发</h6>
 										<h4 class="card-title">[[${f010002Params.logInFo.user_name}]]</h4>
 										<p class="card-description">
@@ -313,9 +318,9 @@
 								</div>
 							</div>
 						</div>
+						</i-form>
 					</div>
 				</div>
-				</i-form>
 			</div>
 		</div>
 	</div>

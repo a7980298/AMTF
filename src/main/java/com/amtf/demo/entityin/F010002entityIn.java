@@ -107,7 +107,7 @@ public class F010002entityIn extends UserImpl {
 	/**
 	 * 修改：用户照片
 	 */
-	public MultipartFile file0;
+	public MultipartFile upd_user_img;
 
 	/**
 	 * 是否修改成功

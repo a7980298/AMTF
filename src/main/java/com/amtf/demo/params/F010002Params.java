@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.user.UserImpl;
-import com.amtf.demo.util.FenYe;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -72,7 +71,6 @@ public class F010002Params extends UserImpl {
 	 */
 	f010001_select3entity select4;
 
-	public FenYe fenye;
 	/**
 	 * 修改：用户id
 	 */
@@ -121,11 +119,13 @@ public class F010002Params extends UserImpl {
 	/**
 	 * 修改：介绍
 	 */
-	private String upd_user_introduce;	/**
+	private String upd_user_introduce;
+	
+	/**
 	 * 修改：用户照片
 	 */
-	public MultipartFile file0;
-
+	public MultipartFile upd_user_img;
+	
 	/**
 	 * 是否修改成功
 	 */
