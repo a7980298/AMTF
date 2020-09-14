@@ -54,10 +54,11 @@ public class F010001Params extends UserImpl {
 	 */
 	@iSize(name = "注册密码", max = 3, min = 0)
 	public String regist_user_password;
+
 	/**
-	 * 确认密码
+	 * 注册邮箱
 	 */
-	public String regist_confirm_user_password;
+	public String regist_user_email; 
 	/**
 	 * 男
 	 */

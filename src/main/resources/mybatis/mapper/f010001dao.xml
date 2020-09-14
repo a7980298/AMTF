@@ -31,23 +31,31 @@
 	<insert id="f010001_Insert4" parameterType="com.amtf.demo.f010001entity.f010001_insert4entityIn">
 		INSERT INTO
 			AMTF_User(User_id, 
+				User_Email,
 				User_Account, 
 				User_Password, 
 				User_Name, 
-				User_FH, 
-				User_HomeAddress, 
+				User_Country, 
+				User_Province, 
+				User_City, 
+				User_Postcode, 
 				User_Phone, 
+				User_Introduce, 
 				User_Attestation, 
 				User_power
 			)
 		VALUES(
 			#{entityin.userid},
+			#{entityin.useremail},
 			#{entityin.useraccount},
 			#{entityin.userpwd},
 			'',
 			'',
 			'',
-			#{entityin.userphone},
+			'',
+			'',
+			'',
+			'',
 			'1',
 			0
 		)

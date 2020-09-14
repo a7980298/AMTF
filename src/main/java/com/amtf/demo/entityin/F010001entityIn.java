@@ -68,9 +68,9 @@ public class F010001entityIn extends UserImpl {
 	 */
 	public String regist_user_password;
 	/**
-	 * 确认密码
+	 * 注册邮箱
 	 */
-	public String regist_confirm_user_password;
+	public String regist_user_email; 
 	/**
 	 * 男
 	 */
