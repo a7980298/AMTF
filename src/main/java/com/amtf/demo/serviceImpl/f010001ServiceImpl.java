@@ -66,8 +66,10 @@ public class f010001ServiceImpl implements f010001Service {
 		} else {
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
-		if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
-			throw new ErrListException(entityIn, entityIn.getIViewId(), "该用户已登录!");
+		if (CommonUtil.isEmpty(entityIn.getLocking())) {
+			if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
+				throw new ErrListException(entityIn, entityIn.getIViewId(), "该用户已登录!");
+			}
 		}
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);

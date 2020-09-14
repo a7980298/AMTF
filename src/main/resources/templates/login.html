@@ -141,6 +141,10 @@
 				$('#registercheck').prop("checked",true);
 			}
 		}
+		// 解锁
+		function amtf_setlock() {
+			amtf_submit(amtf_formlock , '/f010001/T001');
+		}
 		</script>
 		<style>
 			.pointer:hover{
@@ -412,6 +416,7 @@
 					</i-form>
 				</div>
 				<div class="collapse" data-toggle="collapse" id="locking" th:if="${f010001Params.logInFo != null}">
+					<i-form class="" th:action="@{/f010001}" method="post" id="amtf_formlock">
 					<div class="row">
 						<div class="col-md-4 ml-auto mr-auto">
 							<div class="card card-profile text-center card-hidden">
@@ -425,17 +430,20 @@
 								</div>
 								<div class="card-body ">
 									<h4 class="card-title">[[${f010001Params.logInFo.user_account}]]</h4>
+									<input type="hidden" name="user_account" th:value="${f010001Params.logInFo.user_account}"/>
+									<input type="hidden" name="locking" th:value="${f010001Params.locking}"/>
 									<div class="form-group">
 										<!-- <label for="exampleInput1" class="bmd-label-floating">输入 密码</label> -->
-										<input type="password" class="form-control" id="exampleInput1" placeholder="输入 密码..." >
+										<input type="password" class="form-control" id="exampleInput1" placeholder="输入 密码..." name="user_password">
 									</div>
 								</div>
 								<div class="card-footer justify-content-center">
-									<a href="#pablo" class="btn btn-rose btn-round">解锁</a>
+									<a href="#pablo" class="btn btn-rose btn-round" onclick="amtf_setlock()">解锁</a>
 								</div>
 							</div>
 						</div>
 					</div>
+					</i-form>
 				</div>
 				<footer class="footer">
 					<div class="container">
