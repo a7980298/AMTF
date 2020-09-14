@@ -1,3 +1,93 @@
 .errclass{
 	border:1px solid red;
 }
+.m-0{
+	margin:0 !important;
+}
+.m-1{
+	margin:0.25rem !important;
+}
+.m-2{
+	margin:0.5rem !important;
+}
+.m-3{
+	margin:1rem !important;
+}
+.m-4{
+	margin:1.5rem !important;
+}
+.m-5{
+	margin:3rem !important;
+}
+.m-6{
+	margin:auto !important;
+}
+.p-0{
+	padding:0 !important;
+}
+.p-1{
+	padding:0.25rem !important;
+}
+.p-2{
+	padding:0.5rem !important;
+}
+.p-3{
+	padding:1rem !important;
+}
+.p-4{
+	padding:1.5rem !important;
+}
+.p-5{
+	padding:3rem !important;
+}
+.p-auto{
+	padding:auto !important;
+}
+.mt-0 {
+  margin-top: 0 !important;
+}
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+.mt-3 {
+  margin-top: 1rem !important;
+}
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+.mt-5 {
+  margin-top: 3rem !important;
+}
+.ml-0 {
+  margin-left: 0 !important;
+}
+.ml-1 {
+  margin-left: 0.25rem !important;
+}
+.ml-2 {
+  margin-left: 0.5rem !important;
+}
+.ml-3 {
+  margin-left: 1rem !important;
+}
+.ml-4 {
+  margin-left: 1.5rem !important;
+}
+.ml-5 {
+  margin-left: 3rem !important;
+}
+.col-r{
+	color:red;
+}
+.col-w{
+	color:white;
+}
+.col-be{
+	color:blue;
+}
+.col-bk{
+	color:black;
+}

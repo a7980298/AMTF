@@ -87,4 +87,8 @@ public class F010001Params extends UserImpl {
 	 * 注册成功
 	 */
 	public String yesorno;
+	/**
+	 * 锁定
+	 */
+	public String locking;
 }

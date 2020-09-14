@@ -26,7 +26,7 @@
 			if ("[[${f010001Params.yesorno}]]" != "") {
 				alert('注册成功');
 			}
-			if ('[[${f010001Params.logInFo}]]' != null) {
+			if ('[[${f010001Params.locking}]]' != '') {
 				amtf_loginhead($('#lockingid'));
 			}
 		});
@@ -67,7 +67,7 @@
 				var _href = $(this).attr('href');
 				if (typeof(_href) != "undefined"){
 					_href = _href.replace('#','');
-					$('#' + _href).removeClass('in');
+					$('#' + _href).removeClass('show');
 					$('#' + _href).removeClass('collapse');
 					$('#' + _href).removeClass('container');
 					$('#' + _href).addClass('dispaly_none');
@@ -424,7 +424,7 @@
 									</div>
 								</div>
 								<div class="card-body ">
-									<h4 class="card-title">[[${f010001Params.logInFo.user_name}]]</h4>
+									<h4 class="card-title">[[${f010001Params.logInFo.user_account}]]</h4>
 									<div class="form-group">
 										<!-- <label for="exampleInput1" class="bmd-label-floating">输入 密码</label> -->
 										<input type="password" class="form-control" id="exampleInput1" placeholder="输入 密码..." >
