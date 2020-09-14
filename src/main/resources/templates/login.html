@@ -26,6 +26,9 @@
 			if ("[[${f010001Params.yesorno}]]" != "") {
 				alert('注册成功');
 			}
+			if ('[[${f010001Params.logInFo}]]' != null) {
+				amtf_loginhead($('#lockingid'));
+			}
 		});
 		// 查看密码
 		var pwsShowFlag = true; 
@@ -87,9 +90,6 @@
 			} else if (_href == 'locking') {
 				$('#logintext').text('锁定 页面');
 				$('#login_image').css('background-image',"url('/amtf/img/lock.jpg')");
-				if ('[[${f010001Params.logInFo}]]' != null) {
-					
-				}
 			}
 		}
 		// 发送验证码
@@ -190,12 +190,12 @@
 								登录
 							</a>
 						</li>
-						<!-- <li class="nav-item">
-							<a href="#locking" class="nav-link loginhead" onclick="amtf_loginhead(this)">
+						<li class="nav-item" th:if="${f010001Params.logInFo != null}">
+							<a href="#locking" class="nav-link loginhead" onclick="amtf_loginhead(this)" id="lockingid">
 								<i class="material-icons">lock_open</i>
 								锁定
 							</a>
-						</li> -->
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -410,6 +410,32 @@
 							</div>
 						</div>
 					</i-form>
+				</div>
+				<div class="collapse" data-toggle="collapse" id="locking" th:if="${f010001Params.logInFo != null}">
+					<div class="row">
+						<div class="col-md-4 ml-auto mr-auto">
+							<div class="card card-profile text-center card-hidden">
+								<div class="card-header ">
+									<div class="card-avatar">
+										<a href="#pablo">
+											<img th:src="@{/imgs/userimg.jpg}" th:if="${f010001Params.logInFo.imgpath == ''}" id="img1"/>
+											<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010001Params.logInFo.imgpath})}" th:if="${f010001Params.logInFo.imgpath != ''}" id="img1"/>
+										</a>
+									</div>
+								</div>
+								<div class="card-body ">
+									<h4 class="card-title">[[${f010001Params.logInFo.user_name}]]</h4>
+									<div class="form-group">
+										<!-- <label for="exampleInput1" class="bmd-label-floating">输入 密码</label> -->
+										<input type="password" class="form-control" id="exampleInput1" placeholder="输入 密码..." >
+									</div>
+								</div>
+								<div class="card-footer justify-content-center">
+									<a href="#pablo" class="btn btn-rose btn-round">解锁</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<footer class="footer">
 					<div class="container">

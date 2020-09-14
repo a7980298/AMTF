@@ -14,6 +14,7 @@ import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
+import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
@@ -109,5 +110,22 @@ public class f010002Controller extends ValiDationUtil {
 		model.addAttribute("f010002Params", params);
 
 		return "main";
+	}
+	
+
+	/**
+	 * 锁定页面
+	 * 
+	 * @parameter F010002Params params
+	 * @return String
+	 */
+	@RequestMapping("/f010002/T003")
+	public String f010002T003(F010002Params params, Model model) {
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		F010001Params f010001params=new F010001Params();
+		f010001params.setLogInFo(loginfo);
+		model.addAttribute("f010001Params", f010001params);
+		return "login";
 	}
 }

@@ -48,9 +48,9 @@
 	function amtf_upduser(){
 		amtf_submit(amtf_formupduser , '/f010002/T002');
 	}
-	
-	function amtf_uploadFile() {
-		amtf_submit(amtf_formupfile , '/f010002/T003');
+	// 锁定页面
+	function amtf_golock(){
+		amtf_submit(amtf_formupduser , '/f010002/T003');
 	}
 </script>
 <body class="">
@@ -193,7 +193,7 @@
 									<a class="dropdown-item" data-toggle="collapse" href="#userformaction">简况</a>
 									<a class="dropdown-item" href="#">设置</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">锁定</a>
+									<a class="dropdown-item" href="#" onclick="amtf_golock()">锁定</a>
 									<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_form">
 										<a class="dropdown-item" href="#" onclick="amtf_return()">注销</a>
 									</i-form>
