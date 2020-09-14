@@ -59,7 +59,7 @@ public class f010002Controller extends ValiDationUtil {
 
 		model.addAttribute("f010001Params", f01params);
 
-		return "f010001";
+		return "login";
 	}
 
 	/**

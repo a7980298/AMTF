@@ -22,9 +22,9 @@
 
 </style>
 <script type="text/javascript">
-	//返回
+	// 注销
 	function amtf_return() {
-		amtf_submit(amtf_form , '/f010002');
+		amtf_submit(amtf_form , '/f010002/T001');
 	}
 	// 导航栏页面跳转
 	function amtf_skip(ulid,liid){
@@ -173,7 +173,7 @@
 									<a class="dropdown-item" data-toggle="collapse" href="#userformaction">简况</a>
 									<a class="dropdown-item" href="#">设置</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#" onclick="amtf_return()">返回</a>
+									<a class="dropdown-item" href="#" onclick="amtf_return()">注销</a>
 								</div>
 							</li>
 						</ul>
@@ -198,8 +198,8 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="form-group">
-													<label class="bmd-label-floating">公司 (不可变更)</label>
-													<input type="text" class="form-control" disabled>
+													<label class="bmd-label-floating">Email 地址 (不可变更)</label>
+													<input type="email" class="form-control" th:value="${f010002Params.logInFo.User_Phone}" maxlength="30" disabled>
 												</div>
 											</div>
 											<div class="col-md-3">
@@ -210,8 +210,8 @@
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">Email 地址 | 电话</label>
-													<input type="email" class="form-control" th:value="${f010002Params.logInFo.User_Phone}" maxlength="30">
+													<label class="bmd-label-floating">电话</label>
+													<input type="text" class="form-control">
 												</div>
 											</div>
 										</div>

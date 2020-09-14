@@ -11,6 +11,23 @@
 		</title>
 		<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 		<script type="text/javascript">
+		// 初始化方法
+		$(function() {
+			var storage=window.localStorage;
+			var name=storage.name;
+			var pwd=storage.pwd;
+			if (name != '' && pwd != '') {
+				$('#username').val(name);
+				$('#userpassword').val(pwd);
+				$('#registercheck').attr('checked','true');
+			} else {
+				$('#registercheck').removeAttr('checked');
+			}
+			if ("[[${f010001Params.yesorno}]]" != "") {
+				alert('注册成功');
+			}
+		});
+		// 查看密码
 		var pwsShowFlag = true; 
 		function lookpwd() {
 			if (pwsShowFlag == true) {
@@ -21,15 +38,14 @@
 				$('#userpassword').attr('type','password');
 			}
 		}
-		
-		//登录按钮押下
+		// 登录按钮押下
 		function amtf_login() {
 			if(!window.localStorage){
 				alert("浏览器支持localstorage");
 				return false;
 			}else{
 				var storage=window.localStorage;
-				if($('#remember_checkbox').is(':checked')){
+				if($('#registercheck').is(':checked')){
 					storage.name=$('#username').val();
 					storage.pwd=$('#userpassword').val();
 				} else {
@@ -41,11 +57,7 @@
 			}
 			amtf_submit(amtf_form , '/f010001/T001');
 		}
-		
-		function amtf_goRegister(){
-			amtf_submit(amtf_form , '/register');
-		}
-		
+		// 登陆页面head选中样式变换
 		function amtf_loginhead(_this) {
 			$('.loginhead').each(function(){
 				$(this).parent().removeClass('active');
@@ -77,7 +89,7 @@
 				$('#login_image').css('background-image',"url('/amtf/img/lock.jpg')");
 			}
 		}
-		//发送验证码
+		// 发送验证码
 		function amtf_submitYFCode(_this){
 			$.ajax({
 				url: CONTEXT_PATH + '/f010001/T003',
@@ -110,6 +122,22 @@
 				},
 			});
 		}
+		// 注册按钮押下
+		function amtf_regist(){
+			if ($('#mailcode').val() == '') {
+				
+			} else {
+				amtf_submit(amtf_form_register , '/f010001/T002');
+			}
+		}
+		// 保存账户密码的Check
+		function amtf_registerCheck(_this) {
+			if($('#registercheck').is(':checked')) {
+				$('#registercheck').removeAttr('checked');
+			} else {
+				$('#registercheck').prop("checked",true);
+			}
+		}
 		</script>
 		<style>
 			.pointer:hover{
@@ -125,7 +153,6 @@
 			
 		</style>
 	</head>
-
 	<body class="off-canvas-sidebar">
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
@@ -183,14 +210,30 @@
 										<h3 class="card-title">登录</h3>
 										<div class="social-line">
 											<a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-												<i class="fa fa-facebook-square"></i>
+												<i class="fa">
+													<svg id="csdnc-wechat" viewBox="0 0 1228 1024">
+														<path d="M873.608533 312.490667c-13.789867-1.8432-27.613867-2.4576-41.984-2.4576-206.404267 0-369.629867 157.764267-369.629866 351.778133 0 32.529067 4.8128 63.829333 13.824 93.2864a453.700267 453.700267 0 0 1-40.823467 1.8432c-54.5792 0-97.792-11.025067-152.3712-22.084267l-151.825067 77.960534 43.2128-133.8368C65.399467 601.053867 0 500.3264 0 378.1632 0 166.365867 195.618133 0 434.9952 0c213.6064 0 401.408 133.2224 438.613333 312.490667M1228.8 656.861867c0 100.078933-64.785067 189.098667-152.405333 256L1109.4016 1024l-119.3984-66.901333c-43.793067 11.025067-87.586133 22.698667-130.798933 22.698666-206.984533 0-369.595733-144.896-369.595734-322.935466 0-178.005333 162.6112-322.901333 369.595734-322.901334 195.618133 0 369.595733 144.896 369.595733 322.901334M348.023467 244.9408c0-33.757867-21.6064-55.842133-54.613334-55.842133-32.392533 0-65.399467 22.084267-65.399466 55.842133 0 33.1776 33.006933 55.261867 65.399466 55.261867 33.006933 0 54.613333-22.084267 54.613334-55.261867m445.781333 311.261867c0-22.084267-21.6064-44.202667-54.613333-44.202667-21.572267 0-43.178667 22.1184-43.178667 44.202667 0 22.698667 21.6064 44.8512 43.178667 44.8512 33.006933 0 54.613333-22.152533 54.613333-44.8512M652.219733 244.9408c0-33.757867-21.6064-55.842133-53.998933-55.842133-33.006933 0-65.399467 22.084267-65.399467 55.842133 0 33.1776 32.392533 55.261867 65.399467 55.261867 32.392533 0 53.998933-22.084267 53.998933-55.261867m380.996267 311.261867c0-22.084267-22.2208-44.202667-54.613333-44.202667-21.6064 0-43.178667 22.1184-43.178667 44.202667 0 22.698667 21.572267 44.8512 43.178667 44.8512 32.392533 0 54.613333-22.152533 54.613333-44.8512">
+													</path>
+												</i>
+											</svg>
 											</a>
 											<a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-												<i class="fa fa-twitter"></i>
+												<i class="fa">
+													<svg id="csdnreg-qq-color" viewBox="0 0 1024 1024">
+														<path d="M117.848747 5.215573h788.33664a112.633173 112.633173 0 0 1 112.633173 112.633174v788.33664a112.633173 112.633173 0 0 1-112.64 112.633173H117.855573a112.633173 112.633173 0 0 1-112.64-112.64V117.855573a112.633173 112.633173 0 0 1 112.64-112.64z m647.386453 597.183147c-11.721387-65.604267-60.975787-108.578133-60.975787-108.578133 7.031467-59.549013-18.78016-70.130347-18.78016-70.130347C680.065707 239.438507 515.4816 242.674347 512 242.735787c-3.454293-0.095573-168.065707-3.290453-173.44512 180.954453 0 0-25.818453 10.581333-18.752853 70.130347 0 0-49.2544 42.980693-60.975787 108.578133 0 0-6.26688 110.824107 56.285867 13.55776 0 0 14.062933 36.932267 39.881386 70.12352 0 0-46.12096 15.080107-42.222933 54.29248 0 0-1.583787 43.711147 98.5088 40.700587 0 0 70.341973-5.290667 91.477333-33.928534h18.589014c21.121707 28.672 91.477333 33.928533 91.477333 33.928534 100.02432 3.003733 98.5088-40.700587 98.5088-40.700587 3.8912-39.212373-42.22976-54.29248-42.22976-54.29248 25.818453-33.163947 39.881387-70.12352 39.881387-70.12352 62.52544 97.266347 56.285867-13.55776 56.285866-13.55776h-0.034133z" fill="#13B7F5">
+														</path>
+													</svg>
+												</i>
 											</a>
 											<a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-												<i class="fa fa-google-plus"></i>
+												<i class="fa">
+													<svg id="csdnreg-weibo-color" viewBox="0 0 1024 1024">
+														<path d="M117.848747 5.215573h788.33664a112.633173 112.633173 0 0 1 112.633173 112.633174v788.33664a112.633173 112.633173 0 0 1-112.64 112.633173H117.855573a112.633173 112.633173 0 0 1-112.64-112.64V117.855573a112.633173 112.633173 0 0 1 112.64-112.64zM664.418987 505.309867c-24.644267-4.778667-12.670293-18.056533-12.670294-18.056534S675.84 447.488 646.9632 418.52928c-35.792213-35.826347-122.770773 4.560213-122.770773 4.560213-33.225387 10.328747-24.418987-4.717227-19.729067-30.3104 0-30.153387-10.328747-81.148587-98.822827-51.029333C317.2352 372.032853 241.343147 478.208 241.343147 478.208c-52.79744 70.505813-45.800107 125.05088-45.800107 125.05088 13.175467 120.333653 140.888747 153.367893 240.216747 161.191253 104.495787 8.205653 245.541547-36.0448 288.331093-127.01696 42.789547-91.122347-34.93888-127.167147-59.671893-132.109653z m-220.89728 225.170773c-103.7312 4.881067-187.610453-47.22688-187.610454-116.5312 0-69.393067 83.879253-125.044053 187.610454-129.829547 103.79264-4.778667 187.828907 38.038187 187.828906 107.281067 0 69.331627-84.036267 134.362453-187.828906 139.07968z m-20.718934-200.656213C318.470827 542.057813 330.5472 639.8976 330.5472 639.8976s-1.078613 30.979413 27.968853 46.783147c61.064533 33.13664 123.904 13.08672 155.675307-27.99616s13.14816-141.011627-91.38176-128.853334z m35.2256 84.8896c-6.587733 4.942507-14.731947 4.23936-18.213546-1.67936a15.36 15.36 0 0 1 4.4032-19.892907c7.727787-5.761707 15.7696-4.11648 19.2512 1.67936 3.488427 5.891413 0.989867 14.793387-5.440854 19.892907z m-61.508266 52.44928c-19.483307 2.280107-35.191467-8.963413-35.191467-25.27232 0-16.22016 13.933227-33.25952 33.450667-35.28704 22.357333-2.116267 36.932267 10.77248 36.932266 27.081386 0 16.247467-15.81056 31.29344-35.198293 33.512107v-0.034133z m318.702933-204.233387a16.97792 16.97792 0 0 0 16.97792-16.151893c12.731733-114.72896-93.887147-94.958933-93.887147-94.958934a17.1008 17.1008 0 0 0-17.066666 17.230507c0 9.407147 7.59808 17.066667 17.066666 17.066667 76.5952-16.943787 59.706027 59.74016 59.706027 59.74016 0 9.50272 7.727787 17.073493 17.2032 17.073493zM702.805333 262.690133c-36.864-8.64256-74.786133-1.16736-85.394773 0.86016-0.8192 0.06144-1.583787 0.853333-2.341547 1.010347-0.34816 0.068267-0.600747 0.443733-0.600746 0.443733a25.122133 25.122133 0 0 0-18.152107 24.139094c0 13.653333 11.086507 24.890027 24.86272 24.890026 0 0 13.43488-1.80224 22.528-5.379413 9.018027-3.64544 85.387947-2.696533 123.303253 61.064533 20.6848 46.557867 9.086293 77.70112 7.666347 82.705067 0 0-4.942507 12.096853-4.942507 24.009387 0 13.74208 11.086507 22.391467 24.80128 22.391466 11.4688 0 21.0944-1.583787 23.913814-20.998826h0.157013c40.700587-135.8848-49.821013-199.74144-115.800747-215.16288v0.027306z" fill="#D81E06">
+														</path>
+													</svg>
+												</i>
 											</a>
+										
 										</div>
 									</div>
 									<div class="card-body ">
@@ -205,7 +248,7 @@
 												<input type="text" class="form-control" placeholder="请输入用户名..." name="User_Account" autofocus="autofocus" id="username" th:value="${f010001Params.User_Account}">
 											</div>
 										</span>
-										<span class="bmd-form-group">
+										<!-- <span class="bmd-form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text">
@@ -214,7 +257,7 @@
 												</div>
 												<input type="email" class="form-control" placeholder="请输入邮箱地址...">
 											</div>
-										</span>
+										</span> -->
 										<span class="bmd-form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -225,17 +268,15 @@
 												<input type="password" class="form-control" placeholder="请输入密码..." name="User_Password" maxlength="8" id="userpassword" th:value="${f010001Params.User_Password}">
 											</div>
 										</span>
-										<span class="bmd-form-group">
-											<div class="form-check">
-												<label class="form-check-label">
-													<input class="form-check-input" type="checkbox" value="" checked="">
-													<span class="form-check-sign">
+										<div class="form-check">
+											<label class="form-check-label" onclick="amtf_registerCheck()">
+												<input class="form-check-input" type="checkbox" checked id="registercheck">
+												<span class="form-check-sign">
 													<span class="check"></span>
-													</span>
-													保存账户密码
-												</label>
-											</div>
-										</span>
+												</span>
+												保存账户密码
+											</label>
+										</div>
 									</div>
 									<div class="card-footer justify-content-center">
 										<a href="#pablo" class="btn btn-rose btn-link btn-lg" onclick="amtf_login()">登录</a>
@@ -246,122 +287,125 @@
 					</div>
 				</div>
 				<div class="collapse" data-toggle="collapse" id="userregister">
-			        <div class="row">
-			          <div class="col-md-10 ml-auto mr-auto">
-			            <div class="card card-signup">
-			              <h2 class="card-title text-center">注册</h2>
-			              <div class="card-body">
-			                <div class="row">
-			                  <div class="col-md-5 ml-auto">
-			                    <div class="info info-horizontal">
-			                      <div class="icon icon-rose">
-			                        <i class="material-icons">timeline</i>
-			                      </div>
-			                      <div class="description">
-			                        <h4 class="info-title">营销学</h4>
-			                        <p class="description">
-			                          	我们已经创建了网站的营销活动。 这是一次非常有趣的合作。
-			                        </p>
-			                      </div>
-			                    </div>
-			                    <div class="info info-horizontal">
-			                      <div class="icon icon-primary">
-			                        <i class="material-icons">code</i>
-			                      </div>
-			                      <div class="description">
-			                        <h4 class="info-title">HTML5完全编码</h4>
-			                        <p class="description">
-			                          	我们使用HTML5和CSS3开发了该网站。 客户端可以使用GitHub访问代码。
-			                        </p>
-			                      </div>
-			                    </div>
-			                    <div class="info info-horizontal">
-			                      <div class="icon icon-info">
-			                        <i class="material-icons">group</i>
-			                      </div>
-			                      <div class="description">
-			                        <h4 class="info-title">内置观众</h4>
-			                        <p class="description">
-			                        	  此产品还有一个完全可自定义的CMS管理员仪表板。
-			                        </p>
-			                      </div>
-			                    </div>
-			                  </div>
-			                  <div class="col-md-5 mr-auto">
-			                    <div class="social text-center">
-			                      <button class="btn btn-just-icon btn-round btn-twitter">
-			                        <i class="fa fa-twitter"></i>
-			                      </button>
-			                      <button class="btn btn-just-icon btn-round btn-dribbble">
-			                        <i class="fa fa-dribbble"></i>
-			                      </button>
-			                      <button class="btn btn-just-icon btn-round btn-facebook">
-			                        <i class="fa fa-facebook"> </i>
-			                      </button>
-			                      <h4 class="mt-3"> 第三方登录 </h4>
-			                    </div>
-			                    <form class="form" method="" action="">
-			                      <div class="form-group has-default">
-			                        <div class="input-group">
-			                          <div class="input-group-prepend">
-			                            <span class="input-group-text">
-			                              <i class="material-icons">face</i>
-			                            </span>
-			                          </div>
-			                          <input type="text" class="form-control" placeholder="用户名...">
-			                        </div>
-			                      </div>
-			                      <div class="form-group has-default">
-			                        <div class="input-group">
-			                          <div class="input-group-prepend">
-			                            <span class="input-group-text">
-			                              <i class="material-icons">mail</i>
-			                            </span>
-			                          </div>
-			                          <input type="text" class="form-control" placeholder="邮箱..." id="email_id">
-			                          <input type="button" class="" value="发送验证码" onclick="amtf_submitYFCode(this)">
-			                        </div>
-			                      </div>
-			                      <div class="form-group has-default dispaly_none" id="yfcode">
-			                        <div class="input-group">
-			                          <div class="input-group-prepend">
-			                            <span class="input-group-text">
-			                              <i class="material-icons">mail</i>
-			                            </span>
-			                          </div>
-			                          <input type="text" class="form-control" placeholder="验证码...">
-			                        </div>
-			                      </div>
-			                      <div class="form-group has-default">
-			                        <div class="input-group">
-			                          <div class="input-group-prepend">
-			                            <span class="input-group-text">
-			                              <i class="material-icons">lock_outline</i>
-			                            </span>
-			                          </div>
-			                          <input type="password" placeholder="密码..." class="form-control">
-			                        </div>
-			                      </div>
-			                      <div class="form-check">
-			                        <label class="form-check-label">
-			                          <input class="form-check-input" type="checkbox" value="" checked="">
-			                          <span class="form-check-sign">
-			                            <span class="check"></span>
-			                          </span>
-			                          	我同意
-			                          <a href="#something">条款和条件</a>.
-			                        </label>
-			                      </div>
-			                      <div class="text-center">
-			                        <a href="#pablo" class="btn btn-primary btn-round mt-4">开始使用</a>
-			                      </div>
-			                    </form>
-			                  </div>
-			                </div>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
+					<i-form class="" th:action="@{/f010001}" method="post" id="amtf_form_register">
+						<div class="row">
+							<div class="col-md-10 ml-auto mr-auto">
+								<div class="card card-signup">
+									<h2 class="card-title text-center">注册</h2>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-5 ml-auto">
+												<div class="info info-horizontal">
+													<div class="icon icon-rose">
+														<i class="material-icons">timeline</i>
+													</div>
+													<div class="description">
+														<h4 class="info-title">营销学</h4>
+														<p class="description">
+															我们已经创建了网站的营销活动。 这是一次非常有趣的合作。
+														</p>
+													</div>
+												</div>
+												<div class="info info-horizontal">
+													<div class="icon icon-primary">
+														<i class="material-icons">code</i>
+													</div>
+													<div class="description">
+														<h4 class="info-title">HTML5完全编码</h4>
+														<p class="description">
+															我们使用HTML5和CSS3开发了该网站。 客户端可以使用GitHub访问代码。
+														</p>
+													</div>
+												</div>
+												<div class="info info-horizontal">
+													<div class="icon icon-info">
+														<i class="material-icons">group</i>
+													</div>
+													<div class="description">
+														<h4 class="info-title">内置观众</h4>
+														<p class="description">
+															此产品还有一个完全可自定义的CMS管理员仪表板。
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-5 mr-auto">
+												<div class="social text-center">
+													<button class="btn btn-just-icon btn-round btn-twitter">
+														<img src="https://common.cnblogs.com/images/wechat.png"/>
+													</button>
+													<button class="btn btn-just-icon btn-round btn-dribbble" >
+														<img src="https://common.cnblogs.com/images/icon_weibo_24.png"/>
+													</button>
+													<button class="btn btn-just-icon btn-round btn-facebook">
+														<svg id="csdnreg-qq-color" viewBox="0 0 1024 1024">
+															<path d="M117.848747 5.215573h788.33664a112.633173 112.633173 0 0 1 112.633173 112.633174v788.33664a112.633173 112.633173 0 0 1-112.64 112.633173H117.855573a112.633173 112.633173 0 0 1-112.64-112.64V117.855573a112.633173 112.633173 0 0 1 112.64-112.64z m647.386453 597.183147c-11.721387-65.604267-60.975787-108.578133-60.975787-108.578133 7.031467-59.549013-18.78016-70.130347-18.78016-70.130347C680.065707 239.438507 515.4816 242.674347 512 242.735787c-3.454293-0.095573-168.065707-3.290453-173.44512 180.954453 0 0-25.818453 10.581333-18.752853 70.130347 0 0-49.2544 42.980693-60.975787 108.578133 0 0-6.26688 110.824107 56.285867 13.55776 0 0 14.062933 36.932267 39.881386 70.12352 0 0-46.12096 15.080107-42.222933 54.29248 0 0-1.583787 43.711147 98.5088 40.700587 0 0 70.341973-5.290667 91.477333-33.928534h18.589014c21.121707 28.672 91.477333 33.928533 91.477333 33.928534 100.02432 3.003733 98.5088-40.700587 98.5088-40.700587 3.8912-39.212373-42.22976-54.29248-42.22976-54.29248 25.818453-33.163947 39.881387-70.12352 39.881387-70.12352 62.52544 97.266347 56.285867-13.55776 56.285866-13.55776h-0.034133z" fill="#13B7F5">
+														</path>
+													</svg>
+													</button>
+													<h4 class="mt-3"> 第三方登录 </h4>
+												</div>
+												<div class="form-group has-default">
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<span class="input-group-text">
+																<i class="material-icons">face</i>
+															</span>
+														</div>
+														<input type="text" class="form-control" placeholder="用户名..." name="regist_user_name">
+													</div>
+												</div>
+												<div class="form-group has-default">
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<span class="input-group-text">
+																<i class="material-icons">mail</i>
+															</span>
+														</div>
+														<input type="text" class="form-control" placeholder="邮箱..." id="email_id" name="phone_number">
+														<input type="button" class="" value="发送验证码" onclick="amtf_submitYFCode(this)">
+													</div>
+												</div>
+												<div class="form-group has-default dispaly_none" id="yfcode">
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<span class="input-group-text">
+																<i class="material-icons">mail</i>
+															</span>
+														</div>
+														<input type="text" class="form-control" placeholder="验证码..." id="mailcode" name="verifyCode">
+													</div>
+												</div>
+												<div class="form-group has-default">
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<span class="input-group-text">
+																<i class="material-icons">lock_outline</i>
+															</span>
+														</div>
+														<input type="password" placeholder="密码..." class="form-control" name="regist_user_password">
+													</div>
+												</div>
+												<div class="form-check">
+													<label class="form-check-label">
+														<input class="form-check-input" type="checkbox" value="" checked>
+															<span class="form-check-sign">
+																<span class="check"></span>
+															</span>
+															我同意
+															<a href="#something">条款和条件</a>.
+													</label>
+												</div>
+												<div class="text-center">
+													<a href="#pablo" class="btn btn-primary btn-round mt-4" onclick="amtf_regist()">开始使用</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</i-form>
 				</div>
 				<footer class="footer">
 					<div class="container">

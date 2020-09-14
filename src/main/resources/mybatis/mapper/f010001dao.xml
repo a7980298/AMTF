@@ -48,7 +48,7 @@
 			'',
 			'',
 			#{entityin.userphone},
-			#{entityin.useratt},
+			'1',
 			0
 		)
 	</insert>

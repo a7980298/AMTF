@@ -96,7 +96,6 @@ public class f010001ServiceImpl implements f010001Service {
 			insert4entityin.setUserid(CommonUtil.isEmpty(common_select1) ? 0 : common_select1 + 1);
 			insert4entityin.setUseraccount(entityIn.getRegist_user_name());
 			insert4entityin.setUserpwd(DigestUtils.md5DigestAsHex(entityIn.getRegist_user_password().getBytes()));
-			insert4entityin.setUseratt(CommonUtil.isEmpty(entityIn.getMan()) ? Constant.STR_0 : Constant.STR_1);
 			insert4entityin.setUserphone(entityIn.getPhone_number());
 			int insert4 = f010001dao.f010001_Insert4(insert4entityin);
 			if (insert4 <= 0) {
