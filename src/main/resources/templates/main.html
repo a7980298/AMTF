@@ -22,6 +22,19 @@
 
 </style>
 <script type="text/javascript">
+	// 初始化处理
+	$(function(){
+		$('#file0').change(function(){
+			//获取图片途径
+			var objUrl = getObjectURL(this.files[0]) ;
+			//判断是否存在
+			if (objUrl) {
+				$("#img2").attr("src", objUrl) ;
+				$("#img2").show() ;
+			}
+		}) ;
+		$('#img2').attr('src',$('#img2').attr('src') + '?r=' + Math.random());
+	})
 	// 注销
 	function amtf_return() {
 		amtf_submit(amtf_form , '/f010002/T001');
@@ -30,6 +43,10 @@
 	function amtf_skip(ulid,liid){
 		var path = $('#ul' + ulid +'_li' + liid).val(); 
 		amtf_submit(amtf_form , '/' + path);
+	}
+	// 修改用户信息
+	function amtf_upduser(){
+		amtf_submit(amtf_form , '/f010002/T002');
 	}
 </script>
 <body class="">
@@ -268,7 +285,7 @@
 												</div>
 											</div>
 										</div>
-										<button type="submit" class="btn btn-rose pull-right">更新个人信息</button>
+										<button type="submit" class="btn btn-rose pull-right" onclick="amtf_upduser()">更新个人信息</button>
 										<div class="clearfix"></div>
 									</div>
 								</div>
@@ -282,6 +299,8 @@
 										</a>
 									</div>
 								<div class="card-body">
+								<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">更换头像</button>
+								<input type="file" name="file0" id="file0" multiple="multiple" style="display:none;"/>
 								<h6 class="card-category text-gray">Web开发</h6>
 								<h4 class="card-title">[[${f010002Params.logInFo.User_Name}]]</h4>
 								<p class="card-description">
