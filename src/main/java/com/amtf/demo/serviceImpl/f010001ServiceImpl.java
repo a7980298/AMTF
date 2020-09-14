@@ -44,8 +44,8 @@ public class f010001ServiceImpl implements f010001Service {
 
 		f010001_select1entity select1entity = new f010001_select1entity();
 		LogInFo loginfo = new LogInFo();
-		loginfo.setUser_Account(entityIn.getUser_Account());
-		loginfo.setUser_Password(entityIn.getUser_Password());
+		loginfo.setUser_account(entityIn.getUser_Account());
+		loginfo.setUser_password(entityIn.getUser_Password());
 		// 判断是否需要保存密码
 		/*
 		 * if (!CommonUtil.isEmpty(entityIn.getRemember())) { // 存入Cookie中

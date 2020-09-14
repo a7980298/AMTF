@@ -10,47 +10,62 @@ public class LogInFo {
 	/**
 	 * 用户id
 	 */
-	private Integer User_id;
+	private Integer user_id;
+	
+	/**
+	 * Email
+	 */
+	private String user_email;
 
 	/**
 	 * 账户
 	 */
-	private String User_Account;
+	private String user_account;
 
 	/**
 	 * 密码
 	 */
-	private String User_Password;
+	private String user_password;
 
 	/**
 	 * 姓名
 	 */
-	private String User_Name;
+	private String user_name;
 
 	/**
-	 * 别名
+	 * 国家
 	 */
-	private String User_FH;
+	private String user_country;
 
 	/**
-	 * 地址
+	 *  省
 	 */
-	private String User_HomeAddress;
+	private String user_province;
+	
+	/**
+	 *  市
+	 */
+	private String user_city;
+	
+	/**
+	 *  邮编
+	 */
+	private String user_postcode;
 
 	/**
 	 * 电话
 	 */
-	private String User_Phone;
+	private String user_phone;
 
 	/**
 	 * 是否认证
 	 */
-	private String User_Attestation;
+	private String user_attestation;
 
 	/**
 	 * 权限
 	 */
-	private String User_power;
+	private String user_power;
 
 	/**
 	 * 头像路径

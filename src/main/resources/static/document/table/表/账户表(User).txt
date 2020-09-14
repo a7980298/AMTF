@@ -1,20 +1,27 @@
 CREATE TABLE AMTF_User(
-      User_id int not null ,
+      User_id int not null , -- id
+      
+      User_Email char(30) not null, -- Email
 
-      User_Account varchar(20) ,
+      User_Account varchar(20) not null, -- 用户
 
-      User_Password varchar(80) ,
+      User_Password varchar(80) not null, -- 密码
 
-      User_Name varchar(10) ,
+      User_Name varchar(10) , -- 真实姓名
 
-      User_FH varchar(10) ,
+      User_Country varchar(50) , -- 国家
+      
+      User_Province varchar(50) , -- 省
+      
+      User_City varchar(50) , -- 市
+      
+      User_Postcode varchar(50) , -- 邮编
 
-      User_HomeAddress varchar(50) ,
+      User_Phone varchar(18) , -- 电话
 
-      User_Phone char(30) ,
+      User_Attestation char(1), -- 认证
 
-      User_Attestation char(1),
-      User_power char(1)
+      User_power char(1) not null	-- 权限
   )
 123	202cb962ac59075b964b07152d234b70	王意鑫1	阿鑫1	苏州	18438742726	1	1
 111	202cb962ac59075b964b07152d234b70	222	12	123	3	1	0

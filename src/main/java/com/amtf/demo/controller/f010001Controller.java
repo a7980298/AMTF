@@ -35,9 +35,9 @@ public class f010001Controller extends ValiDationUtil {
 	public String f010001S001(F010001Params params, Model model) {
 
 		LogInFo logInFo = ParameterUtil.getCookie();
-		if (!CommonUtil.isEmpty(logInFo.getUser_Account()) && !CommonUtil.isEmpty(logInFo.getUser_Password())) {
-			params.setUser_Account(logInFo.getUser_Account());
-			params.setUser_Password(logInFo.getUser_Password());
+		if (!CommonUtil.isEmpty(logInFo.getUser_account()) && !CommonUtil.isEmpty(logInFo.getUser_password())) {
+			params.setUser_Account(logInFo.getUser_account());
+			params.setUser_Password(logInFo.getUser_password());
 			params.setRemember(Constant.STR_1);
 		}
 

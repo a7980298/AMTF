@@ -87,26 +87,35 @@ public class ParameterUtil {
 		if (!CommonUtil.isEmpty(user)) {
 			// 用户id
 			loginfo.setUser_id(!CommonUtil.isEmpty(user.getUser_id()) ? user.getUser_id() : Constant.INT_0);
+			// Email
+			loginfo.setUser_email(
+					!CommonUtil.isEmpty(user.getUser_email()) ? user.getUser_email() : Constant.EMPTY);
 			// 账户
-			loginfo.setUser_Account(
-					!CommonUtil.isEmpty(user.getUser_Account()) ? user.getUser_Account() : Constant.EMPTY);
+			loginfo.setUser_account(
+					!CommonUtil.isEmpty(user.getUser_account()) ? user.getUser_account() : Constant.EMPTY);
 			// 密码
-			loginfo.setUser_Password(
-					!CommonUtil.isEmpty(user.getUser_Password()) ? user.getUser_Password() : Constant.EMPTY);
-			// 别名
-			loginfo.setUser_FH(!CommonUtil.isEmpty(user.getUser_FH()) ? user.getUser_FH() : Constant.EMPTY);
-			// 地址
-			loginfo.setUser_HomeAddress(!CommonUtil.isEmpty(user.getUser_HomeAddress()) ? user.getUser_HomeAddress()
+			loginfo.setUser_password(
+					!CommonUtil.isEmpty(user.getUser_password()) ? user.getUser_password() : Constant.EMPTY);
+			// 姓名
+			loginfo.setUser_name(!CommonUtil.isEmpty(user.getUser_name()) ? user.getUser_name() : Constant.EMPTY);
+			// 国家
+			loginfo.setUser_country(!CommonUtil.isEmpty(user.getUser_country()) ? user.getUser_country()
 					: Constant.EMPTY);
-			// 认证
-			loginfo.setUser_Attestation(!CommonUtil.isEmpty(user.getUser_Attestation()) ? user.getUser_Attestation()
+			// 省
+			loginfo.setUser_province(!CommonUtil.isEmpty(user.getUser_province()) ? user.getUser_province()
+					: Constant.EMPTY);
+			// 市
+			loginfo.setUser_city(!CommonUtil.isEmpty(user.getUser_city()) ? user.getUser_city()
+					: Constant.EMPTY);
+			// 邮编
+			loginfo.setUser_postcode(!CommonUtil.isEmpty(user.getUser_postcode()) ? user.getUser_postcode()
 					: Constant.EMPTY);
 			// 电话
-			loginfo.setUser_Phone(
-					!CommonUtil.isEmpty(user.getUser_Phone()) ? user.getUser_Phone() : Constant.EMPTY);
-			// 姓名
-			loginfo.setUser_Name(
-					!CommonUtil.isEmpty(user.getUser_Name()) ? user.getUser_Name() : Constant.EMPTY);
+			loginfo.setUser_phone(
+					!CommonUtil.isEmpty(user.getUser_phone()) ? user.getUser_phone() : Constant.EMPTY);
+			// 认证
+			loginfo.setUser_attestation(
+					!CommonUtil.isEmpty(user.getUser_attestation()) ? user.getUser_attestation() : Constant.EMPTY);
 			// 权限
 			loginfo.setUser_power(
 					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : Constant.EMPTY);
@@ -137,8 +146,8 @@ public class ParameterUtil {
 	public static void setCookie(LogInFo loginfo) {
 		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getResponse();
-		response.addCookie(new Cookie("user_account", loginfo.getUser_Account()));
-		response.addCookie(new Cookie("user_pwd", loginfo.getUser_Password()));
+		response.addCookie(new Cookie("user_account", loginfo.getUser_account()));
+		response.addCookie(new Cookie("user_pwd", loginfo.getUser_password()));
 
 	}
 
@@ -151,9 +160,9 @@ public class ParameterUtil {
 		if (!CommonUtil.isEmpty(cookies)) {
 			for (Cookie cookie : cookies) {
 				if ("user_account".equals(cookie.getName())) {
-					loginfo.setUser_Account(cookie.getValue());
+					loginfo.setUser_account(cookie.getValue());
 				} else if ("user_pwd".equals(cookie.getName())) {
-					loginfo.setUser_Password(cookie.getValue());
+					loginfo.setUser_password(cookie.getValue());
 				}
 			}
 		}

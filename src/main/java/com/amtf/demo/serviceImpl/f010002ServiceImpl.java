@@ -58,7 +58,7 @@ public class f010002ServiceImpl implements f010002Service {
 							value1.addAll(value2);
 							return value1;
 						}));
-		String imgpath = ImgUtil.getImgPath(loginfo.getUser_Phone());
+		String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
 		loginfo.setImgpath(imgpath);
 		// 用户信息
 		entityout.setLogInFo(loginfo);
@@ -100,11 +100,21 @@ public class f010002ServiceImpl implements f010002Service {
 		ImgUtil.CommitImg(entityIn.getFile0(), Constant.STR_1);
 
 		LogInFo loginfo = new LogInFo();
-
-		loginfo.setUser_Account(entityIn.getUpd_user_name());
-
-		loginfo.setUser_HomeAddress(entityIn.getUpd_user_homeaddress());
-
+		//账户
+		loginfo.setUser_account(entityIn.getUpd_user_name());
+		//电话
+		loginfo.setUser_phone(entityIn.getUpd_user_phone());
+		//名字
+		loginfo.setUser_name(entityIn.getUpd_user_name());
+		//国家
+		loginfo.setUser_country(entityIn.getUpd_user_country());
+		//省
+		loginfo.setUser_province(entityIn.getUpd_user_province());
+		//市
+		loginfo.setUser_city(entityIn.getUpd_user_city());
+		//邮编
+		loginfo.setUser_postcode(entityIn.getUpd_user_postcode());
+		//用户id
 		loginfo.setUser_id(ParameterUtil.getSession().getUser_id());
 
 		Integer update2 = f010002dao.f010002_update2(loginfo);

@@ -6,23 +6,64 @@ import lombok.Setter;
 @Getter
 @Setter
 public class f010001_select1entity {
+	/**
+	 * 用户id
+	 */
+	private Integer user_id;
+	
+	/**
+	 * Email
+	 */
+	private String user_email;
 
-	private Integer User_id;
+	/**
+	 * 账户
+	 */
+	private String user_account;
 
-	private String User_Account;
+	/**
+	 * 密码
+	 */
+	private String user_password;
 
-	private String User_Password;
+	/**
+	 * 姓名
+	 */
+	private String user_name;
 
-	private String User_Name;
+	/**
+	 * 国家
+	 */
+	private String user_country;
 
-	private String User_FH;
+	/**
+	 *  省
+	 */
+	private String user_province;
+	
+	/**
+	 *  市
+	 */
+	private String user_city;
+	
+	/**
+	 *  邮编
+	 */
+	private String user_postcode;
 
-	private String User_HomeAddress;
+	/**
+	 * 电话
+	 */
+	private String user_phone;
 
-	private String User_Phone;
+	/**
+	 * 是否认证
+	 */
+	private String user_attestation;
 
-	private String User_Attestation;
-
-	private String User_power;
+	/**
+	 * 权限
+	 */
+	private String user_power;
 
 }

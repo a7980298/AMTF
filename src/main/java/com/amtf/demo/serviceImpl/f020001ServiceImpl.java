@@ -35,7 +35,7 @@ public class f020001ServiceImpl implements f020001Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		String imgpath = ImgUtil.getImgPath(loginfo.getUser_Phone());
+		String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
 
 		loginfo.setImgpath(imgpath);
 
@@ -45,23 +45,19 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
-			f02_select.setUser_Account(select1.get(i).getUser_Account());
+			f02_select.setUser_Account(select1.get(i).getUser_account());
 
-			f02_select.setUser_Attestation(select1.get(i).getUser_Attestation());
-
-			f02_select.setUser_FH(select1.get(i).getUser_FH());
-
-			f02_select.setUser_HomeAddress(select1.get(i).getUser_HomeAddress());
+			f02_select.setUser_Attestation(select1.get(i).getUser_attestation());
 
 			f02_select.setUser_id(select1.get(i).getUser_id());
 
-			f02_select.setUser_Name(select1.get(i).getUser_Name());
+			f02_select.setUser_Name(select1.get(i).getUser_name());
 
-			f02_select.setUser_Phone(select1.get(i).getUser_Phone());
+			f02_select.setUser_Phone(select1.get(i).getUser_phone());
 
 			f02_select.setUser_power(select1.get(i).getUser_power());
 
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_Phone());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
 
 			f02_select.setUser_path(path);
 
@@ -104,23 +100,19 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
-			f02_select.setUser_Account(select1.get(i).getUser_Account());
+			f02_select.setUser_Account(select1.get(i).getUser_account());
 
-			f02_select.setUser_Attestation(select1.get(i).getUser_Attestation());
-
-			f02_select.setUser_FH(select1.get(i).getUser_FH());
-
-			f02_select.setUser_HomeAddress(select1.get(i).getUser_HomeAddress());
+			f02_select.setUser_Attestation(select1.get(i).getUser_attestation());
 
 			f02_select.setUser_id(select1.get(i).getUser_id());
 
-			f02_select.setUser_Name(select1.get(i).getUser_Name());
+			f02_select.setUser_Name(select1.get(i).getUser_name());
 
-			f02_select.setUser_Phone(select1.get(i).getUser_Phone());
+			f02_select.setUser_Phone(select1.get(i).getUser_phone());
 
 			f02_select.setUser_power(select1.get(i).getUser_power());
 
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_Phone());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
 
 			f02_select.setUser_path(path);
 
@@ -140,7 +132,7 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		try {
-			f020001dao.f020001_insert3(loginfo.getUser_Phone(), "更新通知", entityin.getRelease_name());
+			f020001dao.f020001_insert3(loginfo.getUser_email(), "更新通知", entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}
