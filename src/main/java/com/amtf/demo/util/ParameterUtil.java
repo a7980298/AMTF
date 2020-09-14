@@ -113,6 +113,9 @@ public class ParameterUtil {
 			// 电话
 			loginfo.setUser_phone(
 					!CommonUtil.isEmpty(user.getUser_phone()) ? user.getUser_phone() : Constant.EMPTY);
+			// 介绍
+			loginfo.setUser_introduce(
+					!CommonUtil.isEmpty(user.getUser_introduce()) ? user.getUser_introduce() : Constant.EMPTY);
 			// 认证
 			loginfo.setUser_attestation(
 					!CommonUtil.isEmpty(user.getUser_attestation()) ? user.getUser_attestation() : Constant.EMPTY);

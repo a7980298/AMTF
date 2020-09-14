@@ -27,12 +27,11 @@ public class F010001Params extends UserImpl {
 	 */
 	@iName(value = "1111232323")
 	@iSize(name = "账户", max = 3, min = 0)
-	private String User_Account;
+	private String user_account;
 	/**
 	 * 密码
 	 */
-
-	private String User_Password;
+	private String user_password;
 	/**
 	 * 记住账户密码
 	 */

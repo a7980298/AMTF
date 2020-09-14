@@ -56,6 +56,11 @@ public class LogInFo {
 	 * 电话
 	 */
 	private String user_phone;
+	
+	/**
+	 * 介绍
+	 */
+	private String user_introduce ;
 
 	/**
 	 * 是否认证

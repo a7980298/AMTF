@@ -21,42 +21,42 @@ public class F010001entityOut extends UserImpl {
 	/**
 	 * 用户id
 	 */
-	private Integer User_id;
+	private Integer user_id;
 
 	/**
 	 * 账户
 	 */
-	private String User_Account;
+	private String user_account;
 
 	/**
 	 * 密码
 	 */
-	private String User_Password;
+	private String user_password;
 
 	/**
 	 * 姓名
 	 */
-	private String User_Name;
+	private String user_name;
 
 	/**
 	 * 别名
 	 */
-	private String User_FH;
+	private String user_fh;
 
 	/**
 	 * 地址
 	 */
-	private String User_HomeAddress;
+	private String user_homeaddress;
 
 	/**
 	 * 电话
 	 */
-	private String User_Phone;
+	private String user_phone;
 
 	/**
 	 * 是否认证
 	 */
-	private String User_Attestation;
+	private String user_attestation;
 
 	/**
 	 * 密码是否正确

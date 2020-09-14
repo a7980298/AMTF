@@ -99,6 +99,11 @@ public class F010002entityIn extends UserImpl {
 	 * 修改：电话
 	 */
 	private String upd_user_phone;
+	
+	/**
+	 * 修改：介绍
+	 */
+	private String upd_user_introduce;
 	/**
 	 * 修改：用户照片
 	 */

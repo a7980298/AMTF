@@ -18,12 +18,20 @@
 	
 	<update id="f010002_update2">
 		UPDATE 
-			amtf_user 
+			amtf_user
 		SET 
-			User_Account = #{loginfo.User_Account}
-			,User_HomeAddress = #{loginfo.User_HomeAddress}
+			User_Account = #{loginfo.user_account}
+			,User_Name = #{loginfo.user_name}
+			,User_Country = #{loginfo.user_country}
+			,User_Province = #{loginfo.user_province}
+			,User_City = #{loginfo.user_city}
+			,User_Postcode = #{loginfo.user_postcode}
+			,User_Phone = #{loginfo.user_phone}
+			,User_Introduce = #{loginfo.user_introduce}
 		WHERE
-			User_id = #{loginfo.User_id}
+			User_id = #{loginfo.user_id}
+		AND
+			User_Email = #{loginfo.user_email}
 	</update>
 	
 	<select id="f010002_Select3" resultType="com.amtf.demo.f010001entity.f010001_select1entity">

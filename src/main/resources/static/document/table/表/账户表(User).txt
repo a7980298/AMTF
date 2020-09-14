@@ -18,6 +18,8 @@ CREATE TABLE AMTF_User(
       User_Postcode varchar(50) , -- 邮编
 
       User_Phone varchar(18) , -- 电话
+      
+      User_Introduce varchar(300) , -- 介绍
 
       User_Attestation char(1), -- 认证
 
@@ -26,7 +28,7 @@ CREATE TABLE AMTF_User(
 123	202cb962ac59075b964b07152d234b70	王意鑫1	阿鑫1	苏州	18438742726	1	1
 111	202cb962ac59075b964b07152d234b70	222	12	123	3	1	0
 999	202cb962ac59075b964b07152d234b70	王意鑫2	阿鑫2	苏州	15638582399	1	1
-
+insert into amtf_user values(1,'2428503607@qq.com','123','202cb962ac59075b964b07152d234b70','王意鑫','中国','河南','开封市','475000','18438742726','爱打篮球和看书','1','1');
 
 create sequence AMTF_User_id start with 1 increment by 1;
 

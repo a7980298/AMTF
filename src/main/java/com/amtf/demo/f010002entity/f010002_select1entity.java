@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 public class f010002_select1entity {
 
-	private Integer News_id;
+	private Integer news_id;
 
-	private String News_Head;
+	private String news_head;
 
-	private String News_Text;
+	private String news_text;
 
-	private String News_Img;
+	private String news_img;
 
-	private String News_Date;
+	private String news_date;
 
 }

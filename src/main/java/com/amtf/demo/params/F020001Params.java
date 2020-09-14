@@ -18,7 +18,7 @@ public class F020001Params extends UserImpl {
 	/**
 	 * 姓名
 	 */
-	private String User_Name;
+	private String user_name;
 
 	/**
 	 * 用户图片

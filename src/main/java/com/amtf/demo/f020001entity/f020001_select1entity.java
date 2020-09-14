@@ -7,24 +7,24 @@ import lombok.Setter;
 @Setter
 public class f020001_select1entity {
 
-	private Integer User_id;
+	private Integer user_id;
 
-	private String User_Account;
+	private String user_account;
 
-	private String User_Password;
+	private String user_password;
 
-	private String User_Name;
+	private String user_name;
 
-	private String User_FH;
+	private String user_fh;
 
-	private String User_HomeAddress;
+	private String user_homeaddress;
 
-	private String User_Phone;
+	private String user_phone;
 
-	private String User_Attestation;
+	private String user_attestation;
 
-	private String User_power;
+	private String user_power;
 
-	private String User_path;
+	private String user_path;
 
 }

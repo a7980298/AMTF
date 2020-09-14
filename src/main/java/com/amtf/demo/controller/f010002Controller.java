@@ -51,7 +51,7 @@ public class f010002Controller extends ValiDationUtil {
 	 * @return String
 	 * @throws ErrListException
 	 */
-	@RequestMapping("/f010002/T001")
+	@PostMapping("/f010002/T001")
 	public String f010002T001(F010002Params params, Model model) throws ErrListException {
 
 		ParameterUtil.closeSession();
@@ -87,7 +87,7 @@ public class f010002Controller extends ValiDationUtil {
 	 * @parameter F010002Params params
 	 * @return String
 	 */
-	@PostMapping("/f010002/T002")
+	@RequestMapping("/f010002/T002")
 	public String f010002T002(F010002Params params, Model model) {
 
 		F010002entityIn entityin = new F010002entityIn();

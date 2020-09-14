@@ -46,11 +46,10 @@
 	}
 	// 修改用户信息
 	function amtf_upduser(){
-		amtf_submit(amtf_form , '/f010002/T002');
+		amtf_submit(amtf_formupduser , '/f010002/T002');
 	}
 </script>
 <body class="">
-	<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_form">
 	<div class="wrapper">
 		<div class="sidebar" data-color="rose" data-background-color="black"
 			th:data-image="@{/img/sidebar-1.jpg}">
@@ -149,7 +148,7 @@
 						<form class="navbar-form">
 							<div class="input-group no-border">
 								<input type="text" value="" class="form-control" placeholder="搜索..." style="width:200px;">
-								<button type="submit" class="btn btn-white btn-round btn-just-icon">
+								<button type="button" class="btn btn-white btn-round btn-just-icon">
 									<i class="material-icons">search</i>
 									<div class="ripple-container"></div>
 								</button>
@@ -190,7 +189,9 @@
 									<a class="dropdown-item" data-toggle="collapse" href="#userformaction">简况</a>
 									<a class="dropdown-item" href="#">设置</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#" onclick="amtf_return()">注销</a>
+									<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_form">
+										<a class="dropdown-item" href="#" onclick="amtf_return()">注销</a>
+									</i-form>
 								</div>
 							</li>
 						</ul>
@@ -198,6 +199,7 @@
 				</div>
 			</nav>
 			<div class="content">
+				<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser">
 				<div class="collapse" id="userformaction">
 					<div class="container-fluid">
 						<div class="row">
@@ -222,27 +224,27 @@
 											<div class="col-md-3">
 												<div class="form-group">
 													<label class="bmd-label-floating">用户名</label>
-													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_account}" maxlength="20">
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_account}" maxlength="20" name="upd_user_account">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label class="bmd-label-floating">电话</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_phone}" name="upd_user_phone">
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="bmd-label-floating">名 字</label>
-													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_name}">
+													<label class="bmd-label-floating">姓 名</label>
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_name}" name="upd_user_name">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="bmd-label-floating">姓</label>
-													<input type="text" class="form-control">
+													<label class="bmd-label-floating">国家</label>
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_country}" name="upd_user_country">
 												</div>
 											</div>
 										</div>
@@ -250,27 +252,27 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label class="bmd-label-floating">地址</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_country + '-'+ f010002Params.logInFo.user_province + '-'+ f010002Params.logInFo.user_city}">
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">市</label>
-													<input type="text" class="form-control">
+													<label class="bmd-label-floating">省</label>
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_province}" name="upd_user_province">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">国家</label>
-													<input type="text" class="form-control">
+													<label class="bmd-label-floating">市</label>
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_city}" name="upd_user_city">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label class="bmd-label-floating">邮政 编码</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" th:value="${f010002Params.logInFo.user_postcode}" name="upd_user_postcode">
 												</div>
 											</div>
 										</div>
@@ -279,13 +281,13 @@
 												<div class="form-group">
 													<label>自我 介绍</label>
 													<div class="form-group">
-														<label class="bmd-label-floating"> 讲讲你的兴趣爱好。</label>
-														<textarea class="form-control" rows="5"></textarea>
+														<label class="bmd-label-floating" th:if="${f010002Params.logInFo.user_introduce == ''}"> 讲讲你的兴趣爱好。</label>
+														<textarea class="form-control" rows="5" name="upd_user_introduce">[[${f010002Params.logInFo.user_introduce}]]</textarea>
 													</div>
 												</div>
 											</div>
 										</div>
-										<button type="submit" class="btn btn-rose pull-right" onclick="amtf_upduser()">更新个人信息</button>
+										<button type="button" class="btn btn-rose pull-right" onclick="amtf_upduser()">更新个人信息</button>
 										<div class="clearfix"></div>
 									</div>
 								</div>
@@ -298,23 +300,24 @@
 											<img class="img" th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" id="img2" style="height:130px;"/>
 										</a>
 									</div>
-								<div class="card-body">
-								<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">更换头像</button>
-								<input type="file" name="file0" id="file0" multiple="multiple" style="display:none;"/>
-								<h6 class="card-category text-gray">Web开发</h6>
-								<h4 class="card-title">[[${f010002Params.logInFo.user_name}]]</h4>
-								<p class="card-description">
-									暂无
-								</p>
-								<!-- <a href="#pablo" class="btn btn-rose btn-round">Follow</a> -->
+									<div class="card-body">
+										<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">更换头像</button>
+										<input type="file" name="file0" id="file0" multiple="multiple" style="display:none;"/>
+										<h6 class="card-category text-gray">Web开发</h6>
+										<h4 class="card-title">[[${f010002Params.logInFo.user_name}]]</h4>
+										<p class="card-description">
+											暂无
+										</p>
+										<!-- <a href="#pablo" class="btn btn-rose btn-round">Follow</a> -->
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				</i-form>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 	<div class="fixed-plugin">
 		<div class="dropdown show-dropdown">
@@ -417,7 +420,6 @@
 			</ul>
 		</div>
 	</div>
-	</i-form>
 	<script>
     $(document).ready(function() {
       $().ready(function() {

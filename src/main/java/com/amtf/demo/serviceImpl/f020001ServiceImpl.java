@@ -45,15 +45,15 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
-			f02_select.setUser_Account(select1.get(i).getUser_account());
+			f02_select.setUser_account(select1.get(i).getUser_account());
 
-			f02_select.setUser_Attestation(select1.get(i).getUser_attestation());
+			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
 
 			f02_select.setUser_id(select1.get(i).getUser_id());
 
-			f02_select.setUser_Name(select1.get(i).getUser_name());
+			f02_select.setUser_name(select1.get(i).getUser_name());
 
-			f02_select.setUser_Phone(select1.get(i).getUser_phone());
+			f02_select.setUser_phone(select1.get(i).getUser_phone());
 
 			f02_select.setUser_power(select1.get(i).getUser_power());
 
@@ -100,15 +100,15 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
-			f02_select.setUser_Account(select1.get(i).getUser_account());
+			f02_select.setUser_account(select1.get(i).getUser_account());
 
-			f02_select.setUser_Attestation(select1.get(i).getUser_attestation());
+			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
 
 			f02_select.setUser_id(select1.get(i).getUser_id());
 
-			f02_select.setUser_Name(select1.get(i).getUser_name());
+			f02_select.setUser_name(select1.get(i).getUser_name());
 
-			f02_select.setUser_Phone(select1.get(i).getUser_phone());
+			f02_select.setUser_phone(select1.get(i).getUser_phone());
 
 			f02_select.setUser_power(select1.get(i).getUser_power());
 

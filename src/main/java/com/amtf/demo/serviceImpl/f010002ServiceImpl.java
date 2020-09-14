@@ -100,10 +100,10 @@ public class f010002ServiceImpl implements f010002Service {
 		ImgUtil.CommitImg(entityIn.getFile0(), Constant.STR_1);
 
 		LogInFo loginfo = new LogInFo();
+		//id
+		loginfo.setUser_id(ParameterUtil.getSession().getUser_id());
 		//账户
 		loginfo.setUser_account(entityIn.getUpd_user_name());
-		//电话
-		loginfo.setUser_phone(entityIn.getUpd_user_phone());
 		//名字
 		loginfo.setUser_name(entityIn.getUpd_user_name());
 		//国家
@@ -114,8 +114,12 @@ public class f010002ServiceImpl implements f010002Service {
 		loginfo.setUser_city(entityIn.getUpd_user_city());
 		//邮编
 		loginfo.setUser_postcode(entityIn.getUpd_user_postcode());
-		//用户id
-		loginfo.setUser_id(ParameterUtil.getSession().getUser_id());
+		//电话
+		loginfo.setUser_phone(entityIn.getUpd_user_phone());
+		//介绍
+		loginfo.setUser_introduce(entityIn.getUpd_user_introduce());
+		//Email
+		loginfo.setUser_email(ParameterUtil.getSession().getUser_email());
 
 		Integer update2 = f010002dao.f010002_update2(loginfo);
 

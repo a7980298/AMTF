@@ -44,19 +44,19 @@ public class f010001ServiceImpl implements f010001Service {
 
 		f010001_select1entity select1entity = new f010001_select1entity();
 		LogInFo loginfo = new LogInFo();
-		loginfo.setUser_account(entityIn.getUser_Account());
-		loginfo.setUser_password(entityIn.getUser_Password());
+		loginfo.setUser_account(entityIn.getUser_account());
+		loginfo.setUser_password(entityIn.getUser_password());
 		// 判断是否需要保存密码
 		/*
 		 * if (!CommonUtil.isEmpty(entityIn.getRemember())) { // 存入Cookie中
 		 * ParameterUtil.setCookie(loginfo); }
 		 */
-		if (!CommonUtil.isEmpty(entityIn.getUser_Password())) {
+		if (!CommonUtil.isEmpty(entityIn.getUser_password())) {
 			// MD5加密
-			String md5pwd = DigestUtils.md5DigestAsHex(entityIn.getUser_Password().getBytes());
+			String md5pwd = DigestUtils.md5DigestAsHex(entityIn.getUser_password().getBytes());
 
 			// 用户是否正确
-			select1entity = f010001dao.f010001_Select1(entityIn.getUser_Account(), md5pwd);
+			select1entity = f010001dao.f010001_Select1(entityIn.getUser_account(), md5pwd);
 
 			// 判断用户密码是否正确
 			if (CommonUtil.isEmpty(select1entity)) {
