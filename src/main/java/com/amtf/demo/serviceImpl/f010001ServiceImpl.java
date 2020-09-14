@@ -124,7 +124,7 @@ public class f010001ServiceImpl implements f010001Service {
 					.getRequest();
 			// 创建session
 			HttpSession session = httpRequest.getSession();
-			session.setMaxInactiveInterval(30 * 60);// 以秒为单位
+			session.setMaxInactiveInterval(60);// 以秒为单位
 			session.setAttribute("verifycode", StringUtil.toStr(round));
 		}
 

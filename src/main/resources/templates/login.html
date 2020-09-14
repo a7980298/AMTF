@@ -87,6 +87,9 @@
 			} else if (_href == 'locking') {
 				$('#logintext').text('锁定 页面');
 				$('#login_image').css('background-image',"url('/amtf/img/lock.jpg')");
+				if ('[[${f010001Params.logInFo}]]' != null) {
+					
+				}
 			}
 		}
 		// 发送验证码
@@ -187,12 +190,12 @@
 								登录
 							</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<a href="#locking" class="nav-link loginhead" onclick="amtf_loginhead(this)">
 								<i class="material-icons">lock_open</i>
 								锁定
 							</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -205,6 +208,7 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
 							<i-form class="" th:action="@{/f010001}" method="post" id="amtf_form">
+							<input type="hidden" name="IViewId" value="f010001"/>
 								<div class="card card-login card-hidden">
 									<div class="card-header card-header-rose text-center">
 										<h3 class="card-title">登录</h3>

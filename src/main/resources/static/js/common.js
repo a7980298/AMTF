@@ -10,12 +10,13 @@ function setErrList(errlist) {
 		for (var i = 0; i < lists.length; i++) {
 			var _id = lists[i].substring(lists[i].indexOf('name:') + 5,lists[i].indexOf('}'));
 			var _val = lists[i].substring(lists[i].indexOf('err:') + 4,lists[i].indexOf('+'));
-			if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
+			/*if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
 				$('input[name=' + _id + ']').parent().after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
 			} else {
 				$('input[name=' + _id + ']').after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
 			}
-			$('input[name=' + _id + ']').addClass('errclass');
+			$('input[name=' + _id + ']').addClass('errclass');*/
+			alert(_val);
 		}
 	}
 }
@@ -37,14 +38,16 @@ function amtf_form_head(){
 //打开modal模态框
 function setCodeErrList(codeErrList){
 	if (codeErrList != null && codeErrList != '') {
-		$('#myModal_codeErr').modal('show');
+		/*$('#myModal_codeErr').modal('show');*/
+		alert(codeErrList);
 	}
 }
 
 //打开modal模态框
 function setCodeSuccess(CodeSuccess){
 	if (CodeSuccess != null && CodeSuccess != '') {
-		$('#myModal_success').modal('show');
+		/*$('#myModal_success').modal('show');*/
+		alert(CodeSuccess);
 	}
 }
 //关闭遮罩
