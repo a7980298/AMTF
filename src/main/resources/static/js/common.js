@@ -10,13 +10,15 @@ function setErrList(errlist) {
 		for (var i = 0; i < lists.length; i++) {
 			var _id = lists[i].substring(lists[i].indexOf('name:') + 5,lists[i].indexOf('}'));
 			var _val = lists[i].substring(lists[i].indexOf('err:') + 4,lists[i].indexOf('+'));
-			/*if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
+		/*	if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
 				$('input[name=' + _id + ']').parent().after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
 			} else {
 				$('input[name=' + _id + ']').after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
-			}
-			$('input[name=' + _id + ']').addClass('errclass');*/
-			alert(_val);
+			}*/
+			$('input[name=' + _id + ']').addClass('errclass');
+			$('input[name=' + _id + ']').css('background-image','linear-gradient(0deg,red 2px,rgba(156,39,176,0) 0),linear-gradient(0deg,#d2d2d2 1px,hsla(0,0%,82%,0) 0)');
+			$('#errlist').text(_val);
+			/*alert(_val);*/
 		}
 	}
 }
