@@ -178,3 +178,8 @@ function getObjectURL(file) {
 	}
 	return url ;
 }
+
+//日历控件生成
+$(document).ready(function() {
+	md.initFullCalendar();
+});

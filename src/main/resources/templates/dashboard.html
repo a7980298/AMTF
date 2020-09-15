@@ -17,10 +17,9 @@
 </head>
 <style type="text/css">
 	#wrapperid::-webkit-scrollbar{
-	width: 2px;
-	background: none;
+		width: 2px;
+		background: none;
 	}
-
 </style>
 <script type="text/javascript">
 	//返回
@@ -300,7 +299,7 @@
 						</a>
 					</li>
 					<li class="nav-item ">
-						<a class="nav-link" href="#">
+						<a class="nav-link" data-toggle="collapse" href="#calendarid">
 							<i class="material-icons">date_range</i>
 							<p>日历</p>
 						</a>
@@ -378,8 +377,8 @@
 					</div>
 				</div>
 			</nav>
-			<!-- End Navbar -->
-			<div class="content">
+			<!-- 主画面 -->
+			<div class="container">
 				<div class="content">
 					<div class="container-fluid">
 						<div class="row">
@@ -782,6 +781,27 @@
 					</div>
 				</div>
 			</div>
+			<!-- 日历 -->
+			<div class="collapse" id="calendarid">
+				<div class="container-fluid">
+					<div class="header text-center">
+						<h3 class="title">日历</h3>
+						<!-- <p class="category">Handcrafted by our friends from
+							<a target="_blank" href="https://fullcalendar.io/" rel="nofollow">FullCalendar.io</a>. Please checkout their
+							<a href="https://fullcalendar.io/docs/" target="_blank" rel="nofollow">full documentation.</a>
+						</p> -->
+					</div>
+					<div class="row">
+						<div class="col-md-10 ml-auto mr-auto">
+							<div class="card card-calendar">
+								<div class="card-body ">
+									<div id="fullCalendar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav class="float-left">
@@ -897,13 +917,11 @@
 	</div>
 	</i-form>
 	<script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
-      md.initVectorMap();
-
-    });
+	$(document).ready(function() {
+		// Javascript method's body can be found in assets/js/demos.js
+		md.initDashboardPageCharts();
+		md.initVectorMap();
+	});
   </script>
 </body>
 </html>
