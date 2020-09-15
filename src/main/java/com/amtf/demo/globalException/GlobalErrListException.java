@@ -24,8 +24,15 @@ public class GlobalErrListException {
 		log.error("错误信息：" + e.getMessage());
 		ModelAndView mav = new ModelAndView();
 		String IViewId = e.getIViewId();
-		mav.setViewName(IViewId);
 		mav.addObject(IViewId + "Params", e.getEntity());
+		if (IViewId.equals("f010001")) {
+			IViewId="login";
+		} else if (IViewId.equals("f010002")) {
+			IViewId="main";
+		}else if (IViewId.equals("f020001")) {
+			IViewId="dashboard";
+		}
+		mav.setViewName(IViewId);
 		mav.addObject("codemsg", e.getMessage());
 		return mav;
 	}
