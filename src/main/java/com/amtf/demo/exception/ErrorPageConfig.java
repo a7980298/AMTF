@@ -18,11 +18,11 @@ public class ErrorPageConfig implements ErrorController {
 		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
 		switch (statusCode) {
 		case 404:
-			return "/404";
+			return "/error";
 		case 400:
-			return "/400";
+			return "/error";
 		default:
-			return "/500";
+			return "/error";
 		}
 	}
 

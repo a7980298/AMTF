@@ -17,7 +17,7 @@ public class IfGeiSession implements HandlerInterceptor {
 		// 不存在的情况
 		if (account == null) {
 			// 重定向到登陆页面
-			response.sendRedirect("/amtf/err");
+			response.sendRedirect("/amtf/error");
 			return false;
 		}
 
