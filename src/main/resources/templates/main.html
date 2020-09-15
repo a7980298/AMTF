@@ -52,6 +52,15 @@
 	function amtf_golock(){
 		amtf_submit(amtf_formupduser , '/f010002/T003');
 	}
+	
+	// 相同class点击后颜色变化
+	function amtf_setColor(_this){
+		$('.coloritme').each(function(){
+			$(this).removeClass('active');
+		});
+		$(_this).addClass('active');
+		$(_this).css('background-color','#e91e63');
+	}
 </script>
 <body class="">
 	<div class="wrapper">
@@ -100,13 +109,13 @@
 					</div>
 				</div>
 				<ul class="nav">
-					<li class="nav-item active ">
+					<li class="nav-item active coloritme" onclick="amtf_setColor(this)">
 						<a class="nav-link" href="#">
 							<i class="material-icons">dashboard</i>
 							<p>可视化数据</p>
 						</a>
 					</li>
-					<li class="nav-item" th:each="mapkey,idx:${f010002Params.navigation_bar}">
+					<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f010002Params.navigation_bar}">
 						<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}">
 							<i class="material-icons">image</i>
 							<p>
