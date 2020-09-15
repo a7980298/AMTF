@@ -46,8 +46,8 @@
 			<div class="sidebar-wrapper" id="wrapperid">
 				<div class="user">
 					<div class="photo">
-						<img th:src="@{/imgs/userimg.jpg}" th:if="${f020001Params.logInFo.imgpath == ''}" id="img1"/>
-						<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" th:if="${f020001Params.logInFo.imgpath != ''}" id="img1"/>
+						<img th:src="@{/imgs/userimg.jpg}" th:if="${f020001Params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
+						<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" th:if="${f020001Params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
 					</div>
 					<div class="user-info">
 						<a data-toggle="collapse" class="username" style="height:30px;">
@@ -55,28 +55,6 @@
 								[[${f020001Params.logInFo.user_name}]]
 							</span>
 						</a>
-						<!-- <div class="collapse" id="collapseExample">
-							<ul class="nav">
-								<li class="nav-item">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> 个人 </span>
-										<span class="sidebar-normal"> 个人资料 </span>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> 文件 </span>
-										<span class="sidebar-normal"> 配置文件 </span>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> 设置 </span>
-										<span class="sidebar-normal"> 设置 </span>
-									</a>
-								</li>
-							</ul>
-						</div> -->
 					</div>
 				</div>
 				<ul class="nav">
@@ -913,11 +891,6 @@
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
 						<img th:src="@{/img/sidebar-4.jpg}" alt="">
 					</a>
-				</li>
-				<li class="button-container">
-					<a href="#" target="_blank" class="btn btn-rose btn-block btn-fill">Buy Now</a>
-					<a href="#" target="_blank" class="btn btn-default btn-block">Documentation</a>
-					<a href="#" target="_blank" class="btn btn-info btn-block"> Get Free Demo!</a>
 				</li>
 			</ul>
 		</div>
