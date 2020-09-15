@@ -18,6 +18,7 @@ function setErrList(errlist) {
 			$('input[name=' + _id + ']').addClass('errclass');
 			$('input[name=' + _id + ']').css('background-image','linear-gradient(0deg,red 2px,rgba(156,39,176,0) 0),linear-gradient(0deg,#d2d2d2 1px,hsla(0,0%,82%,0) 0)');
 			$('#errlist').text(_val);
+			$('#errlist').css('border','1px solid');
 			/*alert(_val);*/
 		}
 	}
