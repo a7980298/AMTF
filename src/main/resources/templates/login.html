@@ -10,6 +10,14 @@
 			登录
 		</title>
 		<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+		<style>
+			.dispaly_none{
+				display: none;
+			}
+			.display_block{
+				display: block;
+			}
+		</style>
 		<script type="text/javascript">
 		// 初始化方法
 		$(function() {
@@ -86,8 +94,8 @@
 			} else if (_href == 'userlogin') {
 				$('#logintext').text('登录 页面');
 				$('#login_image').css('background-image',"url('/amtf/img/login.jpg')");
-			} else if (_href == 'menubar') {
-				$('#logintext').text('菜单 选项');
+			} else if (_href == 'pricing') {
+				$('#logintext').text('产品 介绍');
 				$('#login_image').css('background-image',"url('/amtf/img/bg-pricing.jpg')");
 			} else if (_href == 'locking') {
 				$('#logintext').text('锁定 页面');
@@ -148,19 +156,6 @@
 			amtf_submit(amtf_formlock , '/f010001/T001');
 		}
 		</script>
-		<style>
-			.pointer:hover{
-				/*光标呈现为指示链接的指针（一只手）*/
-				cursor:pointer;
-			}
-			.dispaly_none{
-				display: none;
-			}
-			.display_block{
-				display: block;
-			}
-			
-		</style>
 	</head>
 	<body class="off-canvas-sidebar">
 		<!-- Navbar -->
@@ -179,13 +174,13 @@
 				<div class="collapse navbar-collapse justify-content-end">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a href="#menubar" class="nav-link loginhead" onclick="amtf_loginhead(this)">
+							<a class="nav-link loginhead" data-toggle="collapse" href="#pricing" onclick="amtf_loginhead(this)">
 								<i class="material-icons">dashboard</i>
-								多功能
+								产品介绍
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link loginhead" data-toggle="collapse" href="#userregister"  onclick="amtf_loginhead(this)">
+							<a class="nav-link loginhead" data-toggle="collapse" href="#userregister" onclick="amtf_loginhead(this)">
 								<i class="material-icons">person_add</i>
 								注冊
 							</a>
@@ -210,6 +205,76 @@
 		<div class="wrapper wrapper-full-page">
 			<div class="page-header login-page header-filter" filter-color="black" id="login_image" style="background-image: url('/amtf/img/login.jpg'); background-size: cover; background-position: top center;">
 				<!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+				<div class="collapse" data-toggle="collapse" id="pricing">
+					<div class="row">
+						<div class="col-md-6 ml-auto mr-auto text-center">
+							<h2 class="title">为你选择最好的计划</h2>
+							<h5 class="description">每个软件包都有免费的无限更新和高级支持。</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3 col-md-6">
+							<div class="card card-pricing card-plain">
+								<h6 class="card-category"> Freelancer</h6>
+								<div class="card-body">
+									<div class="card-icon icon-white ">
+										<i class="material-icons">weekend</i>
+									</div>
+									<h3 class="card-title">Free</h3>
+									<p class="card-description">This is good if your company size is between 2 and 10 Persons.</p>
+								</div>
+								<div class="card-footer justify-content-center ">
+									<a href="#pablo" class="btn btn-round btn-white">Choose Plan</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="card card-pricing ">
+								<h6 class="card-category"> Small Company</h6>
+								<div class="card-body">
+									<div class="card-icon icon-rose ">
+										<i class="material-icons">home</i>
+									</div>
+									<h3 class="card-title">29$</h3>
+									<p class="card-description">This is good if your company size is between 2 and 10 Persons.</p>
+								</div>
+								<div class="card-footer justify-content-center ">
+									<a href="#pablo" class="btn btn-round btn-rose">Choose Plan</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="card card-pricing card-plain">
+								<h6 class="card-category"> Medium Company</h6>
+								<div class="card-body">
+									<div class="card-icon icon-white ">
+										<i class="material-icons">business</i>
+									</div>
+									<h3 class="card-title">69$</h3>
+									<p class="card-description">This is good if your company size is between 11 and 99 Persons.</p>
+								</div>
+								<div class="card-footer justify-content-center ">
+									<a href="#pablo" class="btn btn-round btn-white">Choose Plan</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="card card-pricing card-plain">
+								<h6 class="card-category"> Extra Pack</h6>
+								<div class="card-body">
+									<div class="card-icon icon-white ">
+										<i class="material-icons">account_balance</i>
+									</div>
+									<h3 class="card-title">159$</h3>
+									<p class="card-description">This is good if your company size is 99+ Persons.</p>
+								</div>
+								<div class="card-footer justify-content-center ">
+									<a href="#pablo" class="btn btn-round btn-white">Choose Plan</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="container" data-toggle="collapse" id="userlogin">
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
