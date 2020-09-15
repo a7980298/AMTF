@@ -65,8 +65,8 @@
 			<div class="sidebar-wrapper" id="wrapperid">
 				<div class="user">
 					<div class="photo">
-						<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" id="img1"/>
-						<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" id="img1"/>
+						<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
+						<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
 					</div>
 					<div class="user-info">
 						<a data-toggle="collapse" href="#collapseExample" class="username" style="height:30px;">
@@ -307,7 +307,7 @@
 										</a>
 									</div>
 									<div class="card-body">
-										<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">修改头像</button>
+										<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">上传头像</button>
 										<input type="file" name="upd_user_img" id="file0" multiple="multiple" style="display:none;"/>
 										<h6 class="card-category text-gray">Web开发</h6>
 										<h4 class="card-title">[[${f010002Params.logInFo.user_name}]]</h4>
