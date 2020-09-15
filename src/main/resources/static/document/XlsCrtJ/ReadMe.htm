@@ -1,0 +1,722 @@
+<!-- saved from url=(0021)http://www.adv.co.jp/ -->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+<TITLE>ExcelCreator for Java ReadMe</TITLE>
+
+<!-- スタイル -->
+<STYLE type="text/css">
+/* 全体 */
+body {
+	background: #FFFFFF;
+	color: #000000;
+	font-family: Meiryo, MS Gothic, Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-style: normal;
+	font-weight: normal;
+	margin: 0px;
+	width: 100%;
+	font-size: 90%;
+}
+
+/* ヘッダー */
+div#header {
+	background-color: white;
+	padding: 20px, 0px, 0px, 0px;
+	width: 100%;
+}
+
+/* ヘッダー：テーブル */
+div#header table.headerTable { width: 100% }
+div#header table.headerTable tr {
+	padding-top: 10px;
+	padding-left: 13px;
+}
+div#header table.headerTable td {
+	color: #0481DA;
+	font-size: 90%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* ヘッダー：リスト */
+div#header ul.headerlist { 
+	margin: 10px, 0px, 10px, 15px;
+	list-style-type: none;
+}
+div#header ul.headerlist li { font-size: 75%; }
+div#header ul.headerlist li.sub1 { margin-left: 20px; }
+div#header ul.headerlist li.sub2 { margin-left: 35px; }
+
+/* フッター */
+div#footer {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
+}
+
+/* フッター：テーブル */
+div#footer table.footerTable { 
+	width: 100%;
+	padding-right: 10px;
+}
+div#footer table.footerTable tr {
+	padding-top: 10px;
+	padding-left: 13px;
+}
+div#footer table.footerTable td {
+	color: #0481DA;
+	font-size: 90%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* リンク */
+a { color: #0481DA; }
+a:visited { color: #0481DA; }
+a:hover { color: #E85F17; }
+
+/* 入力内容の表示 */
+pre {
+	margin: 0px 0px 0px 15px;
+	font-size: 80%;
+}
+
+/* セクション */
+div#section {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
+}
+
+/* セクション：項目 */
+div#section h1 {
+	color: #000000;
+	font-size: 100%;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 8px;
+	padding-left: 15px;
+}
+div#section h2 {
+	color: #000000;
+	font-size: 90%;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 8px;
+	padding-left: 15px;
+}
+div#section h3 {
+	color: #000000;
+	font-size: 80%;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 8px;
+	padding-left: 15px;
+}
+
+/* セクション：段落 */
+div#section p {
+	font-size: 75%;
+	margin: 10px 0px 5px 0px;
+	padding: 0px 33px 0px 15px;
+}
+div#section p.headerlink {
+	float: right;
+	font-size: 75%;
+	margin-top: 0px;
+	margin-right: 15px;
+}
+
+/* セクション：リスト */
+div#section ul { margin: 0px, 0px, 10px, 33px; }
+div#section ul.disc { 
+	list-style-type: disc;
+	margin: 0px, 33px, 10px, 33px;
+}
+div#section ul.square { list-style-type: square; }
+div#section ul.none {
+	margin-left: 18px;
+	list-style-type: none;
+}
+div#section li { font-size: 75%; }
+div#comment li { font-size: 90%; }
+
+/* テーブル用 */
+div#table01 {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 95%;
+}
+
+/* テーブル用：<P> タグ */
+div#table01 p {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+/* テーブル用：テーブル */
+div#table01 table.members {
+	table-layout: fixed;
+	background: white;
+	padding: 0px;
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 100%;
+}
+div#table01 table.members tr { min-height: 20px; }
+div#table01 table.members th {
+	background: #EFEFF7;
+	border-color: #c7ced8;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	text-align: left;
+	color: #000066;
+	padding: 5px;
+}
+div#table01 table.members th.nameColumn40 { width: 40%; }
+div#table01 table.members th.descriptionColumn30 { width: 30%; }
+div#table01 table.members th.descriptionColumn60 { width: 60%; }
+div#table01 table.members th.nameColumn5 { width: 5%; }
+div#table01 table.members th.nameColumn15 { width: 15%; }
+div#table01 table.members th.nameColumn25 { width: 25%; }
+div#table01 table.members th.nameColumn35 { width: 35%; }
+div#table01 table.members th.descriptionColumn50 { width: 50%; }
+
+div#table01 table.members td {
+	background: F7F7FF;
+	border-style: solid;
+	border-color: #c7ced8;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	vertical-align: center;
+	overflow: hidden;
+	color: #000000;
+	padding: 5px;
+}
+
+/* リスト内テーブル用 */
+div#list01 {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 13px;
+	padding-right: 0px;
+	width: 97%;
+}
+
+/* リスト内テーブル用：<P> タグ */
+div#list01 p {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+/* リスト内テーブル用：テーブル */
+div#list01 table.members {
+	table-layout: fixed;
+	background: white;
+	padding: 0px;
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 100%;
+}
+div#list01 table.members tr { min-height: 20px; }
+div#list01 table.members th {
+	background: #EFEFF7;
+	border-color: #c7ced8;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	text-align: left;
+	color: #000066;
+	padding: 5px;
+}
+div#list01 table.members th.nameColumn40 { width: 40%; }
+div#list01 table.members th.descriptionColumn30 { width: 30%; }
+div#list01 table.members th.descriptionColumn60 { width: 60%; }
+div#list01 table.members th.nameColumn5 { width: 5%; }
+div#list01 table.members th.nameColumn15 { width: 15%; }
+div#list01 table.members th.nameColumn25 { width: 25%; }
+div#list01 table.members th.nameColumn35 { width: 35%; }
+div#list01 table.members th.descriptionColumn50 { width: 50%; }
+
+div#list01 table.members td {
+	background: F7F7FF;
+	border-style: solid;
+	border-color: #c7ced8;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	vertical-align: center;
+	overflow: hidden;
+	color: #000000;
+	padding: 5px;
+}
+
+/* コーディング用 */
+div#code01 {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-left: 13px;
+	padding-right: 0px;
+	width: 100%;
+}
+/* コーディング用：テーブル */
+div#code01 table.members {
+	table-layout: fixed;
+	background: white;
+	padding: 0px;
+	width: 95%;
+	margin-bottom: 10px;
+	font-size: 90%;
+}
+div#code01 table.members tr { min-height: 20px; }
+div#code01 table.members th {
+	background: #FFFFFF;
+	border-color: #c7ced8;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	text-align: left;
+	color: #000066;
+	padding: 5px;
+}
+div#code01 table.members td {
+	background: FFFFFF;
+	border-width: 0px;
+	overflow: hidden;
+	color: #000000;
+	padding: 5px;
+}
+div#code01 table.members pre {
+	margin: 0px 0px 0px 0px;
+	font-size: 100%;
+}
+
+/* 入力内容の表示 */
+pre {
+	margin: 0px 0px 0px 15px;
+	font-family: Meiryo, MS Gothic, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 80%;
+}
+
+/* 任意のスタイル */
+span#attentionText { color: #FF0000; }
+span#copyrightText {
+	color: #8C8C8C;
+	font-size: 90%;
+}
+span#nsrTitle {
+	color: #000000;
+	font-size: 150%;
+	font-weight: 400;
+	font-family: Meiryo, MS Gothic, Verdana, Arial, Helvetica, sans-serif;
+}
+span#runningText {
+	color: #8C8C8C;
+	font-size: 90%;
+}
+span.italic { font-style: italic; }
+span.bold { font-weight: bold; }
+span.red { color: #FF0000; }
+span.green {  color: #00FF00;  }
+span.blue { color: #0000FF; }
+span.black { color: #000000; }
+span.bold-red {
+	font-weight: bold;
+	color: #FF0000;
+}
+span.bold-green {
+	font-weight: bold;
+	color: #00FF00;
+}
+span.bold-blue {
+	font-weight: bold;
+	color: #0000FF;
+}
+</STYLE>
+</HEAD>
+
+<!-- 本文 -->
+<BODY>
+
+<!-- ヘッダー -->
+<DIV id="header"><A name="header"></A>
+<TABLE class="headerTable" cellpadding="0" cellspacing="0">
+<TR>
+	<TD align="left">アドバンスソフトウェア株式会社</TD>
+</TR>
+<TR style="padding-top: 0px;">
+	<TD align="left"><SPAN id="nsrTitle">ExcelCreator for Java ReadMe</SPAN></TD>
+</TR>
+<TR style="padding-top: 0px;">
+	<TD align="left"><SPAN id="runningText">最終更新日：2019年2月7日</SPAN></TD>
+</TR>
+<TR>
+	<TD align="left"><SPAN id="attentionText">このファイルにはヘルプには記述されていない重要な内容を記述しておりますので、必ず最後までお読みください。</SPAN></TD>
+</TR>
+</TABLE>
+<UL class="headerlist">
+<LI>■&nbsp;<A href="#section1">はじめに</A></LI>
+<LI>■&nbsp;<A href="#section2">インストール</A></LI>
+<LI class="sub1"><A href="#section2-1">インストールされる JAR ファイルについて</A></LI>
+<LI class="sub1"><A href="#section2-2">インストールされるファイル</A></LI>
+<LI class="sub1"><A href="#section2-3">ファイルの説明</A></LI>
+<LI>■&nbsp;<A href="#section3">インストールとアンインストール</A></LI>
+<LI>■&nbsp;<A href="#section4">更新履歴</A></LI>
+<LI>■&nbsp;<A href="#section5">ライセンスのご案内</A></LI>
+<LI class="sub1"><A href="#section5-1">サイトライセンスについて</A></LI>
+<LI class="sub1"><A href="#section5-2">サーバーライセンスについて</A></LI>
+<LI>■&nbsp;<A href="#section6">お問い合わせ先</A></LI>
+</UL>
+
+<HR />
+
+<!-- Section1 -->
+<DIV id="section"><A name="section1"></A>
+<H1>■&nbsp;はじめに</H1>
+<P>ExcelCreator for Java は、Java EE、Java SE 環境で作成したプログラム中から Excel ファイルを高速に生成することができるコンポーネントです。独自の技術でファイルの生成を行うため処理速度が非常に高速です。Excel ファイルの新規作成、既存の Excel ファイルの上書きや別ファイルへの保存(オーバーレイ)が可能で、目的のセルに対してデータの設定の他、セルの書式、計算式、画像、オートシェイプ等の設定、シートのコピーや行、列の挿入/削除等がシンプルなコーディングで実現できます。また、PDF ファイルや HTML ファイルを出力することもできます。</P>
+
+<P>ExcelCreator for Java 製品版ユーザー様は、<A HREF="http://www.adv.co.jp/" TARGET="_Blank" >弊社 Web サイト</A> よりユーザー登録の手続きを行ってください。ユーザー登録が完了次第、サポートサービスのご利用が可能になります。</P>
+
+<!-- Section2 -->
+<DIV id="section"><A name="section2"></A>
+<H1>■&nbsp;インストール</H1>
+<A name="section2-1"></A>
+<H2>インストールされる JAR ファイルについて</H2>
+<P>
+ExcelCreator for Java は 以下の JAR ファイルが収録されます。
+</P>
+<DIV id="table01">
+<UL class="none">
+	<LI>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="3">
+	<COL width="25%" />
+	<TR>
+		<TH class="nameColumn25">ファイル名</TH>
+		<TH class="descriptionColumn50">詳細</TH>
+	</TR>
+
+　　　　<TR><TD>excelcreator-1.1.0.XXXX.jar<br />excelcreator-1.1.jar</TD><TD>ExcelCreator for Java JAR ファイル</TD>
+        </TR>
+　　　　<TR><TD>barcodecreator-1.0.0.XXXX.jar<br />barcodecreator-1.0.jar</TD><TD>ExcelCreator for Java バーコード生成 JAR ファイル</TD>
+        </TR>
+　　　　<TR><TD>excelcreator.presetfont.bin</TD><TD>プリセット フォント ファイル</TD>
+        </TR>
+	</TABLE>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="3">
+	<COL width="25%" />
+	<TR>
+		<TH class="nameColumn25">メモ:</TH>
+	</TR>
+	<TR>
+		<TD>使用方法についてはヘルプをご参照ください。</TD>
+	</TR>
+	</TABLE>
+	</LI>
+</UL>
+</DIV>
+
+<A name="section2-2"></A>
+<H2>インストールされるファイル</H2>
+<P>本製品に収録されているフォルダ、ファイルの構成を以下に示します。</P>
+<UL class="disc">
+	<LI>&lt;install&gt;は、ExcelCreator for Java のインストールディレクトリ (C:\Program Files\XlsCrtJ など) を表します。</LI>
+	<LI><SPAN class="red">赤色のフォルダ、ファイル</SPAN>は製品版のみインストールされるフォルダ、ファイルです。</LI>
+	<LI>samples フォルダ内のファイルは、Sample_ReadMe.htm をご確認ください。</LI>
+</UL>
+<PRE>
+<SPAN class="bold">\&lt;install&gt;\</SPAN>
+    Contract.txt
+    ReadMe.htm
+    Update.txt
+    <SPAN class="red">アップデート版ダウンロード</SPAN>
+    <SPAN class="red">ユーザー登録</SPAN>
+    <SPAN class="bold">bin\</SPAN>
+        barcodecreator-1.0.0.XXXX.jar
+        barcodecreator-1.0.jar
+        excelcreator.presetfont.bin
+        excelcreator-1.1.0.XXXX.jar
+        excelcreator-1.1.jar
+        <SPAN class="bold">unsigned\</SPAN>
+            barcodecreator-1.0.0.XXXX.jar
+            barcodecreator-1.0.jar
+            excelcreator-1.1.0.XXXX.jar
+            excelcreator-1.1.jar
+    <SPAN class="bold">help\</SPAN>
+        ExcelCreatorJava.htm
+        <SPAN class="bold">barcode\</SPAN>
+        <SPAN class="bold">doc\</SPAN>
+        <SPAN class="bold">reference\</SPAN>
+        <SPAN class="bold">styles\</SPAN>
+    <SPAN class="bold">samples\</SPAN>
+
+</PRE>
+<A name="section2-3"></A>
+<H3>ファイルの説明</H3>
+<P>上記のフォルダ、ファイル構成で主要なものを説明します。</P>
+<DIV id="table01">
+<UL class="none">
+	<LI>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="3">
+	<COL width="25%" />
+	<TR>
+		<TH class="nameColumn40">フォルダ／ファイル名</TH>
+		<TH class="descriptionColumn60">説明</TH>
+	</TR>
+	<TR>
+		<TD>bin\</TD>
+		<TD>ExcelCreator for Java JAR ファイルがインストールされます。</TD>
+	</TR>
+
+	<TR>
+		<TD>help\</TD>
+		<TD>ExcelCreator for Java ヘルプがインストールされます。</TD>
+	</TR>
+	<TR>
+		<TD>unsigned\</TD>
+		<TD>デジタル署名なしの ExcelCreator for Java JAR ファイルがインストールされます。</TD>
+	</TR>
+	<TR>
+		<TD>samples\</TD>
+		<TD>ExcelCreator for Java サンプルファイルがインストールされます。</TD>
+	</TR>
+	<TR>
+		<TD>Contract.txt</TD>
+		<TD>ExcelCreator for Java 使用許諾契約書です。</TD>
+	</TR>
+	<TR>
+		<TD>ReadMe.htm</TD>
+		<TD>このドキュメントです。</TD>
+	</TR>
+	</TABLE>
+	</LI>
+</UL>
+</DIV>
+
+<!-- Section3 -->
+<DIV id="section"><A name="section3"></A>
+<H1>■&nbsp;インストールとアンインストール</H1>
+<P>本製品のインストールは、zip 形式の圧縮ファイル(ExcelCreatorJavaSetup_XXXX.zip)を解凍後、ローカルの任意の箇所にコピーしてご対応ください。アンインストールは、解凍後のインストールフォルダ(XlsCrtJ)一式を削除してください。</P>
+
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+
+<!-- Section4 -->
+<DIV id="section"><A name="section4"></A>
+<H1>■&nbsp;更新履歴</H1>
+<P>
+本製品の更新履歴は、弊社ホームページに公開しています。下記ページをご確認ください。<BR />
+<A href="http://www.adv.co.jp/product/updatelist/excrtjava/update.txt
+" target="_blank">http://www.adv.co.jp/product/updatelist/excrtjava/update.txt
+<BR /></A><BR />
+なお、最新のアップデート版は、下記ページよりダウンロードすることができます。<BR />
+<A href="http://www.adv.co.jp/download/download.php?ftype=U" target="_blank">http://www.adv.co.jp/download/download.php?ftype=U<BR /></A>
+</P>
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+
+<!-- Section5 -->
+<DIV id="section"><A name="section5"></A>
+<H2>■&nbsp;ライセンスのご案内</H2>
+<A name="section5-1"></A>
+<H2>サイトライセンスについて</H2>
+<P>本製品は、企業や団体のお客様を対象に「サイトライセンス」を設けております。サイトライセンスとは、本製品 (基本パック) をお求め頂いたお客様のみ、下記「ライセンス価格一覧」の価格にて追加ライセンスをお求め頂ける制度です。</P>
+<P>本製品は 1 クライアントライセンス仕様ですので、1 台のクライアントマシンにインストールして使用することが許諾されています。複数台のマシンで使用する場合は、本製品と追加ライセンスを組み合わせてご利用ください。例えば、本製品を 10 台のパソコンにインストールする場合、本製品以外に 9 ライセンス必要になります。</P>
+<P>なお、追加ライセンスをご購入頂いた場合、1 つのシリアルナンバーでユーザー登録されるため、管理が簡単になります。是非、サイトライセンスをご利用ください。</P>
+<H3>ライセンス価格一覧</H3>
+<DIV id="table01">
+<UL class="none">
+	<LI>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="2">
+	<COL width="20%" />
+	<TR>
+		<TH class="nameColumn40">追加ライセンス数</TH>
+		<TH class="descriptionColumn30">1 ライセンス当たりの価格</TH>
+		<TH class="descriptionColumn30">定価 (40,000円) からの割引率</TH>
+	</TR>
+	<TR>
+		<TD>1 ～ 4</TD>
+		<TD>24,000 円</TD>
+		<TD>40% 引き</TD>
+	</TR>
+	<TR>
+		<TD>5 ～ 9</TD>
+		<TD>22,000 円</TD>
+		<TD>45% 引き</TD>
+	</TR>
+	<TR>
+		<TD>10 ～ 19</TD>
+		<TD>20,000 円</TD>
+		<TD>50% 引き</TD>
+	</TR>
+	<TR>
+		<TD>20 ～ 49</TD>
+		<TD>18,000 円</TD>
+		<TD>55% 引き</TD>
+	</TR>
+	<TR>
+		<TD>50 ～ 99</TD>
+		<TD>16,000 円</TD>
+		<TD>60% 引き</TD>
+	</TR>
+	<TR>
+		<TD>100 以上</TD>
+		<TD>14,000 円</TD>
+		<TD>65% 引き</TD>
+	</TR>
+	</TABLE>
+	※&nbsp;価格は税抜です。
+	</LI>
+</UL>
+</DIV>
+
+<A name="section5-2"></A>
+<H2>サーバーライセンスについて</H2>
+<P>ExcelCreator for Java を使用して作成したサーバーアプリケーションを配布、運用する場合、サーバーライセンスが必要です。
+例えば、2 つの環境(OS)で運用する場合は、2 ライセンス分のサーバーライセンスが必要になります。</P>
+<H3>サーバーライセンス詳細</H3>
+<DIV id="table01">
+<UL class="none">
+	<LI>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="2">
+	<COL width="20%" />
+	<TR>
+		<TH class="nameColumn40">必要条件</TH>
+		<TD>ExcelCreator for Java を使用して作成したサーバーアプリケーション(関連する機能を含む)を運用するサーバー環境(OS)数分、必要なライセンスです。</TD>
+	</TR>
+	<TR>
+		<TH class="nameColumn40">価格</TH>
+		<TD>1 ライセンスあたり / 120,000円</TD>
+	</TR>
+	<TR>
+		<TH class="nameColumn40">商品構成</TH>
+		<TD>ライセンス数や契約内容を記載した契約書(ライセンス証書)のみになります。</TD>
+	</TR>
+	<TR>
+		<TH class="nameColumn40">保守</TH>
+		<TD>保守契約が必要となる場合、サーバーライセンス保守契約(年間)の購入が必要になります。</TD>
+	</TR>
+
+	</TABLE>
+	※&nbsp;価格は税抜です。
+	</LI>
+</UL>
+</DIV>
+
+
+<H3>各種ライセンスのお問い合わせ、ならびに、お申し込みについて</H3>
+<UL class="disc">
+	<LI>サーバーライセンスに年間保守を含めたサーバーライセンス(保守付き)もご用意しております。</LI>
+	<LI>各ライセンスの必要本数などについては、<A href="#section6">お問い合わせ先</A> よりお問い合わせください。</LI>
+	<LI>各ライセンスのお申し込みは、弊社直販のほか、SB C&S株式会社、シネックスジャパン株式会社、株式会社システナのソフトウェア流通様よりお申し込み頂けます。</LI>
+	<LI>各ライセンスをご購入頂いた場合、契約書のみをお送りいたします。製品 CD-ROM はお付けしておりません。</LI>
+</UL>
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+
+
+
+<!-- Section6 -->
+<DIV id="section"><A name="section6"></A>
+<H1>■&nbsp;お問い合わせ先</H1>
+<P>弊社製品に関するお問い合わせは下記の窓口で受け付けています。</P>
+<H3>技術的なお問い合わせ</H3>
+<DIV id="table01">
+<UL class="none">
+	<LI>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="3">
+	<COL width="15%" />
+	<TR>
+		<TD>TEL</TD>
+		<TD>0776-21-9172</TD>
+	</TR>
+	<TR>
+		<TD>FAX</TD>
+		<TD>0776-21-9022</TD>
+	</TR>
+	<TR>
+		<TD>EMail</TD>
+		<TD><a href="mailto:xlscrt@adv.co.jp">xlscrt@adv.co.jp</a></TD>
+	</TR>
+	<TR>
+		<TD>受付時間</TD>
+		<TD>10:00～12:00、13:30～17:00</TD>
+	</TR>
+	</TABLE>
+	</LI>
+</DIV>
+<H3>営業に関するお問い合わせ</H3>
+<DIV id="table01">
+<UL class="none">
+	<LI>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="2">
+	<COL width="15%" />
+	<TR>
+		<TD>TEL</TD>
+		<TD>0776-21-9008</TD>
+	</TR>
+	<TR>
+		<TD>FAX</TD>
+		<TD>0776-21-9022</TD>
+	</TR>
+	<TR>
+		<TD>EMail</TD>
+		<TD><a href="mailto:info@adv.co.jp">info@adv.co.jp</a></TD>
+	</TR>
+	<TR>
+		<TD>受付時間</TD>
+		<TD>9:00～12:00、13:00～18:00</TD>
+	</TR>
+	</TABLE>
+	</LI>
+</UL>
+</DIV>
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+
+<HR/>
+
+<!-- フッター -->
+<DIV id="footer">
+<TABLE class="footerTable" cellpadding="0" cellspacing="0">
+	<TR>
+		<TD align="left">
+			<SPAN id="copyrightText"><A href="http://www.adv.co.jp/" target="_blank">(c) 2019 AdvanceSoftware inc. All rights reserved.</A></SPAN>
+		</TD>
+	</TR>
+	<TR>
+		<TD align="left">
+			<SPAN id="copyrightText">Microsoft Excel は、米国 Microsoft Corporation の商品名称です。その他、記載されている会社名、商品名は、各社の商標または登録商標です。</SPAN>
+		</TD>
+	</TR>
+</TABLE>
+</DIV>
+
+</BODY>
+
+</HTML>

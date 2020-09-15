@@ -1,0 +1,235 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+	<META NAME="save" CONTENT="history" />
+	<title>PDF ファイルを出力する</title>
+	<meta name="Language" content="ja-jp" />
+	<meta name="Microsoft.Help.Id" content="5b574ef2-1e13-4882-aae5-66c30c3c44ca" />
+	<meta name="Description" content="このトピックでは、Excel ファイルと PDF ファイルを出力する方法を説明します。" />
+	<meta name="Microsoft.Help.ContentType" content="Concepts" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/Presentation.css" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/EventUtilities.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/SplitScreen.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/Dropdown.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_manifold.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_feedBack.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CheckboxMenu.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CommonUtilities.js"> </script>
+	<link type="text/css" rel="stylesheet" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/highlight.js"> </script>
+</head>
+<body>
+	<input type="hidden" id="userDataCache" class="userDataStyle" />
+	<input type="hidden" id="hiddenScrollOffset" />
+	<img id="collapseImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" alt="Collapse image" title="Collapse image" />
+	<img id="expandImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" alt="Expand Image" title="Expand Image" />
+	<img id="collapseAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" />
+	<img id="expandAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" />
+	<img id="dropDownImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdown.gif" />
+	<img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdownHover.gif" />
+	<img id="copyImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycode.gif" alt="Copy image" title="Copy image" />
+	<img id="copyHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycodeHighlight.gif" alt="CopyHover image" title="CopyHover image" />
+	<div id="header">
+		<table id="bottomTable" cellpadding="0" cellspacing="0">
+			<tr id="headerTableRow1">
+				<td align="left">
+					<span id="runningHeaderText">ExcelCreator for Java</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow2">
+				<td align="left">
+					<span id="nsrTitle">PDF ファイルを出力する</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow3">
+				<td align="left">
+					<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">参照</a>
+					<span id="headfeedbackarea" class="feedbackhead">
+						<a href="javascript:SubmitFeedback('','ExcelCreator for Java','','1.1.0.1000','','ドキュメント開発チームはドキュメントの品質向上にあなたのフィードバックを使用いたします。送信いただいたメールアドレスは他の用途に使用いたしません。問題が解決した後送信されたメールアドレスを破棄いたします。送信いただいた問題の処理において，詳細をお伺いする場合や問題の切り分けのためにコンタクトをとらせていただく場合がございます。','Customer%20Feedback');">
+							<!--<include item="fb_headerFeedBack" />-->
+						</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<table id="gradientTable">
+			<tr>
+				<td class="nsrBottom" background="../Styles/icons/gradient.gif" />
+			</tr>
+		</table>
+	</div>
+	<div id="mainSection">
+		<div id="mainBody">
+			<div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+			<span style="color: DarkGray"></span>
+			<div class="introduction">
+				<p>ExcelCreator for Java では、closeBook メソッド呼び出し時に PDF ファイル名を指定して出力することができます。</p>
+				<p>このトピックは、次のセクションを含みます。</p>
+				<ul>
+					<li class="outlineSectionEntry">
+						<a href="#Section1">PDF ファイルを出力する</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section2">フォントについて</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section3">フォントディレクトリ</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section4">フォントファイル、外字ファイルの配布時の注意点</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section5">プリセットフォント機能</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section6">プリセットフォント機能の動作</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section7">該当フォントが無い場合の動作</a>
+					</li>
+				</ul>
+			</div>
+			<a name="Section1"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1, event)" tabindex="0">
+					<img id="sectionToggle1" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />PDF ファイルを出力する
+				</span>
+			</h1>
+			<div id="sectionSection1" class="section" name="collapseableSection" style="">
+				<p>次のコードは、C ドライブにある Excel ファイル (Template.xlsx) をオーバーレイオープンして C ドライブに Out.xlsx と Out.pdf を出力するサンプルコードです。<br>第 3 引数に HTML ファイル名を指定することで、HTML ファイルを出力することもできます。</p>
+
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment" >// C ドライブにある Excel ファイル (Template.xlsx) をオーバーレイオープンして C ドライブに Out.xlsx と Out.pdf を出力します。</span>
+xlsxCreator.openBook("C:\\Out.xlsx", "C:\\Template.xlsx");
+<span class="highlight-comment" >// PDF ファイルの文書のプロパティ「タイトル」に "ExcelCreator for Java PDF Title" を設定します。</span>
+xlsxCreator.getPdf().setTitle("ExcelCreator for Java PDF Title");
+<span class="highlight-comment" >// PDF ファイルの文書のプロパティ「サブタイトル」に "ExcelCreator for Java PDF Subject" を設定します。</span>
+xlsxCreator.getPdf().setSubject("ExcelCreator for Java PDF Subject");
+<span class="highlight-comment" >// PDF ファイルの文書のプロパティ「作成者」に "Advance Software PDF Author" を設定します。</span>
+xlsxCreator.getPdf().setAuthor("Advance Software PDF Author");
+<span class="highlight-comment" >// PDF ファイルの文書のプロパティ「PDF 変換」に "Advance Software PDF Producer" を設定します。</span>
+xlsxCreator.getPdf().setProducer("Advance Software PDF Producer");
+<span class="highlight-comment" >// C ドライブに Out.pdf を出力します。</span>
+xlsxCreator.closeBook(true, "C:\\Out.pdf", "", false);
+</div></span>
+				</div>
+			</div>
+			<a name="Section2"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />フォントについて</span>
+			</h1>
+			<div id="sectionSectionID2" class="section" name="collapseableSection" style="">
+				<p>PDF ファイル出力を行う環境では、予め Excel ブック内で指定されるフォント(ファイル)を配布する必要があります。また、「ＭＳ Ｐゴシック」などの他環境への配布が困難な Windows OS や Office 製品のバンドルフォントについては、「プリセットフォント機能」により制限付きでの文字出力に対応します。</p>
+			</div>
+			<a name="Section3"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />フォントディレクトリ</span>
+			</h1>
+			<div id="sectionSectionID2" class="section" name="collapseableSection" style="">
+				<p>Windows OS、RHEL、CentOS 既定のフォントディレクトリは下記の通りです。但し、フォントディレクトリは OS のインストール方法やディストリビューション、バージョンで異なる場合があります。</p>
+				<li class="outlineSectionEntry">各 OS のフォントディレクトリ</li>
+				<div class="subsection">
+				<div class="tableSection">
+					<table width="50%" cellspacing="2" cellpadding="5" frame="lhs">
+						<tr>
+							<td>Windows OS</td>
+							<td>"C:\Windows\Fonts\"</td>
+						</tr>
+						<tr>
+							<td>RHEL, CentOS</td>
+							<td>"~/.fonts/" または "/usr/share/fonts/"</td>
+						</tr>
+					</table>
+				</div>
+				</div>
+			</div>
+			<a name="Section4"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />フォントファイル、外字ファイルの配布時の注意点</span>
+			</h1>
+			<div id="sectionSectionID2" class="section" name="collapseableSection" style="">
+				<p>実行環境にフォントファイルを配置する場合、次の点にご注意ください。</p>
+				<li class="outlineSectionEntry">外字(EUDC.TTE)ファイルはフォントディレクトリに配置するか、getPdf.setEudcFiles メソッドでの指定が必要です。</li>
+				<li class="outlineSectionEntry">ttf 、ttc 形式のフォントファイルに対応します。</li>
+				<li class="outlineSectionEntry">フォントの配布時は、著作者に対し配布や利用条件を確認いただく必要があります。また、弊社では配布に関する内容にお答えすることはできません。</li>
+			</div>
+			<a name="Section5"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />プリセットフォント機能</span>
+			</h1>
+			<div id="sectionSectionID2" class="section" name="collapseableSection" style="">
+				<p>プリセットフォントは、Windows OS や Office 製品のバンドルフォントの配布なしで文字出力を実現できる機能です。次のフォントは設定なしで機能します。</p>
+				<div class="subsection">
+				<div class="tableSection">
+					<table width="50%" cellspacing="2" cellpadding="5" frame="lhs">
+						<tr>
+							<td>ＭＳ Ｐゴシック, ＭＳ ゴシック, ＭＳ Ｐ明朝, ＭＳ 明朝, メイリオ, 游明朝, 游ゴシック, Arial, Times New Roman, Tahoma, Microsoft Sans Serif</td>
+						</tr>
+					</table>
+				</div>
+				</div>
+				<p>また、上記に該当しないバンドルフォントは、外部プリセットファイル(ファイル名：excelcreator.presetfont.bin)を製品 Jar ファイルの同一ディレクトリに配置することで機能します。</p>
+			</div>
+			<a name="Section6"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />プリセットフォント機能の動作</span>
+			</h1>
+			<div id="sectionSectionID2" class="section" name="collapseableSection" style="">
+				<p>プリセットフォント参照時は次の仕様で出力されます。</p>
+				<li class="outlineSectionEntry">文字集合規格「Adobe-Japan1-2」に収録される文字の出力に対応します。</li>
+				<li class="outlineSectionEntry">上記の文字集合に該当しない文字は '?' で出力されます。</li>
+				<li class="outlineSectionEntry">文字の埋め込みは行われません。</li>
+			</div>
+			<a name="Section7"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />該当フォントが無い場合の動作</span>
+			</h1>
+			<div id="sectionSectionID2" class="section" name="collapseableSection" style="">
+				<p>プリセットフォントを含め該当フォントがない場合は、次の仕様で出力されます。</p>
+				<li class="outlineSectionEntry">製品内部のフォントリンク情報を参照し、他のフォントでの出力を試みます。</li>
+				<li class="outlineSectionEntry">該当フォントが存在しない場合、文字種により次の文字で出力されます。<br>
+&nbsp;&nbsp;&nbsp; 全角文字・・・「Microsoft Sans Serif」で文字'?'が出力されます。<br>
+&nbsp;&nbsp;&nbsp; 半角文字・・・「Microsoft Sans Serif」で指定文字が出力されます。</li>
+				<li class="outlineSectionEntry">文字の埋め込みは行われません。</li>
+			</div>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle, event)" tabindex="0">
+					<img id="seeAlsoToggle" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />参照
+				</span>
+			</h1>
+			<div id="seeAlsoSection" class="section" name="collapseableSection" style="">
+				<h4 class="subHeading">
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+							<a href="BasicOperation.htm">基本操作</a>
+						</span>
+					</div>
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+								<a href="../doc/index.html" target="_blank">ExcelCreator クラス</a>
+						</span>
+					</div>
+				</h4>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="footerLine">
+				<img width="100%" height="3px" src="../Styles/icons/footer.gif" alt="Footer image" title="Footer image" />
+			</div>
+			<A NAME="feedback"></A>
+			<span id="fb" class="feedbackcss"></span>
+			<p />
+			<a href="http://www.adv.co.jp/" target="_blank">©2019 Advance Software inc. All rights reserved.</a>
+		</div>
+	</div>
+</body>
+</html>

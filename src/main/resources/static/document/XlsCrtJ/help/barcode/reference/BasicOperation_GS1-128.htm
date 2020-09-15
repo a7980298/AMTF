@@ -1,0 +1,179 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+	<META NAME="save" CONTENT="history" />
+	<title>公共料金等代理収納 GS1-128 の設定について</title>
+	<meta name="Language" content="ja-jp" />
+	<meta name="Microsoft.Help.Id" content="0e46a7a8-bd3d-4f52-8b2c-86e8833cf419" />
+	<meta name="Description" content="ここでは、公共料金等代理収納 GS1-128 の設定について説明します。" />
+	<meta name="Microsoft.Help.ContentType" content="Concepts" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/Presentation.css" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/EventUtilities.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/SplitScreen.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/Dropdown.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_manifold.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_feedBack.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CheckboxMenu.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CommonUtilities.js"> </script>
+        <script type="text/javascript" src="../Styles/scripts/highlight.js"> </script>
+</head>
+<body>
+	<input type="hidden" id="userDataCache" class="userDataStyle" />
+	<input type="hidden" id="hiddenScrollOffset" />
+	<img id="collapseImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" alt="Collapse image" title="Collapse image" />
+	<img id="expandImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" alt="Expand Image" title="Expand Image" />
+	<img id="collapseAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" />
+	<img id="expandAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" />
+	<img id="dropDownImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdown.gif" />
+	<img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdownHover.gif" />
+	<img id="copyImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycode.gif" alt="Copy image" title="Copy image" />
+	<img id="copyHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycodeHighlight.gif" alt="CopyHover image" title="CopyHover image" />
+	<div id="header">
+		<table id="bottomTable" cellpadding="0" cellspacing="0">
+			<tr id="headerTableRow1">
+				<td align="left">
+					<span id="runningHeaderText">BarCodeCreator for Java</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow2">
+				<td align="left">
+					<span id="nsrTitle">公共料金等代理収納 GS1-128 の設定について</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow3">
+				<td align="left">
+					<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">参照</a>
+					<span id="headfeedbackarea" class="feedbackhead">
+						<a href="javascript:SubmitFeedback('','BarCodeCreator for Java','','1.1.0.1000','','ドキュメント開発チームはドキュメントの品質向上にあなたのフィードバックを使用いたします。送信いただいたメールアドレスは他の用途に使用いたしません。問題が解決した後送信されたメールアドレスを破棄いたします。送信いただいた問題の処理において，詳細をお伺いする場合や問題の切り分けのためにコンタクトをとらせていただく場合がございます。','Customer%20Feedback');">
+							<!--<include item="fb_headerFeedBack" />-->
+						</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<table id="gradientTable">
+			<tr>
+				<td class="nsrBottom" background="../Styles/icons/gradient.gif" />
+			</tr>
+		</table>
+	</div>
+	<div id="mainSection">
+		<div id="mainBody">
+			<div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+			<span style="color: DarkGray"></span>
+			<div class="introduction">
+				<p>バーコードクラスの対応バーコードである「公共料金代理収納 GS1-128」では、内部で次に示す設定を行いバーコードイメージを作成します。</p>
+				<ul>
+					<li>スタートコードセットを「コードセット C」に自動で設定します。</li>
+					<li>バーコードシンボル下の目視文字 (バーコードデータ) は、2 段で表示します。</li>
+					<li>目視文字のみで表示する識別文字の括弧や指定位置に入れるハイフンは、自動で設定します。</li>
+				</ul>
+			</div>
+			<div id="sectionSection1" class="seeAlsoNoToggleSection">
+				<div class="subsection">
+					<h3 class="subHeading">「公共料金代理収納 GS1-128」 のバーコードを作成するには</h3>
+	<p>次のバーコードイメージを作成するコードです。</p>
+	<p><img alt="公共料金代理収納 GS1-128" src="../Styles/image/barcode_CONVINI.png" /></p>
+
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+
+String barCodeData;
+barCodeData = "91";				<span class="highlight-comment">// 識別子</span>
+barCodeData += "912345";			<span class="highlight-comment">// メーカーコード</span>
+barCodeData += "1234567890123456789211";	<span class="highlight-comment">// 自由使用欄、再発行区分</span>
+barCodeData += "020331";			<span class="highlight-comment">// 支払い期限日</span>
+barCodeData += "0";				<span class="highlight-comment">// 印紙フラグ</span>
+barCodeData += "123456";			<span class="highlight-comment">// 支払い金額</span>
+barCodeData += "2";				<span class="highlight-comment">// 全体チェックデジット</span>
+
+<span class="highlight-comment">// バーコードの種類を「GS1Fixed」に設定します。</span>
+barCode.setType(BarCodeType.GS1Fixed);
+<span class="highlight-comment">// バーコード生成単位を「Pixel」に設定します。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// バーコードの横方向の解像度を「600」に設定します。</span>
+barCode.setDpiX(600);
+<span class="highlight-comment">// バーコードの縦方向の解像度を「600」に設定します。</span>
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を「6」に設定します。</span>
+barCode.setElement(6);
+<span class="highlight-comment">// バーコードデータを設定します。</span>
+barCode.setValue(barCodeData);
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+  barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+  e.printStackTrace();
+}
+</pre>
+</div></span>
+<!--
+			<div id="sectionSection1" class="seeAlsoNoToggleSection">
+				<div class="subsection">
+					<h3 class="subHeading">バーコードを作成する</h3>
+					<p>
+						<span class="nolink">
+							<a href="BasicOperation_CreateBook.htm">作成可能なバーコードの種類</a>
+						</span>
+					</p>
+					<p>バーコードクラスで作成可能なバーコードの種類を説明します。</p>
+					<p>
+						<span class="nolink">
+							<a href="BasicOperation_OpenBook.htm">基本的なバーコード作成方法</a>
+						</span>
+					</p>
+					<p>基本的なバーコードイメージを作成する方法を説明します。</p>
+					<p>
+						<span class="nolink">
+							<a href="BasicOperation_Overlay.htm">バーコードの設定に関する補足</a>
+						</span>
+					</p>
+					<p>バーコード特有の設定を説明します。</p>
+				</div>
+			</div>
+-->
+			<h3 class="subHeading">参考 : 全体チェックデジットの計算方法</h3>
+			<div class="subsection">
+			<p>全体チェックデジットは、「モジュラス 10 / ウェイト1、3」で算出します。</p>
+			<ol>
+
+			<li>全体デジットの桁を 1 桁目とし、右の桁から左の桁へ順に番号を付加します。</li>
+			<li>A : 全ての偶数桁の数字を加算して、それに 3 を掛けます。</li>
+			<li>B : 全体チェックデジットの桁 (1 桁目) を除く、全ての奇数桁の数字を加算します。</li>
+			<li>C : A と B を加算して、合計を求めます。</li><li>10 から C の下 1 桁の数字を引いたものが全体チェックデジットになります。</li>
+			</ol><br />
+
+			<p>※ "9191234512345678901234567892110203310123456" の場合</p>
+			<img alt="モジュラス10 / ウェイト1、3" src="../Styles/image/CheckDigit.png" />
+			</div>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle, event)" tabindex="0">
+					<img id="seeAlsoToggle" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />参照
+				</span>
+			</h1>
+			<div id="seeAlsoSection" class="section" name="collapseableSection" style="">
+				<h4 class="subHeading">
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+							<a href="../BarCodeCreatorJava.htm">BarCodeCreator for Java ヘルプ目次</a>
+						</span>
+					</div>
+				</h4>
+			</div>
+			<div id="footer">
+				<div class="footerLine">
+					<img width="100%" height="3px" src="../Styles/icons/footer.gif" alt="Footer image" title="Footer image" />
+				</div>
+				<A NAME="feedback"></A>
+			</div>
+			<span id="fb" class="feedbackcss"></span>
+			<p />
+			<a href="http://www.adv.co.jp/" target="_blank">©2019 Advance Software inc. All rights reserved.</a>
+		</div>
+	</div>
+</body>
+</html>

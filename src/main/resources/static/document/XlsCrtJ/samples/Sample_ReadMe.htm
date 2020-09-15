@@ -1,0 +1,751 @@
+<!-- saved from url=(0021)http://www.adv.co.jp/ -->
+<HTML>
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=Shift-JIS">
+<TITLE>ExcelCreator for Java 収録サンプルについて</TITLE>
+
+<!-- スタイル -->
+<STYLE type="text/css">
+/* 全体 */
+body {
+	background: #FFFFFF;
+	color: #000000;
+	font-family: Meiryo, MS Gothic, Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-style: normal;
+	font-weight: normal;
+	margin: 0px;
+	width: 100%;
+	font-size: 90%;
+}
+
+/* ヘッダー */
+div#header {
+	background-color: white;
+	padding: 20px, 0px, 0px, 0px;
+	width: 100%;
+}
+
+/* ヘッダー：テーブル */
+div#header table.headerTable { width: 100% }
+div#header table.headerTable tr {
+	padding-top: 10px;
+	padding-left: 13px;
+}
+div#header table.headerTable td {
+	color: #0481DA;
+	font-size: 90%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* ヘッダー：リスト */
+div#header ul.headerlist { 
+	margin: 10px, 0px, 10px, 15px;
+	list-style-type: none;
+}
+div#header ul.headerlist li { font-size: 75%; }
+div#header ul.headerlist li.sub1 { margin-left: 20px; }
+div#header ul.headerlist li.sub2 { margin-left: 35px; }
+
+/* フッター */
+div#footer {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
+}
+
+/* フッター：テーブル */
+div#footer table.footerTable { 
+	width: 100%;
+	padding-right: 10px;
+}
+div#footer table.footerTable tr {
+	padding-top: 10px;
+	padding-left: 13px;
+}
+div#footer table.footerTable td {
+	color: #0481DA;
+	font-size: 90%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* リンク */
+a { color: #0481DA; }
+a:visited { color: #0481DA; }
+a:hover { color: #E85F17; }
+
+/* 入力内容の表示 */
+pre {
+	margin: 0px 0px 0px 15px;
+	font-size: 80%;
+}
+
+/* セクション */
+div#section {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
+}
+
+/* セクション：項目 */
+div#section h1 {
+	color: #000000;
+	font-size: 100%;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 8px;
+	padding-left: 15px;
+}
+div#section h2 {
+	color: #000000;
+	font-size: 90%;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 8px;
+	padding-left: 15px;
+}
+div#section h3 {
+	color: #000000;
+	font-size: 80%;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 8px;
+	padding-left: 15px;
+}
+
+/* セクション：段落 */
+div#section p {
+	font-size: 75%;
+	margin: 10px 0px 5px 0px;
+	padding: 0px 33px 0px 15px;
+}
+div#section p.headerlink {
+	float: right;
+	font-size: 75%;
+	margin-top: 0px;
+	margin-right: 15px;
+}
+
+/* セクション：リスト */
+div#section ul { margin: 0px, 0px, 10px, 33px; }
+div#section ul.disc { 
+	list-style-type: disc;
+	margin: 0px, 33px, 10px, 33px;
+}
+div#section ul.square { list-style-type: square; }
+div#section ul.none {
+	margin-left: 18px;
+	list-style-type: none;
+}
+div#section li { font-size: 75%; }
+div#comment li { font-size: 90%; }
+
+/* テーブル用 */
+div#table01 {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 95%;
+}
+
+/* テーブル用：<P> タグ */
+div#table01 p {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+/* テーブル用：テーブル */
+div#table01 table.members {
+	table-layout: fixed;
+	background: white;
+	padding: 0px;
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 100%;
+}
+div#table01 table.members tr { min-height: 20px; }
+div#table01 table.members th {
+	background: #EFEFF7;
+	border-color: #c7ced8;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	text-align: left;
+	color: #000066;
+	padding: 5px;
+}
+div#table01 table.members th.nameColumn40 { width: 40%; }
+div#table01 table.members th.descriptionColumn30 { width: 30%; }
+div#table01 table.members th.descriptionColumn60 { width: 60%; }
+div#table01 table.members th.nameColumn5 { width: 5%; }
+div#table01 table.members th.nameColumn15 { width: 15%; }
+div#table01 table.members th.nameColumn25 { width: 25%; }
+div#table01 table.members th.nameColumn35 { width: 35%; }
+div#table01 table.members th.descriptionColumn50 { width: 50%; }
+
+div#table01 table.members td {
+	background: F7F7FF;
+	border-style: solid;
+	border-color: #c7ced8;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	vertical-align: center;
+	overflow: hidden;
+	color: #000000;
+	padding: 5px;
+}
+
+/* リスト内テーブル用 */
+div#list01 {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 13px;
+	padding-right: 0px;
+	width: 97%;
+}
+
+/* リスト内テーブル用：<P> タグ */
+div#list01 p {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+/* リスト内テーブル用：テーブル */
+div#list01 table.members {
+	table-layout: fixed;
+	background: white;
+	padding: 0px;
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 100%;
+}
+div#list01 table.members tr { min-height: 20px; }
+div#list01 table.members th {
+	background: #EFEFF7;
+	border-color: #c7ced8;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	text-align: left;
+	color: #000066;
+	padding: 5px;
+}
+div#list01 table.members th.nameColumn40 { width: 40%; }
+div#list01 table.members th.descriptionColumn30 { width: 30%; }
+div#list01 table.members th.descriptionColumn60 { width: 60%; }
+div#list01 table.members th.nameColumn5 { width: 5%; }
+div#list01 table.members th.nameColumn15 { width: 15%; }
+div#list01 table.members th.nameColumn25 { width: 25%; }
+div#list01 table.members th.nameColumn35 { width: 35%; }
+div#list01 table.members th.descriptionColumn50 { width: 50%; }
+
+div#list01 table.members td {
+	background: F7F7FF;
+	border-style: solid;
+	border-color: #c7ced8;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	vertical-align: center;
+	overflow: hidden;
+	color: #000000;
+	padding: 5px;
+}
+
+/* コーディング用 */
+div#code01 {
+	background-color: white;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-left: 13px;
+	padding-right: 0px;
+	width: 100%;
+}
+/* コーディング用：テーブル */
+div#code01 table.members {
+	table-layout: fixed;
+	background: white;
+	padding: 0px;
+	width: 95%;
+	margin-bottom: 10px;
+	font-size: 90%;
+}
+div#code01 table.members tr { min-height: 20px; }
+div#code01 table.members th {
+	background: #FFFFFF;
+	border-color: #c7ced8;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 1px;
+	text-align: left;
+	color: #000066;
+	padding: 5px;
+}
+div#code01 table.members td {
+	background: FFFFFF;
+	border-width: 0px;
+	overflow: hidden;
+	color: #000000;
+	padding: 5px;
+}
+div#code01 table.members pre {
+	margin: 0px 0px 0px 0px;
+	font-size: 100%;
+}
+
+/* 入力内容の表示 */
+pre {
+	margin: 0px 0px 0px 15px;
+	font-family: Meiryo, MS Gothic, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 80%;
+}
+
+/* 任意のスタイル */
+span#attentionText { color: #FF0000; }
+span#copyrightText {
+	color: #8C8C8C;
+	font-size: 90%;
+}
+span#nsrTitle {
+	color: #000000;
+	font-size: 150%;
+	font-weight: 400;
+	font-family: Meiryo, MS Gothic, Verdana, Arial, Helvetica, sans-serif;
+}
+span#runningText {
+	color: #8C8C8C;
+	font-size: 90%;
+}
+span.italic { font-style: italic; }
+span.bold { font-weight: bold; }
+span.red { color: #FF0000; }
+span.green {  color: #00FF00;  }
+span.blue { color: #0000FF; }
+span.black { color: #000000; }
+span.bold-red {
+	font-weight: bold;
+	color: #FF0000;
+}
+span.bold-green {
+	font-weight: bold;
+	color: #00FF00;
+}
+span.bold-blue {
+	font-weight: bold;
+	color: #0000FF;
+}
+</STYLE>
+</HEAD>
+
+<!-- 本文 -->
+<BODY>
+
+<!-- ヘッダー -->
+	<DIV id="header">
+		<A name="header"></A>
+		<TABLE class="headerTable" cellpadding="0" cellspacing="0">
+			<TR>
+				<TD align="left">ExcelCreator for Java</TD>
+			</TR>
+			<TR style="padding-top: 0px;">
+				<TD align="left">
+					<SPAN id="nsrTitle">ExcelCreator for Java 収録サンプルについて</SPAN>
+				</TD>
+			</TR>
+			<TR>
+				<TD align="left">
+					<SPAN id="runningText">最終更新日：2019年2月7日</SPAN>
+				</TD>
+			</TR>
+			<TR>
+				<TD align="left">
+					<SPAN id="attentionText">このドキュメントでは、ExcelCreator for Java で提供しているサンプルプログラムの構成およびインストールされるファイルについて説明します。</SPAN>
+				</TD>
+			</TR>
+		</TABLE>
+		<UL class="headerlist">
+			<LI>◆&nbsp;<A href="#sample-info">サンプルの概要</A></LI>
+			<LI>◆&nbsp;<A href="#configuration">フォルダ、ファイル構成</A></LI>
+			<LI>◆&nbsp;<A href="#howto">ExcelCreator for Java Web サンプルの使用方法</A></LI>
+			<LI>◆&nbsp;<A href="#inquiry">お問い合わせ先</A></LI>
+		</UL>
+	</DIV>
+
+<!-- サンプルの概要 -->
+	<DIV id="section">
+		<A name="sample-info"></A>
+		<H1>◆&nbsp;サンプルの概要</H1>
+			<P>Eclipse、NetBeans で使用できるサンプル アプリケーションです。<BR></P>
+			<DIV id="table01">
+				<UL class="disc">
+					<LI>
+					<B>client</B><br>
+                                            ExcelCreator for Java の基本的な使用方法を確認することが可能なクライアント用サンプルです。
+					</LI>
+					<LI>
+
+					<B>web</B><br>
+                                            ExcelCreator for Java の基本的な使用方法を確認することが可能な Web サンプルです。サンプルは、standard、webform の 2 種類です。
+					</LI>
+
+				</UL>
+			</DIV>
+
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+
+<!-- フォルダー、ファイル構成 -->
+<DIV id="section"><A name="configuration"></A>
+<H1>◆&nbsp;フォルダ、ファイル構成</H1>
+<P>ExcelCreator for Java のサンプルプログラムは次のように構成されています。<BR>
+※&lt;install&gt; は、ExcelCreator for Java のインストールフォルダ (C:\Program Files\XlsCrtJ\ など) を表します。</P>
+<BR>
+<PRE>
+<SPAN class="bold">\&lt;install&gt;\</SPAN>
+    <SPAN class="bold">samples\</SPAN>
+        Sample_ReadMe.htm
+        <SPAN class="bold">client\</SPAN>
+            <SPAN class="bold">data\</SPAN>
+                gaiji1.euf
+                gaiji1.tte
+                gaiji2.euf
+                gaiji2.tte
+                image.bmp
+                image.gif
+                image.jpg
+                image.png
+                overwrite.xlsx
+                templatecalculate.xlsx
+                templatecellpos.xlsx
+                templatecolumn.xlsx
+                templateeditcell.xlsx
+                templateetc.xlsx
+                templatehensuu.xlsx
+                templatehensuu2.xlsx
+                templateoverlay.xlsx
+                templatepdf.xlsx
+                templaterow.xlsx
+            <SPAN class="bold">src\</SPAN>
+                MainJFrame.java
+                <SPAN class="bold">donotedit\</SPAN>
+                    MainJPanel.java
+                    SampleWork.java
+                    <SPAN class="bold">images\</SPAN>
+                        ecjava_sampleheader.png
+                <SPAN class="bold">panel\</SPAN>
+                    AttributeCellJPanel.java
+                    AttributeRowColJPanel.java
+                    AttributeSheetJPanel.java
+                    CalculateJPanel.java
+                    CellPosJPanel.java
+                    CreateJPanel.java
+                    DrawingJPanel.java
+                    EditCellJPanel.java
+                    GetPositionJPanel.java
+                    HensuuJPanel.java
+                    HtmlJPanel.java
+                    HtmlOptionJPanel.java
+                    OverlayJPanel.java
+                    PdfJPanel.java
+                    PdfOption1JPanel.java
+                    PdfOption2JPanel.java
+        <SPAN class="bold">web\</SPAN>
+            <SPAN class="bold">standard\</SPAN>
+                <SPAN class="bold">src\</SPAN>
+                    <SPAN class="bold">model\</SPAN>
+                        SampleWork.java
+                    <SPAN class="bold">servlet\</SPAN>
+                        AttributeCellServlet.java
+                        AttributeRowColServlet.java
+                        AttributeSheetServlet.java
+                        CalculateServlet.java
+                        CellPosServlet.java
+                        CreateBookServlet.java
+                        DrawingServlet.java
+                        EditCellServlet.java
+                        GetPositionServlet.java
+                        HensuuServlet.java
+                        HtmlOptionServlet.java
+                        HtmlServlet.java
+                        OverlayServlet.java
+                        PdfOption1Servlet.java
+                        PdfOption2Servlet.java
+                        PdfServlet.java
+                <SPAN class="bold">WebContent\</SPAN>
+                    index.html
+                    <SPAN class="bold">1-file\</SPAN>
+                        createbook.jsp
+                        html.jsp
+                        htmloption.jsp
+                        overlay.jsp
+                        pdf.jsp
+                        pdfoption1.jsp
+                        pdfoption2.jsp
+                    <SPAN class="bold">2-setvalue\</SPAN>
+                        cellpos.jsp
+                        hensuu.jsp
+                    <SPAN class="bold">3-edit\</SPAN>
+                        attributecell.jsp
+                        attributerowcol.jsp
+                        attributesheet.jsp
+                        calculate.jsp
+                        drawing.jsp
+                        editcell.jsp
+                        getposition.jsp
+                    <SPAN class="bold">donotedit\</SPAN>
+                        <SPAN class="bold">css\</SPAN>
+                            style.css
+                        <SPAN class="bold">font-awesome-4.3.0\</SPAN>
+                            <SPAN class="bold">css\</SPAN>
+                                font-awesome.css
+                                font-awesome.min.css
+                            <SPAN class="bold">fonts\</SPAN>
+                                fontawesome-webfont.eot
+                                fontawesome-webfont.svg
+                                fontawesome-webfont.ttf
+                                fontawesome-webfont.woff
+                                fontawesome-webfont.woff2
+                                FontAwesome.otf
+                            <SPAN class="bold">less\</SPAN>
+                                animated.less
+                                bordered-pulled.less
+                                core.less
+                                fixed-width.less
+                                font-awesome.less
+                                icons.less
+                                larger.less
+                                list.less
+                                mixins.less
+                                path.less
+                                rotated-flipped.less
+                                stacked.less
+                                variables.less
+                            <SPAN class="bold">scss\</SPAN>
+                                font-awesome.scss
+                                _animated.scss
+                                _bordered-pulled.scss
+                                _core.scss
+                                _fixed-width.scss
+                                _icons.scss
+                                _larger.scss
+                                _list.scss
+                                _mixins.scss
+                                _path.scss
+                                _rotated-flipped.scss
+                                _stacked.scss
+                                _variables.scss
+                        <SPAN class="bold">images\</SPAN>
+                            ecjava_sampleheader.png
+                        <SPAN class="bold">scripts\</SPAN>
+                            footer.js
+                            footerfixed.js
+                            header.js
+                            jquery-ui.css
+                            jquery-ui.min.js
+                    <SPAN class="bold">WEB-INF\</SPAN>
+                        web.xml
+                        <SPAN class="bold">data\</SPAN>
+                            gaiji1.euf
+                            gaiji1.tte
+                            gaiji2.euf
+                            gaiji2.tte
+                            image.bmp
+                            image.gif
+                            image.jpg
+                            image.png
+                            overwrite.xlsx
+                            templatecalculate.xlsx
+                            templatecellpos.xlsx
+                            templatecolumn.xlsx
+                            templateeditcell.xlsx
+                            templateetc.xlsx
+                            templatehensuu.xlsx
+                            templatehensuu2.xlsx
+                            templateoverlay.xlsx
+                            templatepdf.xlsx
+                            templaterow.xlsx
+            <SPAN class="bold">webform\</SPAN>
+                <SPAN class="bold">src\</SPAN>
+                    <SPAN class="bold">model\</SPAN>
+                        CreateExcelFile.java
+                        SampleWork.java
+                    <SPAN class="bold">servlet\</SPAN>
+                        WebFormServlet.java
+                <SPAN class="bold">WebContent\</SPAN>
+                    <SPAN class="bold">donotedit\</SPAN>
+                        <SPAN class="bold">css\</SPAN>
+                            style.css
+                        <SPAN class="bold">font-awesome-4.3.0\</SPAN>
+                            <SPAN class="bold">css\</SPAN>
+                                font-awesome.css
+                                font-awesome.min.css
+                            <SPAN class="bold">fonts\</SPAN>
+                                fontawesome-webfont.eot
+                                fontawesome-webfont.svg
+                                fontawesome-webfont.ttf
+                                fontawesome-webfont.woff
+                                fontawesome-webfont.woff2
+                                FontAwesome.otf
+                            <SPAN class="bold">less\</SPAN>
+                                animated.less
+                                bordered-pulled.less
+                                core.less
+                                fixed-width.less
+                                font-awesome.less
+                                icons.less
+                                larger.less
+                                list.less
+                                mixins.less
+                                path.less
+                                rotated-flipped.less
+                                stacked.less
+                                variables.less
+                            <SPAN class="bold">scss\</SPAN>
+                                font-awesome.scss
+                                _animated.scss
+                                _bordered-pulled.scss
+                                _core.scss
+                                _fixed-width.scss
+                                _icons.scss
+                                _larger.scss
+                                _list.scss
+                                _mixins.scss
+                                _path.scss
+                                _rotated-flipped.scss
+                                _stacked.scss
+                                _variables.scss
+                        <SPAN class="bold">images\</SPAN>
+                            ecjava_sampleheader.png
+                        <SPAN class="bold">scripts\</SPAN>
+                            footer.js
+                            footerfixed.js
+                            header.js
+                            jquery-ui.css
+                            jquery-ui.min.js
+                    <SPAN class="bold">WEB-INF\</SPAN>
+                        templatetotalinvoice.xlsx
+                        web.xml
+                        <SPAN class="bold">jsp\</SPAN>
+                            webformsample.jsp
+</PRE>
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+<!-- サンプル使用方法 -->
+
+<DIV id="section"><A name="howto"></A>
+<H1>◆&nbsp;ExcelCreator for Java Web サンプルの使用方法</H1>
+<P>ExcelCreator for Java Web サンプルの詳細な使用方法は製品ヘルプの下記ページをご確認ください。</P>
+<DIV id="table01">
+<UL class="none">
+        <LI>
+	<DIV id="list01">
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="3" font size="5">
+	<TR>
+		<TH class="nameColumn25" font size="5">ExcelCreator for Java ヘルプ&nbsp;&nbsp;&nbsp;Web サンプルを使用する</TH>
+	</TR>
+	<TR>
+		<TD><解凍先フォルダ>&yen;help&yen;ExcelCreatorJava.htm<BR>&nbsp;&nbsp;[目次] - [ExcelCreator for Java の概要] - [Web サンプルを使用する]
+　　　　　　　　</TD>
+	</TR>
+	</TABLE>
+        </DIV>
+        </LI>
+
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+<!-- お問い合わせ先 -->
+<DIV id="section"><A name="inquiry"></A>
+<H1>◆&nbsp;お問い合わせ先</H1>
+<P>弊社製品に関するお問い合わせは下記の窓口で受け付けています。</P>
+<DIV id="table01">
+<UL class="none">
+	<LI><B>技術的なお問い合わせ</B>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="3">
+	<COL width="15%" />
+	<TR>
+		<TD>TEL</TD>
+		<TD>0776-21-9172</TD>
+	</TR>
+	<TR>
+		<TD>FAX</TD>
+		<TD>0776-21-9022</TD>
+	</TR>
+	<TR>
+		<TD>EMail</TD>
+		<TD><a href="mailto:xlscrt@adv.co.jp">xlscrt@adv.co.jp</a></TD>
+	</TR>
+	<TR>
+		<TD>受付時間</TD>
+		<TD>10:00～12:00、13:30～17:00</TD>
+	</TR>
+	</TABLE>
+	</LI>
+	<LI><B>営業に関するお問い合わせ</B>
+	<TABLE id="memberList" class="members" frame="lhs" cellpadding="2">
+	<COL width="15%" />
+	<TR>
+		<TD>TEL</TD>
+		<TD>0776-21-9008</TD>
+	</TR>
+	<TR>
+		<TD>FAX</TD>
+		<TD>0776-21-9022</TD>
+	</TR>
+	<TR>
+		<TD>EMail</TD>
+		<TD><a href="mailto:info@adv.co.jp">info@adv.co.jp</a></TD>
+	</TR>
+	<TR>
+		<TD>受付時間</TD>
+		<TD>9:00～12:00、13:00～18:00</TD>
+	</TR>
+	</TABLE>
+	</LI>
+</DIV>
+<P class="headerlink"><A href="#header">先頭へ</A></P>
+</DIV>
+
+<!-- フッター -->
+<HR/>
+
+<DIV id="footer">
+<TABLE class="footerTable" cellpadding="0" cellspacing="0">
+	<TR>
+		<TD align="left">
+			<SPAN id="copyrightText"><A href="http://www.adv.co.jp/" target="_blank">(c) 2019 AdvanceSoftware inc. All rights reserved.</A></SPAN>
+		</TD>
+	</TR>
+	<TR>
+		<TD align="left">
+			<SPAN id="copyrightText">Microsoft Excel は、米国 Microsoft Corporation の商品名称です。その他、記載されている会社名、商品名は、各社の商標または登録商標です。</SPAN>
+		</TD>
+	</TR>
+</TR>
+</TABLE>
+</DIV>
+
+</BODY>
+</HTML>

@@ -1,0 +1,222 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+	<META NAME="save" CONTENT="history" />
+	<title>セルを指定する</title>
+	<meta name="Language" content="ja-jp" />
+	<meta name="Microsoft.Help.Id" content="5b574ef2-1e13-4882-aae5-66c30c3c44ca" />
+	<meta name="Description" content="ExcelCreator for Java では Cell / Pos メソッドを使用し、さまざまな方法でセルを指定して値を設定することが可能です。このトピックでは、セルの指定方法を説明します。" />
+	<meta name="Microsoft.Help.ContentType" content="Concepts" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/Presentation.css" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/EventUtilities.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/SplitScreen.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/Dropdown.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_manifold.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_feedBack.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CheckboxMenu.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CommonUtilities.js"> </script>
+	<link type="text/css" rel="stylesheet" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/highlight.js"> </script>
+</head>
+<body>
+	<input type="hidden" id="userDataCache" class="userDataStyle" />
+	<input type="hidden" id="hiddenScrollOffset" />
+	<img id="collapseImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" alt="Collapse image" title="Collapse image" />
+	<img id="expandImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" alt="Expand Image" title="Expand Image" />
+	<img id="collapseAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" />
+	<img id="expandAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" />
+	<img id="dropDownImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdown.gif" />
+	<img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdownHover.gif" />
+	<img id="copyImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycode.gif" alt="Copy image" title="Copy image" />
+	<img id="copyHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycodeHighlight.gif" alt="CopyHover image" title="CopyHover image" />
+	<div id="header">
+		<table id="bottomTable" cellpadding="0" cellspacing="0">
+			<tr id="headerTableRow1">
+				<td align="left">
+					<span id="runningHeaderText">ExcelCreator for Java</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow2">
+				<td align="left">
+					<span id="nsrTitle">セルを指定する</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow3">
+				<td align="left">
+					<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">参照</a>
+					<span id="headfeedbackarea" class="feedbackhead">
+						<a href="javascript:SubmitFeedback('','ExcelCreator for Java','','1.1.0.1000','','ドキュメント開発チームはドキュメントの品質向上にあなたのフィードバックを使用いたします。送信いただいたメールアドレスは他の用途に使用いたしません。問題が解決した後送信されたメールアドレスを破棄いたします。送信いただいた問題の処理において，詳細をお伺いする場合や問題の切り分けのためにコンタクトをとらせていただく場合がございます。','Customer%20Feedback');">
+							<!--<include item="fb_headerFeedBack" />-->
+						</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<table id="gradientTable">
+			<tr>
+				<td class="nsrBottom" background="../Styles/icons/gradient.gif" />
+			</tr>
+		</table>
+	</div>
+	<div id="mainSection">
+		<div id="mainBody">
+			<div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+			<span style="color: DarkGray"></span>
+			<div class="introduction">
+				<p>ExcelCreator for Java では、getCell / getPos メソッドを使用し、さまざまな方法でセルを指定して値を設定することが可能です。このトピックでは、セルの指定方法を説明します。</p>
+				<p>このトピックは、次のセクションを含みます。</p>
+				<ul>
+					<li class="outlineSectionEntry">
+						<a href="#Section1">A1 参照形式によるセルの指定</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section2">座標によるセルの指定</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section3">変数名によるセルの指定</a>
+					</li>
+					<li class="outlineSectionEntry">
+						<a href="#Section4">セル名によるセルの指定</a>
+					</li>
+				</ul>
+			</div>
+			<a name="Section1"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle1)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle1, event)" tabindex="0">
+					<img id="sectionToggle1" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />A1 参照形式によるセルの指定
+				</span>
+			</h1>
+			<div id="sectionSection1" class="section" name="collapseableSection" style="">
+				<p>このセクションでは、A1 参照形式でセルを指定する方法を説明します。</p>
+				<p>次のコードは、getCell メソッドを使用して A1 参照形式で A1 セルを指定し、文字列 "アドバンスソフトウェア" を設定するサンプルコードです。</p>	
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// A1 セルに文字列 "アドバンスソフトウェア" を設定します。</span>
+xlsxCreator.getCell("A1").setValue("アドバンスソフトウェア");</span>
+</pre>
+</div></span>
+			</div>
+			<a name="Section2"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle2)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle2, event)" tabindex="0">
+					<img id="sectionToggle2" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />座標によるセルの指定
+				</span>
+			</h1>
+			<div id="sectionSection2" class="section" name="collapseableSection" style="">
+				<p>このセクションでは、座標形式でセルを指定する方法を説明します。</p>
+				<div class="alert">
+					<table width="100%" cellspacing="0" cellpadding="0">
+						<tr>
+							<th align="left" style="height: 17px">
+								<img class="note" alt="Note" title="Note" src="../Styles/icons/alert_note.gif" />
+								<b>メモ:</b>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<p>座標形式で指定する場合、getPos メソッドの第一引数が x 軸(列)、第二引数が y軸(行) になり、A1 セルを (0, 0) とします。</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<p>次のコードは、getPos メソッドを使用して座標形式で A10 セルを指定し、文字列 "アドバンスソフトウェア" を設定するサンプルコードです。</p>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// A10 セルに文字列 "アドバンスソフトウェア" を設定します。</span>
+xlsxCreator.getPos(0, 9).setValue("アドバンスソフトウェア");</span>
+</pre>
+</div></span>
+			</div>
+			<a name="Section3"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle3)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle3, event)" tabindex="0">
+					<img id="sectionToggle3" class="toggle" name="toggleSwitch0" src="../Styles/icons/collapse_all.gif" />変数名によるセルの指定
+				</span>
+			</h1>
+			<div id="sectionSection3" class="section" name="collapseableSection" style="">
+				<p>ExcelCreator for Java では、Excel ファイルのセルに予め設定された、連続した 2つのアスタリスク(*)から始まる文字列を変数名として扱います。このセクションでは、変数名でセルを指定する方法を説明します。</p>
+				<div class="alert">
+					<table>
+						<tr>
+							<th>
+								<img src="../Styles/icons/alert_note.gif" title="Note">
+								<b>メモ:</b>
+							</th>
+						</tr>
+						<tr>
+							<td>既定では、連続した 2つのアスタリスク (*) から始まる文字列を変数名として扱いますが、setKeyword メソッドを使用することで、変数名のキーワード文字をアスタリスク (*) から別の文字に変更することが可能です。</td>
+						</tr>
+					</table>
+				</div>
+				<p>次のコードは、getCell メソッドで A1 セルに設定した変数名 "**Name" を指定し、文字列 "アドバンスソフトウェア" を設定するサンプルコードです。</p>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// A1 セルに予め変数名 "**Name" を設定し、getCell メソッドで変数名を指定して、文字列 "アドバンスソフトウェア" を設定します。</span>
+xlsxCreator.getCell("**Name").setValue("アドバンスソフトウェア");</span>
+</pre>
+</div></span>
+			</div>
+			<a name="Section4"></a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggle4)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggle4, event)" tabindex="0">
+					<img id="sectionToggle4" class="toggle" name="toggleSwitch1" src="../Styles/icons/collapse_all.gif" />セル名によるセルの指定
+				</span>
+			</h1>
+			<div id="sectionSection4" class="section" name="collapseableSection" style="">
+				<p>ExcelCreator for Java では、Excel ファイルのセルに予め設定されたセル名を指定することができます。このセクションでは、セル名でセルを指定する方法を説明します。</p>
+				<div class="alert">
+					<table>
+						<tr>
+							<th>
+								<img src="../Styles/icons/alert_note.gif" title="Note">
+								<b>メモ:</b>
+							</th>
+						</tr>
+						<tr>
+							<td>A1 から B2 セルなど、複数セルに設定されたセル名を指定した場合、一番左上のセル (A1 セル) のみが指定されます。</td>
+						</tr>
+					</table>
+				</div>
+				<p>次のコードは、getCell メソッドで A1 セルに設定したセル名 "CELLNAME" を指定し、文字列 "アドバンスソフトウェア" を設定するサンプルコードです。</p>		  
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// A1 セルに予めセル名 "CELLNAME" を設定し、getCell メソッドでセル名を指定して、文字列 "アドバンスソフトウェア" を設定します。</span>
+xlsxCreator.getCell("CELLNAME").setValue("アドバンスソフトウェア");</span>
+</pre>
+</div></span>
+			</div>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle, event)" tabindex="0"><img id="seeAlsoToggle" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />参照</span>
+			</h1>
+			<div id="seeAlsoSection" class="section" name="collapseableSection" style="">
+				<h4 class="subHeading">
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+								<a href="BasicOperation.htm">基本操作</a>
+						</span>
+					</div>
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+								<a href="../doc/index.html" target="_blank">ExcelCreator クラス</a>
+						</span>
+					</div>
+				</h4>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="footerLine">
+				<img width="100%" height="3px" src="../Styles/icons/footer.gif" alt="Footer image" title="Footer image" />
+			</div>
+			<A NAME="feedback"></A>
+			<span id="fb" class="feedbackcss"></span>
+			<p />
+			<a href="http://www.adv.co.jp/" target="_blank">©2019 Advance Software inc. All rights reserved.</a>
+		</div>
+	</div>
+</body>
+</html>

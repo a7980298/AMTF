@@ -1,0 +1,216 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+	<META NAME="save" CONTENT="history" />
+		<title>Web サンプルを使用する</title>
+	<meta name="Language" content="ja-jp" />
+	<meta name="Microsoft.Help.Id" content="dda841f6-0a65-4376-aca2-323d630135a1" />
+	<meta name="Description" content="このトピックでは、ExcelCreator for Java のインストールで登録されるファイル一覧および、アンインストール方法について説明します。" />
+	<meta name="Microsoft.Help.ContentType" content="Concepts" />
+		<link rel="stylesheet" type="text/css" href="../Styles/styles/Presentation.css" />
+		<link rel="stylesheet" type="text/css" href="../Styles/styles/highlight.css" />
+			<script type="text/javascript" src="../Styles/scripts/EventUtilities.js"> </script>
+			<script type="text/javascript" src="../Styles/scripts/SplitScreen.js"> </script>
+			<script type="text/javascript" src="../Styles/scripts/Dropdown.js"> </script>
+			<script type="text/javascript" src="../Styles/scripts/script_manifold.js"> </script>
+			<script type="text/javascript" src="../Styles/scripts/script_feedBack.js"> </script>
+			<script type="text/javascript" src="../Styles/scripts/CheckboxMenu.js"> </script>
+			<script type="text/javascript" src="../Styles/scripts/CommonUtilities.js"> </script>
+</head>
+<body>
+	<input type="hidden" id="userDataCache" class="userDataStyle" />
+	<input type="hidden" id="hiddenScrollOffset" />
+		<img id="collapseImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" alt="Collapse image" title="Collapse image" />
+		<img id="expandImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" alt="Expand Image" title="Expand Image" />
+		<img id="collapseAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" />
+		<img id="expandAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" />
+		<img id="dropDownImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdown.gif" />
+		<img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdownHover.gif" />
+		<img id="copyImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycode.gif" alt="Copy image" title="Copy image" />
+		<img id="copyHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycodeHighlight.gif" alt="CopyHover image" title="CopyHover image" />
+		<div id="header">
+				<table id="bottomTable" cellpadding="0" cellspacing="0">
+				<tr id="headerTableRow1">
+				<td align="left">
+				<span id="runningHeaderText">ExcelCreator for Java</span>
+				</td>
+				</tr>
+				<tr id="headerTableRow2">
+				<td align="left">
+				<span id="nsrTitle">Web サンプルを使用する</span>
+				</td>
+				</tr>
+				<tr id="headerTableRow3">
+				<td align="left">
+				<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">参照</a>
+				<span id="headfeedbackarea" class="feedbackhead">
+				<a href="javascript:SubmitFeedback('','ExcelCreator for Java','','1.1.0.1000','','ドキュメント開発チームはドキュメントの品質向上にあなたのフィードバックを使用いたします。送信いただいたメールアドレスは他の用途に使用いたしません。問題が解決した後送信されたメールアドレスを破棄いたします。送信いただいた問題の処理において，詳細をお伺いする場合や問題の切り分けのためにコンタクトをとらせていただく場合がございます。','Customer%20Feedback');">
+<!--				
+				<include item="fb_headerFeedBack" />
+-->
+				</a>
+				</span>
+				</td>
+				</tr>
+				</table>
+				<table id="gradientTable">
+				<tr>
+				<td class="nsrBottom" background="../Styles/icons/gradient.gif" />
+				</tr>
+				</table>
+				</div>
+				<div id="mainSection">
+				<div id="mainBody">
+				<div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+				<span style="color: DarkGray">
+				</span><div class="introduction">
+				<p>このトピックでは、Web アプリケーション用サンプルの開発環境ごとの使用方法を説明します。</p>
+
+<p>このトピックは、次のセクションを含みます。</p><ul>
+<li class="outlineSectionEntry"><a href="#Section1">Eclipse で使用する</a></li>
+<li class="outlineSectionEntry"><a href="#Section2">NetBeans で使用する</a></li></ul></div>
+
+			<div class="alert">
+				<table>
+					<tr><th>
+					<img src="../Styles/icons/alert_note.gif" title="Note" /> <b>メモ:</b></th></tr>
+					<tr><td>
+						<p>ExcelCreator for Java の JAR ファイルは、製品インストールフォルダ内 bin フォルダに格納されます。</p>
+					</td></tr>
+				</table>
+			</div>
+			<div class="alert">
+				<table>
+					<tr><th>
+					<img src="../Styles/icons/alert_note.gif" title="Note" /> <b>メモ:</b></th></tr>
+					<tr><td>
+						<p><製品インストールフォルダ>\samples\web\standard サンプルを使用した場合の手順になります。</p>
+					</td></tr>
+				</table>
+			</div>
+
+
+<a name="Section1"> </a>
+<h1 class="heading"><span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0"><img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />
+Eclipse で使用する</span></h1><div id="sectionSectionID0ECAAA" class="section" name="collapseableSection" style="">
+
+<div class="subSection">
+	<ol>
+			<li>
+			<p>Eclipse を起動し、[ファイル] - [新規] - [動的 Web プロジェクト] を選択します。</p>
+			</li>
+			<li>
+			<p>任意のプロジェクト名を入力します。</p>
+			</li>
+			<li>
+			<p>ターゲット・ランタイムは、"Tomcat(Java7)"以降のバージョンを指定し、[完了] をクリックしてプロジェクトを作成します。</p>
+			</li>
+			<li>
+			<p>以下のフォルダから [src]、[WebContent] フォルダ一式をコピーします。</p>
+			<p><製品インストールフォルダ>\samples\web\standard\</p>
+			</li>
+			<li>
+			<p>Eclipse 画面にてパッケージ・エクスプローラー内から作成したプロジェクトを選択し、右クリック後 [貼り付け] を選択します。</p>
+			</li>
+			<li>
+			<p>プロジェクト名を右クリックして [プロパティー] を開き、[Java のビルド・パス] を選択します。</p>
+			</li>
+			<li>
+			<p>[ライブラリー] タブを選択し、[外部 JAR の追加] をクリックします。</p>
+			</li>
+			<li>
+			<p>製品インストールフォルダ内の JAR ファイルを選択して追加します。</p>
+			</li>
+			<li>
+			<p>製品インストールフォルダ内の JAR ファイルをコピーします。</p>
+			</li>
+			<li>
+			<p>Eclipse 画面にてパッケージ・エクスプローラー内から作成したプロジェクトを選択してツリーを展開し、[WebContent] - [WEB-INF] 内の [lib] を右クリック後 [貼り付け] を選択します。
+</p>
+			</li>
+			<li>
+			<p>プロジェクトを選択し [実行] - [サーバーで実行] から実行します。</p>
+			</li>
+	</ol>
+</div>
+
+
+</div>
+
+<a name="Section2"> </a><h1 class="heading"><span onclick="ExpandCollapse(sectionToggleID0EBAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0EBAAA, event)" tabindex="0"><img id="sectionToggleID0EBAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />NetBeans で使用する</span></h1><div id="sectionSectionID0EBAAA" class="section" name="collapseableSection" style="">
+
+<div class="subSection">
+	<ol>
+			<li>
+			<p>NetBeans を起動し、[ファイル] - [新規プロジェクト] - [Java Web] - [Web アプリケーション] を選択し [次へ] をクリックします。</p>
+			</li>
+			<li>
+			<p>任意のプロジェクト名を入力します。</p>
+			</li>
+			<li>
+			<p>[ライブラリの格納用に専用フォルダを使用] にチェック ON (既定 .\lib) 後、[次へ] をクリックします。</p>
+			</li>
+			<li>
+			<p>サーバーと Java EE バージョン(推奨 Java EE 7 以降)を選択後 [終了] をクリックしてプロジェクト作成します。</p>
+			</li>
+			<li>
+			<p>NetBeans 画面にてプロジェクトウィンドウ内から作成したプロジェクトを選択後、ツリーを展開し、"index.jsp" を削除します。</p>
+			</li>
+			<li>
+			<p>以下のフォルダ内の [src] フォルダ内のファイル一式をコピーします。</p>
+			<p><製品インストールフォルダ>\samples\web\standard\src</p>
+			</li>
+			<li>
+			<p>NetBeans 画面にてプロジェクトウィンドウ内から作成したプロジェクトを選択後、ツリーを展開し、[ソース・パッケージ] を右クリック後 [貼付け] を選択します。</p>
+			</li>
+			<li>
+			<p>以下のフォルダ内の [WebContent] フォルダ内のファイル一式をコピーします。</p>
+			<p><製品インストールフォルダ>\samples\web\standard\WebContent</p>
+			</li>
+			<li>
+			<p>NetBeans 画面にてプロジェクトウィンドウ内から作成したプロジェクトを選択後、ツリーを展開し、[Web ページ] を右クリックして [貼付け] を選択します。</p>
+			</li>
+			<li>
+			<p>プロジェクト名を右クリックして [プロパティ] を開き、[ライブラリ] を選択します。</p>
+			</li>
+			<li>
+			<p>[コンパイル] タブを選択し [JAR/フォルダの追加] をクリックします。</p>
+			</li>
+			<li>
+			<p>製品インストールフォルダ内の JAR ファイルを選択して追加し、[OK] でプロパティー画面を閉じます。</p>
+			</li>
+			<li>
+			<p>プロジェクトを選択し [実行] します。</p>
+			</li>
+	</ol>
+</div>
+
+
+</div>
+
+            <h1 class="heading">
+                <span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle, event)" tabindex="0">
+                    <img id="seeAlsoToggle" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />参照</span>
+            </h1>
+            <div id="seeAlsoSection" class="section" name="collapseableSection" style="">
+                <h4 class="subHeading">
+                    <div class="seeAlsoStyle">
+                        <span sdata="link">
+                            <a href="Summary.htm">ExcelCreator for Java の概要</a>
+                        </span>
+                    </div>
+                </h4>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="footerLine">
+                <img width="100%" height="3px" src="../Styles/icons/footer.gif" alt="Footer image" title="Footer image" />
+            </div>
+            <A NAME="feedback"></A>
+            <span id="fb" class="feedbackcss"></span>
+            <p />
+            <a href="http://www.adv.co.jp/" target="_blank">©2019 Advance Software inc. All rights reserved.</a>
+        </div>
+    </div>
+</body>
+</html>

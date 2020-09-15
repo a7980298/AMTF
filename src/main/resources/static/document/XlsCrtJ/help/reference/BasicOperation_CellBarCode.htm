@@ -1,0 +1,143 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+	<META NAME="save" CONTENT="history" />
+	<title>セルにバーコードを設定する</title>
+	<meta name="Language" content="ja-jp" />
+	<meta name="Microsoft.Help.Id" content="5b574ef2-1e13-4882-aae5-66c30c3c44ca" />
+	<meta name="Description" content="ExcelCreator for Java では付属の BarCodeCreator を使用して作成したバーコードイメージを指定したセルに設定することが可能です。このトピックでは、バーコードイメージの作成とセルへの設定方法を説明します。" />
+	<meta name="Microsoft.Help.ContentType" content="Concepts" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/Presentation.css" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/EventUtilities.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/SplitScreen.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/Dropdown.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_manifold.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_feedBack.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CheckboxMenu.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CommonUtilities.js"> </script>
+	<link type="text/css" rel="stylesheet" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/highlight.js"> </script>
+</head>
+<body>
+	<input type="hidden" id="userDataCache" class="userDataStyle" />
+	<input type="hidden" id="hiddenScrollOffset" />
+	<img id="collapseImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" alt="Collapse image" title="Collapse image" />
+	<img id="expandImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" alt="Expand Image" title="Expand Image" />
+	<img id="collapseAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" />
+	<img id="expandAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" />
+	<img id="dropDownImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdown.gif" />
+	<img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdownHover.gif" />
+	<img id="copyImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycode.gif" alt="Copy image" title="Copy image" />
+	<img id="copyHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycodeHighlight.gif" alt="CopyHover image" title="CopyHover image" />
+	<div id="header">
+
+		<table id="bottomTable" cellpadding="0" cellspacing="0">
+			<tr id="headerTableRow1">
+				<td align="left">
+					<span id="runningHeaderText">ExcelCreator for Java</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow2">
+				<td align="left">
+					<span id="nsrTitle">セルにバーコードを設定する</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow3">
+				<td align="left">
+					<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">参照</a>
+					<span id="headfeedbackarea" class="feedbackhead">
+						<a href="javascript:SubmitFeedback('','ExcelCreator for Java','','1.1.0.1000','','ドキュメント開発チームはドキュメントの品質向上にあなたのフィードバックを使用いたします。送信いただいたメールアドレスは他の用途に使用いたしません。問題が解決した後送信されたメールアドレスを破棄いたします。送信いただいた問題の処理において，詳細をお伺いする場合や問題の切り分けのためにコンタクトをとらせていただく場合がございます。','Customer%20Feedback');">
+							<!--<include item="fb_headerFeedBack" />-->
+						</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<table id="gradientTable">
+			<tr>
+				<td class="nsrBottom" background="../Styles/icons/gradient.gif" />
+			</tr>
+		</table>
+	</div>
+	<div id="mainSection">
+		<div id="mainBody">
+			<div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+			<span style="color: DarkGray"></span>
+			<div class="introduction">
+				<p>ExcelCreator for Java では、付属の BarCodeCreator を使用して作成したバーコードイメージを指定したセルに設定することが可能です。このトピックでは、バーコードイメージの作成とセルへの設定方法を説明します。</p>
+			</div>
+			<div id="sectionSection0" class="seeAlsoNoToggleSection">
+<!--
+				<table width="50%" cellspacing="2" cellpadding="5" frame="lhs">
+					<tr>
+						<td>
+							<img class="note" alt="Note" title="Note" src="../Styles/icons/alert_caution.gif" />
+   		    	            <b>注意:</b>
+						</td>
+					</tr>
+					<tr>
+						<td>ExcelCreator for Java では値の取得には対応していません。</td>
+					</tr>
+				</table>
+-->
+				<h3 class="subHeading">セルにバーコードを設定する</h3>
+				<div class="subsection">
+					<p>次のコードは、BarCodeCreator を使用して作成したバーコードイメージを指定したセルに設定するサンプルコードです。</p>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類に「JAN13」を設定します。</span>
+barCode.setType(BarCodeType.JAN13);
+<span class="highlight-comment">// バーコードの生成単位に「Pixel」を設定します。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// バーコードの X 方向の解像度に「600」を設定します。</span>
+barCode.setDpiX(600);
+<span class="highlight-comment">// バーコードの Y 方向の解像度に「600」を設定します。</span>
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの値に「1234567890123」を設定します。</span>
+barCode.setValue("1234567890123");
+<span class="highlight-comment">// Millimeter 単位でバーコードのサイズを取得します。</span>
+BarCodeSizeD size = barCode.getScaleSize(Unit.Millimeter);
+<span class="highlight-comment">// B2 セルに作成したバーコードイメージを取得したサイズで設定します。</span>
+xlsxCreator.getCell("B2").getDrawing().addImage(barCode.getImage(), size.getWidth(), size.getHeight());
+</pre>
+</div></span>
+				</div>
+			</div>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle, event)" tabindex="0"><img id="seeAlsoToggle" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />参照</span>
+			</h1>
+			<div id="seeAlsoSection" class="section" name="collapseableSection" style="">
+				<h4 class="subHeading">
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+								<a href="BasicOperation.htm">基本操作</a>
+						</span>
+					</div>
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+								<a href="../doc/index.html" target="_blank">ExcelCreator クラス</a>
+						</span>
+					</div>
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+								<a href="../barcode/doc/index.html" target="_blank">BarCodeCreator クラス</a>
+						</span>
+					</div>
+				</h4>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="footerLine">
+				<img width="100%" height="3px" src="../Styles/icons/footer.gif" alt="Footer image" title="Footer image" />
+			</div>
+			<A NAME="feedback"></A>
+			<span id="fb" class="feedbackcss"></span>
+			<p />
+			<a href="http://www.adv.co.jp/" target="_blank">©2019 Advance Software inc. All rights reserved.</a>
+		</div>
+	</div>
+</body>
+</html>

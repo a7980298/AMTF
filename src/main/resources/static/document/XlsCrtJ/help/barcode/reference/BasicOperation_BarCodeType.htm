@@ -1,0 +1,631 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+	<META NAME="save" CONTENT="history" />
+	<title>作成可能なバーコードの種類</title>
+	<meta name="Language" content="ja-jp" />
+	<meta name="Microsoft.Help.Id" content="0e46a7a8-bd3d-4f52-8b2c-86e8833cf419" />
+	<meta name="Description" content="ここでは、BarCodeCreator for Java の作成可能なバーコードの種類について説明します。" />
+	<meta name="Microsoft.Help.ContentType" content="Concepts" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/Presentation.css" />
+	<link rel="stylesheet" type="text/css" href="../Styles/styles/highlight.css" />
+	<script type="text/javascript" src="../Styles/scripts/EventUtilities.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/SplitScreen.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/Dropdown.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_manifold.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/script_feedBack.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CheckboxMenu.js"> </script>
+	<script type="text/javascript" src="../Styles/scripts/CommonUtilities.js"> </script>
+        <script type="text/javascript" src="../Styles/scripts/highlight.js"> </script>
+</head>
+<body>
+	<input type="hidden" id="userDataCache" class="userDataStyle" />
+	<input type="hidden" id="hiddenScrollOffset" />
+	<img id="collapseImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" alt="Collapse image" title="Collapse image" />
+	<img id="expandImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" alt="Expand Image" title="Expand Image" />
+	<img id="collapseAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/collapse_all.gif" />
+	<img id="expandAllImage" style="display:none; height:0; width:0;" src="../Styles/icons/expand_all.gif" />
+	<img id="dropDownImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdown.gif" />
+	<img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/dropdownHover.gif" />
+	<img id="copyImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycode.gif" alt="Copy image" title="Copy image" />
+	<img id="copyHoverImage" style="display:none; height:0; width:0;" src="../Styles/icons/copycodeHighlight.gif" alt="CopyHover image" title="CopyHover image" />
+	<div id="header">
+		<table id="bottomTable" cellpadding="0" cellspacing="0">
+			<tr id="headerTableRow1">
+				<td align="left">
+					<span id="runningHeaderText">BarCodeCreator for Java</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow2">
+				<td align="left">
+					<span id="nsrTitle">作成可能なバーコードの種類</span>
+				</td>
+			</tr>
+			<tr id="headerTableRow3">
+				<td align="left">
+					<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">参照</a>
+					<span id="headfeedbackarea" class="feedbackhead">
+						<a href="javascript:SubmitFeedback('','BarCodeCreator for Java','','1.1.0.1000','','ドキュメント開発チームはドキュメントの品質向上にあなたのフィードバックを使用いたします。送信いただいたメールアドレスは他の用途に使用いたしません。問題が解決した後送信されたメールアドレスを破棄いたします。送信いただいた問題の処理において，詳細をお伺いする場合や問題の切り分けのためにコンタクトをとらせていただく場合がございます。','Customer%20Feedback');">
+							<!--<include item="fb_headerFeedBack" />-->
+						</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<table id="gradientTable">
+			<tr>
+				<td class="nsrBottom" background="../Styles/icons/gradient.gif" />
+			</tr>
+		</table>
+	</div>
+	<div id="mainSection">
+		<div id="mainBody">
+			<div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+			<span style="color: DarkGray"></span>
+			<div class="introduction">
+				<p>バーコードクラスでは、JAN、GS1-128、カスタマバーコード、QR コードなどのバーコードイメージを作成することが可能です。作成したバーコードイメージは、帳票ドキュメントに挿入してバーコード付きの帳票として出力することができます。バーコードクラスの対応バーコードを次に示します。
+
+</p>
+				<p>このトピックは、次のセクションを含みます。</p>
+				<ul>
+				<li class="outlineSectionEntry">
+				<a href="#Section1">JAN コード</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section2">UPC コード</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section3">ITF コード</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section4">CODABAR (NW-7)</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section5">CODE39</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section6">CODE128</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section7">GS1-128 (旧称 : UCC/EAN128)</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section8">公共料金等代理収納 GS1-128</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section9">郵便カスタマバーコード</a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section10">QR コード </a>
+				</li>
+				<li class="outlineSectionEntry">
+				<a href="#Section11">PDF417</a>
+				</li>
+				</ul>
+			</div>
+<br />
+			<h2>バーコードの作成方法</h2>
+
+<!--
+<a name="Section1"> </a>
+<h1 class="heading"><span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0"><img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />
+製品のインストール</span></h1><div id="sectionSectionID0ECAAA" class="section" name="collapseableSection" style=""><p>
+	ExcelCreator for Java は、インストールフォルダが zip 形式で圧縮されています。ファイルをローカルにコピー後、インストールフォルダを解凍してご対応ください。</p><div class="tableSection">
+
+<table width="50%" cellspacing="2" cellpadding="5" frame="lhs"><tr><th>JAR ファイル名</th></tr>
+<tr><td>excelcreator-1.1.0.XXXX.jar</td></tr>
+<tr><td>barcodecreator-1.0.0.XXXX.jar</td></tr>
+
+		</table>
+	</div><div class="alert"><table><tr><th><img src="../Styles/icons/alert_note.gif" title="Note" /> <b>メモ:</b></th></tr><tr><td><p>JAR ファイルは、
+ExcelCreator for Java インストールフォルダ内の bin フォルダに格納されます。</p></td></tr></table></div></div>
+-->
+
+<!--
+<a name="Section1"> </a>
+<h1 class="heading"><span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0"><img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />JAN コード</span></h1><div class="barcode"><p><div class="barcode-left">JAN(13桁)<br /><img src="../Styles/image/barcode/jan13.jpg" alt=""></div><div class="barcode-right">JAN(8桁)<br /><img src="../Styles/image/barcode/jan8.jpg" alt=""></div></p></div>
+-->
+
+
+<a name="Section1"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />JAN コード</span>
+			</h1>
+			<div class="barcode">
+			<p>
+			    <div class="barcode-left">
+			        JAN(13桁)<br />
+			        <img src="../Styles/image/barcode/jan13.jpg" alt="">
+			    </div>
+			    <div class="barcode-right">
+			        JAN(8桁)<br />
+			        <img src="../Styles/image/barcode/jan8.jpg" alt="">
+			    </div>
+			</p>
+			</div>
+
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.JAN13);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの倍率を設定します。</span>
+barCode.setZoom(100);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("491234567890");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section2"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />UPC コード</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div class="barcode-left">
+			        UPC-A<br />
+			        <img src="../Styles/image/barcode/upca.jpg" alt="">
+			    </div>
+			    <div class="barcode-right">
+			        UPC-E<br />
+			        <img src="../Styles/image/barcode/upce.jpg" alt="">
+			    </div>
+                        </p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.UPCA);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの倍率を設定します。</span>
+barCode.setZoom(100);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("0123456789");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section3"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />ITF コード</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				ITF(6桁)<br />
+				<img src="../Styles/image/barcode/itf6.jpg" alt="">
+		    	    </div>
+		    	    <div>
+				ITF(14桁)<br />
+				<img src="../Styles/image/barcode/itf14.jpg" alt="">
+		    	    </div>
+		    	    <div>
+				ITF(16桁)<br />
+				<img src="../Styles/image/barcode/itf16.jpg" alt="">
+		    	   </div>
+		    	   <div>
+				ITF(自由桁)<br />
+				<img src="../Styles/image/barcode/itf.jpg" alt="">
+		    	   </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.ITF6);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの倍率を設定します。</span>
+barCode.setZoom(100);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("042178");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section4"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />CODABAR (NW-7)</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				<img src="../Styles/image/barcode/nw7.jpg" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.CodaBar);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(5);
+<span class="highlight-comment">// スタートキャラクタを設定します。</span>
+barCode.setStartChar('A');
+<span class="highlight-comment">// ストップキャラクタを設定します。</span>
+barCode.setStopChar('A');
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("01234");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section5"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />CODE39</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				<img src="../Styles/image/barcode/code39.jpg" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.Code39);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(5);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("01234");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section6"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />CODE128</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				<img src="../Styles/image/barcode/code128.jpg" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.Code128);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(5);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("57BK");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section7"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />GS1-128 (旧称 : UCC/EAN128)</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				<img src="../Styles/image/barcode/ean128.jpg" style="width: 462px;" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.GS1);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(2);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("(01)14912345678901(17)990101(30)1000(10)AB12");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section8"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />公共料金等代理収納 GS1-128</span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				<img src="../Styles/image/barcode/gs1fixed.jpg" style="width: 462px;" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.GS1Fixed);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(2);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("9191234501234567890123456789010001011100000");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+
+<a name="Section9"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />郵便カスタマバーコード </span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				<img src="../Styles/image/barcode/custombarcode.jpg" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.CustomerBarCode);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの寸法(ポイント)を設定します。</span>
+barCode.setPoint(10.0);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("91882391-2816");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section10"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />QR コード</span>
+			</h1>
+			<div class="barcode">
+			<p>
+			    <div class="barcode-left">
+			        モデル1<br />
+			        <img src="../Styles/image/barcode/qr1.jpg" alt="">
+			    </div>
+			    <div class="barcode-right">
+			        モデル2<br />
+			        <img src="../Styles/image/barcode/qr2.jpg" alt="">
+			    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.QRCode);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(4);
+<span class="highlight-comment">// QR コードのモデルを設定します。</span>
+barCode.setQRModel(QRModel.Model2);
+<span class="highlight-comment">// QR コードのバージョンを設定します。</span>
+barCode.setQRVersion(QRVersion.VersionAuto);
+<span class="highlight-comment">// QR コードの誤り訂正レベルを設定します。</span>
+barCode.setQRLevel(QRLevel.LevelQ);
+<span class="highlight-comment">// QR コードのマスクパターンを設定します。</span>
+barCode.setQRMask(QRMask.MaskAuto);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("0123456789");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+<a name="Section11"> </a>
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(sectionToggleID0ECAAA)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(sectionToggleID0ECAAA, event)" tabindex="0">
+				<img id="sectionToggleID0ECAAA" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />PDF417 </span>
+			</h1>
+			<div class="barcode">
+                        <p>
+			    <div>
+				標準<br />
+				<img src="../Styles/image/barcode/pdfd.jpg" alt="">
+		    	    </div>
+			    <div>
+				簡易<br />
+				<img src="../Styles/image/barcode/pdfe.jpg" alt="">
+		    	    </div>
+			</p>
+			</div>
+<span id="cbc_1" x-lang="Java" codeLanguage="Java" style="font-size : 9pt"><div class="highlight-title">
+<span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img style="margin-right: 5px;" src="../Styles/icons/CopyCode.gif" />コピー</span>サンプルコード</div><div class="code">
+<pre xml:space="preserve">
+<span class="highlight-comment">// BarCodeCreator のインスタンスを生成します。</span>
+BarCodeCreator barCode = new BarCodeCreator();
+<span class="highlight-comment">// バーコードの種類を設定します。</span>
+barCode.setType(BarCodeType.PDF417);
+<span class="highlight-comment">// バーコード生成単位を設定します。</span>
+<span class="highlight-comment">// setUnit メソッドに Pixel を指定し、setDpiX、setDpiY メソッドにデバイスの解像度を</span>
+<span class="highlight-comment">// 指定することで高精度なイメージを作成することができます。</span>
+barCode.setUnit(Unit.Pixel);
+<span class="highlight-comment">// デバイスの解像度を設定します。</span>
+barCode.setDpiX(600);
+barCode.setDpiY(600);
+<span class="highlight-comment">// バーコードの最小エレメント値を設定します。</span>
+barCode.setElement(2);
+<span class="highlight-comment">// PDF モデルを設定します。</span>
+barCode.setPDFModel(PDFModel.Default);
+<span class="highlight-comment">// PDF の 1 モジュールの高さを設定します。</span>
+barCode.setPDFRatio(7.5);
+<span class="highlight-comment">// PDF の列数を設定します。(0 は自動設定)</span>
+barCode.setPDFColumn(0);
+<span class="highlight-comment">// PDF の行数を設定します。(0 は自動設定)</span>
+barCode.setPDFRow(0);
+<span class="highlight-comment">// PDF のエラー訂正レベルを設定します。</span>
+barCode.setPDFLevel(0);
+<span class="highlight-comment">// バーコード文字列を設定します。</span>
+barCode.setValue("0123456789");
+<span class="highlight-comment">// バーコードイメージを保存します。</span>
+try {
+    barCode.saveImage("c:\\barcode.png", "PNG");
+} catch (IOException e) {
+    e.printStackTrace();
+}</pre>
+</div></span>
+
+			<h1 class="heading">
+				<span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle, event)" tabindex="0">
+					<img id="seeAlsoToggle" class="toggle" name="toggleSwitch" src="../Styles/icons/collapse_all.gif" />参照
+				</span>
+			</h1>
+			<div id="seeAlsoSection" class="section" name="collapseableSection" style="">
+				<h4 class="subHeading">
+					<div class="seeAlsoStyle">
+						<span sdata="link">
+							<a href="../BarCodeCreatorJava.htm">BarCodeCreator for Java ヘルプ目次</a>
+						</span>
+					</div>
+				</h4>
+			</div>
+			<div id="footer">
+				<div class="footerLine">
+					<img width="100%" height="3px" src="../Styles/icons/footer.gif" alt="Footer image" title="Footer image" />
+				</div>
+				<A NAME="feedback"></A>
+			</div>
+			<span id="fb" class="feedbackcss"></span>
+			<p />
+			<a href="http://www.adv.co.jp/" target="_blank">©2019 Advance Software inc. All rights reserved.</a>
+		</div>
+	</div>
+</body>
+</html>
