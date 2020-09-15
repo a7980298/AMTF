@@ -57,9 +57,10 @@
 	function amtf_setColor(_this){
 		$('.coloritme').each(function(){
 			$(this).removeClass('active');
+			$(this).find('a').eq(0).css('background-color','');
 		});
 		$(_this).addClass('active');
-		$(_this).css('background-color','#e91e63');
+		$(_this).find('a').eq(0).css('background-color','#e91e63');
 	}
 </script>
 <body class="">
