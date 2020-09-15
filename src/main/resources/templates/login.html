@@ -104,36 +104,38 @@
 		}
 		// 发送验证码
 		function amtf_submitYFCode(_this){
-			$.ajax({
-				url: CONTEXT_PATH + '/f010001/T003',
-				type: 'post',
-				data: {
-					phone_number:$('#email_id').val()
-				},
-				success: function (result) {
-					var data_s=60;
-					if('0' == result){
-						alert('发送失败');
-					} else {
-						$('#yfcode').removeClass('dispaly_none');
-						setInterval(function(){
-							if(data_s > 0) {
-								$(_this).val('重发验证（' + data_s + ')');
-								$(_this).attr('disabled','true');
-							} else {
-								$(_this).val('发送验证码');
-								$(_this).removeAttr('disabled');
-								
-							}
-							data_s-=1; 
-						}, 1000);
-					}
-					evenOff();
-				},
-				error: function (res, textStaus) {
-					evenOff();
-				},
-			});
+			if ($('#email_id').val() != '') {
+				$.ajax({
+					url: CONTEXT_PATH + '/f010001/T003',
+					type: 'post',
+					data: {
+						phone_number:$('#email_id').val()
+					},
+					success: function (result) {
+						var data_s=60;
+						if('0' == result){
+							alert('发送失败');
+						} else {
+							$('#yfcode').removeClass('dispaly_none');
+							setInterval(function(){
+								if(data_s > 0) {
+									$(_this).val('重发验证（' + data_s + ')');
+									$(_this).attr('disabled','true');
+								} else {
+									$(_this).val('发送验证码');
+									$(_this).removeAttr('disabled');
+									
+								}
+								data_s-=1; 
+							}, 1000);
+						}
+						evenOff();
+					},
+					error: function (res, textStaus) {
+						evenOff();
+					},
+				});
+			}
 		}
 		// 注册按钮押下
 		function amtf_regist(){
