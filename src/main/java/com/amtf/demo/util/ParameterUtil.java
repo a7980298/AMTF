@@ -32,7 +32,7 @@ public class ParameterUtil {
 							fieldobj1[j].setAccessible(true);
 							fieldobj2[i].setAccessible(true);
 							if (CommonUtil.isEmpty(fieldobj2[i].get(obj2))) {
-								fieldobj1[j].set(obj1, Constant.EMPTY);
+								fieldobj1[j].set(obj1, null);
 							} else {
 								fieldobj1[j].set(obj1, fieldobj2[i].get(obj2));
 							}
