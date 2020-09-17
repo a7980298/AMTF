@@ -65,6 +65,16 @@ function evenOn(){
 	$('button').attr('disabled','disabled');
 	$('body').css('pointer-events','none');
 }
+//全局不可點擊
+function htmlEvenOff(){
+	$('button').attr('disabled','disabled');
+	$('body').css('pointer-events','none');
+}
+//全局可點擊
+function htmlEvenOn(){
+	$('button').removeAttr('disabled');
+	$('body').css('pointer-events','');
+}
 
 //上传图片
 function initFileInput(ctrlName, uploadUrl) {

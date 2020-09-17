@@ -67,6 +67,14 @@
 	function amtf_personnel_del(index) {
 		$('#select1' + index).remove();
 	}
+	//修改用戶
+	function amtf_personnel_upd(index) {
+		$('#getuser').css('display','block');
+	}
+	function amtf_lookuser(){
+		$('#lookuser1').addClass('show');
+		htmlEvenOff();
+	}
 </script>
 <body class="">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
@@ -836,6 +844,25 @@
 				</div>
 				<!-- 人员查询 -->
 				<div class="container-fluid dashboardclass" id="selectuser" style="display: none;">
+					<!-- 用戶詳細信息 -->
+					<div class="col-lg-1 col-md-6 col-sm-8 ml-auto mr-auto">
+						<ul class="dropdown-menu center text-center ml-auto mr-auto" id="lookuser1">
+							<li class="header-title">用戶信息</li>
+							<li class="adjustments-line">
+								<a href="javascript:void(0)" class="switch-trigger active-color">
+									<div class="badge-colors ml-auto mr-auto">
+										<span class="badge filter badge-purple" data-color="purple"></span>
+										<span class="badge filter badge-azure" data-color="azure"></span>
+										<span class="badge filter badge-green" data-color="green"></span>
+										<span class="badge filter badge-warning" data-color="orange"></span>
+										<span class="badge filter badge-danger" data-color="danger"></span>
+										<span class="badge filter badge-rose active" data-color="rose"></span>
+									</div>
+									<div class="clearfix"></div>
+								</a>
+							</li>
+						</ul>
+					</div>
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header card-header-rose card-header-icon">
@@ -846,7 +873,7 @@
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table">
+									<table class="table" style="z-index:-9999">
 										<thead>
 											<tr>
 												<th class="text-center">#</th>
@@ -868,11 +895,31 @@
 												<td class="text-right" th:if="${entity.user_attestation == '1'}" style="color:green;">認證</td>
 												<td class="text-right" th:if="${entity.user_attestation != '1'}" style="color:red;">未認證</td>
 												<td class="td-actions text-right">
-													<button type="button" rel="tooltip" class="btn btn-info">
+													<button type="button" rel="tooltip" class="btn btn-info" onclick="amtf_lookuser()">
 														<i class="material-icons">person</i>
 													</button>
-													<button type="button" rel="tooltip" class="btn btn-success">
-														<i class="material-icons">edit</i>
+													<button type="button" rel="tooltip" class="btn btn-success" data-toggle="dropdown">
+														<div class="dropdown show-dropdown">
+															<a href="#" data-toggle="dropdown">
+																<i class="material-icons">edit</i>
+															</a>
+															<ul class="dropdown-menu center">
+																<li class="header-title">选择 颜色</li>
+																<li class="adjustments-line">
+																	<a href="javascript:void(0)" class="switch-trigger active-color">
+																		<div class="badge-colors ml-auto mr-auto">
+																			<span class="badge filter badge-purple" data-color="purple"></span>
+																			<span class="badge filter badge-azure" data-color="azure"></span>
+																			<span class="badge filter badge-green" data-color="green"></span>
+																			<span class="badge filter badge-warning" data-color="orange"></span>
+																			<span class="badge filter badge-danger" data-color="danger"></span>
+																			<span class="badge filter badge-rose active" data-color="rose"></span>
+																		</div>
+																		<div class="clearfix"></div>
+																	</a>
+																</li>
+															</ul>
+														</div>
 													</button>
 													<button type="button" rel="tooltip" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'">
 														<i class="material-icons">close</i>
