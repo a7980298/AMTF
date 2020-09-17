@@ -63,6 +63,10 @@
 		$('#' + _href).removeClass('dispaly_none');
 		$('#' + _href).removeClass('collapse');
 	}
+	//删除按钮押下
+	function amtf_personnel_del(index) {
+		$('#select1' + index).remove();
+	}
 </script>
 <body class="">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
@@ -100,15 +104,15 @@
 						<a class="nav-link" data-toggle="collapse" href="#pagesExamples">
 							<i class="material-icons">image</i>
 							<p>
-								浏览 <b class="caret"></b>
+								人员管理 <b class="caret"></b>
 							</p>
 						</a>
 						<div class="collapse" id="pagesExamples">
 							<ul class="nav">
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
+								<li class="nav-item " >
+									<a class="nav-link" data-toggle="collapse" href="#selectuser" onclick="amtf_loginhead(this)">
 										<span class="sidebar-mini"> P </span>
-										<span class="sidebar-normal"> 定价 </span>
+										<span class="sidebar-normal"> 查询 </span>
 									</a>
 								</li>
 								<li class="nav-item ">
@@ -825,6 +829,58 @@
 							<div class="card card-calendar">
 								<div class="card-body ">
 									<div id="fullCalendar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 人员查询 -->
+				<div class="container-fluid dashboardclass" id="selectuser" style="display: none;">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header card-header-rose card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">assignment</i>
+								</div>
+								<h4 class="card-title">人員操作</h4>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th class="text-center">#</th>
+												<th>賬戶</th>
+												<th>真實姓名</th>
+												<th>郵箱</th>
+												<th>電話</th>
+												<th class="text-right">是否認證</th>
+												<th class="text-right">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="entity,idx:${f020001Params.select1}" th:id="select1 + ${idx.index}">
+												<td class="text-center">[[${idx.index + 1}]]</td>
+												<td>[[${entity.user_account}]]</td>
+												<td>[[${entity.user_name}]]</td>
+												<td>[[${entity.user_email}]]</td>
+												<td>[[${entity.user_phone}]]</td>
+												<td class="text-right" th:if="${entity.user_attestation == '1'}" style="color:green;">認證</td>
+												<td class="text-right" th:if="${entity.user_attestation != '1'}" style="color:red;">未認證</td>
+												<td class="td-actions text-right">
+													<button type="button" rel="tooltip" class="btn btn-info">
+														<i class="material-icons">person</i>
+													</button>
+													<button type="button" rel="tooltip" class="btn btn-success">
+														<i class="material-icons">edit</i>
+													</button>
+													<button type="button" rel="tooltip" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'">
+														<i class="material-icons">close</i>
+													</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>

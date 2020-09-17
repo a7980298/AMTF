@@ -45,17 +45,20 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
+			//賬戶
 			f02_select.setUser_account(select1.get(i).getUser_account());
-
+			//是否认证
 			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
-
+			//用户id
 			f02_select.setUser_id(select1.get(i).getUser_id());
-
+			//姓名
 			f02_select.setUser_name(select1.get(i).getUser_name());
-
+			//电话
 			f02_select.setUser_phone(select1.get(i).getUser_phone());
-
+			//权限
 			f02_select.setUser_power(select1.get(i).getUser_power());
+			//郵箱
+			f02_select.setUser_email(select1.get(i).getUser_email());
 
 			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
 
