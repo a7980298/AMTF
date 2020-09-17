@@ -62,7 +62,7 @@
 	function amtf_loginhead(_this) {
 		$('.dashboardclass').each(function() {
 			$(this).removeClass('display_block');
-			$(this).addClass('dispaly_none');
+			$(this).css('display','none');
 			$(this).removeClass('show');
 			$(this).removeClass('collapse');
 		});
@@ -145,49 +145,25 @@
 								<li class="nav-item " >
 									<a class="nav-link" data-toggle="collapse" href="#selectuser" onclick="amtf_loginhead(this)">
 										<span class="sidebar-mini"> P </span>
-										<span class="sidebar-normal"> 查询 </span>
+										<span class="sidebar-normal"> 操作 </span>
 									</a>
 								</li>
 								<li class="nav-item ">
 									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> RS </span>
-										<span class="sidebar-normal"> RTL 支持 </span>
+										<span class="sidebar-mini"> S </span>
+										<span class="sidebar-normal"> 查詢 </span>
 									</a>
 								</li>
 								<li class="nav-item ">
 									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> T </span>
-										<span class="sidebar-normal">时间轴 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> LP </span>
-										<span class="sidebar-normal">登录 页面 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> RP </span>
-										<span class="sidebar-normal">注册 页面 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> LSP </span>
-										<span class="sidebar-normal">锁定 页面 </span>
+										<span class="sidebar-mini"> Y </span>
+										<span class="sidebar-normal"> 認證 </span>
 									</a>
 								</li>
 								<li class="nav-item ">
 									<a class="nav-link" href="#">
 										<span class="sidebar-mini"> UP </span>
-										<span class="sidebar-normal">用户 配置 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> E </span>
-										<span class="sidebar-normal">错误 页面 </span>
+										<span class="sidebar-normal"> 權限升級 </span>
 									</a>
 								</li>
 							</ul>
