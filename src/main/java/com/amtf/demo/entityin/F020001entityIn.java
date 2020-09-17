@@ -106,5 +106,10 @@ public class F020001entityIn extends UserImpl {
 	 * 上传图片
 	 */
 	public String input_file_commit;
+	
+	/**
+	 * 刪除的用戶id
+	 */
+	public String userid;
 
 }

@@ -148,4 +148,59 @@ public class f020001ServiceImpl implements f020001Service {
 
 		return entityOut;
 	}
+	
+	/**
+	 * 刪除指定userid的數據
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F020001entityOut service06(F020001entityIn entityin) throws ErrListException {
+		F020001entityOut entityOut = new F020001entityOut();
+
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		
+		//刪除指定用戶
+		int delect4 = f020001dao.f020001_Delect4(entityin.getUserid());
+		//沒有刪除成功
+		if (delect4<=0) {
+			throw new ErrListException(entityin, entityin.getIViewId(), "刪除數據時發生錯誤！");
+		}
+		//重新獲取用戶數據
+		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(loginfo.getUser_power());
+
+		List<f020001_select1entity> select1_view = new ArrayList<f020001_select1entity>();
+
+		for (int i = 0; i < select1.size(); i++) {
+			f020001_select1entity f02_select = new f020001_select1entity();
+			//賬戶
+			f02_select.setUser_account(select1.get(i).getUser_account());
+			//是否认证
+			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
+			//用户id
+			f02_select.setUser_id(select1.get(i).getUser_id());
+			//姓名
+			f02_select.setUser_name(select1.get(i).getUser_name());
+			//电话
+			f02_select.setUser_phone(select1.get(i).getUser_phone());
+			//权限
+			f02_select.setUser_power(select1.get(i).getUser_power());
+			//郵箱
+			f02_select.setUser_email(select1.get(i).getUser_email());
+			//照片路徑
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
+
+			f02_select.setUser_path(path);
+
+			select1_view.add(f02_select);
+		}
+		//用戶數據
+		entityOut.setLogInFo(loginfo);
+		//查詢用戶數據
+		entityOut.setSelect1(select1_view);
+
+		return entityOut;
+	}
 }

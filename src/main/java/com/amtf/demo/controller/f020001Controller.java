@@ -170,5 +170,30 @@ public class f020001Controller extends ValiDationUtil {
 
 		return "f020001";
 	}
+	
+	/**
+	 * 刪除
+	 * 
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@PostMapping("/f020001/T006")
+	public String f010001T006(@RequestParam("userid") String userid, Model model) {
+		F020001Params params = new F020001Params();
+
+		F020001entityIn entityin = new F020001entityIn();
+
+		entityin.setUserid(userid);
+
+		F020001entityOut entityOut = f020001service.service06(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f020001Params", params);
+
+		return "f020001 :: selectuser";
+	}
+
 
 }

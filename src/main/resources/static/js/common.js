@@ -55,7 +55,7 @@ function setCodeSuccess(CodeSuccess){
 }
 //关闭遮罩
 function evenOff(){
-	$('#myModal_wait').modal('hide');
+	$('#myModal_wait').removeClass('show');
 	$('button').removeAttr('disabled');
 	$('body').css('pointer-events','');
 }
@@ -66,12 +66,14 @@ function evenOn(){
 	$('body').css('pointer-events','none');
 }
 //全局不可點擊
-function htmlEvenOff(){
+function htmlEvenOff(_id){
 	$('button').attr('disabled','disabled');
 	$('body').css('pointer-events','none');
+	$('#' + _id).removeAttr('disabled');
+	$('#' + _id).css('pointer-events','');
 }
 //全局可點擊
-function htmlEvenOn(){
+function htmlEvenOn(_id){
 	$('button').removeAttr('disabled');
 	$('body').css('pointer-events','');
 }

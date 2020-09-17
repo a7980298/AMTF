@@ -33,6 +33,7 @@
 			User_Phone like '%${select2.search_phone}%'
 		</if>
 	</select>
+	<!--  -->
 	<insert id="f020001_insert3">
 		INSERT 
 		INTO
@@ -44,4 +45,11 @@
 			,NOW()
 		)
 	</insert>
+	<!-- 刪除指定用戶id -->
+	<delete id="f020001_Delect4">
+		DELETE FROM 
+			AMTF_USER
+		WHERE
+			USER_ID = #{userid}
+	</delete>
 </mapper>
