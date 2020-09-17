@@ -77,7 +77,6 @@ function htmlEvenOn(_id){
 	$('button').removeAttr('disabled');
 	$('body').css('pointer-events','');
 }
-
 //上传图片
 function initFileInput(ctrlName, uploadUrl) {
 	var control = $('#' + ctrlName);

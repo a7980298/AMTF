@@ -63,7 +63,7 @@
 			type="text/javascript"></script>
 		<script th:src="@{/demo/demo.js}"></script>
 	</head>
-	<body>
+	<body onbeforeunload="myFunction()">
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{wait :: wait}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
@@ -74,7 +74,7 @@
 			setErrList("[[${errMessageList}]]");
 			setCodeErrList("[[${codemsg}]]");
 			setCodeSuccess("[[${success}]]");
-			
+		
 			// 超长待机后进入锁定画面
 			var lastTime = new Date().getTime();
 			var currentTime = new Date().getTime();
@@ -94,6 +94,10 @@
 			/* 定时器  间隔1秒检测是否长时间未操作页面  */
 			window.setInterval(testTime, 1000);
 		});
+		//監聽頁面刷新和關閉
+		function myFunction(){
+			amtf_submit(amtf_form , '/f010002/T001');
+		}
 	</script>
 </th:block>
 </html>
