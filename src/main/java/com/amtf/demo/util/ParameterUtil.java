@@ -88,8 +88,7 @@ public class ParameterUtil {
 			// 用户id
 			loginfo.setUser_id(!CommonUtil.isEmpty(user.getUser_id()) ? user.getUser_id() : Constant.INT_0);
 			// Email
-			loginfo.setUser_email(
-					!CommonUtil.isEmpty(user.getUser_email()) ? user.getUser_email() : Constant.EMPTY);
+			loginfo.setUser_email(!CommonUtil.isEmpty(user.getUser_email()) ? user.getUser_email() : Constant.EMPTY);
 			// 账户
 			loginfo.setUser_account(
 					!CommonUtil.isEmpty(user.getUser_account()) ? user.getUser_account() : Constant.EMPTY);
@@ -99,20 +98,18 @@ public class ParameterUtil {
 			// 姓名
 			loginfo.setUser_name(!CommonUtil.isEmpty(user.getUser_name()) ? user.getUser_name() : Constant.EMPTY);
 			// 国家
-			loginfo.setUser_country(!CommonUtil.isEmpty(user.getUser_country()) ? user.getUser_country()
-					: Constant.EMPTY);
+			loginfo.setUser_country(
+					!CommonUtil.isEmpty(user.getUser_country()) ? user.getUser_country() : Constant.EMPTY);
 			// 省
-			loginfo.setUser_province(!CommonUtil.isEmpty(user.getUser_province()) ? user.getUser_province()
-					: Constant.EMPTY);
+			loginfo.setUser_province(
+					!CommonUtil.isEmpty(user.getUser_province()) ? user.getUser_province() : Constant.EMPTY);
 			// 市
-			loginfo.setUser_city(!CommonUtil.isEmpty(user.getUser_city()) ? user.getUser_city()
-					: Constant.EMPTY);
+			loginfo.setUser_city(!CommonUtil.isEmpty(user.getUser_city()) ? user.getUser_city() : Constant.EMPTY);
 			// 邮编
-			loginfo.setUser_postcode(!CommonUtil.isEmpty(user.getUser_postcode()) ? user.getUser_postcode()
-					: Constant.EMPTY);
+			loginfo.setUser_postcode(
+					!CommonUtil.isEmpty(user.getUser_postcode()) ? user.getUser_postcode() : Constant.EMPTY);
 			// 电话
-			loginfo.setUser_phone(
-					!CommonUtil.isEmpty(user.getUser_phone()) ? user.getUser_phone() : Constant.EMPTY);
+			loginfo.setUser_phone(!CommonUtil.isEmpty(user.getUser_phone()) ? user.getUser_phone() : Constant.EMPTY);
 			// 介绍
 			loginfo.setUser_introduce(
 					!CommonUtil.isEmpty(user.getUser_introduce()) ? user.getUser_introduce() : Constant.EMPTY);
@@ -120,9 +117,9 @@ public class ParameterUtil {
 			loginfo.setUser_attestation(
 					!CommonUtil.isEmpty(user.getUser_attestation()) ? user.getUser_attestation() : Constant.EMPTY);
 			// 权限
-			loginfo.setUser_power(
-					!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : Constant.EMPTY);
+			loginfo.setUser_power(!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : Constant.EMPTY);
 			// 存入session
+			session.setMaxInactiveInterval(10 * 60);
 			session.setAttribute("loginfo", loginfo);
 
 		}

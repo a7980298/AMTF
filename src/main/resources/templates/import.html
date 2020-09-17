@@ -29,6 +29,7 @@
 		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
 		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
 		<script type="text/javascript" th:src="@{/js/common3.js}"></script>
+		<script th:src="@{/js/jquerysession.js}"></script>
 		<!-- axios引入 -->
 		<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
 		<!-- vue.js引入 -->
@@ -63,7 +64,7 @@
 			type="text/javascript"></script>
 		<script th:src="@{/demo/demo.js}"></script>
 	</head>
-	<body onbeforeunload="myFunction()">
+	<body onbeforeunload="myFunction()" onunload="myFunction()">
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{wait :: wait}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
@@ -96,6 +97,8 @@
 		});
 		//監聽頁面刷新和關閉
 		function myFunction(){
+			/* $.session.remove('loginfo');
+			$.session.get('key'); */
 			amtf_submit(amtf_form , '/f010002/T001');
 		}
 	</script>
