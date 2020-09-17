@@ -154,8 +154,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @parameter F020001Params params
 	 * @return String
 	 */
-	@PostMapping("/f020001/T005")
-	@ResponseBody
+	@RequestMapping("/f020001/T005")
 	public String f010001T005(F020001Params params, Model model) {
 
 		F020001entityIn entityin = new F020001entityIn();
