@@ -50,7 +50,7 @@
 			AMTF_UPDNOTICE 
 		WHERE 
 			UPDNOTICE_ID NOT IN(SELECT UPDNOTICEOVER_UPID FROM AMTF_UPDNOTICEOVER)
-		AND UPDNOTICE_NM != #{id}
+		AND UPDNOTICE_NAME != #{id}
 	</select>
 	<!-- 查看过的通知插入 -->
 	<insert id="f010002_Insert6">
