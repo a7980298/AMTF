@@ -135,7 +135,7 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		try {
-			f020001dao.f020001_insert3(loginfo.getUser_email(), "更新通知", entityin.getRelease_name());
+			f020001dao.f020001_insert3(loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}

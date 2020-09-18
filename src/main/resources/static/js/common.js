@@ -130,7 +130,8 @@ function setCodeSuccess(codeSuccess){
 function evenOff(){
 	$('#myModal_wait').removeClass('show');
 	$('button').removeAttr('disabled');
-	$('body').css('pointer-events','');
+	$('body').css('pointer-events','');-hidden
+	$('#myModal_wait').attr('aria','true');
 }
 //打开遮罩
 function evenOn(){

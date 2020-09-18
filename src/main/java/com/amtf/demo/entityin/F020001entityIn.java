@@ -96,6 +96,10 @@ public class F020001entityIn extends UserImpl {
 	 * 用户搜索的电话
 	 */
 	public String search_phone;
+	/**
+	 * 发布通知标题
+	 */
+	public String release_head;
 
 	/**
 	 * 发布通知

@@ -31,6 +31,28 @@
 	$(function(){
 		amtf_setColor($('#mainviewid'));
 		getFullCalendar('fullCalendar');
+		// 注册wangEditor插件
+		var E = window.wangEditor
+		var editor = new E('#editor')
+		// 或者 var editor = new E( document.getElementById('editor') )
+		editor.create()
+		document.getElementById('textsumbit').addEventListener('click', function () {
+			$.ajax({
+				url: CONTEXT_PATH + '/f020001/T003',
+				type: 'post',
+				dateType: 'html',
+				async: true,
+				data: {
+					release_head: $('#texthead').val(),
+					release_name: editor.txt.text()
+				},
+				success: function (result) {
+					setCodeSuccess('发布成功！');
+				},
+				error: function (res, textStaus) {
+				},
+			});
+		}, false)
 	});
 /* 	$(document).click(function(e) {
 		var _id = $(e.target).attr('id'); 
@@ -838,11 +860,11 @@
 										<thead>
 											<tr>
 												<th class="text-center">#</th>
-												<th>賬戶</th>
-												<th>真實姓名</th>
-												<th>郵箱</th>
-												<th>電話</th>
-												<th class="text-right">是否認證</th>
+												<th>账户</th>
+												<th>真实姓名</th>
+												<th>邮箱</th>
+												<th>电话</th>
+												<th class="text-right">是否认证</th>
 												<th class="text-right">操作</th>
 											</tr>
 										</thead>
@@ -853,8 +875,8 @@
 												<td>[[${entity.user_name}]]</td>
 												<td>[[${entity.user_email}]]</td>
 												<td>[[${entity.user_phone}]]</td>
-												<td class="text-right" th:if="${entity.user_attestation == '1'}" style="color:green;">認證</td>
-												<td class="text-right" th:if="${entity.user_attestation != '1'}" style="color:red;">未認證</td>
+												<td class="text-right" th:if="${entity.user_attestation == '1'}" style="color:green;">√认证</td>
+												<td class="text-right" th:if="${entity.user_attestation != '1'}" style="color:red;">×未认证</td>
 												<td class="td-actions text-right">
 													<button type="button" rel="tooltip" class="btn btn-info" onclick="amtf_lookuser()">
 														<i class="material-icons">person</i>
@@ -867,7 +889,7 @@
 														<i class="material-icons">close</i>
 													</a>
 													<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-														<p class="text-center">確定刪除嗎？</p>
+														<p class="text-center">确定删除吗？</p>
 														<p class="text-center">
 															<a href="#" class="btn btn-danger"  th:attr="onclick='amtf_userDelete(' + ${entity.user_id} + ');'">
 																	<i class="material-icons">是</i>
@@ -882,7 +904,35 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="table-responsive text-center" th:if="${#lists.isEmpty(f020001Params.select1)}"> 數據不存在</div>
+								<div class="table-responsive text-center" th:if="${#lists.isEmpty(f020001Params.select1)}"> 数据不存在。。。</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 全体通知 -->
+				<div class="container-fluid dashboardclass" id="allnotices" style="display: none;">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header card-header-rose card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">assignment</i>
+								</div>
+								<h4 class="card-title">全体通知</h4>
+							</div>
+							<div class="row text-center">
+								<label class="col-sm-2 col-form-label"></label>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<input type="text" class="form-control text-center" placeholder="标题" id="texthead">
+										<span class="bmd-help"></span>
+									</div>
+								</div>
+							</div>
+							<div class="panel-body ">
+								<div id="editor"></div>
+								<div class="col-md-12 ml-auto mr-auto">
+									<button type="button" id="textsumbit" class="btn btn-default">发布</button>
+								</div>
 							</div>
 						</div>
 					</div>

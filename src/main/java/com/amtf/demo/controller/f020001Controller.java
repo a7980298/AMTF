@@ -114,11 +114,12 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@PostMapping("/f020001/T003")
-	public String f010001T003(@RequestParam("release_name") String release_name, Model model) {
+	public String f010001T003(@RequestParam("release_name") String release_name,@RequestParam("release_head") String release_head, Model model) {
 		F020001Params params = new F020001Params();
 
 		F020001entityIn entityin = new F020001entityIn();
 
+		entityin.setRelease_head(release_head);
 		entityin.setRelease_name(release_name);
 
 		F020001entityOut entityOut = f020001service.service04(entityin);
