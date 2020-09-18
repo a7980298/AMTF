@@ -63,6 +63,7 @@
 	}
 	// 打开详细通知
 	function amtf_getupdontice(_entity) {
+		$('#getupdontice').modal('show');
 		$.ajax({
 			url: CONTEXT_PATH + '/f010002/T004',
 			type: 'post',
@@ -72,13 +73,12 @@
 				id: _entity,
 			},
 			success: function (result) {
-				$('#updnoticelist').replaceWith(result);
+				$('#select5').replaceWith(result);
 			},
 			error: function (res, textStaus) {
 				evenOff();
 			},
 		});
-		$('#getupdontice').modal('show');
 	}
 	// 登陆页面head选中样式变换
 	function amtf_loginhead(_this) {
@@ -208,7 +208,7 @@
 								</a>
 							</li>
 							<li class="nav-item dropdown">
-								<div id="updnoticelist" th:if="${not #lists.isEmpty(f010002Params.select5)}">
+								<div id="select5" th:fragment="select5" th:if="${not #lists.isEmpty(f010002Params.select5)}">
 									<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
 										<i class="material-icons">notifications</i>
@@ -222,9 +222,7 @@
 									</div>
 								</div>
 							</li>
-							
 							<li class="nav-item dropdown">
-							
 								<a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
 									<i class="material-icons">person</i>
@@ -391,8 +389,6 @@
 									</div>
 									<div class="col-md-4">
 										<div class="picture">
-											<img src="../../assets/img/card-1.jpg" alt="Thumbnail Image"
-												class="rounded img-fluid">
 										</div>
 									</div>
 								</div>
@@ -402,15 +398,10 @@
 									<div class="col-md-8">
 										<strong>2. Apply</strong>
 										<p class="description">
-											The first step is to create an account at <a
-												href="http://www.creative-tim.com/">Creative Tim</a>. You
-											can choose a social network or go for the classic version,
-											whatever works best for you.
 										</p>
 									</div>
 									<div class="col-md-4">
 										<div class="picture">
-											<img src="../../assets/img/card-2.jpg" alt="Thumbnail Image"
 												class="rounded img-fluid">
 										</div>
 									</div>

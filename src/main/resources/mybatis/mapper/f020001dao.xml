@@ -55,14 +55,12 @@
 	</delete>
 	<!-- 获取通知 -->
 	<select id="f020001_Select5" resultType="com.amtf.demo.f020001entity.f020001_select5entity">
-		 SELECT 
-			A1.*
+		SELECT 
+			*
 		FROM 
-			AMTF_UPDNOTICE A1 
-		LEFT JOIN 
-			AMTF_UPDNOTICEOVER B1 
-			ON A1.UPDNOTICE_ID != B1.UPDNOTICEOVER_UPID
+			AMTF_UPDNOTICE 
 		WHERE 
-			A1.UPDNOTICE_ID != #{id}
+			UPDNOTICE_ID NOT IN(SELECT UPDNOTICEOVER_UPID FROM AMTF_UPDNOTICEOVER)
+		AND UPDNOTICE_NM != #{id}
 	</select>
 </mapper>
