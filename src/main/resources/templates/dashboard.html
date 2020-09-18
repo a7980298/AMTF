@@ -101,7 +101,7 @@
 		//htmlEvenOff('lookuser1');
 	}
 </script>
-<body class="">
+<body class="" onbeforeunload="myFunction()">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 	<div class="wrapper">
 		<th:block th:replace="~{f020003 :: f020003_modl}"></th:block>

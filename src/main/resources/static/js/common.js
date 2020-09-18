@@ -24,6 +24,21 @@ function setErrList(errlist) {
 	}
 }
 
+//监听页面直接关闭
+function myFunction(){
+	/* $.session.remove('loginfo');
+	$.session.get('key'); */
+	$.ajax({
+		url: CONTEXT_PATH + '/f010002/T001',
+		type: 'post',
+		dateType: 'html',
+		async: true,
+		data: {},
+		success: function (result) {},
+		error: function (res, textStaus) {},
+	});
+}
+
 //表单提交
 function amtf_submit(form,action) {
 	form.action = CONTEXT_PATH + action;
