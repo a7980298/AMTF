@@ -57,7 +57,11 @@ function setFormValidation(id) {
 			$(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
 		},
 		errorPlacement: function(error, element) {
-			$(element).closest("input").after(error);
+			if($(element).parent().hasClass('d-flex')) {
+				$(element).parent().parent().after(error);
+			} else {
+				$(element).closest("input").after(error);
+			}
 		},
 	});
 }

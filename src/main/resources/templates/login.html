@@ -43,6 +43,7 @@
 		});
 		$(document).ready(function() {
 			setFormValidation('#amtf_form');
+			setFormValidation('#amtf_form_register');
 		});
 		// 查看密码
 		var pwsShowFlag = true; 
@@ -59,8 +60,7 @@
 		}
 		// 登录按钮押下
 		function amtf_login() {
-			var validRet = $("#amtf_form").valid();
-			if (validRet) {
+			if ($("#amtf_form").valid()) {
 				if(!window.localStorage){
 					alert("浏览器支持localstorage");
 					return false;
@@ -148,10 +148,12 @@
 		}
 		// 注册按钮押下
 		function amtf_regist(){
-			if ($('#mailcode').val() == '') {
-				
-			} else {
-				amtf_submit(amtf_form_register , '/f010001/T002');
+			if ($("#amtf_form_register").valid()) {
+				if ($('#mailcode').val() == '') {
+					
+				} else {
+					amtf_submit(amtf_form_register , '/f010001/T002');
+				}
 			}
 		}
 		// 保存账户密码的Check
@@ -436,44 +438,56 @@
 													<h4 class="mt-3"> 第三方登录 </h4>
 												</div>
 												<div class="form-group has-default">
-													<div class="input-group">
-														<div class="input-group-prepend">
+													<div class="form-group col-12 d-flex" style="padding-left: 0px;">
+														<div class="col-1">
 															<span class="input-group-text">
 																<i class="material-icons">face</i>
 															</span>
 														</div>
-														<input type="text" class="form-control" placeholder="用户名..." name="regist_user_name">
+														<div class="col-md-12">
+															<input type="text" class="form-control" placeholder="用户名..." name="regist_user_name" required="true">
+														</div>
 													</div>
 												</div>
 												<div class="form-group has-default">
-													<div class="input-group">
-														<div class="input-group-prepend">
+													<div class="form-group col-12 d-flex" style="padding-left: 0px;">
+														<div class="col-1">
 															<span class="input-group-text">
 																<i class="material-icons">mail</i>
 															</span>
 														</div>
-														<input type="text" class="form-control" placeholder="邮箱..." id="email_id" name="regist_user_email" email="true">
-														<input type="button" class="btn btn-link form-control" style="height:31px;" value="发送验证码" onclick="amtf_submitYFCode(this)">
+														<div class="col-md-12 d-flex">
+															<div class="col-md-8" style="padding-left: 0px;padding-right: 0px;">
+																<input type="text" class="form-control col-md-12" placeholder="邮箱..." id="email_id" name="regist_user_email" email="true" required="true">
+															</div>
+															<div class="col-md-4" style="padding-left: 0px;padding-right: 0px;">
+																<input type="button" class="btn btn-link form-control col-md-12" style="height:31px;" value="发送验证码" onclick="amtf_submitYFCode(this)">
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="form-group has-default dispaly_none" id="yfcode">
-													<div class="input-group">
-														<div class="input-group-prepend">
+													<div class="form-group col-12 d-flex" style="padding-left: 0px;">
+														<div class="col-1">
 															<span class="input-group-text">
 																<i class="material-icons">mail</i>
 															</span>
 														</div>
-														<input type="text" class="form-control" placeholder="验证码..." id="mailcode" name="verifyCode" number="true">
+														<div class="col-md-12">
+															<input type="text" class="form-control" placeholder="验证码..." id="mailcode" name="verifyCode" number="true" required="true">
+														</div>
 													</div>
 												</div>
 												<div class="form-group has-default">
-													<div class="input-group">
-														<div class="input-group-prepend">
+													<div class="form-group col-12 d-flex" style="padding-left: 0px;">
+														<div class="col-1">
 															<span class="input-group-text">
 																<i class="material-icons">lock_outline</i>
 															</span>
 														</div>
-														<input type="password" placeholder="密码..." class="form-control" name="regist_user_password">
+														<div class="col-md-12">
+															<input type="password" placeholder="密码..." class="form-control" name="regist_user_password" required="true">
+														</div>
 													</div>
 												</div>
 												<div class="form-check">
