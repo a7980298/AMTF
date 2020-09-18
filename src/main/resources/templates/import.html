@@ -70,7 +70,7 @@
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
 	</body>
 	<script type="text/javascript">
-		//初始化方法
+		// 初始化方法
 		$(function() {
 			setErrList("[[${errMessageList}]]");
 			setCodeErrList("[[${codemsg}]]");
@@ -83,19 +83,22 @@
 			$(function(){
 				/* 鼠标移动事件 */
 				$(document).mouseover(function(){
-					lastTime = new Date().getTime(); //更新操作时间
+					//更新操作时间
+					lastTime = new Date().getTime();
 				});
 			});
 			function testTime(){
-				currentTime = new Date().getTime(); //更新当前时间
-				if(currentTime - lastTime > timeOut){ //判断是否超时
+				//更新当前时间
+				currentTime = new Date().getTime();
+				//判断是否超时
+				if(currentTime - lastTime > timeOut){
 					amtf_submit(amtf_formupduser , '/f010002/T003');
 				}
 			}
 			/* 定时器  间隔1秒检测是否长时间未操作页面  */
 			window.setInterval(testTime, 1000);
 		});
-		//監聽頁面刷新和關閉
+		// 监听页面直接关闭
 		function myFunction(){
 			/* $.session.remove('loginfo');
 			$.session.get('key'); */
@@ -104,15 +107,9 @@
 				type: 'post',
 				dateType: 'html',
 				async: true,
-				data: {
-					
-				},
-				success: function (result) {
-					alert('退出成功');
-				},
-				error: function (res, textStaus) {
-					evenOff();
-				},
+				data: {},
+				success: function (result) {},
+				error: function (res, textStaus) {},
 			});
 		}
 	</script>
