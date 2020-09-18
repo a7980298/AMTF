@@ -20,5 +20,5 @@ public interface f020001Dao {
 	
 	int f020001_Delect4(@Param("userid") String userid);
 	
-	List<f020001_select5entity> f020001_Select5();
+	List<f020001_select5entity> f020001_Select5(@Param("id") String id);
 }

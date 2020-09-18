@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
+import com.amtf.demo.f010002entity.f010002_select4entity;
+import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.user.UserImpl;
 import com.amtf.demo.util.FenYe;
 
@@ -124,4 +126,9 @@ public class F010002entityOut extends UserImpl {
 	 * 是否修改成功
 	 */
 	public String isUpdatUserOk;
+	
+	/**
+	 * 通知信息
+	 */
+	List<f010002_select4entity> select5;
 }

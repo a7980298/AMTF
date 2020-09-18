@@ -16,6 +16,7 @@ import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
+import com.amtf.demo.f010002entity.f010002_select4entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
@@ -66,16 +67,20 @@ public class f010002ServiceImpl implements f010002Service {
 		entityout.setNavigation_bar(navigation_bar);
 
 		List<f010001_select3entity> select4 = f010001dao.f010001_Select3();
-		f010001_select3entity select3entity = new f010001_select3entity();
+		f010001_select3entity select4entity = new f010001_select3entity();
 		if (!CommonUtil.isEmptyList(select4)) {
 
 			select4.sort((a, b) -> b.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")
 					.compareTo(a.getUpdnotice_time().replace("-", "").replace(" ", "").replace(":", "")));
 
-			select3entity = CommonUtil.isEmptyList(select4) ? null : select4.get(0);
+			select4entity = CommonUtil.isEmptyList(select4) ? null : select4.get(0);
 
 		}
-		entityout.setSelect4(select3entity);
+		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
+		
+		entityout.setSelect4(select4entity);
+		
+		entityout.setSelect5(select5);
 
 		return entityout;
 	}

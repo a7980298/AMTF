@@ -68,7 +68,7 @@ public class f020001ServiceImpl implements f020001Service {
 			select1_view.add(f02_select);
 		}
 
-		List<f020001_select5entity> select5 = f020001dao.f020001_Select5();
+		List<f020001_select5entity> select5 = f020001dao.f020001_Select5(loginfo.getUser_email());
 		
 		entityOut.setSelect5(select5);
 		
