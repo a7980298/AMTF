@@ -8,16 +8,21 @@ import lombok.Setter;
 @Getter
 @Setter
 public class f010002_select4entity {
+	
+	/**
+	 * id
+	 */
+	private String updnotice_id;
 
 	/**
 	 * 发布人
 	 */
-	private String updnotice_id;
+	private String updnotice_name;
 	
 	/**
 	 * 标题
 	 */
-	private String updnotice_name;
+	private String updnotice_head;
 
 	/**
 	 * 内容

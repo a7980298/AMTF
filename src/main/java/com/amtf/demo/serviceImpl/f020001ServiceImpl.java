@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amtf.demo.dao.commonDao;
 import com.amtf.demo.dao.f020001Dao;
 import com.amtf.demo.entityin.F020001entityIn;
 import com.amtf.demo.entityout.F020001entityOut;
@@ -16,6 +17,7 @@ import com.amtf.demo.f020001entity.f020001_select2entityIn;
 import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
+import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 
@@ -27,6 +29,9 @@ public class f020001ServiceImpl implements f020001Service {
 
 	@Autowired
 	private final f020001Dao f020001dao;
+	
+	@Autowired
+	private final commonDao commondao;
 
 	@Override
 	public F020001entityOut service01(F020001entityIn entityin) throws ErrListException {
@@ -140,7 +145,7 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		try {
-			f020001dao.f020001_insert3(loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
+			f020001dao.f020001_insert3(CommonUtil.isEmpty(commondao.common_Select2())?0:commondao.common_Select2(),loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}

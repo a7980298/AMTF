@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface commonDao {
 
 	Integer common_Select1();
+	
+	Integer common_Select2();
 }

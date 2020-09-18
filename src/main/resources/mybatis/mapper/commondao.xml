@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amtf.demo.dao.commonDao">
+	<!-- 获取user表最大id -->
 	<select id="common_Select1"
 		resultType="int">
 		SELECT
 			MAX(USER_ID)
 		FROM
 			AMTF_USER
+	</select>
+	<!-- 获取updnotice表最大id -->
+	<select id="common_Select2"
+		resultType="int">
+		SELECT
+			MAX(UPDNOTICE_ID)
+		FROM
+			AMTF_UPDNOTICE
 	</select>
 </mapper>

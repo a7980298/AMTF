@@ -16,7 +16,7 @@ public interface f020001Dao {
 
 	List<f010001_select1entity> f020001_Select2(@Param("select2") f020001_select2entityIn select2);
 
-	void f020001_insert3(@Param("id") String id, @Param("head") String head, @Param("text") String text);
+	void f020001_insert3(@Param("id") Integer id, @Param("name") String name, @Param("head") String head, @Param("text") String text);
 	
 	int f020001_Delect4(@Param("userid") String userid);
 	

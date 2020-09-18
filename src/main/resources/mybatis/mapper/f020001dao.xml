@@ -33,13 +33,14 @@
 			User_Phone like '%${select2.search_phone}%'
 		</if>
 	</select>
-	<!--  -->
+	<!-- 发布通知 -->
 	<insert id="f020001_insert3">
 		INSERT 
 		INTO
-			AMTF_updnotice
+			AMTF_UPDNOTICE
 		VALUES(
 			#{id}
+			,#{name}
 			,#{head}
 			,#{text}
 			,NOW()
@@ -63,6 +64,6 @@
 		ON UNIX_TIMESTAMP(A1.UPDNOTICE_TIME) !=
 			UNIX_TIMESTAMP(B1.UPDNOTICEOVER_TIME)
 		WHERE
-			A1.UPDNOTICE_ID != #{id}
+			A1.UPDNOTICE_NAME != #{id}
 	</select>
 </mapper>
