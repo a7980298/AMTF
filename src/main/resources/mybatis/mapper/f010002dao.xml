@@ -44,15 +44,23 @@
 	</select>
 	<!-- 获取通知 -->
 	<select id="f010002_Select5" resultType="com.amtf.demo.f010002entity.f010002_select4entity">
-		SELECT
+		SELECT 
 			A1.*
-		FROM
-			AMTF_UPDNOTICEOVER B1
-		LEFT JOIN
-			AMTF_UPDNOTICE A1
-		ON UNIX_TIMESTAMP(A1.UPDNOTICE_TIME) !=
-			UNIX_TIMESTAMP(B1.UPDNOTICEOVER_TIME)
-		WHERE
-			A1.UPDNOTICE_NAME != #{id}
+		FROM 
+			AMTF_UPDNOTICE A1 
+		LEFT JOIN 
+			AMTF_UPDNOTICEOVER B1 
+			ON A1.UPDNOTICE_ID != B1.UPDNOTICEOVER_UPID
+		WHERE 
+			A1.UPDNOTICE_ID != #{id}
 	</select>
+	<!-- 查看过的通知插入 -->
+	<insert id="f010002_Insert6">
+		INSERT INTO 
+			AMTF_UPDNOTICEOVER 
+		VALUES(
+			#{id}
+			,#{upid}
+			)
+	</insert>
 </mapper>

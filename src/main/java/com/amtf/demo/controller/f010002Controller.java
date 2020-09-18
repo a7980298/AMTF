@@ -7,12 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.amtf.demo.entityin.F010002entityIn;
+import com.amtf.demo.entityin.F020001entityIn;
 import com.amtf.demo.entityout.F010002entityOut;
+import com.amtf.demo.entityout.F020001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
+import com.amtf.demo.params.F020001Params;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.Constant;
@@ -129,5 +133,29 @@ public class f010002Controller extends ValiDationUtil {
 		f010001params.setLogInFo(loginfo);
 		model.addAttribute("f010001Params", f010001params);
 		return "login";
+	}
+	
+	/**
+	 * 标记查看过的通知
+	 * 
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@PostMapping("/f010002/T004")
+	public String f010002T004(@RequestParam("id") String id, Model model) {
+		F010002Params params = new F010002Params();
+
+		F010002entityIn entityin = new F010002entityIn();
+
+		entityin.setUpdnotice_id(id);
+
+		F010002entityOut entityOut = f010002service.service04(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010002Params", params);
+
+		return "main :: updnoticelist";
 	}
 }

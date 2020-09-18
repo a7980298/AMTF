@@ -55,15 +55,14 @@
 	</delete>
 	<!-- 获取通知 -->
 	<select id="f020001_Select5" resultType="com.amtf.demo.f020001entity.f020001_select5entity">
-		SELECT
+		 SELECT 
 			A1.*
-		FROM
-			AMTF_UPDNOTICEOVER B1
-		LEFT JOIN
-			AMTF_UPDNOTICE A1
-		ON UNIX_TIMESTAMP(A1.UPDNOTICE_TIME) !=
-			UNIX_TIMESTAMP(B1.UPDNOTICEOVER_TIME)
-		WHERE
-			A1.UPDNOTICE_NAME != #{id}
+		FROM 
+			AMTF_UPDNOTICE A1 
+		LEFT JOIN 
+			AMTF_UPDNOTICEOVER B1 
+			ON A1.UPDNOTICE_ID != B1.UPDNOTICEOVER_UPID
+		WHERE 
+			A1.UPDNOTICE_ID != #{id}
 	</select>
 </mapper>

@@ -114,4 +114,9 @@ public class F010002entityIn extends UserImpl {
 	 */
 	public String isUpdatUserOk;
 
+	/**
+	 * 通知id
+	 */
+	public String updnotice_id;
+
 }

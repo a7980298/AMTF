@@ -23,6 +23,7 @@ import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.FenYe;
 import com.amtf.demo.util.ImgUtil;
+import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
 
@@ -98,6 +99,9 @@ public class f010002ServiceImpl implements f010002Service {
 		return entityout;
 	}
 
+	/**
+	 * 更改用户信息
+	 */
 	@Override
 	public F010002entityOut service03(F010002entityIn entityIn) throws ErrListException {
 		F010002entityOut entityout = new F010002entityOut();
@@ -138,6 +142,22 @@ public class f010002ServiceImpl implements f010002Service {
 		ParameterUtil.setSession(select3entity);
 
 		entityout.setIsUpdatUserOk(Constant.STR_1);
+
+		return entityout;
+	}
+
+	/**
+	 * 标记查看过的通知
+	 */
+	@Override
+	public F010002entityOut service04(F010002entityIn entityin) throws ErrListException {
+		F010002entityOut entityout = new F010002entityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		f010002dao.f010002_Insert6(loginfo.getUser_email(),NumberUtil.toInt(entityin.getUpdnotice_id()));
+		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
+		
+		entityout.setSelect5(select5);
 
 		return entityout;
 	}

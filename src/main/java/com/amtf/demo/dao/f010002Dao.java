@@ -23,5 +23,7 @@ public interface f010002Dao {
 	f010001_select1entity f010002_Select3(@Param("loginfo") LogInFo loginfo);
 	
 	List<f010002_select4entity> f010002_Select5(@Param("id") String id);
+	
+	int f010002_Insert6(@Param("id") String id,@Param("upid") Integer upid);
 
 }

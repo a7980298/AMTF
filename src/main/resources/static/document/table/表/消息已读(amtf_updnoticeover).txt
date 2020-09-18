@@ -1,8 +1,6 @@
 CREATE TABLE amtf_updnoticeover(
 	updnoticeover_id VARCHAR(30) NOT NULL, -- 唯一标识符(用户)
-	updnoticeover_emal VARCHAR(30), -- 发布信息管理员
-	updnoticeover_yn char(1), -- 是否看过
-	updnoticeover_time DATETIME	-- 发布的时间
+	updnoticeover_upid INT -- 通知id
 )
 
-insert into amtf_updnoticeover values('1','2428503607@qq.com','1','2020-09-18 14:41:00');
+insert into amtf_updnoticeover values('2428503607@qq.com',1);
