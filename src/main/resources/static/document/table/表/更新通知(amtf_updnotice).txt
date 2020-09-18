@@ -2,5 +2,5 @@ CREATE TABLE amtf_updnotice(
 	updnotice_id VARCHAR(30) NOT NULL, -- 唯一标识符(用户的电话号码)
 	updnotice_name VARCHAR(20), -- 管理员姓名
 	updnotice_text VARCHAR(200), -- 更新内容
-	updnotice_time DATE	-- 更新时间
+	updnotice_time DATETIME	-- 更新时间
 )

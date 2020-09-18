@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.f020001entity.f020001_select1entity;
+import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -44,4 +45,9 @@ public class F020001Params extends UserImpl {
 	 * 上传图片
 	 */
 	public String input_file_commit;
+	
+	/**
+	 * 通知信息
+	 */
+	List<f020001_select5entity> select5;
 }

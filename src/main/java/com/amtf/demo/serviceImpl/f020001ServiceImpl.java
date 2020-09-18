@@ -13,6 +13,7 @@ import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select2entityIn;
+import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.ImgUtil;
@@ -67,6 +68,10 @@ public class f020001ServiceImpl implements f020001Service {
 			select1_view.add(f02_select);
 		}
 
+		List<f020001_select5entity> select5 = f020001dao.f020001_Select5();
+		
+		entityOut.setSelect5(select5);
+		
 		entityOut.setLogInFo(loginfo);
 
 		entityOut.setSelect1(select1_view);
