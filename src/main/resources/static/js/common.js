@@ -25,24 +25,18 @@ function setErrList(errlist) {
 }
 // 输入正确删除err提示
 function blurSetInputTextVal(){
-	$("input[type='text']").each(function(){
-		$(this).on('blur',function(){
-			var _text = $(this).parent('div').next().text();
-			if (_text == '') {
-				$(this).parent('div').next().remove();
-			}
-		})
-	});
-}
-function blurSetInputPwdVal(){
-	$("input[type='password']").each(function(){
-		$(this).on('blur',function(){
-			var _text = $(this).parent('div').next().text();
-			if (_text == '') {
-				$(this).parent('div').next().css('display','none');
-			}
-		})
-	});
+	$("input").on('change',function(){
+		var _id = this.id;
+		if ($('#' + _id + '-error').text() == '') {
+			$('#' + _id + '-error').remove();
+		}
+	})
+	$("input").on('blur',function(){
+		var _id = this.id;
+		if ($('#' + _id + '-error').text() == '') {
+			$('#' + _id + '-error').remove();
+		}
+	})
 }
 
 // jq输入校验
