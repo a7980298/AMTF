@@ -10,7 +10,7 @@ function setErrList(errlist) {
 		for (var i = 0; i < lists.length; i++) {
 			var _id = lists[i].substring(lists[i].indexOf('name:') + 5,lists[i].indexOf('}'));
 			var _val = lists[i].substring(lists[i].indexOf('err:') + 4,lists[i].indexOf('+'));
-		/*	if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
+			/*if ($('input[name=' + _id + ']').parent().hasClass('parentClass')) {
 				$('input[name=' + _id + ']').parent().after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
 			} else {
 				$('input[name=' + _id + ']').after("<div id='" + _id + "_err' class='errlist' style='color:red;'><span>" + _val + "</span></div>");
@@ -24,11 +24,28 @@ function setErrList(errlist) {
 	}
 }
 
+// jq输入校验
+function setFormValidation(id) {
+	$(id).validate({
+		highlight: function(element) {
+			$(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+			$(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
+		},
+		success: function(element) {
+			$(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+			$(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
+		},
+		errorPlacement: function(error, element) {
+			$(element).closest('.form-group').append(error);
+		},
+	});
+}
+
 //监听页面直接关闭
 function myFunction(){
 	/* $.session.remove('loginfo');
 	$.session.get('key'); */
-	$.ajax({
+	/*$.ajax({
 		url: CONTEXT_PATH + '/f010002/T001',
 		type: 'post',
 		dateType: 'html',
@@ -36,7 +53,7 @@ function myFunction(){
 		data: {},
 		success: function (result) {},
 		error: function (res, textStaus) {},
-	});
+	});*/
 }
 
 //表单提交
@@ -53,19 +70,41 @@ function amtf_form_head(){
 	form.submit();
 }
 
-//打开modal模态框
+//打开模态框显示错误信息
 function setCodeErrList(codeErrList){
 	if (codeErrList != null && codeErrList != '') {
-		/*$('#myModal_codeErr').modal('show');*/
-		alert(codeErrList);
+		swal({
+			title: codeErrList,
+			text: "",
+			type: "warning",
+			showCancelButton:false,
+			closeOnConfirm:false,
+			confirmButtonText:"确认",
+			cancelButtonText:"",
+			animation: "",
+			inputPlaceholder: ""
+		},
+		function () {});
 	}
 }
 
-//打开modal模态框
-function setCodeSuccess(CodeSuccess){
-	if (CodeSuccess != null && CodeSuccess != '') {
-		/*$('#myModal_success').modal('show');*/
-		alert(CodeSuccess);
+//打开模态框显示成功信息
+function setCodeSuccess(codeSuccess){
+	if (codeSuccess != null && codeSuccess != '') {
+		if (codeSuccess != null && codeSuccess != '') {
+			swal({
+				title: codeSuccess,
+				text: "",
+				type: "input",
+				showCancelButton:false,
+				closeOnConfirm:false,
+				confirmButtonText:"确认",
+				cancelButtonText:"",
+				animation: "",
+				inputPlaceholder: ""
+			},
+			function () {});
+		}
 	}
 }
 //关闭遮罩
@@ -194,12 +233,14 @@ function initFileInputCommit(ctrlName, uploadUrl) {
 //根据浏览器获取图片路径
 function getObjectURL(file) {
 	var url = null ;
-
-	if (window.createObjectURL!=undefined) { // basic
+	if (window.createObjectURL!=undefined) {
+		// basic
 		url = window.createObjectURL(file) ;
-	} else if (window.URL!=undefined) { // mozilla(firefox) 火狐
+	} else if (window.URL!=undefined) {
+		// mozilla(firefox) 火狐
 		url = window.URL.createObjectURL(file) ;
-	} else if (window.webkitURL!=undefined) { // webkit or chrome 谷歌
+	} else if (window.webkitURL!=undefined) {
+		// webkit or chrome 谷歌
 		url = window.webkitURL.createObjectURL(file) ;
 	}
 	return url ;
@@ -210,6 +251,7 @@ $(document).ready(function() {
 	md.initFullCalendar();
 });
 
+// 日历控件中文化
 function getFullCalendar(_id){
 	$('#' + _id).fullCalendar({
 		theme: true,

@@ -101,7 +101,7 @@
 		//htmlEvenOff('lookuser1');
 	}
 </script>
-<body class="" onbeforeunload="myFunction()">
+<body class="" onunload="myFunction()">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 	<div class="wrapper">
 		<th:block th:replace="~{f020003 :: f020003_modl}"></th:block>
@@ -233,33 +233,21 @@
 						<a class="nav-link" data-toggle="collapse" href="#formsExamples">
 							<i class="material-icons">content_paste</i>
 							<p>
-								形式 <b class="caret"></b>
+								通知 <b class="caret"></b>
 							</p>
 						</a>
 						<div class="collapse" id="formsExamples">
 							<ul class="nav">
 								<li class="nav-item ">
-									<a class="nav-link" href="#">
+									<a class="nav-link" data-toggle="collapse" href="#allnotices" onclick="amtf_loginhead(this)">
 										<span class="sidebar-mini"> RF </span>
-										<span class="sidebar-normal">正规 形式 </span>
+										<span class="sidebar-normal">全体 </span>
 									</a>
 								</li>
 								<li class="nav-item ">
 									<a class="nav-link" href="#">
 										<span class="sidebar-mini"> EF </span>
-										<span class="sidebar-normal">扩展 形式 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> VF </span>
-										<span class="sidebar-normal">验证 表格 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> W </span>
-										<span class="sidebar-normal">向导 </span>
+										<span class="sidebar-normal">范围 </span>
 									</a>
 								</li>
 							</ul>

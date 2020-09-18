@@ -26,9 +26,6 @@
 		<script type="text/javascript" th:src="@{/js/fileinput.js}"></script>
 		<script type="text/javascript" th:src="@{/js/zh.js}"></script>
 		<!-- 共通js包-->
-		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
-		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
-		<script type="text/javascript" th:src="@{/js/common3.js}"></script>
 		<script th:src="@{/js/jquerysession.js}"></script>
 		<!-- axios引入 -->
 		<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
@@ -63,6 +60,9 @@
 		<script th:src="@{/js/material-dashboard.js?v=2.1.2}"
 			type="text/javascript"></script>
 		<script th:src="@{/demo/demo.js}"></script>
+		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
+		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
+		<script type="text/javascript" th:src="@{/js/common3.js}"></script>
 	</head>
 	<body>
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
@@ -72,10 +72,13 @@
 	<script type="text/javascript">
 		// 初始化方法
 		$(function() {
-			setErrList("[[${errMessageList}]]");
+			//setErrList("[[${errMessageList}]]");
 			setCodeErrList("[[${codemsg}]]");
 			setCodeSuccess("[[${success}]]");
-		
+			// 注册模态框
+			$(document).ready(function() {
+				demo.showSwal();
+			});
 			// 超长待机后进入锁定画面
 			var lastTime = new Date().getTime();
 			var currentTime = new Date().getTime();

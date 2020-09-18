@@ -41,6 +41,9 @@
 				amtf_loginhead($('#lockingid'));
 			}
 		});
+		$(document).ready(function() {
+			setFormValidation('#amtf_form');
+		});
 		// 查看密码
 		var pwsShowFlag = true; 
 		function lookpwd(_this) {
@@ -56,22 +59,25 @@
 		}
 		// 登录按钮押下
 		function amtf_login() {
-			if(!window.localStorage){
-				alert("浏览器支持localstorage");
-				return false;
-			}else{
-				var storage=window.localStorage;
-				if($('#registercheck').is(':checked')){
-					storage.name=$('#username').val();
-					storage.pwd=$('#userpassword').val();
-				} else {
-					storage.name='';
-					storage.pwd='';
+			var validRet = $("#amtf_form").valid();
+			if (validRet) {
+				if(!window.localStorage){
+					alert("浏览器支持localstorage");
+					return false;
+				}else{
+					var storage=window.localStorage;
+					if($('#registercheck').is(':checked')){
+						storage.name=$('#username').val();
+						storage.pwd=$('#userpassword').val();
+					} else {
+						storage.name='';
+						storage.pwd='';
+					}
+					console.log(typeof storage["name"]);
+					console.log(typeof storage["pwd"]);
 				}
-				console.log(typeof storage["name"]);
-				console.log(typeof storage["pwd"]);
+				amtf_submit(amtf_form , '/f010001/T001');
 			}
-			amtf_submit(amtf_form , '/f010001/T001');
 		}
 		// 登陆页面head选中样式变换
 		function amtf_loginhead(_this) {
@@ -319,13 +325,13 @@
 										<p class="card-description text-center">其他方式登录</p>
 										<p class="card-description text-center" style="color:red;" id="errlist"></p>
 										<span class="bmd-form-group">
-											<div class="input-group">
+											<div class="form-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text">
 														<i class="material-icons">face</i>
 													</span>
+													<input type="text" class="form-control" placeholder="请输入用户名..." required="true" name="user_account" autofocus="autofocus" id="username" th:value="${f010001Params.user_account}">
 												</div>
-												<input type="text" class="form-control" placeholder="请输入用户名..." name="user_account" autofocus="autofocus" id="username" th:value="${f010001Params.user_account}">
 											</div>
 										</span>
 										<!-- <span class="bmd-form-group">
@@ -339,13 +345,13 @@
 											</div>
 										</span> -->
 										<span class="bmd-form-group">
-											<div class="input-group">
+											<div class="form-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text">
 														<i class="material-icons pointer" onclick="lookpwd(this)">lock_outline</i>
 													</span>
+													<input type="password" class="form-control" placeholder="请输入密码..." equalTo="#userpassword" required="true" name="user_password" maxlength="8" id="userpassword" th:value="${f010001Params.user_password}">
 												</div>
-												<input type="password" class="form-control" placeholder="请输入密码..." name="user_password" maxlength="8" id="userpassword" th:value="${f010001Params.user_password}">
 											</div>
 										</span>
 										<div class="form-check">
@@ -359,7 +365,7 @@
 										</div>
 									</div>
 									<div class="card-footer justify-content-center">
-										<a href="#pablo" class="btn btn-rose btn-link btn-lg" onclick="amtf_login()">登录</a>
+										<button type="submit" class="btn btn-rose btn-link btn-lg" onclick="amtf_login()">登录</button>
 									</div>
 								</div>
 							</i-form>
@@ -442,7 +448,7 @@
 																<i class="material-icons">mail</i>
 															</span>
 														</div>
-														<input type="text" class="form-control" placeholder="邮箱..." id="email_id" name="regist_user_email">
+														<input type="text" class="form-control" placeholder="邮箱..." id="email_id" name="regist_user_email" email="true">
 														<input type="button" class="btn btn-link form-control" style="height:31px;" value="发送验证码" onclick="amtf_submitYFCode(this)">
 													</div>
 												</div>
@@ -453,7 +459,7 @@
 																<i class="material-icons">mail</i>
 															</span>
 														</div>
-														<input type="text" class="form-control" placeholder="验证码..." id="mailcode" name="verifyCode">
+														<input type="text" class="form-control" placeholder="验证码..." id="mailcode" name="verifyCode" number="true">
 													</div>
 												</div>
 												<div class="form-group has-default">
