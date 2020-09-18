@@ -75,32 +75,33 @@
 			//setErrList("[[${errMessageList}]]");
 			setCodeErrList("[[${codemsg}]]");
 			setCodeSuccess("[[${success}]]");
-			// 注册模态框
-			$(document).ready(function() {
-				demo.showSwal();
-			});
-			// 超长待机后进入锁定画面
-			var lastTime = new Date().getTime();
-			var currentTime = new Date().getTime();
-			var timeOut = 10 * 60 * 1000; //设置超时时间： 10分
-			$(function(){
-				/* 鼠标移动事件 */
-				$(document).mouseover(function(){
-					//更新操作时间
-					lastTime = new Date().getTime();
-				});
-			});
-			function testTime(){
-				//更新当前时间
-				currentTime = new Date().getTime();
-				//判断是否超时
-				if(currentTime - lastTime > timeOut){
-					amtf_submit(amtf_formupduser , '/f010002/T003');
-				}
-			}
+			blurSetInputTextVal();
+			blurSetInputPwdVal();
 			/* 定时器  间隔1秒检测是否长时间未操作页面  */
 			window.setInterval(testTime, 1000);
 		});
+		// 注册模态框
+		$(document).ready(function() {
+			demo.showSwal();
+		});
+		/* 鼠标移动事件 */
+		$(document).mouseover(function(){
+			//更新操作时间
+			lastTime = new Date().getTime();
+		});
+		var lastTime = new Date().getTime();
+		var currentTime = new Date().getTime();
+		//设置超时时间： 10分
+		var timeOut = 10 * 60 * 1000; 
+		// 超长待机后进入锁定画面
+		function testTime(){
+			//更新当前时间
+			currentTime = new Date().getTime();
+			//判断是否超时
+			if(currentTime - lastTime > timeOut){
+				amtf_submit(amtf_formupduser , '/f010002/T003');
+			}
+		}
 	</script>
 </th:block>
 </html>

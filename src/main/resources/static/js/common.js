@@ -23,6 +23,27 @@ function setErrList(errlist) {
 		}
 	}
 }
+// 输入正确删除err提示
+function blurSetInputTextVal(){
+	$("input[type='text']").each(function(){
+		$(this).on('blur',function(){
+			var _text = $(this).parent('div').next().text();
+			if (_text == '') {
+				$(this).parent('div').next().remove();
+			}
+		})
+	});
+}
+function blurSetInputPwdVal(){
+	$("input[type='password']").each(function(){
+		$(this).on('blur',function(){
+			var _text = $(this).parent('div').next().text();
+			if (_text == '') {
+				$(this).parent('div').next().css('display','none');
+			}
+		})
+	});
+}
 
 // jq输入校验
 function setFormValidation(id) {
@@ -36,7 +57,7 @@ function setFormValidation(id) {
 			$(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
 		},
 		errorPlacement: function(error, element) {
-			$(element).closest('.form-group').append(error);
+			$(element).closest("input").after(error);
 		},
 	});
 }

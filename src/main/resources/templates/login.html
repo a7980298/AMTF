@@ -325,11 +325,13 @@
 										<p class="card-description text-center">其他方式登录</p>
 										<p class="card-description text-center" style="color:red;" id="errlist"></p>
 										<span class="bmd-form-group">
-											<div class="form-group">
-												<div class="input-group-prepend">
+											<div class="form-group col-md-12 d-flex">
+												<div class="cl-1">
 													<span class="input-group-text">
 														<i class="material-icons">face</i>
 													</span>
+												</div>
+												<div class="col-md-12">
 													<input type="text" class="form-control" placeholder="请输入用户名..." required="true" name="user_account" autofocus="autofocus" id="username" th:value="${f010001Params.user_account}">
 												</div>
 											</div>
@@ -345,11 +347,13 @@
 											</div>
 										</span> -->
 										<span class="bmd-form-group">
-											<div class="form-group">
-												<div class="input-group-prepend">
+											<div class="form-group col-md-12 d-flex">
+												<div class="cl-1">
 													<span class="input-group-text">
 														<i class="material-icons pointer" onclick="lookpwd(this)">lock_outline</i>
 													</span>
+												</div>
+												<div class="col-md-12">
 													<input type="password" class="form-control" placeholder="请输入密码..." equalTo="#userpassword" required="true" name="user_password" maxlength="8" id="userpassword" th:value="${f010001Params.user_password}">
 												</div>
 											</div>
