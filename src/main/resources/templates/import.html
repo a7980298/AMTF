@@ -64,7 +64,7 @@
 			type="text/javascript"></script>
 		<script th:src="@{/demo/demo.js}"></script>
 	</head>
-	<body onbeforeunload="myFunction()" onunload="myFunction()">
+	<body onbeforeunload="myFunction()">
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{wait :: wait}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block>
@@ -99,7 +99,21 @@
 		function myFunction(){
 			/* $.session.remove('loginfo');
 			$.session.get('key'); */
-			amtf_submit(amtf_form , '/f010002/T001');
+			$.ajax({
+				url: CONTEXT_PATH + '/f010002/T001',
+				type: 'post',
+				dateType: 'html',
+				async: true,
+				data: {
+					
+				},
+				success: function (result) {
+					alert('退出成功');
+				},
+				error: function (res, textStaus) {
+					evenOff();
+				},
+			});
 		}
 	</script>
 </th:block>
