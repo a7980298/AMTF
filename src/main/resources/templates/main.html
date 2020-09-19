@@ -83,7 +83,7 @@
 		$(_this).find('a').eq(0).css('background-color','#e91e63');
 	}
 	// 打开详细通知
-	function amtf_getupdontice(_entity) {
+	function amtf_getupdontice(_id,_head,_text) {
 		$('#getupdontice').modal('show');
 		$.ajax({
 			url: CONTEXT_PATH + '/f010002/T004',
@@ -91,7 +91,7 @@
 			dateType: 'html',
 			async: true,
 			data: {
-				id: _entity,
+				id: _id,
 			},
 			success: function (result) {
 				$('#select5').replaceWith(result);
@@ -100,6 +100,7 @@
 				evenOff();
 			},
 		});
+		$('#updnoticehead').text(_head);
 	}
 	// 登陆页面head选中样式变换
 	function amtf_loginhead(_this) {
@@ -178,7 +179,7 @@
 						</a>
 						<div class="collapse" th:id="${'pagesExamples' + idx.index}">
 							<ul class="nav">
-								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} +','+ ${idxs.index} +');'">
+								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'">
 									<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
 									<a class="nav-link" href="#">
 										<span class="sidebar-mini"> P </span>
@@ -237,7 +238,7 @@
 										<p class="d-lg-none d-md-block">Some Actions</p>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right" id="showupdnotice" aria-labelledby="navbarDropdownMenuLink" th:if="${not #lists.isEmpty(f010002Params.select5)}">
-										<a class="dropdown-item updnotice" data-toggle="modal" th:each="entity,idx:${f010002Params.select5}" th:attr="onclick='amtf_getupdontice(' + ${entity.updnotice_id} + ');'" >
+										<a class="dropdown-item updnotice" data-toggle="modal" th:each="entity,idx:${f010002Params.select5}" th:onclick="amtf_getupdontice([[${entity.updnotice_id}]],[[${entity.updnotice_head}]],[[${entity.updnotice_text}]])" >
 											[[${entity.updnotice_head}]]
 										</a>
 									</div>
@@ -389,8 +390,7 @@
 				<div class="modal-dialog modal-notice">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">How Do You Become
-								an Affiliate?</h5>
+							<h5 class="modal-title" id="myModalLabel"></h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">
 								<i class="material-icons">close</i>
@@ -400,12 +400,9 @@
 							<div class="instruction">
 								<div class="row">
 									<div class="col-md-8">
-										<strong>1. Register</strong>
+										<strong id="updnoticehead"></strong>
 										<p class="description">
-											The first step is to create an account at <a
-												href="http://www.creative-tim.com/">Creative Tim</a>. You
-											can choose a social network or go for the classic version,
-											whatever works best for you.
+											
 										</p>
 									</div>
 									<div class="col-md-4">
@@ -414,26 +411,10 @@
 									</div>
 								</div>
 							</div>
-							<div class="instruction">
-								<div class="row">
-									<div class="col-md-8">
-										<strong>2. Apply</strong>
-										<p class="description">
-										</p>
-									</div>
-									<div class="col-md-4">
-										<div class="picture">
-												class="rounded img-fluid">
-										</div>
-									</div>
-								</div>
-							</div>
-							<p>If you have more questions, don't hesitate to contact us
-								or send us a tweet @creativetim. We're here to help!</p>
 						</div>
 						<div class="modal-footer justify-content-center">
 							<button type="button" class="btn btn-info btn-round"
-								data-dismiss="modal">Sounds good!</button>
+								data-dismiss="modal">了解</button>
 						</div>
 					</div>
 				</div>

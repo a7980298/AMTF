@@ -142,4 +142,9 @@ public class F010002Params extends UserImpl {
 	 * 通知id
 	 */
 	public String updnotice_id;
+	
+	/**
+	 * 详细通知信息
+	 */
+	List<f010002_select4entity> select7;
 }

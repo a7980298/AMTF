@@ -131,4 +131,9 @@ public class F010002entityOut extends UserImpl {
 	 * 通知信息
 	 */
 	List<f010002_select4entity> select5;
+	
+	/**
+	 * 详细通知信息
+	 */
+	List<f010002_select4entity> select7;
 }

@@ -61,4 +61,14 @@
 			,#{upid}
 			)
 	</insert>
+	
+	<!-- 查看详细通知 -->
+	<select id="f010002_Select7" resultType="com.amtf.demo.f010002entity.f010002_select4entity">
+		SELECT 
+			*
+		FROM 
+			AMTF_UPDNOTICEOVER
+		WHERE 
+			updnotice_id = #{id}
+	</select>
 </mapper>

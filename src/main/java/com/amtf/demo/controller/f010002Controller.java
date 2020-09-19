@@ -155,4 +155,27 @@ public class f010002Controller extends ValiDationUtil {
 
 		return "main :: select5";
 	}
+	/**
+	 * 打开选中的通知
+	 * 
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@PostMapping("/f010002/T005")
+	public String f010002T005(@RequestParam("id") String id, Model model) {
+		F010002Params params = new F010002Params();
+
+		F010002entityIn entityin = new F010002entityIn();
+
+		entityin.setUpdnotice_id(id);
+
+		F010002entityOut entityOut = f010002service.service05(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010002Params", params);
+
+		return "main :: select7";
+	}
 }

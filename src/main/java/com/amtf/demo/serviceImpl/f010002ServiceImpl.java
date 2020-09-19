@@ -164,4 +164,18 @@ public class f010002ServiceImpl implements f010002Service {
 
 		return entityout;
 	}
+
+	/**
+	 * 打开选择的通知
+	 */
+	@Override
+	public F010002entityOut service05(F010002entityIn entityin) throws ErrListException {
+		F010002entityOut entityout = new F010002entityOut();
+
+		List<f010002_select4entity> select7 = f010002dao.f010002_Select7(NumberUtil.toInt(entityin.getUpdnotice_id()));
+
+		entityout.setSelect7(select7);
+
+		return entityout;
+	}
 }
