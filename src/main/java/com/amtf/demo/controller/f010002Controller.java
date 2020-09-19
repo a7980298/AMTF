@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.amtf.demo.entityin.F010002entityIn;
-import com.amtf.demo.entityin.F020001entityIn;
 import com.amtf.demo.entityout.F010002entityOut;
-import com.amtf.demo.entityout.F020001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
-import com.amtf.demo.params.F020001Params;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.Constant;

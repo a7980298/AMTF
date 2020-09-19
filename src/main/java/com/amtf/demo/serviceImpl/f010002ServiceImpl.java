@@ -154,7 +154,10 @@ public class f010002ServiceImpl implements f010002Service {
 		F010002entityOut entityout = new F010002entityOut();
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		f010002dao.f010002_Insert6(loginfo.getUser_email(),NumberUtil.toInt(entityin.getUpdnotice_id()));
+		if(!CommonUtil.isEmpty(entityin.getUpdnotice_id())) {
+			f010002dao.f010002_Insert6(loginfo.getUser_email(),NumberUtil.toInt(entityin.getUpdnotice_id()));
+		}
+		
 		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
 		
 		entityout.setSelect5(select5);

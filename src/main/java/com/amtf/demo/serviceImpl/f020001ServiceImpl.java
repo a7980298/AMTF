@@ -137,6 +137,9 @@ public class f020001ServiceImpl implements f020001Service {
 		return entityOut;
 	}
 
+	/**
+	 * 发布通知
+	 */
 	@Override
 	public F020001entityOut service04(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
@@ -145,7 +148,7 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		try {
-			f020001dao.f020001_insert3(CommonUtil.isEmpty(commondao.common_Select2())?0:commondao.common_Select2(),loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
+			f020001dao.f020001_insert3(CommonUtil.isEmpty(commondao.common_Select2())?0:commondao.common_Select2()+1,loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}
