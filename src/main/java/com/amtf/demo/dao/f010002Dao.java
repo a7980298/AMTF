@@ -26,5 +26,7 @@ public interface f010002Dao {
 	int f010002_Insert6(@Param("id") String id,@Param("upid") Integer upid);
 	
 	List<f010002_select4entity> f010002_Select7(@Param("id") Integer id);
+	
+	List<f010002_select4entity> f010002_Select8();
 
 }

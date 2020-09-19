@@ -101,12 +101,12 @@ public class F010002entityOut extends UserImpl {
 	 * 修改：省
 	 */
 	private String upd_user_province;
-	
+
 	/**
 	 * 修改：市
 	 */
 	private String upd_user_city;
-	
+
 	/**
 	 * 修改：邮编
 	 */
@@ -116,7 +116,7 @@ public class F010002entityOut extends UserImpl {
 	 * 修改：电话
 	 */
 	private String upd_user_phone;
-	
+
 	/**
 	 * 修改：介绍
 	 */
@@ -126,14 +126,19 @@ public class F010002entityOut extends UserImpl {
 	 * 是否修改成功
 	 */
 	public String isUpdatUserOk;
-	
+
 	/**
 	 * 通知信息
 	 */
 	List<f010002_select4entity> select5;
-	
+
 	/**
 	 * 详细通知信息
 	 */
 	List<f010002_select4entity> select7;
+
+	/**
+	 * 所有通知
+	 */
+	List<f010002_select4entity> select8;
 }

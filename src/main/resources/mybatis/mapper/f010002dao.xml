@@ -71,4 +71,12 @@
 		WHERE 
 			updnotice_id = #{id}
 	</select>
+	
+	<!-- 全部通知 -->
+	<select id="f010002_Select8" resultType="com.amtf.demo.f010002entity.f010002_select4entity">
+		SELECT 
+			*
+		FROM 
+			AMTF_UPDNOTICE
+	</select>
 </mapper>

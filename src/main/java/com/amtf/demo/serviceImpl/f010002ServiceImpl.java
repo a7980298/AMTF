@@ -77,11 +77,25 @@ public class f010002ServiceImpl implements f010002Service {
 			select4entity = CommonUtil.isEmptyList(select4) ? null : select4.get(0);
 
 		}
-		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
-		
 		entityout.setSelect4(select4entity);
-		
+		//获取未读通知
+		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
+	
+		// 未读通知
 		entityout.setSelect5(select5);
+
+		//所有通知一栏
+		List<f010002_select4entity> select8 = f010002dao.f010002_Select8();
+
+		for (f010002_select4entity select8entity : select8) {
+			for (f010002_select4entity select5entity : select5) {
+				if (select8entity.getUpdnotice_id().equals(select5entity.getUpdnotice_id())) {
+					select8entity.setIslook(Constant.STR_1);
+				}
+			}
+		}
+		//通知一栏
+		entityout.setSelect8(select8);
 
 		return entityout;
 	}

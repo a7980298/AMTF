@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.f010002entity.f010002_select4entity;
-import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -102,12 +101,12 @@ public class F010002Params extends UserImpl {
 	 * 修改：省
 	 */
 	private String upd_user_province;
-	
+
 	/**
 	 * 修改：市
 	 */
 	private String upd_user_city;
-	
+
 	/**
 	 * 修改：邮编
 	 */
@@ -117,34 +116,39 @@ public class F010002Params extends UserImpl {
 	 * 修改：电话
 	 */
 	private String upd_user_phone;
-	
+
 	/**
 	 * 修改：介绍
 	 */
 	private String upd_user_introduce;
-	
+
 	/**
 	 * 修改：用户照片
 	 */
 	public MultipartFile upd_user_img;
-	
+
 	/**
 	 * 是否修改成功
 	 */
 	public String isUpdatUserOk;
-	
+
 	/**
 	 * 通知信息
 	 */
 	List<f010002_select4entity> select5;
-	
+
 	/**
 	 * 通知id
 	 */
 	public String updnotice_id;
-	
+
 	/**
 	 * 详细通知信息
 	 */
 	List<f010002_select4entity> select7;
+
+	/**
+	 * 所有通知
+	 */
+	List<f010002_select4entity> select8;
 }

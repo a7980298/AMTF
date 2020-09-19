@@ -33,5 +33,10 @@ public class f010002_select4entity {
 	 * 时间
 	 */
 	private Date updnotice_time;
+	
+	/**
+	 * 是否被查看
+	 */
+	private String islook;
 
 }
