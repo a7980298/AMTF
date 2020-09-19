@@ -229,13 +229,13 @@
 							</div>
 						</form>
 						<ul class="navbar-nav">
-							<li class="nav-item">
+							<li class="nav-item" title="功能">
 								<a class="nav-link" href="javascript:;">
 									<i class="material-icons">dashboard</i>
 									<p class="d-lg-none d-md-block">Stats</p>
 								</a>
 							</li>
-							<li class="nav-item dropdown">
+							<li class="nav-item dropdown" title="通知">
 								<div id="select5" th:fragment="select5">
 									<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
@@ -250,7 +250,7 @@
 									</div>
 								</div>
 							</li>
-							<li class="nav-item dropdown">
+							<li class="nav-item dropdown" title="个人">
 								<a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
 									<i class="material-icons">person</i>
@@ -393,7 +393,7 @@
 				<!-- 活动列表 -->
 				<div class="container-fluid dashboardclass" id="f060001" style="display: none;">
 					<div class="container-fluid">
-					<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser" enctype="multipart/form-data">
+						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupdnotice" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
@@ -401,7 +401,7 @@
 										<div class="card-icon">
 											<i class="material-icons">assignment</i>
 										</div>
-										<h4 class="card-title">DataTables.net</h4>
+										<h4 class="card-title">活动总览</h4>
 									</div>
 									<div class="card-body">
 										<div class="toolbar">
@@ -438,10 +438,10 @@
 														<td>61</td>
 														<td>2011/04/25</td>
 														<td class="text-right">
-															<a href="#" class="btn btn-link btn-info btn-just-icon like">
+															<a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
 																<i class="material-icons">favorite</i>
 															</a>
-															<a href="#" class="btn btn-link btn-warning btn-just-icon edit">
+															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看">
 																<i class="material-icons">dvr</i></a>
 														<!-- 	<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
 																<i class="material-icons">close</i>
@@ -489,7 +489,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="fixed-plugin">
+	<div class="fixed-plugin" title="设置">
 		<div class="dropdown show-dropdown">
 			<a href="#" data-toggle="dropdown">
 				<i class="fa fa-cog fa-2x"></i>
@@ -579,7 +579,7 @@
 		$(document).ready(function() {
 			md.initFormExtendedDatetimepickers();
 		});
-		
+		// table插件
 		$(document).ready(
 				function() {
 					$('#datatables').DataTable(
