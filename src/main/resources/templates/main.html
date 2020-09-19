@@ -101,6 +101,8 @@
 			},
 		});
 		$('#updnoticehead').text(_head);
+		$('#updnoticetext').text(_text);
+		
 	}
 	// 登陆页面head选中样式变换
 	function amtf_loginhead(_this) {
@@ -390,7 +392,7 @@
 				<div class="modal-dialog modal-notice">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel"></h5>
+							<h5 class="modal-title" id="myModalLabel">通知</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">
 								<i class="material-icons">close</i>
@@ -398,23 +400,17 @@
 						</div>
 						<div class="modal-body">
 							<div class="instruction">
-								<div class="row">
-									<div class="col-md-8">
-										<strong id="updnoticehead"></strong>
-										<p class="description">
-											
-										</p>
-									</div>
-									<div class="col-md-4">
-										<div class="picture">
-										</div>
+								 <div class="row">
+									<div class="col-sm-6">
+										<h3 id="updnoticehead"></h3>
+										<p id="updnoticetext"></p>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer justify-content-center">
 							<button type="button" class="btn btn-info btn-round"
-								data-dismiss="modal">了解</button>
+								data-dismiss="modal">知道了</button>
 						</div>
 					</div>
 				</div>
