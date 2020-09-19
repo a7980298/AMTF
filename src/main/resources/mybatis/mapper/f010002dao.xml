@@ -78,5 +78,6 @@
 			*
 		FROM 
 			AMTF_UPDNOTICE
+		ORDER BY UPDNOTICE_TIME DESC
 	</select>
 </mapper>
