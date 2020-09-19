@@ -63,7 +63,11 @@
 	// 导航栏页面跳转
 	function amtf_skip(ulid,liid){
 		var path = $('#ul' + ulid +'_li' + liid).val(); 
-		amtf_submit(amtf_form , '/' + path);
+		if (path == 'f020001') {
+			amtf_submit(amtf_form , '/' + path);
+		} else {
+			
+		}
 	}
 	// 修改用户信息
 	function amtf_upduser(){
@@ -107,7 +111,6 @@
 	// 登陆页面head选中样式变换
 	function amtf_loginhead(_this) {
 		$('.dashboardclass').each(function() {
-			$(this).removeClass('display_block');
 			$(this).css('display','none');
 			$(this).removeClass('show');
 			$(this).removeClass('collapse');
@@ -117,6 +120,7 @@
 		$('#' + _href).css('display', 'block');
 		$('#' + _href).removeClass('dispaly_none');
 		$('#' + _href).removeClass('collapse');
+		$('#' + _href).addClass('show');
 	}
 </script>
 <body class="" onunload="myFunction()">
@@ -144,7 +148,7 @@
 						<div class="collapse" id="collapseExample">
 							<ul class="nav">
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="collapse" href="#userformaction" onclick="amtf_loginhead(this)">
+									<a class="nav-link" href="#userformaction" onclick="amtf_loginhead(this)">
 										<span class="sidebar-mini"> 个人 </span>
 										<span class="sidebar-normal"> 个人资料 </span>
 									</a>
@@ -183,7 +187,7 @@
 							<ul class="nav">
 								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'">
 									<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
-									<a class="nav-link" href="#">
+									<a class="nav-link" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
 										<span class="sidebar-mini"> P </span>
 										<span class="sidebar-normal"> [[${fileInfo.power_name}]] </span>
 									</a>
@@ -386,6 +390,74 @@
 						</i-form>
 					</div>
 				</div>
+				<!-- 活动列表 -->
+				<div class="container-fluid dashboardclass" id="f060001" style="display: none;">
+					<div class="container-fluid">
+					<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header card-header-primary card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">assignment</i>
+										</div>
+										<h4 class="card-title">DataTables.net</h4>
+									</div>
+									<div class="card-body">
+										<div class="toolbar">
+										</div>
+										<div class="material-datatables">
+											<table id="datatables"
+												class="table table-striped table-no-bordered table-hover"
+												cellspacing="0" width="100%" style="width: 100%">
+												<thead>
+													<tr>
+														<th>标题</th>
+														<th>发布人</th>
+														<th>时间</th>
+														<th>人数</th>
+														<th>时间</th>
+														<th class="disabled-sorting text-right">操作</th>
+													</tr>
+												</thead>
+												<tfoot>
+													<tr>
+														<th>标题</th>
+														<th>发布人</th>
+														<th>时间</th>
+														<th>人数</th>
+														<th>时间</th>
+														<th class="text-right">操作</th>
+													</tr>
+												</tfoot>
+												<tbody>
+													<tr>
+														<td>Tiger Nixon</td>
+														<td>System Architect</td>
+														<td>Edinburgh</td>
+														<td>61</td>
+														<td>2011/04/25</td>
+														<td class="text-right">
+															<a href="#" class="btn btn-link btn-info btn-just-icon like">
+																<i class="material-icons">favorite</i>
+															</a>
+															<a href="#" class="btn btn-link btn-warning btn-just-icon edit">
+																<i class="material-icons">dvr</i></a>
+														<!-- 	<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
+																<i class="material-icons">close</i>
+															</a> -->
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</i-form>
+					</div>
+				</div>
 			</div>
 			<!-- 详细通知 -->
 			<div class="modal fade" id="getupdontice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -507,6 +579,43 @@
 		$(document).ready(function() {
 			md.initFormExtendedDatetimepickers();
 		});
+		
+		$(document).ready(
+				function() {
+					$('#datatables').DataTable(
+							{
+								"pagingType" : "full_numbers",
+								"lengthMenu" : [ [ 10, 25, 50, -1 ],
+										[ 10, 25, 50, "All" ] ],
+								responsive : true,
+								language : {
+									search : "_INPUT_",
+									searchPlaceholder : "Search records",
+								}
+							});
+
+					var table = $('#datatable').DataTable();
+
+					// Edit record
+					table.on('click', '.edit', function() {
+						$tr = $(this).closest('tr');
+						var data = table.row($tr).data();
+						alert('You press on Row: ' + data[0] + ' ' + data[1]
+								+ ' ' + data[2] + '\'s row.');
+					});
+
+					// Delete a record
+					table.on('click', '.remove', function(e) {
+						$tr = $(this).closest('tr');
+						table.row($tr).remove().draw();
+						e.preventDefault();
+					});
+
+					//Like record
+					table.on('click', '.like', function() {
+						alert('You clicked on Like button');
+					});
+				});
 	</script>
 </body>
 </html>
