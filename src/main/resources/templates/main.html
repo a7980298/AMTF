@@ -125,6 +125,11 @@
 		$('#' + _href).removeClass('collapse');
 		$('#' + _href).addClass('show');
 	}
+	//改变状态
+	function amtf_uplook(_index){
+		$('#updnotice_y' + _index).text('已读');
+		$('#updnotice_y' + _index).removeClass('col-r');
+	}
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
@@ -435,13 +440,13 @@
 														<td>[[${entity.updnotice_head}]]</td>
 														<td>[[${entity.updnotice_name}]]</td>
 														<td>[[${entity.updnotice_time}]]</td>
-														<td th:if="${entity.islook == '1'}" class="col-r">未读</td>
-														<td th:if="${entity.islook != '1'}" class="">已读</td>
+														<td th:if="${entity.islook == '1'}" class="col-r" th:id="${'updnotice_y' + idx.index}">未读</td>
+														<td th:if="${entity.islook != '1'}" class="" th:id="${'updnotice_y' + idx.index}">已读</td>
 														<td class="text-right">
 															<!-- <a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
 																<i class="material-icons">favorite</i>
 															</a> -->
-															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看">
+															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看" th:onclick="amtf_getupdontice([[${entity.updnotice_id}]],[[${entity.updnotice_head}]],[[${entity.updnotice_text}]]);amtf_uplook([[${idx.index}]])" >
 																<i class="material-icons">dvr</i></a>
 															<!--<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
 																<i class="material-icons">close</i>
