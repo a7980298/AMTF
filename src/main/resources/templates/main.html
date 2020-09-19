@@ -19,7 +19,9 @@
 	width: 2px;
 	background: none;
 	}
-
+	.back-color-red{
+		background-color:red;
+	}
 </style>
 <script type="text/javascript">
 	// 初始化处理
@@ -415,6 +417,7 @@
 														<th>标题</th>
 														<th>发布人</th>
 														<th>时间</th>
+														<th>状态</th>
 														<th class="disabled-sorting text-right">操作</th>
 													</tr>
 												</thead>
@@ -423,6 +426,7 @@
 														<th>标题</th>
 														<th>发布人</th>
 														<th>时间</th>
+														<th>状态</th>
 														<th class="text-right">操作</th>
 													</tr>
 												</tfoot>
@@ -431,6 +435,8 @@
 														<td>[[${entity.updnotice_head}]]</td>
 														<td>[[${entity.updnotice_name}]]</td>
 														<td>[[${entity.updnotice_time}]]</td>
+														<td th:if="${entity.islook == '1'}" class="col-r">未读</td>
+														<td th:if="${entity.islook != '1'}" class="">已读</td>
 														<td class="text-right">
 															<!-- <a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
 																<i class="material-icons">favorite</i>
