@@ -1,7 +1,7 @@
 package com.amtf.demo.util;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateUtil {
 	public final static String DATE_TOSTR1 = "yyyy-mm-dd HH:mi:ss";
@@ -32,9 +32,21 @@ public class DateUtil {
 
 	public final static String DATE_TOSTR_second = "ss";
 
-	public static String dateToStr(Date date, String format) {
+	public static String dateToStr(java.util.Date date, String format) {
 		String str = "";
 		try {
+			str = new SimpleDateFormat(format).format(date);
+		} catch (Exception e) {
+			return "";
+		}
+		return str;
+	}
+
+	public static String strdateToStr(String strdate, String format) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String str = "";
+		try {
+			Date date = simpleDateFormat.parse(strdate);
 			str = new SimpleDateFormat(format).format(date);
 		} catch (Exception e) {
 			return "";
