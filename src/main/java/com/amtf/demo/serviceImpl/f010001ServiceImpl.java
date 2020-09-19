@@ -67,8 +67,13 @@ public class f010001ServiceImpl implements f010001Service {
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
 		if (CommonUtil.isEmpty(entityIn.getLocking())) {
-			if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
-				throw new ErrListException(entityIn, entityIn.getIViewId(), "该用户已登录!");
+			//获取session的用户
+			LogInFo getsession = ParameterUtil.getSession();
+			if (!CommonUtil.isEmpty(getsession)) {
+				//判断是否是当前用户
+				if (getsession.getUser_account().equals(entityIn.getUser_account()) && getsession.getUser_password().equals(entityIn.getUser_password())) {
+					throw new ErrListException(entityIn, entityIn.getIViewId(), "该用户已登录!");
+				}
 			}
 		}
 		// 用户信息存入Session
