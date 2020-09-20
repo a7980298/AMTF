@@ -132,6 +132,25 @@
 			$('#activitycheck3').removeAttr('checked');
 		}
 	}
+	// 活动发布
+	function amtf_activity() {
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T007',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				userid: _id,
+			},
+			success: function (result) {
+				evenOff();
+				$('#selectuser').replaceWith(result);
+			},
+			error: function (res, textStaus) {
+				evenOff();
+			},
+		});
+	}
 </script>
 <body class="" onunload="myFunction()">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
@@ -1117,7 +1136,7 @@
 								</div>
 								<div class="panel-body text-center">
 									<div id="editor"></div>
-									<button class="btn btn-primary btn-lg">发布</button>
+									<button class="btn btn-primary btn-lg" onclick="amtf_activity()">发布</button>
 								</div>
 							</div>
 						</div>

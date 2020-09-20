@@ -1,5 +1,6 @@
 package com.amtf.demo.controller;
 
+import java.util.concurrent.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@RequestMapping("/f020001")
-	public String f010001S001(F020001Params params, Model model) {
+	public String f020001S001(F020001Params params, Model model) {
 
 		F020001entityIn entityin = new F020001entityIn();
 
@@ -59,7 +60,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@RequestMapping("/f020001/T001")
-	public String f010001T001(F020001Params params, Model model) {
+	public String f020001T001(F020001Params params, Model model) {
 
 		F020001entityIn entityin = new F020001entityIn();
 
@@ -82,7 +83,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@PostMapping("/f020001/T002")
-	public String f010001T002(@RequestParam("search_name") String search_name,
+	public String f020001T002(@RequestParam("search_name") String search_name,
 			@RequestParam("select_state") String select_state, @RequestParam("search_account") String search_account,
 			@RequestParam("search_phone") String search_phone, Model model) {
 		F020001Params params = new F020001Params();
@@ -114,7 +115,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@PostMapping("/f020001/T003")
-	public String f010001T003(@RequestParam("release_name") String release_name,@RequestParam("release_head") String release_head, Model model) {
+	public String f020001T003(@RequestParam("release_name") String release_name,@RequestParam("release_head") String release_head, Model model) {
 		F020001Params params = new F020001Params();
 
 		F020001entityIn entityin = new F020001entityIn();
@@ -140,7 +141,7 @@ public class f020001Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f020001/T004")
 	@ResponseBody
-	public Map<String, Object> f010001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+	public Map<String, Object> f020001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 		ImgUtil.CommitImg(file, Constant.STR_0);
 		Map<String, Object> map = new HashMap<String, Object>();
 		String name = "ok";
@@ -155,7 +156,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@RequestMapping("/f020001/T005")
-	public String f010001T005(F020001Params params, Model model) {
+	public String f020001T005(F020001Params params, Model model) {
 
 		F020001entityIn entityin = new F020001entityIn();
 
@@ -178,7 +179,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@PostMapping("/f020001/T006")
-	public String f010001T006(@RequestParam("userid") String userid, Model model) {
+	public String f020001T006(@RequestParam("userid") String userid, Model model) {
 		F020001Params params = new F020001Params();
 
 		F020001entityIn entityin = new F020001entityIn();
@@ -195,5 +196,20 @@ public class f020001Controller extends ValiDationUtil {
 		return "f020001 :: selectuser";
 	}
 
+	/**
+	 * 活动发布
+	 * 
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f020001/T007")
+	@ResponseBody
+	public Map<String, Object> f020001T007(F020001Params params,HttpServletRequest request) {
+		//ImgUtil.CommitImg(file, Constant.STR_0);
+		Map<String, Object> map = new HashMap<String, Object>();
+		String name = "ok";
+		map.put("成功了", name);
+		return map;
+	}
 
 }
