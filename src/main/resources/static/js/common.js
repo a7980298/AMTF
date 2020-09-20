@@ -163,7 +163,7 @@ function initFileInput(ctrlName, uploadUrl) {
 		uploadUrl : uploadUrl,
 		uploadAsync : true,
 		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],//接收的文件后缀
-		showUpload : true, //是否显示上传按钮
+		showUpload : false, //是否显示上传按钮
 		showCaption : true,//是否显示标题
 		browseClass : "btn btn-primary", //按钮样式
 		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
@@ -185,9 +185,7 @@ function initFileInput(ctrlName, uploadUrl) {
 		if(data.name != ''){
 			
 		}
-	})
-	
-	/*.on('filebatchpreupload', function(event, data) {
+	})/*.on('filebatchpreupload', function(event, data) {
 		if($("#messageTitle").val()==''|| $("#messageTitle").val()==null){ 
 			return {
 				message: "上传失败，请填写标题！", 
