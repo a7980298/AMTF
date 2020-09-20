@@ -142,7 +142,6 @@ public class f020001Controller extends ValiDationUtil {
 	@ResponseBody
 	public Map<String, Object> f010001T004(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 		ImgUtil.CommitImg(file, Constant.STR_0);
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		String name = "ok";
 		map.put("成功了", name);

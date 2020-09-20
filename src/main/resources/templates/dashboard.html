@@ -29,6 +29,7 @@
 </style>
 <script type="text/javascript">
 	$(function(){
+		initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
 		amtf_setColor($('#mainviewid'));
 		getFullCalendar('fullCalendar');
 		// 注册wangEditor插件
@@ -1000,26 +1001,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="fileinput fileinput-new text-center ml-3"
-										data-provides="fileinput">
-										<div class="fileinput-new thumbnail">
-											<img th:src="@{/img/image_placeholder.jpg}" alt="...">
-										</div>
-										<div class="fileinput-preview fileinput-exists thumbnail"></div>
-										<div>
-											<span class="btn btn-rose btn-round btn-file">
-												<span class="fileinput-new">选择图片</span>
-												<span class="fileinput-exists">重选</span>
-												<input type="file" name="..." />
-											</span> 
-											<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-												<i class="fa fa-times"></i>
-												移除
-											</a>
-										</div>
-									</div>
-									<label class="col-sm-2 col-form-label">添加</label>
-									
+									<input id="file-file" type="file" name="file" multiple>
 								</div>
 							</div>
 						</div>
@@ -1168,8 +1150,7 @@
 				close : "fa fa-remove"
 			}
 		})
-
-    });
+	});
 	</script>
 </body>
 </html>

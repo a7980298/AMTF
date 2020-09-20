@@ -61,7 +61,7 @@ public class ImgUtil {
 			// 后缀名
 			String suffixName = fileName.substring(fileName.lastIndexOf("."));
 			// 上传后的路径
-			String filePath = "D://temp-rainy//";
+			String filePath = "C://temp-rainy//";
 
 			// 随机一个文件名
 			fileName = UUID.randomUUID().toString();
