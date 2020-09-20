@@ -29,7 +29,7 @@
 </style>
 <script type="text/javascript">
 	$(function(){
-		initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
+		//initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
 		amtf_setColor($('#mainviewid'));
 		getFullCalendar('fullCalendar');
 		// 注册wangEditor插件
@@ -125,7 +125,7 @@
 	}
 	// 活动的check限制
 	function amtf_activityCheck(_this) {
-		if($(_this).is(':checked') && $(_this).val() == '全体'){
+		if($(_this).is(':checked') && $(_this).val() == '3'){
 			$('#activitycheck1').removeAttr('checked');
 			$('#activitycheck2').removeAttr('checked');
 		} else {
@@ -963,7 +963,7 @@
 									<label class="col-sm-2 col-form-label">活动主题</label>
 									<div class="col-sm-10">
 										<div class="form-group">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" name="activity_head">
 										</div>
 									</div>
 								</div>
@@ -971,7 +971,7 @@
 									<label class="col-sm-2 col-form-label">举办地点</label>
 									<div class="col-sm-10">
 										<div class="form-group">
-											<input type="password" class="form-control">
+											<input type="password" class="form-control" name="activity_position">
 										</div>
 									</div>
 								</div>
@@ -980,7 +980,7 @@
 									<div class="col-sm-10 checkbox-radios">
 										<div class="form-check form-check-inline">
 											<label class="form-check-label">
-												<input class="form-check-input" type="checkbox" value="普通成员 " onclick="amtf_activityCheck(this)" id="activitycheck1">
+												<input class="form-check-input" type="checkbox" value="1 " onclick="amtf_activityCheck(this)" id="activitycheck1" name="activity_check">
 													普通成员 
 												<span class="form-check-sign">
 													<span class="check"></span>
@@ -989,7 +989,7 @@
 										</div>
 										<div class="form-check form-check-inline">
 											<label class="form-check-label">
-												<input class="form-check-input" type="checkbox" value="管理成员" onclick="amtf_activityCheck(this)" id="activitycheck2">
+												<input class="form-check-input" type="checkbox" value="2" onclick="amtf_activityCheck(this)" id="activitycheck2" name="activity_check">
 													管理成员
 												<span class="form-check-sign">
 													<span class="check"></span>
@@ -998,7 +998,7 @@
 										</div>
 										<div class="form-check form-check-inline">
 											<label class="form-check-label">
-												<input class="form-check-input" type="checkbox" value="全体" onclick="amtf_activityCheck(this)" id="activitycheck3">
+												<input class="form-check-input" type="checkbox" value="3" onclick="amtf_activityCheck(this)" id="activitycheck3" name="activity_check">
 													全体
 												<span class="form-check-sign">
 													<span class="check"></span>
@@ -1011,7 +1011,7 @@
 									<label class="col-sm-2 col-form-label">开始日期</label>
 									<div class="col-sm-10">
 										<div class="form-group">
-											<input type="text" class="form-control dateymd">
+											<input type="text" class="form-control dateymd" name="activity_sttymd">
 										</div>
 									</div>
 								</div>
@@ -1019,23 +1019,22 @@
 									<label class="col-sm-2 col-form-label">结束日期</label>
 									<div class="col-sm-10">
 										<div class="form-group">
-											<input type="text" class="form-control dateymd">
+											<input type="text" class="form-control dateymd" name="activity_endymd">
 										</div>
 									</div>
 								</div>
 								<div class="card">
 									<div class="card-body" style="margin:auto;">
-										<div class="fileinput fileinput-new text-center ml-3"
-											data-provides="fileinput">
+										<div class="fileinput fileinput-new text-center ml-3" data-provides="fileinput">
 											<div class="fileinput-new thumbnail">
-												<img th:src="@{/img/image_placeholder.jpg}" alt="...">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="activity_img1">
 											</div>
 											<div class="fileinput-preview fileinput-exists thumbnail"></div>
 											<div>
 												<span class="btn btn-rose btn-round btn-file">
 													<span class="fileinput-new">选择图片</span>
 													<span class="fileinput-exists">重选</span>
-													<input type="file" name="..." />
+													<input type="file" name="activity_img1" />
 												</span> 
 												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
 													<i class="fa fa-times"></i>
@@ -1044,8 +1043,7 @@
 											</div>
 										</div>
 										<!-- <input id="file-file" type="file" name="file" multiple> -->
-										<div class="fileinput fileinput-new text-center ml-3"
-											data-provides="fileinput">
+										<div class="fileinput fileinput-new text-center ml-3" data-provides="fileinput">
 											<div class="fileinput-new thumbnail">
 												<img th:src="@{/img/image_placeholder.jpg}" alt="...">
 											</div>
@@ -1054,7 +1052,24 @@
 												<span class="btn btn-rose btn-round btn-file">
 													<span class="fileinput-new">选择图片</span>
 													<span class="fileinput-exists">重选</span>
-													<input type="file" name="..." />
+													<input type="file" name="activity_img2" />
+												</span> 
+												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+													<i class="fa fa-times"></i>
+													移除
+												</a>
+											</div>
+										</div>
+										<div class="fileinput fileinput-new text-center ml-3" data-provides="fileinput">
+											<div class="fileinput-new thumbnail">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="...">
+											</div>
+											<div class="fileinput-preview fileinput-exists thumbnail"></div>
+											<div>
+												<span class="btn btn-rose btn-round btn-file">
+													<span class="fileinput-new">选择图片</span>
+													<span class="fileinput-exists">重选</span>
+													<input type="file" name="activity_img3" />
 												</span> 
 												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
 													<i class="fa fa-times"></i>
@@ -1072,7 +1087,7 @@
 												<span class="btn btn-rose btn-round btn-file">
 													<span class="fileinput-new">选择图片</span>
 													<span class="fileinput-exists">重选</span>
-													<input type="file" name="..." />
+													<input type="file" name="activity_img4" />
 												</span> 
 												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
 													<i class="fa fa-times"></i>
@@ -1090,25 +1105,7 @@
 												<span class="btn btn-rose btn-round btn-file">
 													<span class="fileinput-new">选择图片</span>
 													<span class="fileinput-exists">重选</span>
-													<input type="file" name="..." />
-												</span> 
-												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-													<i class="fa fa-times"></i>
-													移除
-												</a>
-											</div>
-										</div>
-										<div class="fileinput fileinput-new text-center ml-3"
-											data-provides="fileinput">
-											<div class="fileinput-new thumbnail">
-												<img th:src="@{/img/image_placeholder.jpg}" alt="...">
-											</div>
-											<div class="fileinput-preview fileinput-exists thumbnail"></div>
-											<div>
-												<span class="btn btn-rose btn-round btn-file">
-													<span class="fileinput-new">选择图片</span>
-													<span class="fileinput-exists">重选</span>
-													<input type="file" name="..." />
+													<input type="file" name="activity_img5" />
 												</span> 
 												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
 													<i class="fa fa-times"></i>
@@ -1118,11 +1115,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="panel-body ">
+								<div class="panel-body text-center">
 									<div id="editor"></div>
-									<div class="col-md-12 ml-auto mr-auto">
-										<button type="button" id="textsumbit" class="btn btn-default">发布</button>
-									</div>
+									<button class="btn btn-primary btn-lg">发布</button>
 								</div>
 							</div>
 						</div>
