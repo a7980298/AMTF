@@ -37,6 +37,9 @@
 		var editor = new E('#editor')
 		// 或者 var editor = new E( document.getElementById('editor') )
 		editor.create()
+		var E_activity = window.wangEditor
+		var activity_editor = new E_activity('#activity_editor')
+		activity_editor.create()
 		document.getElementById('textsumbit').addEventListener('click', function () {
 			$.ajax({
 				url: CONTEXT_PATH + '/f020001/T003',
@@ -1135,7 +1138,7 @@
 									</div>
 								</div>
 								<div class="panel-body text-center">
-									<div id="editor"></div>
+									<div id="activity_editor"></div>
 									<button class="btn btn-primary btn-lg" onclick="amtf_activity()">发布</button>
 								</div>
 							</div>
