@@ -123,6 +123,15 @@
 		$('#lookuser1').addClass('show');
 		//htmlEvenOff('lookuser1');
 	}
+	// 活动的check限制
+	function amtf_activityCheck(_this) {
+		if($(_this).is(':checked') && $(_this).val() == '全体'){
+			$('#activitycheck1').removeAttr('checked');
+			$('#activitycheck2').removeAttr('checked');
+		} else {
+			$('#activitycheck3').removeAttr('checked');
+		}
+	}
 </script>
 <body class="" onunload="myFunction()">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
@@ -970,30 +979,44 @@
 									<label class="col-sm-2 col-form-label label-checkbox">参与级别</label>
 									<div class="col-sm-10 checkbox-radios">
 										<div class="form-check form-check-inline">
-											<label class="form-check-label"> <input
-												class="form-check-input" type="checkbox" value="">
-												普通成员 <span class="form-check-sign"> <span class="check"></span>
-											</span>
+											<label class="form-check-label">
+												<input class="form-check-input" type="checkbox" value="普通成员 " onclick="amtf_activityCheck(this)" id="activitycheck1">
+													普通成员 
+												<span class="form-check-sign">
+													<span class="check"></span>
+												</span>
 											</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<label class="form-check-label"> <input
-												class="form-check-input" type="checkbox" value="">
-												管理成员 <span class="form-check-sign"> <span class="check"></span>
-											</span>
+											<label class="form-check-label">
+												<input class="form-check-input" type="checkbox" value="管理成员" onclick="amtf_activityCheck(this)" id="activitycheck2">
+													管理成员
+												<span class="form-check-sign">
+													<span class="check"></span>
+												</span>
 											</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<label class="form-check-label"> <input
-												class="form-check-input" type="checkbox" value="">
-												全体 <span class="form-check-sign"> <span class="check"></span>
-											</span>
+											<label class="form-check-label">
+												<input class="form-check-input" type="checkbox" value="全体" onclick="amtf_activityCheck(this)" id="activitycheck3">
+													全体
+												<span class="form-check-sign">
+													<span class="check"></span>
+												</span>
 											</label>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-2 col-form-label">开始日期</label>
+									<div class="col-sm-10">
+										<div class="form-group">
+											<input type="text" class="form-control dateymd">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 col-form-label">结束日期</label>
 									<div class="col-sm-10">
 										<div class="form-group">
 											<input type="text" class="form-control dateymd">
