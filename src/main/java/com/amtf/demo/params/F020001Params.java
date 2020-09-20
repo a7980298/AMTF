@@ -101,4 +101,9 @@ public class F020001Params extends UserImpl {
 	 * 活动上传图片5
 	 */
 	public MultipartFile activity_img5;
+	
+	/**
+	 * 活动内容
+	 */
+	public MultipartFile activity_editor;
 }
