@@ -152,17 +152,19 @@
 			type: 'post',
 			dateType: 'html',
 			async: true,
+			processData : false, // 使数据不做处理
+			contentType : false, // 不要设置Content-Type请求头
 			data: {
 				activity_head: $('#activity_head').val(),
 				activity_position: $('#activity_position').val(),
 				activity_check: check,
 				activity_sttymd: $('#activity_sttymd').val(),
 				activity_endymd: $('#activity_endymd').val(),
-				activity_img1: $('#activity_img1').val(),
-				activity_img2: $('#activity_img2').val(),
-				activity_img3: $('#activity_img3').val(),
-				activity_img4: $('#activity_img4').val(),
-				activity_img5: $('#activity_img5').val(),
+				activity_img1: $('#activity_img1')[0].files[0],
+				activity_img2: $('#activity_img2')[0].files[0],
+				activity_img3: $('#activity_img3')[0].files[0],
+				activity_img4: $('#activity_img4')[0].files[0],
+				activity_img5: $('#activity_img5')[0].files[0],
 				activity_editor: $('#activity_editor').val()
 			},
 			success: function (result) {
