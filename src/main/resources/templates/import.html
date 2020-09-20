@@ -31,6 +31,7 @@
 		<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
 		<!-- vue.js引入 -->
 		<script th:src="@{/js/vue.min.js}"></script>
+
 		<script type="text/javascript" th:src="@{/js/wangEditor.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/media.js}"></script>
 		<script type="text/javascript" th:src="@{/js/material-dashboard.min.js}"></script>
@@ -44,6 +45,7 @@
 		<script th:src="@{/js/plugins/jquery.validate.min.js}"></script>
 		<script th:src="@{/js/plugins/jquery.bootstrap-wizard.js}"></script>
 		<script th:src="@{/js/plugins/bootstrap-selectpicker.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap-datepicker.zh-CN.js}"></script>
 		<script th:src="@{/js/plugins/bootstrap-datetimepicker.min.js}"></script>
 		<script th:src="@{/js/plugins/jquery.dataTables.min.js}"></script>
 		<script th:src="@{/js/plugins/bootstrap-tagsinput.js}"></script>
@@ -63,6 +65,7 @@
 		<script type="text/javascript" th:src="@{/js/common.js}" th:line="javascript"></script>
 		<script type="text/javascript" th:src="@{/js/common2.js}" th:line="javascript"></script>
 		<script type="text/javascript" th:src="@{/js/common3.js}"></script>
+	
 	</head>
 	<body>
 		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
@@ -98,7 +101,7 @@
 			currentTime = new Date().getTime();
 			//判断是否超时
 			if(currentTime - lastTime > timeOut){
-				amtf_submit(amtf_formupduser , '/f010002/T003');
+				amtf_submit(amtf_form , '/f010002/T003');
 			}
 		}
 	</script>

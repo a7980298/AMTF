@@ -272,6 +272,12 @@
 										<span class="sidebar-normal">范围 </span>
 									</a>
 								</li>
+								<li class="nav-item ">
+									<a class="nav-link" data-toggle="collapse" href="#setactivity" onclick="amtf_loginhead(this)">
+										<span class="sidebar-mini"> HD </span>
+										<span class="sidebar-normal">活动举办 </span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</li>
@@ -932,6 +938,94 @@
 						</div>
 					</div>
 				</div>
+				<!-- 活动举办 -->
+				<div class="container-fluid dashboardclass" id="setactivity" style="display: none;">
+					<div class="col-md-12">
+						<div class="card ">
+							<div class="card-header card-header-rose card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">assignment</i>
+								</div>
+								<h4 class="card-title">活动举办</h4>
+							</div>
+							<div class="card-body ">
+								<div class="row">
+									<label class="col-sm-2 col-form-label">活动主题</label>
+									<div class="col-sm-10">
+										<div class="form-group">
+											<input type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 col-form-label">举办地点</label>
+									<div class="col-sm-10">
+										<div class="form-group">
+											<input type="password" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 col-form-label label-checkbox">参与级别</label>
+									<div class="col-sm-10 checkbox-radios">
+										<div class="form-check form-check-inline">
+											<label class="form-check-label"> <input
+												class="form-check-input" type="checkbox" value="">
+												普通成员 <span class="form-check-sign"> <span class="check"></span>
+											</span>
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<label class="form-check-label"> <input
+												class="form-check-input" type="checkbox" value="">
+												管理成员 <span class="form-check-sign"> <span class="check"></span>
+											</span>
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<label class="form-check-label"> <input
+												class="form-check-input" type="checkbox" value="">
+												全体 <span class="form-check-sign"> <span class="check"></span>
+											</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 col-form-label">开始日期</label>
+									<div class="col-sm-10">
+										<div class="form-group">
+											<input type="text" class="form-control dateymd">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="fileinput fileinput-new text-center ml-3"
+										data-provides="fileinput">
+										<div class="fileinput-new thumbnail">
+											<img th:src="@{/img/image_placeholder.jpg}" alt="...">
+										</div>
+										<div class="fileinput-preview fileinput-exists thumbnail"></div>
+										<div>
+											<span class="btn btn-rose btn-round btn-file">
+												<span class="fileinput-new">选择图片</span>
+												<span class="fileinput-exists">重选</span>
+												<input type="file" name="..." />
+											</span> 
+											<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+												<i class="fa fa-times"></i>
+												移除
+											</a>
+										</div>
+									</div>
+									<label class="col-sm-2 col-form-label">添加</label>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
@@ -1056,10 +1150,26 @@
 	</i-form>
 	<script>
 	$(document).ready(function() {
-		// Javascript method's body can be found in assets/js/demos.js
 		md.initDashboardPageCharts();
 		md.initVectorMap();
 	});
-  </script>
+	$(function(){
+		$(".dateymd").datetimepicker({
+			format : "YYYY/MM/DD",
+			icons : {
+				time : "fa fa-clock-o",
+				date : "fa fa-calendar",
+				up : "fa fa-chevron-up",
+				down : "fa fa-chevron-down",
+				previous : "fa fa-chevron-left",
+				next : "fa fa-chevron-right",
+				today : "fa fa-screenshot",
+				clear : "fa fa-trash",
+				close : "fa fa-remove"
+			}
+		})
+
+    });
+	</script>
 </body>
 </html>
