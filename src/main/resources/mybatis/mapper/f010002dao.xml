@@ -84,10 +84,17 @@
 	<!-- 全部活动 -->
 	<select id="f010002_Select9" resultType="com.amtf.demo.f010002entity.f010002_select9entity">
 		SELECT 
-			*
+			*,COUNT(B1.ACTIVITY_ID) AS count
 		FROM 
-			AMTF_ACTIVITY
-		WHERE ACTIVITY_CHECK &lt;= #{check}
+			AMTF_ACTIVITY A1
+		LEFT JOIN 
+			AMTF_USERACTIVITY B1
+		ON
+			A1.ACTIVITY_ID = B1.ACTIVITY_ID
+		WHERE
+			A1.ACTIVITY_CHECK &lt;= #{check}
+		GROUP BY
+			A1.ACTIVITY_ID
 	</select>
 	
 	<!-- 参加活动 -->

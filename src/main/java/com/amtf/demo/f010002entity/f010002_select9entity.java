@@ -71,4 +71,9 @@ public class f010002_select9entity {
 	 * 发布时间
 	 */
 	private String activity_time;
+	
+	/**
+	 * 参加人数
+	 */
+	private String count;
 }
