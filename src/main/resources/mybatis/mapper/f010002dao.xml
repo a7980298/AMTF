@@ -80,4 +80,13 @@
 			AMTF_UPDNOTICE
 		ORDER BY UPDNOTICE_TIME DESC
 	</select>
+	
+	<!-- 全部活动 -->
+	<select id="f010002_Select9" resultType="com.amtf.demo.f010002entity.f010002_select9entity">
+		SELECT 
+			*
+		FROM 
+			AMTF_ACTIVITY
+		WHERE ACTIVITY_CHECK &lt;= #{check}
+	</select>
 </mapper>

@@ -140,12 +140,12 @@
 	function amtf_activity() {
 		var check;
 		if($('#activitycheck3').is(':checked') || $('#activitycheck1').is(':checked') && $('#activitycheck2').is(':checked')){
-			check = '3';
+			check = '';
 		} else {
 			if($('#activitycheck1').is(':checked')) {
-				check = '1';
+				check = '0';
 			} else if($('#activitycheck2').is(':checked')) {
-				check = '2';
+				check = '1';
 			}
 		}
 		var formData = new FormData($('#amtf_formactivity')[0]);
@@ -1180,8 +1180,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="panel-body text-center">
+								<div class="panel-body">
 									<div id="activity_editor"></div>
+								</div>
+								<div class="panel-body text-center">
 									<button class="btn btn-primary btn-lg" onclick="amtf_activity()">发布</button>
 								</div>
 							</div>

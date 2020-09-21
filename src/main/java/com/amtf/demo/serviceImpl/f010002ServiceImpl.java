@@ -1,7 +1,6 @@
 package com.amtf.demo.serviceImpl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,11 +17,11 @@ import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.f010002entity.f010002_select4entity;
+import com.amtf.demo.f010002entity.f010002_select9entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.DateUtil;
 import com.amtf.demo.util.FenYe;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
@@ -98,6 +97,16 @@ public class f010002ServiceImpl implements f010002Service {
 		}
 		//通知一栏
 		entityout.setSelect8(select8);
+		
+		// 活动一览
+		List<f010002_select9entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
+
+		for (f010002_select9entity select9entity : select9) {
+			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0,4) + "/" + select9entity.getActivity_sttymd().substring(4,6) + "/" + select9entity.getActivity_sttymd().substring(6,8));
+			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0,4) + "/" + select9entity.getActivity_endymd().substring(4,6) + "/" + select9entity.getActivity_endymd().substring(6,8));
+		}
+		
+		entityout.setSelect9(select9);
 
 		return entityout;
 	}

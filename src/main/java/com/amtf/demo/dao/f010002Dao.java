@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f010002entity.f010002_select1entity;
 import com.amtf.demo.f010002entity.f010002_select4entity;
+import com.amtf.demo.f010002entity.f010002_select9entity;
 import com.amtf.demo.user.LogInFo;
 
 @Mapper
@@ -28,5 +29,6 @@ public interface f010002Dao {
 	List<f010002_select4entity> f010002_Select7(@Param("id") Integer id);
 	
 	List<f010002_select4entity> f010002_Select8();
-
+	
+	List<f010002_select9entity> f010002_Select9(@Param("check") Integer check);
 }
