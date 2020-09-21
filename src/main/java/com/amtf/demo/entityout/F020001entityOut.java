@@ -72,4 +72,9 @@ public class F020001entityOut extends UserImpl {
 	 */
 	List<f020001_select5entity> select5;
 
+	/**
+	 * 活动是否发布成功
+	 */
+	public String isactivity;
+
 }

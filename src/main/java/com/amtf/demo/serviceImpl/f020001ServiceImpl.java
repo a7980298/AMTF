@@ -18,7 +18,9 @@ import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
+import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ImgUtil;
+import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +31,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 	@Autowired
 	private final f020001Dao f020001dao;
-	
+
 	@Autowired
 	private final commonDao commondao;
 
@@ -74,9 +76,9 @@ public class f020001ServiceImpl implements f020001Service {
 		}
 
 		List<f020001_select5entity> select5 = f020001dao.f020001_Select5(loginfo.getUser_email());
-		
+
 		entityOut.setSelect5(select5);
-		
+
 		entityOut.setLogInFo(loginfo);
 
 		entityOut.setSelect1(select1_view);
@@ -161,7 +163,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 		return entityOut;
 	}
-	
+
 	/**
 	 * 刪除指定userid的數據
 	 * @param entityin
@@ -174,7 +176,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		
+
 		//刪除指定用戶
 		int delect4 = f020001dao.f020001_Delect4(entityin.getUserid());
 		//沒有刪除成功
@@ -223,10 +225,25 @@ public class f020001ServiceImpl implements f020001Service {
 	@Override
 	public F020001entityOut service07(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
-		
-		
-		
-		
+
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		//图片上传
+		Integer activity_idInteger = CommonUtil.isEmpty(commondao.common_Select3())? 0 : commondao.common_Select3() + 1;
+		ImgUtil.activity_CommitImg(entityin.getActivity_img1(), activity_idInteger + "-1");
+		ImgUtil.activity_CommitImg(entityin.getActivity_img2(), activity_idInteger + "-2");
+		ImgUtil.activity_CommitImg(entityin.getActivity_img3(), activity_idInteger + "-3");
+		ImgUtil.activity_CommitImg(entityin.getActivity_img4(), activity_idInteger + "-4");
+		ImgUtil.activity_CommitImg(entityin.getActivity_img5(), activity_idInteger + "-5");
+		//添加活动
+		int insert6 = f020001dao.f020001_insert6(activity_idInteger, 
+				loginfo.getUser_email(), entityin.getActivity_head(), entityin.getActivity_check(),
+				NumberUtil.toInt(entityin.getActivity_sttymd().replace("/","")), 
+				NumberUtil.toInt(entityin.getActivity_endymd().replace("/","")), entityin.getActivity_editor());
+
+		if (insert6 <= 0) {
+			entityOut.setIsactivity(Constant.STR_1);
+		}
 		return entityOut;
 	}
 }

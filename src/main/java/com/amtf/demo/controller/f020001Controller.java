@@ -203,6 +203,7 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@RequestMapping("/f020001/T007")
+	@ResponseBody
 	public Map<String, Object> f020001T007(@RequestParam("activity_head") String activity_head,
 			@RequestParam("activity_position") String activity_position,
 			@RequestParam("activity_check") String activity_check,@RequestParam("activity_sttymd") String activity_sttymd,
@@ -210,7 +211,6 @@ public class f020001Controller extends ValiDationUtil {
 			@RequestParam("activity_img2") MultipartFile activity_img2,@RequestParam("activity_img3") MultipartFile activity_img3,
 			@RequestParam("activity_img4") MultipartFile activity_img4,@RequestParam("activity_img5") MultipartFile activity_img5,
 			@RequestParam("activity_editor") String activity_editor,HttpServletRequest request) {
-		//ImgUtil.CommitImg(file, Constant.STR_0);
 		Map<String, Object> map = new HashMap<String, Object>();
 		F020001entityIn entityin = new F020001entityIn();
 		// 活动标题
@@ -236,8 +236,7 @@ public class f020001Controller extends ValiDationUtil {
 		// 活动内容
 		entityin.setActivity_editor(activity_editor);
 		F020001entityOut entityOut = f020001service.service07(entityin);
-		String name = "ok";
-		map.put("成功了", name);
+		map.put("isactivity", entityOut.getIsactivity());
 		return map;
 	}
 

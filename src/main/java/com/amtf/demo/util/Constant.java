@@ -8,6 +8,8 @@ public class Constant {
 	public static final String STR_0 = "0";
 
 	public static final String STR_1 = "1";
+	
+	public static final String STR_2 = "2";
 
 	public static final Integer INT_0 = 0;
 

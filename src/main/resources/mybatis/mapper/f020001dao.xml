@@ -63,4 +63,20 @@
 			UPDNOTICE_ID NOT IN(SELECT UPDNOTICEOVER_UPID FROM AMTF_UPDNOTICEOVER)
 		AND UPDNOTICE_NAME != #{id}
 	</select>
+	<!-- 发布活动 -->
+	<insert id="f020001_insert6">
+		INSERT 
+		INTO
+			AMTF_ACTIVITY
+		VALUES(
+			#{id}
+			,#{name}
+			,#{head}
+			,#{check}
+			,#{sttymd}
+			,#{endymd}
+			,#{text}
+			,NOW()
+		)
+	</insert>
 </mapper>

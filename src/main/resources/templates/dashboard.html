@@ -171,10 +171,14 @@
 			contentType : false, // 不要设置Content-Type请求头
 			data : formData,
 			success : function(result) {
-
+				if(result.isactivity == '1') {
+					setCodeErrList("发布失败，请重试。");
+				} else {
+					setCodeSuccess("发布成功。。。");
+				}
 			},
 			error : function(res, textStaus) {
-
+				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
 	}
