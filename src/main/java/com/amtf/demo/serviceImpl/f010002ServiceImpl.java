@@ -102,8 +102,8 @@ public class f010002ServiceImpl implements f010002Service {
 		List<f010002_select9entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
 
 		for (f010002_select9entity select9entity : select9) {
-			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0,4) + "/" + select9entity.getActivity_sttymd().substring(4,6) + "/" + select9entity.getActivity_sttymd().substring(6,8));
-			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0,4) + "/" + select9entity.getActivity_endymd().substring(4,6) + "/" + select9entity.getActivity_endymd().substring(6,8));
+			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0,4) + "-" + select9entity.getActivity_sttymd().substring(4,6) + "-" + select9entity.getActivity_sttymd().substring(6,8));
+			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0,4) + "-" + select9entity.getActivity_endymd().substring(4,6) + "-" + select9entity.getActivity_endymd().substring(6,8));
 			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
 			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-2"));
 			select9entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-3"));

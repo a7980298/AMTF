@@ -160,6 +160,8 @@
 		}
 		
 		$('#activity_modal_activitytext').text(_this.activity_text);
+		$('#activity_modal_activityname').text('发布人：' + _this.activity_name + '  从   ' + _this.activity_time + '发起');
+		$('#activity_modal_activityymd').text('从' + _this.activity_sttymd + '开始，到' + _this.activity_endymd + '结束');
 	}
 </script>
 <body class="" onunload="myFunction()">
@@ -624,6 +626,8 @@
 											</div>
 										</div>
 										<p id="activity_modal_activitytext"></p>
+										<h5 id="activity_modal_activityname" class="col-r"></h5>
+										<h5 id="activity_modal_activityymd" class="col-r"></h5>
 									</div>
 								</div>
 							</div>
