@@ -147,4 +147,9 @@ public class F010002entityOut extends UserImpl {
 	 * 所有活动
 	 */
 	List<f010002_select9entity> select9;
+	
+	/**
+	 * 参加活动添加成功?
+	 */
+	public String insert10;
 }

@@ -25,4 +25,12 @@
 		FROM
 			AMTF_ACTIVITY
 	</select>
+	<!-- 获取useractivity表最大id -->
+	<select id="common_Select4"
+		resultType="int">
+		SELECT
+			MAX(USERACTIVITY_ID)
+		FROM
+			AMTF_USERACTIVITY
+	</select>
 </mapper>

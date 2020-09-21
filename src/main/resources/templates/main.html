@@ -158,10 +158,32 @@
 		} else {
 			$('#activity_modal_img5').remove();
 		}
-		
 		$('#activity_modal_activitytext').text(_this.activity_text);
 		$('#activity_modal_activityname').text('发布人：' + _this.activity_name + '  自   ' + _this.activity_time + '发起');
 		$('#activity_modal_activityymd').text('活动日期：' + _this.activity_sttymd + '开始，' + _this.activity_endymd + '结束');
+		$('#activity_modal_activityid').val(_this.activity_id);
+	}
+	// 参加活动
+	function amtf_setusetactivity() {
+		$.ajax({
+			url: CONTEXT_PATH + '/f010002/T006',
+			type: 'post',
+			dateType: 'html',
+			async: true,
+			data: {
+				id: $('#activity_modal_activityid').val(),
+			},
+			success: function (result) {
+				if (result.isuseractivity != 0) {
+					setCodeSuccess('参加成功。。。');
+				} else {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				}
+			},
+			error: function (res, textStaus) {
+				evenOff();
+			},
+		});
 	}
 </script>
 <body class="" onunload="myFunction()">
@@ -633,9 +655,10 @@
 							</div>
 						</div>
 						<div class="modal-footer justify-content-center">
-							<button type="button" class="btn btn-info btn-round" data-dismiss="modal">
+							<button type="button" class="btn btn-info btn-round" data-dismiss="modal" onclick="amtf_setusetactivity()">
 								参加
 							</button>
+							<input type="hidden" id="activity_modal_activityid"/>
 						</div>
 					</div>
 				</div>

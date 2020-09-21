@@ -118,5 +118,10 @@ public class F010002entityIn extends UserImpl {
 	 * 通知id
 	 */
 	public String updnotice_id;
+	
+	/**
+	 * 活动id
+	 */
+	public String actiyity_id;
 
 }

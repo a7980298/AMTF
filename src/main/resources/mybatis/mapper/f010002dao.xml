@@ -89,4 +89,15 @@
 			AMTF_ACTIVITY
 		WHERE ACTIVITY_CHECK &lt;= #{check}
 	</select>
+	
+	<!-- 参加活动 -->
+	<insert id="f010002_Insert10">
+		INSERT INTO 
+			AMTF_USERACTIVITY 
+		VALUES(
+			#{id}
+			,#{acid}
+			,#{name}
+			)
+	</insert>
 </mapper>

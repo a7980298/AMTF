@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amtf.demo.dao.commonDao;
 import com.amtf.demo.dao.f010001Dao;
 import com.amtf.demo.dao.f010002Dao;
 import com.amtf.demo.entityin.F010002entityIn;
@@ -39,6 +40,9 @@ public class f010002ServiceImpl implements f010002Service {
 
 	@Autowired
 	private final f010002Dao f010002dao;
+	
+	@Autowired
+	private final commonDao commondao;
 
 	public F010002entityOut service01(F010002entityIn entityIn) throws ErrListException {
 
@@ -206,6 +210,22 @@ public class f010002ServiceImpl implements f010002Service {
 
 		entityout.setSelect7(select7);
 
+		return entityout;
+	}
+
+	/**
+	 * 参加活动
+	 */
+	@Override
+	public F010002entityOut service06(F010002entityIn entityin) throws ErrListException {
+		F010002entityOut entityout = new F010002entityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+
+		int insert10 = f010002dao.f010002_Insert10(CommonUtil.isEmpty(commondao.common_Select4()) ? 0 : commondao.common_Select4() + 1, NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email());
+		
+		entityout.setInsert10(StringUtil.toStr(insert10));
+		
 		return entityout;
 	}
 }
