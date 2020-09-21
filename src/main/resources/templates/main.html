@@ -134,29 +134,34 @@
 		$('#getactivity').modal('show');
 		$('#activity_modal_head').text(_this.activity_head);
 		if (_this.activity_img1 != '') {
-			$('#activity_modal_img1').attr('src', '/amtf/activityimg/' + _this.activity_img1);
+			$('#activity_modal_img1').css('display','block');
+			$('#activity_modal_img1').attr('src', '/amtf/activityimg/' + _this.activity_img1 + '?r=' + Math.random());
 		} else {
-			$('#activity_modal_img1').remove();
+			$('#activity_modal_img1').css('display','none');
 		}
 		if (_this.activity_img2 != '') {
-			$('#activity_modal_img2').attr('src', '/amtf/activityimg/' + _this.activity_img2);
+			$('#activity_modal_img2').css('display','block');
+			$('#activity_modal_img2').attr('src', '/amtf/activityimg/' + _this.activity_img2+ '?r=' + Math.random());
 		} else {
-			$('#activity_modal_img2').remove();
+			$('#activity_modal_img2').css('display','none');
 		}
 		if (_this.activity_img3 != '') {
-			$('#activity_modal_img3').attr('src', '/amtf/activityimg/' + _this.activity_img3);
+			$('#activity_modal_img3').css('display','block');
+			$('#activity_modal_img3').attr('src', '/amtf/activityimg/' + _this.activity_img3+ '?r=' + Math.random());
 		} else {
-			$('#activity_modal_img3').remove();
+			$('#activity_modal_img3').css('display','none');
 		}
 		if (_this.activity_img4 != '') {
-			$('#activity_modal_img4').attr('src', '/amtf/activityimg/' + _this.activity_img4);
+			$('#activity_modal_img4').css('display','block');
+			$('#activity_modal_img4').attr('src', '/amtf/activityimg/' + _this.activity_img4+ '?r=' + Math.random());
 		} else {
-			$('#activity_modal_img4').remove();
+			$('#activity_modal_img4').css('display','none');
 		}
 		if (_this.activity_img5 != '') {
-			$('#activity_modal_img5').attr('src', '/amtf/activityimg/' + _this.activity_img5);
+			$('#activity_modal_img5').css('display','block');
+			$('#activity_modal_img5').attr('src', '/amtf/activityimg/' + _this.activity_img5+ '?r=' + Math.random());
 		} else {
-			$('#activity_modal_img5').remove();
+			$('#activity_modal_img5').css('display','none');
 		}
 		$('#activity_modal_activitytext').text(_this.activity_text);
 		$('#activity_modal_activityname').text('发布人：' + _this.activity_name + '  自   ' + _this.activity_time + '发起');
