@@ -28,6 +28,7 @@
 	}
 </style>
 <script type="text/javascript">
+	var activity_editor;
 	$(function(){
 		//initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
 		amtf_setColor($('#mainviewid'));
@@ -38,7 +39,7 @@
 		// 或者 var editor = new E( document.getElementById('editor') )
 		editor.create()
 		var E_activity = window.wangEditor
-		var activity_editor = new E_activity('#activity_editor')
+		activity_editor = new E_activity('#activity_editor')
 		activity_editor.create()
 		document.getElementById('textsumbit').addEventListener('click', function () {
 			$.ajax({
@@ -147,31 +148,33 @@
 				check = '2';
 			}
 		}
+		var formData = new FormData($('#amtf_formactivity')[0]);
+		
+		formData.append("activity_img1", $('#activity_img1')[0].files[0]);
+		formData.append("activity_img2", $('#activity_img2')[0].files[0]);
+		formData.append("activity_img3", $('#activity_img3')[0].files[0]);
+		formData.append("activity_img4", $('#activity_img4')[0].files[0]);
+		formData.append("activity_img5", $('#activity_img5')[0].files[0]);
+		formData.set("activity_head", $('#activity_head').val());
+		formData.set("activity_position", $('#activity_position').val());
+		formData.set("activity_check", check);
+		formData.set("activity_sttymd", $('#activity_sttymd').val());
+		formData.set("activity_endymd", $('#activity_endymd').val());
+		formData.set("activity_editor", activity_editor.txt.text());
 		$.ajax({
-			url: CONTEXT_PATH + '/f020001/T007',
-			type: 'post',
-			dateType: 'html',
-			async: true,
-			processData : false, // 使数据不做处理
+			url : CONTEXT_PATH + '/f020001/T007',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			cache: false,
+			processData : false, // 用于对data参数进行序列化处理
 			contentType : false, // 不要设置Content-Type请求头
-			data: {
-				activity_head: $('#activity_head').val(),
-				activity_position: $('#activity_position').val(),
-				activity_check: check,
-				activity_sttymd: $('#activity_sttymd').val(),
-				activity_endymd: $('#activity_endymd').val(),
-				activity_img1: $('#activity_img1')[0].files[0],
-				activity_img2: $('#activity_img2')[0].files[0],
-				activity_img3: $('#activity_img3')[0].files[0],
-				activity_img4: $('#activity_img4')[0].files[0],
-				activity_img5: $('#activity_img5')[0].files[0],
-				activity_editor: $('#activity_editor').val()
+			data : formData,
+			success : function(result) {
+
 			},
-			success: function (result) {
-				
-			},
-			error: function (res, textStaus) {
-				
+			error : function(res, textStaus) {
+
 			},
 		});
 	}
@@ -179,7 +182,6 @@
 <body class="" onunload="myFunction()">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">
 	<div class="wrapper">
-		<th:block th:replace="~{f020003 :: f020003_modl}"></th:block>
 		<div class="sidebar" data-color="rose" data-background-color="black"
 			th:data-image="@{/img/sidebar-1.jpg}">
 			<div class="logo">
@@ -993,6 +995,7 @@
 				</div>
 				<!-- 活动举办 -->
 				<div class="container-fluid dashboardclass" id="setactivity" style="display: none;">
+					<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_formactivity">
 					<div class="col-md-12">
 						<div class="card ">
 							<div class="card-header card-header-rose card-header-icon">
@@ -1014,7 +1017,7 @@
 									<label class="col-sm-2 col-form-label">举办地点</label>
 									<div class="col-sm-10">
 										<div class="form-group">
-											<input type="password" class="form-control" name="activity_position" id="activity_position">
+											<input type="text" class="form-control" name="activity_position" id="activity_position">
 										</div>
 									</div>
 								</div>
@@ -1180,6 +1183,7 @@
 							</div>
 						</div>
 					</div>
+					</i-form>
 				</div>
 				</div>
 			</div>
