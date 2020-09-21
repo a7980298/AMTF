@@ -104,6 +104,7 @@ function setCodeErrList(codeErrList){
 			inputPlaceholder: ""
 		},
 		function () {});
+		$('.swal2-container').css('z-index','9999999999');
 	}
 }
 
@@ -123,6 +124,7 @@ function setCodeSuccess(codeSuccess){
 				inputPlaceholder: ""
 			},
 			function () {});
+			$('.swal2-container').css('z-index','9999999999');
 		}
 	}
 }
