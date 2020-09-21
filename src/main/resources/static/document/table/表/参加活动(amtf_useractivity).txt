@@ -1,0 +1,5 @@
+CREATE TABLE amtf_useractivity(
+	useractivity_id INT NOT NULL, -- id
+	activity_id INT NOT NULL, -- 活动id
+	useractivity_name VARCHAR(30), -- 用户名称
+)
