@@ -108,7 +108,6 @@
 		});
 		$('#updnoticehead').text(_head);
 		$('#updnoticetext').text(_text);
-		
 	}
 	// 登陆页面head选中样式变换
 	function amtf_loginhead(_this) {
@@ -129,6 +128,38 @@
 	function amtf_uplook(_index){
 		$('#updnotice_y' + _index).text('已读');
 		$('#updnotice_y' + _index).removeClass('col-r');
+	}
+	// 查看活动详情
+	function amtf_getactivity(_this) {
+		$('#getactivity').modal('show');
+		$('#activity_modal_head').text(_this.activity_head);
+		if (_this.activity_img1 != '') {
+			$('#activity_modal_img1').attr('src', '/amtf/activityimg/' + _this.activity_img1);
+		} else {
+			$('#activity_modal_img1').remove();
+		}
+		if (_this.activity_img2 != '') {
+			$('#activity_modal_img2').attr('src', '/amtf/activityimg/' + _this.activity_img2);
+		} else {
+			$('#activity_modal_img2').remove();
+		}
+		if (_this.activity_img3 != '') {
+			$('#activity_modal_img3').attr('src', '/amtf/activityimg/' + _this.activity_img3);
+		} else {
+			$('#activity_modal_img3').remove();
+		}
+		if (_this.activity_img4 != '') {
+			$('#activity_modal_img4').attr('src', '/amtf/activityimg/' + _this.activity_img4);
+		} else {
+			$('#activity_modal_img4').remove();
+		}
+		if (_this.activity_img5 != '') {
+			$('#activity_modal_img5').attr('src', '/amtf/activityimg/' + _this.activity_img5);
+		} else {
+			$('#activity_modal_img5').remove();
+		}
+		
+		$('#activity_modal_activitytext').text(_this.activity_text);
 	}
 </script>
 <body class="" onunload="myFunction()">
@@ -513,7 +544,7 @@
 															<!-- <a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
 																<i class="material-icons">favorite</i>
 															</a> -->
-															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看" >
+															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看" th:onclick="amtf_getactivity([[${entity}]])">
 																<i class="material-icons">dvr</i></a>
 															<!--<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
 																<i class="material-icons">close</i>
@@ -555,6 +586,52 @@
 						<div class="modal-footer justify-content-center">
 							<button type="button" class="btn btn-info btn-round"
 								data-dismiss="modal">知道了</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 详细活动 -->
+			<div class="modal fade" id="getactivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-notice">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3 class="modal-title" id="activity_modal_head"></h3>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								<i class="material-icons">close</i>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="instruction">
+								 <div class="row">
+									<div class="col-sm-12">
+										<div class="fileinput fileinput-new text-center ml-3"
+											data-provides="fileinput">
+											<div class="fileinput-new thumbnail">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img1">
+											</div>
+											<div class="fileinput-new thumbnail">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img2">
+											</div>
+											<div class="fileinput-new thumbnail">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img3">
+											</div>
+											<div class="fileinput-new thumbnail">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img4">
+											</div>
+											<div class="fileinput-new thumbnail">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img5">
+											</div>
+										</div>
+										<p id="activity_modal_activitytext"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer justify-content-center">
+							<button type="button" class="btn btn-info btn-round" data-dismiss="modal">
+								参加
+							</button>
 						</div>
 					</div>
 				</div>
@@ -705,14 +782,6 @@
 					});
 
 					var table = $('#activity_datatables').DataTable();
-
-					// Edit record
-					table.on('click', '.edit', function() {
-						$tr = $(this).closest('tr');
-						var data = table.row($tr).data();
-						alert('你所在的行: ' + data[0] + ' ' + data[1]
-								+ ' ' + data[2] + '\'s 行.');
-					});
 
 					// Delete a record
 					table.on('click', '.remove', function(e) {

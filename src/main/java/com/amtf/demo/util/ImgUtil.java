@@ -27,6 +27,18 @@ public class ImgUtil {
 		return "";
 	}
 
+	// 获取照片地址
+	public static String getImgPath(String path,String name) {
+
+		for (int i = 0; i < suffix.length; i++) {
+			File file = new File(path + name + suffix[i]);
+			if (file.exists()) {
+				return name + suffix[i];
+			}
+		}
+		return "";
+	}
+	
 	// 文件copy
 	public static void CommitFile(String name) {
 		File fileIn = new File(name);

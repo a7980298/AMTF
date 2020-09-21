@@ -18,5 +18,11 @@ public class Constant {
 	public static final Boolean bol_T = true;
 
 	public static final Boolean bol_F = false;
+	
+	public static final String PATH_IMGS="C:/imgs/";
+	
+	public static final String PATH_TEMP_RAINY="C:/temp-rainy/";
+	
+	public static final String PATH_ACTIVITY="C:/activity_imgs/";
 
 }

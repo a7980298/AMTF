@@ -41,6 +41,31 @@ public class f010002_select9entity {
 	 * 内容
 	 */
 	private String activity_text;
+	
+	/**
+	 * img1
+	 */
+	private String activity_img1;
+	
+	/**
+	 * img2
+	 */
+	private String activity_img2;
+	
+	/**
+	 * img3
+	 */
+	private String activity_img3;
+	
+	/**
+	 * img4
+	 */
+	private String activity_img4;
+	
+	/**
+	 * img5
+	 */
+	private String activity_img5;
 
 	/**
 	 * 发布时间

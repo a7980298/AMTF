@@ -104,6 +104,11 @@ public class f010002ServiceImpl implements f010002Service {
 		for (f010002_select9entity select9entity : select9) {
 			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0,4) + "/" + select9entity.getActivity_sttymd().substring(4,6) + "/" + select9entity.getActivity_sttymd().substring(6,8));
 			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0,4) + "/" + select9entity.getActivity_endymd().substring(4,6) + "/" + select9entity.getActivity_endymd().substring(6,8));
+			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
+			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-2"));
+			select9entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-3"));
+			select9entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-4"));
+			select9entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
 		}
 		
 		entityout.setSelect9(select9);
