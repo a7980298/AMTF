@@ -1,5 +1,10 @@
 package com.amtf.demo.entityin;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -115,5 +120,65 @@ public class F020001entityIn extends UserImpl {
 	 * 刪除的用戶id
 	 */
 	public String userid;
+	
+	/**
+	 * 通知信息
+	 */
+	List<f020001_select5entity> select5;
+	
+	/**
+	 * 活动主题
+	 */
+	public String activity_head;
+	
+	/**
+	 * 活动举办地点
+	 */
+	public String activity_position;
+	
+	/**
+	 * 参与级别
+	 */
+	public String activity_check;
+	
+	/**
+	 * 开始日期
+	 */
+	public String activity_sttymd;
+	
+	/**
+	 * 结束日期
+	 */
+	public String activity_endymd;
+	
+	/**
+	 * 活动上传图片1
+	 */
+	public MultipartFile activity_img1;
+	
+	/**
+	 * 活动上传图片2
+	 */
+	public MultipartFile activity_img2;
+	
+	/**
+	 * 活动上传图片3
+	 */
+	public MultipartFile activity_img3;
+	
+	/**
+	 * 活动上传图片4
+	 */
+	public MultipartFile activity_img4;
+	
+	/**
+	 * 活动上传图片5
+	 */
+	public MultipartFile activity_img5;
+	
+	/**
+	 * 活动内容
+	 */
+	public String activity_editor;
 
 }

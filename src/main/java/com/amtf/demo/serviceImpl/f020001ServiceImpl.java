@@ -216,4 +216,17 @@ public class f020001ServiceImpl implements f020001Service {
 
 		return entityOut;
 	}
+
+	/**
+	 * 活动发布
+	 */
+	@Override
+	public F020001entityOut service07(F020001entityIn entityin) throws ErrListException {
+		F020001entityOut entityOut = new F020001entityOut();
+		
+		
+		
+		
+		return entityOut;
+	}
 }

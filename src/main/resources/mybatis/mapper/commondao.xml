@@ -17,4 +17,12 @@
 		FROM
 			AMTF_UPDNOTICE
 	</select>
+	<!-- 获取activity表最大id -->
+	<select id="common_Select3"
+		resultType="int">
+		SELECT
+			MAX(ACTIVITY_ID)
+		FROM
+			AMTF_ACTIVITY
+	</select>
 </mapper>
