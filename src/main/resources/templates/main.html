@@ -774,6 +774,8 @@
 				$('#updontice_datatables').DataTable(
 						{
 							"pagingType" : "full_numbers",
+							// 禁止排序
+							"ordering": false, 
 							// 设置默认的排序
 							"order": [ [ 4, "desc" ] ],	
 							"lengthMenu" : [ [ 10, 25, 50, -1 ],
