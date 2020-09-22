@@ -248,7 +248,7 @@
 					</li>
 					<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f010002Params.navigation_bar}">
 						<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}">
-							<i class="material-icons">image</i>
+							<i th:class="${'fa ' + mapkey.value.get(0).power_class}"></i>
 							<p>
 								[[${mapkey.key}]] <b class="caret"></b>
 							</p>
