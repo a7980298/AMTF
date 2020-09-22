@@ -192,6 +192,10 @@
 			},
 		});
 	}
+	// 侧边悬浮设置
+	function amtf_sideSetUpKeep() {
+		
+	}
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
@@ -469,7 +473,7 @@
 								<div class="card">
 									<div class="card-header card-header-primary card-header-icon">
 										<div class="card-icon">
-											<i class="material-icons">assignment</i>
+											<i class="fa fa-bell-o fa-2x"></i>
 										</div>
 										<h4 class="card-title">通知一览</h4>
 									</div>
@@ -534,14 +538,16 @@
 								<div class="card">
 									<div class="card-header card-header-primary card-header-icon">
 										<div class="card-icon">
-											<i class="material-icons">assignment</i>
+											<i class="fa fa-cog fa-2x"></i>
 										</div>
 										<h4 class="card-title">个人设定</h4>
 									</div>
 									<div class="card-body">
 										<div class="toolbar"></div>
 										<div class="material-datatables">
-											
+											<div class="col-lg-5 col-md-6 col-sm-3">
+												
+											</div>
 										</div>
 									</div>
 								</div>
@@ -559,7 +565,7 @@
 								<div class="card">
 									<div class="card-header card-header-primary card-header-icon">
 										<div class="card-icon">
-											<i class="material-icons">assignment</i>
+											<i class="fa fa-bullhorn fa-2x"></i>
 										</div>
 										<h4 class="card-title">活动一览</h4>
 									</div>
@@ -713,12 +719,12 @@
 				<li class="adjustments-line">
 					<a href="javascript:void(0)" class="switch-trigger active-color">
 						<div class="badge-colors ml-auto mr-auto">
-							<span class="badge filter badge-purple" data-color="purple"></span>
-							<span class="badge filter badge-azure" data-color="azure"></span>
-							<span class="badge filter badge-green" data-color="green"></span>
-							<span class="badge filter badge-warning" data-color="orange"></span>
-							<span class="badge filter badge-danger" data-color="danger"></span>
-							<span class="badge filter badge-rose active" data-color="rose"></span>
+							<span class="badge filter badge-purple side_setupcolor" data-color="purple"></span>
+							<span class="badge filter badge-azure side_setupcolor" data-color="azure"></span>
+							<span class="badge filter badge-green side_setupcolor" data-color="green"></span>
+							<span class="badge filter badge-warning side_setupcolor" data-color="orange"></span>
+							<span class="badge filter badge-danger side_setupcolor" data-color="danger"></span>
+							<span class="badge filter badge-rose active side_setupcolor" data-color="rose"></span>
 						</div>
 						<div class="clearfix"></div>
 					</a>
@@ -727,15 +733,15 @@
 				<li class="adjustments-line">
 					<a href="javascript:void(0)" class="switch-trigger background-color">
 						<div class="ml-auto mr-auto">
-							<span class="badge filter badge-black active"
-								data-background-color="black"></span> <span
-								class="badge filter badge-white" data-background-color="white"></span>
-							<span class="badge filter badge-red" data-background-color="red"></span>
+							<span class="badge filter badge-black active side_setupbackgroundcolor" data-background-color="black">
+							</span> 
+							<span class="badge filter badge-white side_setupbackgroundcolor" data-background-color="white"></span>
+							<span class="badge filter badge-red side_setupbackgroundcolor" data-background-color="red"></span>
 						</div>
 						<div class="clearfix"></div>
 					</a>
 				</li>
-				<li class="adjustments-line">
+				<!-- <li class="adjustments-line">
 					<a href="javascript:void(0)" class="switch-trigger">
 						<p>缩小 侧边栏</p>
 						<label class="ml-auto">
@@ -747,14 +753,15 @@
 						</label>
 						<div class="clearfix"></div>
 					</a>
-				</li>
+				</li> -->
 				<li class="adjustments-line">
 					<a href="javascript:void(0)" class="switch-trigger">
 						<p>边栏 图像</p>
 						<label class="switch-mini ml-auto">
 							<div class="togglebutton switch-sidebar-image">
-								<label> <input type="checkbox" checked=""> <span
-									class="toggle"></span>
+								<label>
+									<input type="checkbox" checked id="side_serupimgcheck"/>
+									<span class="toggle"></span>
 								</label>
 							</div>
 						</label>
@@ -764,23 +771,29 @@
 				<li class="header-title">图像</li>
 				<li class="active">
 					<a class="img-holder switch-trigger" href="javascript:void(0)"> 
-						<img th:src="@{/img/sidebar-1.jpg}" alt="">
+						<img th:src="@{/img/sidebar-1.jpg}" alt="图1" id="side_serupimg1">
 					</a>
 				</li>
 				<li>
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
-						<img th:src="@{/img/sidebar-2.jpg}" alt="">
+						<img th:src="@{/img/sidebar-2.jpg}" alt="图2" id="side_serupimg2">
 					</a>
 				</li>
 				<li>
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
-						<img th:src="@{/img/sidebar-3.jpg}" alt="">
+						<img th:src="@{/img/sidebar-3.jpg}" alt="图3" id="side_serupimg3">
 					</a>
 				</li>
 				<li>
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
-						<img th:src="@{/img/sidebar-4.jpg}" alt="">
+						<img th:src="@{/img/sidebar-4.jpg}" alt="图4" id="side_serupimg4">
 					</a>
+				</li>
+				<li class="adjustments-line text-center">
+					<button class="btn btn-success mt-1" onclick="amtf_sideSetUpKeep()">
+						<i class="material-icons">favorite</i>
+						保存
+					</button>
 				</li>
 			</ul>
 		</div>
