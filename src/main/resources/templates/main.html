@@ -258,7 +258,7 @@
 								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'">
 									<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
 									<a class="nav-link" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
-										<span class="sidebar-mini"> P </span>
+										<span class="sidebar-mini"> [[${fileInfo.power_short}]] </span>
 										<span class="sidebar-normal"> [[${fileInfo.power_name}]] </span>
 									</a>
 								</li>

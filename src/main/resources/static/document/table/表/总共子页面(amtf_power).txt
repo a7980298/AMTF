@@ -4,22 +4,14 @@ CREATE TABLE AMTF_POWER(
 	power_type VARCHAR(20), -- 画面类型
 	power_pow int,	-- 权限
 	power_path VARCHAR(50), -- 画面路径
-	power_class VARCHAR(50) -- class样式
+	power_class VARCHAR(50), -- class样式
+	power_short VARCHAR(10) -- 缩写
 )
-
-power_id	power_name	power_type	power_pow	power_path
-1001		观看视频		影视				0		f010001
-1002		享受音乐		音乐				0		f040001
-1003		畅想快聊		论坛				0		f030001
-1004		最新资讯		新闻				0		f050001
-1005		现场直播		影视				0		f070001
-9999		会员管理		管理				1		f020001
-1006		任务中心		任务				0		f060001
-insert into test.amtf_power values(1001,'观看视频','影视','0','f010001','fa-television');
-insert into test.amtf_power values(1005,'现场直播','影视','0','f070001','fa-television');
-insert into test.amtf_power values(1002,'享受音乐','音乐','0','f040001','fa-music');
-insert into test.amtf_power values(1003,'畅想快聊','论坛','0','f030001','fa-child');
-insert into test.amtf_power values(1004,'最新资讯','新闻','0','f050001','fa-newspaper-o');
-insert into test.amtf_power values(1006,'任务中心','任务','0','f060001','fa-wpforms');
-insert into test.amtf_power values(9999,'会员管理','管理','1','f020001','fa-pencil-square');
-insert into test.amtf_power values(1007,'活动一栏','任务','0','f080001','fa-th-list');
+insert into test.amtf_power values(1001,'观看视频','影视','0','f010001','fa-television','TV');
+insert into test.amtf_power values(1005,'现场直播','影视','0','f070001','fa-television','LB');
+insert into test.amtf_power values(1002,'享受音乐','音乐','0','f040001','fa-music','MS');
+insert into test.amtf_power values(1003,'畅想快聊','论坛','0','f030001','fa-child','FR');
+insert into test.amtf_power values(1004,'最新资讯','新闻','0','f050001','fa-newspaper-o','NS');
+insert into test.amtf_power values(1006,'任务中心','任务','0','f060001','fa-wpforms','TS');
+insert into test.amtf_power values(9999,'会员管理','管理','1','f020001','fa-pencil-square','AD');
+insert into test.amtf_power values(1007,'活动一栏','任务','0','f080001','fa-th-list','AT');
