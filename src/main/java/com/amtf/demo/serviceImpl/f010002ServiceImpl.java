@@ -221,9 +221,12 @@ public class f010002ServiceImpl implements f010002Service {
 		F010002entityOut entityout = new F010002entityOut();
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-
-		int insert10 = f010002dao.f010002_Insert10(CommonUtil.isEmpty(commondao.common_Select4()) ? 0 : commondao.common_Select4() + 1, NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email());
-		
+		int insert10 = 0;
+		if(f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email()) > 0) {
+			insert10 = -1;
+		} else {
+			insert10 = f010002dao.f010002_Insert10(CommonUtil.isEmpty(commondao.common_Select4()) ? 0 : commondao.common_Select4() + 1, NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email());
+		}
 		entityout.setInsert10(StringUtil.toStr(insert10));
 		
 		return entityout;

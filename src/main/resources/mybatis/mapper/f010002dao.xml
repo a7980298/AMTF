@@ -107,4 +107,16 @@
 			,#{name}
 			)
 	</insert>
+	
+	<!-- 查看该用户是否参加了这个活动 -->
+	<select id="f010002_Select11" resultType="Int">
+		SELECT 
+			COUNT(*)
+		FROM
+			AMTF_USERACTIVITY
+		WHERE
+			ACTIVITY_ID = #{id}
+		AND
+			USERACTIVITY_NAME = #{name}
+	</select>
 </mapper>

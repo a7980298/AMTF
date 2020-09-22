@@ -179,10 +179,12 @@
 				id: $('#activity_modal_activityid').val(),
 			},
 			success: function (result) {
-				if (result.isuseractivity != 0) {
-					md.showNotification('bottom','center','3' ,'参加成功。。。')
-				} else {
+				if (result.isuseractivity > 0) {
+					md.showNotification('top','center','3' ,'参加成功。。。')
+				} else if (result.isuseractivity == 0){
 					setCodeErrList("错误！！！请和管理员联系。。。");
+				} else {
+					md.showNotification('bottom','center','2' ,'你已经参加过了。。。')
 				}
 			},
 			error: function (res, textStaus) {
@@ -768,71 +770,73 @@
 		});
 		// table插件
 		$(document).ready(
-				function() {
-					$('#updontice_datatables').DataTable(
-							{
-								"pagingType" : "full_numbers",
-								// 设置默认的排序
-								"order": [ [ 4, "desc" ] ],	
-								"lengthMenu" : [ [ 10, 25, 50, -1 ],
-										[ 10, 25, 50, "All" ] ],
-								responsive : true,
-								language : {
-									search : "_INPUT_",
-									searchPlaceholder : "搜索记录",
-								}
-					});
+			function() {
+				$('#updontice_datatables').DataTable(
+						{
+							"pagingType" : "full_numbers",
+							// 设置默认的排序
+							"order": [ [ 4, "desc" ] ],	
+							"lengthMenu" : [ [ 10, 25, 50, -1 ],
+									[ 10, 25, 50, "All" ] ],
+							responsive : true,
+							language : {
+								search : "_INPUT_",
+								searchPlaceholder : "搜索记录",
+							}
+				});
 
-					var table = $('#updontice_datatables').DataTable();
+				var table = $('#updontice_datatables').DataTable();
 
-					// Edit record
-					table.on('click', '.edit', function() {
-						$tr = $(this).closest('tr');
-						var data = table.row($tr).data();
-						alert('你所在的行: ' + data[0] + ' ' + data[1]
-								+ ' ' + data[2] + '\'s 行.');
-					});
+				// Edit record
+				table.on('click', '.edit', function() {
+					$tr = $(this).closest('tr');
+					var data = table.row($tr).data();
+					alert('你所在的行: ' + data[0] + ' ' + data[1]
+							+ ' ' + data[2] + '\'s 行.');
+				});
 
-					// Delete a record
-					table.on('click', '.remove', function(e) {
-						$tr = $(this).closest('tr');
-						table.row($tr).remove().draw();
-						e.preventDefault();
-					});
+				// Delete a record
+				table.on('click', '.remove', function(e) {
+					$tr = $(this).closest('tr');
+					table.row($tr).remove().draw();
+					e.preventDefault();
+				});
 
-					//Like record
-					table.on('click', '.like', function() {
-						alert('你点击了“喜欢”按钮');
-					});
-					
-					$('#activity_datatables').DataTable(
-							{
-								"pagingType" : "full_numbers",
-								// 设置默认的排序
-								"order": [ [ 5, "desc" ] ],	
-								"lengthMenu" : [ [ 10, 25, 50, -1 ],
-										[ 10, 25, 50, "All" ] ],
-								responsive : true,
-								language : {
-									search : "_INPUT_",
-									searchPlaceholder : "搜索记录",
-								}
-					});
+				//Like record
+				table.on('click', '.like', function() {
+					alert('你点击了“喜欢”按钮');
+				});
+				
+				$('#activity_datatables').DataTable(
+						{
+							"pagingType" : "full_numbers",
+							// 禁止排序
+							"ordering": false, 
+							// 设置默认的排序
+							"order": [ [ 5, "desc" ] ],	
+							"lengthMenu" : [ [ 10, 25, 50, -1 ],
+									[ 10, 25, 50, "All" ] ],
+							responsive : true,
+							language : {
+								search : "_INPUT_",
+								searchPlaceholder : "搜索记录",
+							}
+				});
 
-					var table = $('#activity_datatables').DataTable();
+				var table = $('#activity_datatables').DataTable();
 
-					// Delete a record
-					table.on('click', '.remove', function(e) {
-						$tr = $(this).closest('tr');
-						table.row($tr).remove().draw();
-						e.preventDefault();
-					});
+				// Delete a record
+				table.on('click', '.remove', function(e) {
+					$tr = $(this).closest('tr');
+					table.row($tr).remove().draw();
+					e.preventDefault();
+				});
 
-					//Like record
-					table.on('click', '.like', function() {
-						alert('你点击了“喜欢”按钮');
-					});
-				}
+				//Like record
+				table.on('click', '.like', function() {
+					alert('你点击了“喜欢”按钮');
+				});
+			}
 		);
 	</script>
 </body>

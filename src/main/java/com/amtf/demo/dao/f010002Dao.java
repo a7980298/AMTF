@@ -33,4 +33,6 @@ public interface f010002Dao {
 	List<f010002_select9entity> f010002_Select9(@Param("check") Integer check);
 	
 	int f010002_Insert10(@Param("id") Integer id,@Param("acid") Integer acid,@Param("name") String name);
+	
+	int f010002_Select11(@Param("id") Integer id,@Param("name") String name);
 }
