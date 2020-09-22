@@ -53,7 +53,7 @@
 					$('#select5').replaceWith(result);
 				},
 				error: function (res, textStaus) {
-					evenOff();
+					setCodeErrList("错误！！！请和管理员联系。。。");
 				},
 			});
 		}
@@ -103,7 +103,7 @@
 				$('#select5').replaceWith(result);
 			},
 			error: function (res, textStaus) {
-				evenOff();
+				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
 		$('#updnoticehead').text(_head);
@@ -188,13 +188,52 @@
 				}
 			},
 			error: function (res, textStaus) {
-				evenOff();
+				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
 	}
 	// 侧边悬浮设置
 	function amtf_sideSetUpKeep() {
-		
+		var _color;
+		var _background_color;
+		var _imgid;
+		var _imgcheck;
+		if ($('#_imgcheck').is(':checked')) {
+			_imgcheck = '1';
+		}
+		$('.side_setupcolor').each(function(){
+			if($(this).hasClass('active')){
+				_color = $(this).attr('data-color');
+			}
+		});
+		$('.side_setupbackgroundcolor').each(function(){
+			if($(this).hasClass('active')){
+				_background_color = $(this).attr('data-background-color');
+			}
+		});
+		$('.side_serupimg').each(function(){
+			if($(this).hasClass('active')){
+				_imgid = $(this),find('img').attr('id');
+			}
+		});
+		$.ajax({
+			url: CONTEXT_PATH + '/f010002/T007',
+			type: 'post',
+			dateType: 'html',
+			async: true,
+			data: {
+				color: _color,
+				background_color : _background_color,
+				imgcheck ： _imgcheck,
+				imgid ：_imgid
+			},
+			success: function (result) {
+				
+			},
+			error: function (res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
 	}
 </script>
 <body class="" onunload="myFunction()">
@@ -769,22 +808,22 @@
 					</a>
 				</li>
 				<li class="header-title">图像</li>
-				<li class="active">
+				<li class="active side_serupimg">
 					<a class="img-holder switch-trigger" href="javascript:void(0)"> 
 						<img th:src="@{/img/sidebar-1.jpg}" alt="图1" id="side_serupimg1">
 					</a>
 				</li>
-				<li>
+				<li class="side_serupimg">
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
 						<img th:src="@{/img/sidebar-2.jpg}" alt="图2" id="side_serupimg2">
 					</a>
 				</li>
-				<li>
+				<li class="side_serupimg">
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
 						<img th:src="@{/img/sidebar-3.jpg}" alt="图3" id="side_serupimg3">
 					</a>
 				</li>
-				<li>
+				<li class="side_serupimg">
 					<a class="img-holder switch-trigger" href="javascript:void(0)">
 						<img th:src="@{/img/sidebar-4.jpg}" alt="图4" id="side_serupimg4">
 					</a>
