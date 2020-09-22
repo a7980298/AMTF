@@ -224,8 +224,8 @@
 			data: {
 				color: _color,
 				background_color : _background_color,
-				imgcheck ： _imgcheck,
-				imgid ：_imgid
+				imgcheck : _imgcheck,
+				imgid : _imgid
 			},
 			success: function (result) {
 				
@@ -371,7 +371,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
 									<a class="dropdown-item" href="#userformaction" onclick="amtf_loginhead(this)">简况</a>
-									<a class="dropdown-item" href="#">设置</a>
+									<a class="dropdown-item" href="#usersetup" onclick="amtf_loginhead(this)">设置</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#" onclick="amtf_golock()">锁定</a>
 									<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_form">
@@ -829,7 +829,7 @@
 					</a>
 				</li>
 				<li class="adjustments-line text-center">
-					<button class="btn btn-success mt-1" onclick="amtf_sideSetUpKeep()">
+					<button class="btn btn-success mt-1">
 						<i class="material-icons">favorite</i>
 						保存
 					</button>
