@@ -101,7 +101,6 @@
 	}
 	// 删除按钮押下
 	function amtf_userDelete(_id) {
-		evenOn();
 		$.ajax({
 			url: CONTEXT_PATH + '/f020001/T006',
 			type: 'post',
@@ -111,11 +110,12 @@
 				userid: _id,
 			},
 			success: function (result) {
-				evenOff();
-				$('#selectuser').replaceWith(result);
+				md.showNotification('top','center','3' ,'删除成功。。。')
+				$('#select1').replaceWith(result);
+				$('.modal-backdrop').remove();
 			},
 			error: function (res, textStaus) {
-				evenOff();
+				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
 	}
@@ -914,9 +914,9 @@
 								</div>
 								<h4 class="card-title">人員操作</h4>
 							</div>
-							<div class="card-body">
+							<div class="card-body" id="select1" th:fragment="select1">
 								<div class="table-responsive" th:if="${not #lists.isEmpty(f020001Params.select1)}">
-									<table class="table" style="z-index:-9999">
+									<table class="table" style="z-index:-9999 width: 100%" width="100%" id="lookusertable">
 										<thead>
 											<tr>
 												<th class="text-center">#</th>
@@ -945,20 +945,43 @@
 														<i class="material-icons">edit</i>
 													</button>
 													<!-- <button type="button" rel="tooltip" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'"> -->
-													<a href="#" data-toggle="dropdown" class="btn btn-danger">
+													<button  data-toggle="modal" th:data-target="${'#myModal' + idx.index}" class="btn btn-danger">
 														<i class="material-icons">close</i>
-													</a>
-													<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-														<p class="text-center">确定删除吗？</p>
-														<p class="text-center">
+													</button>
+													<div class="modal fade modal-mini modal-primary"
+														th:id="${'myModal' + idx.index}" tabindex="-1" role="dialog"
+														aria-labelledby="myModalLabel" aria-hidden="true">
+														<div class="modal-dialog modal-small">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-hidden="true">
+																		<i class="material-icons">clear</i>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<h3>确 定 要 删 除 吗?</h3>
+																</div>
+																<div class="modal-footer justify-content-center">
+																	<button type="button" class="btn btn-success btn-link" data-dismiss="modal" th:onclick="amtf_userDelete([[${entity.user_id}]])">
+																		是
+																		<div class="ripple-container"></div>
+																	</button>
+																	<button type="button" class="btn btn-link" data-dismiss="modal">
+																		否
+																	</button>
+																</div>
+															</div>
+														</div>
+													</div> 
+													<!-- 	<p class="text-center">
 															<a href="#" class="btn btn-danger"  th:attr="onclick='amtf_userDelete(' + ${entity.user_id} + ');'">
 																	<i class="material-icons">是</i>
 															</a>
 															<a href="#" data-toggle="dropdown" class="btn btn-success">
 																<i class="material-icons">否</i>
 															</a>
-														</p>
-													</div>
+														</p> -->
 												</td>
 											</tr>
 										</tbody>
@@ -1335,6 +1358,47 @@
 			}
 		})
 	});
+	$(document).ready(
+			function() {
+				$('#lookusertable').DataTable(
+						{
+							"pagingType" : "full_numbers",
+							// 禁止排序
+							"ordering": false, 
+							// 设置默认的排序
+							"order": [ [ 1, "desc" ] ],	
+							"lengthMenu" : [ [ 10, 25, 50, -1 ],
+									[ 10, 25, 50, "All" ] ],
+							responsive : true,
+							language : {
+								search : "_INPUT_",
+								searchPlaceholder : "搜索记录",
+							}
+				});
+
+				var table = $('#lookusertable').DataTable();
+
+				// Edit record
+				table.on('click', '.edit', function() {
+					$tr = $(this).closest('tr');
+					var data = table.row($tr).data();
+					alert('你所在的行: ' + data[0] + ' ' + data[1]
+							+ ' ' + data[2] + '\'s 行.');
+				});
+
+				// Delete a record
+				table.on('click', '.remove', function(e) {
+					$tr = $(this).closest('tr');
+					table.row($tr).remove().draw();
+					e.preventDefault();
+				});
+
+				//Like record
+				table.on('click', '.like', function() {
+					alert('你点击了“喜欢”按钮');
+				});
+			}
+		);
 	</script>
 </body>
 </html>

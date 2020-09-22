@@ -1,3 +1,4 @@
+
 package com.amtf.demo.controller;
 
 import java.util.HashMap;
@@ -192,7 +193,7 @@ public class f020001Controller extends ValiDationUtil {
 
 		model.addAttribute("f020001Params", params);
 
-		return "f020001 :: selectuser";
+		return "dashboard :: select1";
 	}
 
 	/**

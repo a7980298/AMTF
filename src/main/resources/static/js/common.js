@@ -128,19 +128,19 @@ function setCodeSuccess(codeSuccess){
 		}
 	}
 }
-//关闭遮罩
-function evenOff(){
-	$('#myModal_wait').removeClass('show');
-	$('button').removeAttr('disabled');
-	$('body').css('pointer-events','');-hidden
-	$('#myModal_wait').attr('aria','true');
-}
-//打开遮罩
-function evenOn(){
-	$('#myModal_wait').modal('show');
-	$('button').attr('disabled','disabled');
-	$('body').css('pointer-events','none');
-}
+////关闭遮罩
+//function evenOff(){
+//	$('#myModal_wait').removeClass('show');
+//	$('button').removeAttr('disabled');
+//	$('body').css('pointer-events','');
+//	$('#myModal_wait').attr('aria','true');
+//}
+////打开遮罩
+//function evenOn(){
+//	$('#myModal_wait').modal('show');
+//	$('button').attr('disabled','disabled');
+//	$('body').css('pointer-events','none');
+//}
 //全局不可點擊
 function htmlEvenOff(_id){
 	$('button').attr('disabled','disabled');
