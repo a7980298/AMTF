@@ -65,7 +65,7 @@ public class LogInFo {
 	/**
 	 * 是否认证
 	 */
-	private String user_attestation;
+	private Integer user_attestation;
 
 	/**
 	 * 权限

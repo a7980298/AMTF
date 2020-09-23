@@ -623,7 +623,7 @@
 													</h6>
 												</div>
 											</li>
-											<li>
+											<li th:if="${f010002Params.logInFo.user_attestation &gt; 0}">
 												<div class="timeline-badge success">
 													<i class="material-icons">extension</i>
 												</div>
@@ -636,7 +636,7 @@
 													</div>
 												</div>
 											</li>
-											<li class="timeline-inverted">
+											<li class="timeline-inverted" th:if="${f010002Params.logInFo.user_attestation &gt; 0}">
 												<div class="timeline-badge info">
 													<i class="material-icons">fingerprint</i>
 												</div>
@@ -664,7 +664,7 @@
 													</div>
 												</div>
 											</li>
-											<li>
+											<li th:if="${f010002Params.logInFo.user_attestation == 1}">
 												<div class="timeline-badge warning">
 													<i class="material-icons">flight_land</i>
 												</div>

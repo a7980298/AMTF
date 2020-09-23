@@ -115,7 +115,7 @@ public class ParameterUtil {
 					!CommonUtil.isEmpty(user.getUser_introduce()) ? user.getUser_introduce() : Constant.EMPTY);
 			// 认证
 			loginfo.setUser_attestation(
-					!CommonUtil.isEmpty(user.getUser_attestation()) ? user.getUser_attestation() : Constant.EMPTY);
+					!CommonUtil.isEmpty(user.getUser_attestation()) ? NumberUtil.toInt(user.getUser_attestation()) : 0);
 			// 权限
 			loginfo.setUser_power(!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : Constant.EMPTY);
 			// 存入session
