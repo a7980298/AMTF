@@ -38,7 +38,7 @@
 				alert('注册成功');
 			}
 			if ("[[${f010001Params.verifyCode}]]" != "") {
-				amtf_loginhead($('#userregister'));
+				amtf_loginhead($('#userregister_id'));
 			}
 			if ('[[${f010001Params.locking}]]' != '') {
 				amtf_loginhead($('#lockingid'));
@@ -369,6 +369,7 @@
 				</div>
 				<div class="collapse" data-toggle="collapse" id="userregister">
 					<i-form class="" th:action="@{/f010001}" method="post" id="amtf_form_register">
+					<input type="hidden" name="IViewId" value="f010001"/>
 						<div class="row">
 							<div class="col-md-10 ml-auto mr-auto">
 								<div class="card card-signup">
@@ -431,7 +432,7 @@
 															</span>
 														</div>
 														<div class="col-md-12">
-															<input type="text" class="form-control" placeholder="用户名..." name="regist_user_name" required="true">
+															<input type="text" class="form-control" placeholder="用户名..." name="regist_user_name" required="true" th:value="${f010001Params.regist_user_name}">
 														</div>
 													</div>
 												</div>
@@ -444,7 +445,7 @@
 														</div>
 														<div class="col-md-12 d-flex">
 															<div class="col-md-8" style="padding-left: 0px;padding-right: 0px;">
-																<input type="text" class="form-control col-md-12" placeholder="邮箱..." id="email_id" name="regist_user_email" email="true" required="true">
+																<input type="text" class="form-control col-md-12" placeholder="邮箱..." id="email_id" name="regist_user_email" email="true" required="true" th:value="${f010001Params.regist_user_email}">
 															</div>
 															<div class="col-md-4" style="padding-left: 0px;padding-right: 0px;">
 																<input type="button" class="btn btn-link form-control col-md-12" style="height:31px;" value="发送验证码" onclick="amtf_submitYFCode(this)">
@@ -472,7 +473,7 @@
 															</span>
 														</div>
 														<div class="col-md-12">
-															<input type="password" placeholder="密码..." class="form-control" name="regist_user_password" required="true">
+															<input type="password" placeholder="密码..." class="form-control" name="regist_user_password" required="true" th:value="${f010001Params.regist_user_password}">
 														</div>
 													</div>
 												</div>
