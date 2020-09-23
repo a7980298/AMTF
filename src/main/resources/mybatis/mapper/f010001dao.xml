@@ -28,6 +28,7 @@
 			AMTF_updnotice
 	</select>
 	
+	<!-- 注册 -->
 	<insert id="f010001_Insert4" parameterType="com.amtf.demo.f010001entity.f010001_insert4entityIn">
 		INSERT INTO
 			AMTF_User(User_id, 
@@ -60,4 +61,15 @@
 			0
 		)
 	</insert>
+	
+	<!-- 查看用户是否注册 -->
+	<select id="f010001_Select5" resultType="Int">
+		SELECT 
+			COUNT(*)
+		FROM
+			AMTF_User
+		WHERE
+			User_Email = #{email}
+	</select>
+	
 </mapper>

@@ -37,6 +37,9 @@
 			if ("[[${f010001Params.yesorno}]]" != "") {
 				alert('注册成功');
 			}
+			if ("[[${f010001Params.verifyCode}]]" != "") {
+				amtf_loginhead($('#userregister'));
+			}
 			if ('[[${f010001Params.locking}]]' != '') {
 				amtf_loginhead($('#lockingid'));
 			}
@@ -193,7 +196,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link loginhead" data-toggle="collapse" href="#userregister" onclick="amtf_loginhead(this)">
+							<a class="nav-link loginhead" data-toggle="collapse" href="#userregister" onclick="amtf_loginhead(this)" id="userregister_id">
 								<i class="material-icons">person_add</i>
 								注冊
 							</a>

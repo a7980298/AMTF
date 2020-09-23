@@ -20,5 +20,7 @@ public interface f010001Dao {
 	List<f010001_select3entity> f010001_Select3();
 
 	int f010001_Insert4(@Param("entityin") f010001_insert4entityIn entityin);
+	
+	int f010001_Select5(@Param("email") String email);
 
 }
