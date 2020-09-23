@@ -284,7 +284,7 @@
 				</div>
 				<ul class="nav">
 					<li class="nav-item active coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" href="#">
+						<a class="nav-link" href="#main" onclick="amtf_loginhead(this)">
 							<i class="material-icons">dashboard</i>
 							<p>主页面</p>
 						</a>
@@ -384,6 +384,14 @@
 				</div>
 			</nav>
 			<div class="content">
+				<!-- 主画面 -->
+				<div class="container-fluid dashboardclass" id="main">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formmusic" enctype="multipart/form-data">
+						主画面
+						</i-form>
+					</div>
+				</div>
 				<!-- 个人资料 -->
 				<div class="container-fluid dashboardclass" id="userformaction" style="display: none;">
 					<div class="container-fluid">
