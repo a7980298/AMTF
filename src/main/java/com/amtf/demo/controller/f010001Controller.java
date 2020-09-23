@@ -13,9 +13,7 @@ import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.service.f010001Service;
-import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
@@ -34,12 +32,14 @@ public class f010001Controller extends ValiDationUtil {
 	@RequestMapping("/f010001")
 	public String f010001S001(F010001Params params, Model model) {
 
-		LogInFo logInFo = ParameterUtil.getCookie();
-		if (!CommonUtil.isEmpty(logInFo.getUser_account()) && !CommonUtil.isEmpty(logInFo.getUser_password())) {
-			params.setUser_account(logInFo.getUser_account());
-			params.setUser_password(logInFo.getUser_password());
-			params.setRemember(Constant.STR_1);
-		}
+		/*
+		 * LogInFo logInFo = ParameterUtil.getCookie(); if
+		 * (!CommonUtil.isEmpty(logInFo.getUser_account()) &&
+		 * !CommonUtil.isEmpty(logInFo.getUser_password())) {
+		 * params.setUser_account(logInFo.getUser_account());
+		 * params.setUser_password(logInFo.getUser_password());
+		 * params.setRemember(Constant.STR_1); }
+		 */
 
 		model.addAttribute("f010001Params", params);
 

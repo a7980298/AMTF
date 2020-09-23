@@ -39,6 +39,10 @@ public class f010001ServiceImpl implements f010001Service {
 	@Autowired
 	private mailService mailService;
 
+	/**
+	 * 登录
+	 */
+	@Override
 	public F010001entityOut service01(F010001entityIn entityIn) throws ErrListException {
 		F010001entityOut entityout = new F010001entityOut();
 
@@ -86,6 +90,7 @@ public class f010001ServiceImpl implements f010001Service {
 	/**
 	 * 注册
 	 */
+	@Override
 	public F010001entityOut service02(F010001entityIn entityIn) throws ErrListException {
 		F010001entityOut entityout = new F010001entityOut();
 
