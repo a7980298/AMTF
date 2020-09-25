@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.exception.SuccessException;
+import com.amtf.demo.util.CommonUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,12 +26,14 @@ public class GlobalErrListException {
 		ModelAndView mav = new ModelAndView();
 		String IViewId = e.getIViewId();
 		mav.addObject(IViewId + "Params", e.getEntity());
-		if (IViewId.equals("f010001")) {
-			IViewId="login";
-		} else if (IViewId.equals("f010002")) {
-			IViewId="main";
-		}else if (IViewId.equals("f020001")) {
-			IViewId="dashboard";
+		if (!CommonUtil.isEmpty(IViewId)) {
+			if (IViewId.equals("f010001")) {
+				IViewId="login";
+			} else if (IViewId.equals("f010002")) {
+				IViewId="main";
+			} else if (IViewId.equals("f020001")) {
+				IViewId="dashboard";
+			}
 		}
 		mav.setViewName(IViewId);
 		mav.addObject("codemsg", e.getMessage());
