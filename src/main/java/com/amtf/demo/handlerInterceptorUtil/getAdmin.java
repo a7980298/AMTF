@@ -1,4 +1,4 @@
-package com.amtf.demo.HandlerInterceptorUtil;
+package com.amtf.demo.handlerInterceptorUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,18 +7,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amtf.demo.util.NumberUtil;
+import com.amtf.demo.util.StringUtil;
+
 @Component
-public class IfGeiSession implements HandlerInterceptor {
+public class getAdmin implements HandlerInterceptor {
 	// 在请求处理之前进行调用（Controller方法调用之前
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-		// 获取session中的user账户是否存在
-		Object account = request.getSession().getAttribute("loginfo");
-		// 不存在的情况
-		if (account == null) {
-			// 重定向到登陆页面
-			response.sendRedirect("/amtf/error");
-			return false;
+		Object usercount = request.getSession().getAttribute("admin");
+		if (usercount == null) {
+			request.getSession().setAttribute("admin", "1");
+		} else {
+			request.getSession().setAttribute("admin",
+					StringUtil.toStr(NumberUtil.toInt(request.getSession().getAttribute("admin")) + 1));
 		}
 
 		return true;
