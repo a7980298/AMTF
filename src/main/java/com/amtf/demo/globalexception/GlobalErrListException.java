@@ -1,4 +1,4 @@
-package com.amtf.demo.globalException;
+package com.amtf.demo.globalexception;
 
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.HttpStatus;

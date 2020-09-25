@@ -1,4 +1,4 @@
-package com.amtf.demo.iInterfaceEntity;
+package com.amtf.demo.iInterfaceentity;
 
 import lombok.Getter;
 import lombok.Setter;

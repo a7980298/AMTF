@@ -1,4 +1,4 @@
-package com.amtf.demo.handlerInterceptorUtil;
+package com.amtf.demo.handlerinterceptorutil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

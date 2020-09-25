@@ -1,4 +1,4 @@
-package com.amtf.demo.labelDialect;
+package com.amtf.demo.labeldialect;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
