@@ -76,5 +76,10 @@ public class F020001entityOut extends UserImpl {
 	 * 活动是否发布成功
 	 */
 	public String isactivity;
+	
+	/**
+	 * 在线人数
+	 */
+	public String online;
 
 }

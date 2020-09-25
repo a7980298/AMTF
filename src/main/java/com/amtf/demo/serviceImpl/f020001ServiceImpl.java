@@ -3,6 +3,8 @@ package com.amtf.demo.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
+import com.amtf.demo.util.RedisUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,6 +38,12 @@ public class f020001ServiceImpl implements f020001Service {
 	@Autowired
 	private final commonDao commondao;
 
+	@Resource
+	private RedisUtils redisUtils;
+
+	/**
+	 * 初始化
+	 */
 	@Override
 	public F020001entityOut service01(F020001entityIn entityin) throws ErrListException {
 
@@ -84,7 +93,11 @@ public class f020001ServiceImpl implements f020001Service {
 		entityOut.setSelect1(select1_view);
 
 		entityOut.setAdmin(ParameterUtil.getAdmin());
+		
+		String online = redisUtils.get("redis_key");
 
+		entityOut.setOnline(online);
+		
 		return entityOut;
 	}
 

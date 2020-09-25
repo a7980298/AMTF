@@ -106,4 +106,10 @@ public class F020001Params extends UserImpl {
 	 * 活动内容
 	 */
 	public MultipartFile activity_editor;
+	
+	/**
+	 * 在线人数
+	 */
+	public String online;
+
 }

@@ -38,7 +38,7 @@
 		$('#img2').attr('src',$('#img2').attr('src') + '?r=' + Math.random());
 	})
 	//取最新通知
-	window.setInterval(getNewUpdnotice, 1000);
+	var interval = window.setInterval(getNewUpdnotice, 1000);
 	function getNewUpdnotice(){
 		if(!$('#showupdnotice').hasClass('show')) {
 			$.ajax({
@@ -53,6 +53,7 @@
 					$('#select5').replaceWith(result);
 				},
 				error: function (res, textStaus) {
+					window.clearInterval(interval);
 					setCodeErrList("错误！！！请和管理员联系。。。");
 				},
 			});
