@@ -62,19 +62,19 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
-			//賬戶
+			// 賬戶
 			f02_select.setUser_account(select1.get(i).getUser_account());
-			//是否认证
+			// 是否认证
 			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
-			//用户id
+			// 用户id
 			f02_select.setUser_id(select1.get(i).getUser_id());
-			//姓名
+			// 姓名
 			f02_select.setUser_name(select1.get(i).getUser_name());
-			//电话
+			// 电话
 			f02_select.setUser_phone(select1.get(i).getUser_phone());
-			//权限
+			// 权限
 			f02_select.setUser_power(select1.get(i).getUser_power());
-			//郵箱
+			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
 
 			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
@@ -93,11 +93,11 @@ public class f020001ServiceImpl implements f020001Service {
 		entityOut.setSelect1(select1_view);
 
 		entityOut.setAdmin(ParameterUtil.getAdmin());
-		
-		String online = redisUtils.get("redis_key");
 
-		entityOut.setOnline(online);
-		
+		// String online = redisUtils.get("redis_key");
+
+		// entityOut.setOnline(online);
+
 		return entityOut;
 	}
 
@@ -163,7 +163,9 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		try {
-			f020001dao.f020001_insert3(CommonUtil.isEmpty(commondao.common_Select2())?0:commondao.common_Select2()+1,loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
+			f020001dao.f020001_insert3(
+					CommonUtil.isEmpty(commondao.common_Select2()) ? 0 : commondao.common_Select2() + 1,
+					loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}
@@ -179,6 +181,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 	/**
 	 * 刪除指定userid的數據
+	 * 
 	 * @param entityin
 	 * @return
 	 * @throws ErrListException
@@ -190,43 +193,43 @@ public class f020001ServiceImpl implements f020001Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		//刪除指定用戶
+		// 刪除指定用戶
 		int delect4 = f020001dao.f020001_Delect4(entityin.getUserid());
-		//沒有刪除成功
-		if (delect4<=0) {
+		// 沒有刪除成功
+		if (delect4 <= 0) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "刪除數據時發生錯誤！");
 		}
-		//重新獲取用戶數據
+		// 重新獲取用戶數據
 		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(loginfo.getUser_power());
 
 		List<f020001_select1entity> select1_view = new ArrayList<f020001_select1entity>();
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
-			//賬戶
+			// 賬戶
 			f02_select.setUser_account(select1.get(i).getUser_account());
-			//是否认证
+			// 是否认证
 			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
-			//用户id
+			// 用户id
 			f02_select.setUser_id(select1.get(i).getUser_id());
-			//姓名
+			// 姓名
 			f02_select.setUser_name(select1.get(i).getUser_name());
-			//电话
+			// 电话
 			f02_select.setUser_phone(select1.get(i).getUser_phone());
-			//权限
+			// 权限
 			f02_select.setUser_power(select1.get(i).getUser_power());
-			//郵箱
+			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
-			//照片路徑
+			// 照片路徑
 			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
 
 			f02_select.setUser_path(path);
 
 			select1_view.add(f02_select);
 		}
-		//用戶數據
+		// 用戶數據
 		entityOut.setLogInFo(loginfo);
-		//查詢用戶數據
+		// 查詢用戶數據
 		entityOut.setSelect1(select1_view);
 
 		return entityOut;
@@ -241,18 +244,19 @@ public class f020001ServiceImpl implements f020001Service {
 
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		//图片上传
-		Integer activity_idInteger = CommonUtil.isEmpty(commondao.common_Select3())? 0 : commondao.common_Select3() + 1;
+		// 图片上传
+		Integer activity_idInteger = CommonUtil.isEmpty(commondao.common_Select3()) ? 0
+				: commondao.common_Select3() + 1;
 		ImgUtil.activity_CommitImg(entityin.getActivity_img1(), activity_idInteger + "-1");
 		ImgUtil.activity_CommitImg(entityin.getActivity_img2(), activity_idInteger + "-2");
 		ImgUtil.activity_CommitImg(entityin.getActivity_img3(), activity_idInteger + "-3");
 		ImgUtil.activity_CommitImg(entityin.getActivity_img4(), activity_idInteger + "-4");
 		ImgUtil.activity_CommitImg(entityin.getActivity_img5(), activity_idInteger + "-5");
-		//添加活动
-		int insert6 = f020001dao.f020001_insert6(activity_idInteger, 
-				loginfo.getUser_email(), entityin.getActivity_head(), entityin.getActivity_check(),
-				NumberUtil.toInt(entityin.getActivity_sttymd().replace("/","")), 
-				NumberUtil.toInt(entityin.getActivity_endymd().replace("/","")), entityin.getActivity_editor());
+		// 添加活动
+		int insert6 = f020001dao.f020001_insert6(activity_idInteger, loginfo.getUser_email(),
+				entityin.getActivity_head(), entityin.getActivity_check(),
+				NumberUtil.toInt(entityin.getActivity_sttymd().replace("/", "")),
+				NumberUtil.toInt(entityin.getActivity_endymd().replace("/", "")), entityin.getActivity_editor());
 
 		if (insert6 <= 0) {
 			entityOut.setIsactivity(Constant.STR_1);

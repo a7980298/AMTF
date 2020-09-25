@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.amtf.demo.entityin.F010002entityIn;
 import com.amtf.demo.entityout.F010002entityOut;
 import com.amtf.demo.exception.ErrListException;
@@ -19,12 +21,9 @@ import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
-import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
-import com.amtf.demo.util.StringUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
 @Controller
@@ -55,12 +54,13 @@ public class f010002Controller extends ValiDationUtil {
 		ParameterUtil.copyParameter(params, entityOut);
 
 		model.addAttribute("f010002Params", params);
-		
+
 		// redisUtils.delete("redis_key");
 
-		//String value = redisUtils.get("redis_key");
-		
-		//redisUtils.set("redis_key", CommonUtil.isEmpty(value) ? "1" : StringUtil.toStr(NumberUtil.toInt(value) + 1));
+		// String value = redisUtils.get("redis_key");
+
+		// redisUtils.set("redis_key", CommonUtil.isEmpty(value) ? "1" :
+		// StringUtil.toStr(NumberUtil.toInt(value) + 1));
 
 		return "main";
 	}
@@ -129,7 +129,6 @@ public class f010002Controller extends ValiDationUtil {
 
 		return "main";
 	}
-	
 
 	/**
 	 * 锁定页面
@@ -141,13 +140,13 @@ public class f010002Controller extends ValiDationUtil {
 	public String f010002T003(F010002Params params, Model model) {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		F010001Params f010001params=new F010001Params();
+		F010001Params f010001params = new F010001Params();
 		f010001params.setLocking(Constant.STR_1);
 		f010001params.setLogInFo(loginfo);
 		model.addAttribute("f010001Params", f010001params);
 		return "login";
 	}
-	
+
 	/**
 	 * 标记查看过的通知
 	 * 
@@ -171,6 +170,7 @@ public class f010002Controller extends ValiDationUtil {
 
 		return "main :: select5";
 	}
+
 	/**
 	 * 打开选中的通知
 	 * 
@@ -194,7 +194,7 @@ public class f010002Controller extends ValiDationUtil {
 
 		return "main :: select7";
 	}
-	
+
 	/**
 	 * 参加活动
 	 * 

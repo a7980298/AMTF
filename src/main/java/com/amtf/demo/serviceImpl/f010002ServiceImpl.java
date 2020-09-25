@@ -43,13 +43,12 @@ public class f010002ServiceImpl implements f010002Service {
 
 	@Autowired
 	private final f010002Dao f010002dao;
-	
+
 	@Autowired
 	private final commonDao commondao;
-	
+
 	@Resource
 	private RedisUtils redisUtils;
-
 
 	public F010002entityOut service01(F010002entityIn entityIn) throws ErrListException {
 
@@ -90,13 +89,13 @@ public class f010002ServiceImpl implements f010002Service {
 
 		}
 		entityout.setSelect4(select4entity);
-		//获取未读通知
+		// 获取未读通知
 		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
-	
+
 		// 未读通知
 		entityout.setSelect5(select5);
 
-		//所有通知一栏
+		// 所有通知一栏
 		List<f010002_select4entity> select8 = f010002dao.f010002_Select8();
 
 		for (f010002_select4entity select8entity : select8) {
@@ -106,20 +105,29 @@ public class f010002ServiceImpl implements f010002Service {
 				}
 			}
 		}
-		//通知一栏
+		// 通知一栏
 		entityout.setSelect8(select8);
 
 		// 活动一览
 		List<f010002_select9entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
 
 		for (f010002_select9entity select9entity : select9) {
-			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0,4) + "-" + select9entity.getActivity_sttymd().substring(4,6) + "-" + select9entity.getActivity_sttymd().substring(6,8));
-			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0,4) + "-" + select9entity.getActivity_endymd().substring(4,6) + "-" + select9entity.getActivity_endymd().substring(6,8));
-			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
-			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-2"));
-			select9entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-3"));
-			select9entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-4"));
-			select9entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
+			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
+					+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
+					+ select9entity.getActivity_sttymd().substring(6, 8));
+			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
+					+ select9entity.getActivity_endymd().substring(4, 6) + "-"
+					+ select9entity.getActivity_endymd().substring(6, 8));
+			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
+			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-2"));
+			select9entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-3"));
+			select9entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-4"));
+			select9entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
 		}
 
 		entityout.setSelect9(select9);
@@ -148,27 +156,27 @@ public class f010002ServiceImpl implements f010002Service {
 		F010002entityOut entityout = new F010002entityOut();
 
 		ImgUtil.CommitImg(entityIn.getUpd_user_img(), Constant.STR_1);
-		
+
 		LogInFo loginfo = new LogInFo();
-		//id
+		// id
 		loginfo.setUser_id(ParameterUtil.getSession().getUser_id());
-		//账户
+		// 账户
 		loginfo.setUser_account(entityIn.getUpd_user_account());
-		//名字
+		// 名字
 		loginfo.setUser_name(entityIn.getUpd_user_name());
-		//国家
+		// 国家
 		loginfo.setUser_country(entityIn.getUpd_user_country());
-		//省
+		// 省
 		loginfo.setUser_province(entityIn.getUpd_user_province());
-		//市
+		// 市
 		loginfo.setUser_city(entityIn.getUpd_user_city());
-		//邮编
+		// 邮编
 		loginfo.setUser_postcode(entityIn.getUpd_user_postcode());
-		//电话
+		// 电话
 		loginfo.setUser_phone(entityIn.getUpd_user_phone());
-		//介绍
+		// 介绍
 		loginfo.setUser_introduce(entityIn.getUpd_user_introduce());
-		//Email
+		// Email
 		loginfo.setUser_email(ParameterUtil.getSession().getUser_email());
 
 		Integer update2 = f010002dao.f010002_update2(loginfo);
@@ -195,11 +203,11 @@ public class f010002ServiceImpl implements f010002Service {
 		F010002entityOut entityout = new F010002entityOut();
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		if(!CommonUtil.isEmpty(entityin.getUpdnotice_id())) {
-			f010002dao.f010002_Insert6(loginfo.getUser_email(),NumberUtil.toInt(entityin.getUpdnotice_id()));
+		if (!CommonUtil.isEmpty(entityin.getUpdnotice_id())) {
+			f010002dao.f010002_Insert6(loginfo.getUser_email(), NumberUtil.toInt(entityin.getUpdnotice_id()));
 		}
 		List<f010002_select4entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
-		
+
 		entityout.setSelect5(select5);
 
 		return entityout;
@@ -228,13 +236,15 @@ public class f010002ServiceImpl implements f010002Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		int insert10 = 0;
-		if(f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email()) > 0) {
+		if (f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email()) > 0) {
 			insert10 = -1;
 		} else {
-			insert10 = f010002dao.f010002_Insert10(CommonUtil.isEmpty(commondao.common_Select4()) ? 0 : commondao.common_Select4() + 1, NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email());
+			insert10 = f010002dao.f010002_Insert10(
+					CommonUtil.isEmpty(commondao.common_Select4()) ? 0 : commondao.common_Select4() + 1,
+					NumberUtil.toInt(entityin.getActiyity_id()), loginfo.getUser_email());
 		}
 		entityout.setInsert10(StringUtil.toStr(insert10));
-		
+
 		return entityout;
 	}
 }
