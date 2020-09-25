@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,7 @@ import com.amtf.demo.util.FenYe;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
+import com.amtf.demo.util.RedisUtils;
 import com.amtf.demo.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -43,6 +46,10 @@ public class f010002ServiceImpl implements f010002Service {
 	
 	@Autowired
 	private final commonDao commondao;
+	
+	@Resource
+	private RedisUtils redisUtils;
+
 
 	public F010002entityOut service01(F010002entityIn entityIn) throws ErrListException {
 
@@ -101,7 +108,7 @@ public class f010002ServiceImpl implements f010002Service {
 		}
 		//通知一栏
 		entityout.setSelect8(select8);
-		
+
 		// 活动一览
 		List<f010002_select9entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
 
@@ -114,7 +121,7 @@ public class f010002ServiceImpl implements f010002Service {
 			select9entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-4"));
 			select9entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY, select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
 		}
-		
+
 		entityout.setSelect9(select9);
 
 		return entityout;
