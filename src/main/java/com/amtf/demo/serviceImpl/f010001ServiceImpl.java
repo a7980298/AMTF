@@ -1,5 +1,6 @@
 package com.amtf.demo.serviceImpl;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
+import com.amtf.demo.util.RedisUtils;
 import com.amtf.demo.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,9 @@ public class f010001ServiceImpl implements f010001Service {
 
 	@Autowired
 	private mailService mailService;
+	
+	@Resource
+	private RedisUtils redisUtils;
 
 	/**
 	 * 登录
@@ -84,6 +89,7 @@ public class f010001ServiceImpl implements f010001Service {
 		ParameterUtil.setSession(select1entity);
 
 		entityout.setBol02(Constant.STR_1);
+		
 		return entityout;
 	}
 
