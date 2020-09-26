@@ -2,6 +2,7 @@ package com.amtf.demo.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
 
 import javax.annotation.Resource;
 
@@ -40,6 +41,9 @@ public class f020001ServiceImpl implements f020001Service {
 
 	@Resource
 	private RedisUtils redisUtils;
+
+	@Autowired
+	private final Lock lock;
 
 	/**
 	 * 初始化
@@ -163,12 +167,15 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		try {
+			lock.lock();
 			f020001dao.f020001_insert3(
 					CommonUtil.isEmpty(commondao.common_Select2()) ? 0 : commondao.common_Select2() + 1,
 					loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
+			lock.unlock();
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}
+
 		return entityOut;
 	}
 
@@ -192,9 +199,10 @@ public class f020001ServiceImpl implements f020001Service {
 
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-
+		lock.lock();
 		// 刪除指定用戶
 		int delect4 = f020001dao.f020001_Delect4(entityin.getUserid());
+		lock.unlock();
 		// 沒有刪除成功
 		if (delect4 <= 0) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "刪除數據時發生錯誤！");
