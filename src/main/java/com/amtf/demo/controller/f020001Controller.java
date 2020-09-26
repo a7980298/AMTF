@@ -115,7 +115,8 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@PostMapping("/f020001/T003")
-	public String f020001T003(@RequestParam("release_name") String release_name,@RequestParam("release_head") String release_head, Model model) {
+	public String f020001T003(@RequestParam("release_name") String release_name,
+			@RequestParam("release_head") String release_head, Model model) {
 		F020001Params params = new F020001Params();
 
 		F020001entityIn entityin = new F020001entityIn();
@@ -156,7 +157,8 @@ public class f020001Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@RequestMapping("/f020001/T005")
-	public String f020001T005(F020001Params params, Model model) {
+	@ResponseBody
+	public void f020001T005(F020001Params params, Model model) {
 
 		F020001entityIn entityin = new F020001entityIn();
 
@@ -169,9 +171,8 @@ public class f020001Controller extends ValiDationUtil {
 
 		model.addAttribute("f020001Params", params);
 
-		return "f020001";
 	}
-	
+
 	/**
 	 * 刪除
 	 * 
@@ -206,11 +207,15 @@ public class f020001Controller extends ValiDationUtil {
 	@ResponseBody
 	public Map<String, Object> f020001T007(@RequestParam("activity_head") String activity_head,
 			@RequestParam("activity_position") String activity_position,
-			@RequestParam("activity_check") String activity_check,@RequestParam("activity_sttymd") String activity_sttymd,
-			@RequestParam("activity_endymd") String activity_endymd,@RequestParam("activity_img1") MultipartFile activity_img1,
-			@RequestParam("activity_img2") MultipartFile activity_img2,@RequestParam("activity_img3") MultipartFile activity_img3,
-			@RequestParam("activity_img4") MultipartFile activity_img4,@RequestParam("activity_img5") MultipartFile activity_img5,
-			@RequestParam("activity_editor") String activity_editor,HttpServletRequest request) {
+			@RequestParam("activity_check") String activity_check,
+			@RequestParam("activity_sttymd") String activity_sttymd,
+			@RequestParam("activity_endymd") String activity_endymd,
+			@RequestParam("activity_img1") MultipartFile activity_img1,
+			@RequestParam("activity_img2") MultipartFile activity_img2,
+			@RequestParam("activity_img3") MultipartFile activity_img3,
+			@RequestParam("activity_img4") MultipartFile activity_img4,
+			@RequestParam("activity_img5") MultipartFile activity_img5,
+			@RequestParam("activity_editor") String activity_editor, HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		F020001entityIn entityin = new F020001entityIn();
 		// 活动标题
