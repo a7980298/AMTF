@@ -1,4 +1,4 @@
-package com.amtf.demo.util;
+package com.amtf.demo.serviceImpl;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -17,16 +17,28 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.amtf.demo.entityin.F020001entityIn;
 import com.amtf.demo.entityout.F020001entityOut;
 import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.util.CommonUtil;
 
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
 public class DownLoad {
 
 	@Autowired
-	static HttpServletResponse resp;
+	private static HttpServletResponse resp;
 
+	/**
+	 * 打印Excel
+	 * 
+	 * @param path
+	 * @param workbook
+	 */
 	public static void getExcel(String path, Workbook workbook) {
 		// 获得Excel文件输出流
 		FileOutputStream out = null;
@@ -100,15 +112,15 @@ public class DownLoad {
 	}
 
 	/**
-	 * ファイルをダウンロード出力処理
 	 * 
-	 * ホームページからファイルをダウンロードするサービスです。
+	 * 生成PDF
+	 * 
 	 */
-	public synchronized static void doPost(String url) {
+	protected synchronized static void doPost(String url) {
 		DataInputStream in = null;
 		OutputStream out = null;
 		try {
-			// ファイルコードがUTF-8を設定すること
+			// 设置UTF-8
 			String filename = url.substring(url.lastIndexOf("/") + 1);
 			in = new DataInputStream(new FileInputStream(new File(url)));
 			out = resp.getOutputStream();
@@ -116,15 +128,14 @@ public class DownLoad {
 			resp.setCharacterEncoding("UTF-8");
 			resp.setHeader("Content-disposition", "attachment; filename=" + filename);
 			resp.setContentType("application/msexcel");
-			// 元ファイルのローカルパス
 			int bytes = 0;
 			byte[] bufferOut = new byte[1024];
 			while ((bytes = in.read(bufferOut)) != -1) {
 				out.write(bufferOut, 0, bytes);
 			}
-			// キャッシュをクリア
+			// 刷新
 			out.flush();
-			// Streamを閉じる
+			// 关闭
 			out.close();
 			in.close();
 
@@ -141,11 +152,9 @@ public class DownLoad {
 				e1.printStackTrace();
 			}
 		} finally {
-			// キャッシュをクリア
 			if (!CommonUtil.isEmpty(out)) {
 				try {
 					out.flush();
-					// Streamを閉じる
 					out.close();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -153,7 +162,6 @@ public class DownLoad {
 			}
 			if (!CommonUtil.isEmpty(in)) {
 				try {
-					// inを閉じる
 					in.close();
 				} catch (IOException e) {
 					e.printStackTrace();

@@ -23,7 +23,6 @@ import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.DownLoad;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
@@ -189,7 +188,7 @@ public class f020001ServiceImpl implements f020001Service {
 		String filename = "用户一览表.xlsx";
 		XlsxCreator xlsxCreator = new XlsxCreator();
 		// 第一个参数下载到的文件路径，第二个参数读取模板的文件路径
-		xlsxCreator.openBook(Constant.PDF_EXCEL_DOWNLOAD + filename, Constant.PDF_EXCEL + "lookuser1.xlsx");
+		xlsxCreator.openBook(Constant.PDF_EXCEL_DOWNLOAD + filename, Constant.PDF_EXCEL + "用户一览表.xlsx");
 		xlsxCreator.getPdf().setTitle("用户一览表");
 		xlsxCreator.getPdf().setProducer("ver 1.0");
 		String name = filename.replace("xlsx", "pdf");

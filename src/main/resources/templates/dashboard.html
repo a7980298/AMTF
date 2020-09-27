@@ -191,9 +191,9 @@
 			data : $(amtf_form).serialize(),
 			responseType : 'blob'
 		}).then(function(response){
-			if(response.headers['yes']){
+			/* if(response.headers['yes']){
 				window.open("/amtf/excel/" + fnc_showMsgFromHeader(response.headers['yes']));
-			}
+			} */
 		}).catch(function(error){
 			
 		});
