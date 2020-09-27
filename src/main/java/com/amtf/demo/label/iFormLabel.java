@@ -13,8 +13,6 @@ import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
-import com.amtf.demo.util.CommonUtil;
-
 public class iFormLabel extends AbstractElementModelProcessor {
 
 	public iFormLabel(String dialectPrefix, String elementName, int precedence) {
@@ -54,15 +52,14 @@ public class iFormLabel extends AbstractElementModelProcessor {
 		iModel.replace(0, modelFactory.createOpenElementTag("form", attributes, AttributeValueQuotes.DOUBLE, false));
 
 		StringBuffer addsb = new StringBuffer();
-		String resultViewId = "";
-
-		String iViewId = options.get("iViewid");
-
-		if (!CommonUtil.isEmpty(iViewId)) {
-			resultViewId = iViewId;
-		} /*
-			 * else { resultViewId = StringUtil.toStr(RequestUtil.getViewid()); }
-			 */
+		/*
+		 * String resultViewId = "";
+		 * 
+		 * String iViewId = options.get("iViewid");
+		 * 
+		 * if (!CommonUtil.isEmpty(iViewId)) { resultViewId = iViewId; } else {
+		 * resultViewId = StringUtil.toStr(RequestUtil.getViewid()); }
+		 */
 		// 添加其他标签
 		addsb.append("");
 		iModel.insert(1, modelFactory.createText(addsb.toString()));

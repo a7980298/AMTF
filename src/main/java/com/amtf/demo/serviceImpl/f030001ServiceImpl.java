@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.amtf.demo.dao.f030001Dao;
 import com.amtf.demo.entityin.F030001entityIn;
 import com.amtf.demo.entityout.F030001entityOut;
 import com.amtf.demo.exception.ErrListException;
@@ -16,9 +15,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class f030001ServiceImpl implements f030001Service {
-
-	@Autowired
-	private final f030001Dao f030001dao;
 
 	@Autowired
 	HttpServletRequest request;
