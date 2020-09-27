@@ -151,7 +151,7 @@ public class f020001Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 生成PDF
+	 * 生成Excel
 	 * 
 	 * @parameter F020001Params params
 	 * @return String
