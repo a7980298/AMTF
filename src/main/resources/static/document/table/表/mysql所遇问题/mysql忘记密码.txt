@@ -1,0 +1,11 @@
+第一步，关掉系统服务
+
+net stop mysql
+
+第二步，创建一个文本文件，内含一条密码修改命令
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+
+第三步：命令行方式启动服务器，指定启动时执行上述的密码修改命令文件
+
+mysqld --init-file=d:mysqlc.txt --console

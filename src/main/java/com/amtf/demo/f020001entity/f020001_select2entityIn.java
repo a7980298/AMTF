@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class f020001_select2entityIn {
 
-	public String pow;
+	public Integer pow;
 
 	/**
 	 * 用户搜索的名字

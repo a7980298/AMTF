@@ -7,7 +7,7 @@
 		FROM 
 			AMTF_User
 		WHERE 
-			USER_power &lt; CONVERT(#{pow} USING gb2312)
+			USER_power &lt; #{pow}
 	</select>
 	<select id="f020001_Select2" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
 		SELECT
@@ -15,7 +15,7 @@
 		FROM 
 			AMTF_User
 		WHERE 
-			USER_power &lt; CONVERT(#{select2.pow} USING gb2312)
+			USER_power &lt; #{select2.pow}
 		<if test="select2.search_name != ''">
 		AND
 			USER_Name like '%${select2.search_name}%'

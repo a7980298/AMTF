@@ -27,6 +27,7 @@ import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
+import com.amtf.demo.util.StringUtil;
 
 import jp.co.adv.excelcreator.creator.XlsxCreator;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +66,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 		loginfo.setImgpath(imgpath);
 
-		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(loginfo.getUser_power());
+		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(NumberUtil.toInt(loginfo.getUser_power()));
 
 		List<f020001_select1entity> select1_view = new ArrayList<f020001_select1entity>();
 
@@ -82,7 +83,7 @@ public class f020001ServiceImpl implements f020001Service {
 			// 电话
 			f02_select.setUser_phone(select1.get(i).getUser_phone());
 			// 权限
-			f02_select.setUser_power(select1.get(i).getUser_power());
+			f02_select.setUser_power(StringUtil.toStr(select1.get(i).getUser_power()));
 			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
 
@@ -103,9 +104,9 @@ public class f020001ServiceImpl implements f020001Service {
 
 		entityOut.setAdmin(ParameterUtil.getAdmin());
 
-		String online = redisUtils.get("redis_key");
+		// String online = redisUtils.get("redis_key");
 
-		entityOut.setOnline(online);
+		// entityOut.setOnline(online);
 
 		return entityOut;
 	}
@@ -125,7 +126,7 @@ public class f020001ServiceImpl implements f020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		f020001_select2entityIn selecentityIn = new f020001_select2entityIn();
-		selecentityIn.setPow(loginfo.getUser_power());
+		selecentityIn.setPow(NumberUtil.toInt(loginfo.getUser_power()));
 		selecentityIn.setSearch_account(entityin.getSearch_account());
 		selecentityIn.setSearch_name(entityin.getSearch_name());
 		selecentityIn.setSearch_phone(entityin.getSearch_phone());
@@ -148,7 +149,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 			f02_select.setUser_phone(select1.get(i).getUser_phone());
 
-			f02_select.setUser_power(select1.get(i).getUser_power());
+			f02_select.setUser_power(StringUtil.toStr(select1.get(i).getUser_power()));
 
 			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
 
@@ -230,7 +231,7 @@ public class f020001ServiceImpl implements f020001Service {
 			throw new ErrListException(entityin, entityin.getIViewId(), "刪除數據時發生錯誤！");
 		}
 		// 重新獲取用戶數據
-		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(loginfo.getUser_power());
+		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(NumberUtil.toInt(loginfo.getUser_power()));
 
 		List<f020001_select1entity> select1_view = new ArrayList<f020001_select1entity>();
 
@@ -247,7 +248,7 @@ public class f020001ServiceImpl implements f020001Service {
 			// 电话
 			f02_select.setUser_phone(select1.get(i).getUser_phone());
 			// 权限
-			f02_select.setUser_power(select1.get(i).getUser_power());
+			f02_select.setUser_power(StringUtil.toStr(select1.get(i).getUser_power()));
 			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
 			// 照片路徑

@@ -21,12 +21,9 @@ import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
-import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
-import com.amtf.demo.util.StringUtil;
 import com.amtf.demo.util.ValiDationUtil;
 
 @Controller
@@ -60,9 +57,10 @@ public class f010002Controller extends ValiDationUtil {
 
 		// redisUtils.delete("redis_key");
 
-		String value = redisUtils.get("redis_key");
+		// String value = redisUtils.get("redis_key");
 
-		redisUtils.set("redis_key", CommonUtil.isEmpty(value) ? "1" : StringUtil.toStr(NumberUtil.toInt(value) + 1));
+		// redisUtils.set("redis_key", CommonUtil.isEmpty(value) ? "1" :
+		// StringUtil.toStr(NumberUtil.toInt(value) + 1));
 
 		return "main";
 	}

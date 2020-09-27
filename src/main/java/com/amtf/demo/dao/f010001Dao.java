@@ -15,12 +15,12 @@ public interface f010001Dao {
 
 	f010001_select1entity f010001_Select1(@Param("user_account") String user_account, @Param("userpwd") String userpwd);
 
-	List<f010001_select2entity> f010001_Select2(@Param("pow") String pow);
+	List<f010001_select2entity> f010001_Select2(@Param("pow") Integer pow);
 
 	List<f010001_select3entity> f010001_Select3();
 
 	int f010001_Insert4(@Param("entityin") f010001_insert4entityIn entityin);
-	
+
 	int f010001_Select5(@Param("email") String email);
 
 }

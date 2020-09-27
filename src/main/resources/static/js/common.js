@@ -141,6 +141,12 @@ function setCodeSuccess(codeSuccess){
 //	$('button').attr('disabled','disabled');
 //	$('body').css('pointer-events','none');
 //}
+function showdiv() {
+	document.getElementById("bg").style.display ="block";
+}
+function hidediv() {
+	document.getElementById("bg").style.display ='none';
+}
 //全局不可點擊
 function htmlEvenOff(_id){
 	$('button').attr('disabled','disabled');

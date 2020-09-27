@@ -185,6 +185,7 @@
 	}
 	// 打印PDF
 	function amtf_getpdf() {
+		showdiv();
 		axios({
 			method : 'post',
 			url : CONTEXT_PATH + '/f020001/T005',
@@ -192,7 +193,9 @@
 			responseType : 'blob'
 		}).then(function(response){
 			getDownLoad(response);
+			hidediv();
 		}).catch(function(error){
+			hidediv();
 			setCodeErrList("错误！！！请和管理员联系。。。");
 		});
 	}

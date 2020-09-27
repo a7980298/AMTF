@@ -10,7 +10,7 @@ public class f010001_select1entity {
 	 * 用户id
 	 */
 	private Integer user_id;
-	
+
 	/**
 	 * Email
 	 */
@@ -37,17 +37,17 @@ public class f010001_select1entity {
 	private String user_country;
 
 	/**
-	 *  省
+	 * 省
 	 */
 	private String user_province;
-	
+
 	/**
-	 *  市
+	 * 市
 	 */
 	private String user_city;
-	
+
 	/**
-	 *  邮编
+	 * 邮编
 	 */
 	private String user_postcode;
 
@@ -55,11 +55,11 @@ public class f010001_select1entity {
 	 * 电话
 	 */
 	private String user_phone;
-	
+
 	/**
 	 * 介绍
 	 */
-	private String user_introduce ;
+	private String user_introduce;
 
 	/**
 	 * 是否认证
@@ -69,6 +69,6 @@ public class f010001_select1entity {
 	/**
 	 * 权限
 	 */
-	private String user_power;
+	private Integer user_power;
 
 }

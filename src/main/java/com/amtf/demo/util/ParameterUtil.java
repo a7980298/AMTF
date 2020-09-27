@@ -117,7 +117,7 @@ public class ParameterUtil {
 			loginfo.setUser_attestation(
 					!CommonUtil.isEmpty(user.getUser_attestation()) ? NumberUtil.toInt(user.getUser_attestation()) : 0);
 			// 权限
-			loginfo.setUser_power(!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : Constant.EMPTY);
+			loginfo.setUser_power(!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : 0);
 			// 存入session
 			session.setMaxInactiveInterval(10 * 60);
 			session.setAttribute("loginfo", loginfo);

@@ -57,7 +57,7 @@ public class f010002ServiceImpl implements f010002Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		// 根据权限获取导航栏
-		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(loginfo.getUser_power());
+		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(NumberUtil.toInt(loginfo.getUser_power()));
 
 		// 将导航栏数据整合成map
 		Map<String, List<f010001_select2entity>> navigation_bar = select2.stream()
