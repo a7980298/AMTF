@@ -1,5 +1,8 @@
 package com.amtf.demo.serviceImpl;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,6 @@ import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.DownLoad;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
@@ -188,6 +190,7 @@ public class f020001ServiceImpl implements f020001Service {
 	@Override
 	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
+
 		// 1:创建一个excel文档
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		// 2:创建一个sheet工作表
@@ -218,10 +221,27 @@ public class f020001ServiceImpl implements f020001Service {
 		cell2_4.setCellValue(20);
 		HSSFCell cell2_5 = row2.createCell(4);
 		cell2_5.setCellValue("男");
-
+		FileOutputStream out = null;
+		try {
+			out = new FileOutputStream(new File("C:/amtf_excel/excel1.xlsx"));
+			workbook.write(out);
+			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+			response.addHeader("Content-Disposition", "attachment;filename=fileName" + ".xlsx");
+			// 关流
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (null != out) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// DownLoad.getExcel("excel1", workbook);
 		response.setHeader("getpdf", "111");
-
-		DownLoad.getExcel("excel1", workbook);
 
 		return entityOut;
 	}
