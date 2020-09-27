@@ -185,26 +185,18 @@ public class f020001ServiceImpl implements f020001Service {
 	@Override
 	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
-		String filename = "excel1.xlsx";
+		String filename = "用户一览表.xlsx";
 		XlsxCreator xlsxCreator = new XlsxCreator();
-		/**
-		 * PDF ファイルを出力する
-		 * 
-		 * 単一excelが存在すること
-		 */
-		// r00501001_classhyo.xlsx と r00514001_passhyo.pdf を出力します。
-		xlsxCreator.openBook("C:\\amtf_excel\\" + filename, "C:\\amtf_excel\\" + "excel1.xlsx");
-		xlsxCreator.getPdf().setTitle("進級テスト結果通知書");
+		xlsxCreator.openBook(Constant.PDF_EXCEL_DOWNLOAD + filename, Constant.PDF_EXCEL + filename);
+		xlsxCreator.getPdf().setTitle("用户一览表");
 		xlsxCreator.getPdf().setProducer("ver 1.0");
-		// C ドライブに r00501001_classhyo.pdf を出力します。
 		String name = filename.replace("xlsx", "pdf");
 		// xlsxCreator.copySheet(0, 1, "クラス名簿" + (i + 1));
 		// xlsxCreator.setSheetNo(i);
-		xlsxCreator.getCell("D3").setValue("1");
-		// 出力処理を実行する
-		xlsxCreator.closeBook(true, "C:\\amtf_excel\\" + name, "", false);
+		xlsxCreator.getCell("E6").setValue("12313211");
+		xlsxCreator.closeBook(true, Constant.PDF_EXCEL_DOWNLOAD + name, "", false);
 
-		DownLoad.doPost("C:\\amtf_excel\\" + name);
+		DownLoad.doPost(Constant.PDF_EXCEL_DOWNLOAD + name);
 		return entityOut;
 	}
 
