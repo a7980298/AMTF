@@ -191,16 +191,12 @@
 			data : $(amtf_form).serialize(),
 			responseType : 'blob'
 		}).then(function(response){
-			/* if(response.headers['yes']){
-				window.open("/amtf/excel/" + fnc_showMsgFromHeader(response.headers['yes']));
-			} */
+			getDownLoad(response);
 		}).catch(function(error){
-			
+			setCodeErrList("错误！！！请和管理员联系。。。");
 		});
 	}
-	function fnc_showMsgFromHeader(str_ISO5589_1) {
-		return decodeURI(escape(str_ISO5589_1));
-	}
+	
 </script>
 <body class="" onunload="myFunction()">
 	<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form">

@@ -297,3 +297,29 @@ function getFullCalendar(_id){
         },
 	})
 }
+
+// iso-8859-1转码为utf-8
+function IsoTurnUtf8(str_ISO5589_1) {
+	return decodeURI(escape(str_ISO5589_1));
+}
+
+// 下载显示
+function getDownLoad(response) {
+	// 文件（Blob）对象获取
+	var blob = response.data;
+	// 创建链接文件对象的URL
+	var objectURL = window.URL.createObjectURL(blob);
+	// <a>创建临时元素
+	var _link = document.createElement('a');
+	// 添加URL
+	_link.href = objectURL;
+	// 设置<a>的download属性（指定文件名）
+	_link.download = IsoTurnUtf8(response.headers["content-disposition"].split("filename=")[1]);
+	_link.hidden = true;
+	// <a>向机体添加元素
+	document.body.appendChild(_link);
+	// 触发链接点击事件
+	_link.click();
+	// <a>删除元素
+	document.body.removeChild(_link);
+}

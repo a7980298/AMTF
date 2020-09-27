@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class DownLoad {
 
 	@Autowired
-	private static HttpServletResponse resp;
+	private HttpServletResponse resp;
 
 	/**
 	 * 打印Excel
@@ -39,7 +39,7 @@ public class DownLoad {
 	 * @param path
 	 * @param workbook
 	 */
-	public static void getExcel(String path, Workbook workbook) {
+	public void getExcel(String path, Workbook workbook) {
 		// 获得Excel文件输出流
 		FileOutputStream out = null;
 		FileInputStream inp = null;
@@ -105,7 +105,7 @@ public class DownLoad {
 		cell2_4.setCellValue(20);
 		Cell cell2_5 = row2.createCell(4);
 		cell2_5.setCellValue("男");
-		DownLoad.getExcel("excel1", workbook);
+		this.getExcel("excel1", workbook);
 		resp.setHeader("getpdf", "111");
 
 		return entityOut;
@@ -116,7 +116,7 @@ public class DownLoad {
 	 * 生成PDF
 	 * 
 	 */
-	protected synchronized static void doPost(String url) {
+	protected synchronized void doPost(String url) {
 		DataInputStream in = null;
 		OutputStream out = null;
 		try {
@@ -126,7 +126,8 @@ public class DownLoad {
 			out = resp.getOutputStream();
 			URLEncoder.encode(filename, "UTF-8");
 			resp.setCharacterEncoding("UTF-8");
-			resp.setHeader("Content-disposition", "attachment; filename=" + filename);
+			resp.setHeader("Content-disposition",
+					"attachment; filename=" + new String(filename.getBytes("utf-8"), "iso-8859-1"));
 			resp.setContentType("application/msexcel");
 			int bytes = 0;
 			byte[] bufferOut = new byte[1024];

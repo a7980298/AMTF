@@ -47,6 +47,9 @@ public class f020001ServiceImpl implements f020001Service {
 	@Autowired
 	HttpServletResponse response;
 
+	@Autowired
+	DownLoad download;
+
 	/**
 	 * 初始化
 	 */
@@ -196,7 +199,7 @@ public class f020001ServiceImpl implements f020001Service {
 		// xlsxCreator.setSheetNo(i);
 		xlsxCreator.getCell("E6").setValue("12313211");
 		xlsxCreator.closeBook(true, Constant.PDF_EXCEL_DOWNLOAD + name, "", false);
-		DownLoad.doPost(Constant.PDF_EXCEL_DOWNLOAD + name);
+		download.doPost(Constant.PDF_EXCEL_DOWNLOAD + name);
 		try {
 			response.setHeader("yes", new String(name.getBytes("utf-8"), "iso-8859-1"));
 		} catch (UnsupportedEncodingException e) {
