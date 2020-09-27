@@ -1,16 +1,15 @@
 package com.amtf.demo.f010002entity;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class f010002_select4entity {
-	
+
 	/**
 	 * id
+	 * 
 	 */
 	private String updnotice_id;
 
@@ -18,7 +17,7 @@ public class f010002_select4entity {
 	 * 发布人
 	 */
 	private String updnotice_name;
-	
+
 	/**
 	 * 标题
 	 */
@@ -33,7 +32,7 @@ public class f010002_select4entity {
 	 * 时间
 	 */
 	private String updnotice_time;
-	
+
 	/**
 	 * 是否被查看
 	 */

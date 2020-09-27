@@ -7,7 +7,6 @@ import com.amtf.demo.f010001entity.f010001_select2entity;
 import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.f010002entity.f010002_select4entity;
 import com.amtf.demo.f010002entity.f010002_select9entity;
-import com.amtf.demo.f020001entity.f020001_select5entity;
 import com.amtf.demo.user.UserImpl;
 import com.amtf.demo.util.FenYe;
 
@@ -17,6 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F010002entityOut extends UserImpl {
+
 	/**
 	 * 页面id
 	 */
@@ -142,12 +142,12 @@ public class F010002entityOut extends UserImpl {
 	 * 所有通知
 	 */
 	List<f010002_select4entity> select8;
-	
+
 	/**
 	 * 所有活动
 	 */
 	List<f010002_select9entity> select9;
-	
+
 	/**
 	 * 参加活动添加成功?
 	 */
