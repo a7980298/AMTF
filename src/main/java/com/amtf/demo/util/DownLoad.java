@@ -7,8 +7,16 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.amtf.demo.entityin.F020001entityIn;
+import com.amtf.demo.entityout.F020001entityOut;
+import com.amtf.demo.exception.ErrListException;
 
 public class DownLoad {
 
@@ -45,4 +53,46 @@ public class DownLoad {
 			}
 		}
 	}
+
+	/**
+	 * 生成Excel示例Service
+	 */
+	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
+		F020001entityOut entityOut = new F020001entityOut();
+		// 1:创建一个excel文档
+		Workbook workbook = new XSSFWorkbook();
+		// 2:创建一个sheet工作表
+		Sheet sheet = workbook.createSheet("sleet1");
+		// 创建表头
+		Row row1 = sheet.createRow(0);
+		// 创建表头的单元格-------------------------------
+		Cell cell1_1 = row1.createCell(0);
+		cell1_1.setCellValue("学号");
+		Cell cell1_2 = row1.createCell(1);
+		cell1_2.setCellValue("姓名");
+		Cell cell1_3 = row1.createCell(2);
+		cell1_3.setCellValue("年级");
+		Cell cell1_4 = row1.createCell(3);
+		cell1_4.setCellValue("年龄");
+		Cell cell1_5 = row1.createCell(4);
+		cell1_5.setCellValue("性别");
+		// --------------------------------------------
+		// 写入一行内容：
+		Row row2 = sheet.createRow(1);
+		Cell cell2_1 = row2.createCell(0);
+		cell2_1.setCellValue(1);
+		Cell cell2_2 = row2.createCell(1);
+		cell2_2.setCellValue("阿荣");
+		Cell cell2_3 = row2.createCell(2);
+		cell2_3.setCellValue("17(3)");
+		Cell cell2_4 = row2.createCell(3);
+		cell2_4.setCellValue(20);
+		Cell cell2_5 = row2.createCell(4);
+		cell2_5.setCellValue("男");
+		DownLoad.getExcel("excel1", workbook);
+		response.setHeader("getpdf", "111");
+
+		return entityOut;
+	}
+
 }
