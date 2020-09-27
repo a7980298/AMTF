@@ -1,6 +1,5 @@
 package com.amtf.demo.util;
 
-@SuppressWarnings("unused")
 public class Constant {
 
 	public static final String EMPTY = "";

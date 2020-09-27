@@ -36,7 +36,6 @@ public class RequestUtils {
 	 * @param name-需要的字段名
 	 * @return Object
 	 */
-	@SuppressWarnings("unused")
 	public static Object getParamsRequestValue(Object obj, String name) {
 		// 创建Field数组接收反射的Class的属性
 		Field[] fieldobj1 = obj.getClass().getDeclaredFields();
@@ -53,7 +52,6 @@ public class RequestUtils {
 					// 等于name将值赋给返回值
 					lists = fieldobj1[i].get(obj);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -8,8 +8,6 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amtf.demo.label.iFneyeLabel;
-
 public class ImgUtil {
 
 	// 图片格式

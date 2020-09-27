@@ -1,9 +1,5 @@
 package com.amtf.demo.serviceImpl;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +26,7 @@ import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
+import com.amtf.demo.util.DownLoad;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
@@ -140,6 +137,7 @@ public class f020001ServiceImpl implements f020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			f020001_select1entity f02_select = new f020001_select1entity();
+
 			f02_select.setUser_account(select1.get(i).getUser_account());
 
 			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
@@ -190,13 +188,6 @@ public class f020001ServiceImpl implements f020001Service {
 	@Override
 	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
-		// 获得Excel文件输出流
-		FileOutputStream out = null;
-		try {
-			out = new FileOutputStream(new File("C:/excel/excel.pdf"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 		// 1:创建一个excel文档
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		// 2:创建一个sheet工作表
@@ -228,26 +219,9 @@ public class f020001ServiceImpl implements f020001Service {
 		HSSFCell cell2_5 = row2.createCell(4);
 		cell2_5.setCellValue("男");
 
-		// 输出excel的错误形式：
-		// out.write(fs.getBytes(), 0, fs.getBytes().length);
-		// 正确形式：
-		try {
-			workbook.write(out);
-			out.flush();
-			// 关流
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (null != out) {
-				try {
-					out.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 		response.setHeader("getpdf", "111");
+
+		DownLoad.getExcel("excel1", workbook);
 
 		return entityOut;
 	}
