@@ -152,6 +152,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
+		<!-- 引入本地jar包 -->
+		<dependency>
+			<groupId>com.excel1</groupId>
+			<artifactId>fastdfs-client-java</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/excelcreator-1.1.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.excel2</groupId>
+			<artifactId>fastdfs-client-java</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/excelcreator-1.1.0.1024.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -172,6 +187,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<fork>true</fork>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 作用:项目打成jar的同时将本地jar包也引入进去 -->
+				<configuration>
+					<includeSystemScope>true</includeSystemScope>
 				</configuration>
 			</plugin>
 		</plugins>

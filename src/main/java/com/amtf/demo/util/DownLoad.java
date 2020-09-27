@@ -1,10 +1,15 @@
 package com.amtf.demo.util;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.URLEncoder;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -22,6 +27,9 @@ public class DownLoad {
 
 	@Autowired
 	static HttpServletResponse response;
+
+	@Resource
+	private static HttpServletResponse resp;
 
 	public static void getExcel(String path, Workbook workbook) {
 		// 获得Excel文件输出流
@@ -93,6 +101,67 @@ public class DownLoad {
 		response.setHeader("getpdf", "111");
 
 		return entityOut;
+	}
+
+	/**
+	 * ファイルをダウンロード出力処理
+	 * 
+	 * ホームページからファイルをダウンロードするサービスです。
+	 */
+	public synchronized static void doPost(String url) {
+		DataInputStream in = null;
+		OutputStream out = null;
+		try {
+			// ファイルコードがUTF-8を設定すること
+			String filename = url.substring(url.lastIndexOf("/") + 1);
+			in = new DataInputStream(new FileInputStream(new File(url)));
+			out = resp.getOutputStream();
+			URLEncoder.encode(filename, "UTF-8");
+			resp.setCharacterEncoding("UTF-8");
+			resp.setHeader("Content-disposition", "attachment; filename=" + filename);
+			resp.setContentType("application/msexcel");
+			// 元ファイルのローカルパス
+			int bytes = 0;
+			byte[] bufferOut = new byte[1024];
+			while ((bytes = in.read(bufferOut)) != -1) {
+				out.write(bufferOut, 0, bytes);
+			}
+			// キャッシュをクリア
+			out.flush();
+			// Streamを閉じる
+			out.close();
+			in.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				OutputStreamWriter writer = new OutputStreamWriter(resp.getOutputStream(), "UTF-8");
+				String data = "<script language='javascript'>alert(\"\\u64cd\\u4f5c\\u5f02\\u5e38\\uff01\");</script>";
+				writer.write(data);
+				writer.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			// キャッシュをクリア
+			if (!CommonUtil.isEmpty(out)) {
+				try {
+					out.flush();
+					// Streamを閉じる
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (!CommonUtil.isEmpty(in)) {
+				try {
+					// inを閉じる
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
