@@ -1,5 +1,6 @@
 package com.amtf.demo.serviceImpl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -180,14 +181,15 @@ public class f020001ServiceImpl implements f020001Service {
 	}
 
 	/**
-	 * 生成Excel
+	 * 生成PDF
 	 */
 	@Override
 	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
 		String filename = "用户一览表.xlsx";
 		XlsxCreator xlsxCreator = new XlsxCreator();
-		xlsxCreator.openBook(Constant.PDF_EXCEL_DOWNLOAD + filename, Constant.PDF_EXCEL + filename);
+		// 第一个参数下载到的文件路径，第二个参数读取模板的文件路径
+		xlsxCreator.openBook(Constant.PDF_EXCEL_DOWNLOAD + filename, Constant.PDF_EXCEL + "lookuser1.xlsx");
 		xlsxCreator.getPdf().setTitle("用户一览表");
 		xlsxCreator.getPdf().setProducer("ver 1.0");
 		String name = filename.replace("xlsx", "pdf");
@@ -195,8 +197,13 @@ public class f020001ServiceImpl implements f020001Service {
 		// xlsxCreator.setSheetNo(i);
 		xlsxCreator.getCell("E6").setValue("12313211");
 		xlsxCreator.closeBook(true, Constant.PDF_EXCEL_DOWNLOAD + name, "", false);
-
 		DownLoad.doPost(Constant.PDF_EXCEL_DOWNLOAD + name);
+		try {
+			response.setHeader("yes", new String(name.getBytes("utf-8"), "iso-8859-1"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
 		return entityOut;
 	}
 

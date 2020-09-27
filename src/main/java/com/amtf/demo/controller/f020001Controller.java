@@ -164,12 +164,9 @@ public class f020001Controller extends ValiDationUtil {
 
 		ParameterUtil.copyParameter(entityin, params);
 
-		F020001entityOut entityOut = f020001service.service05(entityin);
+		f020001service.service05(entityin);
 
-		// 将值copy赋值
-		ParameterUtil.copyParameter(params, entityOut);
-
-		model.addAttribute("f020001Params", params);
+		return;
 
 	}
 

@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URLEncoder;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,26 +25,23 @@ import com.amtf.demo.exception.ErrListException;
 public class DownLoad {
 
 	@Autowired
-	static HttpServletResponse response;
-
-	@Resource
-	private static HttpServletResponse resp;
+	static HttpServletResponse resp;
 
 	public static void getExcel(String path, Workbook workbook) {
 		// 获得Excel文件输出流
 		FileOutputStream out = null;
 		FileInputStream inp = null;
 		// 让浏览器下载文件,name是上述默认文件下载名
-		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-		response.addHeader("Content-Disposition", "attachment;filename=\"" + path + ".xlsx\"");
+		resp.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		resp.addHeader("Content-Disposition", "attachment;filename=\"" + path + ".xlsx\"");
 		try {
 
 			out = new FileOutputStream(new File("C:/amtf_excel/" + path + ".xlsx"));
 			inp = new FileInputStream(new File("C:/amtf_excel/" + path + ".xlsx"));
-			response.setHeader("Content-Length", inp.available() + ""); // 内容长度
-			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-			response.addHeader("Content-Disposition", "attachment;filename=fileName" + ".xlsx");
-			response.setHeader("Content-Length", String.valueOf(inp.getChannel().size())); // 如果没有此行代码，打开excel文件时，会提示“发现不可读取的内容，是否继续”
+			resp.setHeader("Content-Length", inp.available() + ""); // 内容长度
+			resp.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+			resp.addHeader("Content-Disposition", "attachment;filename=fileName" + ".xlsx");
+			resp.setHeader("Content-Length", String.valueOf(inp.getChannel().size())); // 如果没有此行代码，打开excel文件时，会提示“发现不可读取的内容，是否继续”
 			workbook.write(out);
 			// 关流
 			out.close();
@@ -98,7 +94,7 @@ public class DownLoad {
 		Cell cell2_5 = row2.createCell(4);
 		cell2_5.setCellValue("男");
 		DownLoad.getExcel("excel1", workbook);
-		response.setHeader("getpdf", "111");
+		resp.setHeader("getpdf", "111");
 
 		return entityOut;
 	}
@@ -135,10 +131,12 @@ public class DownLoad {
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
-				OutputStreamWriter writer = new OutputStreamWriter(resp.getOutputStream(), "UTF-8");
-				String data = "<script language='javascript'>alert(\"\\u64cd\\u4f5c\\u5f02\\u5e38\\uff01\");</script>";
-				writer.write(data);
-				writer.close();
+				if (!CommonUtil.isEmpty(resp)) {
+					OutputStreamWriter writer = new OutputStreamWriter(resp.getOutputStream(), "UTF-8");
+					String data = "<script language='javascript'>alert(\"\\u64cd\\u4f5c\\u5f02\\u5e38\\uff01\");</script>";
+					writer.write(data);
+					writer.close();
+				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
