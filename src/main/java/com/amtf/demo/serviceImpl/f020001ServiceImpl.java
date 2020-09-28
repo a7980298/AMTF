@@ -123,9 +123,9 @@ public class f020001ServiceImpl implements f020001Service {
 							return value1;
 						}));
 		entityOut.setNavigation_bar(navigation_bar);
-		// String online = redisUtils.get("redis_key");
+		String[] online = redisUtils.get("redis_key").split(",");
 
-		// entityOut.setOnline(online);
+		entityOut.setOnline(StringUtil.toStr(online.length));
 
 		return entityOut;
 	}

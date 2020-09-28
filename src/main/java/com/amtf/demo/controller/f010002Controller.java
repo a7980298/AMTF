@@ -1,3 +1,4 @@
+
 package com.amtf.demo.controller;
 
 import java.util.HashMap;
@@ -55,14 +56,17 @@ public class f010002Controller extends ValiDationUtil {
 		ParameterUtil.copyParameter(params, entityOut);
 
 		model.addAttribute("f010002Params", params);
-
-		// redisUtils.delete("redis_key");
-
-		// String value = redisUtils.get("redis_key");
-
-		// redisUtils.set("redis_key", CommonUtil.isEmpty(value) ? "1" :
-		// StringUtil.toStr(NumberUtil.toInt(value) + 1));
-
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		String redis_key = redisUtils.get("redis_key");
+		if (CommonUtil.isEmpty(redis_key)) {
+			redisUtils.set("redis_key", loginfo.getUser_email());
+		} else {
+			if (!redis_key.contains(loginfo.getUser_email())) {
+				redis_key += "," + loginfo.getUser_email();
+				redisUtils.set("redis_key", redis_key);
+			}
+		}
 		return "main";
 	}
 
@@ -85,6 +89,14 @@ public class f010002Controller extends ValiDationUtil {
 		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email() + "navigation_bar"))) {
 			redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
 		}
+		String[] users = redisUtils.get("redis_key").split(",");
+		String redis_key = "";
+		for (String string : users) {
+			if (!string.equals(loginfo.getUser_email())) {
+				redis_key += string + ",";
+			}
+		}
+		redisUtils.set("redis_key", redis_key);
 		ParameterUtil.closeSession();
 
 		return "redirect:/f010001";
