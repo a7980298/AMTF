@@ -50,6 +50,9 @@ public class f010002ServiceImpl implements f010002Service {
 	@Resource
 	private RedisUtils redisUtils;
 
+	/**
+	 * 初期化
+	 */
 	public F010002entityOut service01(F010002entityIn entityIn) throws ErrListException {
 
 		F010002entityOut entityout = new F010002entityOut();
@@ -58,6 +61,11 @@ public class f010002ServiceImpl implements f010002Service {
 		loginfo = ParameterUtil.getSession();
 		// 根据权限获取导航栏
 		List<f010001_select2entity> select2 = f010001dao.f010001_Select2(NumberUtil.toInt(loginfo.getUser_power()));
+		String navigation_bar_redis = "";
+		for (f010001_select2entity f010001_select2entity2 : select2) {
+			navigation_bar_redis += f010001_select2entity2.getPower_path() + ",";
+		}
+		redisUtils.set(loginfo.getUser_email() + "navigation_bar", navigation_bar_redis);
 
 		// 将导航栏数据整合成map
 		Map<String, List<f010001_select2entity>> navigation_bar = select2.stream()
@@ -135,6 +143,9 @@ public class f010002ServiceImpl implements f010002Service {
 		return entityout;
 	}
 
+	/**
+	 * 分页
+	 */
 	@Override
 	public F010002entityOut service02(F010002entityIn entityIn) throws ErrListException {
 		F010002entityOut entityout = new F010002entityOut();
