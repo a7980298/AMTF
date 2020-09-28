@@ -59,6 +59,12 @@
 			});
 		}
 	}
+	// 点击通知铃铛
+	function amtf_updonticeclick() {
+		if($('.updnotice').length <= 0){
+			md.showNotification('bottom','center','2' ,'当前没有管理员发布通知。。。')
+		}
+	}
 	// 注销
 	function amtf_return() {
 		amtf_submit(amtf_form , '/f010002/T001');
@@ -357,7 +363,7 @@
 									<p class="d-lg-none d-md-block">Stats</p>
 								</a>
 							</li>
-							<li class="nav-item dropdown" title="通知">
+							<li class="nav-item dropdown" title="通知" onclick="amtf_updonticeclick()">
 								<div id="select5" th:fragment="select5">
 									<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
