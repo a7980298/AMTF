@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select2entityIn;
 import com.amtf.demo.f020001entity.f020001_select5entity;
+import com.amtf.demo.f020001entity.f020001_select7entity;
 
 @Mapper
 public interface f020001Dao {
@@ -26,4 +27,6 @@ public interface f020001Dao {
 	int f020001_insert6(@Param("id") Integer id, @Param("name") String name, @Param("head") String head,
 			@Param("check") String check, @Param("sttymd") Integer sttymd, @Param("endymd") Integer endymd,
 			@Param("text") String text);
+
+	List<f020001_select7entity> f020001_Select7(@Param("pow") Integer pow);
 }

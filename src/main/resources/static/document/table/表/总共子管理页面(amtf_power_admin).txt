@@ -1,0 +1,34 @@
+CREATE TABLE AMTF_POWER_ADMIN(
+	power_ADMIN_id INT NOT NULL, -- 画面序号
+	power_ADMIN_name VARCHAR(50), -- 画面名称
+	power_ADMIN_type VARCHAR(20), -- 画面类型
+	power_ADMIN_pow int,	-- 权限
+	power_ADMIN_path VARCHAR(50), -- 画面路径
+	power_ADMIN_class VARCHAR(50), -- class样式
+	power_ADMIN_short VARCHAR(10) -- 缩写
+)
+insert into test.AMTF_POWER_ADMIN values(1001,'操作','人员管理','1','selectuser','image','P');
+insert into test.AMTF_POWER_ADMIN values(1002,'查詢','人员管理','1','','image','S');
+insert into test.AMTF_POWER_ADMIN values(1003,'認證','人员管理','1','','image','Y');
+insert into test.AMTF_POWER_ADMIN values(1004,'權限升級','人员管理','1','','image','UP');
+
+insert into test.AMTF_POWER_ADMIN values(1005,'查看','功能管理','1','','apps','B');
+insert into test.AMTF_POWER_ADMIN values(1006,'等級','功能管理','1','','apps','B');
+insert into test.AMTF_POWER_ADMIN values(1007,'修改','功能管理','1','','apps','B');
+insert into test.AMTF_POWER_ADMIN values(1008,'刪除','功能管理','1','','apps','B');
+insert into test.AMTF_POWER_ADMIN values(1009,'增加','功能管理','1','','apps','B');
+
+insert into test.AMTF_POWER_ADMIN values(1010,'全体','通知','1','allnotices','content_paste','RF');
+insert into test.AMTF_POWER_ADMIN values(1011,'范围','通知','1','','content_paste','EF');
+insert into test.AMTF_POWER_ADMIN values(1012,'活动举办','通知','1','setactivity','content_paste','HD');
+
+insert into test.AMTF_POWER_ADMIN values(1012,'常规 表格','表格','1','','grid_on','RT');
+insert into test.AMTF_POWER_ADMIN values(1013,'扩展 表格','表格','1','','grid_on','ET');
+insert into test.AMTF_POWER_ADMIN values(1014,'数据表.net','表格','1','','grid_on','DT');
+
+
+insert into test.AMTF_POWER_ADMIN values(1015,'Google 地图','地图','1','','place','GM');
+insert into test.AMTF_POWER_ADMIN values(1016,'全屏 显示 地图','地图','1','','place','FSM');
+insert into test.AMTF_POWER_ADMIN values(1017,'矢量 地图','地图','1','','place','VM');
+
+

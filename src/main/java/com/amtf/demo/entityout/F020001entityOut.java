@@ -1,9 +1,11 @@
 package com.amtf.demo.entityout;
 
 import java.util.List;
+import java.util.Map;
 
 import com.amtf.demo.f020001entity.f020001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select5entity;
+import com.amtf.demo.f020001entity.f020001_select7entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -66,7 +68,7 @@ public class F020001entityOut extends UserImpl {
 	 * 可操作的用户信息
 	 */
 	List<f020001_select1entity> select1;
-	
+
 	/**
 	 * 通知信息
 	 */
@@ -76,10 +78,15 @@ public class F020001entityOut extends UserImpl {
 	 * 活动是否发布成功
 	 */
 	public String isactivity;
-	
+
 	/**
 	 * 在线人数
 	 */
 	public String online;
+
+	/**
+	 * 导航栏
+	 */
+	public Map<String, List<f020001_select7entity>> navigation_bar;
 
 }

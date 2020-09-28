@@ -79,4 +79,13 @@
 			,NOW()
 		)
 	</insert>
+	<!-- 查询可访问的页面 -->
+	<select id="f020001_Select7" resultType="com.amtf.demo.f020001entity.f020001_select7entity">
+		SELECT
+			 *
+		FROM 
+			AMTF_POWER_ADMIN
+		WHERE 
+			power_admin_pow &lt;= CONVERT(#{pow} USING gb2312)
+	</select>
 </mapper>

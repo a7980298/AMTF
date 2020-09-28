@@ -3,6 +3,8 @@ package com.amtf.demo.serviceImpl;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import com.amtf.demo.f010001entity.f010001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select1entity;
 import com.amtf.demo.f020001entity.f020001_select2entityIn;
 import com.amtf.demo.f020001entity.f020001_select5entity;
+import com.amtf.demo.f020001entity.f020001_select7entity;
 import com.amtf.demo.service.f020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
@@ -104,6 +107,22 @@ public class f020001ServiceImpl implements f020001Service {
 
 		entityOut.setAdmin(ParameterUtil.getAdmin());
 
+		// 根据权限获取导航栏
+		List<f020001_select7entity> select7 = f020001dao.f020001_Select7(NumberUtil.toInt(loginfo.getUser_power()));
+
+		// 将导航栏数据整合成map
+		Map<String, List<f020001_select7entity>> navigation_bar = select7.stream()
+				.collect(Collectors.toMap(f020001_select7entity::getPower_admin_type, s -> {
+					List<f020001_select7entity> studentNameList = new ArrayList<>();
+					studentNameList.add(s);
+					return studentNameList;
+				},
+						// 重复时将现在的值全部加入到之前的值内
+						(List<f020001_select7entity> value1, List<f020001_select7entity> value2) -> {
+							value1.addAll(value2);
+							return value1;
+						}));
+		entityOut.setNavigation_bar(navigation_bar);
 		// String online = redisUtils.get("redis_key");
 
 		// entityOut.setOnline(online);

@@ -241,185 +241,20 @@
 							<p>可视化数据</p>
 						</a>
 					</li>
-					<li class="nav-item coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-							<i class="material-icons">image</i>
+						<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f020001Params.navigation_bar}">
+						<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}">
+							<i class="material-icons">[[${mapkey.value.get(0).power_admin_class}]]</i>
 							<p>
-								人员管理 <b class="caret"></b>
+								[[${mapkey.key}]] <b class="caret"></b>
 							</p>
 						</a>
-						<div class="collapse" id="pagesExamples">
+						<div class="collapse" th:id="${'pagesExamples' + idx.index}">
 							<ul class="nav">
-								<li class="nav-item " >
-									<a class="nav-link" data-toggle="collapse" href="#selectuser" onclick="amtf_loginhead(this)">
-										<span class="sidebar-mini"> P </span>
-										<span class="sidebar-normal"> 操作 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> S </span>
-										<span class="sidebar-normal"> 查詢 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> Y </span>
-										<span class="sidebar-normal"> 認證 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> UP </span>
-										<span class="sidebar-normal"> 權限升級 </span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="nav-item coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" data-toggle="collapse" href="#componentsExamples">
-							<i class="material-icons">apps</i>
-							<p>
-								功能管理 <b class="caret"></b>
-							</p>
-						</a>
-						<div class="collapse" id="componentsExamples">
-							<ul class="nav">
-								<!-- <li class="nav-item ">
-									<a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
-										<span class="sidebar-mini"> MLT </span>
-										<span class="sidebar-normal">
-											頁面等級 <b class="caret"></b>
-										</span>
-									</a>
-									<div class="collapse" id="componentsCollapse">
-										<ul class="nav">
-											<li class="nav-item ">
-												<a class="nav-link" href="#0">
-													<span class="sidebar-mini"> E </span>
-													<span class="sidebar-normal"> 例子 </span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li> -->
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> B </span>
-										<span class="sidebar-normal">查看 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> B </span>
-										<span class="sidebar-normal">等級 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> B </span>
-										<span class="sidebar-normal">修改 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> B </span>
-										<span class="sidebar-normal">刪除 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> B </span>
-										<span class="sidebar-normal">增加 </span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="nav-item coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" data-toggle="collapse" href="#formsExamples">
-							<i class="material-icons">content_paste</i>
-							<p>
-								通知 <b class="caret"></b>
-							</p>
-						</a>
-						<div class="collapse" id="formsExamples">
-							<ul class="nav">
-								<li class="nav-item ">
-									<a class="nav-link" data-toggle="collapse" href="#allnotices" onclick="amtf_loginhead(this)">
-										<span class="sidebar-mini"> RF </span>
-										<span class="sidebar-normal">全体 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> EF </span>
-										<span class="sidebar-normal">范围 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" data-toggle="collapse" href="#setactivity" onclick="amtf_loginhead(this)">
-										<span class="sidebar-mini"> HD </span>
-										<span class="sidebar-normal">活动举办 </span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="nav-item coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-							<i class="material-icons">grid_on</i>
-							<p>
-								表格 <b class="caret"></b>
-							</p>
-						</a>
-						<div class="collapse" id="tablesExamples">
-							<ul class="nav">
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> RT </span>
-										<span class="sidebar-normal">常规 表格 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> ET </span>
-										<span class="sidebar-normal">扩展 表格 </span>
-									</a>
-								</li>
-								<li class="nav-item "><a class="nav-link"
-									href="#"> <span
-										class="sidebar-mini"> DT </span> <span class="sidebar-normal">
-											数据表.net </span>
-								</a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" data-toggle="collapse" href="#mapsExamples">
-							<i class="material-icons">place</i>
-							<p>
-								地图 <b class="caret"></b>
-							</p>
-						</a>
-						<div class="collapse" id="mapsExamples">
-							<ul class="nav">
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> GM </span>
-										<span class="sidebar-normal"> Google 地图 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-										<span class="sidebar-mini"> FSM </span>
-										<span class="sidebar-normal"> 全屏 显示 地图 </span>
-									</a>
-								</li>
-								<li class="nav-item ">
-									<a class="nav-link" href="#">
-									<span class="sidebar-mini"> VM </span>
-									<span class="sidebar-normal"> 矢量 地图 </span>
+								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'">
+									<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_admin_path}"/>
+									<a class="nav-link" th:href="${'#' + fileInfo.power_admin_path}" onclick="amtf_loginhead(this)">
+										<span class="sidebar-mini"> [[${fileInfo.power_admin_short}]] </span>
+										<span class="sidebar-normal"> [[${fileInfo.power_admin_name}]] </span>
 									</a>
 								</li>
 							</ul>
@@ -482,19 +317,6 @@
 									<i class="material-icons">dashboard</i>
 									<p class="d-lg-none d-md-block">Stats</p>
 								</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">
-									<i class="material-icons">notifications</i>
-									<span class="notification" th:if="${not #lists.isEmpty(f020001Params.select5)}">[[${f020001Params.select5.size()}]]</span>
-									<p class="d-lg-none d-md-block">Some Actions</p>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" th:if="${not #lists.isEmpty(f020001Params.select5)}">
-									<a class="dropdown-item" href="#" th:each="entity,idx:${f020001Params.select5}">
-										[[${entity.updnotice_head}]]
-									</a>
-								</div>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
@@ -1283,89 +1105,6 @@
 				</div>
 			</footer>
 		</div>
-	</div>
-	<div class="fixed-plugin">
-		<div class="dropdown show-dropdown">
-			<a href="#" data-toggle="dropdown">
-				<i class="fa fa-cog fa-2x"></i>
-			</a>
-			<ul class="dropdown-menu">
-				<li class="header-title">Sidebar Filters</li>
-				<li class="adjustments-line">
-					<a href="javascript:void(0)" class="switch-trigger active-color">
-						<div class="badge-colors ml-auto mr-auto">
-							<span class="badge filter badge-purple" data-color="purple"></span>
-							<span class="badge filter badge-azure" data-color="azure"></span>
-							<span class="badge filter badge-green" data-color="green"></span>
-							<span class="badge filter badge-warning" data-color="orange"></span>
-							<span class="badge filter badge-danger" data-color="danger"></span>
-							<span class="badge filter badge-rose active" data-color="rose"></span>
-						</div>
-						<div class="clearfix"></div>
-					</a>
-				</li>
-				<li class="header-title">Sidebar Background</li>
-				<li class="adjustments-line">
-					<a href="javascript:void(0)" class="switch-trigger background-color">
-						<div class="ml-auto mr-auto">
-							<span class="badge filter badge-black active"
-								data-background-color="black"></span> <span
-								class="badge filter badge-white" data-background-color="white"></span>
-							<span class="badge filter badge-red" data-background-color="red"></span>
-						</div>
-						<div class="clearfix"></div>
-					</a>
-				</li>
-				<li class="adjustments-line">
-					<a href="javascript:void(0)" class="switch-trigger">
-						<p>Sidebar Mini</p>
-						<label class="ml-auto">
-							<div class="togglebutton switch-sidebar-mini">
-								<label> <input type="checkbox"> <span
-									class="toggle"></span>
-								</label>
-							</div>
-						</label>
-						<div class="clearfix"></div>
-					</a>
-				</li>
-				<li class="adjustments-line">
-					<a href="javascript:void(0)" class="switch-trigger">
-						<p>Sidebar Images</p>
-						<label class="switch-mini ml-auto">
-							<div class="togglebutton switch-sidebar-image">
-								<label> <input type="checkbox" checked=""> <span
-									class="toggle"></span>
-								</label>
-							</div>
-						</label>
-						<div class="clearfix"></div>
-					</a>
-				</li>
-				<li class="header-title">Images</li>
-				<li class="active">
-					<a class="img-holder switch-trigger" href="javascript:void(0)"> 
-						<img th:src="@{/img/sidebar-1.jpg}" alt="">
-					</a>
-				</li>
-				<li>
-					<a class="img-holder switch-trigger" href="javascript:void(0)">
-						<img th:src="@{/img/sidebar-2.jpg}" alt="">
-					</a>
-				</li>
-				<li>
-					<a class="img-holder switch-trigger" href="javascript:void(0)">
-						<img th:src="@{/img/sidebar-3.jpg}" alt="">
-					</a>
-				</li>
-				<li>
-					<a class="img-holder switch-trigger" href="javascript:void(0)">
-						<img th:src="@{/img/sidebar-4.jpg}" alt="">
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
 	</i-form>
 	<script>
 	$(document).ready(function() {
