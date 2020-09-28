@@ -13,6 +13,7 @@ import com.amtf.demo.entityout.F010001entityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.service.f010001Service;
+import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
@@ -29,7 +30,7 @@ public class f010001Controller extends ValiDationUtil {
 	 * @parameter F010001Params params
 	 * @return String
 	 */
-	@RequestMapping("/f010001")
+	@RequestMapping(value = { "/f010001", "/" })
 	public String f010001S001(F010001Params params, Model model) {
 
 		/*
@@ -40,6 +41,12 @@ public class f010001Controller extends ValiDationUtil {
 		 * params.setUser_password(logInFo.getUser_password());
 		 * params.setRemember(Constant.STR_1); }
 		 */
+		// 获取当前浏览器是否有用户登录了
+		LogInFo getsession = ParameterUtil.getSession();
+		// 如果有就直接登录
+		if (!CommonUtil.isEmpty(getsession)) {
+			return "redirect:/f010002";
+		}
 
 		model.addAttribute("f010001Params", params);
 
