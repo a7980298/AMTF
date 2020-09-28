@@ -118,6 +118,9 @@ public class f020001ServiceImpl implements f020001Service {
 		return entityOut;
 	}
 
+	/**
+	 * 查看人員
+	 */
 	@Override
 	public F020001entityOut service03(F020001entityIn entityin) throws ErrListException {
 		F020001entityOut entityOut = new F020001entityOut();
@@ -228,7 +231,7 @@ public class f020001ServiceImpl implements f020001Service {
 		int delect4 = f020001dao.f020001_Delect4(entityin.getUserid());
 		// 沒有刪除成功
 		if (delect4 <= 0) {
-			throw new ErrListException(entityin, entityin.getIViewId(), "刪除數據時發生錯誤！");
+			throw new ErrListException(entityin, entityin.getIViewId(), "删除数据时发生错误!");
 		}
 		// 重新獲取用戶數據
 		List<f010001_select1entity> select1 = f020001dao.f020001_Select1(NumberUtil.toInt(loginfo.getUser_power()));
