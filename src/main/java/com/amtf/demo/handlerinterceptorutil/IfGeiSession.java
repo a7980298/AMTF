@@ -40,7 +40,7 @@ public class IfGeiSession implements HandlerInterceptor {
 					boolean b = false;
 					String[] navigation_bars = navigation_bar.split(",");
 					for (String string : navigation_bars) {
-						if (("/" + string).equals(servletpath)) {
+						if (string.equals(servletpath.split("/")[1])) {
 							b = true;
 						}
 					}

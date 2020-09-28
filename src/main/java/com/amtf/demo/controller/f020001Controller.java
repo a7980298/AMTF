@@ -73,7 +73,7 @@ public class f020001Controller extends ValiDationUtil {
 
 		model.addAttribute("f020001Params", params);
 
-		return "f020001";
+		return "dashboard";
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class f020001Controller extends ValiDationUtil {
 
 		model.addAttribute("f020001Params", params);
 
-		return "f020001 :: select1";
+		return "dashboard :: select1";
 	}
 
 	/**
@@ -114,24 +114,21 @@ public class f020001Controller extends ValiDationUtil {
 	 * @parameter F020001Params params
 	 * @return String
 	 */
-	@PostMapping("/f020001/T003")
-	public String f020001T003(@RequestParam("release_name") String release_name,
+	@RequestMapping("/f020001/T003")
+	@ResponseBody
+	public Map<String, Object> f020001T003(@RequestParam("release_name") String release_name,
 			@RequestParam("release_head") String release_head, Model model) {
-		F020001Params params = new F020001Params();
 
 		F020001entityIn entityin = new F020001entityIn();
-
 		entityin.setRelease_head(release_head);
 		entityin.setRelease_name(release_name);
 
-		F020001entityOut entityOut = f020001service.service04(entityin);
+		f020001service.service04(entityin);
+		Map<String, Object> map = new HashMap<String, Object>();
+		String name = "1";
+		map.put("updonticey", name);
 
-		// 将值copy赋值
-		ParameterUtil.copyParameter(params, entityOut);
-
-		model.addAttribute("f020001Params", params);
-
-		return "f020001";
+		return map;
 	}
 
 	/**

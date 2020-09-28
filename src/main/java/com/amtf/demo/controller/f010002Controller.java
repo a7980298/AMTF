@@ -21,6 +21,7 @@ import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
+import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
@@ -75,16 +76,18 @@ public class f010002Controller extends ValiDationUtil {
 	@PostMapping("/f010002/T001")
 	public String f010002T001(F010002Params params, Model model) throws ErrListException {
 
-		ParameterUtil.closeSession();
-		F010001Params f01params = new F010001Params();
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		model.addAttribute("f010001Params", f01params);
 		// 删除登录信息
-		redisUtils.delete(loginfo.getUser_email());
-		redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
+		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email()))) {
+			redisUtils.delete(loginfo.getUser_email());
+		}
+		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email() + "navigation_bar"))) {
+			redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
+		}
+		ParameterUtil.closeSession();
 
-		return "login";
+		return "redirect:/f010001";
 	}
 
 	/**

@@ -54,7 +54,11 @@
 				},
 				success: function (result) {
 					hidediv();
-					setCodeSuccess('发布成功！');
+					if(result.updonticey == '1'){
+						setCodeSuccess('发布成功！');
+					} else {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					}
 				},
 				error: function (res, textStaus) {
 					hidediv();
