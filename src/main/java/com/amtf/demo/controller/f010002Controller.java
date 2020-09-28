@@ -48,18 +48,6 @@ public class f010002Controller extends ValiDationUtil {
 
 		F010002entityIn entityin = new F010002entityIn();
 
-		LogInFo loginfo = new LogInFo();
-		loginfo = ParameterUtil.getSession();
-		String redis_key = redisUtils.get("redis_key");
-		if (CommonUtil.isEmpty(redis_key)) {
-			redisUtils.set("redis_key", loginfo.getUser_email());
-		} else {
-			if (!redis_key.contains(loginfo.getUser_email())) {
-				redis_key += "," + loginfo.getUser_email();
-				redisUtils.set("redis_key", redis_key);
-			}
-		}
-
 		ParameterUtil.copyParameter(entityin, params);
 
 		F010002entityOut entityOut = f010002service.service01(entityin);

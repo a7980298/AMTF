@@ -11,7 +11,6 @@ import com.amtf.demo.util.RedisUtils;
 @Component
 public class end implements ApplicationListener<ContextClosedEvent> {
 
-	
 	@Resource
 	private RedisUtils redisUtils;
 

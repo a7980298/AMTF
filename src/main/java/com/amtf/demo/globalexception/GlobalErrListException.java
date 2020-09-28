@@ -28,11 +28,11 @@ public class GlobalErrListException {
 		mav.addObject(IViewId + "Params", e.getEntity());
 		if (!CommonUtil.isEmpty(IViewId)) {
 			if (IViewId.equals("f010001")) {
-				IViewId="login";
+				IViewId = "/login";
 			} else if (IViewId.equals("f010002")) {
-				IViewId="main";
+				IViewId = "/main";
 			} else if (IViewId.equals("f020001")) {
-				IViewId="dashboard";
+				IViewId = "/dashboard";
 			}
 		}
 		mav.setViewName(IViewId);

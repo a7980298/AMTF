@@ -40,7 +40,7 @@ public class f010001ServiceImpl implements f010001Service {
 
 	@Autowired
 	private mailService mailService;
-	
+
 	@Resource
 	private RedisUtils redisUtils;
 
@@ -76,11 +76,12 @@ public class f010001ServiceImpl implements f010001Service {
 			throw new ErrListException(entityIn, entityIn.getIViewId(), "账户密码输入不能是空!");
 		}
 		if (CommonUtil.isEmpty(entityIn.getLocking())) {
-			//获取session的用户
+			// 获取session的用户
 			LogInFo getsession = ParameterUtil.getSession();
 			if (!CommonUtil.isEmpty(getsession)) {
-				//判断是否是当前用户
-				if (getsession.getUser_account().equals(entityIn.getUser_account()) && getsession.getUser_password().equals(entityIn.getUser_password())) {
+				// 判断是否是当前用户
+				if (getsession.getUser_account().equals(entityIn.getUser_account())
+						&& getsession.getUser_password().equals(entityIn.getUser_password())) {
 					throw new ErrListException(entityIn, entityIn.getIViewId(), "该用户已登录!");
 				}
 			}
@@ -88,8 +89,24 @@ public class f010001ServiceImpl implements f010001Service {
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);
 
+		LogInFo loginfoget = new LogInFo();
+		loginfoget = ParameterUtil.getSession();
+		String redis_key = redisUtils.get("redis_key");
+		if (CommonUtil.isEmpty(redis_key)) {
+			redisUtils.set("redis_key", loginfoget.getUser_email());
+		} else {
+			if (redis_key.split(",").length >= 1) {
+				throw new ErrListException(entityIn, entityIn.getIViewId(), "人数过多，请等待!");
+			} else {
+				if (!redis_key.contains(loginfoget.getUser_email())) {
+					redis_key += "," + loginfoget.getUser_email();
+					redisUtils.set("redis_key", redis_key);
+				}
+			}
+		}
+
 		entityout.setBol02(Constant.STR_1);
-		
+
 		return entityout;
 	}
 
@@ -109,12 +126,12 @@ public class f010001ServiceImpl implements f010001Service {
 			if (!sessionverifycode.equals(entityIn.getVerifyCode())) {
 				throw new ErrListException(entityIn, entityIn.getIViewId(), "验证码不正确!");
 			}
-			//判断是否已注册
+			// 判断是否已注册
 			int select5 = f010001dao.f010001_Select5(entityIn.getRegist_user_email());
 			if (select5 > 0) {
 				throw new ErrListException(entityIn, entityIn.getIViewId(), "Email已注册。。。");
 			}
-			//注册
+			// 注册
 			f010001_insert4entityIn insert4entityin = new f010001_insert4entityIn();
 			Integer common_select1 = commdao.common_Select1();
 			insert4entityin.setUserid(CommonUtil.isEmpty(common_select1) ? 0 : common_select1 + 1);
