@@ -77,8 +77,12 @@ public class f010002Controller extends ValiDationUtil {
 
 		ParameterUtil.closeSession();
 		F010001Params f01params = new F010001Params();
-
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
 		model.addAttribute("f010001Params", f01params);
+		// 删除登录信息
+		redisUtils.delete(loginfo.getUser_email());
+		redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
 
 		return "login";
 	}
