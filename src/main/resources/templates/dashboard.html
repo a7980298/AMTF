@@ -241,7 +241,7 @@
 							<p>可视化数据</p>
 						</a>
 					</li>
-						<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f020001Params.navigation_bar}">
+					<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f020001Params.navigation_bar}">
 						<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}">
 							<i class="material-icons">[[${mapkey.value.get(0).power_admin_class}]]</i>
 							<p>
