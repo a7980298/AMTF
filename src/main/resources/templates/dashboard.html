@@ -201,7 +201,8 @@
 			data : $(amtf_form).serialize(),
 			responseType : 'blob'
 		}).then(function(response){
-			
+			getDownLoad(response);
+			hidediv();
 		}).catch(function(error){
 			hidediv();
 			setCodeErrList("错误！！！请和管理员联系。。。");
