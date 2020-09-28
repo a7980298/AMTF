@@ -48,14 +48,6 @@ public class f010002Controller extends ValiDationUtil {
 
 		F010002entityIn entityin = new F010002entityIn();
 
-		ParameterUtil.copyParameter(entityin, params);
-
-		F010002entityOut entityOut = f010002service.service01(entityin);
-
-		// 将值copy赋值
-		ParameterUtil.copyParameter(params, entityOut);
-
-		model.addAttribute("f010002Params", params);
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		String redis_key = redisUtils.get("redis_key");
@@ -67,6 +59,16 @@ public class f010002Controller extends ValiDationUtil {
 				redisUtils.set("redis_key", redis_key);
 			}
 		}
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F010002entityOut entityOut = f010002service.service01(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010002Params", params);
+
 		return "main";
 	}
 
