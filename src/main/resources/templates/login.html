@@ -118,6 +118,7 @@
 		// 发送验证码
 		function amtf_submitYFCode(_this){
 			if ($('#email_id').val() != '') {
+				showdiv();
 				$.ajax({
 					url: CONTEXT_PATH + '/f010001/T003',
 					type: 'post',
@@ -125,6 +126,7 @@
 						phone_number:$('#email_id').val()
 					},
 					success: function (result) {
+						hidediv();
 						var data_s=60;
 						if('0' == result){
 							alert('发送失败');
@@ -142,10 +144,9 @@
 								data_s-=1; 
 							}, 1000);
 						}
-						evenOff();
 					},
 					error: function (res, textStaus) {
-						evenOff();
+						hidediv();
 					},
 				});
 			}

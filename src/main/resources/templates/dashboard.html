@@ -42,6 +42,7 @@
 		activity_editor = new E_activity('#activity_editor')
 		activity_editor.create()
 		document.getElementById('textsumbit').addEventListener('click', function () {
+			showdiv();
 			$.ajax({
 				url: CONTEXT_PATH + '/f020001/T003',
 				type: 'post',
@@ -52,9 +53,11 @@
 					release_name: editor.txt.text()
 				},
 				success: function (result) {
+					hidediv();
 					setCodeSuccess('发布成功！');
 				},
 				error: function (res, textStaus) {
+					hidediv();
 					setCodeErrList("错误！！！请和管理员联系。。。");
 				},
 			});
@@ -102,6 +105,7 @@
 	}
 	// 删除按钮押下
 	function amtf_userDelete(_id) {
+		showdiv();
 		$.ajax({
 			url: CONTEXT_PATH + '/f020001/T006',
 			type: 'post',
@@ -111,11 +115,13 @@
 				userid: _id,
 			},
 			success: function (result) {
+				hidediv();
 				md.showNotification('top','center','3' ,'删除成功。。。')
 				$('#select1').replaceWith(result);
 				$('.modal-backdrop').remove();
 			},
 			error: function (res, textStaus) {
+				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
@@ -162,6 +168,7 @@
 		formData.set("activity_sttymd", $('#activity_sttymd').val());
 		formData.set("activity_endymd", $('#activity_endymd').val());
 		formData.set("activity_editor", activity_editor.txt.text());
+		showdiv();
 		$.ajax({
 			url : CONTEXT_PATH + '/f020001/T007',
 			type : 'post',
@@ -172,6 +179,7 @@
 			contentType : false, // 不要设置Content-Type请求头
 			data : formData,
 			success : function(result) {
+				hidediv();
 				if(result.isactivity == '1') {
 					setCodeErrList("发布失败，请重试。");
 				} else {
@@ -179,6 +187,7 @@
 				}
 			},
 			error : function(res, textStaus) {
+				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});

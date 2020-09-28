@@ -92,6 +92,7 @@
 	// 打开详细通知
 	function amtf_getupdontice(_id,_head,_text) {
 		$('#getupdontice').modal('show');
+		showdiv();
 		$.ajax({
 			url: CONTEXT_PATH + '/f010002/T004',
 			type: 'post',
@@ -101,9 +102,11 @@
 				id: _id,
 			},
 			success: function (result) {
+				hidediv();
 				$('#select5').replaceWith(result);
 			},
 			error: function (res, textStaus) {
+				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
@@ -171,6 +174,7 @@
 	}
 	// 参加活动
 	function amtf_setusetactivity() {
+		showdiv();
 		$.ajax({
 			url: CONTEXT_PATH + '/f010002/T006',
 			type: 'post',
@@ -180,6 +184,7 @@
 				id: $('#activity_modal_activityid').val(),
 			},
 			success: function (result) {
+				hidediv();
 				if (result.isuseractivity > 0) {
 					md.showNotification('top','center','3' ,'参加成功。。。')
 				} else if (result.isuseractivity == 0){
@@ -189,6 +194,7 @@
 				}
 			},
 			error: function (res, textStaus) {
+				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
@@ -217,6 +223,7 @@
 				_imgid = $(this),find('img').attr('id');
 			}
 		});
+		showdiv();
 		$.ajax({
 			url: CONTEXT_PATH + '/f010002/T007',
 			type: 'post',
@@ -229,9 +236,10 @@
 				imgid : _imgid
 			},
 			success: function (result) {
-				
+				hidediv();
 			},
 			error: function (res, textStaus) {
+				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
