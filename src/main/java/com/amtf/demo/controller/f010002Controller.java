@@ -73,9 +73,9 @@ public class f010002Controller extends ValiDationUtil {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		// 删除登录信息
-		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email()))) {
-			redisUtils.delete(loginfo.getUser_email());
-		}
+//		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email()))) {
+//			redisUtils.delete(loginfo.getUser_email());
+//		}
 		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email() + "navigation_bar"))) {
 			redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
 		}
