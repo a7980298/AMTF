@@ -1,9 +1,7 @@
 package com.amtf.demo.util;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -132,18 +130,9 @@ public class RedisUtils {
 	/**
 	 * 取出list
 	 */
-	public boolean getList(final String key, List<?> lists) {
-		if (!CommonUtil.isEmpty(lists) && lists.size() > 0) {
-			try {
-				lists = new ArrayList<T>();
-				String jsonStr = this.get(key);
-				JSONArray jsonArray = JSONArray.fromObject(jsonStr);
-
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
+	public JSONArray getList(final String key) {
+		String jsonStr = this.get(key);
+		JSONArray jsonArray = JSONArray.fromObject(jsonStr);
+		return jsonArray;
 	}
 }
