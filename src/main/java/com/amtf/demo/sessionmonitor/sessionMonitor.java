@@ -40,11 +40,17 @@ public class sessionMonitor implements HttpSessionListener {
 		if (onlineCount > 0) {
 			onlineCount--;
 		}
-		HttpSession session = se.getSession();
-		// 获取当前用户信息
-		LogInFo loginfo = (LogInFo) session.getAttribute("loginfo");
+		LogInFo loginfo = null;
+		try {
+			HttpSession session = se.getSession();
+			// 获取当前用户信息
+			loginfo = (LogInFo) session.getAttribute("loginfo");
+			// 销毁redis中的数据
+			redisUtils.deleteUser("redis_key", loginfo.getUser_email());
+		} catch (Exception e) {
+			System.out.println("销毁" + loginfo.getUser_email() + "失败");
+		}
 
-		redisUtils.deleteUser("redis_key", loginfo.getUser_email());
 		// se.getSession().getServletContext().setAttribute("onlineCount", onlineCount);
 	}
 }
