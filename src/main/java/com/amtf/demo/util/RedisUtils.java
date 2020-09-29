@@ -1,8 +1,14 @@
 package com.amtf.demo.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
+import net.sf.json.JSONArray;
 
 /**
  * redis操作工具类.</br>
@@ -93,11 +99,46 @@ public class RedisUtils {
 	public boolean addUser(final String key, String value) {
 		if (!CommonUtil.isEmpty(value)) {
 			try {
-				String redis_key = this.get("redis_key");
+				String redis_key = this.get(key);
 				if (!redis_key.contains(value)) {
 					redis_key += "," + value;
-					this.set("redis_key", redis_key);
+					this.set(key, redis_key);
 				}
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 存入list
+	 */
+	public boolean addList(final String key, List<?> list) {
+		if (!CommonUtil.isEmpty(list) && list.size() > 0) {
+			try {
+				// 异常设备的json数组，把list转换成json数组
+				String json = JSONArray.fromObject(list).toString();
+				this.set(key, json);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 取出list
+	 */
+	public boolean getList(final String key, List<?> lists) {
+		if (!CommonUtil.isEmpty(lists) && lists.size() > 0) {
+			try {
+				lists = new ArrayList<T>();
+				String jsonStr = this.get(key);
+				JSONArray jsonArray = JSONArray.fromObject(jsonStr);
+
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
