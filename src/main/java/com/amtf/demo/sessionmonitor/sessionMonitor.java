@@ -2,10 +2,11 @@ package com.amtf.demo.sessionmonitor;
 
 import javax.annotation.Resource;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import com.amtf.demo.util.ParameterUtil;
+import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.RedisUtils;
 
 /**
@@ -39,7 +40,11 @@ public class sessionMonitor implements HttpSessionListener {
 		if (onlineCount > 0) {
 			onlineCount--;
 		}
-		redisUtils.deleteUser("redis_key", ParameterUtil.getSession().getUser_email());
+		HttpSession session = se.getSession();
+		// 获取当前用户信息
+		LogInFo loginfo = (LogInFo) session.getAttribute("loginfo");
+
+		redisUtils.deleteUser("redis_key", loginfo.getUser_email());
 		// se.getSession().getServletContext().setAttribute("onlineCount", onlineCount);
 	}
 }

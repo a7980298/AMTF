@@ -69,20 +69,21 @@ public class RedisUtils {
 	 * 删除用户
 	 */
 	public boolean deleteUser(final String key, String value) {
-		try {
-			String[] users = this.get(key).split(",");
-			String redis_key = "";
-			for (String string : users) {
-				if (!string.equals(value)) {
-					redis_key += string + ",";
+		if (!CommonUtil.isEmpty(value)) {
+			try {
+				String[] users = this.get(key).split(",");
+				String redis_key = "";
+				for (String string : users) {
+					if (!string.equals(value)) {
+						redis_key += string + ",";
+					}
 				}
+				this.set(key, redis_key);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			this.set(key, redis_key);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-
 		return false;
 	}
 
@@ -90,15 +91,17 @@ public class RedisUtils {
 	 * 添加用户
 	 */
 	public boolean addUser(final String key, String value) {
-		try {
-			String redis_key = this.get("redis_key");
-			if (!redis_key.contains(value)) {
-				redis_key += "," + value;
-				this.set("redis_key", redis_key);
+		if (!CommonUtil.isEmpty(value)) {
+			try {
+				String redis_key = this.get("redis_key");
+				if (!redis_key.contains(value)) {
+					redis_key += "," + value;
+					this.set("redis_key", redis_key);
+				}
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return false;
 	}
