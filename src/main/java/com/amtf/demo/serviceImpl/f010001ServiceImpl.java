@@ -95,8 +95,8 @@ public class f010001ServiceImpl implements f010001Service {
 		if (CommonUtil.isEmpty(redis_key)) {
 			redisUtils.set("redis_key", loginfoget.getUser_email());
 		} else {
-			if (redis_key.split(",").length >= 1) {
-				throw new ErrListException(entityIn, entityIn.getIViewId(), "人数过多，请等待!");
+			if (redis_key.split(",").length >= 5) {
+				throw new ErrListException(entityIn, entityIn.getIViewId(), "当前人数访问过多，请重试。。。");
 			} else {
 				redisUtils.addUser("redis_key", loginfoget.getUser_email());
 			}
