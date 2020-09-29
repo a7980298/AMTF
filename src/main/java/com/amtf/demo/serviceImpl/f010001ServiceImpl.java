@@ -98,10 +98,7 @@ public class f010001ServiceImpl implements f010001Service {
 			if (redis_key.split(",").length >= 1) {
 				throw new ErrListException(entityIn, entityIn.getIViewId(), "人数过多，请等待!");
 			} else {
-				if (!redis_key.contains(loginfoget.getUser_email())) {
-					redis_key += "," + loginfoget.getUser_email();
-					redisUtils.set("redis_key", redis_key);
-				}
+				redisUtils.addUser("redis_key", loginfoget.getUser_email());
 			}
 		}
 

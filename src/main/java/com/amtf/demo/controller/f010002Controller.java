@@ -79,14 +79,7 @@ public class f010002Controller extends ValiDationUtil {
 		if (!CommonUtil.isEmpty(redisUtils.get(loginfo.getUser_email() + "navigation_bar"))) {
 			redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
 		}
-		String[] users = redisUtils.get("redis_key").split(",");
-		String redis_key = "";
-		for (String string : users) {
-			if (!string.equals(loginfo.getUser_email())) {
-				redis_key += string + ",";
-			}
-		}
-		redisUtils.set("redis_key", redis_key);
+		redisUtils.deleteUser("redis_key", loginfo.getUser_email());
 		ParameterUtil.closeSession();
 
 		return "redirect:/f010001";
