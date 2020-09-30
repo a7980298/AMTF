@@ -11,7 +11,11 @@
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 </head>
-
+<script type="text/javascript">
+function goLast(){
+	window.history.back(-1);
+}
+</script>
 <body class="off-canvas-sidebar">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
@@ -28,7 +32,7 @@
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item ">
-            <a href="javascript :;" onclick="javascript :history.back(-1);" class="nav-link">
+            <a onclick="goLast()" class="nav-link">
               <i class="material-icons">fingerprint</i>
               	返回上一页
             </a>
