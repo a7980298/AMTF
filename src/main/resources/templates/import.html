@@ -87,6 +87,7 @@
 			/* 定时器  间隔1秒检测是否长时间未操作页面  */
 			window.setInterval(testTime, 1000);
 			blurSetInputTextVal();
+			formCheck();
 		});
 		// 注册模态框
 		$(document).ready(function() {
@@ -109,6 +110,12 @@
 			if(currentTime - lastTime > timeOut){
 				amtf_submit(amtf_form , '/f010002/T003');
 			}
+		}
+		// 每一个form表达都进行check
+		function formCheck() {
+			$('form').each(function(){
+				setFormValidation('#' + this.id);
+			});
 		}
 	</script>
 </th:block>
