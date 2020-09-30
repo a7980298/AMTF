@@ -108,15 +108,18 @@
 			if (_href == 'userregister') {
 				$('#logintext').text('注册 页面');
 				$('#login_image').css('background-image',"url('/amtf/img/register.jpg')");
+				amtf_ketCode('regist_submit');
 			} else if (_href == 'userlogin') {
 				$('#logintext').text('登录 页面');
 				$('#login_image').css('background-image',"url('/amtf/img/login.jpg')");
+				amtf_ketCode('login_sumbit');
 			} else if (_href == 'pricing') {
 				$('#logintext').text('产品 介绍');
 				$('#login_image').css('background-image',"url('/amtf/img/bg-pricing.jpg')");
 			} else if (_href == 'locking') {
 				$('#logintext').text('锁定 页面');
 				$('#login_image').css('background-image',"url('/amtf/img/lock.jpg')");
+				amtf_ketCode('lock_submit');
 			}
 		}
 		// 发送验证码
@@ -177,6 +180,14 @@
 		function amtf_setlock() {
 			amtf_submit(amtf_formlock , '/f010001/T001');
 		}
+		// 回车按下触发
+		function amtf_ketCode(_id){
+			$("body").keydown(function() {
+					if (event.keyCode == "13") {//keyCode=13是回车键
+						$('#' + _id).click();//换成按钮的id即可
+					}
+				});
+			}
 		</script>
 	</head>
 	<body class="off-canvas-sidebar">
@@ -366,7 +377,7 @@
 										</div>
 									</div>
 									<div class="card-footer justify-content-center">
-										<button type="submit" class="btn btn-rose btn-link btn-lg" onclick="amtf_login()">登录</button>
+										<button type="submit" class="btn btn-rose btn-link btn-lg" onclick="amtf_login()" id="login_sumbit">登录</button>
 									</div>
 								</div>
 							</i-form>
@@ -494,7 +505,7 @@
 													</label>
 												</div>
 												<div class="text-center">
-													<a href="#pablo" class="btn btn-primary btn-round mt-4" onclick="amtf_regist()">开始使用</a>
+													<a href="#pablo" class="btn btn-primary btn-round mt-4" onclick="amtf_regist()" id="regist_submit">开始使用</a>
 												</div>
 											</div>
 										</div>
@@ -527,7 +538,7 @@
 									</div>
 								</div>
 								<div class="card-footer justify-content-center">
-									<a href="#pablo" class="btn btn-rose btn-round" onclick="amtf_setlock()">解锁</a>
+									<a href="#pablo" class="btn btn-rose btn-round" onclick="amtf_setlock()" id="lock_submit">解锁</a>
 								</div>
 							</div>
 						</div>
