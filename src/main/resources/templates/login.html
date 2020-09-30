@@ -22,6 +22,13 @@
 			}
 		</style>
 		<script type="text/javascript">
+		document.onreadystatechange=function(){
+			showdiv();
+			//是否加载完毕
+			if(document.readyState =='complete'){
+				hidediv();//加载完成 隐藏加载图案
+			}
+		}
 		// 初始化方法
 		$(function() {
 			var storage=window.localStorage;
@@ -80,6 +87,7 @@
 					console.log(typeof storage["name"]);
 					console.log(typeof storage["pwd"]);
 				}
+				showdiv();
 				amtf_submit(amtf_form , '/f010001/T001');
 			}
 		}
