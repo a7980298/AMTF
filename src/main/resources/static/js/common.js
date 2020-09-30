@@ -51,10 +51,14 @@ function setFormValidation(id) {
 			$(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
 		},
 		errorPlacement: function(error, element) {
-			if($(element).parent().hasClass('d-flex')) {
-				$(element).parent().parent().after(error);
+			if(error.text() != ''){
+				if($(element).parent().hasClass('d-flex')) {
+					$(element).parent().parent().after(error);
+				} else {
+					$(element).closest("input").after(error);
+				}
 			} else {
-				$(element).closest("input").after(error);
+				$(element).find('lable').eq(0).remove();
 			}
 		},
 	});
