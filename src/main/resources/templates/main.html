@@ -300,13 +300,13 @@
 				</div>
 				<ul class="nav">
 					<li class="nav-item active coloritme" onclick="amtf_setColor(this)">
-						<a class="nav-link" href="#main" onclick="amtf_loginhead(this)">
+						<a class="nav-link" href="#main" onclick="amtf_loginhead(this)" title="主页面">
 							<i class="material-icons">dashboard</i>
 							<p>主页面</p>
 						</a>
 					</li>
 					<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f010002Params.navigation_bar}">
-						<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}">
+						<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}" th:title="${mapkey.key}">
 							<i th:class="${'fa ' + mapkey.value.get(0).power_class}"></i>
 							<p>
 								[[${mapkey.key}]] <b class="caret"></b>
@@ -314,7 +314,7 @@
 						</a>
 						<div class="collapse" th:id="${'pagesExamples' + idx.index}">
 							<ul class="nav">
-								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'">
+								<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'" th:title="${fileInfo.power_name}">
 									<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
 									<a class="nav-link" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
 										<span class="sidebar-mini"> [[${fileInfo.power_short}]] </span>
@@ -335,8 +335,8 @@
 					<div class="navbar-wrapper">
 						<div class="navbar-minimize">
 							<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
-								<i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
-								<i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
+								<i class="material-icons text_align-center visible-on-sidebar-regular" title="缩小">more_vert</i>
+								<i class="material-icons design_bullet-list-67 visible-on-sidebar-mini" title="展开">view_list</i>
 							</button>
 						</div>
 						<!-- <a class="navbar-brand" href="javascript:;">Dashboard</a> -->
@@ -353,7 +353,7 @@
 							<div class="input-group no-border">
 								<input type="text" value="" class="form-control" placeholder="搜索..." style="width:200px;">
 								<button type="button" class="btn btn-white btn-round btn-just-icon">
-									<i class="material-icons">search</i>
+									<i class="material-icons" title="搜索">search</i>
 									<div class="ripple-container"></div>
 								</button>
 							</div>
