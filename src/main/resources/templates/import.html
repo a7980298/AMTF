@@ -69,13 +69,27 @@
 		<script type="text/javascript" th:src="@{/js/fileinput.js}"></script>
 			 文件上传插件汉化包 
 		<script type="text/javascript" th:src="@{/js/zh.js}"></script>-->
+		<!-- scss文件 -->
+		<link th:href="@{/scss/import.scss}">
 	</head>
 	<body>
 		<!-- <th:block th:replace="~{codeErr :: codeErr}"></th:block>
 		<th:block th:replace="~{wait :: wait}"></th:block>
 		<th:block th:replace="~{codeSuccess :: success}"></th:block> -->
-		<div id="bg">
+		<div id="bg" class="bg">
 			<img class="zhezhao col-sm-1" th:src="@{/gif/loding1.gif}">
+		</div>
+		<div id="loginstop" class="bg">
+			<div class="zhezhao">
+				<p class="s1">正</p>
+				<p class="s2">在</p>
+				<p class="s3">加</p>
+				<p class="s4">载</p>
+				<p class="s5">中</p>
+				<p class="s6">。</p>
+				<p class="s7">。</p>
+				<p class="s8">。</p>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript">
