@@ -74,6 +74,7 @@
 	function amtf_skip(ulid,liid){
 		var path = $('#ul' + ulid +'_li' + liid).val(); 
 		if (path == 'f020001') {
+			loginshowdiv();
 			amtf_submit(amtf_form , '/' + path);
 		} else {
 			
