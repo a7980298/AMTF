@@ -23,10 +23,10 @@
 		</style>
 		<script type="text/javascript">
 		document.onreadystatechange=function(){
-			document.getElementById("loginstop").style.display ="block";
+			loginshowdiv();
 			//是否加载完毕
 			if(document.readyState =='complete'){
-				document.getElementById("loginstop").style.display ="none";//加载完成 隐藏加载图案
+				loginhidediv();//加载完成 隐藏加载图案
 			}
 		}
 		// 初始化方法
@@ -83,7 +83,7 @@
 					console.log(typeof storage["name"]);
 					console.log(typeof storage["pwd"]);
 				}
-				document.getElementById("loginstop").style.display ="block";
+				loginshowdiv();
 				amtf_submit(amtf_form , '/f010001/T001');
 			}
 		}

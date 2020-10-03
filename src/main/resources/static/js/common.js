@@ -145,11 +145,21 @@ function setCodeSuccess(codeSuccess){
 //	$('button').attr('disabled','disabled');
 //	$('body').css('pointer-events','none');
 //}
+//打开遮罩
 function showdiv() {
 	document.getElementById("bg").style.display ="block";
 }
+//关闭遮罩
 function hidediv() {
 	document.getElementById("bg").style.display ='none';
+}
+// 打开跳转页面遮罩
+function loginshowdiv() {
+	document.getElementById("loginstop").style.display ="block";
+}
+//关闭跳转页面遮罩
+function loginhidediv() {
+	document.getElementById("loginstop").style.display ='none';
 }
 //全局不可點擊
 function htmlEvenOff(_id){
