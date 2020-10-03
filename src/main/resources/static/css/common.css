@@ -176,29 +176,34 @@ a:hover {
 #loginstop p {
 	float: left;
 	font-size: 20px;
-	padding-right: 16px;
+	padding-right: 0px;
 	animation-name: myani;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease;
 	animation-direction: alternate;
 	animation-fill-mode: both;
+	width: 2rem;
 }
 
 .s1 {
 	animation-delay: 0.2s;
+	font-size: -webkit-xxx-large;
 }
 
 .s2 {
 	animation-delay: 0.4s;
+	font-size: -webkit-xxx-large;
 }
 
 .s3 {
 	animation-delay: 0.6s;
+	font-size: -webkit-xxx-large;
 }
 
 .s4 {
 	animation-delay: 0.8s;
+	font-size: -webkit-xxx-large;
 }
 
 .s5 {
