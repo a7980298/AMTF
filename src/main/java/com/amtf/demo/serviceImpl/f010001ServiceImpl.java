@@ -41,6 +41,9 @@ public class f010001ServiceImpl implements f010001Service {
 	@Autowired
 	private mailService mailService;
 
+	@Autowired
+	private CommonServiceImpl commonserviceimpl;
+
 	@Resource
 	private RedisUtils redisUtils;
 
@@ -88,19 +91,8 @@ public class f010001ServiceImpl implements f010001Service {
 		}
 		// 用户信息存入Session
 		ParameterUtil.setSession(select1entity);
-
-		LogInFo loginfoget = new LogInFo();
-		loginfoget = ParameterUtil.getSession();
-		String redis_key = redisUtils.get("redis_key");
-		if (CommonUtil.isEmpty(redis_key)) {
-			redisUtils.set("redis_key", loginfoget.getUser_email());
-		} else {
-			if (redis_key.split(",").length >= 5) {
-				throw new ErrListException(entityIn, entityIn.getIViewId(), "当前人数访问过多，请重试。。。");
-			} else {
-				redisUtils.addUser("redis_key", loginfoget.getUser_email());
-			}
-		}
+		// 限制登录人数
+		commonserviceimpl.stopLogin();
 
 		entityout.setBol02(Constant.STR_1);
 

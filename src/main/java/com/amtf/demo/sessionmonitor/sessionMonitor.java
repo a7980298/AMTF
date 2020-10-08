@@ -6,7 +6,11 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.amtf.demo.serviceImpl.CommonServiceImpl;
 import com.amtf.demo.user.LogInFo;
+import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.RedisUtils;
 
 /**
@@ -20,6 +24,9 @@ public class sessionMonitor implements HttpSessionListener {
 
 	@Resource
 	private RedisUtils redisUtils;
+
+	@Autowired
+	private CommonServiceImpl commonserviceimpl;
 
 	private int onlineCount = 0;// 记录session的数量
 
@@ -47,6 +54,8 @@ public class sessionMonitor implements HttpSessionListener {
 			loginfo = (LogInFo) session.getAttribute("loginfo");
 			// 销毁redis中的数据
 			redisUtils.deleteUser("redis_key", loginfo.getUser_email());
+			commonserviceimpl.users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? 0
+					: redisUtils.get("redis_key").split(",").length;
 		} catch (Exception e) {
 			System.out.println("销毁" + loginfo.getUser_email() + "失败");
 		}

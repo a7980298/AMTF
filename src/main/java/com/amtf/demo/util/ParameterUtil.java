@@ -177,4 +177,5 @@ public class ParameterUtil {
 		admin.setUsercount(StringUtil.toStr(NumberUtil.toInt(request.getSession().getAttribute("admin"))));
 		return admin;
 	}
+
 }

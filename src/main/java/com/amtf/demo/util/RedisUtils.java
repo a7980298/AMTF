@@ -78,7 +78,7 @@ public class RedisUtils {
 				String[] users = this.get(key).split(",");
 				String redis_key = "";
 				for (String string : users) {
-					if (!string.equals(value)) {
+					if (!string.equals(value) && !CommonUtil.isEmpty(string)) {
 						redis_key += string + ",";
 					}
 				}
