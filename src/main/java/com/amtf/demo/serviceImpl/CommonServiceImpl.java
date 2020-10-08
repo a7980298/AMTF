@@ -1,5 +1,7 @@
 package com.amtf.demo.serviceImpl;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class CommonServiceImpl {
 
 	public volatile int users;
 
+	public static ReentrantLock lock = new ReentrantLock(true);
+
 	// 限制登录人数
 	public synchronized void stopLogin() {
 		LogInFo loginfoget = new LogInFo();
@@ -29,9 +33,19 @@ public class CommonServiceImpl {
 			redisUtils.set("redis_key", loginfoget.getUser_email());
 			users = 1;
 		} else {
-			if (getUsers()) {
-				redisUtils.addUser("redis_key", loginfoget.getUser_email());
-				users = redis_key.split(",").length;
+			if (lock.tryLock()) {
+				try {
+					lock.lock();
+					while (users < 1) {
+						redisUtils.addUser("redis_key", loginfoget.getUser_email());
+						users = redis_key.split(",").length;
+						lock.newCondition().signal();
+					}
+				} finally {
+					lock.unlock();
+				}
+			} else {
+				stopLogin();
 			}
 		}
 	}

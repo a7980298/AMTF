@@ -21,6 +21,7 @@ import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.f010002Service;
+import com.amtf.demo.serviceImpl.CommonServiceImpl;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
@@ -33,6 +34,9 @@ public class f010002Controller extends ValiDationUtil {
 
 	@Autowired
 	f010002Service f010002service;
+
+	@Autowired
+	private CommonServiceImpl commonserviceimpl;
 
 	@Resource
 	private RedisUtils redisUtils;
@@ -80,6 +84,8 @@ public class f010002Controller extends ValiDationUtil {
 			redisUtils.delete(loginfo.getUser_email() + "navigation_bar");
 		}
 		redisUtils.deleteUser("redis_key", loginfo.getUser_email());
+		commonserviceimpl.users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? 0
+				: redisUtils.get("redis_key").split(",").length;
 		ParameterUtil.closeSession();
 
 		return "redirect:/f010001";
