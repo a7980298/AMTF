@@ -1,5 +1,6 @@
 package com.amtf.demo.serviceImpl;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.annotation.Resource;
@@ -25,7 +26,7 @@ public class CommonServiceImpl {
 	public static ReentrantLock lock = new ReentrantLock(true);
 
 	// 限制登录人数
-	public synchronized void stopLogin() {
+	public void stopLogin() {
 		LogInFo loginfoget = new LogInFo();
 		loginfoget = ParameterUtil.getSession();
 		String redis_key = redisUtils.get("redis_key");
@@ -33,21 +34,30 @@ public class CommonServiceImpl {
 			redisUtils.set("redis_key", loginfoget.getUser_email());
 			users = 1;
 		} else {
-			if (lock.tryLock()) {
-				try {
-					lock.lock();
-					while (users < 1) {
+			try {
+				lock.lock();
+				if (users < 1) {
+					redisUtils.addUser("redis_key", loginfoget.getUser_email());
+					users = redis_key.split(",").length;
+					return;
+				}
+				while (users >= 1) {
+					lock.newCondition().await(2, TimeUnit.SECONDS);
+					if (users < 1) {
 						redisUtils.addUser("redis_key", loginfoget.getUser_email());
 						users = redis_key.split(",").length;
-						lock.newCondition().signal();
+
+						return;
 					}
-				} finally {
-					lock.unlock();
 				}
-			} else {
-				stopLogin();
+				lock.newCondition().signal();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				lock.unlock();
 			}
 		}
+
 	}
 
 	public boolean getUsers() {
