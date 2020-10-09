@@ -1,4 +1,4 @@
-package com.amtf.demo.netty;
+package com.amtf.demo.nettyserver;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;

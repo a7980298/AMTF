@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.amtf.demo.netty.NettyServer;
+import com.amtf.demo.nettyserver.NettyServer;
 
 @SpringBootApplication
 @MapperScan("com.amtf.demo.dao")
