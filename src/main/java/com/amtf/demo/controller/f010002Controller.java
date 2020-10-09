@@ -30,8 +30,6 @@ import com.amtf.demo.util.RedisUtils;
 import com.amtf.demo.util.ValiDationUtil;
 import com.amtf.demo.websocketserver.WebSocketServer;
 
-import io.goeasy.GoEasy;
-
 @Controller
 public class f010002Controller extends ValiDationUtil {
 
@@ -181,11 +179,6 @@ public class f010002Controller extends ValiDationUtil {
 		ParameterUtil.copyParameter(params, entityOut);
 
 		model.addAttribute("f010002Params", params);
-		// 参数：服务器地址 , AppKey:commonKey
-		GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io", "BC-6bb634d86a8c493799745be104a4e0c0");
-
-		// 参数：管道标识，发送内容
-		goEasy.publish("my_channel", "Hello, GoEasy!");
 
 		return "main :: select5";
 	}

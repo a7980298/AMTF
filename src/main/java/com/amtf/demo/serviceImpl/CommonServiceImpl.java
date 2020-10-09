@@ -53,11 +53,11 @@ public class CommonServiceImpl {
 					return;
 				}
 				// 判断当前人数是否超过1人
-				while (users >= 1) {
+				while (users >= 2) {
 					// 等待2秒
 					lock.newCondition().await(2, TimeUnit.SECONDS);
 					// 如果没有超过则登录
-					if (users < 1) {
+					if (users < 2) {
 						redisUtils.addUser("redis_key", loginfoget.getUser_email());
 						users = redis_key.split(",").length;
 						return;

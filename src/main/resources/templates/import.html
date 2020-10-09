@@ -99,11 +99,24 @@
 			host : 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
 			appkey : "BC-6bb634d86a8c493799745be104a4e0c0", //替换为您的应用appkey
 		});
+		// 接受信息
 		goEasy.subscribe({
-		    channel: "my_channel", //替换为您自己的channel
-		    onMessage: function (message) {
-		        console.log("Channel:" + message.channel + " content:" + message.content);
-		    }
+			channel : "amtf_channel", //替换为您自己的channel
+			onMessage : function(message) {
+				var _updontice_size = 1;
+				if ($('#updontice_size').text() != '') {
+					_updontice_size = parseInt($('#updontice_size').text()) + 1;
+				}
+				$('#i_notifications').after("<span class='notification' id='updontice_size'></span>");
+				$('#updontice_size').text(_updontice_size);
+				var _entity = new Array(); 
+				_entity = message.content.split(',');
+				if ($('#showupdnotice').find('a').length == 0) {
+					$('#navbarDropdownMenuLink').after("<div class='dropdown-menu dropdown-menu-right' id='showupdnotice' aria-labelledby='navbarDropdownMenuLink'><a class='dropdown-item updnotice' data-toggle='modal' onclick='amtf_getupdontice(" + _entity[0] + "," + _entity[1] + "," + _entity[2] + ")'>" + _entity[1] + "</a></div>");
+				} else {
+					$('#showupdnotice').append("<a class='dropdown-item updnotice' data-toggle='modal' onclick='amtf_getupdontice(" + _entity[0] + "," + _entity[1] + "," + _entity[2] + ")'>" + _entity[1] + "</a>");
+				}
+			}
 		});
 		// 初始化方法
 		$(function() {

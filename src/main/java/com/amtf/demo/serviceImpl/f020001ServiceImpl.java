@@ -32,6 +32,7 @@ import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
 import com.amtf.demo.util.StringUtil;
 
+import io.goeasy.GoEasy;
 import jp.co.adv.excelcreator.creator.XlsxCreator;
 import lombok.RequiredArgsConstructor;
 
@@ -195,10 +196,14 @@ public class f020001ServiceImpl implements f020001Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
+		// 参数：服务器地址 , AppKey:commonKey
+		GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io", "BC-6bb634d86a8c493799745be104a4e0c0");
+		int id = CommonUtil.isEmpty(commondao.common_Select2()) ? 0 : commondao.common_Select2() + 1;
+		// 参数：管道标识，发送内容
+		goEasy.publish("amtf_channel", id + "," + entityin.getRelease_head() + "," + entityin.getRelease_name());
 		try {
-			f020001dao.f020001_insert3(
-					CommonUtil.isEmpty(commondao.common_Select2()) ? 0 : commondao.common_Select2() + 1,
-					loginfo.getUser_email(), entityin.getRelease_head(), entityin.getRelease_name());
+			f020001dao.f020001_insert3(id, loginfo.getUser_email(), entityin.getRelease_head(),
+					entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
 		}
