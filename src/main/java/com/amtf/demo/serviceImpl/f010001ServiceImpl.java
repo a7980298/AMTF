@@ -89,10 +89,10 @@ public class f010001ServiceImpl implements f010001Service {
 				}
 			}
 		}
-		// 用户信息存入Session
-		ParameterUtil.setSession(select1entity);
 		// 限制登录人数
 		commonserviceimpl.stopLogin();
+		// 用户信息存入Session
+		ParameterUtil.setSession(select1entity);
 
 		entityout.setBol02(Constant.STR_1);
 
