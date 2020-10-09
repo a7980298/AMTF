@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.amtf.demo.nettyclient.NettyClient;
 import com.amtf.demo.nettyserver.NettyServer;
 
 @SpringBootApplication
@@ -18,9 +19,12 @@ public class MybootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MybootApplication.class, args);
-		// 启动服务端
+		// 启动netty服务端
 		NettyServer nettyServer = new NettyServer();
 		nettyServer.start(new InetSocketAddress("127.0.0.1", 8090));
+		// 启动netty客户端
+		NettyClient nettyClient = new NettyClient();
+		nettyClient.start();
 	}
 	/*
 	 * @Bean MultipartConfigElement multipartConfigElement() {
