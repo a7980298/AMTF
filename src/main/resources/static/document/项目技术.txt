@@ -1,8 +1,8 @@
 Boostarp
 Jq
 vue
-GoEasy
-Netty
+GoEasy   实时通信，聊天，服务器广播>>>>>>>https://console.goeasy.io/#/
+Netty    一个好使的处理Socket的东东，提供异步的、事件驱动的网络应用程序框架和工具
 SpringBoot
 Mybatis
 Mysql
