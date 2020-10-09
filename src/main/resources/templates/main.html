@@ -16,27 +16,172 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
 <style type="text/css">
-	#wrapperid::-webkit-scrollbar{
-	width: 2px;
-	background: none;
+	#wrapperid::-webkit-scrollbar {
+		width: 2px;
+		background: none;
 	}
-	.back-color-red{
-		background-color:red;
+	
+	.back-color-red {
+		background-color: red;
+	}
+	
+	li {
+		list-style: none;
+	}
+	
+	.leftbar ul {
+		padding: 0px;
+	}
+	
+	.leftbar li {
+		padding: 10px;
+	}
+	
+	.leftbar {
+		background-color: #212e3e;
+		width: 50px;
+		height: 100%;
+		color: grey;
+		padding: 0px;
+		text-align: center;
+		position: absolute;
+	}
+	/* .container {
+	    height: 100%;
+	    width: 100%;
+	    background:  linear-gradient(#1f94bf 20%,#edf5f8 0, #edf5f8 80%, #1f94bf 0);
+	    display: flex;
+	    margin: 0;
+	} */
+	.chatbox {
+		margin: auto;
+		height: 90%;
+		width: 100%;
+		transform: translateY(-10%);
+		box-shadow: 0 0 0 1px gray;
+		display: flex;
+	}
+	
+	.chatleft {
+		background-color: #ffffff;
+		width: 25%;
+		left: 0;
+		height: 100%;
+	}
+	
+	.chatleft .top {
+		height: 10%;
+		color: grey;
+		background-color: #F7F9F9;
+		display: flex;
+		align-items: center;
+		padding-left: 20px;
+	}
+	
+	.searchbtn {
+		height: 36px;
+		width: 36px;
+		border-radius: 18px;
+		background-color: #1f94bf;
+		color: #ECF0F1;
+		margin-left: 10px;
+	}
+	
+	.searchbtn:hover {
+		cursor: pointer;
+	}
+	
+	.chatleft .center {
+		overflow-y: scroll;
+		height: 90%;
+	}
+	
+	.chatleft .center ul {
+		padding-left: 10px;
+	}
+	
+	.chatleft .center li {
+		margin: 10px;
+	}
+	
+	.chatright {
+		background-color: #ffffff;
+		width: 75%;
+		height: 100%;
+	}
+	
+	.chatright .top {
+		height: 10%;
+		display: flex;
+		align-items: center;
+		padding-left: 30px;
+	}
+	
+	.chatright .center {
+		background-color: #edf5f8;
+		height: 65%;
+		overflow-y: scroll;
+	}
+	
+	.chatright .center ul {
+		padding: 10px;
+	}
+	
+	.chatright .center li {
+		margin: 10px;
+		width: 100%;
+	}
+	
+	.chatright .center p {
+		display: inline-block;
+	}
+	
+	.msgcard {
+		margin: 0 10px 0 10px;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		max-width: 60%;
+	}
+	
+	.msgleft {
+		float: left;
+	}
+	
+	.msgright {
+		/* float: right; */
+		
+	}
+	
+	.chatright .footer {
+		height: 25%;
+		background-color: #FBFCFC;
+		text-align: right;
+	}
+	
+	.sendbtn {
+		height: 40px;
+		width: 80px;
+		border-radius: 10px;
+		background-color: #58D68D;
+		color: white;
+		font-weight: bold;
+		margin: 10px 20px 0 0;
 	}
 </style>
 <script type="text/javascript">
 	// 初始化处理
-	$(function(){
-		$('#file0').change(function(){
+	$(function() {
+		$('#file0').change(function() {
 			//获取图片途径
-			var objUrl = getObjectURL(this.files[0]) ;
+			var objUrl = getObjectURL(this.files[0]);
 			//判断是否存在
 			if (objUrl) {
-				$("#img2").attr("src", objUrl) ;
-				$("#img2").show() ;
+				$("#img2").attr("src", objUrl);
+				$("#img2").show();
 			}
-		}) ;
-		$('#img2').attr('src',$('#img2').attr('src') + '?r=' + Math.random());
+		});
+		$('#img2').attr('src', $('#img2').attr('src') + '?r=' + Math.random());
 	})
 	//取最新通知
 	/* var interval = window.setInterval(getNewUpdnotice, 1000);
@@ -885,7 +1030,42 @@
 				<div class="container-fluid dashboardclass" id="f100001" style="display: none;">
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formchat" enctype="multipart/form-data">
-						
+							<div class="chatbox">
+								<div class="chatleft">
+									<div class="top">
+										<input type="text" placeholder="搜索联系人" class="col-sm-12 form-control">
+										<button class="searchbtn">
+											<i class="fa fa-search"></i>
+										</button>
+									</div>
+									<div class="center">
+										<ul>
+											<li>
+												<img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
+												<span style="margin-left: 10px;">小张</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="chatright">
+									<div class="top">
+										<img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
+										<span style="margin-left: 20px;">小张</span> 
+									</div>
+									<div class="center">
+										<ul>
+											<li class="msgleft">
+												<img style="border-radius: 20px; vertical-align: top;" class="ml-2" src="http://placehold.it/40x40">
+												<p class="msgcard">你吃饭了吗？</p>
+											</li>
+										</ul>
+									</div>
+									<div class="footer">
+										<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..."></textarea>
+										<button class="btn sendbtn">发送</button>
+									</div>
+								</div>
+							</div>
 						</i-form>
 					</div>
 				</div>
