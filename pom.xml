@@ -20,7 +20,16 @@
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
-
+	<repositories>
+		<repository>
+			<id>goeasy</id>
+			<name>goeasy</name>
+			<url>
+				http://maven.goeasy.io/content/repositories/releases/
+			</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 		<!-- 配置SpringBoot相关的jar包 -->
 		<dependency>
@@ -202,18 +211,11 @@
 		<!-- GoEasy消息推送 -->
 		<dependency>
 			<groupId>io.goeasy</groupId>
-				<artifactId>goeasy-sdk</artifactId>
-			<version>0.3.5</version>
+			<artifactId>goeasy-sdk</artifactId>
+			<version>0.3.14</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<!-- GoEasy消息推送 -->
-		<repository>
-			<id>goeasy</id>
-			<name>goeasy</name>
-			<url>http://maven.goeasy.io/content/repositories/releases/</url>
-		</repository>
-	</repositories>
+	
 
 	<build>
 		<plugins>

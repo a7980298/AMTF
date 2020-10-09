@@ -60,19 +60,6 @@
 			});
 		}
 	} */
-	goEasy.subscribe({
-		channel : "my_channe1", //替换为您自己的channel
-		onMessage : function(message) {
-			console.log("Channel:" + message.channel + " content:"
-					+ message.content);
-		}
-	});
-	goEasy.publish({
-	    channel: "my_channe1", //替换为您自己的channel
-	    message: "Hello, GoEasy!" //替换为您想要发送的消息内容
-	});
-	GoEasy goEasy = new GoEasy( "http(s)://<REST Host>", "amtf_appkey");
-			goEasy.publish("my_channe1", "Hello, GoEasy!");
 	/* WebSocket 使用 
 	var socket;
 	function openSocket() {
@@ -487,7 +474,7 @@
 				<!-- 主画面 -->
 				<div class="container-fluid dashboardclass" id="main">
 					<div class="container-fluid">
-						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formmusic" enctype="multipart/form-data">
+						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formmain" enctype="multipart/form-data">
 						主画面
 						<p>【userId】：
 							<div>

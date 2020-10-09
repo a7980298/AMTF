@@ -97,7 +97,13 @@
 		// 初始化GoEasy
 		var goEasy = new GoEasy({
 			host : 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
-			appkey : "amtf_appkey", //替换为您的应用appkey
+			appkey : "BC-6bb634d86a8c493799745be104a4e0c0", //替换为您的应用appkey
+		});
+		goEasy.subscribe({
+		    channel: "my_channel", //替换为您自己的channel
+		    onMessage: function (message) {
+		        console.log("Channel:" + message.channel + " content:" + message.content);
+		    }
 		});
 		// 初始化方法
 		$(function() {
