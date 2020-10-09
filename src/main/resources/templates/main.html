@@ -60,6 +60,20 @@
 			});
 		}
 	} */
+	goEasy.subscribe({
+		channel : "my_channe1", //替换为您自己的channel
+		onMessage : function(message) {
+			console.log("Channel:" + message.channel + " content:"
+					+ message.content);
+		}
+	});
+	goEasy.publish({
+	    channel: "my_channe1", //替换为您自己的channel
+	    message: "Hello, GoEasy!" //替换为您想要发送的消息内容
+	});
+	GoEasy goEasy = new GoEasy( "http(s)://<REST Host>", "amtf_appkey");
+			goEasy.publish("my_channe1", "Hello, GoEasy!");
+	/* WebSocket 使用 
 	var socket;
 	function openSocket() {
 		if (typeof (WebSocket) == "undefined") {
@@ -108,7 +122,7 @@
 			socket.send('{"toUserId":"' + $("#toUserId").val()
 					+ '","contentText":"' + $("#contentText").val() + '"}');
 		}
-	}
+	} */
 	// 点击通知铃铛
 	function amtf_updonticeclick() {
 		if ($('.updnotice').length <= 0) {
@@ -475,12 +489,27 @@
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formmusic" enctype="multipart/form-data">
 						主画面
-						
-						<p>【userId】：<div><input id="userId" name="userId" type="text" value="10"></div>
-<p>【toUserId】：<div><input id="toUserId" name="toUserId" type="text" value="20"></div>
-<p>【toUserId】：<div><input id="contentText" name="contentText" type="text" value="hello websocket"></div>
-<p>【操作】：<div><a onclick="openSocket()">开启socket</a></div>
-<p>【操作】：<div><a onclick="sendMessage()">发送消息</a></div>
+						<p>【userId】：
+							<div>
+								<input id="userId" name="userId" type="text" value="10">
+							</div>
+						<p>【toUserId】：
+						<div>
+							<input id="toUserId" name="toUserId" type="text" value="20">
+						</div>
+						<p>【toUserId】：
+							<div>
+								<input id="contentText" name="contentText" type="text"
+									value="hello websocket">
+							</div>
+						<p>【操作】：
+						<div>
+							<a onclick="openSocket()">开启socket</a>
+						</div>
+						<p>【操作】：
+							<div>
+								<a onclick="sendMessage()">发送消息</a>
+							</div>
 						</i-form>
 					</div>
 				</div>

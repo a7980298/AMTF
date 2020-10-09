@@ -39,6 +39,9 @@ public class f010002Controller extends ValiDationUtil {
 	@Autowired
 	private CommonServiceImpl commonserviceimpl;
 
+	@Autowired
+	private WebSocketServer websocketserver;
+
 	@Resource
 	private RedisUtils redisUtils;
 
@@ -59,8 +62,6 @@ public class f010002Controller extends ValiDationUtil {
 
 		// 将值copy赋值
 		ParameterUtil.copyParameter(params, entityOut);
-
-		WebSocketServer.sendInfo("hah", "toUserId");
 
 		model.addAttribute("f010002Params", params);
 

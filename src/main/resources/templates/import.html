@@ -71,6 +71,11 @@
 		<script type="text/javascript" th:src="@{/js/zh.js}"></script>-->
 		<!-- scss文件 -->
 		<link th:href="@{/scss/import.scss}">
+		<!-- GoEasy实时通信 -->
+		<!--[if lte IE 8]>//如果需要支持低版本的IE8及以下
+		<script  type="text/javascript" src="https://cdn.goeasy.io/json2.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="https://cdn.goeasy.io/goeasy-1.1.1.js"></script>
 	</head>
 	<body>
 		<!-- <th:block th:replace="~{codeErr :: codeErr}"></th:block>
@@ -89,6 +94,11 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		// 初始化GoEasy
+		var goEasy = new GoEasy({
+			host : 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
+			appkey : "amtf_appkey", //替换为您的应用appkey
+		});
 		// 初始化方法
 		$(function() {
 			//setErrList("[[${errMessageList}]]");
@@ -104,26 +114,26 @@
 			//demo.showSwal();
 		});
 		/* 鼠标移动事件 */
-		$(document).mouseover(function(){
+		$(document).mouseover(function() {
 			//更新操作时间
 			lastTime = new Date().getTime();
 		});
 		var lastTime = new Date().getTime();
 		var currentTime = new Date().getTime();
 		//设置超时时间： 10分
-		var timeOut = 3 * 60 * 1000; 
+		var timeOut = 3 * 60 * 1000;
 		// 超长待机后进入锁定画面
-		function testTime(){
+		function testTime() {
 			//更新当前时间
 			currentTime = new Date().getTime();
 			//判断是否超时
-			if(currentTime - lastTime > timeOut){
-				amtf_submit(amtf_form , '/f010002/T003');
+			if (currentTime - lastTime > timeOut) {
+				amtf_submit(amtf_form, '/f010002/T003');
 			}
 		}
 		// 每一个form表达都进行check
 		function formCheck() {
-			$('form').each(function(){
+			$('form').each(function() {
 				setFormValidation('#' + this.id);
 			});
 		}

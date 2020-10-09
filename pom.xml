@@ -199,7 +199,21 @@
 			<artifactId>hutool-all</artifactId>
 			<version>4.1.1</version>
 		</dependency>
+		<!-- GoEasy消息推送 -->
+		<dependency>
+			<groupId>io.goeasy</groupId>
+				<artifactId>goeasy-sdk</artifactId>
+			<version>0.3.5</version>
+		</dependency>
 	</dependencies>
+	<repositories>
+		<!-- GoEasy消息推送 -->
+		<repository>
+			<id>goeasy</id>
+			<name>goeasy</name>
+			<url>http://maven.goeasy.io/content/repositories/releases/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
