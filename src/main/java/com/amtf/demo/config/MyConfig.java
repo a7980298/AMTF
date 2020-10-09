@@ -17,7 +17,8 @@ public class MyConfig implements WebMvcConfigurer {
 
 	// 拦截器排除路径
 	final String[] notLoginInterceptPaths = { "/", "/f010001", "/dashboard", "/main", "/register", "/login",
-			"/f010001/T001", "/f010001/T002", "/f010001/T003", "/error", "/js/**", "/css/**", "/imgs/**", "/img/**" };
+			"/imserver/**", "/f010001/T001", "/f010001/T002", "/f010001/T003", "/error", "/js/**", "/css/**",
+			"/imgs/**", "/img/**" };
 	final String[] getAdminPaths = { "/", "/err", "/js/**", "/css/**", "/imgs/**" };
 
 	@Autowired

@@ -39,7 +39,7 @@
 		$('#img2').attr('src',$('#img2').attr('src') + '?r=' + Math.random());
 	})
 	//取最新通知
-	var interval = window.setInterval(getNewUpdnotice, 1000);
+	/* var interval = window.setInterval(getNewUpdnotice, 1000);
 	function getNewUpdnotice(){
 		if(!$('#showupdnotice').hasClass('show')) {
 			$.ajax({
@@ -59,61 +59,110 @@
 				},
 			});
 		}
+	} */
+	var socket;
+	function openSocket() {
+		if (typeof (WebSocket) == "undefined") {
+			console.log("您的浏览器不支持WebSocket");
+		} else {
+			console.log("您的浏览器支持WebSocket");
+			//实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+			//等同于socket = new WebSocket("ws://localhost:8888/xxxx/im/25");
+			//var socketUrl="${request.contextPath}/im/"+$("#userId").val();
+			var socketUrl = "http://localhost:8080/amtf/imserver/"
+					+ $("#userId").val();
+			socketUrl = socketUrl.replace("https", "ws").replace("http", "ws");
+			console.log(socketUrl);
+			if (socket != null) {
+				socket.close();
+				socket = null;
+			}
+			socket = new WebSocket(socketUrl);
+			//打开事件
+			socket.onopen = function() {
+				console.log("websocket已打开");
+				//socket.send("这是来自客户端的消息" + location.href + new Date());
+			};
+			//获得消息事件
+			socket.onmessage = function(msg) {
+				console.log(msg.data);
+				//发现消息进入    开始处理前端触发逻辑
+			};
+			//关闭事件
+			socket.onclose = function() {
+				console.log("websocket已关闭");
+			};
+			//发生了错误事件
+			socket.onerror = function() {
+				console.log("websocket发生了错误");
+			}
+		}
+	}
+	function sendMessage() {
+		if (typeof (WebSocket) == "undefined") {
+			console.log("您的浏览器不支持WebSocket");
+		} else {
+			console.log("您的浏览器支持WebSocket");
+			console.log('{"toUserId":"' + $("#toUserId").val()
+					+ '","contentText":"' + $("#contentText").val() + '"}');
+			socket.send('{"toUserId":"' + $("#toUserId").val()
+					+ '","contentText":"' + $("#contentText").val() + '"}');
+		}
 	}
 	// 点击通知铃铛
 	function amtf_updonticeclick() {
-		if($('.updnotice').length <= 0){
-			md.showNotification('bottom','center','2' ,'当前没有管理员发布通知。。。')
+		if ($('.updnotice').length <= 0) {
+			md.showNotification('bottom', 'center', '2', '当前没有管理员发布通知。。。')
 		}
 	}
 	// 注销
 	function amtf_return() {
-		amtf_submit(amtf_form , '/f010002/T001');
+		amtf_submit(amtf_form, '/f010002/T001');
 	}
 	// 导航栏页面跳转
-	function amtf_skip(ulid,liid){
-		var path = $('#ul' + ulid +'_li' + liid).val(); 
+	function amtf_skip(ulid, liid) {
+		var path = $('#ul' + ulid + '_li' + liid).val();
 		if (path == 'f020001') {
 			loginshowdiv();
-			amtf_submit(amtf_form , '/' + path);
+			amtf_submit(amtf_form, '/' + path);
 		} else {
-			
+
 		}
 	}
 	// 修改用户信息
-	function amtf_upduser(){
-		amtf_submit(amtf_formupduser , '/f010002/T002');
+	function amtf_upduser() {
+		amtf_submit(amtf_formupduser, '/f010002/T002');
 	}
 	// 锁定页面
-	function amtf_golock(){
-		amtf_submit(amtf_formupduser , '/f010002/T003');
+	function amtf_golock() {
+		amtf_submit(amtf_formupduser, '/f010002/T003');
 	}
 	// 相同class点击后颜色变化
-	function amtf_setColor(_this){
-		$('.coloritme').each(function(){
+	function amtf_setColor(_this) {
+		$('.coloritme').each(function() {
 			$(this).removeClass('active');
-			$(this).find('a').eq(0).css('background-color','');
+			$(this).find('a').eq(0).css('background-color', '');
 		});
 		$(_this).addClass('active');
-		$(_this).find('a').eq(0).css('background-color','#e91e63');
+		$(_this).find('a').eq(0).css('background-color', '#e91e63');
 	}
 	// 打开详细通知
-	function amtf_getupdontice(_id,_head,_text) {
+	function amtf_getupdontice(_id, _head, _text) {
 		$('#getupdontice').modal('show');
 		showdiv();
 		$.ajax({
-			url: CONTEXT_PATH + '/f010002/T004',
-			type: 'post',
-			dateType: 'html',
-			async: true,
-			data: {
-				id: _id,
+			url : CONTEXT_PATH + '/f010002/T004',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : _id,
 			},
-			success: function (result) {
+			success : function(result) {
 				hidediv();
 				$('#select5').replaceWith(result);
 			},
-			error: function (res, textStaus) {
+			error : function(res, textStaus) {
 				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
@@ -124,7 +173,7 @@
 	// 登陆页面head选中样式变换
 	function amtf_loginhead(_this) {
 		$('.dashboardclass').each(function() {
-			$(this).css('display','none');
+			$(this).css('display', 'none');
 			$(this).removeClass('show');
 			$(this).removeClass('collapse');
 		});
@@ -137,7 +186,7 @@
 		$('#' + _href).addClass('show');
 	}
 	//改变状态
-	function amtf_uplook(_index){
+	function amtf_uplook(_index) {
 		$('#updnotice_y' + _index).text('已读');
 		$('#updnotice_y' + _index).removeClass('col-r');
 	}
@@ -146,62 +195,81 @@
 		$('#getactivity').modal('show');
 		$('#activity_modal_head').text(_this.activity_head);
 		if (_this.activity_img1 != '') {
-			$('#activity_modal_img1').css('display','block');
-			$('#activity_modal_img1').attr('src', '/amtf/activityimg/' + _this.activity_img1 + '?r=' + Math.random());
+			$('#activity_modal_img1').css('display', 'block');
+			$('#activity_modal_img1').attr(
+					'src',
+					'/amtf/activityimg/' + _this.activity_img1 + '?r='
+							+ Math.random());
 		} else {
-			$('#activity_modal_img1').css('display','none');
+			$('#activity_modal_img1').css('display', 'none');
 		}
 		if (_this.activity_img2 != '') {
-			$('#activity_modal_img2').css('display','block');
-			$('#activity_modal_img2').attr('src', '/amtf/activityimg/' + _this.activity_img2+ '?r=' + Math.random());
+			$('#activity_modal_img2').css('display', 'block');
+			$('#activity_modal_img2').attr(
+					'src',
+					'/amtf/activityimg/' + _this.activity_img2 + '?r='
+							+ Math.random());
 		} else {
-			$('#activity_modal_img2').css('display','none');
+			$('#activity_modal_img2').css('display', 'none');
 		}
 		if (_this.activity_img3 != '') {
-			$('#activity_modal_img3').css('display','block');
-			$('#activity_modal_img3').attr('src', '/amtf/activityimg/' + _this.activity_img3+ '?r=' + Math.random());
+			$('#activity_modal_img3').css('display', 'block');
+			$('#activity_modal_img3').attr(
+					'src',
+					'/amtf/activityimg/' + _this.activity_img3 + '?r='
+							+ Math.random());
 		} else {
-			$('#activity_modal_img3').css('display','none');
+			$('#activity_modal_img3').css('display', 'none');
 		}
 		if (_this.activity_img4 != '') {
-			$('#activity_modal_img4').css('display','block');
-			$('#activity_modal_img4').attr('src', '/amtf/activityimg/' + _this.activity_img4+ '?r=' + Math.random());
+			$('#activity_modal_img4').css('display', 'block');
+			$('#activity_modal_img4').attr(
+					'src',
+					'/amtf/activityimg/' + _this.activity_img4 + '?r='
+							+ Math.random());
 		} else {
-			$('#activity_modal_img4').css('display','none');
+			$('#activity_modal_img4').css('display', 'none');
 		}
 		if (_this.activity_img5 != '') {
-			$('#activity_modal_img5').css('display','block');
-			$('#activity_modal_img5').attr('src', '/amtf/activityimg/' + _this.activity_img5+ '?r=' + Math.random());
+			$('#activity_modal_img5').css('display', 'block');
+			$('#activity_modal_img5').attr(
+					'src',
+					'/amtf/activityimg/' + _this.activity_img5 + '?r='
+							+ Math.random());
 		} else {
-			$('#activity_modal_img5').css('display','none');
+			$('#activity_modal_img5').css('display', 'none');
 		}
 		$('#activity_modal_activitytext').text(_this.activity_text);
-		$('#activity_modal_activityname').text('发布人：' + _this.activity_name + '  自   ' + _this.activity_time + '发起');
-		$('#activity_modal_activityymd').text('活动日期：' + _this.activity_sttymd + '开始，' + _this.activity_endymd + '结束');
+		$('#activity_modal_activityname').text(
+				'发布人：' + _this.activity_name + '  自   ' + _this.activity_time
+						+ '发起');
+		$('#activity_modal_activityymd').text(
+				'活动日期：' + _this.activity_sttymd + '开始，' + _this.activity_endymd
+						+ '结束');
 		$('#activity_modal_activityid').val(_this.activity_id);
 	}
 	// 参加活动
 	function amtf_setusetactivity() {
 		showdiv();
 		$.ajax({
-			url: CONTEXT_PATH + '/f010002/T006',
-			type: 'post',
-			dateType: 'html',
-			async: true,
-			data: {
-				id: $('#activity_modal_activityid').val(),
+			url : CONTEXT_PATH + '/f010002/T006',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : $('#activity_modal_activityid').val(),
 			},
-			success: function (result) {
+			success : function(result) {
 				hidediv();
 				if (result.isuseractivity > 0) {
-					md.showNotification('top','center','3' ,'参加成功。。。')
-				} else if (result.isuseractivity == 0){
+					md.showNotification('top', 'center', '3', '参加成功。。。')
+				} else if (result.isuseractivity == 0) {
 					setCodeErrList("错误！！！请和管理员联系。。。");
 				} else {
-					md.showNotification('bottom','center','2' ,'你已经参加过了。。。')
+					md.showNotification('bottom', 'center', '2', '你已经参加过了。。。')
 				}
 			},
-			error: function (res, textStaus) {
+			error : function(res, textStaus) {
 				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
@@ -216,37 +284,37 @@
 		if ($('#_imgcheck').is(':checked')) {
 			_imgcheck = '1';
 		}
-		$('.side_setupcolor').each(function(){
-			if($(this).hasClass('active')){
+		$('.side_setupcolor').each(function() {
+			if ($(this).hasClass('active')) {
 				_color = $(this).attr('data-color');
 			}
 		});
-		$('.side_setupbackgroundcolor').each(function(){
-			if($(this).hasClass('active')){
+		$('.side_setupbackgroundcolor').each(function() {
+			if ($(this).hasClass('active')) {
 				_background_color = $(this).attr('data-background-color');
 			}
 		});
-		$('.side_serupimg').each(function(){
-			if($(this).hasClass('active')){
-				_imgid = $(this),find('img').attr('id');
+		$('.side_serupimg').each(function() {
+			if ($(this).hasClass('active')) {
+				_imgid = $(this), find('img').attr('id');
 			}
 		});
 		showdiv();
 		$.ajax({
-			url: CONTEXT_PATH + '/f010002/T007',
-			type: 'post',
-			dateType: 'html',
-			async: true,
-			data: {
-				color: _color,
+			url : CONTEXT_PATH + '/f010002/T007',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				color : _color,
 				background_color : _background_color,
 				imgcheck : _imgcheck,
 				imgid : _imgid
 			},
-			success: function (result) {
+			success : function(result) {
 				hidediv();
 			},
-			error: function (res, textStaus) {
+			error : function(res, textStaus) {
 				hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
@@ -407,6 +475,12 @@
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formmusic" enctype="multipart/form-data">
 						主画面
+						
+						<p>【userId】：<div><input id="userId" name="userId" type="text" value="10"></div>
+<p>【toUserId】：<div><input id="toUserId" name="toUserId" type="text" value="20"></div>
+<p>【toUserId】：<div><input id="contentText" name="contentText" type="text" value="hello websocket"></div>
+<p>【操作】：<div><a onclick="openSocket()">开启socket</a></div>
+<p>【操作】：<div><a onclick="sendMessage()">发送消息</a></div>
 						</i-form>
 					</div>
 				</div>

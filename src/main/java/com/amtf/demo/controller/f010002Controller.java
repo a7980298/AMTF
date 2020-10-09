@@ -28,6 +28,7 @@ import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
 import com.amtf.demo.util.ValiDationUtil;
+import com.amtf.demo.websocketserver.WebSocketServer;
 
 @Controller
 public class f010002Controller extends ValiDationUtil {
@@ -58,6 +59,8 @@ public class f010002Controller extends ValiDationUtil {
 
 		// 将值copy赋值
 		ParameterUtil.copyParameter(params, entityOut);
+
+		WebSocketServer.sendInfo("hah", "toUserId");
 
 		model.addAttribute("f010002Params", params);
 
