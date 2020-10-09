@@ -98,10 +98,12 @@ public class RedisUtils {
 		if (!CommonUtil.isEmpty(value)) {
 			try {
 				String redis_key = this.get(key);
-				if (!redis_key.contains(value)) {
-					redis_key += "," + value;
-					this.set(key, redis_key);
+				if (!CommonUtil.isEmpty(redis_key)) {
+					if (!redis_key.contains(value)) {
+						redis_key += "," + value;
+					}
 				}
+				this.set(key, value);
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();

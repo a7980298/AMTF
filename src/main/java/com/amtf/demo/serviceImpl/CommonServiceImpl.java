@@ -14,6 +14,12 @@ import com.amtf.demo.util.RedisUtils;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 限制人数登录
+ * 
+ * @author wyx
+ *
+ */
 @Service
 @RequiredArgsConstructor
 public class CommonServiceImpl {
@@ -54,7 +60,6 @@ public class CommonServiceImpl {
 					if (users < 1) {
 						redisUtils.addUser("redis_key", loginfoget.getUser_email());
 						users = redis_key.split(",").length;
-
 						return;
 					}
 				}
