@@ -147,10 +147,24 @@
 			<artifactId>commons-pool2</artifactId>
 			<version>2.6.0</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
-		<!-- websocket依赖 在线聊天-->
+		<!-- websocket依赖 在线聊天,广播-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		<!-- Netty -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.36.Final</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<!-- 引入本地jar包 -->
 		<dependency>
