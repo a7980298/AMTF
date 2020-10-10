@@ -421,8 +421,10 @@
 		});
 	}
 	// 聊天选择
-	function amtf_getChat(_userid) {
-		_toUserId = _userid;
+	function amtf_getChat(_this) {
+		_toUserId = $(_this).find('span').eq(0).text();
+		$('#others_userimg').attr('src',$(_this).find('img').eq(0).attr('src'));
+		$('#others_user').text($(_this).find('span').eq(0).text());
 	}
 </script>
 <body class="" onunload="myFunction()">
@@ -985,9 +987,9 @@
 								<div class="center" id="adduser">
 									<ul th:each="entity,idx:${f010002Params.userList}">
 										<li>
-											<img style="height:40px;" th:src="@{/imgs/userimg.jpg}" th:if="${entity.userpath == ''}">
-											<img style="height:40px;" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.userpath})}" th:if="${entity.userpath != ''}">
-											<a class="nav-link" href="#" th:onclick="amtf_getChat([[${'entity.userid'}]])">
+											<a class="nav-link" href="#" onclick="amtf_getChat(this)">
+												<img style="height:40px;" th:src="@{/imgs/userimg.jpg}" th:if="${entity.userpath == ''}">
+												<img style="height:40px;" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.userpath})}" th:if="${entity.userpath != ''}">
 												<span style="margin-left: 10px;">[[${entity.userid}]]</span>
 											</a>
 										</li>
@@ -996,8 +998,8 @@
 							</div>
 							<div class="chatright">
 								<div class="top">
-									<!-- <img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
-									<span style="margin-left: 20px;">小张</span>  -->
+									<img style="height:40px;" src="" id="others_userimg">
+									<span style="margin-left: 20px;" id="others_user"></span> 
 								</div>
 								<div class="center">
 									<!-- <ul>

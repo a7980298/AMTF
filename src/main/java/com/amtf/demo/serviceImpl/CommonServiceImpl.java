@@ -46,7 +46,7 @@ public class CommonServiceImpl {
 				// 锁住当前线程
 				lock.lock();
 				// 判断用户人数是否超过1人
-				if (users < 1) {
+				if (users < 2) {
 					// 没有超过则登录
 					redisUtils.addUser("redis_key", loginfoget.getUser_email());
 					users = redis_key.split(",").length;

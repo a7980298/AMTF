@@ -103,7 +103,7 @@ public class RedisUtils {
 						redis_key += "," + value;
 					}
 				}
-				this.set(key, value);
+				this.set(key, redis_key);
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();

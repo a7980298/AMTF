@@ -378,7 +378,7 @@ function openSocket(_user_email) {
 				} else {
 					_imgpath = '/amtf/istatic/' + _entity[1];
 				}
-				$('#adduser').append("<ul><li><img style='height:40px;' src='" + _imgpath + "'><a class='nav-link' href='#' onclick='amtf_getChat(\"" + _entity[0] + "\")'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
+				$('#adduser').append("<ul><li><img style='height:40px;' src='" + _imgpath + "'><a class='nav-link' href='#' onclick='amtf_getChat(this)'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
 			}
 			console.log(msg.data);
 			//发现消息进入    开始处理前端触发逻辑
