@@ -26,9 +26,4 @@ public class MybootApplication {
 		NettyClient nettyClient = new NettyClient();
 		nettyClient.start();
 	}
-	/*
-	 * @Bean MultipartConfigElement multipartConfigElement() {
-	 * MultipartConfigFactory factory = new MultipartConfigFactory();
-	 * factory.setLocation("/app/tmp"); return factory.createMultipartConfig(); }
-	 */
 }
