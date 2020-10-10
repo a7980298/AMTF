@@ -372,7 +372,13 @@ function openSocket(_user_email) {
 			var data;
 			try{
 				data = JSON.parse(msg.data);
-				$('#chat_text').append("<li class='msgright'><img style='float: left;height:40px;' src=''><p class='msgcard' style='float:left;'>"+ data.contentText +"</p></li>");
+				var userimg;
+				if(data.fromUserId == ''){
+					userimg = '/amtf/imgs/userimg.jpg';
+				} else {
+					userimg = '/amtf/istatic/' + data.fromUserId;
+				}
+				$('#chat_text').append("<li class='msgleft'><img class='ml-2' style='float: left;height:40px;' src='" + userimg +"'><p class='msgcard' style='float:left;'>"+ data.contentText +"</p></li>");
 			} catch {
 				var _entity = new Array(); 
 				_entity =msg.data.split(',');
@@ -380,17 +386,17 @@ function openSocket(_user_email) {
 					var _istext = '';
 					$('#adduser').find('span').each(function(){
 						if($(this).text() == _entity[0]){
+							_isimg = $(this).prev().attr('src');
 							_istext = '1';
 						}
 					});
 					if (_istext != '1') {
 						var _imgpath;
 						if(_entity[1] == ''){
-							_imgpath = '/imgs/userimg.jpg';
+							_imgpath = '/amtf/imgs/userimg.jpg';
 						} else {
 							_imgpath = '/amtf/istatic/' + _entity[1];
 						}
-						
 						$('#adduser').append("<ul><li><a class='nav-link' href='#' onclick='amtf_getChat(this)'><img style='height:40px;' src='" + _imgpath + "'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
 					}
 				}
