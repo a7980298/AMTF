@@ -420,6 +420,10 @@
 			},
 		});
 	}
+	// 聊天选择
+	function amtf_getChat(_userid) {
+		_toUserId = _userid;
+	}
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
@@ -980,13 +984,13 @@
 								</div>
 								<div class="center" id="adduser">
 									<ul th:each="entity,idx:${f010002Params.userList}">
-										<a href="#">
-											<li>
-												<img style="height:40px;" th:src="@{/imgs/userimg.jpg}" th:if="${entity.userpath == ''}">
-												<img style="height:40px;" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.userpath})}" th:if="${entity.userpath != ''}">
+										<li>
+											<img style="height:40px;" th:src="@{/imgs/userimg.jpg}" th:if="${entity.userpath == ''}">
+											<img style="height:40px;" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.userpath})}" th:if="${entity.userpath != ''}">
+											<a class="nav-link" href="#" th:onclick="amtf_getChat([[${'entity.userid'}]])">
 												<span style="margin-left: 10px;">[[${entity.userid}]]</span>
-											</li>
-										</a>
+											</a>
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -1005,7 +1009,7 @@
 								</div>
 								<div class="footer">
 									<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..." id="contentText" name="contentText"></textarea>
-									<button class="btn sendbtn" onclick="sendMessage('','contentText')">发送</button>
+									<button class="btn" onclick="sendMessage('contentText')">发送</button>
 								</div>
 							</div>
 						</div>
