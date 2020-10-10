@@ -158,6 +158,7 @@
 		height: 25%;
 		background-color: #FBFCFC;
 		text-align: right;
+		display: none;
 	}
 	
 	.sendbtn {
@@ -424,6 +425,7 @@
 		_toUserId = $(_this).find('span').eq(0).text();
 		$('#others_userimg').attr('src',$(_this).find('img').eq(0).attr('src'));
 		$('#others_user').text($(_this).find('span').eq(0).text());
+		$('.footer').css('display','block');
 	}
 
 	var _toUserId;
@@ -437,6 +439,7 @@
 					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
 			socket.send('{"toUserId":"' + _toUserId
 					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
+			$('#chat_text').append("<li class='msgright'><img style='float: right;height:40px;' src='"+$('#img1').attr('src')+"'><p class='msgcard' style='float:right;background-color: hsla(108, 76%, 53%, 0.65);'>"+ $('#' + _contentText).val() +"</p></li>");
 		}
 	} 
 </script>
@@ -1014,16 +1017,16 @@
 									<img style="height:40px;" src="" id="others_userimg">
 									<span style="margin-left: 20px;" id="others_user"></span> 
 								</div>
-								<div class="center">
+								<div class="center" id="chat_text">
 									<ul>
 										<!-- <li class="msgleft">
 											<img style="border-radius: 20px; vertical-align: top;" class="ml-2" src="http://placehold.it/40x40">
 											<p class="msgcard">你吃饭了吗？</p>
 										</li> -->
-										<li class="msgright">
+										<!-- <li class="msgright">
 											<img style="float: right; " src="http://placehold.it/40x40">
 											<p class="msgcard" style="float:right;background-color: hsla(108, 76%, 53%, 0.65);">你吃饭了吗？</p>
-										</li>
+										</li> -->
 									</ul>
 								</div>
 								<div class="footer">
