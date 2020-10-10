@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.ImgUtil;
 import com.itextpdf.io.IOException;
 
@@ -58,6 +59,7 @@ public class WebSocketServer {
 		}
 		String imgpath = ImgUtil.getImgPath(userId);
 		log.info("用户连接:" + userId + "," + imgpath + ",当前在线人数为:" + getOnlineCount());
+		sendInfo(userId + "," + imgpath, null);
 		try {
 			sendMessage(userId + "," + imgpath);
 		} catch (IOException e) {
@@ -135,10 +137,16 @@ public class WebSocketServer {
 	 */
 	public static void sendInfo(String message, @PathParam("userId") String userId) throws IOException {
 		log.info("发送消息到:" + userId + "，报文:" + message);
-		if (StringUtils.isNotBlank(userId) && webSocketMap.containsKey(userId)) {
-			webSocketMap.get(userId).sendMessage(message);
+		if (CommonUtil.isEmpty(userId)) {
+			for (java.util.Map.Entry<String, WebSocketServer> item : webSocketMap.entrySet()) {
+				item.getValue().sendMessage(message);
+			}
 		} else {
-			log.error("用户" + userId + ",不在线！");
+			if (StringUtils.isNotBlank(userId) && webSocketMap.containsKey(userId)) {
+				webSocketMap.get(userId).sendMessage(message);
+			} else {
+				log.error("用户" + userId + ",不在线！");
+			}
 		}
 	}
 
