@@ -393,17 +393,3 @@ function openSocket(_user_email) {
 		}
 	}
 }
-
-var _toUserId;
-// 聊天发送
-function sendMessage(_contentText) {
-	if (typeof (WebSocket) == "undefined") {
-		console.log("您的浏览器不支持WebSocket");
-	} else {
-		console.log("您的浏览器支持WebSocket");
-		console.log('{"toUserId":"' + _toUserId
-				+ '","contentText":"' + $('#' + _contentText).val() + '"}');
-		socket.send('{"toUserId":"' + _toUserId
-				+ '","contentText":"' + $('#' + _contentText).val() + '"}');
-	}
-} 

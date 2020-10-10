@@ -151,8 +151,7 @@
 	}
 	
 	.msgright {
-		/* float: right; */
-		
+		float: right;
 	}
 	
 	.chatright .footer {
@@ -426,6 +425,20 @@
 		$('#others_userimg').attr('src',$(_this).find('img').eq(0).attr('src'));
 		$('#others_user').text($(_this).find('span').eq(0).text());
 	}
+
+	var _toUserId;
+	// 聊天发送
+	function sendMessage(_contentText) {
+		if (typeof (WebSocket) == "undefined") {
+			console.log("您的浏览器不支持WebSocket");
+		} else {
+			console.log("您的浏览器支持WebSocket");
+			console.log('{"toUserId":"' + _toUserId
+					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
+			socket.send('{"toUserId":"' + _toUserId
+					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
+		}
+	} 
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
@@ -1002,12 +1015,16 @@
 									<span style="margin-left: 20px;" id="others_user"></span> 
 								</div>
 								<div class="center">
-									<!-- <ul>
-										<li class="msgleft">
+									<ul>
+										<!-- <li class="msgleft">
 											<img style="border-radius: 20px; vertical-align: top;" class="ml-2" src="http://placehold.it/40x40">
 											<p class="msgcard">你吃饭了吗？</p>
+										</li> -->
+										<li class="msgright">
+											<img style="float: right; " src="http://placehold.it/40x40">
+											<p class="msgcard" style="float:right;background-color: hsla(108, 76%, 53%, 0.65);">你吃饭了吗？</p>
 										</li>
-									</ul> -->
+									</ul>
 								</div>
 								<div class="footer">
 									<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..." id="contentText" name="contentText"></textarea>
