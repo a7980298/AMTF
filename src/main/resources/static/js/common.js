@@ -369,6 +369,17 @@ function openSocket(_user_email) {
 		};
 		//获得消息事件
 		socket.onmessage = function(msg) {
+			var _entity = new Array(); 
+			_entity =msg.data.split(',');
+			if(_entity[0] != _user_email && _entity[0] != '连接成功'){
+				var _imgpath;
+				if(_entity[1] == ''){
+					_imgpath = '/imgs/userimg.jpg';
+				} else {
+					_imgpath = '/amtf/istatic/' + _entity[1];
+				}
+				$('#adduser').append("<ul><li><img style='height:40px;' src='" + _imgpath + "'><span style='margin-left: 10px;'>" + _entity[0] + "</span></li></ul>");
+			}
 			console.log(msg.data);
 			//发现消息进入    开始处理前端触发逻辑
 		};
