@@ -297,24 +297,24 @@ function getFullCalendar(_id){
 		theme: true,
 		header: {
 			left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-        monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-        dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
-        dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
-        today: ["今天"],
-        firstDay: 1,
-        buttonText: {
-            today: '本月',
-            month: '月',
-            week: '周',
-            day: '日',
-            prev: '上一月',
-            next: '下一月'
-               // “xx周”是否可以被点击，默认false，如果为true则周视图“周几”被点击之后进入日视图。本地测试：没什么效果
-        },
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+		monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+		dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+		dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+		today: ["今天"],
+		firstDay: 1,
+		buttonText: {
+			today: '本月',
+			month: '月',
+			week: '周',
+			day: '日',
+			prev: '上一月',
+			next: '下一月'
+			// “xx周”是否可以被点击，默认false，如果为true则周视图“周几”被点击之后进入日视图。本地测试：没什么效果
+		},
 	})
 }
 
@@ -343,3 +343,55 @@ function getDownLoad(response) {
 	// <a>删除元素
 	document.body.removeChild(_link);
 }
+
+/* WebSocket 使用 */
+var socket;
+function openSocket(_user_email) {
+	if (typeof (WebSocket) == "undefined") {
+		console.log("您的浏览器不支持WebSocket");
+	} else {
+		console.log("您的浏览器支持WebSocket");
+		//实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+		//等同于socket = new WebSocket("ws://localhost:8888/xxxx/im/25");
+		//var socketUrl="${request.contextPath}/im/"+$("#userId").val();
+		var socketUrl = "http://localhost:8080/amtf/imserver/" + _user_email;
+		socketUrl = socketUrl.replace("https", "ws").replace("http", "ws");
+		console.log(socketUrl);
+		if (socket != null) {
+			socket.close();
+			socket = null;
+		}
+		socket = new WebSocket(socketUrl);
+		//打开事件
+		socket.onopen = function() {
+			console.log("websocket已打开");
+			//socket.send("这是来自客户端的消息" + location.href + new Date());
+		};
+		//获得消息事件
+		socket.onmessage = function(msg) {
+			console.log(msg.data);
+			//发现消息进入    开始处理前端触发逻辑
+		};
+		//关闭事件
+		socket.onclose = function() {
+			console.log("websocket已关闭");
+		};
+		//发生了错误事件
+		socket.onerror = function() {
+			console.log("websocket发生了错误");
+		}
+	}
+}
+
+// 聊天发送
+function sendMessage(_toUserId ,_contentText) {
+	if (typeof (WebSocket) == "undefined") {
+		console.log("您的浏览器不支持WebSocket");
+	} else {
+		console.log("您的浏览器支持WebSocket");
+		console.log('{"toUserId":"' + $('#' + _toUserId).val()
+				+ '","contentText":"' + $('#' + _contentText).val() + '"}');
+		socket.send('{"toUserId":"' + $('#' + _toUserId).val()
+				+ '","contentText":"' + $('#' + _contentText).val() + '"}');
+	}
+} 
