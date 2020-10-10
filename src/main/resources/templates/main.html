@@ -184,7 +184,7 @@
 			}
 		});
 		$('#img2').attr('src', $('#img2').attr('src') + '?r=' + Math.random());
-		//openSocket('[[${f010002Params.logInFo.user_email}]]');
+		openSocket('[[${f010002Params.logInFo.user_email}]]');
 	})
 	//取最新通知
 	/* var interval = window.setInterval(getNewUpdnotice, 1000);
@@ -995,7 +995,6 @@
 								</div>
 								<div class="footer">
 									<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..." id="contentText" name="contentText"></textarea>
-									<button class="btn sendbtn" th:onclick="openSocket([[${f010002Params.logInFo.user_email}]])">打开</button>
 									<button class="btn sendbtn" onclick="sendMessage('','contentText')">发送</button>
 								</div>
 							</div>
