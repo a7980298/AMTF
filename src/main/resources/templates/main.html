@@ -440,6 +440,7 @@
 			socket.send('{"toUserId":"' + _toUserId
 					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
 			$('#chat_text').append("<li class='msgright'><img style='float: right;height:40px;' src='"+$('#img1').attr('src')+"'><p class='msgcard' style='float:right;background-color: hsla(108, 76%, 53%, 0.65);'>"+ $('#' + _contentText).val() +"</p></li>");
+			$('#' + _contentText).val('');
 		}
 	} 
 </script>

@@ -369,16 +369,21 @@ function openSocket(_user_email) {
 		};
 		//获得消息事件
 		socket.onmessage = function(msg) {
-			var _entity = new Array(); 
-			_entity =msg.data.split(',');
-			if(_entity[0] != _user_email && _entity[0] != '连接成功'){
-				var _imgpath;
-				if(_entity[1] == ''){
-					_imgpath = '/imgs/userimg.jpg';
-				} else {
-					_imgpath = '/amtf/istatic/' + _entity[1];
+			var data = JSON.parse(msg.data);
+			if (data != '') {
+				$('#chat_text').append("<li class='msgright'><img style='float: left;height:40px;' src=''><p class='msgcard' style='float:left;'>"+ data.contentText +"</p></li>");
+			} else {
+				var _entity = new Array(); 
+				_entity =msg.data.split(',');
+				if(_entity[0] != _user_email && _entity[0] != '连接成功'){
+					var _imgpath;
+					if(_entity[1] == ''){
+						_imgpath = '/imgs/userimg.jpg';
+					} else {
+						_imgpath = '/amtf/istatic/' + _entity[1];
+					}
+					$('#adduser').append("<ul><li><a class='nav-link' href='#' onclick='amtf_getChat(this)'><img style='height:40px;' src='" + _imgpath + "'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
 				}
-				$('#adduser').append("<ul><li><img style='height:40px;' src='" + _imgpath + "'><a class='nav-link' href='#' onclick='amtf_getChat(this)'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
 			}
 			console.log(msg.data);
 			//发现消息进入    开始处理前端触发逻辑
