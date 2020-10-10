@@ -369,20 +369,30 @@ function openSocket(_user_email) {
 		};
 		//获得消息事件
 		socket.onmessage = function(msg) {
-			var data = JSON.parse(msg.data);
-			if (data != '') {
+			var data;
+			try{
+				data = JSON.parse(msg.data);
 				$('#chat_text').append("<li class='msgright'><img style='float: left;height:40px;' src=''><p class='msgcard' style='float:left;'>"+ data.contentText +"</p></li>");
-			} else {
+			} catch {
 				var _entity = new Array(); 
 				_entity =msg.data.split(',');
 				if(_entity[0] != _user_email && _entity[0] != '连接成功'){
-					var _imgpath;
-					if(_entity[1] == ''){
-						_imgpath = '/imgs/userimg.jpg';
-					} else {
-						_imgpath = '/amtf/istatic/' + _entity[1];
+					var _istext = '';
+					$('#adduser').find('span').each(function(){
+						if($(this).text() == _entity[0]){
+							_istext = '1';
+						}
+					});
+					if (_istext != '1') {
+						var _imgpath;
+						if(_entity[1] == ''){
+							_imgpath = '/imgs/userimg.jpg';
+						} else {
+							_imgpath = '/amtf/istatic/' + _entity[1];
+						}
+						
+						$('#adduser').append("<ul><li><a class='nav-link' href='#' onclick='amtf_getChat(this)'><img style='height:40px;' src='" + _imgpath + "'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
 					}
-					$('#adduser').append("<ul><li><a class='nav-link' href='#' onclick='amtf_getChat(this)'><img style='height:40px;' src='" + _imgpath + "'><span style='margin-left: 10px;'>" + _entity[0] + "</span></a></li></ul>");
 				}
 			}
 			console.log(msg.data);
