@@ -978,7 +978,17 @@
 										<i class="fa fa-search"></i>
 									</button>
 								</div>
-								<div class="center" id="adduser"></div>
+								<div class="center" id="adduser">
+									<ul th:each="entity,idx:${f010002Params.userList}">
+										<a href="#">
+											<li>
+												<img style="height:40px;" th:src="@{/imgs/userimg.jpg}" th:if="${entity.userpath == ''}">
+												<img style="height:40px;" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.userpath})}" th:if="${entity.userpath != ''}">
+												<span style="margin-left: 10px;">[[${entity.userid}]]</span>
+											</li>
+										</a>
+									</ul>
+								</div>
 							</div>
 							<div class="chatright">
 								<div class="top">

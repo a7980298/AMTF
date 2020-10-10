@@ -8,6 +8,7 @@ import com.amtf.demo.f010001entity.f010001_select3entity;
 import com.amtf.demo.f010002entity.f010002_select4entity;
 import com.amtf.demo.f010002entity.f010002_select9entity;
 import com.amtf.demo.user.UserImpl;
+import com.amtf.demo.user.WebSockerUsers;
 import com.amtf.demo.util.FenYe;
 
 import lombok.Getter;
@@ -152,4 +153,9 @@ public class F010002entityOut extends UserImpl {
 	 * 参加活动添加成功?
 	 */
 	public String insert10;
+
+	/**
+	 * 在线用户
+	 */
+	List<WebSockerUsers> userList;
 }

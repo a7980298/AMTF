@@ -23,6 +23,7 @@ import com.amtf.demo.f010002entity.f010002_select4entity;
 import com.amtf.demo.f010002entity.f010002_select9entity;
 import com.amtf.demo.service.f010002Service;
 import com.amtf.demo.user.LogInFo;
+import com.amtf.demo.user.WebSockerUsers;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.FenYe;
@@ -139,6 +140,21 @@ public class f010002ServiceImpl implements f010002Service {
 		}
 
 		entityout.setSelect9(select9);
+
+		// 获取当前在线的用户
+		String[] users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? null
+				: redisUtils.get("redis_key").split(",");
+		List<WebSockerUsers> userList = new ArrayList<WebSockerUsers>();
+		for (int i = 0; i < users.length; i++) {
+			if (loginfo.getUser_email().equals(users[i])) {
+				continue;
+			}
+			WebSockerUsers websockerusers = new WebSockerUsers();
+			websockerusers.setUserid(users[i]);
+			websockerusers.setUserpath(ImgUtil.getImgPath(users[i]));
+			userList.add(websockerusers);
+		}
+		entityout.setUserList(userList);
 
 		return entityout;
 	}
