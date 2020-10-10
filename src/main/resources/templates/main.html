@@ -53,20 +53,22 @@
 	    display: flex;
 	    margin: 0;
 	} */
-	.chatbox {
+	/* .chatbox {
 		margin: auto;
 		height: 90%;
+		height:800px;
 		width: 100%;
 		transform: translateY(-10%);
 		box-shadow: 0 0 0 1px gray;
 		display: flex;
+		margin-top: 4rem !important;
 	}
-	
+	 */
 	.chatleft {
 		background-color: #ffffff;
 		width: 25%;
 		left: 0;
-		height: 100%;
+		height: 800px;
 	}
 	
 	.chatleft .top {
@@ -107,7 +109,7 @@
 	.chatright {
 		background-color: #ffffff;
 		width: 75%;
-		height: 100%;
+		height: 800px;
 	}
 	
 	.chatright .top {
@@ -1029,44 +1031,42 @@
 				<!-- 畅想快聊 -->
 				<div class="container-fluid dashboardclass" id="f100001" style="display: none;">
 					<div class="container-fluid">
-						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formchat" enctype="multipart/form-data">
-							<div class="chatbox">
-								<div class="chatleft">
-									<div class="top">
-										<input type="text" placeholder="搜索联系人" class="col-sm-12 form-control">
-										<button class="searchbtn">
-											<i class="fa fa-search"></i>
-										</button>
-									</div>
-									<div class="center">
-										<ul>
-											<li>
-												<img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
-												<span style="margin-left: 10px;">小张</span>
-											</li>
-										</ul>
-									</div>
+						<div class="row">
+							<div class="chatleft">
+								<div class="top col-sm-12">
+									<input type="text" placeholder="搜索联系人" class="col-sm-10">
+									<button class="searchbtn">
+										<i class="fa fa-search"></i>
+									</button>
 								</div>
-								<div class="chatright">
-									<div class="top">
-										<img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
-										<span style="margin-left: 20px;">小张</span> 
-									</div>
-									<div class="center">
-										<ul>
-											<li class="msgleft">
-												<img style="border-radius: 20px; vertical-align: top;" class="ml-2" src="http://placehold.it/40x40">
-												<p class="msgcard">你吃饭了吗？</p>
-											</li>
-										</ul>
-									</div>
-									<div class="footer">
-										<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..."></textarea>
-										<button class="btn sendbtn">发送</button>
-									</div>
+								<div class="center">
+									<ul>
+										<li>
+											<img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
+											<span style="margin-left: 10px;">小张</span>
+										</li>
+									</ul>
 								</div>
 							</div>
-						</i-form>
+							<div class="chatright">
+								<div class="top">
+									<img style="border-radius: 20px; vertical-align: middle;" src="http://placehold.it/40x40">
+									<span style="margin-left: 20px;">小张</span> 
+								</div>
+								<div class="center">
+									<ul>
+										<li class="msgleft">
+											<img style="border-radius: 20px; vertical-align: top;" class="ml-2" src="http://placehold.it/40x40">
+											<p class="msgcard">你吃饭了吗？</p>
+										</li>
+									</ul>
+								</div>
+								<div class="footer">
+									<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..."></textarea>
+									<button class="btn sendbtn">发送</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
