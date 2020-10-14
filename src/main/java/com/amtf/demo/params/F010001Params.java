@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import com.amtf.demo.f010001entity.f010001_select2entity;
-import com.amtf.demo.f010001entity.f010001_select3entity;
+import com.amtf.demo.f010001entity.F010001_Select2Entity;
+import com.amtf.demo.f010001entity.F010001_Select3Entity;
 import com.amtf.demo.iInterface.iName;
 import com.amtf.demo.iInterface.iSize;
 import com.amtf.demo.user.UserImpl;
@@ -43,7 +43,7 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 导航栏
 	 */
-	public Map<String, List<f010001_select2entity>> navigation_bar;
+	public Map<String, List<F010001_Select2Entity>> navigation_bar;
 	/**
 	 * 注册账号
 	 */
@@ -79,7 +79,7 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 最新发布的通知
 	 */
-	f010001_select3entity select4;
+	F010001_Select3Entity select4;
 	/**
 	 * 验证码
 	 */

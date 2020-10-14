@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.amtf.demo.handlerinterceptorutil.IfGeiSession;
-import com.amtf.demo.handlerinterceptorutil.getAdmin;
+import com.amtf.demo.handlerinterceptorutil.GetAdmin;
 
 @Configuration
 public class MyConfig implements WebMvcConfigurer {
@@ -25,7 +25,7 @@ public class MyConfig implements WebMvcConfigurer {
 	private IfGeiSession ifgeisession;
 
 	@Autowired
-	private getAdmin getadmin;
+	private GetAdmin getadmin;
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

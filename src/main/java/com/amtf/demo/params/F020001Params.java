@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amtf.demo.f010001entity.f010001_select3entity;
-import com.amtf.demo.f020001entity.f020001_select1entity;
-import com.amtf.demo.f020001entity.f020001_select5entity;
-import com.amtf.demo.f020001entity.f020001_select7entity;
+import com.amtf.demo.f010001entity.F010001_Select3Entity;
+import com.amtf.demo.f020001entity.F020001_Select1Entity;
+import com.amtf.demo.f020001entity.F020001_Select5Entity;
+import com.amtf.demo.f020001entity.F020001_Select7Entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -32,7 +32,7 @@ public class F020001Params extends UserImpl {
 	/**
 	 * 可操作的用户信息
 	 */
-	private List<f020001_select1entity> select1;
+	private List<F020001_Select1Entity> select1;
 
 	/**
 	 * 用户搜索的名字
@@ -42,7 +42,7 @@ public class F020001Params extends UserImpl {
 	/**
 	 * 最新发布的通知
 	 */
-	f010001_select3entity select4;
+	F010001_Select3Entity select4;
 
 	/**
 	 * 上传图片
@@ -52,7 +52,7 @@ public class F020001Params extends UserImpl {
 	/**
 	 * 通知信息
 	 */
-	List<f020001_select5entity> select5;
+	List<F020001_Select5Entity> select5;
 
 	/**
 	 * 活动主题
@@ -117,5 +117,5 @@ public class F020001Params extends UserImpl {
 	/**
 	 * 导航栏
 	 */
-	public Map<String, List<f020001_select7entity>> navigation_bar;
+	public Map<String, List<F020001_Select7Entity>> navigation_bar;
 }

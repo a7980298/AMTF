@@ -19,8 +19,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.amtf.demo.entityin.F020001entityIn;
-import com.amtf.demo.entityout.F020001entityOut;
+import com.amtf.demo.entityin.F020001EntityIn;
+import com.amtf.demo.entityout.F020001EntityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.util.CommonUtil;
 
@@ -74,8 +74,8 @@ public class DownLoad {
 	/**
 	 * 生成Excel示例Service
 	 */
-	public F020001entityOut service05(F020001entityIn entityin) throws ErrListException {
-		F020001entityOut entityOut = new F020001entityOut();
+	public F020001EntityOut service05(F020001EntityIn entityin) throws ErrListException {
+		F020001EntityOut entityOut = new F020001EntityOut();
 		// 1:创建一个excel文档
 		Workbook workbook = new XSSFWorkbook();
 		// 2:创建一个sheet工作表

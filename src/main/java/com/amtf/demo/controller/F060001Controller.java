@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.amtf.demo.entityin.F060001entityIn;
-import com.amtf.demo.entityout.F060001entityOut;
+import com.amtf.demo.entityin.F060001EntityIn;
+import com.amtf.demo.entityout.F060001EntityOut;
 import com.amtf.demo.params.F060001Params;
 import com.amtf.demo.service.F060001Service;
 import com.amtf.demo.util.ParameterUtil;
@@ -27,11 +27,11 @@ public class F060001Controller extends ValiDationUtil {
 	@RequestMapping("/f060001")
 	public String f060001S001(F060001Params params, Model model) {
 
-		F060001entityIn entityin = new F060001entityIn();
+		F060001EntityIn entityin = new F060001EntityIn();
 
 		ParameterUtil.copyParameter(entityin, params);
 
-		F060001entityOut entityOut = f060001service.service01(entityin);
+		F060001EntityOut entityOut = f060001service.service01(entityin);
 
 		// 将值copy赋值
 		ParameterUtil.copyParameter(params, entityOut);

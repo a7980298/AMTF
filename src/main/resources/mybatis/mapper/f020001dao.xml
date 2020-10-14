@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.amtf.demo.dao.f020001Dao">
-	<select id="f020001_Select1" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
+<mapper namespace="com.amtf.demo.dao.F020001Dao">
+	<select id="f020001_Select1" resultType="com.amtf.demo.f010001entity.F010001_Select1Entity">
 		SELECT
 			 *
 		FROM 
@@ -9,7 +9,7 @@
 		WHERE 
 			USER_power &lt; #{pow}
 	</select>
-	<select id="f020001_Select2" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
+	<select id="f020001_Select2" resultType="com.amtf.demo.f010001entity.F010001_Select1Entity">
 		SELECT
 			 *
 		FROM 
@@ -54,7 +54,7 @@
 			USER_ID = #{userid}
 	</delete>
 	<!-- 获取通知 -->
-	<select id="f020001_Select5" resultType="com.amtf.demo.f020001entity.f020001_select5entity">
+	<select id="f020001_Select5" resultType="com.amtf.demo.f020001entity.F020001_Select5Entity">
 		SELECT 
 			*
 		FROM 
@@ -80,7 +80,7 @@
 		)
 	</insert>
 	<!-- 查询可访问的页面 -->
-	<select id="f020001_Select7" resultType="com.amtf.demo.f020001entity.f020001_select7entity">
+	<select id="f020001_Select7" resultType="com.amtf.demo.f020001entity.F020001_Select7Entity">
 		SELECT
 			 *
 		FROM 

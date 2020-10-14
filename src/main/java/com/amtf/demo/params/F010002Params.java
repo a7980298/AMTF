@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amtf.demo.f010001entity.f010001_select2entity;
-import com.amtf.demo.f010001entity.f010001_select3entity;
-import com.amtf.demo.f010002entity.f010002_select4entity;
-import com.amtf.demo.f010002entity.f010002_select9entity;
+import com.amtf.demo.f010001entity.F010001_Select2Entity;
+import com.amtf.demo.f010001entity.F010001_Select3Entity;
+import com.amtf.demo.f010002entity.F010002_Select4Entity;
+import com.amtf.demo.f010002entity.F010002_Select9Entity;
 import com.amtf.demo.user.UserImpl;
 import com.amtf.demo.user.WebSockerUsers;
 
@@ -68,11 +68,11 @@ public class F010002Params extends UserImpl {
 	/**
 	 * 导航栏
 	 */
-	public Map<String, List<f010001_select2entity>> navigation_bar;
+	public Map<String, List<F010001_Select2Entity>> navigation_bar;
 	/**
 	 * 最新发布的通知
 	 */
-	f010001_select3entity select4;
+	F010001_Select3Entity select4;
 
 	/**
 	 * 修改：用户id
@@ -137,7 +137,7 @@ public class F010002Params extends UserImpl {
 	/**
 	 * 通知信息
 	 */
-	List<f010002_select4entity> select5;
+	List<F010002_Select4Entity> select5;
 
 	/**
 	 * 通知id
@@ -147,17 +147,17 @@ public class F010002Params extends UserImpl {
 	/**
 	 * 详细通知信息
 	 */
-	List<f010002_select4entity> select7;
+	List<F010002_Select4Entity> select7;
 
 	/**
 	 * 所有通知
 	 */
-	List<f010002_select4entity> select8;
+	List<F010002_Select4Entity> select8;
 
 	/**
 	 * 所有活动
 	 */
-	List<f010002_select9entity> select9;
+	List<F010002_Select9Entity> select9;
 
 	/**
 	 * 在线用户

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.amtf.demo.dao.f010001Dao">
-	<select id="f010001_Select1" resultType="com.amtf.demo.f010001entity.f010001_select1entity">
+<mapper namespace="com.amtf.demo.dao.F010001Dao">
+	<select id="f010001_Select1" resultType="com.amtf.demo.f010001entity.F010001_Select1Entity">
 		SELECT
 			 *
 		FROM 
@@ -12,7 +12,7 @@
 			USER_PASSWORD=#{userpwd}
 	</select>
 	
-	<select id="f010001_Select2" resultType="com.amtf.demo.f010001entity.f010001_select2entity">
+	<select id="f010001_Select2" resultType="com.amtf.demo.f010001entity.F010001_Select2Entity">
 		SELECT
 			 *
 		FROM 
@@ -21,7 +21,7 @@
 			power_pow &lt;= CONVERT(#{pow} USING gb2312)
 	</select>
 	
-	<select id="f010001_Select3" resultType="com.amtf.demo.f010001entity.f010001_select3entity">
+	<select id="f010001_Select3" resultType="com.amtf.demo.f010001entity.F010001_Select3Entity">
 		SELECT
 			 *
 		FROM 
@@ -29,7 +29,7 @@
 	</select>
 	
 	<!-- 注册 -->
-	<insert id="f010001_Insert4" parameterType="com.amtf.demo.f010001entity.f010001_insert4entityIn">
+	<insert id="f010001_Insert4" parameterType="com.amtf.demo.f010001entity.F010001_Insert4EntityIn">
 		INSERT INTO
 			AMTF_User(User_id, 
 				User_Email,

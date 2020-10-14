@@ -3,7 +3,7 @@ package com.amtf.demo.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.amtf.demo.dao.commonDao;
+import com.amtf.demo.dao.CommonDao;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 public class DaoUtil {
 
 	@Autowired
-	private static commonDao commdao;
+	private static CommonDao commdao;
 
 	/**
 	 * 获取Userid

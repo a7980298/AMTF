@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.amtf.demo.f010001entity.f010001_select1entity;
+import com.amtf.demo.f010001entity.F010001_Select1Entity;
 import com.amtf.demo.user.Admin;
 import com.amtf.demo.user.LogInFo;
 
@@ -75,7 +75,7 @@ public class ParameterUtil {
 	}
 
 	// 将用户信息存入进入Session
-	public static void setSession(f010001_select1entity user) {
+	public static void setSession(F010001_Select1Entity user) {
 		// 创建requesst请求
 		HttpServletRequest httpRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();

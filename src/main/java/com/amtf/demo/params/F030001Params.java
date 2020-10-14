@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import com.amtf.demo.f010001entity.f010001_select3entity;
-import com.amtf.demo.f020001entity.f020001_select1entity;
+import com.amtf.demo.f010001entity.F010001_Select3Entity;
+import com.amtf.demo.f020001entity.F020001_Select1Entity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class F030001Params extends UserImpl {
 	/**
 	 * 可操作的用户信息
 	 */
-	private List<f020001_select1entity> select1;
+	private List<F020001_Select1Entity> select1;
 
 	/**
 	 * 用户搜索的名字
@@ -38,5 +38,5 @@ public class F030001Params extends UserImpl {
 	/**
 	 * 最新发布的通知
 	 */
-	f010001_select3entity select4;
+	F010001_Select3Entity select4;
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import com.amtf.demo.f060001entity.f060001_select1entity;
+import com.amtf.demo.f060001entity.F060001_Select1Entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,5 +14,5 @@ import lombok.Setter;
 @Setter
 
 public class F060001Params {
-	List<f060001_select1entity> select1;
+	List<F060001_Select1Entity> select1;
 }
