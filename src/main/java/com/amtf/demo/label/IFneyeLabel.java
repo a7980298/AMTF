@@ -16,7 +16,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 import com.amtf.demo.util.CommonUtil;
 
-public class iFneyeLabel extends AbstractElementTagProcessor {
+public class IFneyeLabel extends AbstractElementTagProcessor {
 
 	// 标签名字
 	private static final String TAG_NAME = "ifneyelabel";
@@ -29,7 +29,7 @@ public class iFneyeLabel extends AbstractElementTagProcessor {
 
 	private final String PATH = "/amtf";
 
-	public iFneyeLabel(String dialectPrefix, String elementName, int precedence) {
+	public IFneyeLabel(String dialectPrefix, String elementName, int precedence) {
 		super(TemplateMode.HTML, dialectPrefix, elementName, dialectPrefix != null, null, false, precedence);
 	}
 

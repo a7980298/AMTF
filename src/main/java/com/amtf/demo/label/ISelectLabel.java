@@ -21,11 +21,11 @@ import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.RequestUtils;
 import com.amtf.demo.util.StringUtil;
 
-public class iSelectLabel extends AbstractElementTagProcessor {
+public class ISelectLabel extends AbstractElementTagProcessor {
 
 	private Map<String, String> map;
 
-	public iSelectLabel(String dialectPrefix, String elementName, int precedence) {
+	public ISelectLabel(String dialectPrefix, String elementName, int precedence) {
 		super(TemplateMode.HTML, dialectPrefix, elementName, dialectPrefix != null, null, false, precedence);
 	}
 

@@ -13,9 +13,9 @@ import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
-public class iFormLabel extends AbstractElementModelProcessor {
+public class IFormLabel extends AbstractElementModelProcessor {
 
-	public iFormLabel(String dialectPrefix, String elementName, int precedence) {
+	public IFormLabel(String dialectPrefix, String elementName, int precedence) {
 		super(TemplateMode.HTML, dialectPrefix, elementName, dialectPrefix != null, null, false, precedence);
 	}
 

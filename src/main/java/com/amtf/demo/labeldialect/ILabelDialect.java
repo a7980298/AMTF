@@ -8,16 +8,16 @@ import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
-import com.amtf.demo.label.iFormLabel;
-import com.amtf.demo.label.iSelectLabel;
+import com.amtf.demo.label.IFormLabel;
+import com.amtf.demo.label.ISelectLabel;
 
 @Component
-public class iLabelDialect extends AbstractProcessorDialect {
+public class ILabelDialect extends AbstractProcessorDialect {
 
 	private final static String NAME = "i";
 	private final static int PRECEDENCE = 10000;
 
-	public iLabelDialect() {
+	public ILabelDialect() {
 		super(NAME, NAME, StandardDialect.PROCESSOR_PRECEDENCE);
 	}
 
@@ -36,8 +36,8 @@ public class iLabelDialect extends AbstractProcessorDialect {
 		LinkedHashSet<IProcessor> processors = new LinkedHashSet<IProcessor>();
 		// 添加自定义标签处理器，可添加多个
 		// processors.add(new iFneyeLabel(dialectPrefix, "fenye", PRECEDENCE));
-		processors.add(new iFormLabel(dialectPrefix, "form", PRECEDENCE));
-		processors.add(new iSelectLabel(dialectPrefix, "select", PRECEDENCE));
+		processors.add(new IFormLabel(dialectPrefix, "form", PRECEDENCE));
+		processors.add(new ISelectLabel(dialectPrefix, "select", PRECEDENCE));
 		return processors;
 	}
 
