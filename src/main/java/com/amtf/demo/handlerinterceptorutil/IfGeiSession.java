@@ -52,9 +52,9 @@ public class IfGeiSession implements HandlerInterceptor {
 					if (!b) {
 						response.sendRedirect("/amtf/error");
 					}
-					commonservie.CommonServie1();
 				}
 			}
+			commonservie.CommonServie1();
 		}
 		return true;
 	}

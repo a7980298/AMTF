@@ -24,13 +24,13 @@
 				<div class="sidebar-wrapper" id="wrapperid">
 					<div class="user">
 						<div class="photo">
-							<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
-							<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
+							<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
+							<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" th:if="${main_params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
 						</div>
 						<div class="user-info">
 							<a data-toggle="collapse" href="#collapseExample" class="username" style="height:30px;">
 								<span>
-									[[${f010002Params.logInFo.user_name}]]
+									[[${main_params.logInFo.user_name}]]
 									<b class="caret"></b>
 								</span>
 							</a>
@@ -65,7 +65,7 @@
 								<p>主页面</p>
 							</a>
 						</li>
-						<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f010002Params.navigation_bar}">
+						<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${main_params.navigation_bar}">
 							<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}" th:title="${mapkey.key}">
 								<i th:class="${'fa ' + mapkey.value.get(0).power_class}"></i>
 								<p>

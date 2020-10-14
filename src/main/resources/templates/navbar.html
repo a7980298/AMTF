@@ -53,11 +53,11 @@
 									<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
 										<i class="material-icons" id="i_notifications">notifications</i>
-										<span class="notification" th:if="${not #lists.isEmpty(f010002Params.select5)}" id="updontice_size">[[${f010002Params.select5.size()}]]</span>
+										<span class="notification" th:if="${not #lists.isEmpty(main_params.select5)}" id="updontice_size">[[${main_params.select5.size()}]]</span>
 										<p class="d-lg-none d-md-block">Some Actions</p>
 									</a>
-									<div class="dropdown-menu dropdown-menu-right" id="showupdnotice" aria-labelledby="navbarDropdownMenuLink" th:if="${not #lists.isEmpty(f010002Params.select5)}">
-										<a class="dropdown-item updnotice" data-toggle="modal" th:each="entity,idx:${f010002Params.select5}" th:onclick="amtf_getupdontice([[${entity.updnotice_id}]],[[${entity.updnotice_head}]],[[${entity.updnotice_text}]])" >
+									<div class="dropdown-menu dropdown-menu-right" id="showupdnotice" aria-labelledby="navbarDropdownMenuLink" th:if="${not #lists.isEmpty(main_params.select5)}">
+										<a class="dropdown-item updnotice" data-toggle="modal" th:each="entity,idx:${main_params.select5}" th:onclick="amtf_getupdontice([[${entity.updnotice_id}]],[[${entity.updnotice_head}]],[[${entity.updnotice_text}]])" >
 											[[${entity.updnotice_head}]]
 										</a>
 									</div>
