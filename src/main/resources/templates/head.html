@@ -1,92 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<th:block th:fragment="myhead">
-		<th:block th:replace="import :: myimport"></th:block>
 		<head>
 		<meta charset="UTF-8">
-		<title>爱玛天府生活</title>
 		<style type="text/css">
-			body {
-				padding-top: 50px;
-				padding-bottom: 20px;
-			}
-			.body-content {
-				margin-top:20px;
-				padding-left: 15px;
-				padding-right: 15px;
-			}
+			
 		</style>
 		<script type="text/javascript">
-			// Exit押下
-			function amtf_close(){
-				amtf_submit(amtf_form , '/f010002/T001');
-			}
-
-			// 导航栏页面跳转
-			function amtf_skip(ulid,liid){
-				var path = $('#ul' + ulid +'_li' + liid).val(); 
-				amtf_submit(amtf_form , '/' + path);
-			}
-
-			// 打开模态框
-			function show_f010004modal() {
-				$('.dropdown-toggle').dropdown();
-				$('#f010004').modal('show');
-			}
-			
-			// 打开模态框
-			function show_f010005modal() {
-				$('.dropdown-toggle').dropdown();
-				$('#f010005').modal('show');
-			}
+		// 初始化处理
+		$(function() {
+			$('#more_vert').click();
+		})
 		</script>
 		</head>
 		<body>
-			<div class="footer" style="background:rgba(255,0,0,1);">
-				<div class="navbar navbar-default navbar-fixed-top">
-					<div class="container">
-						<div class="navbar-header">
-							<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a href="#" class="navbar-brand">Alma life system</a>
+			<div class="sidebar" data-color="rose" data-background-color="black"
+			th:data-image="@{/img/sidebar-1.jpg}">
+				<div class="logo">
+					<a href="#" class="simple-text logo-mini">
+						AM </a> <a href="#"
+						class="simple-text logo-normal"> Alma life system </a>
+				</div>
+				<div class="sidebar-wrapper" id="wrapperid">
+					<div class="user">
+						<div class="photo">
+							<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
+							<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
 						</div>
-						<div class="navbar-collapse collapse">
-							<ul class="nav navbar-nav navbar-btn list-inline">
-								<li th:each="mapkey,idx:${f010002Params.navigation_bar}" class="">
-									<button type="button" class="btn"
-									data-toggle="dropdown">
-									[[${mapkey.key}]] <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<li th:each="fileInfo,idxs: ${mapkey.value}" th:attr="onclick='amtf_skip('+ ${idx.index} +','+ ${idxs.index} +');'">
-											<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
-											<a href="#">[[${fileInfo.power_name}]]</a>
-										</li>
-									</ul >
-								</li>
-							</ul>
-							<ul class="nav navbar-nav navbar-right">
-								<li>
-									<a href="#" id="" class="" data-target="#f010003" onclick="show_f010004modal()" title="详细信息">
-										<span class="glyphicon glyphicon-envelop"></span>User：[[${f010002Params.logInFo.User_Name}]]
-									</a>
-								</li>
-								<li>
-									<a class="navbar-brand" href="#" onclick="show_f010005modal()" title="任务">
-										<img th:src="@{/imgs/task.jpg}" height="100%"/>
-									</a>
-								</li>
-								<li>
-									<a href="#" onclick="amtf_close()" title="注销">
-										<span class="glyphicon glyphicon-log-out"></span> Exit
-									</a>
-								</li>
-							</ul>
+						<div class="user-info">
+							<a data-toggle="collapse" href="#collapseExample" class="username" style="height:30px;">
+								<span>
+									[[${f010002Params.logInFo.user_name}]]
+									<b class="caret"></b>
+								</span>
+							</a>
+							<div class="collapse" id="collapseExample">
+								<ul class="nav">
+									<li class="nav-item">
+										<a class="nav-link" href="#userformaction" onclick="amtf_loginhead(this)">
+											<span class="sidebar-mini"> 个人 </span>
+											<span class="sidebar-normal"> 个人资料 </span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">
+											<span class="sidebar-mini"> 文件 </span>
+											<span class="sidebar-normal"> 配置文件 </span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#usersetup" onclick="amtf_loginhead(this)">
+											<span class="sidebar-mini"> 设置 </span>
+											<span class="sidebar-normal"> 设置 </span>
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
+					<ul class="nav">
+						<li class="nav-item active coloritme" onclick="amtf_setColor(this)">
+							<a class="nav-link" href="#main" onclick="amtf_loginhead(this)" title="主页面">
+								<i class="material-icons">dashboard</i>
+								<p>主页面</p>
+							</a>
+						</li>
+						<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${f010002Params.navigation_bar}">
+							<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}" th:title="${mapkey.key}">
+								<i th:class="${'fa ' + mapkey.value.get(0).power_class}"></i>
+								<p>
+									[[${mapkey.key}]] <b class="caret"></b>
+								</p>
+							</a>
+							<div class="collapse" th:id="${'pagesExamples' + idx.index}">
+								<ul class="nav">
+									<li th:each="fileInfo,idxs: ${mapkey.value}" class="nav-item" th:attr="onclick='amtf_skip('+ ${idx.index} + ',' + ${idxs.index} +');'" th:title="${fileInfo.power_name}">
+										<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
+										<a class="nav-link" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
+											<span class="sidebar-mini"> [[${fileInfo.power_short}]] </span>
+											<span class="sidebar-normal"> [[${fileInfo.power_name}]] </span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</body>
