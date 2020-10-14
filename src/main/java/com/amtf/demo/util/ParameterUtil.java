@@ -128,10 +128,14 @@ public class ParameterUtil {
 
 	// 将用户信息从Session中取出
 	public static LogInFo getSession() {
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-				.getRequest();
 		LogInFo loginfo = new LogInFo();
-		loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		try {
+			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+					.getRequest();
+			loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+		} catch (Exception e) {
+		}
+
 		return loginfo;
 	}
 

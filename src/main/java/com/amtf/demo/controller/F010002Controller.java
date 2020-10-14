@@ -28,7 +28,6 @@ import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
 import com.amtf.demo.util.ValiDationUtil;
-import com.amtf.demo.websocketserver.WebSocketServer;
 
 @Controller
 public class F010002Controller extends ValiDationUtil {
@@ -38,9 +37,6 @@ public class F010002Controller extends ValiDationUtil {
 
 	@Autowired
 	private LogInLimit commonserviceimpl;
-
-	@Autowired
-	private WebSocketServer websocketserver;
 
 	@Resource
 	private RedisUtils redisUtils;

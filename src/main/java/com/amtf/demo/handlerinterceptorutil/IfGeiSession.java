@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amtf.demo.serviceImpl.CommonServie;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.RedisUtils;
@@ -17,6 +18,9 @@ public class IfGeiSession implements HandlerInterceptor {
 
 	@Resource
 	private RedisUtils redisUtils;
+
+	@Resource
+	private CommonServie commonservie;
 
 	// 在请求处理之前进行调用（Controller方法调用之前
 	@Override
@@ -48,10 +52,10 @@ public class IfGeiSession implements HandlerInterceptor {
 					if (!b) {
 						response.sendRedirect("/amtf/error");
 					}
+					commonservie.CommonServie1();
 				}
 			}
 		}
-
 		return true;
 	}
 
