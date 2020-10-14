@@ -133,6 +133,8 @@ public class ParameterUtil {
 			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 					.getRequest();
 			loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
+			String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
+			loginfo.setImgpath(imgpath);
 		} catch (Exception e) {
 		}
 

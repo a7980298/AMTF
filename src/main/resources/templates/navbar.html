@@ -27,7 +27,7 @@
 			$(_this).find('a').eq(0).css('background-color', '#e91e63');
 		}
 
-		// 登陆页面head选中样式变换
+	/* 	// 登陆页面head选中样式变换
 		function amtf_loginhead(_this) {
 			$('.dashboardclass').each(function() {
 				$(this).css('display', 'none');
@@ -41,16 +41,21 @@
 			$('#' + _href).removeClass('collapsing');
 			$('#' + _href).removeClass('collapse');
 			$('#' + _href).addClass('show');
+		} */
+		// 登陆页面head选中样式变换
+		function amtf_loginhead(_this) {
+			var _href = $(_this).attr('href');
+			_href = _href.replace('#', '');
+			
+			amtf_submit(amtf_formmain, '/' + _href);
 		}
 		</script>
 		</head>
 		<body>
-			<div class="sidebar" data-color="rose" data-background-color="black"
-			th:data-image="@{/img/sidebar-1.jpg}">
+			<div class="sidebar" data-color="rose" data-background-color="black" th:data-image="@{/img/sidebar-1.jpg}">
 				<div class="logo">
-					<a href="#" class="simple-text logo-mini">
-						AM </a> <a href="#"
-						class="simple-text logo-normal"> Alma life system </a>
+					<a href="#" class="simple-text logo-mini"> AM </a>
+					<a href="#" class="simple-text logo-normal"> Alma life system </a>
 				</div>
 				<div class="sidebar-wrapper" id="wrapperid">
 					<div class="user">
@@ -68,7 +73,7 @@
 							<div class="collapse" id="collapseExample">
 								<ul class="nav">
 									<li class="nav-item">
-										<a class="nav-link" href="#userformaction" onclick="amtf_loginhead(this)">
+										<a class="nav-link" href="#f010003" onclick="amtf_loginhead(this)">
 											<span class="sidebar-mini"> 个人 </span>
 											<span class="sidebar-normal"> 个人资料 </span>
 										</a>

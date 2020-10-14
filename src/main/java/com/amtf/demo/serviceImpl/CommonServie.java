@@ -17,7 +17,6 @@ import com.amtf.demo.f010001entity.F010001_Select2Entity;
 import com.amtf.demo.f010002entity.F010002_Select4Entity;
 import com.amtf.demo.params.CommonParams;
 import com.amtf.demo.user.LogInFo;
-import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.NumberUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
@@ -70,8 +69,6 @@ public class CommonServie {
 							value1.addAll(value2);
 							return value1;
 						}));
-		String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
-		loginfo.setImgpath(imgpath);
 		// 获取未读通知
 		List<F010002_Select4Entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
 		commonparams.setLogInFo(loginfo);

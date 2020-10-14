@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登录画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	$(function() {
+		$('#file0').change(function() {
+			//获取图片途径
+			var objUrl = getObjectURL(this.files[0]);
+			//判断是否存在
+			if (objUrl) {
+				$("#img2").attr("src", objUrl);
+				$("#img2").show();
+			}
+		});
+	})
+	// 修改用户信息
+	function amtf_upduser() {
+		amtf_submit(amtf_formupduser, '/f010003/T001');
+	}
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 个人资料 -->
+				<div class="container-fluid dashboardclass" id="userinfo">
+					<div class="container-fluid">
+					<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="card">
+									<div class="card-header card-header-icon card-header-rose">
+										<div class="card-icon">
+											<i class="material-icons">perm_identity</i>
+										</div>
+										<h4 class="card-title">编辑个人资料-
+											<small class="category">完成你的个人资料</small>
+										</h4>
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-5">
+												<div class="form-group">
+													<label class="bmd-label-floating">Email 地址 (不可变更)</label>
+													<input type="email" class="form-control" th:value="${f010003Params.logInFo.user_email}" maxlength="30" disabled>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="bmd-label-floating">用户名</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_account}" maxlength="20" name="upd_user_account">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">电话</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_phone}" name="upd_user_phone">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="bmd-label-floating">姓 名</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_name}" name="upd_user_name">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="bmd-label-floating">国家</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_country}" name="upd_user_country">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="bmd-label-floating">地址</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_country + '-'+ f010003Params.logInFo.user_province + '-'+ f010003Params.logInFo.user_city}">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">省</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_province}" name="upd_user_province">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">市</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_city}" name="upd_user_city">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">邮政 编码</label>
+													<input type="text" class="form-control" th:value="${f010003Params.logInFo.user_postcode}" name="upd_user_postcode">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>自我 介绍</label>
+													<div class="form-group">
+														<label class="bmd-label-floating" th:if="${f010003Params.logInFo.user_introduce == ''}"> 讲讲你的兴趣爱好。</label>
+														<textarea class="form-control" rows="5" name="upd_user_introduce">[[${f010003Params.logInFo.user_introduce}]]</textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="btn btn-rose pull-right" onclick="amtf_upduser()">更新个人信息</button>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card card-profile">
+									<div class="card-avatar">
+										<a href="#pablo">
+											<img class="img" th:src="@{/imgs/userimg.jpg}" th:if="${f010003Params.logInFo.imgpath == ''}" id="img2" style="height:130px;"/>
+											<img class="img" th:src="@{/istatic/{fileNmame}(fileNmame=${f010003Params.logInFo.imgpath})}" th:if="${f010003Params.logInFo.imgpath != ''}" id="img2" style="height:130px;"/>
+										</a>
+									</div>
+									<div class="card-body">
+										<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">上传头像</button>
+										<input type="file" name="upd_user_img" id="file0" multiple="multiple" style="display:none;"/>
+										<!-- <h6 class="card-category text-gray">Web开发</h6> -->
+										<h4 class="card-title">[[${f010003Params.logInFo.user_name}]]</h4>
+										<p class="card-description">
+											暂无
+										</p>
+										<!-- <a href="#pablo" class="btn btn-rose btn-round">Follow</a> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

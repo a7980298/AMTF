@@ -111,34 +111,6 @@ public class F010002Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 修改用户信息
-	 * 
-	 * @parameter F010002Params params
-	 * @return String
-	 */
-	@RequestMapping("/f010002/T002")
-	public String f010002T002(F010002Params params, Model model) {
-
-		F010002EntityIn entityin = new F010002EntityIn();
-
-		ParameterUtil.copyParameter(entityin, params);
-
-		F010002EntityOut entityOut = f010002service.service03(entityin);
-
-		String isUpdatUserOk = entityOut.getIsUpdatUserOk();
-
-		entityOut = f010002service.service01(entityin);
-
-		entityOut.setIsUpdatUserOk(isUpdatUserOk);
-
-		ParameterUtil.copyParameter(params, entityOut);
-
-		model.addAttribute("f010002Params", params);
-
-		return "main";
-	}
-
-	/**
 	 * 锁定页面
 	 * 
 	 * @parameter F010002Params params
