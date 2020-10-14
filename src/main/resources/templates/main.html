@@ -46,24 +46,6 @@
 		text-align: center;
 		position: absolute;
 	}
-	/* .container {
-	    height: 100%;
-	    width: 100%;
-	    background:  linear-gradient(#1f94bf 20%,#edf5f8 0, #edf5f8 80%, #1f94bf 0);
-	    display: flex;
-	    margin: 0;
-	} */
-	/* .chatbox {
-		margin: auto;
-		height: 90%;
-		height:800px;
-		width: 100%;
-		transform: translateY(-10%);
-		box-shadow: 0 0 0 1px gray;
-		display: flex;
-		margin-top: 4rem !important;
-	}
-	 */
 	.chatleft {
 		background-color: #ffffff;
 		width: 25%;
@@ -174,6 +156,7 @@
 <script type="text/javascript">
 	// 初始化处理
 	$(function() {
+		$('#more_vert').click();
 		$('#file0').change(function() {
 			//获取图片途径
 			var objUrl = getObjectURL(this.files[0]);
@@ -208,7 +191,6 @@
 			});
 		}
 	} */
-	
 	// 点击通知铃铛
 	function amtf_updonticeclick() {
 		if ($('.updnotice').length <= 0) {
@@ -527,11 +509,10 @@
 					<div class="navbar-wrapper">
 						<div class="navbar-minimize">
 							<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
-								<i class="material-icons text_align-center visible-on-sidebar-regular" title="缩小">more_vert</i>
+								<i class="material-icons text_align-center visible-on-sidebar-regular" title="缩小" id="more_vert">more_vert</i>
 								<i class="material-icons design_bullet-list-67 visible-on-sidebar-mini" title="展开">view_list</i>
 							</button>
 						</div>
-						<!-- <a class="navbar-brand" href="javascript:;">Dashboard</a> -->
 					</div>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" 
 						aria-expanded="false" aria-label="Toggle navigation">
