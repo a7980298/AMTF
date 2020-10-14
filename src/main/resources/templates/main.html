@@ -191,42 +191,10 @@
 			});
 		}
 	} */
-	// 点击通知铃铛
-	function amtf_updonticeclick() {
-		if ($('.updnotice').length <= 0) {
-			md.showNotification('bottom', 'center', '2', '当前没有管理员发布通知。。。')
-		}
-	}
-	// 注销
-	function amtf_return() {
-		amtf_submit(amtf_form, '/f010002/T001');
-	}
-	// 导航栏页面跳转
-	function amtf_skip(ulid, liid) {
-		var path = $('#ul' + ulid + '_li' + liid).val();
-		if (path == 'f020001') {
-			loginshowdiv();
-			amtf_submit(amtf_form, '/' + path);
-		} else {
-
-		}
-	}
+	
 	// 修改用户信息
 	function amtf_upduser() {
 		amtf_submit(amtf_formupduser, '/f010002/T002');
-	}
-	// 锁定页面
-	function amtf_golock() {
-		amtf_submit(amtf_formupduser, '/f010002/T003');
-	}
-	// 相同class点击后颜色变化
-	function amtf_setColor(_this) {
-		$('.coloritme').each(function() {
-			$(this).removeClass('active');
-			$(this).find('a').eq(0).css('background-color', '');
-		});
-		$(_this).addClass('active');
-		$(_this).find('a').eq(0).css('background-color', '#e91e63');
 	}
 	// 打开详细通知
 	function amtf_getupdontice(_id, _head, _text) {
@@ -251,21 +219,6 @@
 		});
 		$('#updnoticehead').text(_head);
 		$('#updnoticetext').text(_text);
-	}
-	// 登陆页面head选中样式变换
-	function amtf_loginhead(_this) {
-		$('.dashboardclass').each(function() {
-			$(this).css('display', 'none');
-			$(this).removeClass('show');
-			$(this).removeClass('collapse');
-		});
-		var _href = $(_this).attr('href');
-		_href = _href.replace('#', '');
-		$('#' + _href).css('display', 'block');
-		$('#' + _href).removeClass('dispaly_none');
-		$('#' + _href).removeClass('collapsing');
-		$('#' + _href).removeClass('collapse');
-		$('#' + _href).addClass('show');
 	}
 	//改变状态
 	function amtf_uplook(_index) {
@@ -428,9 +381,9 @@
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
-		<th:block th:replace="head :: myhead"></th:block>
+		<th:block th:replace="navbar :: mynavbar"></th:block>
 		<div class="main-panel">
-			<th:block th:replace="navbar :: mynavbar"></th:block>
+			<th:block th:replace="head :: myhead"></th:block>
 			<div class="content">
 				<!-- 主画面 -->
 				<div class="container-fluid dashboardclass" id="main">
