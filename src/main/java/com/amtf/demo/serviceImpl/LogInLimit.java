@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class CommonServiceImpl {
+public class LogInLimit {
 
 	@Resource
 	private RedisUtils redisUtils;

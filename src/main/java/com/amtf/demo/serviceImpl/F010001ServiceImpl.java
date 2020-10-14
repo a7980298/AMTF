@@ -42,7 +42,7 @@ public class F010001ServiceImpl implements F010001Service {
 	private MailService mailService;
 
 	@Autowired
-	private CommonServiceImpl commonserviceimpl;
+	private LogInLimit commonserviceimpl;
 
 	@Resource
 	private RedisUtils redisUtils;

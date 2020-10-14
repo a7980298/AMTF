@@ -21,7 +21,7 @@ import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F010001Params;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.service.F010002Service;
-import com.amtf.demo.serviceImpl.CommonServiceImpl;
+import com.amtf.demo.serviceImpl.LogInLimit;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.Constant;
@@ -37,7 +37,7 @@ public class F010002Controller extends ValiDationUtil {
 	F010002Service f010002service;
 
 	@Autowired
-	private CommonServiceImpl commonserviceimpl;
+	private LogInLimit commonserviceimpl;
 
 	@Autowired
 	private WebSocketServer websocketserver;

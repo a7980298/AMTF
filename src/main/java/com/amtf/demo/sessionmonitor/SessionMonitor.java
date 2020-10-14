@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.amtf.demo.serviceImpl.CommonServiceImpl;
+import com.amtf.demo.serviceImpl.LogInLimit;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
 import com.amtf.demo.util.RedisUtils;
@@ -26,7 +26,7 @@ public class SessionMonitor implements HttpSessionListener {
 	private RedisUtils redisUtils;
 
 	@Autowired
-	private CommonServiceImpl commonserviceimpl;
+	private LogInLimit commonserviceimpl;
 
 	private int onlineCount = 0;// 记录session的数量
 
