@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.amtf.demo.util.RedisUtils;
 
 @Component
-public class End implements ApplicationListener<ContextClosedEvent> {
+public class ItemEnd implements ApplicationListener<ContextClosedEvent> {
 
 	@Resource
 	private RedisUtils redisUtils;
