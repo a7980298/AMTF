@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登录画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	//打开详细通知
+	function amtf_getupdontice(_id, _head, _text) {
+		$('#getupdontice').modal('show');
+		showdiv();
+		$.ajax({
+			url : CONTEXT_PATH + '/f010002/T004',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : _id,
+			},
+			success : function(result) {
+				hidediv();
+				$('#select5').replaceWith(result);
+			},
+			error : function(res, textStaus) {
+				hidediv();
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+		$('#updnoticehead').text(_head);
+		$('#updnoticetext').text(_text);
+	}
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 通知列表 -->
+				<div class="container-fluid dashboardclass" id="f060001" style="display: none;">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupdnotice" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="card">
+									<div class="card-header card-header-primary card-header-icon">
+										<div class="card-icon">
+											<i class="fa fa-bell-o fa-2x"></i>
+										</div>
+										<h4 class="card-title">通知一览</h4>
+									</div>
+									<div class="card-body">
+										<div class="toolbar"></div>
+										<div class="material-datatables">
+											<table id="updontice_datatables"
+												class="table table-striped table-no-bordered table-hover"
+												cellspacing="0" width="100%" style="width: 100%">
+												<thead>
+													<tr>
+														<th>标题</th>
+														<th>发布人</th>
+														<th>时间</th>
+														<th>状态</th>
+														<th class="disabled-sorting text-right">操作</th>
+													</tr>
+												</thead>
+												<tfoot>
+													<tr>
+														<th>标题</th>
+														<th>发布人</th>
+														<th>时间</th>
+														<th>状态</th>
+														<th class="text-right">操作</th>
+													</tr>
+												</tfoot>
+												<tbody>
+													<tr th:each="entity,idx:${f010002Params.select8}">
+														<td>[[${entity.updnotice_head}]]</td>
+														<td>[[${entity.updnotice_name}]]</td>
+														<td>[[${entity.updnotice_time}]]</td>
+														<td th:if="${entity.islook == '1'}" class="col-r" th:id="${'updnotice_y' + idx.index}">未读</td>
+														<td th:if="${entity.islook != '1'}" class="" th:id="${'updnotice_y' + idx.index}">已读</td>
+														<td class="text-right">
+															<!-- <a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
+																<i class="material-icons">favorite</i>
+															</a> -->
+															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看" th:onclick="amtf_getupdontice([[${entity.updnotice_id}]],[[${entity.updnotice_head}]],[[${entity.updnotice_text}]]);amtf_uplook([[${idx.index}]])" >
+																<i class="material-icons">dvr</i></a>
+															<!--<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
+																<i class="material-icons">close</i>
+															</a> -->
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
