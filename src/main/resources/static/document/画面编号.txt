@@ -2,7 +2,6 @@ userinfo.html	---f010003
 updnotice.html	---f010004
 activity.html	---f010005
 approval.html	---f010006
-setup.html	---f010007
+setup.html		---f010007
 userchat.html	---f010008
-
-
+music.html		---f010009

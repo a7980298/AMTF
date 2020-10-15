@@ -9,9 +9,9 @@ CREATE TABLE AMTF_POWER(
 )
 insert into test.amtf_power values(1001,'观看视频','影视','0','f010001','fa-television','TV');
 insert into test.amtf_power values(1005,'现场直播','影视','0','f070001','fa-television','LB');
-insert into test.amtf_power values(1002,'享受音乐','音乐','0','f040001','fa-music','MS');
+insert into test.amtf_power values(1002,'享受音乐','音乐','0','f010009','fa-music','MS');
 insert into test.amtf_power values(1003,'畅所欲言','互动','0','f030001','fa-child','FR');
-insert into test.amtf_power values(1003,'畅想快聊','互动','0','f100001','fa-child','LT');
+insert into test.amtf_power values(1003,'畅想快聊','互动','0','f010008','fa-child','LT');
 insert into test.amtf_power values(1004,'最新资讯','新闻','0','f050001','fa-newspaper-o','NS');
 insert into test.amtf_power values(1006,'通知中心','任务','0','f010004','fa-wpforms','TS');
 insert into test.amtf_power values(9999,'会员管理','管理','1','f020001','fa-pencil-square','AD');

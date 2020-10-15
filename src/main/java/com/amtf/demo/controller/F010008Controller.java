@@ -39,6 +39,6 @@ public class F010008Controller extends ValiDationUtil {
 
 		model.addAttribute("f010008Params", params);
 
-		return "setup";
+		return "userchat";
 	}
 }
