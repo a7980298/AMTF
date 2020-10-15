@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登录画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 页面设置 -->
+				<div class="container-fluid dashboardclass" id="f010007">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f010007}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="card">
+									<div class="card-header card-header-primary card-header-icon">
+										<div class="card-icon">
+											<i class="fa fa-cog fa-2x"></i>
+										</div>
+										<h4 class="card-title">页面设置</h4>
+									</div>
+									<div class="card-body">
+										<div class="toolbar"></div>
+										<div class="material-datatables">
+											<div class="col-lg-5 col-md-6 col-sm-3">
+												<span class="badge filter badge-purple" data-color="purple"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
