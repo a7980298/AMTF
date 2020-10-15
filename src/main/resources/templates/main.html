@@ -45,52 +45,6 @@
 			});
 		}
 	} */
-
-	// 侧边悬浮设置
-	function amtf_sideSetUpKeep() {
-		var _color;
-		var _background_color;
-		var _imgid;
-		var _imgcheck;
-		if ($('#_imgcheck').is(':checked')) {
-			_imgcheck = '1';
-		}
-		$('.side_setupcolor').each(function() {
-			if ($(this).hasClass('active')) {
-				_color = $(this).attr('data-color');
-			}
-		});
-		$('.side_setupbackgroundcolor').each(function() {
-			if ($(this).hasClass('active')) {
-				_background_color = $(this).attr('data-background-color');
-			}
-		});
-		$('.side_serupimg').each(function() {
-			if ($(this).hasClass('active')) {
-				_imgid = $(this), find('img').attr('id');
-			}
-		});
-		showdiv();
-		$.ajax({
-			url : CONTEXT_PATH + '/f010002/T007',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				color : _color,
-				background_color : _background_color,
-				imgcheck : _imgcheck,
-				imgid : _imgid
-			},
-			success : function(result) {
-				hidediv();
-			},
-			error : function(res, textStaus) {
-				hidediv();
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
