@@ -21,7 +21,7 @@
 	})
 	// 修改用户信息
 	function amtf_upduser() {
-		amtf_submit(amtf_formupduser, '/f010003/T001');
+		amtf_submit(amtf_form, '/f010003/T001');
 	}
 </script>
 </head>
@@ -34,7 +34,7 @@
 				<!-- 个人资料 -->
 				<div class="container-fluid dashboardclass" id="userinfo">
 					<div class="container-fluid">
-					<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupduser" enctype="multipart/form-data">
+					<i-form class="" th:action="@{/f010003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="card">

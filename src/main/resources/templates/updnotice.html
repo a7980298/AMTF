@@ -13,7 +13,7 @@
 		$('#getupdontice').modal('show');
 		showdiv();
 		$.ajax({
-			url : CONTEXT_PATH + '/f010002/T004',
+			url : CONTEXT_PATH + '/f010004/T004',
 			type : 'post',
 			dateType : 'html',
 			async : true,
@@ -41,9 +41,9 @@
 			<th:block th:replace="head :: myhead"></th:block>
 			<div class="content">
 				<!-- 通知列表 -->
-				<div class="container-fluid dashboardclass" id="f060001" style="display: none;">
+				<div class="container-fluid dashboardclass" id="f010004">
 					<div class="container-fluid">
-						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formupdnotice" enctype="multipart/form-data">
+						<i-form class="" th:action="@{/f010004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="card">
@@ -78,7 +78,7 @@
 													</tr>
 												</tfoot>
 												<tbody>
-													<tr th:each="entity,idx:${f010002Params.select8}">
+													<tr th:each="entity,idx:${f010004Params.select8}">
 														<td>[[${entity.updnotice_head}]]</td>
 														<td>[[${entity.updnotice_name}]]</td>
 														<td>[[${entity.updnotice_time}]]</td>

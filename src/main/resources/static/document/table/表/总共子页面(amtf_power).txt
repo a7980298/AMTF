@@ -13,7 +13,7 @@ insert into test.amtf_power values(1002,'享受音乐','音乐','0','f040001','f
 insert into test.amtf_power values(1003,'畅所欲言','互动','0','f030001','fa-child','FR');
 insert into test.amtf_power values(1003,'畅想快聊','互动','0','f100001','fa-child','LT');
 insert into test.amtf_power values(1004,'最新资讯','新闻','0','f050001','fa-newspaper-o','NS');
-insert into test.amtf_power values(1006,'任务中心','任务','0','f060001','fa-wpforms','TS');
+insert into test.amtf_power values(1006,'通知中心','任务','0','f010004','fa-wpforms','TS');
 insert into test.amtf_power values(9999,'会员管理','管理','1','f020001','fa-pencil-square','AD');
-insert into test.amtf_power values(1007,'活动一栏','任务','0','f080001','fa-th-list','AT');
-insert into test.amtf_power values(1008,'认证进程','任务','0','f090001','fa-check','AS');
+insert into test.amtf_power values(1007,'活动一栏','任务','0','f010005','fa-th-list','AT');
+insert into test.amtf_power values(1008,'认证进程','任务','0','f010006','fa-check','AS');
