@@ -10,7 +10,7 @@ import lombok.Setter;
 @ConfigurationProperties
 @Getter
 @Setter
-public class F010006Params extends UserImpl {
+public class F010009Params extends UserImpl {
 	/**
 	 * 页面id
 	 */

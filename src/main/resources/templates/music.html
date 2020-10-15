@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登录画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 音乐 -->
+				<div class="container-fluid dashboardclass" id="f010009">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f010009}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f010009"/>
+						<iframe frameborder="0" border="1" marginwidth="0"
+							marginheight="0" width="100%" height="450"
+							src="//music.163.com/outchain/player?type=2&amp;id=2175282&amp;auto=1&amp;height=80">
+						</iframe>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

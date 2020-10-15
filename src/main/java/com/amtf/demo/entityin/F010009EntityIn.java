@@ -7,15 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class F010005EntityIn extends UserImpl {
+public class F010009EntityIn extends UserImpl {
 	/**
 	 * 页面id
 	 */
 	private String IViewId;
-
-	/**
-	 * 活动id
-	 */
-	public String actiyity_id;
-
 }

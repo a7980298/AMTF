@@ -14,6 +14,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F010008Params extends UserImpl {
+	/**
+	 * 页面id
+	 */
+	private String IViewId;
 
 	/**
 	 * 在线用户

@@ -11,4 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F010007Params extends UserImpl {
+	/**
+	 * 页面id
+	 */
+	private String IViewId;
 }
