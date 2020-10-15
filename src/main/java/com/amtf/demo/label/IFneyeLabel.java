@@ -16,6 +16,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 import com.amtf.demo.util.CommonUtil;
 
+@SuppressWarnings("unused")
 public class IFneyeLabel extends AbstractElementTagProcessor {
 
 	// 标签名字
