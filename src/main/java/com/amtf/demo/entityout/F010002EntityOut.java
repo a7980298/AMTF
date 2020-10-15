@@ -150,11 +150,6 @@ public class F010002EntityOut extends UserImpl {
 	List<F010002_Select9Entity> select9;
 
 	/**
-	 * 参加活动添加成功?
-	 */
-	public String insert10;
-
-	/**
 	 * 在线用户
 	 */
 	List<WebSockerUsers> userList;

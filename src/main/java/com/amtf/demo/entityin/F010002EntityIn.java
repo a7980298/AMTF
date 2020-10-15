@@ -84,12 +84,12 @@ public class F010002EntityIn extends UserImpl {
 	 * 修改：省
 	 */
 	private String upd_user_province;
-	
+
 	/**
 	 * 修改：市
 	 */
 	private String upd_user_city;
-	
+
 	/**
 	 * 修改：邮编
 	 */
@@ -99,7 +99,7 @@ public class F010002EntityIn extends UserImpl {
 	 * 修改：电话
 	 */
 	private String upd_user_phone;
-	
+
 	/**
 	 * 修改：介绍
 	 */
@@ -118,10 +118,5 @@ public class F010002EntityIn extends UserImpl {
 	 * 通知id
 	 */
 	public String updnotice_id;
-	
-	/**
-	 * 活动id
-	 */
-	public String actiyity_id;
 
 }

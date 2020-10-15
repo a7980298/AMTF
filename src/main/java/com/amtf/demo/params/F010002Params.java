@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amtf.demo.f010001entity.F010001_Select2Entity;
 import com.amtf.demo.f010001entity.F010001_Select3Entity;
 import com.amtf.demo.f010002entity.F010002_Select4Entity;
-import com.amtf.demo.f010002entity.F010002_Select9Entity;
 import com.amtf.demo.user.UserImpl;
 import com.amtf.demo.user.WebSockerUsers;
 
@@ -153,11 +152,6 @@ public class F010002Params extends UserImpl {
 	 * 所有通知
 	 */
 	List<F010002_Select4Entity> select8;
-
-	/**
-	 * 所有活动
-	 */
-	List<F010002_Select9Entity> select9;
 
 	/**
 	 * 在线用户

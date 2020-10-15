@@ -1,11 +1,7 @@
 
 package com.amtf.demo.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amtf.demo.entityin.F010002EntityIn;
 import com.amtf.demo.entityout.F010002EntityOut;
@@ -173,24 +168,5 @@ public class F010002Controller extends ValiDationUtil {
 		model.addAttribute("f010002Params", params);
 
 		return "main :: select7";
-	}
-
-	/**
-	 * 参加活动
-	 * 
-	 * @parameter F020001Params params
-	 * @return String
-	 */
-	@RequestMapping("/f010002/T006")
-	@ResponseBody
-	public Map<String, Object> f010002T006(@RequestParam("id") String id, HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		F010002EntityIn entityin = new F010002EntityIn();
-
-		entityin.setActiyity_id(id);
-
-		F010002EntityOut entityOut = f010002service.service06(entityin);
-		map.put("isuseractivity", entityOut.getInsert10());
-		return map;
 	}
 }
