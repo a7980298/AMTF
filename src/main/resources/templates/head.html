@@ -122,6 +122,95 @@
 					</div>
 				</div>
 			</nav>
+			<div class="fixed-plugin" title="设置">
+				<div class="dropdown show-dropdown">
+					<a href="#" data-toggle="dropdown">
+						<i class="fa fa-cog fa-2x"></i>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="header-title">选择 颜色</li>
+						<li class="adjustments-line">
+							<a href="javascript:void(0)" class="switch-trigger active-color">
+								<div class="badge-colors ml-auto mr-auto">
+									<span class="badge filter badge-purple side_setupcolor" data-color="purple"></span>
+									<span class="badge filter badge-azure side_setupcolor" data-color="azure"></span>
+									<span class="badge filter badge-green side_setupcolor" data-color="green"></span>
+									<span class="badge filter badge-warning side_setupcolor" data-color="orange"></span>
+									<span class="badge filter badge-danger side_setupcolor" data-color="danger"></span>
+									<span class="badge filter badge-rose active side_setupcolor" data-color="rose"></span>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</li>
+						<li class="header-title">边栏 背景</li>
+						<li class="adjustments-line">
+							<a href="javascript:void(0)" class="switch-trigger background-color">
+								<div class="ml-auto mr-auto">
+									<span class="badge filter badge-black active side_setupbackgroundcolor" data-background-color="black">
+									</span> 
+									<span class="badge filter badge-white side_setupbackgroundcolor" data-background-color="white"></span>
+									<span class="badge filter badge-red side_setupbackgroundcolor" data-background-color="red"></span>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</li>
+						<!-- <li class="adjustments-line">
+							<a href="javascript:void(0)" class="switch-trigger">
+								<p>缩小 侧边栏</p>
+								<label class="ml-auto">
+									<div class="togglebutton switch-sidebar-mini">
+										<label> <input type="checkbox"> <span
+											class="toggle"></span>
+										</label>
+									</div>
+								</label>
+								<div class="clearfix"></div>
+							</a>
+						</li> -->
+						<li class="adjustments-line">
+							<a href="javascript:void(0)" class="switch-trigger">
+								<p>边栏 图像</p>
+								<label class="switch-mini ml-auto">
+									<div class="togglebutton switch-sidebar-image">
+										<label>
+											<input type="checkbox" checked id="side_serupimgcheck"/>
+											<span class="toggle"></span>
+										</label>
+									</div>
+								</label>
+								<div class="clearfix"></div>
+							</a>
+						</li>
+						<li class="header-title">图像</li>
+						<li class="active side_serupimg">
+							<a class="img-holder switch-trigger" href="javascript:void(0)"> 
+								<img th:src="@{/img/sidebar-1.jpg}" alt="图1" id="side_serupimg1">
+							</a>
+						</li>
+						<li class="side_serupimg">
+							<a class="img-holder switch-trigger" href="javascript:void(0)">
+								<img th:src="@{/img/sidebar-2.jpg}" alt="图2" id="side_serupimg2">
+							</a>
+						</li>
+						<li class="side_serupimg">
+							<a class="img-holder switch-trigger" href="javascript:void(0)">
+								<img th:src="@{/img/sidebar-3.jpg}" alt="图3" id="side_serupimg3">
+							</a>
+						</li>
+						<li class="side_serupimg">
+							<a class="img-holder switch-trigger" href="javascript:void(0)">
+								<img th:src="@{/img/sidebar-4.jpg}" alt="图4" id="side_serupimg4">
+							</a>
+						</li>
+						<li class="adjustments-line text-center">
+							<button class="btn btn-success mt-1">
+								<i class="material-icons">favorite</i>
+								保存
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
 			<!-- 详细通知 -->
 			<div class="modal fade" id="getupdontice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-notice">
@@ -150,6 +239,87 @@
 					</div>
 				</div>
 			</div>
+			<script>
+			$(document).ready(function() {
+				md.initDashboardPageCharts();
+				md.initVectorMap();
+			});
+			$(document).ready(function() {
+				md.initFormExtendedDatetimepickers();
+			});
+			// table插件
+			$(document).ready(
+				function() {
+					$('#updontice_datatables').DataTable(
+							{
+								"pagingType" : "full_numbers",
+								// 禁止排序
+								"ordering": false, 
+								// 设置默认的排序
+								"order": [ [ 4, "desc" ] ],	
+								"lengthMenu" : [ [ 10, 25, 50, -1 ],
+										[ 10, 25, 50, "All" ] ],
+								responsive : true,
+								language : {
+									search : "_INPUT_",
+									searchPlaceholder : "搜索记录",
+								}
+					});
+
+					var table = $('#updontice_datatables').DataTable();
+
+					// Edit record
+					table.on('click', '.edit', function() {
+						$tr = $(this).closest('tr');
+						var data = table.row($tr).data();
+						alert('你所在的行: ' + data[0] + ' ' + data[1]
+								+ ' ' + data[2] + '\'s 行.');
+					});
+
+					// Delete a record
+					table.on('click', '.remove', function(e) {
+						$tr = $(this).closest('tr');
+						table.row($tr).remove().draw();
+						e.preventDefault();
+					});
+
+					//Like record
+					table.on('click', '.like', function() {
+						alert('你点击了“喜欢”按钮');
+					});
+					
+					$('#activity_datatables').DataTable(
+							{
+								"pagingType" : "full_numbers",
+								// 禁止排序
+								"ordering": false, 
+								// 设置默认的排序
+								"order": [ [ 5, "desc" ] ],	
+								"lengthMenu" : [ [ 10, 25, 50, -1 ],
+										[ 10, 25, 50, "All" ] ],
+								responsive : true,
+								language : {
+									search : "_INPUT_",
+									searchPlaceholder : "搜索记录",
+								}
+					});
+
+					var table = $('#activity_datatables').DataTable();
+
+					// Delete a record
+					table.on('click', '.remove', function(e) {
+						$tr = $(this).closest('tr');
+						table.row($tr).remove().draw();
+						e.preventDefault();
+					});
+
+					//Like record
+					table.on('click', '.like', function() {
+						alert('你点击了“喜欢”按钮');
+					});
+				}
+			);
+			</script>
 		</body>
 	</th:block>
 </html>
