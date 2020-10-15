@@ -147,11 +147,11 @@ function setCodeSuccess(codeSuccess){
 //}
 //打开遮罩
 function showdiv() {
-	document.getElementById("bg").style.display ="block";
+	document.getElementById("loding_div").style.display ="block";
 }
 //关闭遮罩
 function hidediv() {
-	document.getElementById("bg").style.display ='none';
+	document.getElementById("loding_div").style.display ='none';
 }
 // 打开跳转页面遮罩
 function loginshowdiv() {

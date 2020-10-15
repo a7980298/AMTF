@@ -10,6 +10,7 @@
 		<link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"> -->
 		<link rel="stylesheet" th:href="@{/css/fileinput.css}">
 		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link rel="stylesheet" th:href="@{/css/loading.css}">
 		<link rel="stylesheet" th:href="@{/css/material-dashboard.css}">
 		<link rel="stylesheet" th:href="@{/css/material-dashboard.css.map}">
 		<link rel="stylesheet" th:href="@{/css/material-dashboard.min.css}">
@@ -78,11 +79,27 @@
 		<script type="text/javascript" src="https://cdn.goeasy.io/goeasy-1.1.1.js"></script>
 	</head>
 	<body>
-		<!-- <th:block th:replace="~{codeErr :: codeErr}"></th:block>
-		<th:block th:replace="~{wait :: wait}"></th:block>
-		<th:block th:replace="~{codeSuccess :: success}"></th:block> -->
-		<div id="bg" class="bg">
-			<img class="zhezhao col-sm-1" th:src="@{/gif/loding1.gif}">
+		<div id="loding_div">
+			<div class="spinner">
+				<div class="spinner-container container1">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="spinner-container container2">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="spinner-container container3">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+			</div>
 		</div>
 		<div id="loginstop" class="bg">
 			<div class="zhezhao">
