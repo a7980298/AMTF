@@ -157,7 +157,6 @@
 	// 初始化处理
 	$(function() {
 		$('#img2').attr('src', $('#img2').attr('src') + '?r=' + Math.random());
-		openSocket('[[${f010002Params.logInFo.user_email}]]');
 	})
 	//取最新通知
 	/* var interval = window.setInterval(getNewUpdnotice, 1000);
@@ -227,29 +226,6 @@
 			},
 		});
 	}
-	// 聊天选择
-	function amtf_getChat(_this) {
-		_toUserId = $(_this).find('span').eq(0).text();
-		$('#others_userimg').attr('src',$(_this).find('img').eq(0).attr('src'));
-		$('#others_user').text($(_this).find('span').eq(0).text());
-		$('.footer').css('display','block');
-	}
-
-	var _toUserId;
-	// 聊天发送
-	function sendMessage(_contentText) {
-		if (typeof (WebSocket) == "undefined") {
-			console.log("您的浏览器不支持WebSocket");
-		} else {
-			console.log("您的浏览器支持WebSocket");
-			console.log('{"toUserId":"' + _toUserId
-					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
-			socket.send('{"toUserId":"' + _toUserId
-					+ '","contentText":"' + $('#' + _contentText).val() + '"}');
-			$('#chat_text').append("<li class='msgright'><img style='float: right;height:40px;' src='"+$('#img1').attr('src')+"'><p class='msgcard' style='float:right;background-color: hsla(108, 76%, 53%, 0.65);'>"+ $('#' + _contentText).val() +"</p></li>");
-			$('#' + _contentText).val('');
-		}
-	} 
 </script>
 <body class="" onunload="myFunction()">
 	<div class="wrapper">
@@ -274,62 +250,6 @@
 							src="//music.163.com/outchain/player?type=2&amp;id=2175282&amp;auto=1&amp;height=80">
 						</iframe>
 						</i-form>
-					</div>
-				</div>
-				<!-- 畅想快聊 -->
-				<div class="container-fluid dashboardclass" id="f100001" style="display: none;">
-					<div class="container-fluid">
-						<div class="row">
-						<!--<p>【userId】：
-								<div>
-									<input id="userId" name="userId" type="text" value="10">
-								</div>
-							<p>【toUserId】：
-							<div>
-								<input id="toUserId" name="toUserId" type="text" value="20">
-							</div>  -->
-							<div class="chatleft">
-								<div class="top col-sm-12">
-									<input type="text" placeholder="搜索联系人" class="col-sm-10">
-									<button class="searchbtn">
-										<i class="fa fa-search"></i>
-									</button>
-								</div>
-								<div class="center" id="adduser">
-									<ul th:each="entity,idx:${f010002Params.userList}">
-										<li>
-											<a class="nav-link" href="#" onclick="amtf_getChat(this)">
-												<img style="height:40px;" th:src="@{/imgs/userimg.jpg}" th:if="${entity.userpath == ''}">
-												<img style="height:40px;" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.userpath})}" th:if="${entity.userpath != ''}">
-												<span style="margin-left: 10px;">[[${entity.userid}]]</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="chatright">
-								<div class="top">
-									<img style="height:40px;" src="" id="others_userimg">
-									<span style="margin-left: 20px;" id="others_user"></span> 
-								</div>
-								<div class="center" id="chat_text">
-									<ul>
-										<!-- <li class="msgleft">
-											<img style="border-radius: 20px; vertical-align: top;" class="ml-2" src="http://placehold.it/40x40">
-											<p class="msgcard">你吃饭了吗？</p>
-										</li> -->
-										<!-- <li class="msgright">
-											<img style="float: right; " src="http://placehold.it/40x40">
-											<p class="msgcard" style="float:right;background-color: hsla(108, 76%, 53%, 0.65);">你吃饭了吗？</p>
-										</li> -->
-									</ul>
-								</div>
-								<div class="footer">
-									<textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none;" placeholder="请在此输入要发送的内容..." id="contentText" name="contentText"></textarea>
-									<button class="btn" onclick="sendMessage('contentText')">发送</button>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

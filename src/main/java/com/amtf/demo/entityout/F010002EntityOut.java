@@ -8,7 +8,6 @@ import com.amtf.demo.f010001entity.F010001_Select3Entity;
 import com.amtf.demo.f010002entity.F010002_Select4Entity;
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
 import com.amtf.demo.user.UserImpl;
-import com.amtf.demo.user.WebSockerUsers;
 import com.amtf.demo.util.FenYe;
 
 import lombok.Getter;
@@ -149,8 +148,4 @@ public class F010002EntityOut extends UserImpl {
 	 */
 	List<F010002_Select9Entity> select9;
 
-	/**
-	 * 在线用户
-	 */
-	List<WebSockerUsers> userList;
 }

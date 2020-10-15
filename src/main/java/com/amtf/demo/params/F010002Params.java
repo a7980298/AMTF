@@ -1,16 +1,11 @@
 package com.amtf.demo.params;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.amtf.demo.f010001entity.F010001_Select2Entity;
-import com.amtf.demo.f010001entity.F010001_Select3Entity;
 import com.amtf.demo.f010002entity.F010002_Select4Entity;
 import com.amtf.demo.user.UserImpl;
-import com.amtf.demo.user.WebSockerUsers;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -65,80 +60,6 @@ public class F010002Params extends UserImpl {
 	private String user_attestation;
 
 	/**
-	 * 导航栏
-	 */
-	public Map<String, List<F010001_Select2Entity>> navigation_bar;
-	/**
-	 * 最新发布的通知
-	 */
-	F010001_Select3Entity select4;
-
-	/**
-	 * 修改：用户id
-	 */
-	private Integer upd_user_id;
-
-	/**
-	 * 修改：账户
-	 */
-	private String upd_user_account;
-
-	/**
-	 * 修改：密码
-	 */
-	private String upd_user_password;
-
-	/**
-	 * 修改：姓名
-	 */
-	private String upd_user_name;
-
-	/**
-	 * 修改：国家
-	 */
-	private String upd_user_country;
-
-	/**
-	 * 修改：省
-	 */
-	private String upd_user_province;
-
-	/**
-	 * 修改：市
-	 */
-	private String upd_user_city;
-
-	/**
-	 * 修改：邮编
-	 */
-	private String upd_user_postcode;
-
-	/**
-	 * 修改：电话
-	 */
-	private String upd_user_phone;
-
-	/**
-	 * 修改：介绍
-	 */
-	private String upd_user_introduce;
-
-	/**
-	 * 修改：用户照片
-	 */
-	public MultipartFile upd_user_img;
-
-	/**
-	 * 是否修改成功
-	 */
-	public String isUpdatUserOk;
-
-	/**
-	 * 通知信息
-	 */
-	List<F010002_Select4Entity> select5;
-
-	/**
 	 * 通知id
 	 */
 	public String updnotice_id;
@@ -148,13 +69,4 @@ public class F010002Params extends UserImpl {
 	 */
 	List<F010002_Select4Entity> select7;
 
-	/**
-	 * 所有通知
-	 */
-	List<F010002_Select4Entity> select8;
-
-	/**
-	 * 在线用户
-	 */
-	List<WebSockerUsers> userList;
 }

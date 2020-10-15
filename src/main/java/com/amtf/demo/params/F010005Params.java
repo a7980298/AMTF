@@ -14,6 +14,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F010005Params extends UserImpl {
+	/**
+	 * 页面id
+	 */
+	private String IViewId;
+
+	/**
+	 * 活动id
+	 */
+	public String actiyity_id;
+
+	/**
+	 * 参加活动添加成功?
+	 */
+	public String insert10;
 
 	/**
 	 * 所有活动
