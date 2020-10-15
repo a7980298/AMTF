@@ -27,8 +27,30 @@
 		}
 		//打开详细通知
 		function amtf_getupdontice(_id, _head, _text) {
+			$('#getupdontice').modal('show');
 			showdiv();
-			
+			$.ajax({
+				url : CONTEXT_PATH + '/f010002/T004',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : _id,
+				},
+				success : function(result) {
+					hidediv();
+					$('#select5').replaceWith(result);
+					if (typeof $('#f010004') != null) {
+						
+					}
+				},
+				error : function(res, textStaus) {
+					hidediv();
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+			$('#updnoticehead').text(_head);
+			$('#updnoticetext').text(_text);
 		}
 		</script>
 		</head>
