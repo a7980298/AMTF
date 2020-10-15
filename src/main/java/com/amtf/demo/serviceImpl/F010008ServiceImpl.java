@@ -49,6 +49,8 @@ public class F010008ServiceImpl implements F010008Service {
 		}
 		entityout.setUserList(userList);
 
+		entityout.setLogInFo(loginfo);
+
 		return entityout;
 	}
 }
