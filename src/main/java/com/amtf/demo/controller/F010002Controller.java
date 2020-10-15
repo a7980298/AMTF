@@ -148,7 +148,7 @@ public class F010002Controller extends ValiDationUtil {
 
 		model.addAttribute("f010002Params", params);
 
-		return "main :: select5";
+		return "head :: select5";
 	}
 
 	/**

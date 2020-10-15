@@ -23,7 +23,34 @@
 		}
 		// 锁定页面
 		function amtf_golock() {
-			amtf_submit(amtf_formupduser, '/f010002/T003');
+			amtf_submit(amtf_form, '/f010002/T003');
+		}
+		//打开详细通知
+		function amtf_getupdontice(_id, _head, _text) {
+			$('#getupdontice').modal('show');
+			showdiv();
+			$.ajax({
+				url : CONTEXT_PATH + '/f010002/T004',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : _id,
+				},
+				success : function(result) {
+					hidediv();
+					$('#select5').replaceWith(result);
+					if (typeof $('#f010004') != null) {
+						
+					}
+				},
+				error : function(res, textStaus) {
+					hidediv();
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+			$('#updnoticehead').text(_head);
+			$('#updnoticetext').text(_text);
 		}
 		</script>
 		</head>
@@ -88,15 +115,41 @@
 									<a class="dropdown-item" href="#usersetup" onclick="amtf_loginhead(this)">设置</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#" onclick="amtf_golock()">锁定</a>
-									<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_form_close">
-										<a class="dropdown-item" href="#" onclick="amtf_return()">注销</a>
-									</i-form>
+									<a class="dropdown-item" href="#" onclick="amtf_return()">注销</a>
 								</div>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
+			<!-- 详细通知 -->
+			<div class="modal fade" id="getupdontice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-notice">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="myModalLabel">通知</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								<i class="material-icons">close</i>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="instruction">
+								 <div class="row">
+									<div class="col-sm-6">
+										<h3 id="updnoticehead"></h3>
+										<p id="updnoticetext"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer justify-content-center">
+							<button type="button" class="btn btn-info btn-round"
+								data-dismiss="modal">知道了</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</body>
 	</th:block>
 </html>

@@ -350,7 +350,7 @@
 				<!-- 主画面 -->
 				<div class="container-fluid dashboardclass" id="main">
 					<div class="container-fluid">
-						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_formmain" enctype="multipart/form-data">
+						<i-form class="" th:action="@{/f010002}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						主画面
 						</i-form>
 					</div>
@@ -606,34 +606,6 @@
 									<button class="btn" onclick="sendMessage('contentText')">发送</button>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 详细通知 -->
-			<div class="modal fade" id="getupdontice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-notice">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">通知</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">
-								<i class="material-icons">close</i>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="instruction">
-								 <div class="row">
-									<div class="col-sm-6">
-										<h3 id="updnoticehead"></h3>
-										<p id="updnoticetext"></p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer justify-content-center">
-							<button type="button" class="btn btn-info btn-round"
-								data-dismiss="modal">知道了</button>
 						</div>
 					</div>
 				</div>

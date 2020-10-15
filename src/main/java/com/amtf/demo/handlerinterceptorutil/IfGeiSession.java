@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.amtf.demo.serviceImpl.CommonServie;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
+import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.RedisUtils;
 
 @Component
@@ -63,7 +64,9 @@ public class IfGeiSession implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o,
 			ModelAndView modelAndView) throws Exception {
 		// 更新头部和导航栏
-		commonservie.CommonServie1();
+		if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
+			commonservie.CommonServie1();
+		}
 	}
 
 	// 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）
