@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class iNameEntity {
+public class INameEntity {
 
 	private String value;
 }
