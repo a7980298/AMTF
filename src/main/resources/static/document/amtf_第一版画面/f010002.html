@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="head :: myhead"></th:block>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	.leftdiv{
+		width: 150px;
+		height: 300px;
+		background: #f5f5f5;
+		position: fixed;
+		left: 20px;
+		top: 100px;
+		z-index: 100;
+	}
+
+
+</style>
+<script type="text/javascript">
+	!(function() {
+		function n(n, e, t) {
+			return n.getAttribute(e) || t;
+	}
+
+	function e(n) {
+		return document.getElementsByTagName(n);
+	}
+
+	function t() {
+		var t = e("script"),
+			o = t.length,
+			i = t[o - 1];
+			return {
+				l: o,
+				z: n(i, "zIndex", -1),
+				o: n(i, "opacity", 0.5),
+				c: n(i, "color", "0,0,0"),
+				n: n(i, "count", 99)
+			};
+	}
+
+	function o() {
+		(a = m.width = window.innerWidth ||
+			document.documentElement.clientWidth ||
+			document.body.clientWidth),
+		(c = m.height = window.innerHeight ||
+			document.documentElement.clientHeight ||
+			document.body.clientHeight);
+	}
+
+	function i() {
+		r.clearRect(0, 0, a, c);
+		var n, e, t, o, m, l;
+		s.forEach(function(i, x) {
+			for (
+				i.x += i.xa,
+				i.y += i.ya,
+				i.xa *= i.x > a || i.x < 0 ? -1 : 1,
+				i.ya *= i.y > c || i.y < 0 ? -1 : 1,
+				r.fillRect(i.x - 0.5, i.y - 0.5, 1, 1),
+				e = x + 1;
+				e < u.length;
+				e++
+			)
+			(n = u[e]),
+			null !== n.x &&
+			null !== n.y &&
+			((o = i.x - n.x),
+				(m = i.y - n.y),
+				(l = o * o + m * m),
+				l < n.max &&
+				(n === y &&
+				l >= n.max / 2 &&
+				((i.x -= 0.03 * o), (i.y -= 0.03 * m)),
+				(t = (n.max - l) / n.max),
+				r.beginPath(),
+				(r.lineWidth = t / 2),
+				(r.strokeStyle = "rgba(" + d.c + "," + (t + 0.2) + ")"),
+				r.moveTo(i.x, i.y),
+				r.lineTo(n.x, n.y),
+				r.stroke()));
+			}),
+		x(i);
+	}
+
+	var a,c,u,m = document.createElement("canvas"),d = t(),l = "c_n" + d.l,r = m.getContext("2d"),
+		x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
+			window.oRequestAnimationFrame ||
+			window.msRequestAnimationFrame ||
+			function(n) {
+				window.setTimeout(n, 1e3 / 45);
+			},
+			w = Math.random,
+			y = { x: null, y: null, max: 2e4 };
+			(m.id = l),
+			(m.style.cssText =
+				"position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o),
+				e("body")[0].appendChild(m),
+				o(),
+				(window.onresize = o),
+				(window.onmousemove = function(n) {
+					(n = n || window.event), (y.x = n.clientX), (y.y = n.clientY);
+				}),
+			(window.onmouseout = function() {
+				(y.x = null), (y.y = null);
+			});
+
+	for (var s = [], f = 0; d.n > f; f++) {
+		var h = w() * a,
+		g = w() * c,
+		v = 2 * w() - 1,
+		p = 2 * w() - 1;
+		s.push({ x: h, y: g, xa: v, ya: p, max: 6e3 });
+	}
+
+	(u = s.concat([y])),
+		setTimeout(function() {
+			i();
+		}, 100);
+	})();
+
+	function aaa() {
+		amtf_submit(amtf_form , '/f010002/F001');
+	}
+
+	$(function(){
+		if ("[[${f010002Params.isUpdatUserOk}]]" == '1') {
+			$('#success_id').text('修改成功');
+			$('#myModal_success').modal('show');
+		}
+	})
+</script>
+</head>
+<body>
+	<i-form class="" th:action="@{/f010002}" method="post" id="amtf_form" enctype="multipart/form-data">
+		<input type="hidden" name="IViewId" value="f010002"/>
+		<th:block th:replace="~{f010004 :: f010004_modl}"></th:block>
+		<th:block th:replace="~{f010005 :: f010005_modl}"></th:block>
+		<div class="container body-content">
+			<div class="row">
+				<div id="imgs" data-interval="2000" data-ride="carousel" class="carousel slide" style="width: 100%">
+					<div class="carousel-inner">
+						<div class="item active">
+							<img th:src="@{/imgs/longin.jpg}" style="width: 100%;height: 500px;">
+						</div>
+						<div class="item">
+							<img th:src="@{/imgs/regist8.jpg}"  style="width: 100%;height: 500px;">
+						</div>
+						<ul class="carousel-indicators">
+							<li data-target="#imgs" data-slide-to="0" class="active"></li>
+							<li data-target="#imgs" data-slide-to="1"></li>
+						</ul>
+					</div>
+					<a href="#imgs" data-slide="prev" class="carousel-control left" style="margin-top:180px;height:0px;color:#fff;"><</a>
+					<a href="#imgs" data-slide="next" class="carousel-control right" style="margin-top:180px;height:0px;color:#fff;">></a>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="leftdiv">
+			<ol class="breadcrumb">
+				<li class="active">
+					 最新通知
+				</li>
+			</ol>
+			<textarea rows="1" cols="" style="resize: none;height:220px;width:150px;border: none;" disabled> [[${f010002Params.select4.updnotice_text}]]</textarea>
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				动听音乐
+			</div>
+			<hr>
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				精彩视频
+			</div>
+			<hr>
+		</div>
+		<div class="container body-content">
+			<div class="row">
+				最火帖子
+			</div>
+			<hr>
+		</div>
+		<div style="height:40px;">
+			<footer class="navbar navbar-fixed-bottom text-center bg-primary">
+				<p>© [[${f010002Params.logInFo.User_Account}]] <br/>本网站开发人员：王意鑫  方军  张春程  王杰 李方方 倪捷扬<br/>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+			</footer>
+		</div>
+	</i-form>
+</body>
+</html>

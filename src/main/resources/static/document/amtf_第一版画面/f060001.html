@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>任务一栏</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<div class="row bg col-md-12">
+	<i-form class="" th:action="@{/f060001}" method="post" style="height:100%;" id="amtf_form">
+		<input type="hidden" name="IViewId" value="f060001"/>
+			<nav class="navbar navbar-inverse" role="navigation">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="example-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a class="icon-bar" href="#setup" data-toggle="tab" onclick="amtf_activeclick(this)">最热任务</a>
+						</li>
+						<li>
+							<a href="#classification" data-toggle="tab" onclick="amtf_activeclick(this)">任务一栏</a>
+						</li>
+						<li>
+							<a href="#personnel" data-toggle="tab" onclick="amtf_activeclick(this)">最新任务</a>
+						</li>
+						<li>
+							<a href="#advertisement" data-toggle="tab" onclick="amtf_activeclick(this)">管理任务</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		</i-form>
+	</div>
+</body>
+</html>

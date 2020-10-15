@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>佛</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	.mod1class{
+		padding-top:10%;
+		width:100%;
+	}
+</style>
+<script type="text/javascript">
+	//初始化方法
+	$(function(){
+		setErrList("[[${errMessageList}]]");
+		setCodeErrList("[[${codemsg}]]");
+	});
+
+	//登录按钮押下
+	function amtf_login(){
+		amtf_submit(amtf_form , '/f010001/T001');
+	}
+	//打开模态框
+	function show_modal() {
+		$('.dropdown-toggle').dropdown();
+		$('#myModal').modal('show');
+	}
+	var lookpwdindex = 0;
+	function lookpwd(thisid){
+		if (lookpwdindex == 0) {
+			lookpwdindex = 1;
+			$('#userpassword').attr('type','text');
+			$(thisid).val('隐藏密码');
+			$('#lookpwd_img').attr('src','/amtf/imgs/block_pwd.jpg');
+		} else {
+			lookpwdindex = 0;
+			$('#userpassword').attr('type','password');
+			$(thisid).val('查看密码');
+			$('#lookpwd_img').attr('src','/amtf/imgs/view_pwd.jpg');
+		}
+	}
+
+/* 	function closeModl(){
+		$("#myModal_codeErr").css("display","none");
+		$(".modal-backdrop.fade").hide();
+	} */
+</script>
+</head>
+<body>
+	<div style="height:100%;">
+		<i-form class="" th:action="@{/experiment}" method="post" style="height:100%;" id="amtf_form">
+		<input type="hidden" name="IViewId" value="experiment"/>
+		<table>
+			<tbody>
+			<tr>
+				<td>
+					<div class="">
+						<div class="col-md-8">	
+							<div class="col-md-12">
+								<div class="col-md-8">
+									<input type="text" class="form-control" id="username" placeholder="账户" name="User_Account" maxlength="9" th:value="${experimentParams.User_Account}">
+								</div>
+							</div>
+							<div class="col-md-12 mt-4">
+								<div class="col-md-8">
+									<input type="password" class="form-control " id="userpassword" placeholder="密码" name="User_Password" maxlength="13" th:value="${experimentParams.User_Password}">
+								</div>
+								<div class="col-md-2">
+									<button type="button" class="btn" value="查看密码" onclick="lookpwd(this)">
+										<img th:src="@{/imgs/view_pwd.jpg}" id="lookpwd_img" alt="密码" class="" style="width:20px;height:20px;"/>
+									</button>
+								</div>
+							</div>
+							<div>
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-info col-md-4">登录</button>
+									<button class="btn btn-primary ml-3 col-md-4" type="button" data-target="#myModal" onclick="show_modal()">注册</button>
+									<a href="#">忘记密码</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					</td>
+					<td style="width:150px;">
+						<i-select name="experimentParams" property="select1" style="color:red;"></i-select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<th:block th:replace="~{mod1 :: mod1}"></th:block>
+		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
+		</i-form>
+	</div>
+</body>
+</html>

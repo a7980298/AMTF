@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8"></meta>
+<th:block th:fragment="success">
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="success" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="z-index: 111111;">
+		<div class="mod1class">
+			<div class="" style="padding-left:40%;" id="modthis">
+				<div class="modal-content" style="width: 300px;height:150px;">
+					<img th:src="@{/imgs/success.jpg}" alt="成功" class="col-md-6 img-thumbnail center-block" style="height:100%;">
+					<div class="modal-body text-center">
+						<h4 class="text-danger" id="success_id">[[${success}]]</h4>
+						<input type="button" class="mt-4 btn-lg btn-default btn-success" value="确定" data-dismiss="modal"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

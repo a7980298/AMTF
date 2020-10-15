@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>科乐奇</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	.mod1class{
+		padding-top:10%;
+		width:100%;
+	}
+   .form{
+		background: rgba(255,255,255,0.2);
+		width:400px;margin:100px auto;
+	}  
+	#login_form{
+		display: block;
+	}  
+	#register_form{
+		display: none;
+	}  
+	.fa{
+		display: inline-block;
+		top: 27px;
+		left: 6px;
+		position: relative;
+		color: #ccc;
+	}  
+   input[type="text"],input[type="password"]{
+		padding-left:26px;
+	}  
+	.checkbox{
+		padding-left:21px;
+	}  
+	.padding-top-3{
+		padding-top: 10%
+	}
+</style>
+<script type="text/javascript">
+	//初始化方法
+	$(function(){
+		setErrList("[[${errMessageList}]]");
+		setCodeErrList("[[${codemsg}]]");
+		setCodeSuccess("[[${codemsg}]]");
+	
+	});
+
+	//登录按钮押下
+	function amtf_login(){
+		amtf_submit(amtf_form , '/f010001/T001');
+	}
+	
+	//打开模态框
+	function show_modal() {
+		$('.dropdown-toggle').dropdown();
+		$('#myModal').modal('show');
+	}
+	
+	//返回
+	function amtf_return(){
+		amtf_submit(amtf_form , '/f010002');
+	}
+	
+	//top点击时去掉所有的active样式(选中的样式)并给自己添加active
+	function amtf_activeclick(thisid){
+		$('.active').removeClass("active"); 
+		$(thisid).addClass("active");
+	}
+	
+	//修改认证
+	function amtf_attestation(thisid){
+		var text = $(thisid).text();
+		if (text == '×未认证') {
+			$(thisid).css('color','green');
+			$(thisid).text('√认证');
+			$(thisid).attr('href','javascript:return false;');
+		}
+	}
+
+	//搜索按钮押下
+	function amtf_search(){
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T002',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				search_name: $('#search_name').val(),
+				select_state: $('#select_state option:selected').val()
+			},
+			success: function (result) {
+				$('#select1').replaceWith(result);
+			},
+			error: function (res, textStaus) {
+				
+			},
+		});
+	}
+
+	//删除按钮押下
+	function amtf_personnel_del(index){
+		/* $('#f020002_modl').modal('show'); */
+		$('#select1' + index).remove();
+	}
+	
+	//多选和非选
+	var checkbol= 0;
+	function amtf_wholecheck(){
+		if (checkbol == 0) {
+			$('#select1 input[type=checkbox]').prop('checked',true);
+			checkbol=1;
+		} else {
+			$('#select1 input[type=checkbox]').prop('checked',false);
+			checkbol=0;
+		}
+		
+	}
+	
+	//发布更新通知
+	function amtf_release(){
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T003',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				release_name: $('#release_name').val()
+			},
+			success: function (result) {
+				$('#success_id').text('发布成功');
+				$('#myModal_success').modal('show');
+			},
+			error: function (res, textStaus) {
+				
+			},
+		});
+	}
+</script>
+</head>
+<body>
+	<div class="row bg col-md-12">
+	<i-form class="" th:action="@{/f030001}" method="post" style="height:100%;" id="amtf_form">
+		<input type="hidden" name="IViewId" value="f030001"/>
+		<th:block th:replace="~{codeErr :: codeErr}"></th:block>
+		<th:block th:replace="~{codeSuccess :: success}"></th:block>
+		
+        
+	</i-form>
+	</div>
+</body>
+</html>
