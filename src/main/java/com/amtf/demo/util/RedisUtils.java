@@ -82,8 +82,10 @@ public class RedisUtils {
 						redis_key += string + ",";
 					}
 				}
-				if (redis_key.substring(redis_key.length() - 1, redis_key.length()).equals(",")) {
-					redis_key = redis_key.substring(0, redis_key.length() - 1);
+				if (!CommonUtil.isEmpty(redis_key)) {
+					if (redis_key.substring(redis_key.length() - 1, redis_key.length()).equals(",")) {
+						redis_key = redis_key.substring(0, redis_key.length() - 1);
+					}
 				}
 				this.set(key, redis_key);
 				return true;
