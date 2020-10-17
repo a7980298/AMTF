@@ -4,84 +4,13 @@
 <meta charset="UTF-8">
 <title>登录画面</title>
 <th:block th:replace="import :: myimport"></th:block>
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- <link rel="stylesheet" th:href="@{css/common_live.css}" /> -->
 <style type="text/css">
-	
 </style>
 <script type="text/javascript">
-//rtc object
-var rtc = {
-  client: null,
-  joined: false,
-  published: false,
-  localStream: null,
-  remoteStreams: [],
-  params: {}
-};
 
-// Options for joining a channel
-var option = {
-  appID: "Your App ID",
-  channel: "Channel name",
-  uid: null,
-  token: "Your token"
-}
-// mode 用于设置频道场景。一对一或多人通话中，建议设为 "rtc" ，使用通信场景；互动直播中，建议设为 "live"，使用直播场景。
-//codec 用于设置浏览器使用的编解码格式。如果你需要使用 Safari 12.1 及之前版本，将该参数设为 "h264"；如果你需要在手机上使用 Agora Web SDK，请参考移动端使用 Web SDK。
-rtc.client = AgoraRTC.createClient({mode: "live", codec: "h264"});
-
-// Initialize the client
-rtc.client.init(option.appID, function () {
-  console.log("init success");
-  }, (err) => {
-  console.error(err);
-});
-//让用户选择自己的角色是主播（"host"）还是观众（"audience"）。
-rtc.client.setClientRole("host"); 
-// 在 Client.init 的 onSuccess 回调中调用 Client.join 加入频道。
-rtc.client.join(option.token ? option.token : null, option.channel, option.uid ? +option.uid : null, function (uid) {
-    console.log("join channel: " + option.channel + " success, uid: " + uid);
-    rtc.params.uid = uid;
-  }, function(err) {
-    console.error("client join failed", err)
-})
-// Create a local stream
-rtc.localStream = AgoraRTC.createStream({
-  streamID: rtc.params.uid,
-  audio: true,
-  video: true,
-  screen: false,
-})
-// Initialize the local stream
-rtc.localStream.init(function () {
-  console.log("init local stream success");
-  // play stream with html element id "local_stream"
-  rtc.localStream.play("local_stream");
-}, function (err) {
-  console.error("init local stream failed ", err);
-});
-//Publish the local stream
-rtc.client.publish(rtc.localStream, function (err) {
-  console.log("publish failed");
-  console.error(err);
-})
-// 离开频道
-rtc.client.leave(function () {
-  // Stop playing the local stream
-  rtc.localStream.stop();
-  // Close the local stream
-  rtc.localStream.close();
-  // Stop playing the remote streams and remove the views
-  while (rtc.remoteStreams.length > 0) {
-    var stream = rtc.remoteStreams.shift();
-    var id = stream.getId();
-    stream.stop();
-    removeView(id);
-  }
-  console.log("client leaves channel success");
-}, function (err) {
-  console.log("channel leave failed");
-  console.error(err);
-})
 </script>
 </head>
 <body>
@@ -93,11 +22,14 @@ rtc.client.leave(function () {
 				<!-- 个人资料 -->
 				<div class="container-fluid dashboardclass" id="userinfo">
 					<div class="container-fluid">
-					<!-- <i-form class="" th:action="@{/f010010}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data"> <input type="hidden" name="IViewId" value="f010010" /> -->
+						<!-- <i-form class="" th:action="@{/f010010}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data"> <input type="hidden" name="IViewId" value="f010010" /> -->
 						<div class="navbar-fixed">
 							<nav class="agora-navbar">
 								<div class="nav-wrapper agora-primary-bg valign-wrapper">
-									<h5 class="left-align">Basic Live Broadcast</h5>
+									<h5 class="left-align">直播</h5>
+									<a
+										href="https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1"
+										class="agora-github-pin"></a>
 								</div>
 							</nav>
 						</div>
@@ -107,36 +39,88 @@ rtc.client.leave(function () {
 									<div class="card" style="margin-top: 0px; margin-bottom: 0px;">
 										<div class="row card-content" style="margin-bottom: 0px;">
 											<div class="input-field">
-												<label for="appID" class="active">App ID</label> <input
-													type="text" placeholder="App ID" name="appID">
+												<label for="appID" class="active">系统ID</label> <input
+													type="text" placeholder="App ID" name="appID" value="c5eeb7bb4b3e43a7a56f2df0b09f3b83">
 											</div>
 											<div class="input-field">
-												<label for="channel" class="active">Channel</label> <input
-													type="text" placeholder="channel" name="channel">
+												<label for="channel" class="active">房间号</label> <input
+													type="text" placeholder="channel" name="channel" value="123">
 											</div>
 											<div class="input-field">
-												<label for="token" class="active">Token</label> <input
-													type="text" placeholder="token" name="token">
+												<label for="token" class="active">临时Token</label> <input
+													type="text" placeholder="token" name="token" value="006c5eeb7bb4b3e43a7a56f2df0b09f3b83IADmsV98DtXjQudWEJk1xxueNk3ng2ge4r7UHwNFs/FoPdJjSIgAAAAAEABEZ8flApmLXwEAAQACmYtf">
 											</div>
-											Host: <input id="role" type="checkbox" checked></input>
 											<div class="row" style="margin: 0">
 												<div class="col s12">
 													<button
 														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="join">JOIN</button>
+														id="join">连接</button>
 													<button
 														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="leave">LEAVE</button>
+														id="leave">关闭</button>
 													<button
 														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="publish">PUBLISH</button>
+														id="publish">发布</button>
 													<button
 														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="unpublish">UNPUBLISH</button>
+														id="unpublish">不公开的</button>
 												</div>
 											</div>
 										</div>
 									</div>
+									<ul class="collapsible card agora-secondary-border"
+										style="margin-top: .4rem; border: 1px">
+										<li>
+											<div class="collapsible-header agora-secondary-bg">
+												<h8 class="center-align">高级设置</h8>
+											</div>
+											<div class="collapsible-body card-content">
+												<div class="row">
+													<div class="col s12">
+														<div class="input-field">
+															<label for="UID" class="active">用户id</label> <input
+																type="number" placeholder="UID" name="uid">
+														</div>
+														<div class="input-field">
+															<label for="cameraId" class="active">摄像头</label> <select
+																name="cameraId" id="cameraId"></select>
+														</div>
+														<div class="input-field">
+															<label for="microphoneId" class="active">麦克风</label>
+															<select name="microphoneId" id="microphoneId"></select>
+														</div>
+														<div class="input-field">
+															<label for="cameraResolution" class="active">分辨率</label> <select name="cameraResolution"
+																id="cameraResolution"></select>
+														</div>
+														<div class="row col s12">
+															<div class="row">
+																<label for="mode" class="active">模式</label>
+															</div>
+															<div class="row">
+																<label> <input type="radio" class="with-gap"
+																	name="mode" value="live" checked /> <span>直播</span>
+																</label> <label> <input type="radio" class="with-gap"
+																	name="mode" value="rtc" /> <span>观众</span>
+																</label>
+															</div>
+														</div>
+														<div class="row col s12">
+															<div class="row">
+																<label for="codec" class="active">编解码器</label>
+															</div>
+															<div class="row">
+																<label> <input type="radio" class="with-gap"
+																	name="codec" value="h264" checked /> <span>h264</span>
+																</label> <label> <input type="radio" class="with-gap"
+																	name="codec" value="vp8" /> <span>vp8</span>
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+										</li>
+									</ul>
 								</div>
 								<div class="col s7">
 									<div class="video-grid" id="video">
@@ -149,6 +133,478 @@ rtc.client.leave(function () {
 								</div>
 							</div>
 						</form>
+						<script>
+							console.log("agora sdk version: " + AgoraRTC.VERSION + " compatible: " + AgoraRTC.checkSystemRequirements());
+							    var resolutions = [
+							      {
+							        name: "default",
+							        value: "default",
+							      },
+							      {
+							        name: "480p",
+							        value: "480p",
+							      },
+							      {
+							        name: "720p",
+							        value: "720p",
+							      },
+							      {
+							        name: "1080p",
+							        value: "1080p"
+							      }
+							    ]
+							
+							    function Toastify (options) {
+							      M.toast({html: options.text, classes: options.classes})
+							    }
+							
+							    var Toast = {
+							      info: (msg) => {
+							        Toastify({
+							          text: msg,
+							          classes: "info-toast"
+							        })
+							      },
+							      notice: (msg) => {
+							        Toastify({
+							          text: msg,
+							          classes: "notice-toast"
+							        })
+							      },
+							      error: (msg) => {
+							        Toastify({
+							          text: msg,
+							          classes: "error-toast"
+							        })
+							      }
+							    }
+							    function validator(formData, fields) {
+							      var keys = Object.keys(formData)
+							      for (let key of keys) {
+							        if (fields.indexOf(key) != -1) {
+							          if (!formData[key]) {
+							            Toast.error("Please Enter " + key)
+							            return false
+							          }
+							        }
+							      }
+							      return true
+							    }
+							
+							    function serializeformData() {
+							      var formData = $("#form").serializeArray()
+							      var obj = {}
+							      for (var item of formData) {
+							        var key = item.name
+							        var val = item.value
+							        obj[key] = val
+							      }
+							      return obj
+							    }
+							
+							    function addView (id, show) {
+							      if (!$("#" + id)[0]) {
+							        $("<div/>", {
+							          id: "remote_video_panel_" + id,
+							          class: "video-view",
+							        }).appendTo("#video")
+							
+							        $("<div/>", {
+							          id: "remote_video_" + id,
+							          class: "video-placeholder",
+							        }).appendTo("#remote_video_panel_" + id)
+							
+							        $("<div/>", {
+							          id: "remote_video_info_" + id,
+							          class: "video-profile " + (show ? "" :  "hide"),
+							        }).appendTo("#remote_video_panel_" + id)
+							
+							        $("<div/>", {
+							          id: "video_autoplay_"+ id,
+							          class: "autoplay-fallback hide",
+							        }).appendTo("#remote_video_panel_" + id)
+							      }
+							    }
+							    function removeView (id) {
+							      if ($("#remote_video_panel_" + id)[0]) {
+							        $("#remote_video_panel_"+id).remove()
+							      }
+							    }
+							
+							    function getDevices (next) {
+							      AgoraRTC.getDevices(function (items) {
+							        items.filter(function (item) {
+							          return ["audioinput", "videoinput"].indexOf(item.kind) !== -1
+							        })
+							        .map(function (item) {
+							          return {
+							          name: item.label,
+							          value: item.deviceId,
+							          kind: item.kind,
+							          }
+							        })
+							        var videos = []
+							        var audios = []
+							        for (var i = 0; i < items.length; i++) {
+							          var item = items[i]
+							          if ("videoinput" == item.kind) {
+							            var name = item.label
+							            var value = item.deviceId
+							            if (!name) {
+							              name = "camera-" + videos.length
+							            }
+							            videos.push({
+							              name: name,
+							              value: value,
+							              kind: item.kind
+							            })
+							          }
+							          if ("audioinput" == item.kind) {
+							            var name = item.label
+							            var value = item.deviceId
+							            if (!name) {
+							              name = "microphone-" + audios.length
+							            }
+							            audios.push({
+							              name: name,
+							              value: value,
+							              kind: item.kind
+							            })
+							          }
+							        }
+							        next({videos: videos, audios: audios})
+							      })
+							    }
+							
+							    var rtc = {
+							      client: null,
+							      joined: false,
+							      published: false,
+							      localStream: null,
+							      remoteStreams: [],
+							      params: {}
+							    }
+							
+							    function handleEvents (rtc) {
+							      // Occurs when an error message is reported and requires error handling.
+							      rtc.client.on("error", (err) => {
+							        console.log(err)
+							      })
+							      // Occurs when the peer user leaves the channel; for example, the peer user calls Client.leave.
+							      rtc.client.on("peer-leave", function (evt) {
+							        var id = evt.uid;
+							        console.log("id", evt)
+							        let streams = rtc.remoteStreams.filter(e => id !== e.getId())
+							        let peerStream = rtc.remoteStreams.find(e => id === e.getId())
+							        if(peerStream && peerStream.isPlaying()) {
+							          peerStream.stop()
+							        }
+							        rtc.remoteStreams = streams
+							        if (id !== rtc.params.uid) {
+							          removeView(id)
+							        }
+							        Toast.notice("peer leave")
+							        console.log("peer-leave", id)
+							      })
+							      // Occurs when the local stream is published.
+							      rtc.client.on("stream-published", function (evt) {
+							        Toast.notice("stream published success")
+							        console.log("stream-published")
+							      })
+							      // Occurs when the remote stream is added.
+							      rtc.client.on("stream-added", function (evt) {  
+							        var remoteStream = evt.stream
+							        var id = remoteStream.getId()
+							        Toast.info("stream-added uid: " + id)
+							        if (id !== rtc.params.uid) {
+							          rtc.client.subscribe(remoteStream, function (err) {
+							            console.log("stream subscribe failed", err)
+							          })
+							        }
+							        console.log("stream-added remote-uid: ", id)
+							      })
+							      // Occurs when a user subscribes to a remote stream.
+							      rtc.client.on("stream-subscribed", function (evt) {
+							        var remoteStream = evt.stream
+							        var id = remoteStream.getId()
+							        rtc.remoteStreams.push(remoteStream)
+							        addView(id)
+							        remoteStream.play("remote_video_" + id)
+							        Toast.info("stream-subscribed remote-uid: " + id)
+							        console.log("stream-subscribed remote-uid: ", id)
+							      })
+							      // Occurs when the remote stream is removed; for example, a peer user calls Client.unpublish.
+							      rtc.client.on("stream-removed", function (evt) {
+							        var remoteStream = evt.stream
+							        var id = remoteStream.getId()
+							        Toast.info("stream-removed uid: " + id)
+							        if(remoteStream.isPlaying()) {
+							          remoteStream.stop()
+							        }
+							        rtc.remoteStreams = rtc.remoteStreams.filter(function (stream) {
+							          return stream.getId() !== id
+							        })
+							        removeView(id)
+							        console.log("stream-removed remote-uid: ", id)
+							      })
+							      rtc.client.on("onTokenPrivilegeWillExpire", function(){
+							        // After requesting a new token
+							        // rtc.client.renewToken(token);
+							        Toast.info("onTokenPrivilegeWillExpire")
+							        console.log("onTokenPrivilegeWillExpire")
+							      })
+							      rtc.client.on("onTokenPrivilegeDidExpire", function(){
+							        // After requesting a new token
+							        // client.renewToken(token);
+							        Toast.info("onTokenPrivilegeDidExpire")
+							        console.log("onTokenPrivilegeDidExpire")
+							      })
+							    }
+							
+							    /**
+							      * rtc: rtc object
+							      * option: {
+							      *  mode: string, "live" | "rtc"
+							      *  codec: string, "h264" | "vp8"
+							      *  appID: string
+							      *  channel: string, channel name
+							      *  uid: number
+							      *  token; string,
+							      * }
+							     **/
+							    function join (rtc, option) {
+							      if (rtc.joined) {
+							        Toast.error("Your already joined")
+							        return;
+							      }
+							
+							      /**
+							       * A class defining the properties of the config parameter in the createClient method.
+							       * Note:
+							       *    Ensure that you do not leave mode and codec as empty.
+							       *    Ensure that you set these properties before calling Client.join.
+							       *  You could find more detail here. https://docs.agora.io/en/Video/API%20Reference/web/interfaces/agorartc.clientconfig.html
+							      **/
+							      rtc.client = AgoraRTC.createClient({mode: option.mode, codec: option.codec})
+							
+							      rtc.params = option
+							
+							      // handle AgoraRTC client event
+							      handleEvents(rtc)
+							
+							      // init client
+							      rtc.client.init(option.appID, function () {
+							        console.log("init success")
+							
+							        /**
+							         * Joins an AgoraRTC Channel
+							         * This method joins an AgoraRTC channel.
+							         * Parameters
+							         * tokenOrKey: string | null
+							         *    Low security requirements: Pass null as the parameter value.
+							         *    High security requirements: Pass the string of the Token or Channel Key as the parameter value. See Use Security Keys for details.
+							         *  channel: string
+							         *    A string that provides a unique channel name for the Agora session. The length must be within 64 bytes. Supported character scopes:
+							         *    26 lowercase English letters a-z
+							         *    26 uppercase English letters A-Z
+							         *    10 numbers 0-9
+							         *    Space
+							         *    "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","
+							         *  uid: number | null
+							         *    The user ID, an integer. Ensure this ID is unique. If you set the uid to null, the server assigns one and returns it in the onSuccess callback.
+							         *   Note:
+							         *      All users in the same channel should have the same type (number or string) of uid.
+							         *      If you use a number as the user ID, it should be a 32-bit unsigned integer with a value ranging from 0 to (232-1).
+							        **/
+							        rtc.client.join(option.token ? option.token : null, option.channel, option.uid ? +option.uid : null, function (uid) {
+							          Toast.notice("join channel: " + option.channel + " success, uid: " + uid)
+							          console.log("join channel: " + option.channel + " success, uid: " + uid)
+							          rtc.joined = true
+							
+							          rtc.params.uid = uid
+							
+							          // create local stream
+							          rtc.localStream = AgoraRTC.createStream({
+							            streamID: rtc.params.uid,
+							            audio: true,
+							            video: true,
+							            screen: false,
+							            microphoneId: option.microphoneId,
+							            cameraId: option.cameraId
+							          })
+							
+							          // initialize local stream. Callback function executed after intitialization is done
+							          rtc.localStream.init(function () {
+							            console.log("init local stream success")
+							            // play stream with html element id "local_stream"
+							            rtc.localStream.play("local_stream")
+							
+							            // publish local stream
+							            publish(rtc)
+							          }, function (err)  {
+							            Toast.error("stream init failed, please open console see more detail")
+							            console.error("init local stream failed ", err)
+							          })
+							        }, function(err) {
+							          Toast.error("client join failed, please open console see more detail")
+							          console.error("client join failed", err)
+							        })
+							      }, (err) => {
+							        Toast.error("client init failed, please open console see more detail")
+							        console.error(err)
+							      })
+							    }
+							
+							    function publish (rtc) {
+							      if (!rtc.client) {
+							        Toast.error("Please Join Room First")
+							        return
+							      }
+							      if (rtc.published) {
+							        Toast.error("Your already published")
+							        return
+							      }
+							      var oldState = rtc.published
+							
+							      // publish localStream
+							      rtc.client.publish(rtc.localStream, function (err) {
+							        rtc.published = oldState
+							        console.log("publish failed")
+							        Toast.error("publish failed")
+							        console.error(err)
+							      })
+							      Toast.info("publish")
+							      rtc.published = true
+							    }
+							
+							    function unpublish (rtc) {
+							      if (!rtc.client) {
+							        Toast.error("Please Join Room First")
+							        return
+							      }
+							      if (!rtc.published) {
+							        Toast.error("Your didn't publish")
+							        return
+							      }
+							      var oldState = rtc.published
+							      rtc.client.unpublish(rtc.localStream, function (err) {
+							        rtc.published = oldState
+							        console.log("unpublish failed")
+							        Toast.error("unpublish failed")
+							        console.error(err)
+							      })
+							      Toast.info("unpublish")
+							      rtc.published = false
+							    }
+							
+							    function leave (rtc) {
+							      if (!rtc.client) {
+							        Toast.error("Please Join First!")
+							        return
+							      }
+							      if (!rtc.joined) {
+							        Toast.error("You are not in channel")
+							        return
+							      }
+							      /**
+							       * Leaves an AgoraRTC Channel
+							       * This method enables a user to leave a channel.
+							       **/
+							      rtc.client.leave(function () {
+							        // stop stream
+							        if(rtc.localStream.isPlaying()) {
+							          rtc.localStream.stop()
+							        }
+							        // close stream
+							        rtc.localStream.close()
+							        for (let i = 0; i < rtc.remoteStreams.length; i++) {
+							          var stream = rtc.remoteStreams.shift()
+							          var id = stream.getId()
+							          if(stream.isPlaying()) {
+							            stream.stop()
+							          }
+							          removeView(id)
+							        }
+							        rtc.localStream = null
+							        rtc.remoteStreams = []
+							        rtc.client = null
+							        console.log("client leaves channel success")
+							        rtc.published = false
+							        rtc.joined = false
+							        Toast.notice("leave success")
+							      }, function (err) {
+							        console.log("channel leave failed")
+							        Toast.error("leave success")
+							        console.error(err)
+							      })
+							    }
+							
+							    // This function automatically executes when a document is ready.
+							    $(function () {
+							      // This will fetch all the devices and will populate the UI for every device. (Audio and Video)
+							      getDevices(function (devices) {
+							        devices.audios.forEach(function (audio) {
+							          $("<option/>", {
+							            value: audio.value,
+							            text: audio.name,
+							          }).appendTo("#microphoneId")
+							        })
+							        devices.videos.forEach(function (video) {
+							          $("<option/>", {
+							            value: video.value,
+							            text: video.name,
+							          }).appendTo("#cameraId")
+							        })
+							        // To populate UI with different camera resolutions
+							        resolutions.forEach(function (resolution) {
+							          $("<option/>", {
+							            value: resolution.value,
+							            text: resolution.name
+							          }).appendTo("#cameraResolution")
+							        })
+							        M.AutoInit()
+							      })
+							
+							      var fields = ["appID", "channel"]
+							
+							      // This will start the join functions with all the configuration selected by the user.
+							      $("#join").on("click", function (e) {
+							        console.log("join")
+							        e.preventDefault();
+							        var params = serializeformData(); // Data is feteched and serilized from the form element.
+							        if (validator(params, fields)) {
+							          join(rtc, params)
+							        }
+							      })
+							      // This publishes the video feed to Agora
+							      $("#publish").on("click", function (e) {
+							        console.log("publish")
+							        e.preventDefault()
+							        var params = serializeformData()
+							        if (validator(params, fields)) {
+							          publish(rtc)
+							        }
+							      });
+							      // Unpublishes the video feed from Agora
+							      $("#unpublish").on("click", function (e) {
+							        console.log("unpublish")
+							        e.preventDefault()
+							        var params = serializeformData()
+							        if (validator(params, fields)) {
+							          unpublish(rtc)
+							        }
+							      });
+							      // Leeaves the chanenl if someone clicks the leave button
+							      $("#leave").on("click", function (e) {
+							        console.log("leave")
+							        e.preventDefault()
+							        var params = serializeformData()
+							        if (validator(params, fields)) {
+							          leave(rtc)
+							        }
+							      })
+							    })
+							  </script>
 						<!-- </i-form> -->
 					</div>
 				</div>
