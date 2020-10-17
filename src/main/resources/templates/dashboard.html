@@ -171,7 +171,7 @@
 		formData.set("activity_check", check);
 		formData.set("activity_sttymd", $('#activity_sttymd').val());
 		formData.set("activity_endymd", $('#activity_endymd').val());
-		formData.set("activity_editor", activity_editor.txt.text());
+		formData.set("activity_editor", activity_editor.txt.html());
 		showdiv();
 		$.ajax({
 			url : CONTEXT_PATH + '/f020001/T007',
