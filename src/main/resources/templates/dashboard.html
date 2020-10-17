@@ -50,7 +50,7 @@
 				async: true,
 				data: {
 					release_head: $('#texthead').val(),
-					release_name: editor.txt.text()
+					release_name: editor.txt.html()
 				},
 				success: function (result) {
 					hidediv();
