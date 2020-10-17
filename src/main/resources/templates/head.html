@@ -39,9 +39,11 @@
 				},
 				success : function(result) {
 					hidediv();
-					$('#select5').replaceWith(result);
-					if (typeof $('#f010004') != null) {
-						
+					if(result != ''){
+						$('#select5').replaceWith(result);
+						if (typeof $('#f010004') != null) {
+							
+						}
 					}
 				},
 				error : function(res, textStaus) {
@@ -50,7 +52,7 @@
 				},
 			});
 			$('#updnoticehead').text(_head);
-			$('#updnoticetext').text(_text);
+			$('#updnoticetext').html(_text);
 		}
 		// 侧边悬浮设置
 		function amtf_sideSetUpKeep() {

@@ -2,6 +2,6 @@ CREATE TABLE amtf_updnotice(
 	updnotice_id INT NOT NULL, -- id
 	updnotice_name VARCHAR(30) NOT NULL, -- 管理员姓名
 	updnotice_head VARCHAR(30), -- 更新标题
-	updnotice_text VARCHAR(200), -- 更新内容
+	updnotice_text BLOB, -- 更新内容
 	updnotice_time DATETIME	-- 更新时间
 )
