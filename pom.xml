@@ -218,6 +218,13 @@
 	
 
 	<build>
+		<!-- 配置ssl的版本 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<!-- 配置Jdk的版本 -->
 			<plugin>

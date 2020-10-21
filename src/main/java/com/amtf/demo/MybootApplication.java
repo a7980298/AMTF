@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,12 +12,12 @@ import org.springframework.context.annotation.ComponentScan;
 import com.amtf.demo.nettyclient.NettyClient;
 import com.amtf.demo.nettyserver.NettyServer;
 
+@EnableAutoConfiguration
 @SpringBootApplication
 @MapperScan("com.amtf.demo.dao")
 @ComponentScan(basePackages = { "com.amtf.demo" })
 @ServletComponentScan
 public class MybootApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MybootApplication.class, args);
 		// 启动netty服务端
