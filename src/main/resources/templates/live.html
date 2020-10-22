@@ -223,6 +223,22 @@
       rtc.client.on("onTokenPrivilegeWillExpire", function(){
         // After requesting a new token
         // rtc.client.renewToken(token);
+        $.ajax({
+			url : CONTEXT_PATH + '/f010004/T001',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				
+			},
+			success : function(result) {
+				 rtc.client.renewToken(result.token);
+			},
+			error : function(res, textStaus) {
+				hidediv();
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
         Toast.info("onTokenPrivilegeWillExpire")
         console.log("onTokenPrivilegeWillExpire")
       })
@@ -290,6 +306,7 @@
          *      If you use a number as the user ID, it should be a 32-bit unsigned integer with a value ranging from 0 to (232-1).
         **/
         rtc.client.join(option.token ? option.token : null, option.channel, option.uid ? +option.uid : null, function (uid) {
+        	
           Toast.notice("join channel: " + option.channel + " success, uid: " + uid)
           console.log("join channel: " + option.channel + " success, uid: " + uid)
           rtc.joined = true
@@ -486,25 +503,25 @@
 			<th:block th:replace="head :: myhead"></th:block>
 			<div class="content">
 				<!-- 通知列表 -->
-				<div class="container-fluid dashboardclass" id="f010004">
+				<div class="container-fluid dashboardclass" id="f010010">
 					<div class="container-fluid">
-						<i-form class="row col l12 s12" th:action="@{/f010004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
-						<input type="hidden" name="IViewId" value="f010004"/>
+						<i-form class="row col l12 s12" th:action="@{/f010010}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f010010"/>
 							<div class="row container col l12 s12">
 								<div class="col" style="min-width: 433px; max-width: 443px">
 									<div class="card" style="margin-top: 0px; margin-bottom: 0px;">
 										<div class="row card-content" style="margin-bottom: 0px;">
 											<div class="input-field">
-												<label for="appID" class="active">App ID</label> <input
-													type="text" placeholder="App ID" name="appID">
+												<label for="appID" class="active">App ID</label>
+												<input type="hidden" placeholder="App ID" name="appID" value="c5eeb7bb4b3e43a7a56f2df0b09f3b83">
 											</div>
 											<div class="input-field">
-												<label for="channel" class="active">Channel</label> <input
-													type="text" placeholder="channel" name="channel">
+												<label for="channel" class="active">房间号</label>
+												<input type="text" placeholder="channel" name="channel">
 											</div>
 											<div class="input-field">
-												<label for="token" class="active">Token</label> <input
-													type="text" placeholder="token" name="token">
+												<label for="token" class="active">Token</label>
+												<input type="hidden" placeholder="token" name="token" th:value="${f010010Params.token}">
 											</div>
 											<div class="row" style="margin: 0">
 												<div class="col s12">

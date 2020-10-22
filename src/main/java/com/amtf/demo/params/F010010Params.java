@@ -15,4 +15,9 @@ public class F010010Params extends UserImpl {
 	 * 页面id
 	 */
 	private String IViewId;
+
+	/**
+	 * token
+	 */
+	private String token;
 }
