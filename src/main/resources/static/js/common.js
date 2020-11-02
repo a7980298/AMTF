@@ -86,10 +86,10 @@ function amtf_submit(form,action) {
 	form.submit();
 }
 
-function amtf_form_head(){
-	var form = $("#amtf_form_head");
-	form.action = CONTEXT_PATH + "/f010002";
-	form.target = TARGET;
+//表单提交(管理页面)
+function amtf_submitAdmin(form,action) {
+	form.action = CONTEXT_PATH + action;
+	form.target = '_blank';
 	form.submit();
 }
 

@@ -37,7 +37,12 @@
 			loginshowdiv();
 			var _href = $(_this).attr('href');
 			_href = _href.replace('#', '');
-			amtf_submit(amtf_form, '/' + _href);
+			if(_href=='f020001'){
+				amtf_submitAdmin(amtf_form, '/' + _href);
+				loginhidediv();
+			} else {
+				amtf_submit(amtf_form, '/' + _href);
+			}
 		}
 		</script>
 		</head>
