@@ -112,7 +112,7 @@
 				if ($('#showupdnotice').find('a').length == 0) {
 					$('#navbarDropdownMenuLink').after("<div class='dropdown-menu dropdown-menu-right' id='showupdnotice' aria-labelledby='navbarDropdownMenuLink'><a class='dropdown-item updnotice' data-toggle='modal' onclick='amtf_getupdontice(" + _entity[0] + "," + _entity[1] + "," + _entity[2] + ")'>" + _entity[1] + "</a></div>");
 				} else {
-					$('#showupdnotice').append("<a class='dropdown-item updnotice' data-toggle='modal' onclick='amtf_getupdontice(" + _entity[0] + "," + _entity[1] + "," + _entity[2] + ")'>" + _entity[1] + "</a>");
+					$('#showupdnotice').append("<a class='dropdown-item updnotice' data-toggle='modal' onclick='amtf_getupdontice(" + _entity[0] + "," + _entity[1] + ",'\"' + _entity[2] + '\"')'>" + _entity[1] + "</a>");
 				}
 			}
 		});
