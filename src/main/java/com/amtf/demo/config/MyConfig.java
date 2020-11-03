@@ -9,8 +9,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.amtf.demo.handlerinterceptorutil.IfGeiSession;
-import com.amtf.demo.handlerinterceptorutil.GetAdmin;
+import com.amtf.demo.lnterceptor.IfGeiSession;
+import com.amtf.demo.lnterceptor.GetAdmin;
 
 @Configuration
 public class MyConfig implements WebMvcConfigurer {
