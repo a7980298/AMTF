@@ -177,20 +177,7 @@ public class F020001ServiceImpl implements F020001Service {
 	public F020001EntityOut service04(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
 
-		LogInFo loginfo = new LogInFo();
-		loginfo = ParameterUtil.getSession();
 
-		// 参数：服务器地址 , AppKey:commonKey
-		GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io", "BC-6bb634d86a8c493799745be104a4e0c0");
-		int id = CommonUtil.isEmpty(commondao.common_Select2()) ? 0 : commondao.common_Select2() + 1;
-		// 参数：管道标识，发送内容
-		goEasy.publish("amtf_channel", id + "," + entityin.getRelease_head() + "," + entityin.getRelease_name());
-		try {
-			f020001dao.f020001_insert3(id, loginfo.getUser_email(), entityin.getRelease_head(),
-					entityin.getRelease_name());
-		} catch (Exception e) {
-			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");
-		}
 		return entityOut;
 	}
 

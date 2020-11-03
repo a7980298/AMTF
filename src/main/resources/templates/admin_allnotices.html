@@ -23,6 +23,31 @@
 		var editor = new wangEditor('#editor');
 		// 或者 var editor = new E( document.getElementById('editor') )
 		editor.create();
+		document.getElementById('textsumbit').addEventListener('click', function () {
+			showdiv();
+			$.ajax({
+				url: CONTEXT_PATH + '/f020004/T001',
+				type: 'post',
+				dateType: 'html',
+				async: true,
+				data: {
+					release_head: $('#texthead').val(),
+					release_name: editor.txt.html()
+				},
+				success: function (result) {
+					hidediv();
+					if(result.updonticey == '1'){
+						setCodeSuccess('发布成功！');
+					} else {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					}
+				},
+				error: function (res, textStaus) {
+					hidediv();
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}, false)
 		// 进行下文提到的其他配置
 		// 将图片大小限制为 3M
 		editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;

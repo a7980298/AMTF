@@ -18,6 +18,11 @@ import java.util.Map;
 @Setter
 public class F020003Params extends UserImpl {
 	/**
+	 * 页面id
+	 */
+	private String IViewId;
+
+	/**
 	 * 姓名
 	 */
 	private String user_name;

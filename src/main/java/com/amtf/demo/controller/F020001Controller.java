@@ -109,29 +109,6 @@ public class F020001Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 发布更新通知
-	 * 
-	 * @parameter F020001Params params
-	 * @return String
-	 */
-	@RequestMapping("/f020001/T003")
-	@ResponseBody
-	public Map<String, Object> f020001T003(@RequestParam("release_name") String release_name,
-			@RequestParam("release_head") String release_head, Model model) {
-
-		F020001EntityIn entityin = new F020001EntityIn();
-		entityin.setRelease_head(release_head);
-		entityin.setRelease_name(release_name);
-
-		f020001service.service04(entityin);
-		Map<String, Object> map = new HashMap<String, Object>();
-		String name = "1";
-		map.put("updonticey", name);
-
-		return map;
-	}
-
-	/**
 	 * 上传图片
 	 * 
 	 * @parameter F020001Params params

@@ -101,15 +101,6 @@ public class F020001EntityIn extends UserImpl {
 	 * 用户搜索的电话
 	 */
 	public String search_phone;
-	/**
-	 * 发布通知标题
-	 */
-	public String release_head;
-
-	/**
-	 * 发布通知
-	 */
-	public String release_name;
 
 	/**
 	 * 上传图片

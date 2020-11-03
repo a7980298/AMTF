@@ -20,6 +20,11 @@ import lombok.Setter;
 @Setter
 public class F020001Params extends UserImpl {
 	/**
+	 * 页面id
+	 */
+	private String IViewId;
+
+	/**
 	 * 姓名
 	 */
 	private String user_name;
