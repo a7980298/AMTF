@@ -21,6 +21,7 @@
 		// 注册wangEditor插件
 		var wangEditor = window.wangEditor;
 		var editor = new wangEditor('#editor');
+		editor.customConfig.zIndex = 100;
 		// 或者 var editor = new E( document.getElementById('editor') )
 		editor.create();
 		document.getElementById('textsumbit').addEventListener('click', function () {
