@@ -6,6 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>直播</title>
 	<th:block th:replace="import :: myimport"></th:block>
+	<!-- 声网视频 -->
+	<script th:src="@{/js/materialize.min.js}"></script>
+	<script th:src="@{/js/AgoraRTCSDK-3.2.1.js}"></script>
 	<script>
 		console.log("agora sdk version: " + AgoraRTC.VERSION + " compatible: " + AgoraRTC.checkSystemRequirements());
 		var resolutions = [
@@ -428,7 +431,6 @@
 				console.error(err)
 			})
 		}
-
 		// 此函数在文档准备就绪时自动执行。
 		$(function () {
 			// 这将获取所有设备并填充每个设备的UI。（音视频）
@@ -497,125 +499,121 @@
 	</script>
 </head>
 <body class="agora-theme">
-	<div class="wrapper">
-		<th:block th:replace="navbar :: mynavbar"></th:block>
-		<div class="main-panel">
-			<th:block th:replace="head :: myhead"></th:block>
-			<div class="content">
-				<!-- 通知列表 -->
-				<div class="container-fluid dashboardclass" id="f010010">
-					<div class="container-fluid">
-						<i-form class="row col l12 s12" th:action="@{/f010010}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
-							<input type="hidden" name="IViewId" value="f010010"/>
-							<div th:if="${f010010Params.logInFo.user_email == '2428503607@qq.com'}" class="row container col l12 s12" id="live_div">
-								<div class="col" style="min-width: 433px; max-width: 443px">
-									<div class="card" style="margin-top: 0px; margin-bottom: 0px;">
-										<div class="row card-content" style="margin-bottom: 0px;">
-											<div class="input-field" style="display:none">
-												<label class="active" for="channel">房间号</label>
+<div class="wrapper">
+	<th:block th:replace="navbar :: mynavbar"></th:block>
+	<div class="main-panel">
+		<th:block th:replace="head :: myhead"></th:block>
+		<div class="content">
+			<!-- 通知列表 -->
+			<div class="container-fluid dashboardclass" id="f010010">
+				<div class="container-fluid">
+					<i-form class="row col l12 s12" th:action="@{/f010010}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f010010"/>
+						<div class="row container col l12 s12">
+							<div class="col" style="min-width: 433px; max-width: 443px">
+								<div class="card" style="margin-top: 0px; margin-bottom: 0px;">
+									<div class="row card-content" style="margin-bottom: 0px;">
+										<div style="display: none">
+											<div class="input-field">
+												<label for="appID" class="active">App ID</label>
 												<input type="hidden" placeholder="App ID" name="appID" value="c5eeb7bb4b3e43a7a56f2df0b09f3b83">
-												<input type="hidden" placeholder="token" name="token" th:value="${f010010Params.token}">
-												<input type="text" placeholder="channel" name="channel">
 											</div>
-											<div class="row" style="margin: 0">
-												<div class="col s12">
-													<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">开启直播</button>
-													<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">关闭直播</button>
-													<button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">发布</button>
-													<button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">隐秘</button>
-												</div>
+											<div class="input-field">
+												<label for="channel" class="active">房间号</label>
+												<input type="text" placeholder="channel" name="channel" value="123">
+											</div>
+											<div class="input-field">
+												<label for="token" class="active">Token</label>
+												<input type="hidden" placeholder="token" name="token" th:value="${f010010Params.token}">
+											</div>
+										</div>
+										<div class="row" style="margin: 0">
+											<div class="col s12">
+												<button
+														class="btn btn-raised btn-primary waves-effect waves-light"
+														id="join">连接</button>
+												<button
+														class="btn btn-raised btn-primary waves-effect waves-light"
+														id="leave">关闭</button>
+												<button
+														class="btn btn-raised btn-primary waves-effect waves-light"
+														id="publish">PUBLISH</button>
+												<button
+														class="btn btn-raised btn-primary waves-effect waves-light"
+														id="unpublish">UNPUBLISH</button>
 											</div>
 										</div>
 									</div>
-									<ul class="collapsible card agora-secondary-border" style="margin-top: .4rem; border: 1px">
-										<li>
-											<div class="collapsible-header agora-secondary-bg">
-												<h8 class="center-align">高级 设定</h8>
-											</div>
-											<div class="collapsible-body card-content">
-												<div class="row">
-													<div class="col s12">
-														<div class="input-field">
-															<label for="cameraId" class="active">摄像头选择</label>
-															<select name="cameraId" id="cameraId"></select>
+								</div>
+								<ul class="collapsible card agora-secondary-border"
+									style="margin-top: .4rem; border: 1px">
+									<li>
+										<div class="collapsible-header agora-secondary-bg">
+											<h8 class="center-align">ADVANCED SETTINGS</h8>
+										</div>
+										<div class="collapsible-body card-content">
+											<div class="row">
+												<div class="col s12">
+													<div class="input-field">
+														<label for="UID" class="active">UID</label> <input
+															type="number" placeholder="UID" name="uid">
+													</div>
+													<div class="input-field">
+														<label for="cameraId" class="active">CAMERA</label> <select
+															name="cameraId" id="cameraId"></select>
+													</div>
+													<div class="input-field">
+														<label for="microphoneId" class="active">MICROPHONE</label> <select
+															name="microphoneId" id="microphoneId"></select>
+													</div>
+													<div class="input-field">
+														<label for="cameraResolution" class="active">CAMERA
+															RESOLUTION</label> <select name="cameraResolution"
+																					   id="cameraResolution"></select>
+													</div>
+													<div class="row col s12">
+														<div class="row">
+															<label for="mode" class="active">MODE</label>
 														</div>
-														<div class="input-field">
-															<label for="microphoneId" class="active">麦克风选择</label>
-															<select name="microphoneId" id="microphoneId"></select>
+														<div class="row">
+															<label> <input type="radio" class="with-gap"
+																		   name="mode" value="live" checked /> <span>live</span>
+															</label> <label> <input type="radio" class="with-gap"
+																					name="mode" value="rtc" /> <span>rtc</span>
+														</label>
 														</div>
-														<div class="input-field">
-															<label for="cameraResolution" class="active">摄像头 分辨率</label>
-															<select name="cameraResolution" id="cameraResolution"></select>
+													</div>
+													<div class="row col s12">
+														<div class="row">
+															<label for="codec" class="active">CODEC</label>
 														</div>
-														<div class="row col s12" style="display:none">
-															<div class="row">
-																<label>
-																	<input type="radio" class="with-gap" name="mode" value="live" checked/>
-																	<span>live</span>
-																</label>
-															</div>
-														</div>
-														<div class="row col s12">
-															<div class="row">
-																<label for="codec" class="active">编码选择</label>
-															</div>
-															<div class="row">
-																<label>
-																	<input type="radio" class="with-gap" name="codec" value="h264" checked/>
-																	<span>h264</span>
-																</label>
-																<label>
-																	<input type="radio" class="with-gap" name="codec" value="vp8"/>
-																	<span>vp8</span>
-																</label>
-															</div>
+														<div class="row">
+															<label> <input type="radio" class="with-gap"
+																		   name="codec" value="h264" checked /> <span>h264</span>
+															</label> <label> <input type="radio" class="with-gap"
+																					name="codec" value="vp8" /> <span>vp8</span>
+														</label>
 														</div>
 													</div>
 												</div>
 											</div>
-										</li>
-									</ul>
-								</div>
-								<div class="col s7">
-									<div class="video-grid" id="video" style="height:100%">
-										<div class="video-view" style="height:100%">
-											<div id="local_stream" class="video-placeholder" style="height:100%"></div>
-											<div id="local_video_info" class="video-profile hide"></div>
-											<div id="video_autoplay_local" class="autoplay-fallback hide"></div>
-										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="col s7">
+								<div class="video-grid" id="video" style="height:100%">
+									<div class="video-view" style="height:100%">
+										<div id="local_stream" class="video-placeholder" style="height:100%"></div>
+										<div id="local_video_info" class="video-profile hide"></div>
+										<div id="video_autoplay_local" class="autoplay-fallback hide"></div>
 									</div>
 								</div>
 							</div>
-							<div th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}" class="row container col l12 s12">
-								<div class="col" style="min-width: 433px; max-width: 443px">
-									<div class="card" style="margin-top: 0px; margin-bottom: 0px;">
-										<div class="row card-content" style="margin-bottom: 0px;">
-											<div class="row" style="margin: 0">
-												<div class="col s12">
-													<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">进入直播间</button>
-													<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播间</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s7">
-									<div class="video-grid" id="video" style="height:100%">
-										<div class="video-view" style="height:100%">
-											<div id="local_stream" class="video-placeholder" style="height:100%"></div>
-											<div id="local_video_info" class="video-profile hide"></div>
-											<div id="video_autoplay_local" class="autoplay-fallback hide"></div>
-										</div>
-									</div>
-								</div>
-								<label style="display:none">
-									<input type="radio" class="with-gap" name="mode" value="rtc" checked/>
-								</label>
-							</div>
-						</i-form>
-					</div>
+						</div>
+					</i-form>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </html>
