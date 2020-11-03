@@ -108,22 +108,6 @@ public class F020001ServiceImpl implements F020001Service {
 
 		entityOut.setAdmin(ParameterUtil.getAdmin());
 
-		// 根据权限获取导航栏
-		List<F020001_Select7Entity> select7 = f020001dao.f020001_Select7(NumberUtil.toInt(loginfo.getUser_power()));
-
-		// 将导航栏数据整合成map
-		Map<String, List<F020001_Select7Entity>> navigation_bar = select7.stream()
-				.collect(Collectors.toMap(F020001_Select7Entity::getPower_admin_type, s -> {
-					List<F020001_Select7Entity> studentNameList = new ArrayList<>();
-					studentNameList.add(s);
-					return studentNameList;
-				},
-						// 重复时将现在的值全部加入到之前的值内
-						(List<F020001_Select7Entity> value1, List<F020001_Select7Entity> value2) -> {
-							value1.addAll(value2);
-							return value1;
-						}));
-		entityOut.setNavigation_bar(navigation_bar);
 		String[] online = redisUtils.get("redis_key").split(",");
 
 		entityOut.setOnline(StringUtil.toStr(online.length));

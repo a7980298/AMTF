@@ -23,7 +23,16 @@ public class IfGeiSession implements HandlerInterceptor {
 	@Resource
 	private CommonServie commonservie;
 
-	// 在请求处理之前进行调用（Controller方法调用之前
+	private static final String ADMINVIEWID ="f020";
+
+	/**
+	 * 在请求处理之前进行调用（Controller方法调用之前
+	 * @param request
+	 * @param response
+	 * @param o
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
 		// 获取session中的user账户是否存在
@@ -59,17 +68,35 @@ public class IfGeiSession implements HandlerInterceptor {
 		return true;
 	}
 
-	// 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）
+	/**
+	 * 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）
+	 * @param request
+	 * @param response
+	 * @param o
+	 * @param modelAndView
+	 * @throws Exception
+	 */
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o,
 			ModelAndView modelAndView) throws Exception {
 		// 更新头部和导航栏
 		if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
-			commonservie.CommonServie1();
+			if(request.getRequestURI().contains(ADMINVIEWID)){
+				commonservie.CommonServie2();
+			} else {
+				commonservie.CommonServie1();
+			}
 		}
 	}
 
-	// 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）
+	/**
+	 * 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）
+	 * @param request
+	 * @param response
+	 * @param o
+	 * @param e
+	 * @throws Exception
+	 */
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object o, Exception e)
 			throws Exception {

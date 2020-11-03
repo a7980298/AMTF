@@ -84,9 +84,4 @@ public class F020001EntityOut extends UserImpl {
 	 */
 	public String online;
 
-	/**
-	 * 导航栏
-	 */
-	public Map<String, List<F020001_Select7Entity>> navigation_bar;
-
 }

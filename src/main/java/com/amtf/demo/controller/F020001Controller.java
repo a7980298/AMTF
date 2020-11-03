@@ -50,7 +50,7 @@ public class F020001Controller extends ValiDationUtil {
 
 		model.addAttribute("f020001Params", params);
 
-		return "dashboard";
+		return "admin_main";
 	}
 
 	/**

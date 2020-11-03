@@ -86,6 +86,6 @@
 		FROM 
 			AMTF_POWER_ADMIN
 		WHERE 
-			power_admin_pow &lt;= CONVERT(#{pow} USING gb2312)
+			power_pow &lt;= CONVERT(#{pow} USING gb2312)
 	</select>
 </mapper>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="import :: myimport"></th:block>
+<head>
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/apple-icon.png}">
+<link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>管理页面</title>
+<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+<link th:href="@{/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
+</head>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+	function amtf_lookuser() {
+		$('#lookuser1').addClass('show');
+		//htmlEvenOff('lookuser1');
+	}
+
+	// 删除按钮押下
+	function amtf_userDelete(_id) {
+		showdiv();
+		$.ajax({
+			url: CONTEXT_PATH + '/f020001/T006',
+			type: 'post',
+			dateType: 'html',
+			async: false,
+			data: {
+				userid: _id,
+			},
+			success: function (result) {
+				hidediv();
+				md.showNotification('top','center','3' ,'删除成功。。。')
+				$('#select1').replaceWith(result);
+				$('.modal-backdrop').remove();
+			},
+			error: function (res, textStaus) {
+				hidediv();
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
+
+	// 修改用戶
+	function amtf_personnel_upd(index) {
+		$('#getuser').css('display', 'block');
+	}
+
+	// 打印PDF
+	function amtf_getpdf() {
+		showdiv();
+		axios({
+			method : 'post',
+			url : CONTEXT_PATH + '/f020001/T005',
+			data : $(amtf_form).serialize(),
+			responseType : 'blob'
+		}).then(function(response){
+			getDownLoad(response);
+			hidediv();
+		}).catch(function(error){
+			hidediv();
+			setCodeErrList("错误！！！请和管理员联系。。。");
+		});
+	}
+
+</script>
+<body class="" onunload="myFunction()">
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 人员查询 -->
+				<div class="container-fluid dashboardclass" id="main">
+					<i-form class="" th:action="@{/f020003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-rose card-header-icon d-flex">
+									<div class="card-icon">
+										<i class="material-icons">assignment</i>
+									</div>
+									<h4 class="card-title">人員操作</h4>
+									<div class="col-md-5">
+										<button class="btn pull-right" onclick="amtf_getpdf()">生成PDF</button>
+									</div>
+								</div>
+								<div class="card-body" id="select1" th:fragment="select1">
+									<div class="table-responsive" th:if="${not #lists.isEmpty(f020001Params.select1)}">
+										<table class="table" style="z-index:-9999 width: 100%" width="100%" id="lookusertable">
+											<thead>
+											<tr>
+												<th class="text-center">#</th>
+												<th>账户</th>
+												<th>真实姓名</th>
+												<th>邮箱</th>
+												<th>电话</th>
+												<th class="text-right">是否认证</th>
+												<th class="text-right">操作</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr th:each="entity,idx:${f020001Params.select1}" th:id="select1 + ${idx.index}">
+												<td class="text-center">[[${idx.index + 1}]]</td>
+												<td>[[${entity.user_account}]]</td>
+												<td>[[${entity.user_name}]]</td>
+												<td>[[${entity.user_email}]]</td>
+												<td>[[${entity.user_phone}]]</td>
+												<td class="text-right" th:if="${entity.user_attestation == '1'}" style="color:green;"><i class="fa fa-check"></i>认证</td>
+												<td class="text-right" th:if="${entity.user_attestation != '1'}" style="color:red;"><i class="fa fa-close"></i>未认证</td>
+												<td class="td-actions text-right">
+													<button type="button" rel="tooltip" class="btn btn-info" onclick="amtf_lookuser()">
+														<i class="material-icons">person</i>
+													</button>
+													<button type="button" rel="tooltip" class="btn btn-success">
+														<i class="material-icons">edit</i>
+													</button>
+													<!-- <button type="button" rel="tooltip" class="btn btn-danger" th:attr="onclick='amtf_personnel_del('+ ${idx.index} +');'"> -->
+													<button  data-toggle="modal" th:data-target="${'#myModal' + idx.index}" class="btn btn-danger">
+														<i class="material-icons">close</i>
+													</button>
+													<div class="modal fade modal-mini modal-primary"
+														 th:id="${'myModal' + idx.index}" tabindex="-1" role="dialog"
+														 aria-labelledby="myModalLabel" aria-hidden="true">
+														<div class="modal-dialog modal-small">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																			data-dismiss="modal" aria-hidden="true">
+																		<i class="material-icons">clear</i>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<h3>确 定 要 删 除 吗?</h3>
+																</div>
+																<div class="modal-footer justify-content-center">
+																	<button type="button" class="btn btn-success btn-link" data-dismiss="modal" th:onclick="amtf_userDelete([[${entity.user_id}]])">
+																		是
+																		<div class="ripple-container"></div>
+																	</button>
+																	<button type="button" class="btn btn-link" data-dismiss="modal">
+																		否
+																	</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- 	<p class="text-center">
+															<a href="#" class="btn btn-danger"  th:attr="onclick='amtf_userDelete(' + ${entity.user_id} + ');'">
+																	<i class="material-icons">是</i>
+															</a>
+															<a href="#" data-toggle="dropdown" class="btn btn-success">
+																<i class="material-icons">否</i>
+															</a>
+														</p> -->
+												</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="table-responsive text-center" th:if="${#lists.isEmpty(f020001Params.select1)}"> 数据不存在。。。</div>
+								</div>
+							</div>
+						</div>
+					</i-form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

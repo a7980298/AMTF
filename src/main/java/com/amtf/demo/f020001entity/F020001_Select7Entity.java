@@ -7,18 +7,18 @@ import lombok.Setter;
 @Setter
 public class F020001_Select7Entity {
 
-	private Integer power_admin_id;
+	private Integer power_id;
 
-	private String power_admin_name;
+	private String power_name;
 
-	private String power_admin_type;
+	private String power_type;
 
-	private String power_admin_pow;
+	private String power_pow;
 
-	private String power_admin_path;
+	private String power_path;
 
-	private String power_admin_class;
+	private String power_class;
 
-	private String power_admin_short;
+	private String power_short;
 
 }
