@@ -23,7 +23,7 @@
 	function amtf_userDelete(_id) {
 		showdiv();
 		$.ajax({
-			url: CONTEXT_PATH + '/f020001/T006',
+			url: CONTEXT_PATH + '/f020003/T002',
 			type: 'post',
 			dateType: 'html',
 			async: false,
@@ -53,7 +53,7 @@
 		showdiv();
 		axios({
 			method : 'post',
-			url : CONTEXT_PATH + '/f020001/T005',
+			url : CONTEXT_PATH + '/f020003/T001',
 			data : $(amtf_form).serialize(),
 			responseType : 'blob'
 		}).then(function(response){
@@ -87,7 +87,7 @@
 									</div>
 								</div>
 								<div class="card-body" id="select1" th:fragment="select1">
-									<div class="table-responsive" th:if="${not #lists.isEmpty(f020001Params.select1)}">
+									<div class="table-responsive" th:if="${not #lists.isEmpty(f020003Params.select1)}">
 										<table class="table" style="z-index:-9999 width: 100%" width="100%" id="lookusertable">
 											<thead>
 											<tr>
@@ -101,7 +101,7 @@
 											</tr>
 											</thead>
 											<tbody>
-											<tr th:each="entity,idx:${f020001Params.select1}" th:id="select1 + ${idx.index}">
+											<tr th:each="entity,idx:${f020003Params.select1}" th:id="select1 + ${idx.index}">
 												<td class="text-center">[[${idx.index + 1}]]</td>
 												<td>[[${entity.user_account}]]</td>
 												<td>[[${entity.user_name}]]</td>
@@ -159,7 +159,7 @@
 											</tbody>
 										</table>
 									</div>
-									<div class="table-responsive text-center" th:if="${#lists.isEmpty(f020001Params.select1)}"> 数据不存在。。。</div>
+									<div class="table-responsive text-center" th:if="${#lists.isEmpty(f020003Params.select1)}"> 数据不存在。。。</div>
 								</div>
 							</div>
 						</div>

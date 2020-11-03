@@ -148,50 +148,6 @@ public class F020001Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 生成Excel
-	 * 
-	 * @parameter F020001Params params
-	 * @return String
-	 */
-	@RequestMapping("/f020001/T005")
-	@ResponseBody
-	public void f020001T005(F020001Params params, Model model) {
-
-		F020001EntityIn entityin = new F020001EntityIn();
-
-		ParameterUtil.copyParameter(entityin, params);
-
-		f020001service.service05(entityin);
-
-		return;
-
-	}
-
-	/**
-	 * 刪除
-	 * 
-	 * @parameter F020001Params params
-	 * @return String
-	 */
-	@PostMapping("/f020001/T006")
-	public String f020001T006(@RequestParam("userid") String userid, Model model) {
-		F020001Params params = new F020001Params();
-
-		F020001EntityIn entityin = new F020001EntityIn();
-
-		entityin.setUserid(userid);
-
-		F020001EntityOut entityOut = f020001service.service06(entityin);
-
-		// 将值copy赋值
-		ParameterUtil.copyParameter(params, entityOut);
-
-		model.addAttribute("f020001Params", params);
-
-		return "dashboard :: select1";
-	}
-
-	/**
 	 * 活动发布
 	 * 
 	 * @parameter F020001Params params
