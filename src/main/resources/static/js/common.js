@@ -148,10 +148,17 @@ function setCodeSuccess(codeSuccess){
 //打开遮罩
 function showdiv() {
 	document.getElementById("loding_div").style.display ="block";
+	//禁用滚动条
+	/*var top = $(document).scrollTop();
+	$(document).on('scroll.unable',function (e) {
+		$(document).scrollTop(top);
+	})*/
 }
 //关闭遮罩
 function hidediv() {
 	document.getElementById("loding_div").style.display ='none';
+	//取消禁用滚动条
+	/*$(document).unbind("scroll.unable");*/
 }
 // 打开跳转页面遮罩
 function loginshowdiv() {
