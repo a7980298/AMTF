@@ -4,10 +4,12 @@
 		<head>
 		<meta charset="UTF-8">
 		<style type="text/css">
-			
+			#wrapperid{
+				overflow-y: hidden;
+			}
 		</style>
 		<script type="text/javascript">
-		// 相同class点击后颜色变化
+		// 相同class悬停后颜色变化
 		function amtf_setColor(_this) {
 			$('.coloritme').each(function() {
 				$(this).removeClass('active');
@@ -15,8 +17,14 @@
 			});
 			$(_this).addClass('active');
 			$(_this).find('a').eq(0).css('background-color', '#e91e63');
+			$(_this).find('div').eq(0).addClass('show');
 		}
-
+		// 鼠标离开后颜色变化
+		function amtf_removeColor(_this){
+			$(_this).removeClass('active');
+			$(_this).find('a').eq(0).css('background-color', '');
+			$(_this).find('div').eq(0).removeClass('show');
+		}
 	/* 	// 登陆页面head选中样式变换
 		function amtf_loginhead(_this) {
 			$('.dashboardclass').each(function() {
@@ -102,7 +110,7 @@
 								<p>主页面</p>
 							</a>
 						</li>
-						<li class="nav-item coloritme" onclick="amtf_setColor(this)" th:each="mapkey,idx:${main_params.navigation_bar}">
+						<li class="nav-item coloritme" onmouseover="amtf_setColor(this)" onmouseout="amtf_removeColor(this)" th:each="mapkey,idx:${main_params.navigation_bar}">
 							<a class="nav-link" data-toggle="collapse" th:href="${'#pagesExamples' + idx.index}" th:title="${mapkey.key}">
 								<i th:class="${'fa ' + mapkey.value.get(0).power_class}"></i>
 								<p>
