@@ -346,6 +346,7 @@
 				Toast.error("client init failed, please open console see more detail")
 				console.error(err)
 			})
+			$('#local_stream').find('div').eq(0).css('position','');
 		}
 
 		function publish (rtc) {
@@ -527,26 +528,23 @@
 												<input type="hidden" placeholder="token" name="token" th:value="${f010010Params.token}">
 											</div>
 										</div>
-										<div class="row" style="margin: 0">
+										<div class="row" style="margin: 0" th:if="${f010010Params.logInFo.user_email == '2428503607@qq.com'}">
 											<div class="col s12">
-												<button
-														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="join">连接</button>
-												<button
-														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="leave">关闭</button>
-												<button
-														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="publish">PUBLISH</button>
-												<button
-														class="btn btn-raised btn-primary waves-effect waves-light"
-														id="unpublish">UNPUBLISH</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">开始直播</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">关闭直播</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">发布</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">隐藏</button>
+											</div>
+										</div>
+										<div class="row" style="margin: 0" th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}">
+											<div class="col s12">
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">进入直播间</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播间</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<ul class="collapsible card agora-secondary-border"
-									style="margin-top: .4rem; border: 1px">
+								<ul class="collapsible card agora-secondary-border" style="margin-top: .4rem; border: 1px;display: none">
 									<li>
 										<div class="collapsible-header agora-secondary-bg">
 											<h8 class="center-align">ADVANCED SETTINGS</h8>
@@ -554,33 +552,37 @@
 										<div class="collapsible-body card-content">
 											<div class="row">
 												<div class="col s12">
-													<div class="input-field">
-														<label for="UID" class="active">UID</label> <input
-															type="number" placeholder="UID" name="uid">
+													<div class="input-field" style="display: none">
+														<label for="UID" class="active">UID</label>
+														<input type="number" placeholder="UID" name="uid" value="123">
 													</div>
 													<div class="input-field">
-														<label for="cameraId" class="active">CAMERA</label> <select
-															name="cameraId" id="cameraId"></select>
+														<label for="cameraId" class="active">CAMERA</label>
+														<select name="cameraId" id="cameraId"></select>
 													</div>
 													<div class="input-field">
-														<label for="microphoneId" class="active">MICROPHONE</label> <select
-															name="microphoneId" id="microphoneId"></select>
+														<label for="microphoneId" class="active">MICROPHONE</label>
+														<select name="microphoneId" id="microphoneId"></select>
 													</div>
 													<div class="input-field">
-														<label for="cameraResolution" class="active">CAMERA
-															RESOLUTION</label> <select name="cameraResolution"
-																					   id="cameraResolution"></select>
+														<label for="cameraResolution" class="active">
+															CAMERA RESOLUTION
+														</label>
+														<select name="cameraResolution" id="cameraResolution"></select>
 													</div>
-													<div class="row col s12">
+													<div class="row col s12" style="display: none">
 														<div class="row">
 															<label for="mode" class="active">MODE</label>
 														</div>
 														<div class="row">
-															<label> <input type="radio" class="with-gap"
-																		   name="mode" value="live" checked /> <span>live</span>
-															</label> <label> <input type="radio" class="with-gap"
-																					name="mode" value="rtc" /> <span>rtc</span>
-														</label>
+															<label th:if="${f010010Params.logInFo.user_email == '2428503607@qq.com'}">
+																<input type="radio" class="with-gap" name="mode" value="live" checked/>
+																<span>live</span>
+															</label>
+															<label th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}">
+																<input type="radio" class="with-gap" name="mode" value="rtc" checked/>
+																<span>rtc</span>
+															</label>
 														</div>
 													</div>
 													<div class="row col s12">
@@ -588,19 +590,22 @@
 															<label for="codec" class="active">CODEC</label>
 														</div>
 														<div class="row">
-															<label> <input type="radio" class="with-gap"
-																		   name="codec" value="h264" checked /> <span>h264</span>
-															</label> <label> <input type="radio" class="with-gap"
-																					name="codec" value="vp8" /> <span>vp8</span>
-														</label>
+															<label>
+																<input type="radio" class="with-gap" name="codec" value="h264" checked />
+																<span>h264</span>
+															</label>
+															<label>
+																<input type="radio" class="with-gap" name="codec" value="vp8" /> <span>vp8</span>
+															</label>
 														</div>
 													</div>
 												</div>
 											</div>
+										</div>
 									</li>
 								</ul>
 							</div>
-							<div class="col s7">
+							<div class="col s7" style="height: 700px">
 								<div class="video-grid" id="video" style="height:100%">
 									<div class="video-view" style="height:100%">
 										<div id="local_stream" class="video-placeholder" style="height:100%"></div>
