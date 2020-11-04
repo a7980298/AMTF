@@ -104,10 +104,14 @@
 						</div>
 					</div>
 					<ul class="nav">
-						<li class="nav-item coloritme" onclick="amtf_setColor(this)">
-							<a class="nav-link" href="#f010002" onclick="amtf_loginhead(this)" title="主页面">
+						<li class="nav-item coloritme active" onmouseover="amtf_setColor(this)" onmouseout="amtf_removeColor(this)">
+							<a class="nav-link" href="#f010002" onclick="amtf_loginhead(this)" title="主页面" th:if="${main_params.admin == ''}">
 								<i class="material-icons">dashboard</i>
 								<p>主页面</p>
+							</a>
+							<a class="nav-link" href="#f020001" onclick="amtf_loginhead(this)" title="可视化数据" th:if="${main_params.admin != ''}">
+								<i class="material-icons">dashboard</i>
+								<p>可视化数据</p>
 							</a>
 						</li>
 						<li class="nav-item coloritme" onmouseover="amtf_setColor(this)" onmouseout="amtf_removeColor(this)" th:each="mapkey,idx:${main_params.navigation_bar}">
