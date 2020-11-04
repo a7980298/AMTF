@@ -117,59 +117,6 @@ public class F020001EntityIn extends UserImpl {
 	 */
 	List<F020001_Select5Entity> select5;
 	
-	/**
-	 * 活动主题
-	 */
-	public String activity_head;
-	
-	/**
-	 * 活动举办地点
-	 */
-	public String activity_position;
-	
-	/**
-	 * 参与级别
-	 */
-	public String activity_check;
-	
-	/**
-	 * 开始日期
-	 */
-	public String activity_sttymd;
-	
-	/**
-	 * 结束日期
-	 */
-	public String activity_endymd;
-	
-	/**
-	 * 活动上传图片1
-	 */
-	public MultipartFile activity_img1;
-	
-	/**
-	 * 活动上传图片2
-	 */
-	public MultipartFile activity_img2;
-	
-	/**
-	 * 活动上传图片3
-	 */
-	public MultipartFile activity_img3;
-	
-	/**
-	 * 活动上传图片4
-	 */
-	public MultipartFile activity_img4;
-	
-	/**
-	 * 活动上传图片5
-	 */
-	public MultipartFile activity_img5;
-	
-	/**
-	 * 活动内容
-	 */
-	public String activity_editor;
+
 
 }

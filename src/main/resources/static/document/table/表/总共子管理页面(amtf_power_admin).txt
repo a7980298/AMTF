@@ -8,19 +8,19 @@ CREATE TABLE AMTF_POWER_ADMIN(
 	power_short VARCHAR(10) -- 缩写
 )
 insert into test.AMTF_POWER_ADMIN values(1001,'操作','人员管理','1','f020003','fa-address-book','u');
-insert into test.AMTF_POWER_ADMIN values(1002,'查詢','人员管理','1','','fa-address-book','S');
-insert into test.AMTF_POWER_ADMIN values(1003,'認證','人员管理','1','','fa-address-book','Y');
-insert into test.AMTF_POWER_ADMIN values(1004,'權限升級','人员管理','1','','fa-address-book','UP');
+-- insert into test.AMTF_POWER_ADMIN values(1002,'查詢','人员管理','1','','fa-address-book','S');
+-- insert into test.AMTF_POWER_ADMIN values(1003,'認證','人员管理','1','','fa-address-book','Y');
+-- insert into test.AMTF_POWER_ADMIN values(1004,'權限升級','人员管理','1','','fa-address-book','UP');
 
-insert into test.AMTF_POWER_ADMIN values(1005,'查看','功能管理','1','','fa-cogs','S');
-insert into test.AMTF_POWER_ADMIN values(1006,'等級','功能管理','1','','fa-cogs','P');
-insert into test.AMTF_POWER_ADMIN values(1007,'修改','功能管理','1','','fa-cogs','U');
-insert into test.AMTF_POWER_ADMIN values(1008,'刪除','功能管理','1','','fa-cogs','D');
-insert into test.AMTF_POWER_ADMIN values(1009,'增加','功能管理','1','','fa-cogs','I');
+insert into test.AMTF_POWER_ADMIN values(1005,'操作','功能管理','1','','fa-cogs','S');
+-- insert into test.AMTF_POWER_ADMIN values(1006,'等級','功能管理','1','','fa-cogs','P');
+-- insert into test.AMTF_POWER_ADMIN values(1007,'修改','功能管理','1','','fa-cogs','U');
+-- insert into test.AMTF_POWER_ADMIN values(1008,'刪除','功能管理','1','','fa-cogs','D');
+-- insert into test.AMTF_POWER_ADMIN values(1009,'增加','功能管理','1','','fa-cogs','I');
 
-insert into test.AMTF_POWER_ADMIN values(1010,'全体','通知','1','f020004','fa-comments','RF');
-insert into test.AMTF_POWER_ADMIN values(1011,'范围','通知','1','','fa-comments','EF');
-insert into test.AMTF_POWER_ADMIN values(1012,'活动举办','通知','1','setactivity','fa-comments','HD');
+insert into test.AMTF_POWER_ADMIN values(1010,'发布通知','通知','1','f020004','fa-comments','RF');
+-- insert into test.AMTF_POWER_ADMIN values(1011,'范围','通知','1','','fa-comments','EF');
+insert into test.AMTF_POWER_ADMIN values(1012,'活动举办','通知','1','f020005','fa-comments','HD');
 
 insert into test.AMTF_POWER_ADMIN values(1012,'常规 表格','表格','1','','fa-edit','RT');
 insert into test.AMTF_POWER_ADMIN values(1013,'扩展 表格','表格','1','','fa-edit','ET');

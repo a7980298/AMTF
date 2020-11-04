@@ -74,10 +74,7 @@ public class F020001EntityOut extends UserImpl {
 	 */
 	List<F020001_Select5Entity> select5;
 
-	/**
-	 * 活动是否发布成功
-	 */
-	public String isactivity;
+
 
 	/**
 	 * 在线人数

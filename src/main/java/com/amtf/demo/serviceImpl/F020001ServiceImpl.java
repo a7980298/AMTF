@@ -271,25 +271,7 @@ public class F020001ServiceImpl implements F020001Service {
 	public F020001EntityOut service07(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
 
-		LogInFo loginfo = new LogInFo();
-		loginfo = ParameterUtil.getSession();
-		// 图片上传
-		Integer activity_idInteger = CommonUtil.isEmpty(commondao.common_Select3()) ? 0
-				: commondao.common_Select3() + 1;
-		ImgUtil.activity_CommitImg(entityin.getActivity_img1(), activity_idInteger + "-1");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img2(), activity_idInteger + "-2");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img3(), activity_idInteger + "-3");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img4(), activity_idInteger + "-4");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img5(), activity_idInteger + "-5");
-		// 添加活动
-		int insert6 = f020001dao.f020001_insert6(activity_idInteger, loginfo.getUser_email(),
-				entityin.getActivity_head(), entityin.getActivity_check(),
-				NumberUtil.toInt(entityin.getActivity_sttymd().replace("/", "")),
-				NumberUtil.toInt(entityin.getActivity_endymd().replace("/", "")), entityin.getActivity_editor());
 
-		if (insert6 <= 0) {
-			entityOut.setIsactivity(Constant.STR_1);
-		}
 		return entityOut;
 	}
 }

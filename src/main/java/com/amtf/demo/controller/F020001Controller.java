@@ -145,30 +145,8 @@ public class F020001Controller extends ValiDationUtil {
 			@RequestParam("activity_editor") String activity_editor, HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		F020001EntityIn entityin = new F020001EntityIn();
-		// 活动标题
-		entityin.setActivity_head(activity_head);
-		// 活动地址
-		entityin.setActivity_position(activity_position);
-		// 参与级别
-		entityin.setActivity_check(activity_check);
-		// 开始日期
-		entityin.setActivity_sttymd(activity_sttymd);
-		// 结束日期
-		entityin.setActivity_endymd(activity_endymd);
-		// igm1
-		entityin.setActivity_img1(activity_img1);
-		// igm2
-		entityin.setActivity_img2(activity_img2);
-		// igm3
-		entityin.setActivity_img3(activity_img3);
-		// igm4
-		entityin.setActivity_img4(activity_img4);
-		// igm5
-		entityin.setActivity_img5(activity_img5);
-		// 活动内容
-		entityin.setActivity_editor(activity_editor);
+
 		F020001EntityOut entityOut = f020001service.service07(entityin);
-		map.put("isactivity", entityOut.getIsactivity());
 		return map;
 	}
 
