@@ -200,8 +200,9 @@
 				if (id !== rtc.params.uid) {
 					removeView(id)
 				}
-				Toast.notice("同伴请假")
-				console.log("同伴休假", id)
+				Toast.notice("下播")
+				console.log("下播", id)
+				md.showNotification('bottom', 'center', '2', '主播下播了。。。');
 			})
 			//在发布本地流时发生。
 			rtc.client.on("stream-published", function (evt) {
@@ -358,6 +359,7 @@
 					}, function (err)  {
 						Toast.error("流初始化失败，请打开控制台查看更多详细信息")
 						console.error("初始化本地流失败" + err)
+						md.showNotification('bottom', 'center', '2', '主播在休息。。。');
 					})
 					if ([[${f010010Params.logInFo.user_email != '2428503607@qq.com'}]]) {
 						rtc.client.setClientRole('audience',(_err)=>{
@@ -591,16 +593,16 @@
 											<div class="col s12">
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">开始直播</button>
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">关闭直播</button>
-												<button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">发布</button>
-												<button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">隐藏</button>
-												<button  onclick="showFull();">全屏</button>
+												<!--<button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">发布</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">隐藏</button>-->
+												<button class="btn" onclick="showFull();">全屏</button>
 											</div>
 										</div>
 										<div class="row" style="margin: 0" th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}">
 											<div class="col s12">
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">进入直播间</button>
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播间</button>
-												<button  onclick="showFull();">全屏</button>
+												<button class="btn" onclick="showFull();">全屏</button>
 											</div>
 										</div>
 									</div>
