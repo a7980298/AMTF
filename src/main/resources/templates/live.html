@@ -200,25 +200,25 @@
 				if (id !== rtc.params.uid) {
 					removeView(id)
 				}
-				Toast.notice("peer leave")
-				console.log("peer-leave", id)
+				Toast.notice("同伴请假")
+				console.log("同伴休假", id)
 			})
 			//在发布本地流时发生。
 			rtc.client.on("stream-published", function (evt) {
-				Toast.notice("stream published success")
-				console.log("stream-published")
+				Toast.notice("流发布成功")
+				console.log("流发布")
 			})
 			//在添加远程流时发生。
 			rtc.client.on("stream-added", function (evt) {
 				var remoteStream = evt.stream
 				var id = remoteStream.getId()
-				Toast.info("stream-added uid: " + id)
+				Toast.info("流添加的uid：" + id)
 				if (id !== rtc.params.uid) {
 					rtc.client.subscribe(remoteStream, function (err) {
-						console.log("stream subscribe failed", err)
+						console.log("流订阅失败", err)
 					})
 				}
-				console.log("stream-added remote-uid: ", id)
+				console.log("流添加的远程uid： ", id)
 			})
 			//当用户订阅远程流时发生。
 			rtc.client.on("stream-subscribed", function (evt) {
@@ -227,14 +227,14 @@
 				rtc.remoteStreams.push(remoteStream)
 				addView(id)
 				remoteStream.play("remote_video_" + id)
-				Toast.info("stream-subscribed remote-uid: " + id)
-				console.log("stream-subscribed remote-uid: ", id)
+				Toast.info("流订阅的远程uid " + id)
+				console.log("流订阅的远程uid: ", id)
 			})
 			//在删除远程流时发生；例如，对等用户调用客户端.取消发布.
 			rtc.client.on("stream-removed", function (evt) {
 				var remoteStream = evt.stream
 				var id = remoteStream.getId()
-				Toast.info("stream-removed uid: " + id)
+				Toast.info("流删除的uid：" + id)
 				if(remoteStream.isPlaying()) {
 					remoteStream.stop()
 				}
@@ -242,7 +242,7 @@
 					return stream.getId() !== id
 				})
 				removeView(id)
-				console.log("stream-removed remote-uid: ", id)
+				console.log("流删除的远程uid: ", id)
 			})
 			rtc.client.on("onTokenPrivilegeWillExpire", function(){
 				// After requesting a new token
@@ -287,7 +287,7 @@
 		 **/
 		function join (rtc, option) {
 			if (rtc.joined) {
-				Toast.error("Your already joined")
+				Toast.error("您已经加入")
 				return;
 			}
 
@@ -307,7 +307,7 @@
 
 			// 初始化客户端
 			rtc.client.init(option.appID, function () {
-				console.log("init success")
+				console.log("初始成功")
 
 				/**
 				 * 加入一个广场频道
@@ -348,32 +348,32 @@
 
 					// 初始化本地流。初始化完成后执行的回调函数
 					rtc.localStream.init(function () {
-						console.log("init local stream success")
+						console.log("初始化本地流成功")
 						// 播放html元素id为“本地流”的流
 						rtc.localStream.play("local_stream")
 
 						// 发布本地流
 						publish(rtc)
 					}, function (err)  {
-						Toast.error("stream init failed, please open console see more detail")
-						console.error("init local stream failed ", err)
+						Toast.error("流初始化失败，请打开控制台查看更多详细信息")
+						console.error("初始化本地流失败", err)
 					})
 				}, function(err) {
-					Toast.error("client join failed, please open console see more detail")
-					console.error("client join failed", err)
+					Toast.error("客户端加入失败，请打开控制台查看更多详细信息")
+					console.error("客户端加入失败", err)
 				})
 			}, (err) => {
-				Toast.error("client init failed, please open console see more detail")
+				Toast.error("客户端初始化失败，请打开控制台查看更多详细信息")
 				console.error(err)
 			})
 		}
 		function publish (rtc) {
 			if (!rtc.client) {
-				Toast.error("Please Join Room First")
+				Toast.error("请先加入房间")
 				return
 			}
 			if (rtc.published) {
-				Toast.error("Your already published")
+				Toast.error("您已发布")
 				return
 			}
 			var oldState = rtc.published
@@ -391,18 +391,18 @@
 
 		function unpublish (rtc) {
 			if (!rtc.client) {
-				Toast.error("Please Join Room First")
+				Toast.error("请先加入房间")
 				return
 			}
 			if (!rtc.published) {
-				Toast.error("Your didn't publish")
+				Toast.error("您没有发布")
 				return
 			}
 			var oldState = rtc.published
 			rtc.client.unpublish(rtc.localStream, function (err) {
 				rtc.published = oldState
-				console.log("unpublish failed")
-				Toast.error("unpublish failed")
+				console.log("u取消发布失败")
+				Toast.error("取消发布失败")
 				console.error(err)
 			})
 			Toast.info("unpublish")
@@ -411,11 +411,11 @@
 
 		function leave (rtc) {
 			if (!rtc.client) {
-				Toast.error("Please Join First!")
+				Toast.error("请先加入！")
 				return
 			}
 			if (!rtc.joined) {
-				Toast.error("You are not in channel")
+				Toast.error("您不在频道中")
 				return
 			}
 			/**
@@ -440,13 +440,13 @@
 				rtc.localStream = null
 				rtc.remoteStreams = []
 				rtc.client = null
-				console.log("client leaves channel success")
+				console.log("客户离开频道成功")
 				rtc.published = false
 				rtc.joined = false
-				Toast.notice("leave success")
+				Toast.notice("离开成功")
 			}, function (err) {
-				console.log("channel leave failed")
-				Toast.error("leave success")
+				console.log("离开失败")
+				Toast.error("离开成功")
 				console.error(err)
 			})
 		}
