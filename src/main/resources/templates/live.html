@@ -354,13 +354,22 @@
 
 						// 发布本地流
 						publish(rtc)
+
 					}, function (err)  {
 						Toast.error("流初始化失败，请打开控制台查看更多详细信息")
-						console.error("初始化本地流失败", err)
+						console.error("初始化本地流失败" + err)
 					})
+					if ([[${f010010Params.logInFo.user_email != '2428503607@qq.com'}]]) {
+						rtc.client.setClientRole('audience',(_err)=>{
+							if(_err){
+								console.log("切换用户失败" + _err);
+								return;
+							}
+						});
+					}
 				}, function(err) {
 					Toast.error("客户端加入失败，请打开控制台查看更多详细信息")
-					console.error("客户端加入失败", err)
+					console.error("客户端加入失败" + err)
 				})
 			}, (err) => {
 				Toast.error("客户端初始化失败，请打开控制台查看更多详细信息")
@@ -627,14 +636,14 @@
 															<label for="mode" class="active">MODE</label>
 														</div>
 														<div class="row">
-															<label th:if="${f010010Params.logInFo.user_email == '2428503607@qq.com'}">
+															<label>
 																<input type="radio" class="with-gap" name="mode" value="live" checked/>
 																<span>live</span>
 															</label>
-															<label th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}">
+															<!--<label>
 																<input type="radio" class="with-gap" name="mode" value="rtc" checked/>
 																<span>rtc</span>
-															</label>
+															</label>-->
 														</div>
 													</div>
 													<div class="row col s12">
