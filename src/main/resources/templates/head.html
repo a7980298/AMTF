@@ -27,32 +27,36 @@
 		}
 		//打开详细通知
 		function amtf_getupdontice(_entity) {
-			$('#getupdontice').modal('show');
-			showdiv();
-			$.ajax({
-				url : CONTEXT_PATH + '/f010002/T004',
-				type : 'post',
-				dateType : 'html',
-				async : true,
-				data : {
-					id : _entity.updnotice_id,
-				},
-				success : function(result) {
-					hidediv();
-					if(result != ''){
-						$('#select5').replaceWith(result);
-						if (typeof $('#f010004') != null) {
-							
+			if ('[[${f010010Params}]]' == ''){
+				$('#getupdontice').modal('show');
+				showdiv();
+				$.ajax({
+					url : CONTEXT_PATH + '/f010002/T004',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					data : {
+						id : _entity.updnotice_id,
+					},
+					success : function(result) {
+						hidediv();
+						if(result != ''){
+							$('#select5').replaceWith(result);
+							if (typeof $('#f010004') != null) {
+
+							}
 						}
-					}
-				},
-				error : function(res, textStaus) {
-					hidediv();
-					setCodeErrList("错误！！！请和管理员联系。。。");
-				},
-			});
-			$('#updnoticehead').text(_entity.updnotice_head);
-			$('#updnoticetext').html(_entity.updnotice_text);
+					},
+					error : function(res, textStaus) {
+						hidediv();
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+				$('#updnoticehead').text(_entity.updnotice_head);
+				$('#updnoticetext').html(_entity.updnotice_text);
+			} else {
+				md.showNotification('bottom', 'center', '2', '当前页面不可查看通知。。。');
+			}
 		}
 		// 侧边悬浮设置
 		function amtf_sideSetUpKeep() {
