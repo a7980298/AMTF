@@ -171,57 +171,57 @@
 					</div>
 				</div>
 				<!-- 详细活动 -->
-			<div class="modal fade" id="getactivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-notice">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">活动详情</h3>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">
-								<i class="material-icons">close</i>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="instruction">
-								<div class="row">
-									<div class="col-md-8">
-										<strong id="activity_modal_head"></strong>
-										<p class="description" id="activity_modal_activitytext">
-										</p>
-									</div>
-									<div class="col-md-4">
-										<div class="picture">
-											<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img1" class="rounded img-fluid">
+				<div class="modal fade" id="getactivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-notice">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h3 class="modal-title">活动详情</h3>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">
+									<i class="material-icons">close</i>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="instruction">
+									<div class="row">
+										<div class="col-md-8">
+											<strong id="activity_modal_head"></strong>
+											<p class="description" id="activity_modal_activitytext">
+											</p>
 										</div>
-										<div class="picture mt-2">
-											<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img2" class="rounded img-fluid">
-										</div>
-										<div class="picture mt-2">
-											<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img3" class="rounded img-fluid">
-										</div>
-										<div class="picture mt-2">
-											<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img4" class="rounded img-fluid">
-										</div>
-										<div class="picture mt-2">
-											<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img5" class="rounded img-fluid">
+										<div class="col-md-4">
+											<div class="picture">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img1" class="rounded img-fluid">
+											</div>
+											<div class="picture mt-2">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img2" class="rounded img-fluid">
+											</div>
+											<div class="picture mt-2">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img3" class="rounded img-fluid">
+											</div>
+											<div class="picture mt-2">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img4" class="rounded img-fluid">
+											</div>
+											<div class="picture mt-2">
+												<img th:src="@{/img/image_placeholder.jpg}" alt="..." id="activity_modal_img5" class="rounded img-fluid">
+											</div>
 										</div>
 									</div>
 								</div>
+								<p>
+									<span id="activity_modal_activityymd"></span>
+									<!-- <h5 id="activity_modal_activityname" class="col-r"></h5> -->
+								</p>
 							</div>
-							<p>
-								<span id="activity_modal_activityymd"></span>
-								<!-- <h5 id="activity_modal_activityname" class="col-r"></h5> -->
-							</p>
-						</div>
-						<div class="modal-footer justify-content-center">
-							<button type="button" class="btn btn-info btn-round" data-dismiss="modal" onclick="amtf_setusetactivity()">
-								参加
-							</button>
-							<input type="hidden" id="activity_modal_activityid"/>
+							<div class="modal-footer justify-content-center">
+								<button type="button" class="btn btn-info btn-round" data-dismiss="modal" onclick="amtf_setusetactivity()">
+									参加
+								</button>
+								<input type="hidden" id="activity_modal_activityid"/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</div>
