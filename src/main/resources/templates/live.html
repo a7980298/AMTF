@@ -344,6 +344,9 @@
 						$('video').attr('controls','controls');
 						//去除镜像反转
 						$('video').css('transform','');
+						videoState($('video').get(0));
+						$('#leave').css('display','block');
+						$('#join').css('display','none');
 						/*// 双击后全屏，非全屏切换
 						$('video').dblclick(function(){
 							if(videodblclick == true){
@@ -445,6 +448,8 @@
 				rtc.published = false
 				rtc.joined = false
 				Toast.notice("离开成功")
+				$('#join').css('display','block');
+				$('#leave').css('display','none');
 			}, function (err) {
 				console.log("离开失败")
 				Toast.error("离开成功")
@@ -541,6 +546,17 @@
 				//浏览器不支持全屏API或已被禁用
 			}
 		}
+		// 监听直播暂停和播放
+		function videoState(ele) {
+			ele.addEventListener('play', function () {//播放开始执行的函数
+				//rtc.localStream.play();
+				console.log("播放了");
+			});
+			ele.addEventListener('pause', function () {//暂停开始执行的函数
+				//rtc.localStream.stop()
+				console.log("暂停了");
+			});
+		}
 	</script>
 </head>
 <body class="agora-theme">
@@ -556,7 +572,7 @@
 						<input type="hidden" name="IViewId" value="f010010"/>
 						<div class="row container col l12 s12">
 							<div class="col" style="min-width: 433px; max-width: 443px">
-								<div class="card" style="margin-top: 0px; margin-bottom: 0px;">
+								<div class="" style="margin-top: 0px; margin-bottom: 0px;">
 									<div class="row card-content" style="margin-bottom: 0px;">
 										<div style="display: none">
 											<div class="input-field">
@@ -575,15 +591,15 @@
 										<div class="row" style="margin: 0" th:if="${f010010Params.logInFo.user_email == '2428503607@qq.com'}">
 											<div class="col s12">
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">开始直播</button>
-												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">关闭直播</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave" style="display: none">关闭直播</button>
 												<!--<button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">发布</button>
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">隐藏</button>-->
 											</div>
 										</div>
 										<div class="row" style="margin: 0" th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}">
 											<div class="col s12">
-												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">进入直播间</button>
-												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播间</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">进入直播</button>
+												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播</button>
 											</div>
 										</div>
 									</div>

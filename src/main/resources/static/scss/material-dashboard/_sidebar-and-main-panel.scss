@@ -14,15 +14,15 @@
     @include shadow-big();
 
     .caret{
-      display: inline-block;
-      width: 0;
-      height: 0;
-      margin-left: 2px;
-      vertical-align: middle;
-      border-top: 4px dashed;
-      border-top: 4px solid\9;
-      border-right: 4px solid transparent;
-      border-left: 4px solid transparent;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        border-top: 4px dashed;
+        border-top: 4px solid\9;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
     }
 
     .sidebar-wrapper{
@@ -42,12 +42,12 @@
             border: none;
             box-shadow: none;
 
-          .input-group {
-            font-size: 1.7em;
-            height: 36px;
-            width: 78%;
-            padding-left: 17px;
-          }
+            .input-group {
+                font-size: 1.7em;
+                height: 36px;
+                width: 78%;
+                padding-left: 17px;
+            }
         }
 
         > .nav,
@@ -115,11 +115,11 @@
 
         li{
             > a{
-              &:hover,
-              &:focus{
-                  background-color: transparent;
-                  outline: none;
-              }
+                &:hover,
+                &:focus{
+                    background-color: transparent;
+                    outline: none;
+                }
             }
 
             &:first-child > a{
@@ -188,13 +188,13 @@
 
     .nav li a,
     .nav li .dropdown-menu a{
-          margin: 10px 15px 0;
-          border-radius: $border-radius-base;
-          color: $black-color;
-          padding-left: 10px;
-          padding-right: 10px;
-          text-transform: capitalize;
-          font-size: $font-paragraph - 1;
+        margin: 10px 15px 0;
+        border-radius: $border-radius-base;
+        color: $black-color;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-transform: capitalize;
+        font-size: $font-paragraph - 1;
     }
 
 
@@ -335,15 +335,15 @@
 
         .user-info{
             > a{
-               display: block;
-               line-height: 18px;
-               font-size: 14px;
+                display: block;
+                line-height: 18px;
+                font-size: 14px;
 
                 > span{
-                   @extend .animation-transition-general;
-                   display: block;
-                   position: relative;
-                   opacity: 1;
+                    @extend .animation-transition-general;
+                    display: block;
+                    position: relative;
+                    opacity: 1;
                 }
             }
 
@@ -359,7 +359,7 @@
         @include sidebar-background-color($gray-base, $white);
 
         .nav li .dropdown-menu .dropdown-item{
-          color: $white;
+            color: $white;
         }
     }
 
@@ -554,5 +554,5 @@
 }
 
 .sidebar[data-background-color=black] {
-  background: #191919;
+    background: #191919;
 }
