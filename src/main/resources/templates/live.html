@@ -7,26 +7,7 @@
 	<title>直播</title>
 	<th:block th:replace="import :: myimport"></th:block>
 	<style>
-		.video-placeholder{
-			width: 1217px;
-			height: 700px;
-		}
-		.video_max{
-			z-index: 1000000;
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			min-width: 100%;
-			min-height: 100%;
-			object-fit: fill;/*这里是关键*/
-			width: auto;
-			height: auto;
-			-ms-transform: translateX(-50%) translateY(-50%);
-			-webkit-transform: translateX(-50%) translateY(-50%);
-			transform: translateX(-50%) translateY(-50%);
-			background: url(../video/cover.jpg) no-repeat;
-			background-size: cover;
-		}
+
 	</style>
 	<!-- 声网视频 -->
 	<script th:src="@{/js/materialize.min.js}"></script>
@@ -274,7 +255,7 @@
 				console.log("onTokenPrivilegeDidExpire")
 			})
 		}
-
+		var videodblclick = true;
 		/**
 		 * rtc: rtc object
 		 * option: {
@@ -350,25 +331,34 @@
 					// 初始化本地流。初始化完成后执行的回调函数
 					rtc.localStream.init(function () {
 						console.log("初始化本地流成功")
-						// 播放html元素id为“本地流”的流
-						rtc.localStream.play("local_stream")
-
-						// 发布本地流
-						publish(rtc)
-
+						if ([[${f010010Params.logInFo.user_email != '2428503607@qq.com'}]]) {
+							// 观众
+							unpublish(rtc)
+						} else {
+							// 主播
+							publish(rtc)
+							// 播放html元素id为“本地流”的流
+							rtc.localStream.play("local_stream")
+						}
+						// 显示用户视频操作栏
+						$('video').attr('controls','controls');
+						//去除镜像反转
+						$('video').css('transform','');
+						/*// 双击后全屏，非全屏切换
+						$('video').dblclick(function(){
+							if(videodblclick == true){
+								fullScreen(document.getElementById("video"));
+								videodblclick = false;
+							} else {
+								cancelFullScreen();
+								videodblclick = true;
+							}
+						});*/
 					}, function (err)  {
 						Toast.error("流初始化失败，请打开控制台查看更多详细信息")
 						console.error("初始化本地流失败" + err)
 						md.showNotification('bottom', 'center', '2', '主播在休息。。。');
 					})
-					if ([[${f010010Params.logInFo.user_email != '2428503607@qq.com'}]]) {
-						rtc.client.setClientRole('audience',(_err)=>{
-							if(_err){
-								console.log("切换用户失败" + _err);
-								return;
-							}
-						});
-					}
 				}, function(err) {
 					Toast.error("客户端加入失败，请打开控制台查看更多详细信息")
 					console.error("客户端加入失败" + err)
@@ -526,36 +516,29 @@
 				}
 			})
 		})
-		//进入全屏
-		function showFull(){
-			$("video").removeAttr("style");
-			$('video').addClass('video_max');
-			$('video').dblclick(function(){
-				$('video').removeClass('video_max');
-				$("video").prop('style','width: 100%; height: 100%; position: absolute; object-fit: cover;');
-			});
-		}
-		function launchIntoFullscreen(element) {
-			if(element.requestFullscreen){
-				element.requestFullscreen();
-			}
-			else if(element.mozRequestFullScreen) {
+		// 全屏
+		function fullScreen(element) {
+			if(element.requestFullScreen) {
+				element.requestFullScreen();
+			} else if(element.mozRequestFullScreen) {
 				element.mozRequestFullScreen();
-			}
-			else if(element.webkitRequestFullscreen) {
-				element.webkitRequestFullscreen();
-			}
-			else if(element.msRequestFullscreen) {
-				element.msRequestFullscreen();
+			} else if(element.webkitRequestFullScreen) {
+				element.webkitRequestFullScreen();
 			}
 		}
-		function exitFullscreen() {
-			if(document.exitFullscreen) {
-				document.exitFullscreen();
-			} else if(document.mozCancelFullScreen) {
-				document.mozCancelFullScreen();
-			} else if(document.webkitExitFullscreen) {
-				document.webkitExitFullscreen();
+		// 退出全屏
+		function cancelFullScreen() {
+			var element= document;
+			if(element.webkitCancelFullScreen){
+				element.webkitCancelFullScreen();
+			}else if(element.mozCancelFullScreen){
+				element.mozCancelFullScreen();
+			}else if(element.cancelFullScreen){
+				element.cancelFullScreen();
+			}else if(element.exitFullscreen){
+				element.exitFullscreen();
+			}else{
+				//浏览器不支持全屏API或已被禁用
 			}
 		}
 	</script>
@@ -595,14 +578,12 @@
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">关闭直播</button>
 												<!--<button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">发布</button>
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">隐藏</button>-->
-												<button class="btn" onclick="showFull();">全屏</button>
 											</div>
 										</div>
 										<div class="row" style="margin: 0" th:if="${f010010Params.logInFo.user_email != '2428503607@qq.com'}">
 											<div class="col s12">
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="join">进入直播间</button>
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播间</button>
-												<button class="btn" onclick="showFull();">全屏</button>
 											</div>
 										</div>
 									</div>
