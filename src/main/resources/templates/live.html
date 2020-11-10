@@ -645,6 +645,10 @@
 				console.log("暂停了");
 			});
 		}
+		//监听离开本页面
+		window.onbeforeunload=function(e){
+			$('#leave').click();
+		}
 	</script>
 </head>
 <body class="agora-theme">
