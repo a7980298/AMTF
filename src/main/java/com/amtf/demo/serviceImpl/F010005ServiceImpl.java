@@ -69,7 +69,7 @@ public class F010005ServiceImpl implements F010005Service {
 					select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
 		}
 		entityout.setSelect9(select9);
-		// 我的活动
+		// 我参加的活动
 		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_email());
 		for (F010005_Select1Entity select1entity : select1) {
 			select1entity.setActivity_sttymd(select1entity.getActivity_sttymd().substring(0, 4) + "-"
@@ -90,6 +90,29 @@ public class F010005ServiceImpl implements F010005Service {
 					select1entity.getActivity_name() + select1entity.getActivity_id() + "-5"));
 		}
 		entityout.setSelect1(select1);
+
+		// 我发布的活动
+		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select1(loginfo.getUser_email());
+		for (F010005_Select1Entity select2entity : select2) {
+			select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
+					+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
+					+ select2entity.getActivity_sttymd().substring(6, 8));
+			select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
+					+ select2entity.getActivity_endymd().substring(4, 6) + "-"
+					+ select2entity.getActivity_endymd().substring(6, 8));
+			select2entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-1"));
+			select2entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-2"));
+			select2entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-3"));
+			select2entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-4"));
+			select2entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-5"));
+		}
+		entityout.setSelect2(select2);
+
 
 		return entityout;
 	}

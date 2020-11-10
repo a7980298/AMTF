@@ -17,4 +17,6 @@ public interface F010005Dao {
 
 	List<F010005_Select1Entity> f010005_Select1(@Param("name") String name);
 
+	List<F010005_Select1Entity> f010005_Select2(@Param("name") String name);
+
 }

@@ -36,7 +36,12 @@ public class F010005Params extends UserImpl {
 	List<F010002_Select9Entity> select9;
 
 	/**
-	 * 我的活动
+	 * 我参加的活动
 	 */
 	List<F010005_Select1Entity> select1;
+
+	/**
+	 * 我发布的活动
+	 */
+	List<F010005_Select1Entity> select2;
 }

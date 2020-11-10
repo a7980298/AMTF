@@ -20,4 +20,23 @@
 		GROUP BY
 			A1.ACTIVITY_ID
 	</select>
+	<!-- 全部活动 -->
+	<select id="f010005_Select2" resultType="com.amtf.demo.f010005entity.F010005_Select1Entity">
+		sELECT
+			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS count
+		FROM
+			AMTF_ACTIVITY A1
+		LEFT JOIN
+			AMTF_USERACTIVITY B1
+		ON
+			A1.ACTIVITY_ID = B1.ACTIVITY_ID
+        LEFT JOIN
+			AMTF_ACTIVITY C1
+        ON
+			C1.ACTIVITY_ID = A1.ACTIVITY_ID
+        where
+			C1.ACTIVITY_NAME = #{name}
+		GROUP BY
+			A1.ACTIVITY_ID
+	</select>
 </mapper>

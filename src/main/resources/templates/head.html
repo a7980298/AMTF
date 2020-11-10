@@ -340,6 +340,8 @@
 						"ordering": false,
 						// 设置默认的排序
 						"order": [ [ 5, "desc" ] ],
+						// 是否显示情报 就是"当前显示1/100记录"这个信息
+						"info": false,
 						// 件数选择功能 默认true
 						"lengthChange": false,
 						// lengthChange = ture 时件数选择功能
@@ -360,6 +362,24 @@
 						// 设置默认的排序
 						"order": [ [ 3, "desc" ] ],
 						"lengthChange": false,
+						"info": false,
+						responsive : true,
+						language : {
+							search : "_INPUT_",
+							searchPlaceholder : "搜索记录",
+						}
+					});
+
+					$('#activity_datatables_s').DataTable({
+						"pagingType" : "full_numbers",
+						// 禁止排序
+						"ordering": false,
+						// 是否允许检索
+						"searching": false,
+						// 设置默认的排序
+						"order": [ [ 3, "desc" ] ],
+						"lengthChange": false,
+						"info": false,
 						responsive : true,
 						language : {
 							search : "_INPUT_",
