@@ -1,0 +1,6 @@
+大小写转换 Ctrl + Shift + U
+撤回 Ctrl + Z
+取消撤回 Ctrl + Shift + Z
+查找文件 Shift + Shift
+查找关键字 Shift + F
+全局查找关键字 Ctrl + Shift + R

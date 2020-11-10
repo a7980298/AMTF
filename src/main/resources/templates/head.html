@@ -282,8 +282,7 @@
 							</div>
 						</div>
 						<div class="modal-footer justify-content-center">
-							<button type="button" class="btn btn-info btn-round"
-								data-dismiss="modal">知道了</button>
+							<button type="button" class="btn btn-info btn-round" data-dismiss="modal">知道了</button>
 						</div>
 					</div>
 				</div>
@@ -299,20 +298,18 @@
 			// table插件
 			$(document).ready(
 				function() {
-					$('#updontice_datatables').DataTable(
-							{
-								"pagingType" : "full_numbers",
-								// 禁止排序
-								"ordering": false, 
-								// 设置默认的排序
-								"order": [ [ 4, "desc" ] ],	
-								"lengthMenu" : [ [ 10, 25, 50, -1 ],
-										[ 10, 25, 50, "All" ] ],
-								responsive : true,
-								language : {
-									search : "_INPUT_",
-									searchPlaceholder : "搜索记录",
-								}
+					$('#updontice_datatables').DataTable({
+						"pagingType" : "full_numbers",
+						// 禁止排序
+						"ordering": false,
+						// 设置默认的排序
+						"order": [ [ 4, "desc" ] ],
+						"lengthMenu" : [ [ 10, 25, 50, -1 ],[ 10, 25, 50, "All" ] ],
+						responsive : true,
+						language : {
+							search : "_INPUT_",
+							searchPlaceholder : "搜索记录",
+						}
 					});
 
 					var table = $('#updontice_datatables').DataTable();
@@ -337,34 +334,37 @@
 						alert('你点击了“喜欢”按钮');
 					});
 					
-					$('#activity_datatables').DataTable(
-							{
-								"pagingType" : "full_numbers",
-								// 禁止排序
-								"ordering": false, 
-								// 设置默认的排序
-								"order": [ [ 5, "desc" ] ],	
-								"lengthMenu" : [ [ 10, 25, 50, -1 ],
-										[ 10, 25, 50, "All" ] ],
-								responsive : true,
-								language : {
-									search : "_INPUT_",
-									searchPlaceholder : "搜索记录",
-								}
+					$('#activity_datatables').DataTable({
+						"pagingType" : "full_numbers",
+						// 禁止排序
+						"ordering": false,
+						// 设置默认的排序
+						"order": [ [ 5, "desc" ] ],
+						// 件数选择功能 默认true
+						"lengthChange": false,
+						// lengthChange = ture 时件数选择功能
+						// "lengthMenu" : [ [ 10, 25, 50, -1 ],[ 10, 25, 50, "All" ] ],
+						responsive : true,
+						language : {
+							search : "_INPUT_",
+							searchPlaceholder : "搜索记录",
+						}
 					});
 
-					var table = $('#activity_datatables').DataTable();
-
-					// Delete a record
-					table.on('click', '.remove', function(e) {
-						$tr = $(this).closest('tr');
-						table.row($tr).remove().draw();
-						e.preventDefault();
-					});
-
-					//Like record
-					table.on('click', '.like', function() {
-						alert('你点击了“喜欢”按钮');
+					$('#activity_datatables_i').DataTable({
+						"pagingType" : "full_numbers",
+						// 禁止排序
+						"ordering": false,
+						// 是否允许检索
+						"searching": false,
+						// 设置默认的排序
+						"order": [ [ 3, "desc" ] ],
+						"lengthChange": false,
+						responsive : true,
+						language : {
+							search : "_INPUT_",
+							searchPlaceholder : "搜索记录",
+						}
 					});
 				}
 			);

@@ -33,6 +33,7 @@ public class F010004ServiceImpl implements F010004Service {
 	/**
 	 * 初期化
 	 */
+	@Override
 	public F010004EntityOut service01(F010004EntityIn entityIn) throws ErrListException {
 
 		F010004EntityOut entityout = new F010004EntityOut();

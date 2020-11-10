@@ -2,6 +2,7 @@ package com.amtf.demo.params;
 
 import java.util.List;
 
+import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
@@ -33,4 +34,9 @@ public class F010005Params extends UserImpl {
 	 * 所有活动
 	 */
 	List<F010002_Select9Entity> select9;
+
+	/**
+	 * 我的活动
+	 */
+	List<F010005_Select1Entity> select1;
 }

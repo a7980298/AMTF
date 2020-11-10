@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amtf.demo.dao.F010005Dao">
+	<!-- 全部活动 -->
+	<select id="f010005_Select1" resultType="com.amtf.demo.f010005entity.F010005_Select1Entity">
+		SELECT
+			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
+		FROM
+			AMTF_ACTIVITY A1
+		LEFT JOIN
+			AMTF_USERACTIVITY B1
+		ON
+			A1.ACTIVITY_ID = B1.ACTIVITY_ID
+        LEFT JOIN
+			AMTF_USERACTIVITY C1
+        ON
+			C1.ACTIVITY_ID = B1.ACTIVITY_ID
+        WHERE
+			C1.USERACTIVITY_NAME = #{name}
+		GROUP BY
+			A1.ACTIVITY_ID
+	</select>
+</mapper>
