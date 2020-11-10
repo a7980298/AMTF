@@ -7,12 +7,100 @@
 	<title>直播</title>
 	<th:block th:replace="import :: myimport"></th:block>
 	<style>
+		.barrage {
+			position: absolute;
+			left:10%;
+			width: 88%;
+			margin-top: -55%;
+			/*max-width: 700px;*/
 
+			/*x轴方向上超过则隐藏内容*/
+			overflow-y: hidden;
+
+			z-index: 999;
+		}
+		.barrage-span{
+			margin-left: 30px;
+		}
 	</style>
 	<!-- 声网视频 -->
 	<script th:src="@{/js/materialize.min.js}"></script>
 	<script th:src="@{/js/AgoraRTCSDK-3.2.1.js}"></script>
 	<script>
+		function send() {
+			//发送内容
+			var val = $('#live_text').val();
+			//创建的节点
+			var span;
+			//偏移量
+			var offset = 0;
+			//帧ID
+			var id;
+
+			var str = '0123456789cefdb';
+			if (val != "") {
+				//创建节点
+				span = document.createElement("span");
+				//设置文本
+				span.innerHTML = val;
+				//设置样式
+				span.className = "barrage-span";
+				//添加
+				$('#barrage').get(0).appendChild(span);
+				//设置初始位置，注意添加元素后宽度和高度才生效。
+				span.style.top = getRandomNumber(parseInt(video.offsetHeight-span.offsetHeight)) + "px";
+				span.style.left =  video.offsetWidth+"px";
+				span.style.color = getRandomColor();
+				//设置监听事件
+				span.addEventListener("mouseover", stop, false);
+				span.addEventListener("mouseout", scroll, false);
+				//默认初始文本滚动
+				scroll();
+			}
+
+			function scroll() {
+
+				offset += 2;
+
+				span.style.transform = "translateY(-" + offset + "px)";
+				span.style.transition = "transform 0s linear";
+
+				if (offset >= parseInt(video.offsetWidth+span.offsetWidth)) {
+					stop();
+					$('#barrage').get(0).removeChild(span);
+				}else{
+					id = window.requestAnimationFrame(scroll);
+				}
+			}
+
+			function stop(){
+				window.cancelAnimationFrame(id);
+			}
+
+			//去除两边空格
+			function trim(s) {
+				return s.replace(/(^\s*)|(\s*$)/g, "");
+			}
+
+			//指定范围内获取随机数
+			function getRandomNumber(value) {
+				return parseInt(Math.random() * value);
+			}
+
+			//获取任意颜色
+			function getRandomColor() {
+				var color = "#";
+				var j;
+				for (var i = 0; i < 6; i++) {
+					j = getRandomNumber(16);
+					color += str.substring(j, j + 1);
+				}
+				return color;
+			}
+		}
+		$(function(){
+			//$("#join").click();
+		})
 		console.log("agora sdk version: " + AgoraRTC.VERSION + " compatible: " + AgoraRTC.checkSystemRequirements());
 		var resolutions = [
 			{
@@ -602,6 +690,10 @@
 												<button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">退出直播</button>
 											</div>
 										</div>
+										<!--输入框-->
+										<input type="text" class="screen-input" id="live_text">
+										<!--发送按钮-->
+										<input type="button" value="发送" class="screen-button" onclick="send()">
 									</div>
 								</div>
 								<ul class="collapsible card agora-secondary-border" style="margin-top: .4rem; border: 1px;display: none">
@@ -673,6 +765,8 @@
 										<div id="video_autoplay_local" class="autoplay-fallback hide"></div>
 									</div>
 								</div>
+								<!--弹幕层-->
+								<div class="barrage" id="barrage"></div>
 							</div>
 						</div>
 					</i-form>
