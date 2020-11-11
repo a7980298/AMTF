@@ -245,3 +245,6 @@ a:hover {
 		transform: translateY(-100px);
 	}
 }
+.bgc_block{
+	background-color:#ececec;
+}

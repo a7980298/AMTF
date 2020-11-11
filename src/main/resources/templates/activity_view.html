@@ -50,7 +50,7 @@
 								<div class="card">
 									<div class="card-body">
 											<div class="text-center">
-												<span class="h5">热门活动</span>
+												<span class="h5">TA的活动</span>
 											</div>
 											<div class="row ">
 												<table class="table-hover col-sm-12">
@@ -65,8 +65,8 @@
 							<div class="col-md-8">
 								<div class="card">
 									<div class="card-body">
-										<div class="toolbar"></div>
-										<div class="material-datatables">
+										<h1>[[${f010005Params.select3.activity_head}]]</h1>
+										<div class="row bgc_block center">
 
 										</div>
 									</div>
@@ -75,17 +75,23 @@
 							<div class="col-md-2">
 								<div class="card">
 									<div class="card-body">
-										<div class="toolbar"></div>
-										<div class="material-datatables">
-
+										<div class="text-center">
+											<span class="h5">热门活动</span>
+										</div>
+										<div class="row ">
+											<table class="table-hover col-sm-12">
+												<tr th:each="entity,idx:${f010005Params.select9}" class="col-sm-12">
+													<td>[[${entity.activity_head}]]&nbsp;&nbsp;<i class="fa fa-eye" aria-hidden="true"></i> [[${entity.count}]]</td>
+												</tr>
+											</table>
 										</div>
 									</div>
 								</div>
 								<div class="card">
 									<div class="card-body">
 										<div class="toolbar"></div>
-										<div class="material-datatables">
-
+										<div class="material-datatables text-center">
+											<h1>广告位</h1>
 										</div>
 									</div>
 								</div>
