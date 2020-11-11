@@ -2,6 +2,7 @@ package com.amtf.demo.user;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,5 +24,10 @@ public class UserImpl {
 	 * 管理页面
 	 */
 	private Admin admin;
+
+	/**
+	 * 分页类
+	 */
+	PageInfo pageInfo;
 
 }
