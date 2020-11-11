@@ -14,8 +14,8 @@ public class F010005EntityIn extends UserImpl {
 	private String IViewId;
 
 	/**
-	 * 活动id
+	 * 详细活动id
 	 */
-	public String actiyity_id;
+	private String activity_id;
 
 }

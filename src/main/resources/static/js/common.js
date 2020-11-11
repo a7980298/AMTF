@@ -445,3 +445,11 @@ function openSocket(_user_email) {
 		}
 	}
 }
+// 生成一个input标签
+function getNewInput(name, value) {
+	var tempInput = document.createElement("input");
+	tempInput.type = "hidden";
+	tempInput.name = name;
+	tempInput.value = value;
+	return tempInput;
+}

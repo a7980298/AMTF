@@ -57,14 +57,38 @@ public class F010005Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f010005/T001")
 	@ResponseBody
-	public Map<String, Object> f010005T006(@RequestParam("id") String id, HttpServletRequest request) {
+	public Map<String, Object> f010005T001(@RequestParam("id") String id, HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		F010005EntityIn entityin = new F010005EntityIn();
 
-		entityin.setActiyity_id(id);
+		entityin.setActivity_id(id);
 
 		F010005EntityOut entityOut = f010005service.service02(entityin);
 		map.put("isuseractivity", entityOut.getInsert10());
 		return map;
+	}
+
+
+	/**
+	 * 详细活动
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@RequestMapping("/f010005/T002")
+	public String f010005T002(F010005Params params, Model model) {
+
+		F010005EntityIn entityin = new F010005EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F010005EntityOut entityOut = f010005service.service03(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010005Params", params);
+
+		return "activity_view";
 	}
 }

@@ -32,12 +32,12 @@ public class AmtfActivityEntity {
 	/**
 	 *开始日期
 	 */
-	private Date activity_sttymd;
+	private Integer activity_sttymd;
 
 	/**
 	 *结束日期
 	 */
-	private Date activity_endymd;
+	private Integer activity_endymd;
 
 	/**
 	 *活动内容

@@ -2,6 +2,8 @@ package com.amtf.demo.params;
 
 import java.util.List;
 
+import com.amtf.demo.commonentity.AmtfActivityEntity;
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -23,12 +25,12 @@ public class F010005Params extends UserImpl {
 	/**
 	 * 活动id
 	 */
-	public String actiyity_id;
+	private String actiyity_id;
 
 	/**
 	 * 参加活动添加成功?
 	 */
-	public String insert10;
+	private String insert10;
 
 	/**
 	 * 所有活动
@@ -44,4 +46,20 @@ public class F010005Params extends UserImpl {
 	 * 我发布的活动
 	 */
 	List<F010005_Select1Entity> select2;
+
+	/**
+	 * 详细活动id
+	 */
+	private String activity_id;
+
+
+	/**
+	 * 详细活动
+	 */
+	AmtfActivityEntity select3;
+
+	/**
+	 * 活动发布人信息
+	 */
+	AmtfUserEntity select4;
 }

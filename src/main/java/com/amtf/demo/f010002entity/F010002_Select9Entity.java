@@ -75,5 +75,5 @@ public class F010002_Select9Entity {
 	/**
 	 * 参加人数
 	 */
-	private String count;
+	private int count;
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 活动一览 -->
+				<div class="container-fluid dashboardclass" id="f010005">
+					<div class="container-fluid d-flex">
+						<i-form class="col-sm-12" th:action="@{/f010005}" method="post" style="height:100%;width: 100%" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f010005"/>
+						<div class="row">
+							<div class="col-md-2">
+								<div class="card">
+									<div class="card-body">
+										<div class="material-datatables">
+											<div class="photo">
+												<img th:src="@{/imgs/userimg.jpg}" th:if="${f010005Params.select4.imgpath == ''}" id="img1" style="height:34px;"/>
+												<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010005Params.select4.imgpath})}" th:if="${f010005Params.select4.imgpath != ''}" id="img1" style="height:34px;"/>
+												<span>
+													[[${f010005Params.select4.user_name}]]
+													<b class="caret"></b>
+												</span>
+											</div>
+											<div class="pl-1">
+												<span class="pl-2">[[${f010005Params.select2.size()}]]</span>
+												<br>
+												<span>发布</span>
+											</div>
+											<div class="">
+												<button class="btn btn-sm">TA的主页</button>
+												<button class="btn btn-sm btn-reddit">关注</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card">
+									<div class="card-body">
+											<div class="text-center">
+												<span class="h5">热门活动</span>
+											</div>
+											<div class="row ">
+												<table class="table-hover col-sm-12">
+													<tr th:each="entity,idx:${f010005Params.select2}" class="col-sm-12">
+														<td>[[${entity.activity_head}]]&nbsp;&nbsp;<i class="fa fa-eye" aria-hidden="true"></i> [[${entity.count}]]</td>
+													</tr>
+												</table>
+											</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div class="card">
+									<div class="card-body">
+										<div class="toolbar"></div>
+										<div class="material-datatables">
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="card">
+									<div class="card-body">
+										<div class="toolbar"></div>
+										<div class="material-datatables">
+
+										</div>
+									</div>
+								</div>
+								<div class="card">
+									<div class="card-body">
+										<div class="toolbar"></div>
+										<div class="material-datatables">
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

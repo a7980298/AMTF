@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amtf.demo.dao.F010005Dao">
-	<!-- 全部活动 -->
+	<!-- 我参加的活动 -->
 	<select id="f010005_Select1" resultType="com.amtf.demo.f010005entity.F010005_Select1Entity">
 		SELECT
 			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
@@ -20,10 +20,10 @@
 		GROUP BY
 			A1.ACTIVITY_ID
 	</select>
-	<!-- 全部活动 -->
+	<!-- 我发布的活动 -->
 	<select id="f010005_Select2" resultType="com.amtf.demo.f010005entity.F010005_Select1Entity">
-		sELECT
-			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS count
+		SELECT
+			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
 		FROM
 			AMTF_ACTIVITY A1
 		LEFT JOIN
@@ -34,9 +34,27 @@
 			AMTF_ACTIVITY C1
         ON
 			C1.ACTIVITY_ID = A1.ACTIVITY_ID
-        where
+        WHERE
 			C1.ACTIVITY_NAME = #{name}
 		GROUP BY
 			A1.ACTIVITY_ID
+	</select>
+	<!-- 详细活动 -->
+	<select id="f010005_Select3" resultType="com.amtf.demo.commonentity.AmtfActivityEntity">
+		SELECT
+			*
+		FROM
+			AMTF_ACTIVITY
+		WHERE
+			ACTIVITY_ID = #{id}
+	</select>
+	<!-- 活动发布人信息 -->
+	<select id="f010005_Select4" resultType="com.amtf.demo.commonentity.AmtfUserEntity">
+		SELECT
+			*
+		FROM
+			AMTF_USER
+		WHERE
+			USER_EMAIL = #{email}
 	</select>
 </mapper>
