@@ -467,3 +467,7 @@ function htmlRestore(str){
 	s = s.replace(/&quot;/g, "\"");
 	return s;
 }
+//随机数
+function getRandomInt(min,max){
+	return Math.floor(Math.random()*(max-min+1))+min;
+}
