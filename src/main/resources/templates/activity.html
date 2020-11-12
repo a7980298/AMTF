@@ -196,7 +196,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-													<tr th:each="entity,idx:${f010005Params.select1}" class="" th:onclick="amtf_getactivity([[${entity}]],'1')">
+													<tr th:each="entity,idx:${f010005Params.select1}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
 														<td>[[${entity.activity_head}]]</td>
 														<td>[[${entity.activity_sttymd}]]</td>
 														<td>[[${entity.activity_endymd}]]</td>
@@ -224,7 +224,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:each="entity,idx:${f010005Params.select2}" class="" th:onclick="amtf_getactivity([[${entity}]],'1')">
+													<tr th:each="entity,idx:${f010005Params.select2}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
 														<td>[[${entity.activity_head}]]</td>
 														<td>[[${entity.activity_sttymd}]]</td>
 														<td>[[${entity.activity_endymd}]]</td>

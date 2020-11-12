@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
+
 @Getter
 @Setter
 public class AmtfActivityEntity {
@@ -47,5 +48,10 @@ public class AmtfActivityEntity {
 	/**
 	 *发布时间
 	 */
-	private Date activity_time;
+	private String activity_time;
+
+	/**
+	 *参加人数
+	 */
+	private Integer count;
 }

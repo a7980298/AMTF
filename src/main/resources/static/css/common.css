@@ -248,3 +248,7 @@ a:hover {
 .bgc_block{
 	background-color:#ececec;
 }
+.hand{
+	/*鼠标悬浮变"手"*/
+	cursor:pointer
+}

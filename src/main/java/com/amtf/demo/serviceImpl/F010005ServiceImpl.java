@@ -152,6 +152,7 @@ public class F010005ServiceImpl implements F010005Service {
 
 		// 详细活动
 		AmtfActivityEntity select3 = f010005dao.f010005_Select3(NumberUtil.toInt(entityin.getActivity_id()));
+
 		entityout.setSelect3(select3);
 
 		// 活动发布人信息
@@ -163,6 +164,9 @@ public class F010005ServiceImpl implements F010005Service {
 		// 我发布的活动
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(select3.getActivity_name());
 		for (F010005_Select1Entity select2entity : select2) {
+			if (select2entity.getActivity_name().equals(select4.getUser_email())){
+				select3.setCount(select2entity.getCount());
+			}
 			select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
 					+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
 					+ select2entity.getActivity_sttymd().substring(6, 8));
