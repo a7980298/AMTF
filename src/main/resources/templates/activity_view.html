@@ -47,6 +47,15 @@
 		speechs.push('说的太对了🙏');
 		$('textarea').val(speechs[getRandomInt(0,3)]);
 	}
+	//手势变更
+	function amtf_thumbsFocus(_this) {
+		$(_this).removeClass('fa-thumbs-o-up');
+		$(_this).addClass('fa-thumbs-up');
+	}
+	function amtf_thumbsBlur(_this) {
+		$(_this).removeClass('fa-thumbs-up');
+		$(_this).addClass('fa-thumbs-o-up');
+	}
 </script>
 </head>
 <body>
@@ -146,6 +155,9 @@
 														<a href="#" class="lookeye">[[${entity.user_name}]]：</a>
 														[[${entity.user_text}]]
 													</p>
+												</div>
+												<div class="col-sm-1 pad-0 text-right">
+													<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
 												</div>
 											</li>
 										</ul>
