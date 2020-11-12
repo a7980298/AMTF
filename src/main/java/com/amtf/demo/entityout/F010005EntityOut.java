@@ -2,6 +2,7 @@ package com.amtf.demo.entityout;
 
 import java.util.List;
 
+import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
@@ -44,4 +45,9 @@ public class F010005EntityOut extends UserImpl {
 	 * 活动发布人信息
 	 */
 	AmtfUserEntity select4;
+
+	/**
+	 * 活动一级评论
+	 */
+	List<AmtfActivityCommentEntity> select5;
 }

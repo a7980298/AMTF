@@ -1,5 +1,6 @@
 package com.amtf.demo.dao;
 
+import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010001entity.F010001_Select1Entity;
@@ -24,5 +25,7 @@ public interface F010005Dao {
 	AmtfActivityEntity f010005_Select3(@Param("id") Integer id);
 
 	AmtfUserEntity f010005_Select4(@Param("email") String email);
+
+	List<AmtfActivityCommentEntity> f010005_Select5(@Param("id") Integer id);
 
 }

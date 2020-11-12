@@ -1,9 +1,9 @@
-CREATE TABLE amtf_useractivity_comment(
-	useractivity_comment_id INT NOT NULL, -- id
+CREATE TABLE amtf_activity_comment(
+	activity_comment_id INT NOT NULL, -- id
 	activity_id INT NOT NULL, -- 活动id
 	user_id VARCHAR(30), -- 用户id
 	user_name VARCHAR(30), -- 用户名称
 	user_text VARCHAR(500) -- 评论
 )
 
-insert into amtf_useractivity_comment values(0,1,'1220875539@qq.com','王意鑫12','说的好！！！！！');
+insert into amtf_activity_comment values(0,1,'1220875539@qq.com','王意鑫12','说的好！！！！！');

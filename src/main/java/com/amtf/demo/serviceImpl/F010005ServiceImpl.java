@@ -3,6 +3,7 @@ package com.amtf.demo.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.dao.F010005Dao;
@@ -160,6 +161,13 @@ public class F010005ServiceImpl implements F010005Service {
 		String imgpath = ImgUtil.getImgPath(select4.getUser_email());
 		select4.setImgpath(imgpath);
 		entityout.setSelect4(select4);
+
+		//活动一级评论
+		List<AmtfActivityCommentEntity> select5 = f010005dao.f010005_Select5(select3.getActivity_id());
+		for (AmtfActivityCommentEntity select5entity:select5) {
+			select5entity.setImgpath(ImgUtil.getImgPath(select5entity.getUser_id()));
+		}
+		entityout.setSelect5(select5);
 
 		// 我发布的活动
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(select3.getActivity_name());

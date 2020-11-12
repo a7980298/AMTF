@@ -57,4 +57,17 @@
 		WHERE
 			USER_EMAIL = #{email}
 	</select>
+	<!-- 活动评论 -->
+	<select id="f010005_Select5" resultType="com.amtf.demo.commonentity.AmtfActivityCommentEntity">
+		SELECT
+			B1.*
+		FROM
+			AMTF_ACTIVITY A1
+		LEFT JOIN
+			AMTF_ACTIVITY_COMMENT B1
+		ON
+			A1.ACTIVITY_ID = B1.ACTIVITY_ID
+        WHERE
+			A1.ACTIVITY_ID= #{id}
+	</select>
 </mapper>
