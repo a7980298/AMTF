@@ -22,7 +22,7 @@
 		amtf_submit(amtf_form, '/f010005/T002');
 	}
 	// 改变text样式
-	function amtf_activeTextFocus(){
+	function amtf_activeTextFocus() {
 		$('textarea').attr('rows','6');
 		$('#comment1').css('display','none');
 		$('.comment2').css('display','block');
@@ -30,14 +30,16 @@
 	}
 	// 改变text样式
 	function amtf_activeText(){
-		if($('textarea').val() == ''){
+		if($('textarea').val() == '') {
 			$('textarea').attr('rows','2');
 			$('#comment1').css('display','block');
 			$('.comment2').css('display','none');
+		} else {
+
 		}
 	}
 	// 快速发言
-	function amtf_activeQuickSpeech(){
+	function amtf_activeQuickSpeech() {
 		var speechs=new Array();
 		speechs.push('阿弥陀佛🙏');
 		speechs.push('善哉善哉。。。');
