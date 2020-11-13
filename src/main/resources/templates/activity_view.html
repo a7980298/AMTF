@@ -50,6 +50,9 @@
 				$('.comment2').css('display','none');
 				$('#comment1').css('display','block');
 			}
+			if(!$(e.target).hasClass('commentreply_now')){
+				$('#comment_replydiv').remove();
+			}
 		})
 	})
 	//查看活动详情
@@ -181,21 +184,25 @@
 	function amtf_comment_reply(_dom,_this) {
 		if($('#comment_replydiv').html() == undefined){
 			var str='';
-			str +="<div class='card-body d-flex' id='comment_replydiv'>";
-			str +="<div>";
+			str +="<div class='card-body d-flex commentreply_now' id='comment_replydiv'>";
+			str +="<div class='commentreply_now'>";
 			str += $("#comment_div img").prop('outerHTML')
 			str += "</div>";
-			str += "<div class='col-sm-10'>";
-			str += "<textarea class='col-sm-12 m-0 pl-0' defaultValue='请输入你的评论。。。' cols='40' rows='2' id='comment_reply'></textarea>";
+			str += "<div class='col-sm-10 commentreply_now'>";
+			str += "<textarea class='col-sm-12 m-0 pl-0 commentreply_now' defaultValue='请输入你的评论。。。' cols='40' rows='2' id='comment_reply'></textarea>";
 			str += "</div>";
-			str += "<div class='col-sm-1 pad-0'>";
-			str += "<button class='btn pad-0 m-0 text-center btn-reddit commentreply2' onclick='amtf_activeText(1)'>发表评论</button>";
-			str += "<button class='btn pad-0 m-0 text-center btn-info commentreply2 mt-2' onclick='amtf_activeQuickSpeech(1)'>快速发言</button>";
+			str += "<div class='col-sm-1 pad-0 commentreply_now'>";
+			str += "<button class='btn pad-0 m-0 commentreply_now text-center btn-reddit commentreply2' onclick='amtf_activeText(1)'>发表评论</button>";
+			str += "<button class='btn pad-0 m-0 commentreply_now text-center btn-info commentreply2 mt-2' onclick='amtf_activeQuickSpeech(1)'>快速发言</button>";
 			str += "</div>";
 			str += "</div>";
 			$(_this).parents('li').after(str);
 			_replyid = _dom.activity_comment_id;
 		}
+	}
+	//删除评论
+	function amtf_removeReply(_entity) {
+
 	}
 </script>
 </head>
@@ -310,7 +317,7 @@
 														<p>
 															<a href="#" class="lookeye">[[${mapkey.key.user_name}]]：</a>
 															[[${mapkey.key.user_text}]]
-															<a href="#" class="" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
+															<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
 																回复&nbsp;&nbsp;&nbsp;
 															</a>
 															<a href="#" class="" style="color: #00a5bb" th:if="${mapkey.key.user_id == main_params.logInFo.user_email}">
@@ -333,10 +340,10 @@
 															<p>
 																<a href="#" class="lookeye">[[${fileInfo.user_name}]]&nbsp;回复了：</a>
 																[[${fileInfo.user_text}]]
-																<a href="#" class="" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
+																<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
 																	回复&nbsp;&nbsp;&nbsp;
 																</a>
-																<a href="#" class="" style="color: #00a5bb" th:if="${fileInfo.user_id == main_params.logInFo.user_email}">
+																<a href="#" class="" style="color: #00a5bb" th:if="${fileInfo.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[fileInfo]])">
 																	删除&nbsp;&nbsp;&nbsp;
 																</a>
 																<i class="fa fa-exclamation lookeye hand" aria-hidden="true" title="举报"></i>
