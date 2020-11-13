@@ -5,5 +5,6 @@ CREATE TABLE amtf_activity_comment(
 	user_name VARCHAR(30), -- 用户名称
 	user_text VARCHAR(500) -- 评论
 )
-
+ALTER TABLE amtf_activity_comment MODIFY  user_text  VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE amtf_activity_comment CHARSET=utf8mb4;
 insert into amtf_activity_comment values(0,1,'1220875539@qq.com','王意鑫12','说的好！！！！！');

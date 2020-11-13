@@ -33,4 +33,20 @@
 		FROM
 			AMTF_USERACTIVITY
 	</select>
+	<!-- 获取comment表最大id -->
+	<select id="common_Select5"
+			resultType="int">
+		SELECT
+			MAX(ACTIVITY_COMMENT_ID)
+		FROM
+			AMTF_ACTIVITY_COMMENT
+	</select>
+	<!-- 获取reply表最大id -->
+	<select id="common_Select6"
+			resultType="int">
+		SELECT
+			MAX(ACTIVITY_COMMENT_REPLY_ID)
+		FROM
+			AMTF_ACTIVITY_COMMENT_REPLY
+	</select>
 </mapper>

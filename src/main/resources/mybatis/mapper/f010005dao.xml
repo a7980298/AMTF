@@ -70,4 +70,35 @@
         WHERE
 			A1.ACTIVITY_ID= #{id}
 	</select>
+	<!-- 发表一级评论 -->
+	<insert id="f010005_Insert6">
+		INSERT INTO
+			AMTF_ACTIVITY_COMMENT
+		VALUES(
+			#{entity.activity_comment_id}
+			,#{entity.activity_id}
+			,#{entity.user_id}
+			,#{entity.user_name}
+			,#{entity.user_text});
+	</insert>
+	<!-- 活动二级评论 -->
+	<select id="f010005_Select7" resultType="com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity">
+		SELECT
+			*
+		FROM
+			AMTF_ACTIVITY_COMMENT_REPLY
+		WHERE
+			ACTIVITY_COMMENT_ID = #{id}
+	</select>
+	<!-- 发表二级评论 -->
+	<insert id="f010005_Insert8">
+		INSERT INTO
+			AMTF_ACTIVITY_COMMENT_REPLY
+		VALUES(
+			#{entity.activity_comment_reply_id}
+			,#{entity.activity_comment_id}
+			,#{entity.user_id}
+			,#{entity.user_name}
+			,#{entity.user_text});
+	</insert>
 </mapper>

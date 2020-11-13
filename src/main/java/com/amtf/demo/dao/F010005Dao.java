@@ -1,6 +1,7 @@
 package com.amtf.demo.dao;
 
 import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
+import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010001entity.F010001_Select1Entity;
@@ -9,6 +10,7 @@ import com.amtf.demo.f010002entity.F010002_Select4Entity;
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import com.amtf.demo.user.LogInFo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +30,9 @@ public interface F010005Dao {
 
 	List<AmtfActivityCommentEntity> f010005_Select5(@Param("id") Integer id);
 
+	Integer f010005_Insert6(@Param("entity") AmtfActivityCommentEntity entity);
+
+	List<AmtfActivityCommentReplyEntity> f010005_Select7(@Param("id") Integer id);
+
+	Integer f010005_Insert8(@Param("entity") AmtfActivityCommentReplyEntity entity);
 }

@@ -8,12 +8,49 @@
 	.lookeye{
 		color: #7d8590;
 	}
+	.btn_login{
+		width: 70px;
+		height: 30px;
+		background-color:transparent;
+		border-style:none;
+		margin-top: 4px;
+		margin-bottom: 4px;
+	}
+	.btn_login:hover{
+		width: 70px;
+		height: 30px;
+		background-color:#b4b8b956;
+		border-style:none;
+		margin-top: 4px;
+		margin-bottom: 4px;
+	}
+	.li_bottom{
+		border-bottom :1px solid;
+		border-bottom-color:#b4b8b956;
+	}
+	.li_top{
+		border-top :1px solid;
+		border-top-color:#b4b8b956;
+		padding-top: 3px;
+	}
+	.dis_none{
+		display:none;
+	}
+	.dis_block{
+		display:block;
+	}
 </style>
 <script type="text/javascript">
+	var _replyid='';
 	$(function(){
 		$('#activity_activitytext').html(htmlRestore('[[${f010005Params.select3.activity_text}]]'));
-
-
+		$(document).click( function (e) {  // 在页面任意位置点击而触发此事件
+			if(!$(e.target).hasClass('comment_now')){
+				$('#comment_text').attr('rows','2');
+				$('.comment2').css('display','none');
+				$('#comment1').css('display','block');
+			}
+		})
 	})
 	//查看活动详情
 	function amtf_getactivity(_this) {
@@ -21,31 +58,115 @@
 		amtf_form.appendChild(newinput);
 		amtf_submit(amtf_form, '/f010005/T002');
 	}
-	// 改变text样式
-	function amtf_activeTextFocus() {
-		$('textarea').attr('rows','6');
+	//text聚焦事件
+	function amtf_activeTextClick() {
+		$('#comment_text').prop('rows','6');
 		$('#comment1').css('display','none');
 		$('.comment2').css('display','block');
-		$('textarea').focus();
+		$('#comment_text').focus();
 	}
-	// 改变text样式
-	function amtf_activeText(){
-		if($('textarea').val() == '') {
-			$('textarea').attr('rows','2');
-			$('#comment1').css('display','block');
-			$('.comment2').css('display','none');
+	// 发言
+	function amtf_activeText(_is){
+		if(_is != 1){
+			if($('#comment_text').val() == '') {
+				$('#comment_text').attr('rows','2');
+				$('#comment1').css('display','block');
+				$('.comment2').css('display','none');
+			} else {
+				$.ajax({
+					url : CONTEXT_PATH + '/f010005/T003',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					data : {
+						id : '[[${f010005Params.select3.activity_id}]]',
+						text : $('#comment_text').val(),
+					},
+					success : function(result) {
+						if (result.iscomment < 1){
+							md.showNotification('bottom', 'center', '2', '发言失败。。。');
+						} else{
+							$.ajax({
+								url : CONTEXT_PATH + '/f010005/T004',
+								type : 'post',
+								dateType : 'html',
+								async : true,
+								data : {
+									id : '[[${f010005Params.select3.activity_id}]]',
+								},
+								success : function(result) {
+									if(result != ''){
+										$('#commentselect5').replaceWith(result);
+										$('#comment_text').val('');
+									}
+								},
+								error : function(res, textStaus) {
+									setCodeErrList("错误！！！请和管理员联系。。。");
+								},
+							});
+						}
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			}
 		} else {
-
+			if($('#comment_reply').val() == '') {
+				$('#comment_replydiv').remove();
+			} else {
+				$.ajax({
+					url : CONTEXT_PATH + '/f010005/T005',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					data : {
+						id : _replyid,
+						text : $('#comment_reply').val(),
+					},
+					success : function(result) {
+						if (result.isreply < 1){
+							md.showNotification('bottom', 'center', '2', '发言失败。。。');
+						} else{
+							$.ajax({
+								url : CONTEXT_PATH + '/f010005/T004',
+								type : 'post',
+								dateType : 'html',
+								async : true,
+								data : {
+									id : '[[${f010005Params.select3.activity_id}]]',
+								},
+								success : function(result) {
+									if(result != ''){
+										$('#commentselect5').replaceWith(result);
+										$('#comment_reply').val('');
+									}
+								},
+								error : function(res, textStaus) {
+									setCodeErrList("错误！！！请和管理员联系。。。");
+								},
+							});
+						}
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			}
 		}
 	}
 	// 快速发言
-	function amtf_activeQuickSpeech() {
+	function amtf_activeQuickSpeech(_is) {
 		var speechs=new Array();
 		speechs.push('阿弥陀佛🙏');
 		speechs.push('善哉善哉。。。');
 		speechs.push('🙏🙏🙏🙏🙏🙏');
 		speechs.push('说的太对了🙏');
-		$('textarea').val(speechs[getRandomInt(0,3)]);
+		if (_is != 1){
+			$('#comment_text').val(speechs[getRandomInt(0,3)]);
+		} else {
+			$('#comment_reply').val(speechs[getRandomInt(0,3)]);
+		}
 	}
 	//手势变更
 	function amtf_thumbsFocus(_this) {
@@ -55,6 +176,26 @@
 	function amtf_thumbsBlur(_this) {
 		$(_this).removeClass('fa-thumbs-up');
 		$(_this).addClass('fa-thumbs-o-up');
+	}
+	// 回复按钮押下
+	function amtf_comment_reply(_dom,_this) {
+		if($('#comment_replydiv').html() == undefined){
+			var str='';
+			str +="<div class='card-body d-flex' id='comment_replydiv'>";
+			str +="<div>";
+			str += $("#comment_div img").prop('outerHTML')
+			str += "</div>";
+			str += "<div class='col-sm-10'>";
+			str += "<textarea class='col-sm-12 m-0 pl-0' defaultValue='请输入你的评论。。。' cols='40' rows='2' id='comment_reply'></textarea>";
+			str += "</div>";
+			str += "<div class='col-sm-1 pad-0'>";
+			str += "<button class='btn pad-0 m-0 text-center btn-reddit commentreply2' onclick='amtf_activeText(1)'>发表评论</button>";
+			str += "<button class='btn pad-0 m-0 text-center btn-info commentreply2 mt-2' onclick='amtf_activeQuickSpeech(1)'>快速发言</button>";
+			str += "</div>";
+			str += "</div>";
+			$(_this).parents('li').after(str);
+			_replyid = _dom.activity_comment_id;
+		}
 	}
 </script>
 </head>
@@ -126,40 +267,84 @@
 										<div class="row center pt-4">
 											<p class="description" id="activity_activitytext"></p>
 										</div>
+										<div class="row bgc_block center pl-2">
+											<a class="btn_login text-center">
+												<i class="fa fa-thumbs-up lookeye" aria-hidden="true"></i>点赞
+											</a>
+											<a class="btn_login text-center" onclick="amtf_activeTextFocus()">
+												<i class="fa fa-commenting lookeye" aria-hidden="true"></i>评论
+											</a>
+											<a class="btn_login text-center">
+												<i class="fa fa-bookmark lookeye" aria-hidden="true"></i>收藏
+											</a>
+											<a class="btn_login text-center">
+												<i class="fa fa-exclamation lookeye" aria-hidden="true"></i>举报
+											</a>
+										</div>
 									</div>
 								</div>
 								<div class="card m-1">
-									<div class="card-body d-flex" id="comment_div" >
-										<div>
-											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
-											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" th:if="${main_params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
+									<div class="card-body d-flex comment_now" id="comment_div" >
+										<div class="comment_now">
+											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="comment_now" id="img1" style="height:34px;"/>
+											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" class="comment_now" th:if="${main_params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
 										</div>
-										<div class="col-sm-10">
-											<textarea class="col-sm-12 m-0 pl-0" defaultValue="请输入你的评论。。。" cols="40" rows="2" onfocus="amtf_activeTextFocus()"></textarea>
+										<div class="col-sm-10 comment_now">
+											<textarea class="col-sm-12 m-0 pl-0 comment_now" defaultValue="请输入你的评论。。。" cols="40" rows="2" onclick="amtf_activeTextClick()" id="comment_text"></textarea>
 										</div>
-										<div class="col-sm-1 pad-0">
-											<button class="btn btn-kv pad-0 m-0 text-center" id="comment1" onclick="amtf_activeTextFocus()">评论</button>
-											<button class="btn btn-kv pad-0 m-0 text-center btn-reddit comment2" style="display: none" onclick="amtf_activeText()">发表评论</button>
-											<button class="btn btn-kv pad-0 m-0 text-center btn-info comment2 mt-2" style="display: none" onclick="amtf_activeQuickSpeech()">快速发言</button>
+										<div class="col-sm-1 pad-0 comment_now">
+											<button class="btn btn-kv pad-0 m-0 text-center comment_now" id="comment1" onclick="amtf_activeTextFocus()">评论</button>
+											<button class="btn btn-kv pad-0 m-0 text-center comment_now btn-reddit comment2" onclick="amtf_activeText(0)">发表评论</button>
+											<button class="btn btn-kv pad-0 m-0 text-center comment_now btn-info comment2 mt-2" onclick="amtf_activeQuickSpeech(0)">快速发言</button>
 										</div>
 									</div>
-									<div class="card-body">
+									<div class="card-body" id="commentselect5" th:fragment="commentselect5" th:if="${not #lists.isEmpty(f010005Params.commentlist)}">
 										<ul class="navbar-nav">
-											<li class="nav-item d-flex" th:each="entity,idx:${f010005Params.select5}">
-												<div>
-													<img th:src="@{/imgs/userimg.jpg}" th:if="${entity.imgpath == ''}" id="img1" style="height:34px;"/>
-													<img th:src="@{/istatic/{fileNmame}(fileNmame=${entity.imgpath})}" th:if="${entity.imgpath != ''}" id="img1" style="height:34px;"/>
+											<div th:each="mapkey,idx:${f010005Params.commentlist}" th:if="${mapkey.key != null}">
+												<li class="nav-item d-flex" th:classappend="${idx.index == 0 ? '' : 'li_top'}">
+													<div>
+														<img th:src="@{/imgs/userimg.jpg}" th:if="${mapkey.key.imgpath == ''}" id="img1" style="height:34px;"/>
+														<img th:src="@{/istatic/{fileNmame}(fileNmame=${mapkey.key.imgpath})}" th:if="${mapkey.key.imgpath != ''}" id="img1" style="height:34px;"/>
+													</div>
+													<div class="col-sm-10">
+														<p>
+															<a href="#" class="lookeye">[[${mapkey.key.user_name}]]：</a>
+															[[${mapkey.key.user_text}]]
+															<a href="#" class="" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
+																回复&nbsp;&nbsp;&nbsp;
+															</a>
+															<a href="#" class="" style="color: #00a5bb" th:if="${mapkey.key.user_id == main_params.logInFo.user_email}">
+																删除&nbsp;&nbsp;&nbsp;
+															</a>
+															<i class="fa fa-exclamation lookeye hand" aria-hidden="true" title="举报"></i>
+														</p>
+													</div>
+													<div class="col-sm-1 pad-0 text-right">
+														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
+													</div>
+												</li>
+												<div th:each="fileInfo,idxs: ${mapkey.value}" class="pl-4">
+													<li class="nav-item d-flex" th:classappend="${idxs.index == 0 ? '' : 'li_top'}">
+														<div>
+															<img th:src="@{/imgs/userimg.jpg}" th:if="${fileInfo.imgpath == ''}" id="img1" style="height:34px;"/>
+															<img th:src="@{/istatic/{fileNmame}(fileNmame=${fileInfo.imgpath})}" th:if="${fileInfo.imgpath != ''}" id="img1" style="height:34px;"/>
+														</div>
+														<div class="col-sm-10">
+															<p>
+																<a href="#" class="lookeye">[[${fileInfo.user_name}]]&nbsp;回复了：</a>
+																[[${fileInfo.user_text}]]
+																<a href="#" class="" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
+																	回复&nbsp;&nbsp;&nbsp;
+																</a>
+																<a href="#" class="" style="color: #00a5bb" th:if="${fileInfo.user_id == main_params.logInFo.user_email}">
+																	删除&nbsp;&nbsp;&nbsp;
+																</a>
+																<i class="fa fa-exclamation lookeye hand" aria-hidden="true" title="举报"></i>
+															</p>
+														</div>
+													</li>
 												</div>
-												<div class="col-sm-10">
-													<p>
-														<a href="#" class="lookeye">[[${entity.user_name}]]：</a>
-														[[${entity.user_text}]]
-													</p>
-												</div>
-												<div class="col-sm-1 pad-0 text-right">
-													<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
-												</div>
-											</li>
+											</div>
 										</ul>
 									</div>
 								</div>

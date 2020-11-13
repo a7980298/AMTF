@@ -1,8 +1,10 @@
 package com.amtf.demo.entityout;
 
 import java.util.List;
+import java.util.Map;
 
 import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
+import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
@@ -47,7 +49,17 @@ public class F010005EntityOut extends UserImpl {
 	AmtfUserEntity select4;
 
 	/**
-	 * 活动一级评论
+	 * 活动评论
 	 */
-	List<AmtfActivityCommentEntity> select5;
+	Map<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>> commentlist;
+
+	/**
+	 * 一级评论添加
+	 */
+	Integer insert6;
+
+	/**
+	 * 二级评论添加
+	 */
+	Integer insert8;
 }

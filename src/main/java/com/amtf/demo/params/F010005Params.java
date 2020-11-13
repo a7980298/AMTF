@@ -1,8 +1,10 @@
 package com.amtf.demo.params;
 
 import java.util.List;
+import java.util.Map;
 
 import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
+import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
@@ -65,7 +67,7 @@ public class F010005Params extends UserImpl {
 	AmtfUserEntity select4;
 
 	/**
-	 * 活动一级评论
+	 * 活动评论
 	 */
-	List<AmtfActivityCommentEntity> select5;
+	Map<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>> commentlist;
 }

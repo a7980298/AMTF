@@ -6,9 +6,16 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.amtf.demo.entityin.F010002EntityIn;
+import com.amtf.demo.entityout.F010002EntityOut;
+import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.params.F010002Params;
+import com.amtf.demo.user.LogInFo;
+import com.amtf.demo.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,5 +97,71 @@ public class F010005Controller extends ValiDationUtil {
 		model.addAttribute("f010005Params", params);
 
 		return "activity_view";
+	}
+
+	/**
+	 * 发表评论
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@RequestMapping("/f010005/T003")
+	@ResponseBody
+	public Map<String, Object> f010005T003(@RequestParam("id") String id, @RequestParam("text") String text,HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		F010005EntityIn entityin = new F010005EntityIn();
+
+		entityin.setActivity_id(id);
+		entityin.setActivity_text(text);
+
+		F010005EntityOut entityOut = f010005service.service04(entityin);
+
+		map.put("iscomment", entityOut.getInsert6());
+
+		return map;
+	}
+
+	/**
+	 * 刷新评论
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@PostMapping("/f010005/T004")
+	public String f010005T004(@RequestParam("id") String id, Model model) {
+		F010005Params params = new F010005Params();
+
+		F010005EntityIn entityin = new F010005EntityIn();
+		entityin.setActivity_id(id);
+		F010005EntityOut entityOut = f010005service.service05(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010005Params", params);
+
+		return "activity_view :: commentselect5";
+	}
+
+	/**
+	 * 发表二级评论
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@RequestMapping("/f010005/T005")
+	@ResponseBody
+	public Map<String, Object> f010005T005(@RequestParam("id") String id, @RequestParam("text") String text,HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		F010005EntityIn entityin = new F010005EntityIn();
+
+		entityin.setActivity_id(id);
+		entityin.setActivity_text(text);
+
+		F010005EntityOut entityOut = f010005service.service06(entityin);
+
+		map.put("isreply", entityOut.getInsert8());
+
+		return map;
 	}
 }
