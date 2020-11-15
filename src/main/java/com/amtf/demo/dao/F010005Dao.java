@@ -1,9 +1,6 @@
 package com.amtf.demo.dao;
 
-import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
-import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
-import com.amtf.demo.commonentity.AmtfActivityEntity;
-import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.commonentity.*;
 import com.amtf.demo.f010001entity.F010001_Select1Entity;
 import com.amtf.demo.f010002entity.F010002_Select1Entity;
 import com.amtf.demo.f010002entity.F010002_Select4Entity;
@@ -37,4 +34,10 @@ public interface F010005Dao {
 	Integer f010005_Insert8(@Param("entity") AmtfActivityCommentReplyEntity entity);
 
 	Integer f010005_Select9(@Param("id") Integer id);
+
+	Integer f010005_Insert10(@Param("entity") AmtfActivityFabulousEntity entity);
+
+	Integer f010005_Select11(@Param("id") Integer id,@Param("userid") String userid);
+
+	Integer f010005_Delete12(@Param("id") Integer id,@Param("userid") String userid);
 }

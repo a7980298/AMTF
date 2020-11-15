@@ -204,6 +204,40 @@
 	function amtf_removeReply(_entity) {
 
 	}
+	//点赞
+	function amtf_activeFabulous() {
+		$.ajax({
+			url : CONTEXT_PATH + '/f010005/T006',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : '[[${f010005Params.select3.activity_id}]]',
+			},
+			success : function(result) {
+				if(result.isfabulous == 'insert0'){
+					md.showNotification('bottom', 'center', '2', '点赞失败。。。');
+				} else if(result.isfabulous == 'delete0') {
+					md.showNotification('bottom', 'center', '2', '取消点赞失败。。。');
+				} else if(result.isfabulous == 'insert1') {
+					if($('#fabulouscount').text() == '') {
+						$('#fabuloustext').after("<span id=\"fabulouscount\">1</span>");
+					} else {
+						$('#fabulouscount').text(parseInt($('#fabulouscount').text()) + 1);
+					}
+				} else if(result.isfabulous == 'delete1') {
+					if((parseInt($('#fabulouscount').text()) - 1) == 0) {
+						$('#fabulouscount').remove();
+					} else {
+						$('#fabulouscount').text(parseInt($('#fabulouscount').text()) - 1);
+					}
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
 </script>
 </head>
 <body>
@@ -275,8 +309,12 @@
 											<p class="description" id="activity_activitytext"></p>
 										</div>
 										<div class="row bgc_block center pl-2">
-											<a class="btn_login text-center">
-												<i class="fa fa-thumbs-up lookeye" aria-hidden="true"></i>点赞[[${f010005Params.fabulouscount}]]
+											<a class="btn_login text-center" onclick="amtf_activeFabulous()">
+												<i class="fa fa-thumbs-up lookeye" aria-hidden="true" id="fabulous"></i>
+												<span id="fabuloustext">点赞</span>
+												<span th:if="${f010005Params.fabulouscount != 0}" id="fabulouscount">
+													[[${f010005Params.fabulouscount}]]
+												</span>
 											</a>
 											<a class="btn_login text-center comment_now" onclick="amtf_activeTextClick()">
 												<i class="fa fa-commenting lookeye" aria-hidden="true"></i>评论

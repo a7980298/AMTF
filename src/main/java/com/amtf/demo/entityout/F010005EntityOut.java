@@ -68,4 +68,9 @@ public class F010005EntityOut extends UserImpl {
 	 * 活动点赞人数
 	 */
 	Integer fabulouscount;
+
+	/**
+	 * 点赞添加
+	 */
+	String isfabulous;
 }

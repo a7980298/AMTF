@@ -11,7 +11,7 @@ public class AmtfActivityFabulousEntity {
 	/**
 	 * id
 	 */
-	private Integer activity_comment_id;
+	private Integer activity_fabulous_id;
 
 	/**
 	 * 活动id
@@ -26,5 +26,5 @@ public class AmtfActivityFabulousEntity {
 	/**
 	 *发布时间
 	 */
-	private String activity_comment_time;
+	private String activity_fabulous_time;
 }

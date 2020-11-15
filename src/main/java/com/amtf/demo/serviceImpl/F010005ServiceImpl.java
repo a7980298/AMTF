@@ -2,10 +2,7 @@ package com.amtf.demo.serviceImpl;
 
 import java.util.*;
 
-import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
-import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
-import com.amtf.demo.commonentity.AmtfActivityEntity;
-import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.commonentity.*;
 import com.amtf.demo.dao.F010005Dao;
 import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
@@ -342,6 +339,43 @@ public class F010005ServiceImpl implements F010005Service {
 
 		Integer insert8 = f010005dao.f010005_Insert8(amtfactivitycommentreplyentity);
 		entityout.setInsert8(insert8);
+		return entityout;
+	}
+
+	/**
+	 * 活动点赞
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service07(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		AmtfActivityFabulousEntity amtfactivityfabulousentity = new AmtfActivityFabulousEntity();
+		// id
+		amtfactivityfabulousentity.setActivity_fabulous_id(CommonUtil.isEmpty(commondao.common_Select7()) ? 0 : commondao.common_Select7());
+		// 活动
+		amtfactivityfabulousentity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
+		// userid
+		amtfactivityfabulousentity.setUser_id(loginfo.getUser_email());
+		if(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email()) == 0){
+			// 添加点赞
+			Integer insert10 = f010005dao.f010005_Insert10(amtfactivityfabulousentity);
+			if(insert10 < 1){
+				entityout.setIsfabulous("insert0");
+			} else {
+				entityout.setIsfabulous("insert1");
+			}
+		} else {
+			Integer delete12 = f010005dao.f010005_Delete12(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email());
+			if(delete12 < 1){
+				entityout.setIsfabulous("delete0");
+			} else {
+				entityout.setIsfabulous("delete1");
+			}
+		}
 		return entityout;
 	}
 }

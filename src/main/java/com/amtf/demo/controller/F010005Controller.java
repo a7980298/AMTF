@@ -164,4 +164,25 @@ public class F010005Controller extends ValiDationUtil {
 
 		return map;
 	}
+
+	/**
+	 * 活动点赞
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@RequestMapping("/f010005/T006")
+	@ResponseBody
+	public Map<String, Object> f010005T006(@RequestParam("id") String id,HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		F010005EntityIn entityin = new F010005EntityIn();
+
+		entityin.setActivity_id(id);
+
+		F010005EntityOut entityOut = f010005service.service07(entityin);
+
+		map.put("isfabulous", entityOut.getIsfabulous());
+
+		return map;
+	}
 }
