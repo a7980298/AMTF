@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AmtfActivityCommentEntity {
+public class AmtfActivityFabulousEntity {
 
 	/**
 	 * id
@@ -22,21 +22,6 @@ public class AmtfActivityCommentEntity {
 	 *用户id
 	 */
 	private String user_id;
-
-	/**
-	 *用户名称
-	 */
-	private String user_name;
-
-	/**
-	 *评论
-	 */
-	private String user_text;
-
-	/**
-	 *头像路径
-	 */
-	private String imgpath;
 
 	/**
 	 *发布时间

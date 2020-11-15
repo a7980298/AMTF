@@ -59,7 +59,7 @@
 	function amtf_getactivity(_this) {
 		var newinput = getNewInput('activity_id', _this.activity_id);
 		amtf_form.appendChild(newinput);
-		amtf_submit(amtf_form, '/f010005/T002');
+		amtf_submitNew(amtf_form, '/f010005/T002');
 	}
 	//text聚焦事件
 	function amtf_activeTextClick() {
@@ -276,9 +276,9 @@
 										</div>
 										<div class="row bgc_block center pl-2">
 											<a class="btn_login text-center">
-												<i class="fa fa-thumbs-up lookeye" aria-hidden="true"></i>点赞
+												<i class="fa fa-thumbs-up lookeye" aria-hidden="true"></i>点赞[[${f010005Params.fabulouscount}]]
 											</a>
-											<a class="btn_login text-center" onclick="amtf_activeTextFocus()">
+											<a class="btn_login text-center comment_now" onclick="amtf_activeTextClick()">
 												<i class="fa fa-commenting lookeye" aria-hidden="true"></i>评论
 											</a>
 											<a class="btn_login text-center">
@@ -300,27 +300,27 @@
 											<textarea class="col-sm-12 m-0 pl-0 comment_now" defaultValue="请输入你的评论。。。" cols="40" rows="2" onclick="amtf_activeTextClick()" id="comment_text"></textarea>
 										</div>
 										<div class="col-sm-1 pad-0 comment_now">
-											<button class="btn btn-kv pad-0 m-0 text-center comment_now" id="comment1" onclick="amtf_activeTextFocus()">评论</button>
+											<button class="btn btn-kv pad-0 m-0 text-center comment_now" id="comment1" onclick="amtf_activeTextClick()">评论</button>
 											<button class="btn btn-kv pad-0 m-0 text-center comment_now btn-reddit comment2" onclick="amtf_activeText(0)">发表评论</button>
 											<button class="btn btn-kv pad-0 m-0 text-center comment_now btn-info comment2 mt-2" onclick="amtf_activeQuickSpeech(0)">快速发言</button>
 										</div>
 									</div>
 									<div class="card-body" id="commentselect5" th:fragment="commentselect5" th:if="${not #lists.isEmpty(f010005Params.commentlist)}">
 										<ul class="navbar-nav">
-											<div th:each="mapkey,idx:${f010005Params.commentlist}" th:if="${mapkey.key != null}">
+											<div th:each="entity1,idx:${f010005Params.commentlist}" th:if="${entity1 != null}">
 												<li class="nav-item d-flex" th:classappend="${idx.index == 0 ? '' : 'li_top'}">
 													<div>
-														<img th:src="@{/imgs/userimg.jpg}" th:if="${mapkey.key.imgpath == ''}" id="img1" style="height:34px;"/>
-														<img th:src="@{/istatic/{fileNmame}(fileNmame=${mapkey.key.imgpath})}" th:if="${mapkey.key.imgpath != ''}" id="img1" style="height:34px;"/>
+														<img th:src="@{/imgs/userimg.jpg}" th:if="${entity1.amtfactivitycommententity.imgpath == ''}" id="img1" style="height:34px;"/>
+														<img th:src="@{/istatic/{fileNmame}(fileNmame=${entity1.amtfactivitycommententity.imgpath})}" th:if="${entity1.amtfactivitycommententity.imgpath != ''}" id="img1" style="height:34px;"/>
 													</div>
 													<div class="col-sm-10">
 														<p>
-															<a href="#" class="lookeye">[[${mapkey.key.user_name}]]：</a>
-															[[${mapkey.key.user_text}]]
-															<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
+															<a href="#" class="lookeye">[[${entity1.amtfactivitycommententity.user_name}]]：</a>
+															[[${entity1.amtfactivitycommententity.user_text}]]
+															<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${entity1.amtfactivitycommententity}]],this)">
 																回复&nbsp;&nbsp;&nbsp;
 															</a>
-															<a href="#" class="" style="color: #00a5bb" th:if="${mapkey.key.user_id == main_params.logInFo.user_email}">
+															<a href="#" class="" style="color: #00a5bb" th:if="${entity1.amtfactivitycommententity.user_id == main_params.logInFo.user_email}">
 																删除&nbsp;&nbsp;&nbsp;
 															</a>
 															<i class="fa fa-exclamation lookeye hand" aria-hidden="true" title="举报"></i>
@@ -330,20 +330,20 @@
 														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
 													</div>
 												</li>
-												<div th:each="fileInfo,idxs: ${mapkey.value}" class="pl-4">
+												<div th:each="entity2,idxs: ${entity1.amtfactivitycommentreplyentity}" class="pl-4">
 													<li class="nav-item d-flex" th:classappend="${idxs.index == 0 ? '' : 'li_top'}">
 														<div>
-															<img th:src="@{/imgs/userimg.jpg}" th:if="${fileInfo.imgpath == ''}" id="img1" style="height:34px;"/>
-															<img th:src="@{/istatic/{fileNmame}(fileNmame=${fileInfo.imgpath})}" th:if="${fileInfo.imgpath != ''}" id="img1" style="height:34px;"/>
+															<img th:src="@{/imgs/userimg.jpg}" th:if="${entity2.imgpath == ''}" id="img1" style="height:34px;"/>
+															<img th:src="@{/istatic/{fileNmame}(fileNmame=${entity2.imgpath})}" th:if="${entity2.imgpath != ''}" id="img1" style="height:34px;"/>
 														</div>
 														<div class="col-sm-10">
 															<p>
-																<a href="#" class="lookeye">[[${fileInfo.user_name}]]&nbsp;回复了：</a>
-																[[${fileInfo.user_text}]]
-																<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${mapkey.key}]],this)">
+																<a href="#" class="lookeye">[[${entity2.user_name}]]&nbsp;回复了：</a>
+																[[${entity2.user_text}]]
+																<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${entity1}]],this)">
 																	回复&nbsp;&nbsp;&nbsp;
 																</a>
-																<a href="#" class="" style="color: #00a5bb" th:if="${fileInfo.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[fileInfo]])">
+																<a href="#" class="" style="color: #00a5bb" th:if="${entity2.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[entity2]])">
 																	删除&nbsp;&nbsp;&nbsp;
 																</a>
 																<i class="fa fa-exclamation lookeye hand" aria-hidden="true" title="举报"></i>

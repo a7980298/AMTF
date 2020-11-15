@@ -1,0 +1,7 @@
+CREATE TABLE amtf_activity_fabulous(
+	activity_fabulous_id INT NOT NULL, -- id
+	activity_id INT NOT NULL, -- 活动id
+	user_id VARCHAR(30), -- 用户id
+	activity_fabulous_time DATETIME -- 发布时间
+)
+insert into amtf_activity_fabulous values(0,1,'1220875539@qq.com',now());

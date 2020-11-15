@@ -12,7 +12,8 @@
 	function amtf_getactivity(_this, _is) {
 		var newinput = getNewInput('activity_id', _this.activity_id);
 		amtf_form.appendChild(newinput);
-		amtf_submit(amtf_form, '/f010005/T002');
+		amtf_submitNew(amtf_form, '/f010005/T002');
+		reomveNewInput('activity_id');
 	}
 	/*function amtf_getactivity(_this, _is) {
 		$('#getactivity').modal('show');

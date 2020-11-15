@@ -7,6 +7,7 @@ import com.amtf.demo.commonentity.AmtfActivityCommentEntity;
 import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -69,5 +70,10 @@ public class F010005Params extends UserImpl {
 	/**
 	 * 活动评论
 	 */
-	Map<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>> commentlist;
+	List<CommentListEntity> commentlist;
+
+	/**
+	 * 活动点赞人数
+	 */
+	Integer fabulouscount;
 }

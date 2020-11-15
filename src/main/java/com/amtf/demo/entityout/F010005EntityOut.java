@@ -8,6 +8,7 @@ import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
+import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import com.amtf.demo.user.UserImpl;
 
@@ -51,7 +52,7 @@ public class F010005EntityOut extends UserImpl {
 	/**
 	 * 活动评论
 	 */
-	Map<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>> commentlist;
+	List<CommentListEntity> commentlist;
 
 	/**
 	 * 一级评论添加
@@ -62,4 +63,9 @@ public class F010005EntityOut extends UserImpl {
 	 * 二级评论添加
 	 */
 	Integer insert8;
+
+	/**
+	 * 活动点赞人数
+	 */
+	Integer fabulouscount;
 }

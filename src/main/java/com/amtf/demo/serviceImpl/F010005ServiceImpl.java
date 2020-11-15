@@ -7,6 +7,7 @@ import com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity;
 import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.dao.F010005Dao;
+import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
 
 import lombok.RequiredArgsConstructor;
+import org.thymeleaf.expression.Maps;
 
 @Service
 @RequiredArgsConstructor
@@ -153,8 +155,11 @@ public class F010005ServiceImpl implements F010005Service {
 
 		// 详细活动
 		AmtfActivityEntity select3 = f010005dao.f010005_Select3(NumberUtil.toInt(entityin.getActivity_id()));
-
 		entityout.setSelect3(select3);
+
+		//活动点赞人数
+		Integer fabulouscount = f010005dao.f010005_Select9(select3.getActivity_id());
+		entityout.setFabulouscount(fabulouscount);
 
 		// 活动发布人信息
 		AmtfUserEntity select4 = f010005dao.f010005_Select4(select3.getActivity_name());
@@ -162,31 +167,8 @@ public class F010005ServiceImpl implements F010005Service {
 		select4.setImgpath(imgpath);
 		entityout.setSelect4(select4);
 
-		//活动一级评论
-		List<AmtfActivityCommentEntity> select5 = f010005dao.f010005_Select5(select3.getActivity_id());
-		Map<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>> commentlist=new HashMap<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>>();
-		if(!CommonUtil.isEmptyList(select5)){
-			for (AmtfActivityCommentEntity select5entity:select5) {
-				List<AmtfActivityCommentReplyEntity> select7 = new ArrayList<AmtfActivityCommentReplyEntity>();
-				if (!CommonUtil.isEmpty(select5entity)){
-					select5entity.setImgpath(ImgUtil.getImgPath(select5entity.getUser_id()));
-					select7 = f010005dao.f010005_Select7(select5entity.getActivity_comment_id());
-					if(!CommonUtil.isEmptyList(select7)) {
-						for (AmtfActivityCommentReplyEntity select7entity : select7) {
-							if (!CommonUtil.isEmpty(select7entity)){
-								select7entity.setImgpath(ImgUtil.getImgPath(select7entity.getUser_id()));
-							}
-						}
-					}
-					select7.removeAll(Collections.singleton(null));
-				}
-
-				commentlist.put(select5entity,select7);
-			}
-			// 移除所有为空的数据
-			//select5.removeAll(Collections.singleton(null));
-			entityout.setCommentlist(commentlist);
-		}
+		// 获取评论
+		entityout.setCommentlist(this.service05(entityin).getCommentlist());
 
 		// 我发布的活动
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(select3.getActivity_name());
@@ -304,13 +286,17 @@ public class F010005ServiceImpl implements F010005Service {
 		F010005EntityOut entityout = new F010005EntityOut();
 		//活动一级评论
 		List<AmtfActivityCommentEntity> select5 = f010005dao.f010005_Select5(NumberUtil.toInt(entityin.getActivity_id()));
-		Map<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>> commentlist=new HashMap<AmtfActivityCommentEntity,List<AmtfActivityCommentReplyEntity>>();
+		List<CommentListEntity> commentlist=new ArrayList<CommentListEntity>();
+		select5.removeAll(Collections.singleton(null));
 		if(!CommonUtil.isEmptyList(select5)){
 			for (AmtfActivityCommentEntity select5entity:select5) {
-				List<AmtfActivityCommentReplyEntity> select7 =new ArrayList<AmtfActivityCommentReplyEntity>();
+				CommentListEntity commentlistentity=new CommentListEntity();
+				commentlistentity.setAmtfactivitycommententity(select5entity);
+				List<AmtfActivityCommentReplyEntity> select7 = new ArrayList<AmtfActivityCommentReplyEntity>();
 				if (!CommonUtil.isEmpty(select5entity)){
 					select5entity.setImgpath(ImgUtil.getImgPath(select5entity.getUser_id()));
 					select7 = f010005dao.f010005_Select7(select5entity.getActivity_comment_id());
+					select7.removeAll(Collections.singleton(null));
 					if(!CommonUtil.isEmptyList(select7)) {
 						for (AmtfActivityCommentReplyEntity select7entity : select7) {
 							if (!CommonUtil.isEmpty(select7entity)){
@@ -318,12 +304,13 @@ public class F010005ServiceImpl implements F010005Service {
 							}
 						}
 					}
-					select7.removeAll(Collections.singleton(null));
+					commentlistentity.setAmtfactivitycommentreplyentity(select7);
 				}
-				commentlist.put(select5entity,select7);
+
+				commentlist.add(commentlistentity);
 			}
-			// 移除所有为空的数据
-			select5.removeAll(Collections.singleton(null));
+			// 排序
+
 			entityout.setCommentlist(commentlist);
 		}
 		return entityout;

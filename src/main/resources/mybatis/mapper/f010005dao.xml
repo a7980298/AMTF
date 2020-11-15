@@ -69,6 +69,7 @@
 			A1.ACTIVITY_ID = B1.ACTIVITY_ID
         WHERE
 			A1.ACTIVITY_ID= #{id}
+		ORDER BY B1.ACTIVITY_COMMENT_TIME DESC
 	</select>
 	<!-- 发表一级评论 -->
 	<insert id="f010005_Insert6">
@@ -79,7 +80,8 @@
 			,#{entity.activity_id}
 			,#{entity.user_id}
 			,#{entity.user_name}
-			,#{entity.user_text});
+			,#{entity.user_text}
+			,NOW());
 	</insert>
 	<!-- 活动二级评论 -->
 	<select id="f010005_Select7" resultType="com.amtf.demo.commonentity.AmtfActivityCommentReplyEntity">
@@ -89,6 +91,7 @@
 			AMTF_ACTIVITY_COMMENT_REPLY
 		WHERE
 			ACTIVITY_COMMENT_ID = #{id}
+		ORDER BY ACTIVITY_COMMENT_REPLY_TIME DESC
 	</select>
 	<!-- 发表二级评论 -->
 	<insert id="f010005_Insert8">
@@ -99,6 +102,16 @@
 			,#{entity.activity_comment_id}
 			,#{entity.user_id}
 			,#{entity.user_name}
-			,#{entity.user_text});
+			,#{entity.user_text}
+			,NOW());
 	</insert>
+	<!-- 活动点赞数量 -->
+	<select id="f010005_Select9" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_ACTIVITY_FABULOUS
+		WHERE
+			ACTIVITY_ID = #{id}
+	</select>
 </mapper>

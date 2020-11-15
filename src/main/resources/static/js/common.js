@@ -85,6 +85,12 @@ function amtf_submit(form,action) {
 	form.target = TARGET;
 	form.submit();
 }
+//表单提交新打开一个页面
+function amtf_submitNew(form,action) {
+	form.action = CONTEXT_PATH + action;
+	form.target = '_blank';
+	form.submit();
+}
 
 //表单提交(管理页面)
 function amtf_submitAdmin(form,action) {
@@ -452,6 +458,10 @@ function getNewInput(name, value) {
 	tempInput.name = name;
 	tempInput.value = value;
 	return tempInput;
+}
+// 根据name删除标签
+function reomveNewInput(name){
+	$('[name = '+ name +']').remove();
 }
 //转义字符还原成html字符
 function htmlRestore(str){

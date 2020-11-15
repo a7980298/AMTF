@@ -35,4 +35,6 @@ public interface F010005Dao {
 	List<AmtfActivityCommentReplyEntity> f010005_Select7(@Param("id") Integer id);
 
 	Integer f010005_Insert8(@Param("entity") AmtfActivityCommentReplyEntity entity);
+
+	Integer f010005_Select9(@Param("id") Integer id);
 }

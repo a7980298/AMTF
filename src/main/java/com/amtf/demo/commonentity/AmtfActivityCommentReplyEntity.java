@@ -38,4 +38,9 @@ public class AmtfActivityCommentReplyEntity {
 	 */
 	private String imgpath;
 
+	/**
+	 *发布时间
+	 */
+	private String activity_comment_reply_time;
+
 }
