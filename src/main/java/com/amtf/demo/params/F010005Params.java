@@ -39,17 +39,17 @@ public class F010005Params extends UserImpl {
 	/**
 	 * 所有活动
 	 */
-	List<F010002_Select9Entity> select9;
+	private List<F010002_Select9Entity> select9;
 
 	/**
 	 * 我参加的活动
 	 */
-	List<F010005_Select1Entity> select1;
+	private List<F010005_Select1Entity> select1;
 
 	/**
 	 * 我发布的活动
 	 */
-	List<F010005_Select1Entity> select2;
+	private List<F010005_Select1Entity> select2;
 
 	/**
 	 * 详细活动id
@@ -60,25 +60,25 @@ public class F010005Params extends UserImpl {
 	/**
 	 * 详细活动
 	 */
-	AmtfActivityEntity select3;
+	private AmtfActivityEntity select3;
 
 	/**
 	 * 活动发布人信息
 	 */
-	AmtfUserEntity select4;
+	private AmtfUserEntity select4;
 
 	/**
 	 * 活动评论
 	 */
-	List<CommentListEntity> commentlist;
+	private List<CommentListEntity> commentlist;
 
 	/**
 	 * 活动点赞人数
 	 */
-	Integer fabulouscount;
+	private Integer fabulouscount;
 
 	/**
 	 * 点赞添加
 	 */
-	String isfabulous;
+	private String fabulous;
 }

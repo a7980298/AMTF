@@ -181,7 +181,7 @@ public class F010005Controller extends ValiDationUtil {
 
 		F010005EntityOut entityOut = f010005service.service07(entityin);
 
-		map.put("isfabulous", entityOut.getIsfabulous());
+		map.put("fabulous", entityOut.getFabulous());
 
 		return map;
 	}

@@ -52,7 +52,6 @@ public class F010005ServiceImpl implements F010005Service {
 
 		// 活动一览
 		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
-
 		for (F010002_Select9Entity select9entity : select9) {
 			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
 					+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
@@ -166,6 +165,9 @@ public class F010005ServiceImpl implements F010005Service {
 
 		// 获取评论
 		entityout.setCommentlist(this.service05(entityin).getCommentlist());
+
+		//是否点赞
+		entityout.setFabulous(StringUtil.toStr(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email())));
 
 		// 我发布的活动
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(select3.getActivity_name());
@@ -364,16 +366,16 @@ public class F010005ServiceImpl implements F010005Service {
 			// 添加点赞
 			Integer insert10 = f010005dao.f010005_Insert10(amtfactivityfabulousentity);
 			if(insert10 < 1){
-				entityout.setIsfabulous("insert0");
+				entityout.setFabulous("insert0");
 			} else {
-				entityout.setIsfabulous("insert1");
+				entityout.setFabulous("insert1");
 			}
 		} else {
 			Integer delete12 = f010005dao.f010005_Delete12(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email());
 			if(delete12 < 1){
-				entityout.setIsfabulous("delete0");
+				entityout.setFabulous("delete0");
 			} else {
-				entityout.setIsfabulous("delete1");
+				entityout.setFabulous("delete1");
 			}
 		}
 		return entityout;

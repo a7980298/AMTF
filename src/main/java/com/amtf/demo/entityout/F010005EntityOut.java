@@ -69,8 +69,8 @@ public class F010005EntityOut extends UserImpl {
 	 */
 	Integer fabulouscount;
 
-	/**
+	/**0
 	 * 点赞添加
 	 */
-	String isfabulous;
+	String fabulous;
 }

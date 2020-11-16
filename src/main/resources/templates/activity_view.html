@@ -43,6 +43,9 @@
 <script type="text/javascript">
 	var _replyid='';
 	$(function(){
+		if('[[${f010005Params.fabulous}]]' === '1'){
+			$('#fabulous').css('color','#ff5656');
+		}
 		$('#activity_activitytext').html(htmlRestore('[[${f010005Params.select3.activity_text}]]'));
 		$(document).click( function (e) {  // 在页面任意位置点击而触发此事件
 			if(!$(e.target).hasClass('comment_now')){
@@ -215,18 +218,18 @@
 				id : '[[${f010005Params.select3.activity_id}]]',
 			},
 			success : function(result) {
-				if(result.isfabulous == 'insert0'){
+				if(result.fabulous == 'insert0'){
 					md.showNotification('bottom', 'center', '2', '点赞失败。。。');
-				} else if(result.isfabulous == 'delete0') {
+				} else if(result.fabulous == 'delete0') {
 					md.showNotification('bottom', 'center', '2', '取消点赞失败。。。');
-				} else if(result.isfabulous == 'insert1') {
+				} else if(result.fabulous == 'insert1') {
 					if($('#fabulouscount').text() == '') {
 						$('#fabuloustext').after("<span id=\"fabulouscount\">1</span>");
 					} else {
 						$('#fabulouscount').text(parseInt($('#fabulouscount').text()) + 1);
 					}
 					$('#fabulous').css('color','#ff5656');
-				} else if(result.isfabulous == 'delete1') {
+				} else if(result.fabulous == 'delete1') {
 					if((parseInt($('#fabulouscount').text()) - 1) == 0) {
 						$('#fabulouscount').remove();
 					} else {
@@ -330,6 +333,9 @@
 											</a>
 											<a class="btn_login text-center" onclick="amtf_getActivityReport()">
 												<i class="fa fa-exclamation lookeye" aria-hidden="true"></i>举报
+											</a>
+											<a class="btn_login text-center" onclick="">
+												<i class="fa fa-handshake-o lookeye" aria-hidden="true"></i>参加
 											</a>
 										</div>
 									</div>
