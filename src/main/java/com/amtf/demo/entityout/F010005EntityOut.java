@@ -73,4 +73,9 @@ public class F010005EntityOut extends UserImpl {
 	 * 点赞添加
 	 */
 	String fabulous;
+
+	/**
+	 * 删除评论
+	 */
+	Integer delect13;
 }

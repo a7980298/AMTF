@@ -185,4 +185,32 @@ public class F010005Controller extends ValiDationUtil {
 
 		return map;
 	}
+
+	/**
+	 * 删除评论
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@RequestMapping("/f010005/T007")
+	@ResponseBody
+	public Map<String, Object> f010005T007(@RequestParam("id") String id,
+										   @RequestParam("comment_id") String comment_id,
+										   @RequestParam("level") String level,
+										   HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		F010005EntityIn entityin = new F010005EntityIn();
+		//活动id
+		entityin.setActivity_id(id);
+		//评论id
+		entityin.setComment_id(comment_id);
+		//评论级别
+		entityin.setLevel(level);
+
+		F010005EntityOut entityOut = f010005service.service08(entityin);
+
+		map.put("comment_delete", entityOut.getDelect13());
+
+		return map;
+	}
 }

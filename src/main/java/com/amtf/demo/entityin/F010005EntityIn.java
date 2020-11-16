@@ -23,4 +23,14 @@ public class F010005EntityIn extends UserImpl {
 	 */
 	private String activity_text;
 
+	/**
+	 * 评论id
+	 */
+	private String comment_id;
+
+	/**
+	 * 评论级别
+	 */
+	private String level;
+
 }

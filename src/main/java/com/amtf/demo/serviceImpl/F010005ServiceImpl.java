@@ -380,4 +380,22 @@ public class F010005ServiceImpl implements F010005Service {
 		}
 		return entityout;
 	}
+
+	/**
+	 * 删除评论
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service08(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+
+		Integer delect13 = f010005dao.f010005_Delete13(NumberUtil.toInt(entityin.getActivity_id()),entityin.getLevel(),NumberUtil.toInt(entityin.getComment_id()));
+
+		entityout.setDelect13(delect13);
+		return entityout;
+	}
 }

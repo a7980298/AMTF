@@ -144,4 +144,23 @@
 		AND
 			user_id = #{userid}
 	</delete>
+	<!-- 删除评论-->
+	<delete id="f010005_Delete13">
+		DELETE FROM
+			<if test="level == '1'.toString()">
+				AMTF_ACTIVITY_COMMENT
+			</if>
+			<if test="level == '2'.toString()">
+				AMTF_ACTIVITY_COMMENT_REPLY
+			</if>
+		WHERE
+			<if test="level == '1'.toString()">
+				ACTIVITY_ID = #{id}
+				AND
+				ACTIVITY_COMMENT_ID = #{comment_id}
+			</if>
+			<if test="level == '2'.toString()">
+				ACTIVITY_COMMENT_REPLY_ID = #{comment_id}
+			</if>
+	</delete>
 </mapper>
