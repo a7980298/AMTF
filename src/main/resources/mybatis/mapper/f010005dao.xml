@@ -163,4 +163,13 @@
 				ACTIVITY_COMMENT_REPLY_ID = #{comment_id}
 			</if>
 	</delete>
+	<!-- 取消参加活动 -->
+	<delete id="f010005_Delete14">
+		DELETE FROM
+			AMTF_USERACTIVITY
+		WHERE
+			ACTIVITY_ID = #{id}
+		AND
+			USERACTIVITY_NAME = #{userid}
+	</delete>
 </mapper>

@@ -79,33 +79,7 @@
 			$('#getactivity_y').css('display','none');
 		}
 	}*/
-	// 参加活动
-	function amtf_setusetactivity() {
-		showdiv();
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T001',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : $('#activity_modal_activityid').val(),
-			},
-			success : function(result) {
-				hidediv();
-				if (result.isuseractivity > 0) {
-					md.showNotification('top', 'center', '3', '参加成功。。。');
-				} else if (result.isuseractivity == 0) {
-					setCodeErrList("错误！！！请和管理员联系。。。");
-				} else {
-					md.showNotification('bottom', 'center', '2', '你已经参加过了。。。');
-				}
-			},
-			error : function(res, textStaus) {
-				hidediv();
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
+
 </script>
 </head>
 <body>

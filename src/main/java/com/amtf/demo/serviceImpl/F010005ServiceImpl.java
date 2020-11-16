@@ -129,6 +129,7 @@ public class F010005ServiceImpl implements F010005Service {
 		loginfo = ParameterUtil.getSession();
 		int insert10 = 0;
 		if (f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email()) > 0) {
+			f010005dao.f010005_Delete14(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email());
 			insert10 = -1;
 		} else {
 			insert10 = f010002dao.f010002_Insert10(
@@ -168,6 +169,9 @@ public class F010005ServiceImpl implements F010005Service {
 
 		//是否点赞
 		entityout.setFabulous(StringUtil.toStr(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email())));
+		
+		//是否参加
+		entityout.setInsert10(StringUtil.toStr(f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email())));
 
 		// 我发布的活动
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(select3.getActivity_name());

@@ -42,4 +42,6 @@ public interface F010005Dao {
 	Integer f010005_Delete12(@Param("id") Integer id,@Param("userid") String userid);
 
 	Integer f010005_Delete13(@Param("id") Integer id,@Param("level") String level,@Param("comment_id") Integer comment_id);
+
+	Integer f010005_Delete14(@Param("id") Integer id,@Param("userid") String userid);
 }

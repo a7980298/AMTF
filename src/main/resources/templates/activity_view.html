@@ -46,6 +46,11 @@
 		if('[[${f010005Params.fabulous}]]' === '1'){
 			$('#fabulous').css('color','#ff5656');
 		}
+		if('[[${f010005Params.insert10}]]' === '1'){
+			$('#setusetactivity').css('color','rgb(21, 158, 255)');
+			$('#setusetactivity_a').find('span').eq(0).text('已参加')
+			$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
+		}
 		$('#activity_activitytext').html(htmlRestore('[[${f010005Params.select3.activity_text}]]'));
 		$(document).click( function (e) {  // 在页面任意位置点击而触发此事件
 			if(!$(e.target).hasClass('comment_now')){
@@ -127,8 +132,6 @@
 			}
 		}
 	}
-
-
 	// 快速发言
 	function amtf_activeQuickSpeech(_is) {
 		var speechs=new Array();
@@ -142,7 +145,7 @@
 			$('#comment_reply').val(speechs[getRandomInt(0,3)]);
 		}
 	}
-	//手势变更
+	// 评论点赞手势变更
 	function amtf_thumbsFocus(_this) {
 		$(_this).removeClass('fa-thumbs-o-up');
 		$(_this).addClass('fa-thumbs-up');
@@ -150,6 +153,40 @@
 	function amtf_thumbsBlur(_this) {
 		$(_this).removeClass('fa-thumbs-up');
 		$(_this).addClass('fa-thumbs-o-up');
+	}
+	//评论点赞
+	function amtf_thumbsClick(_this) {
+
+	}
+	// 参加活动
+	function amtf_setusetactivity() {
+		$.ajax({
+			url : CONTEXT_PATH + '/f010005/T001',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : '[[${f010005Params.select3.activity_id}]]',
+			},
+			success : function(result) {
+				if (result.isuseractivity > 0) {
+					md.showNotification('top', 'center', '3', '参加成功。。。');
+					$('#setusetactivity').css('color','rgb(21, 158, 255)');
+					$('#setusetactivity_a').find('span').eq(0).text('已参加')
+					$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
+				} else if (result.isuseractivity == 0) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				} else {
+					$('#setusetactivity').css('color','');
+					$('#setusetactivity_a').find('span').eq(0).text('参加')
+					$('#setusetactivity_a').find('span').eq(0).css('color','');
+				}
+			},
+			error : function(res, textStaus) {
+				hidediv();
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
 	}
 	// 回复按钮押下
 	function amtf_comment_reply(_dom,_this) {
@@ -343,8 +380,9 @@
 											<a class="btn_login text-center" onclick="amtf_getActivityReport()">
 												<i class="fa fa-exclamation lookeye" aria-hidden="true"></i>举报
 											</a>
-											<a class="btn_login text-center" onclick="">
-												<i class="fa fa-handshake-o lookeye" aria-hidden="true"></i>参加
+											<a class="btn_login text-center" onclick="amtf_setusetactivity()" id="setusetactivity_a">
+												<i class="fa fa-handshake-o lookeye" aria-hidden="true" id="setusetactivity"></i>
+												<span>参加</span>
 											</a>
 										</div>
 									</div>
@@ -386,7 +424,7 @@
 														</p>
 													</div>
 													<div class="col-sm-1 pad-0 text-right">
-														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
+														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onclick="amtf_thumbsClick(this)" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
 													</div>
 												</li>
 												<div th:each="entity2,idxs: ${entity1.amtfactivitycommentreplyentity}" class="pl-4">
@@ -488,7 +526,7 @@
 										</div>
 									</div>
 									<div class="modal-footer justify-content-center">
-										<button type="button" class="btn" data-dismiss="modal" onclick="amtf_setusetactivity()" id="activity_report_y">
+										<button type="button" class="btn" data-dismiss="modal" id="activity_report_y">
 											举报
 										</button>
 										<input type="hidden" id="activity_modal_activityid"/>
