@@ -54,4 +54,10 @@ public interface F010005Dao {
 	Integer f010005_Insert18(@Param("entity") AmtfActivityCommentFabulousEntity entity);
 
 	Integer f010005_Delete19(@Param("entity") AmtfActivityCommentFabulousEntity entity);
+
+	Integer f010005_Select20(@Param("attention_id") String attention_id,@Param("userid") String userid);
+
+	Integer f010005_Insert21(@Param("entity") AmtfUserAttentionEntity entity);
+
+	Integer f010005_Delete22(@Param("entity") AmtfUserAttentionEntity entity);
 }

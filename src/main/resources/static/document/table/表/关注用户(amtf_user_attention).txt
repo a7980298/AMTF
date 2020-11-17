@@ -1,0 +1,6 @@
+CREATE TABLE amtf_user_attention(
+	user_attention_id INT NOT NULL, -- id
+	attention_id VARCHAR(30) NOT NULL, -- 关注用户id
+	user_id VARCHAR(30), -- 用户id
+	user_attention_time DATETIME -- 关注时间
+)

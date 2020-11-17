@@ -166,6 +166,9 @@ public class F010005ServiceImpl implements F010005Service {
 		select4.setImgpath(imgpath);
 		entityout.setSelect4(select4);
 
+		//查看是否关注该发布人
+		entityout.setAttention(f010005dao.f010005_Select20(select4.getUser_email(),loginfo.getUser_email()));
+
 		// 获取评论
 		entityout.setCommentlist(this.service05(entityin).getCommentlist());
 
@@ -445,6 +448,47 @@ public class F010005ServiceImpl implements F010005Service {
 		}
 		if(CommonUtil.isEmpty(entityout.getComment_fabulous())){
 			entityout.setComment_fabulous(StringUtil.toStr(f010005dao.f010005_Select16(NumberUtil.toInt(entityin.getActivity_id()),NumberUtil.toInt(entityin.getComment_id()))));
+		}
+
+		return entityout;
+	}
+
+	/**
+	 * 关注发布人
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service10(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+
+		AmtfUserAttentionEntity amtfuserattentionentity= new AmtfUserAttentionEntity();
+		//id
+		amtfuserattentionentity.setUser_attention_id(CommonUtil.isEmpty(commondao.common_Select9()) ? 0 : commondao.common_Select9());
+		//关注用户id
+		amtfuserattentionentity.setAttention_id(entityin.getActivity_id());
+		//用户id
+		amtfuserattentionentity.setUser_id(loginfo.getUser_email());
+		//查看是否关注了该发布人
+		if(f010005dao.f010005_Select20(entityin.getActivity_id(),loginfo.getUser_email()) < 1){
+			//没有关注
+			Integer insert21 = f010005dao.f010005_Insert21(amtfuserattentionentity);
+			if(insert21 < 1){
+				entityout.setIsattention("insert0");
+			} else {
+				entityout.setIsattention("insert1");
+			}
+		} else {
+			//关注了
+			Integer delete22 = f010005dao.f010005_Delete22(amtfuserattentionentity);
+			if(delete22 < 1){
+				entityout.setIsattention("delete0");
+			} else {
+				entityout.setIsattention("delete1");
+			}
 		}
 
 		return entityout;

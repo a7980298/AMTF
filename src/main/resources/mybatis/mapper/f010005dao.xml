@@ -227,4 +227,34 @@
 		AND
 			USER_ID = #{entity.user_id}
 	</delete>
+	<!-- 查看是否关注该用户 -->
+	<select id="f010005_Select20" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_USER_ATTENTION
+		WHERE
+			ATTENTION_ID = #{attention_id}
+		AND
+			USER_ID = #{userid}
+	</select>
+	<!-- 关注该用户 -->
+	<insert id="f010005_Insert21">
+		INSERT INTO
+			AMTF_USER_ATTENTION
+		VALUES(
+			#{entity.user_attention_id}
+			,#{entity.attention_id}
+			,#{entity.user_id}
+			,NOW());
+	</insert>
+	<!-- 取消关注该用户 -->
+	<delete id="f010005_Delete22">
+		DELETE FROM
+			AMTF_USER_ATTENTION
+		WHERE
+			ATTENTION_ID = #{entity.attention_id}
+		AND
+			USER_ID = #{entity.user_id}
+	</delete>
 </mapper>

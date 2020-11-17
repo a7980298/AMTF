@@ -88,4 +88,14 @@ public class F010005EntityOut extends UserImpl {
 	 * 参加人数
 	 */
 	Integer useractivity_count;
+
+	/**
+	 * 是否关注发布人
+	 */
+	Integer attention;
+
+	/**
+	 * 关注发布人
+	 */
+	String isattention;
 }

@@ -65,4 +65,12 @@
 		FROM
 			AMTF_ACTIVITY_COMMENT_FABULOUS
 	</select>
+	<!-- 获取attention表最大id -->
+	<select id="common_Select9"
+			resultType="int">
+		SELECT
+			MAX(USER_ATTENTION_ID)
+		FROM
+			AMTF_USER_ATTENTION
+	</select>
 </mapper>

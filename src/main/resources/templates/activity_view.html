@@ -155,7 +155,7 @@
 		$(_this).addClass('fa-thumbs-o-up');
 	}
 	//评论点赞
-	function amtf_thumbsClick(_this) {
+	function amtf_thumbsClick(_this, _index) {
 		$.ajax({
 			url : CONTEXT_PATH + '/f010005/T008',
 			type : 'post',
@@ -163,7 +163,7 @@
 			async : true,
 			data : {
 				id : '[[${f010005Params.select3.activity_id}]]',
-				comment_id : _this.activity_comment_id,
+				comment_id : _this.activity_comment_id.toString(),
 			},
 			success : function(result) {
 				if(result.comment_fabulous == 'insert0'){
@@ -171,7 +171,11 @@
 				} else if(result.comment_fabulous == 'delete0') {
 					md.showNotification('bottom', 'center', '2', '取消评论点赞失败。。。');
 				} else {
-					$('#comment_fabulous_count').text(result.comment_fabulous);
+					if (result.comment_fabulous != '0') {
+						$('#comment_fabulous_count' + _index).text(result.comment_fabulous);
+					} else {
+						$('#comment_fabulous_count' + _index).text('');
+					}
 				}
 			},
 			error : function(res, textStaus) {
@@ -316,6 +320,44 @@
 			},
 		});
 	}
+	// 关注按钮的鼠标悬停
+	function amtf_attentionMouseMove(_this) {
+		$(_this).text('取消关注');
+		$(_this).css('color','red');
+	}
+	// 关注按钮的鼠标离开
+	function amtf_attentionMouseOut(_this) {
+		$(_this).text('已关注');
+		$(_this).css('color','');
+	}
+	// 关注按钮的鼠标点击
+	function amtf_attentionClick(_this) {
+		$.ajax({
+			url : CONTEXT_PATH + '/f010005/T009',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : _this.user_email,
+			},
+			success : function(result) {
+				if(result.attention == 'insert0'){
+					md.showNotification('bottom', 'center', '2', '关注失败。。。');
+				} else if(result.attention == 'delete0') {
+					md.showNotification('bottom', 'center', '2', '取消关注失败。。。');
+				} else if(result.attention == 'insert1') {
+					$('#attention_btn').removeClass('btn-reddit');
+					$('#attention_btn').text('已关注');
+				} else if(result.attention == 'delete1') {
+					$('#attention_btn').addClass('btn-reddit');
+					$('#attention_btn').text('关注');
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
 </script>
 </head>
 <body>
@@ -348,7 +390,8 @@
 											</div>
 											<div class="">
 												<button class="btn btn-sm">TA的主页</button>
-												<button class="btn btn-sm btn-reddit">关注</button>
+												<button class="btn btn-sm btn-reddit" th:if="${f010005Params.attention < 1}" th:onclick="amtf_attentionClick([[${f010005Params.select4}]])" id="attention_btn">关注</button>
+												<button class="btn btn-sm" th:if="${f010005Params.attention >= 1}" onmousemove="amtf_attentionMouseMove(this)" onmouseout="amtf_attentionMouseOut(this)" id="attention_btn" th:onclick="amtf_attentionClick([[${f010005Params.select4}]])">已关注</button>
 											</div>
 										</div>
 									</div>
@@ -450,8 +493,8 @@
 														</p>
 													</div>
 													<div class="col-sm-1 pad-0 text-right">
-														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" th:onclick="amtf_thumbsClick([[${entity1.amtfactivitycommententity}]])" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
-														<span id="comment_fabulous_count">[[${entity1.amtfactivitycommententity.comment_fabulous_count}]]</span>
+														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" th:onclick="amtf_thumbsClick([[${entity1.amtfactivitycommententity}]],[[${idx.index}]])" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
+														<span th:id="${'comment_fabulous_count' + idx.index}" th:text="${entity1.amtfactivitycommententity.comment_fabulous_count != 0 ? entity1.amtfactivitycommententity.comment_fabulous_count : ''}"></span>
 													</div>
 												</li>
 												<div th:each="entity2,idxs: ${entity1.amtfactivitycommentreplyentity}" class="pl-4">
