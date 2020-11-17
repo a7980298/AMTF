@@ -322,13 +322,17 @@
 	}
 	// 关注按钮的鼠标悬停
 	function amtf_attentionMouseMove(_this) {
-		$(_this).text('取消关注');
-		$(_this).css('color','red');
+		if($(_this).text() != '关注'){
+			$(_this).text('取消关注');
+			$(_this).css('color','red');
+		}
 	}
 	// 关注按钮的鼠标离开
 	function amtf_attentionMouseOut(_this) {
-		$(_this).text('已关注');
-		$(_this).css('color','');
+		if($(_this).text() != '关注'){
+			$(_this).text('已关注');
+			$(_this).css('color','');
+		}
 	}
 	// 关注按钮的鼠标点击
 	function amtf_attentionClick(_this) {
@@ -569,19 +573,19 @@
 												<div class="col-md-8">
 													<ul class="navbar-nav">
 														<li class="nav-item">
-															<input type="checkbox" name="report_check" value="1"/>政治相关
+															<input type="checkbox" class="checkbox-radios" name="report_check" value="1"/>政治相关
 														</li>
 														<li class="nav-item">
-															<input type="checkbox" name="report_check" value="2"/>色情/低俗
+															<input type="checkbox" class="checkbox" name="report_check" value="2"/>色情/低俗
 														</li>
 														<li class="nav-item">
-															<input type="checkbox" name="report_check" value="3"/>广告营销
+															<input type="checkbox" class="check-mark" name="report_check" value="3"/>广告营销
 														</li>
 														<li class="nav-item">
-															<input type="checkbox" name="report_check" value="4"/>内容侵权
+															<input type="checkbox" class="check-square" name="report_check" value="4"/>内容侵权
 														</li>
 														<li class="nav-item">
-															<input type="checkbox" name="report_check" value="5"/>侮辱谩骂
+															<input type="checkbox" class="checkbox-inline" name="report_check" value="5"/>侮辱谩骂
 														</li>
 														<li class="nav-item" onclick="">
 															<input type="checkbox" name="report_check" value="6"/>其他问题
