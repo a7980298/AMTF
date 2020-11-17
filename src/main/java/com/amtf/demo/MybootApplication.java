@@ -20,11 +20,11 @@ import com.amtf.demo.nettyserver.NettyServer;
 public class MybootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MybootApplication.class, args);
-		// 启动netty服务端
+		/*// 启动netty服务端
 		NettyServer nettyServer = new NettyServer();
 		nettyServer.start(new InetSocketAddress("127.0.0.1", 8090));
 		// 启动netty客户端
 		NettyClient nettyClient = new NettyClient();
-		nettyClient.start();
+		nettyClient.start();*/
 	}
 }
