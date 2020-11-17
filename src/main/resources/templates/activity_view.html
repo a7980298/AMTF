@@ -489,7 +489,7 @@
 															<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity1.amtfactivitycommententity.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[${entity1.amtfactivitycommententity.activity_comment_id}]],'1')">
 																删除
 															</a>
-															<i class="fa fa-exclamation lookeye hand ml-2" aria-hidden="true" title="举报"></i>
+															<i class="fa fa-exclamation lookeye hand ml-2" aria-hidden="true" title="举报" onclick="amtf_getActivityReport()"></i>
 														</p>
 													</div>
 													<div class="col-sm-1 pad-0 text-right">
@@ -513,7 +513,7 @@
 																<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity2.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[${entity2.activity_comment_reply_id}]],'2')">
 																	删除
 																</a>
-																<i class="fa fa-exclamation lookeye hand ml-2" aria-hidden="true" title="举报"></i>
+																<i class="fa fa-exclamation lookeye hand ml-2" aria-hidden="true" title="举报" onclick="amtf_getActivityReport()"></i>
 															</p>
 														</div>
 													</li>
