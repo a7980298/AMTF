@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>[[${f010011Params.select1.user_name}]]的主页</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("input[type='text']").attr('disabled',true);
+		$("input[type='email']").attr('disabled',true);
+	})
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<th:block th:replace="navbar :: mynavbar"></th:block>
+		<div class="main-panel">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 个人资料 -->
+				<div class="container-fluid dashboardclass" id="userinfo">
+					<div class="container-fluid">
+					<i-form class="" th:action="@{/f010011}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+					<input type="hidden" name="IViewId" value="f010011"/>
+						<div class="row">
+							<div class="col-md-8">
+								<div class="card">
+									<div class="card-header card-header-icon card-header-rose">
+										<div class="card-icon">
+											<i class="material-icons">perm_identity</i>
+										</div>
+										<h4 class="card-title">[[${f010011Params.select1.user_name}]]
+											<small class="category">的个人资料</small>
+										</h4>
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">电话</label>
+													<span th:text="${f010011Params.select1.user_phone}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="bmd-label-floating">姓 名</label>
+													<span th:text="${f010011Params.select1.user_name}"></span>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="bmd-label-floating">国家</label>
+													<span th:text="${f010011Params.select1.user_country}"></span>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">市</label>
+													<span th:text="${f010011Params.select1.user_city}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>自我 介绍</label>
+													<div class="form-group">
+														<p>[[${f010011Params.select1.user_introduce}]]</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card card-profile">
+									<div class="card-avatar">
+										<a href="#pablo">
+											<img class="img" th:src="@{/imgs/userimg.jpg}" th:if="${f010011Params.select1.imgpath == ''}" id="img2" style="height:130px;"/>
+											<img class="img" th:src="@{/istatic/{fileNmame}(fileNmame=${f010011Params.select1.imgpath})}" th:if="${f010011Params.select1.imgpath != ''}" id="img2" style="height:130px;"/>
+										</a>
+									</div>
+									<div class="card-body">
+										<!-- <h6 class="card-category text-gray">Web开发</h6> -->
+										<h4 class="card-title">[[${f010011Params.select1.user_name}]]</h4>
+										<p class="card-description">
+											暂无
+										</p>
+										<a href="#pablo" class="btn btn-rose btn-round">关注</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
