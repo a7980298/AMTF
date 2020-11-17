@@ -69,13 +69,23 @@ public class F010005EntityOut extends UserImpl {
 	 */
 	Integer fabulouscount;
 
-	/**0
+	/**
 	 * 点赞添加
 	 */
 	String fabulous;
 
 	/**
+	 * 评论点赞添加
+	 */
+	String comment_fabulous;
+
+	/**
 	 * 删除评论
 	 */
 	Integer delect13;
+
+	/**
+	 * 参加人数
+	 */
+	Integer useractivity_count;
 }

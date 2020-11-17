@@ -1,0 +1,8 @@
+CREATE TABLE amtf_activity_comment_fabulous(
+	activity_comment_fabulous_id INT NOT NULL, -- id
+	activity_id INT NOT NULL, -- 活动id
+	activity_comment_id INT NOT NULL, -- 评论id
+	user_id VARCHAR(30), -- 用户id
+	activity_comment_fabulous_time DATETIME -- 点赞时间
+)
+-- insert into amtf_activity_comment_fabulousvalues(0,1,'1220875539@qq.com',now());

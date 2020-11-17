@@ -156,7 +156,29 @@
 	}
 	//评论点赞
 	function amtf_thumbsClick(_this) {
-
+		$.ajax({
+			url : CONTEXT_PATH + '/f010005/T008',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				id : '[[${f010005Params.select3.activity_id}]]',
+				comment_id : _this.activity_comment_id,
+			},
+			success : function(result) {
+				if(result.comment_fabulous == 'insert0'){
+					md.showNotification('bottom', 'center', '2', '评论点赞失败。。。');
+				} else if(result.comment_fabulous == 'delete0') {
+					md.showNotification('bottom', 'center', '2', '取消评论点赞失败。。。');
+				} else {
+					$('#comment_fabulous_count').text(result.comment_fabulous);
+				}
+			},
+			error : function(res, textStaus) {
+				hidediv();
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
 	}
 	// 参加活动
 	function amtf_setusetactivity() {
@@ -181,6 +203,7 @@
 					$('#setusetactivity_a').find('span').eq(0).text('参加')
 					$('#setusetactivity_a').find('span').eq(0).css('color','');
 				}
+				$('#useractivity_count').text(result.useractivity_count);
 			},
 			error : function(res, textStaus) {
 				hidediv();
@@ -358,7 +381,10 @@
 												[[${f010005Params.select4.user_name}]]
 											</a>
 											<span class="h5 pl-4">[[${f010005Params.select3.activity_time}]]</span>
-											<span class="h5 pl-4"><i class="fa fa-user lookeye" aria-hidden="true"></i> [[${f010005Params.select3.count}]]</span>
+											<span class="h5 pl-4">
+												<i class="fa fa-user lookeye" aria-hidden="true"></i>
+												<span id="useractivity_count">[[${f010005Params.select3.count}]]</span>
+											</span>
 										</div>
 										<div class="row center pt-4">
 											<p class="description" id="activity_activitytext"></p>
@@ -424,7 +450,8 @@
 														</p>
 													</div>
 													<div class="col-sm-1 pad-0 text-right">
-														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" onclick="amtf_thumbsClick(this)" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
+														<i class="fa fa-thumbs-o-up lookeye hand" aria-hidden="true" th:onclick="amtf_thumbsClick([[${entity1.amtfactivitycommententity}]])" onmousemove="amtf_thumbsFocus(this)" onmouseout="amtf_thumbsBlur(this)"></i>
+														<span id="comment_fabulous_count">[[${entity1.amtfactivitycommententity.comment_fabulous_count}]]</span>
 													</div>
 												</li>
 												<div th:each="entity2,idxs: ${entity1.amtfactivitycommentreplyentity}" class="pl-4">

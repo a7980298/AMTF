@@ -57,4 +57,12 @@
 		FROM
 			AMTF_ACTIVITY_FABULOUS
 	</select>
+	<!-- 获取comment_fabulous表最大id -->
+	<select id="common_Select8"
+			resultType="int">
+		SELECT
+			MAX(ACTIVITY_COMMENT_FABULOUS_ID)
+		FROM
+			AMTF_ACTIVITY_COMMENT_FABULOUS
+	</select>
 </mapper>

@@ -114,7 +114,7 @@
 		WHERE
 			ACTIVITY_ID = #{id}
 	</select>
-	<!-- 发表二级评论 -->
+	<!-- 活动点赞 -->
 	<insert id="f010005_Insert10">
 		INSERT INTO
 			AMTF_ACTIVITY_FABULOUS
@@ -171,5 +171,60 @@
 			ACTIVITY_ID = #{id}
 		AND
 			USERACTIVITY_NAME = #{userid}
+	</delete>
+	<!-- 查看参加 -->
+	<select id="f010005_Select15" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_USERACTIVITY
+		WHERE
+			ACTIVITY_ID = #{id}
+	</select>
+	<!-- 查看评论点赞人数 -->
+	<select id="f010005_Select16" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_ACTIVITY_COMMENT_FABULOUS
+		WHERE
+			ACTIVITY_ID = #{id}
+		AND
+			ACTIVITY_COMMENT_ID = #{activity_comment_id}
+	</select>
+	<!-- 查看评论是否点赞 -->
+	<select id="f010005_Select17" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_ACTIVITY_COMMENT_FABULOUS
+		WHERE
+			ACTIVITY_ID = #{id}
+		AND
+			ACTIVITY_COMMENT_ID = #{activity_comment_id}
+		AND
+			USER_ID = #{user_id}
+	</select>
+	<!-- 评论点赞 -->
+	<insert id="f010005_Insert18">
+		INSERT INTO
+			AMTF_ACTIVITY_COMMENT_FABULOUS
+		VALUES(
+			#{entity.activity_comment_fabulous_id}
+			,#{entity.activity_id}
+			,#{entity.activity_comment_id}
+			,#{entity.user_id}
+			,NOW());
+	</insert>
+	<!-- 删除评论点赞 -->
+	<delete id="f010005_Delete19">
+		DELETE FROM
+			AMTF_ACTIVITY_COMMENT_FABULOUS
+		WHERE
+			ACTIVITY_ID = #{entity.activity_id}
+		AND
+			ACTIVITY_COMMENT_ID = #{entity.activity_comment_id}
+		AND
+			USER_ID = #{entity.user_id}
 	</delete>
 </mapper>

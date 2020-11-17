@@ -44,4 +44,14 @@ public interface F010005Dao {
 	Integer f010005_Delete13(@Param("id") Integer id,@Param("level") String level,@Param("comment_id") Integer comment_id);
 
 	Integer f010005_Delete14(@Param("id") Integer id,@Param("userid") String userid);
+
+	Integer f010005_Select15(@Param("id") Integer id);
+
+	Integer f010005_Select16(@Param("id") Integer id,@Param("activity_comment_id") Integer activity_comment_id);
+
+	Integer f010005_Select17(@Param("id") Integer id,@Param("activity_comment_id") Integer activity_comment_id,@Param("user_id") String user_id);
+
+	Integer f010005_Insert18(@Param("entity") AmtfActivityCommentFabulousEntity entity);
+
+	Integer f010005_Delete19(@Param("entity") AmtfActivityCommentFabulousEntity entity);
 }

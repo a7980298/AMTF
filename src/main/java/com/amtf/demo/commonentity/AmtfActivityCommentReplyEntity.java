@@ -3,6 +3,8 @@ package com.amtf.demo.commonentity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -39,7 +41,7 @@ public class AmtfActivityCommentReplyEntity {
 	private String imgpath;
 
 	/**
-	 *发布时间
+	 *点赞时间
 	 */
 	private String activity_comment_reply_time;
 

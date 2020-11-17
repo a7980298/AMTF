@@ -3,6 +3,8 @@ package com.amtf.demo.commonentity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -42,4 +44,9 @@ public class AmtfActivityCommentEntity {
 	 *发布时间
 	 */
 	private String activity_comment_time;
+
+	/**
+	 * 评论点赞
+	 */
+	private int comment_fabulous_count;
 }

@@ -138,6 +138,8 @@ public class F010005ServiceImpl implements F010005Service {
 		}
 		entityout.setInsert10(StringUtil.toStr(insert10));
 
+		entityout.setUseractivity_count(f010005dao.f010005_Select15(NumberUtil.toInt(entityin.getActivity_id())));
+
 		return entityout;
 	}
 
@@ -294,10 +296,14 @@ public class F010005ServiceImpl implements F010005Service {
 		if(!CommonUtil.isEmptyList(select5)){
 			for (AmtfActivityCommentEntity select5entity:select5) {
 				CommentListEntity commentlistentity=new CommentListEntity();
-				commentlistentity.setAmtfactivitycommententity(select5entity);
 				List<AmtfActivityCommentReplyEntity> select7 = new ArrayList<AmtfActivityCommentReplyEntity>();
 				if (!CommonUtil.isEmpty(select5entity)){
+					//头像
 					select5entity.setImgpath(ImgUtil.getImgPath(select5entity.getUser_id()));
+					//评论点赞人数
+					select5entity.setComment_fabulous_count(f010005dao.f010005_Select16(NumberUtil.toInt(entityin.getActivity_id()),select5entity.getActivity_comment_id()));
+					commentlistentity.setAmtfactivitycommententity(select5entity);
+					//二级评论
 					select7 = f010005dao.f010005_Select7(select5entity.getActivity_comment_id());
 					select7.removeAll(Collections.singleton(null));
 					if(!CommonUtil.isEmptyList(select7)) {
@@ -400,6 +406,47 @@ public class F010005ServiceImpl implements F010005Service {
 		Integer delect13 = f010005dao.f010005_Delete13(NumberUtil.toInt(entityin.getActivity_id()),entityin.getLevel(),NumberUtil.toInt(entityin.getComment_id()));
 
 		entityout.setDelect13(delect13);
+		return entityout;
+	}
+
+	/**
+	 * 评论点赞
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service09(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		AmtfActivityCommentFabulousEntity amtfactivitycommentfabulousentity=new AmtfActivityCommentFabulousEntity();
+		//id
+		amtfactivitycommentfabulousentity.setActivity_comment_fabulous_id(CommonUtil.isEmpty(commondao.common_Select8()) ? 0 : commondao.common_Select8());
+		//活动id
+		amtfactivitycommentfabulousentity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
+		//评论id
+		amtfactivitycommentfabulousentity.setActivity_comment_id(NumberUtil.toInt(entityin.getComment_id()));
+		//user
+		amtfactivitycommentfabulousentity.setUser_id(loginfo.getUser_email());
+		//查看是否点赞
+		if(f010005dao.f010005_Select17(NumberUtil.toInt(entityin.getActivity_id()),NumberUtil.toInt(entityin.getComment_id()),loginfo.getUser_email()) < 1){
+			//没有点赞
+			Integer insert18 = f010005dao.f010005_Insert18(amtfactivitycommentfabulousentity);
+			if(insert18 < 1){
+				entityout.setComment_fabulous("insert0");
+			}
+		} else {
+			//已有点赞
+			Integer delete19 = f010005dao.f010005_Delete19(amtfactivitycommentfabulousentity);
+			if(delete19 < 1){
+				entityout.setComment_fabulous("delete0");
+			}
+		}
+		if(CommonUtil.isEmpty(entityout.getComment_fabulous())){
+			entityout.setComment_fabulous(StringUtil.toStr(f010005dao.f010005_Select16(NumberUtil.toInt(entityin.getActivity_id()),NumberUtil.toInt(entityin.getComment_id()))));
+		}
+
 		return entityout;
 	}
 }

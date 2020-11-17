@@ -17,7 +17,6 @@ import com.amtf.demo.user.UserImpl;
 import lombok.Getter;
 import lombok.Setter;
 
-@ConfigurationProperties
 @Getter
 @Setter
 public class F010005Params extends UserImpl {
@@ -81,4 +80,14 @@ public class F010005Params extends UserImpl {
 	 * 点赞添加
 	 */
 	private String fabulous;
+
+	/**
+	 * 评论点赞添加
+	 */
+	String comment_fabulous;
+
+	/**
+	 * 参加人数
+	 */
+	Integer useractivity_count;
 }
