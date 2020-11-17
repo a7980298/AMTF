@@ -183,7 +183,7 @@ public class F010005ServiceImpl implements F010005Service {
 		if(!CommonUtil.isEmptyList(select2)) {
 			for (F010005_Select1Entity select2entity : select2) {
 				if (!CommonUtil.isEmpty(select2entity)){
-					if (select2entity.getActivity_name().equals(select4.getUser_email())) {
+					if (select2entity.getActivity_id().equals(StringUtil.toStr(select3.getActivity_id()))) {
 						select3.setCount(select2entity.getCount());
 					}
 					select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
