@@ -302,24 +302,8 @@
 		}
 		//刷新评论
 		function amtf_refreshComment() {
-			$.ajax({
-				url : CONTEXT_PATH + '/f010005/T004',
-				type : 'post',
-				dateType : 'html',
-				async : true,
-				data : {
-					id : '[[${f010005Params.select3.activity_id}]]',
-				},
-				success : function(result) {
-					if(result != ''){
-						$('#commentselect5').replaceWith(result);
-						$('#comment_reply').val('');
-					}
-				},
-				error : function(res, textStaus) {
-					setCodeErrList("错误！！！请和管理员联系。。。");
-				},
-			});
+			amtf_activity_table('commentselect5','/f010005/T004',[[${f010005Params.commentlist.pageNum}]],[[${f010005Params.select3.activity_id}]]);
+			$('#comment_reply').val('');
 		}
 		// 关注按钮的鼠标悬停
 		function amtf_attentionMouseMove(_this) {
@@ -424,7 +408,7 @@
 										<div class="row ">
 											<table class="table-hover col-sm-12">
 												<tr th:each="entity,idx:${f010005Params.select2_2}" class="col-sm-12">
-													<td th:onclick="amtf_getactivity([[${entity}]])" class="lookeye hand">
+													<td th:onclick="amtf_getactivity([[${entity.activity_id}]])" class="lookeye hand">
 														[[${entity.activity_head}]]&nbsp;&nbsp;
 														<i class="fa fa-user lookeye" aria-hidden="true"></i>
 														[[${entity.count}]]
@@ -541,7 +525,7 @@
 											</div>
 										</ul>
 										<div class="center-block">
-											<th:block th:replace="activity_table :: myactivity_table(${f010005Params.commentlist},'/f010005/T010','activitylists')"></th:block>
+											<th:block th:replace="activity_table :: myactivity_table(${f010005Params.commentlist},'/f010005/T004','commentselect5',${f010005Params.select3.activity_id})"></th:block>
 										</div>
 									</div>
 								</div>
@@ -555,7 +539,7 @@
 										<div class="row ">
 											<table class="table-hover col-sm-12">
 												<tr th:each="entity,idx:${f010005Params.select9_03}" class="col-sm-12">
-													<td th:onclick="amtf_getactivity([[${entity}]])" class="lookeye hand">
+													<td th:onclick="amtf_getactivity([[${entity.activity_id}]])" class="lookeye hand">
 														[[${entity.activity_head}]]&nbsp;&nbsp
 														<i class="fa fa-user lookeye" aria-hidden="true"></i>
 														[[${entity.count}]]

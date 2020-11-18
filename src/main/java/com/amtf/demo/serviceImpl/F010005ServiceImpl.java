@@ -6,6 +6,7 @@ import com.amtf.demo.commonentity.*;
 import com.amtf.demo.dao.F010005Dao;
 import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -237,7 +238,7 @@ public class F010005ServiceImpl implements F010005Service {
 	public F010005EntityOut service05(F010005EntityIn entityin) throws ErrListException {
 		F010005EntityOut entityout = new F010005EntityOut();
 		//活动一级评论
-		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		Page page = PageHelper.startPage(entityin.getPageNum(),5);
 		List<AmtfActivityCommentEntity> select5 = f010005dao.f010005_Select5(NumberUtil.toInt(entityin.getActivity_id()));
 		List<CommentListEntity> commentlist=new ArrayList<CommentListEntity>();
 		select5.removeAll(Collections.singleton(null));
@@ -246,6 +247,11 @@ public class F010005ServiceImpl implements F010005Service {
 				CommentListEntity commentlistentity=new CommentListEntity();
 				List<AmtfActivityCommentReplyEntity> select7 = new ArrayList<AmtfActivityCommentReplyEntity>();
 				if (!CommonUtil.isEmpty(select5entity)){
+					if(CommonUtil.isEmpty(entityout.getSelect3())){
+						AmtfActivityEntity amtfactivityentity = new AmtfActivityEntity();
+						amtfactivityentity.setActivity_id(select5entity.getActivity_id());
+						entityout.setSelect3(amtfactivityentity);
+					}
 					//头像
 					select5entity.setImgpath(ImgUtil.getImgPath(select5entity.getUser_id()));
 					//评论点赞人数
@@ -268,6 +274,13 @@ public class F010005ServiceImpl implements F010005Service {
 			}
 			// 排序
 			PageInfo<CommentListEntity> pageInfo = new PageInfo<>(commentlist);
+			//总页数
+			pageInfo.setPages(page.getPages());
+			//总条数
+			pageInfo.setTotal(page.getTotal());
+			pageInfo.setPageNum(entityin.getPageNum() == 0 ? page.getPageNum() : entityin.getPageNum());
+			pageInfo.setNextPage(pageInfo.getPageNum() == pageInfo.getPages() ? pageInfo.getPageNum() : pageInfo.getPageNum() + 1);
+			pageInfo.setPrePage(pageInfo.getPageNum() < 1 ? pageInfo.getPageNum() : pageInfo.getPageNum() - 1);
 			entityout.setCommentlist(pageInfo);
 		}
 		return entityout;

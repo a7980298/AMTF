@@ -131,11 +131,12 @@ public class F010005Controller extends ValiDationUtil {
 	 * @return String
 	 */
 	@PostMapping("/f010005/T004")
-	public String f010005T004(@RequestParam("id") String id, Model model) {
+	public String f010005T004(@RequestParam("id") String id,@RequestParam(defaultValue = "1") Integer pageNum, Model model) {
 		F010005Params params = new F010005Params();
 
 		F010005EntityIn entityin = new F010005EntityIn();
 		entityin.setActivity_id(id);
+		entityin.setPageNum(pageNum);
 		F010005EntityOut entityOut = f010005service.service05(entityin);
 
 		// 将值copy赋值

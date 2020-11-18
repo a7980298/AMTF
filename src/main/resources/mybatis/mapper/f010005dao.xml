@@ -68,7 +68,7 @@
 		ON
 			A1.ACTIVITY_ID = B1.ACTIVITY_ID
         WHERE
-			A1.ACTIVITY_ID= #{id}
+			B1.ACTIVITY_ID= #{id}
 		ORDER BY B1.ACTIVITY_COMMENT_TIME DESC
 	</select>
 	<!-- 发表一级评论 -->
