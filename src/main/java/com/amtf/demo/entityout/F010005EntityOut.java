@@ -12,6 +12,7 @@ import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
 import com.amtf.demo.user.UserImpl;
 
+import com.github.pagehelper.PageInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,17 +28,27 @@ public class F010005EntityOut extends UserImpl {
 	/**
 	 * 所有活动
 	 */
-	List<F010002_Select9Entity> select9;
+	PageInfo<F010002_Select9Entity> select9;
+
+	/**
+	 * 所有活动
+	 */
+	List<F010002_Select9Entity> select9_03;
 
 	/**
 	 * 我参加的活动
 	 */
-	List<F010005_Select1Entity> select1;
+	PageInfo<F010005_Select1Entity> select1;
 
 	/**
 	 * 我发布的活动
 	 */
-	List<F010005_Select1Entity> select2;
+	PageInfo<F010005_Select1Entity> select2;
+
+	/**
+	 * 我发布的活动
+	 */
+	List<F010005_Select1Entity> select2_2;
 
 	/**
 	 * 详细活动

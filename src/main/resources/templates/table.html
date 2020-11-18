@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
-	<th:block th:fragment="mytable(_this)">
+	<th:block th:fragment="mytable(_this,_url,_id)">
 		<head>
 		<meta charset="UTF-8">
 		<style type="text/css">
 			
 		</style>
 		<script type="text/javascript">
-
+			function amtf_table(_pageNum) {
+				$.ajax({
+					url : CONTEXT_PATH + '[[${_url}]]',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					data : {
+						pageNum : _pageNum,
+					},
+					success : function(result) {
+						if(result != ''){
+							$('#' + '[[${_id}]]').replaceWith(result);
+						}
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			}
 		</script>
 		</head>
 		<body>
 			<ul class="pagination">
-				<li class="page-item" th:if="${_this.pageInfo.pageNum!=1}"><a class="page-link" th:href="@{/(pageNum=1)}">首页</a></li>
-				<li class="page-item" th:if="${_this.pageInfo.pageNum!=1}"><a class="page-link" th:href="@{/(pageNum=${_this.pageInfo.hasPreviousPage}?${_this.pageInfo.prePage}:${_this.pageInfo.pages})}">上一页</a></li>
-				<li class="page-item"><a class="page-link"><span th:text="第+${_this.pageInfo.pageNum}+页"></span></a></li>
-				<li class="page-item"><a class="page-link"><span th:text="共+${_this.pageInfo.pages}+页"></span></a></li>
-				<li class="page-item" th:if="${_this.pageInfo.pageNum != _this.pageInfo.pages}"><a class="page-link" th:href="@{/(pageNum=${_this.pageInfo.hasNextPage}?${_this.pageInfo.nextPage}:${_this.pageInfo.pages})}">下一页</a></li>
-				<li class="page-item" th:if="${_this.pageInfo.pageNum != _this.pageInfo.pages}"><a class="page-link" th:href="@{/(pageNum=${_this.pageInfo.pages})}">尾页</a></li>
+				<li class="page-item"><a class="page-link" onclick="amtf_table(1)">首页</a></li>
+				<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_this.hasPreviousPage != 1 ? _this.prePage : _this.pages}]])">上一页</a></li>
+				<li class="page-item"><a class="page-link"><span th:text="第+${_this.pageNum}+页"></span></a></li>
+				<li class="page-item"><a class="page-link"><span th:text="共+${_this.pages}+页"></span></a></li>
+				<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_this.hasNextPage == _this.pages ? _this.nextPage : _this.pages}]])">下一页</a></li>
+				<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_this.pages}]])">尾页</a></li>
 			</ul>
 		</body>
 	</th:block>

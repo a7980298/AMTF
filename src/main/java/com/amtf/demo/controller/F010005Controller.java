@@ -2,6 +2,7 @@
 package com.amtf.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import com.amtf.demo.entityin.F010002EntityIn;
 import com.amtf.demo.entityout.F010002EntityOut;
 import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.f010002entity.F010002_Select9Entity;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.user.LogInFo;
-import com.amtf.demo.util.CommonUtil;
+import com.amtf.demo.util.*;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +28,6 @@ import com.amtf.demo.entityin.F010005EntityIn;
 import com.amtf.demo.entityout.F010005EntityOut;
 import com.amtf.demo.params.F010005Params;
 import com.amtf.demo.service.F010005Service;
-import com.amtf.demo.util.ParameterUtil;
-import com.amtf.demo.util.ValiDationUtil;
 
 @Controller
 public class F010005Controller extends ValiDationUtil {
@@ -259,5 +261,69 @@ public class F010005Controller extends ValiDationUtil {
 		map.put("attention", entityOut.getIsattention());
 
 		return map;
+	}
+
+	/**
+	 * 活动一栏
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@PostMapping("/f010005/T010")
+	public String f010005T010(@RequestParam(defaultValue = "1") Integer pageNum, Model model) {
+		F010005Params params = new F010005Params();
+
+		F010005EntityIn entityin = new F010005EntityIn();
+		entityin.setPageNum(pageNum);
+		F010005EntityOut entityOut = f010005service.service11(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010005Params", params);
+
+		return "activity :: activitylists";
+	}
+
+	/**
+	 * 我参加的活动一栏
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@PostMapping("/f010005/T011")
+	public String f010005T011(@RequestParam(defaultValue = "1") Integer pageNum, Model model) {
+		F010005Params params = new F010005Params();
+		F010005EntityIn entityin = new F010005EntityIn();
+		entityin.setPageNum(pageNum);
+		F010005EntityOut entityOut = f010005service.service12(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010005Params", params);
+
+		return "activity :: activitylists_i";
+	}
+
+	/**
+	 * 我发布的活动一栏
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@PostMapping("/f010005/T012")
+	public String f010005T012(@RequestParam(defaultValue = "1") Integer pageNum, Model model) {
+		F010005Params params = new F010005Params();
+		F010005EntityIn entityin = new F010005EntityIn();
+		entityin.setPageNum(pageNum);
+		F010005EntityOut entityOut = f010005service.service13(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010005Params", params);
+
+		return "activity :: activitylists_s";
 	}
 }

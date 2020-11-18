@@ -9,6 +9,7 @@ import com.amtf.demo.commonentity.AmtfActivityEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
+import com.github.pagehelper.PageInfo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import com.amtf.demo.f010002entity.F010002_Select9Entity;
@@ -38,17 +39,27 @@ public class F010005Params extends UserImpl {
 	/**
 	 * 所有活动
 	 */
-	private List<F010002_Select9Entity> select9;
+	PageInfo<F010002_Select9Entity> select9;
+
+	/**
+	 * 所有活动
+	 */
+	private List<F010002_Select9Entity> select9_03;
 
 	/**
 	 * 我参加的活动
 	 */
-	private List<F010005_Select1Entity> select1;
+	private PageInfo<F010005_Select1Entity> select1;
 
 	/**
 	 * 我发布的活动
 	 */
-	private List<F010005_Select1Entity> select2;
+	private PageInfo<F010005_Select1Entity> select2;
+
+	/**
+	 * 我发布的活动
+	 */
+	private List<F010005_Select1Entity> select2_2;
 
 	/**
 	 * 详细活动id
@@ -100,4 +111,6 @@ public class F010005Params extends UserImpl {
 	 * 关注发布人
 	 */
 	String isattention;
+
+	Integer pageNum;
 }

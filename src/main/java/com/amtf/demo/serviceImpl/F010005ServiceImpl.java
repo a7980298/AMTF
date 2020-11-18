@@ -6,6 +6,8 @@ import com.amtf.demo.commonentity.*;
 import com.amtf.demo.dao.F010005Dao;
 import com.amtf.demo.f010005entity.CommentListEntity;
 import com.amtf.demo.f010005entity.F010005_Select1Entity;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,75 +47,19 @@ public class F010005ServiceImpl implements F010005Service {
 	 */
 	@Override
 	public F010005EntityOut service01(F010005EntityIn entityIn) throws ErrListException {
-
 		F010005EntityOut entityout = new F010005EntityOut();
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		// 活动一览
-		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
-		for (F010002_Select9Entity select9entity : select9) {
-			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
-					+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
-					+ select9entity.getActivity_sttymd().substring(6, 8));
-			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
-					+ select9entity.getActivity_endymd().substring(4, 6) + "-"
-					+ select9entity.getActivity_endymd().substring(6, 8));
-			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
-			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select9entity.getActivity_name() + select9entity.getActivity_id() + "-2"));
-			select9entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select9entity.getActivity_name() + select9entity.getActivity_id() + "-3"));
-			select9entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select9entity.getActivity_name() + select9entity.getActivity_id() + "-4"));
-			select9entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
-		}
-		entityout.setSelect9(select9);
+		// 活动一栏
+		entityIn.setPageNum(Constant.INT_0);
+		entityout.setSelect9(this.service11(entityIn).getSelect9());
 		// 我参加的活动
-		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_email());
-		for (F010005_Select1Entity select1entity : select1) {
-			select1entity.setActivity_sttymd(select1entity.getActivity_sttymd().substring(0, 4) + "-"
-					+ select1entity.getActivity_sttymd().substring(4, 6) + "-"
-					+ select1entity.getActivity_sttymd().substring(6, 8));
-			select1entity.setActivity_endymd(select1entity.getActivity_endymd().substring(0, 4) + "-"
-					+ select1entity.getActivity_endymd().substring(4, 6) + "-"
-					+ select1entity.getActivity_endymd().substring(6, 8));
-			select1entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select1entity.getActivity_name() + select1entity.getActivity_id() + "-1"));
-			select1entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select1entity.getActivity_name() + select1entity.getActivity_id() + "-2"));
-			select1entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select1entity.getActivity_name() + select1entity.getActivity_id() + "-3"));
-			select1entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select1entity.getActivity_name() + select1entity.getActivity_id() + "-4"));
-			select1entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select1entity.getActivity_name() + select1entity.getActivity_id() + "-5"));
-		}
-		entityout.setSelect1(select1);
-
+		entityout.setSelect1(this.service12(entityIn).getSelect1());
 		// 我发布的活动
-		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(loginfo.getUser_email());
-		for (F010005_Select1Entity select2entity : select2) {
-			select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
-					+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
-					+ select2entity.getActivity_sttymd().substring(6, 8));
-			select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
-					+ select2entity.getActivity_endymd().substring(4, 6) + "-"
-					+ select2entity.getActivity_endymd().substring(6, 8));
-			select2entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select2entity.getActivity_name() + select2entity.getActivity_id() + "-1"));
-			select2entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select2entity.getActivity_name() + select2entity.getActivity_id() + "-2"));
-			select2entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select2entity.getActivity_name() + select2entity.getActivity_id() + "-3"));
-			select2entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select2entity.getActivity_name() + select2entity.getActivity_id() + "-4"));
-			select2entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
-					select2entity.getActivity_name() + select2entity.getActivity_id() + "-5"));
-		}
-		entityout.setSelect2(select2);
+		entityout.setSelect2(this.service13(entityIn).getSelect2());
+
+
 
 
 		return entityout;
@@ -214,7 +160,7 @@ public class F010005ServiceImpl implements F010005Service {
 				}
 			}
 			select2.removeAll(Collections.singleton(null));
-			entityout.setSelect2(select2);
+			entityout.setSelect2_2(select2);
 		}
 		// 活动一览
 		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
@@ -249,7 +195,7 @@ public class F010005ServiceImpl implements F010005Service {
 				}
 			}
 			select9.removeAll(Collections.singleton(null));
-			entityout.setSelect9(select9);
+			entityout.setSelect9_03(select9);
 		}
 		return entityout;
 	}
@@ -491,6 +437,118 @@ public class F010005ServiceImpl implements F010005Service {
 			}
 		}
 
+		return entityout;
+	}
+
+	/**
+	 * 活动一栏
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service11(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		// 活动一览
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
+		for (F010002_Select9Entity select9entity : select9) {
+			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
+					+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
+					+ select9entity.getActivity_sttymd().substring(6, 8));
+			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
+					+ select9entity.getActivity_endymd().substring(4, 6) + "-"
+					+ select9entity.getActivity_endymd().substring(6, 8));
+			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
+			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-2"));
+			select9entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-3"));
+			select9entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-4"));
+			select9entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select9entity.getActivity_name() + select9entity.getActivity_id() + "-5"));
+		}
+		PageInfo<F010002_Select9Entity> pageInfo = new PageInfo<>(select9);
+
+		entityout.setSelect9(pageInfo);
+		return entityout;
+	}
+
+	/**
+	 * 我参加的活动一栏
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service12(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		// 我参加的活动
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_email());
+		for (F010005_Select1Entity select1entity : select1) {
+			select1entity.setActivity_sttymd(select1entity.getActivity_sttymd().substring(0, 4) + "-"
+					+ select1entity.getActivity_sttymd().substring(4, 6) + "-"
+					+ select1entity.getActivity_sttymd().substring(6, 8));
+			select1entity.setActivity_endymd(select1entity.getActivity_endymd().substring(0, 4) + "-"
+					+ select1entity.getActivity_endymd().substring(4, 6) + "-"
+					+ select1entity.getActivity_endymd().substring(6, 8));
+			select1entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select1entity.getActivity_name() + select1entity.getActivity_id() + "-1"));
+			select1entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select1entity.getActivity_name() + select1entity.getActivity_id() + "-2"));
+			select1entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select1entity.getActivity_name() + select1entity.getActivity_id() + "-3"));
+			select1entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select1entity.getActivity_name() + select1entity.getActivity_id() + "-4"));
+			select1entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select1entity.getActivity_name() + select1entity.getActivity_id() + "-5"));
+		}
+		PageInfo<F010005_Select1Entity> pageInfo = new PageInfo<>(select1);
+		entityout.setSelect1(pageInfo);
+		return entityout;
+	}
+
+	/**
+	 * 我发布的活动一栏
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F010005EntityOut service13(F010005EntityIn entityin) throws ErrListException {
+		F010005EntityOut entityout = new F010005EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		// 我发布的活动
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(loginfo.getUser_email());
+		for (F010005_Select1Entity select2entity : select2) {
+			select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
+					+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
+					+ select2entity.getActivity_sttymd().substring(6, 8));
+			select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
+					+ select2entity.getActivity_endymd().substring(4, 6) + "-"
+					+ select2entity.getActivity_endymd().substring(6, 8));
+			select2entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-1"));
+			select2entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-2"));
+			select2entity.setActivity_img3(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-3"));
+			select2entity.setActivity_img4(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-4"));
+			select2entity.setActivity_img5(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
+					select2entity.getActivity_name() + select2entity.getActivity_id() + "-5"));
+		}
+		PageInfo<F010005_Select1Entity> pageInfo = new PageInfo<>(select2);
+		entityout.setSelect2(pageInfo);
 		return entityout;
 	}
 }

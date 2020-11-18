@@ -91,7 +91,7 @@
 	<!-- 全部活动 -->
 	<select id="f010002_Select9" resultType="com.amtf.demo.f010002entity.F010002_Select9Entity">
 		SELECT 
-			*,COUNT(B1.ACTIVITY_ID) AS count
+			A1.*,COUNT(B1.ACTIVITY_ID) AS count
 		FROM 
 			AMTF_ACTIVITY A1
 		LEFT JOIN 

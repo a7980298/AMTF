@@ -4,7 +4,7 @@
 	<!-- 我参加的活动 -->
 	<select id="f010005_Select1" resultType="com.amtf.demo.f010005entity.F010005_Select1Entity">
 		SELECT
-			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
+			A1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
 		FROM
 			AMTF_ACTIVITY A1
 		LEFT JOIN
@@ -23,7 +23,7 @@
 	<!-- 我发布的活动 -->
 	<select id="f010005_Select2" resultType="com.amtf.demo.f010005entity.F010005_Select1Entity">
 		SELECT
-			A1.*,B1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
+			A1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
 		FROM
 			AMTF_ACTIVITY A1
 		LEFT JOIN

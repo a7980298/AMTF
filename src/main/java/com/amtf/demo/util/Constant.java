@@ -14,6 +14,8 @@ public class Constant {
 
 	public static final Integer INT_1 = 1;
 
+	public static final Integer PAGESIZE = 1;
+
 	public static final Boolean bol_T = true;
 
 	public static final Boolean bol_F = false;

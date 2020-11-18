@@ -104,7 +104,7 @@
 									</div>
 									<div class="card-body">
 										<div class="toolbar"></div>
-										<div class="material-datatables">
+										<div class="material-datatables" id="activitylists" th:fragment="activitylists">
 											<table id="activity_datatables" class="table table-hover" cellspacing="0" width="100%" style="width: 100%">
 												<thead>
 													<tr>
@@ -117,19 +117,8 @@
 														<th class="disabled-sorting text-right">操作</th>
 													</tr>
 												</thead>
-												<!--<tfoot>
-													<tr>
-														<th>活动名称</th>
-														<th class="text-center">发布人</th>
-														<th>开始时间</th>
-														<th>截至时间</th>
-														<th>发布时间</th>
-														<th class="text-center">参加人数</th>
-														<th class="text-right">操作</th>
-													</tr>
-												</tfoot>-->
 												<tbody>
-													<tr th:each="entity,idx:${f010005Params.select9}">
+													<tr th:each="entity,idx:${f010005Params.select9.list}">
 														<td>[[${entity.activity_head}]]</td>
 														<td>[[${entity.activity_name}]]</td>
 														<td>[[${entity.activity_sttymd}]]</td>
@@ -149,6 +138,9 @@
 													</tr>
 												</tbody>
 											</table>
+											<div class="center-block">
+												<th:block th:replace="table :: mytable(${f010005Params.select9},'/f010005/T010','activitylists')"></th:block>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -159,8 +151,7 @@
 										<h3 class="card-title"> <small>我参加的活动</small></h3>
                                     </div>
                                     <div class="card-body">
-										<div class="toolbar"></div>
-                                        <div class="material-datatables">
+                                        <div class="material-datatables" id="activitylists_i" th:fragment="activitylists_i">
                                             <table id="activity_datatables_i" class="table table-hover" cellspacing="0" width="100%" style="width: 100%">
                                                 <thead>
                                                     <tr>
@@ -171,7 +162,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-													<tr th:each="entity,idx:${f010005Params.select1}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
+													<tr th:each="entity,idx:${f010005Params.select1.list}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
 														<td>[[${entity.activity_head}]]</td>
 														<td>[[${entity.activity_sttymd}]]</td>
 														<td>[[${entity.activity_endymd}]]</td>
@@ -179,6 +170,9 @@
 													</tr>
                                                 </tbody>
                                             </table>
+											<div class="center-block">
+												<th:block th:replace="table :: mytable(${f010005Params.select1},'/f010005/T011','activitylists_i')"></th:block>
+											</div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +182,7 @@
 									</div>
 									<div class="card-body">
 										<div class="toolbar"></div>
-										<div class="material-datatables">
+										<div class="material-datatables" id="activitylists_s" th:fragment="activitylists_s">
 											<table id="activity_datatables_s" class="table table-hover" cellspacing="0" width="100%" style="width: 100%">
 												<thead>
 													<tr>
@@ -199,7 +193,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:each="entity,idx:${f010005Params.select2}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
+													<tr th:each="entity,idx:${f010005Params.select2.list}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
 														<td>[[${entity.activity_head}]]</td>
 														<td>[[${entity.activity_sttymd}]]</td>
 														<td>[[${entity.activity_endymd}]]</td>
@@ -207,6 +201,9 @@
 													</tr>
 												</tbody>
 											</table>
+											<div class="center-block">
+												<th:block th:replace="table :: mytable(${f010005Params.select2},'/f010005/T012','activitylists_s')"></th:block>
+											</div>
 										</div>
 									</div>
 								</div>

@@ -26,4 +26,10 @@ public interface F010005Service {
 
 	public F010005EntityOut service10(F010005EntityIn entityin) throws ErrListException;
 
+	public F010005EntityOut service11(F010005EntityIn entityin) throws ErrListException;
+
+	public F010005EntityOut service12(F010005EntityIn entityin) throws ErrListException;
+
+	public F010005EntityOut service13(F010005EntityIn entityin) throws ErrListException;
+
 }

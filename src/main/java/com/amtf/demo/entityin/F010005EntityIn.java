@@ -33,4 +33,5 @@ public class F010005EntityIn extends UserImpl {
 	 */
 	private String level;
 
+	Integer pageNum;
 }
