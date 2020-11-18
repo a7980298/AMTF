@@ -491,9 +491,9 @@
 											<button class="btn btn-kv pad-0 m-0 text-center comment_now btn-info comment2 mt-2" onclick="amtf_activeQuickSpeech(0)">快速发言</button>
 										</div>
 									</div>
-									<div class="card-body" id="commentselect5" th:fragment="commentselect5" th:if="${not #lists.isEmpty(f010005Params.commentlist)}">
+									<div class="card-body" id="commentselect5" th:fragment="commentselect5" th:if="${not #lists.isEmpty(f010005Params.commentlist.list)}">
 										<ul class="navbar-nav">
-											<div th:each="entity1,idx:${f010005Params.commentlist}" th:if="${entity1 != null}">
+											<div th:each="entity1,idx:${f010005Params.commentlist.list}" th:if="${entity1 != null}">
 												<li class="nav-item d-flex" th:classappend="${idx.index == 0 ? '' : 'li_top'}">
 													<div>
 														<img th:src="@{/imgs/userimg.jpg}" th:if="${entity1.amtfactivitycommententity.imgpath == ''}" id="img1" style="height:34px;"/>
@@ -540,6 +540,9 @@
 												</div>
 											</div>
 										</ul>
+										<div class="center-block">
+											<th:block th:replace="activity_table :: myactivity_table(${f010005Params.commentlist},'/f010005/T010','activitylists')"></th:block>
+										</div>
 									</div>
 								</div>
 							</div>
