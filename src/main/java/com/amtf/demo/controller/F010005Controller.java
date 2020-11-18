@@ -37,7 +37,7 @@ public class F010005Controller extends ValiDationUtil {
 
 	/**
 	 * 初始化
-	 * 
+	 *
 	 * @parameter F010005Params params
 	 * @return String
 	 */
@@ -60,7 +60,7 @@ public class F010005Controller extends ValiDationUtil {
 
 	/**
 	 * 参加活动
-	 * 
+	 *
 	 * @parameter F010005Params params
 	 * @return String
 	 */

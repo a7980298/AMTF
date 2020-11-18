@@ -157,6 +157,26 @@
 				setFormValidation('#' + this.id);
 			});
 		}
+
+		function amtf_table(_id,_url,_pageNum) {
+			$.ajax({
+				url : CONTEXT_PATH + _url,
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					pageNum : _pageNum,
+				},
+				success : function(result) {
+					if(result != ''){
+						$('#' + _id).replaceWith(result);
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
 	</script>
 </th:block>
 </html>

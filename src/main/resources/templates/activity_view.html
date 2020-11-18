@@ -1,395 +1,395 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
-<th:block th:replace="import :: myimport"></th:block>
-<style type="text/css">
-	.lookeye{
-		color: #7d8590;
-	}
-	.btn_login{
-		width: 70px;
-		height: 30px;
-		background-color:transparent;
-		border-style:none;
-		margin-top: 4px;
-		margin-bottom: 4px;
-	}
-	.btn_login:hover{
-		width: 70px;
-		height: 30px;
-		background-color:#b4b8b956;
-		border-style:none;
-		margin-top: 4px;
-		margin-bottom: 4px;
-	}
-	.li_bottom{
-		border-bottom :1px solid;
-		border-bottom-color:#b4b8b956;
-	}
-	.li_top{
-		border-top :1px solid;
-		border-top-color:#b4b8b956;
-		padding-top: 3px;
-	}
-	.dis_none{
-		display:none;
-	}
-	.dis_block{
-		display:block;
-	}
-</style>
-<script type="text/javascript">
-	var _replyid='';
-	$(function(){
-		if('[[${f010005Params.fabulous}]]' === '1'){
-			$('#fabulous').css('color','#ff5656');
+	<meta charset="UTF-8">
+	<title></title>
+	<th:block th:replace="import :: myimport"></th:block>
+	<style type="text/css">
+		.lookeye{
+			color: #7d8590;
 		}
-		if('[[${f010005Params.insert10}]]' === '1'){
-			$('#setusetactivity').css('color','rgb(21, 158, 255)');
-			$('#setusetactivity_a').find('span').eq(0).text('已参加')
-			$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
+		.btn_login{
+			width: 70px;
+			height: 30px;
+			background-color:transparent;
+			border-style:none;
+			margin-top: 4px;
+			margin-bottom: 4px;
 		}
-		$('#activity_activitytext').html(htmlRestore('[[${f010005Params.select3.activity_text}]]'));
-		$(document).click( function (e) {  // 在页面任意位置点击而触发此事件
-			if(!$(e.target).hasClass('comment_now')){
-				$('#comment_text').attr('rows','2');
-				$('.comment2').css('display','none');
-				$('#comment1').css('display','block');
-			}
-			if(!$(e.target).hasClass('commentreply_now')){
-				$('#comment_replydiv').remove();
-			}
-		})
-	})
-	//查看活动详情
-	function amtf_getactivity(_this) {
-		var newinput = getNewInput('activity_id', _this.activity_id);
-		amtf_form.appendChild(newinput);
-		amtf_submitNew(amtf_form, '/f010005/T002');
-		reomveNewInput('activity_id');
-	}
-	//text聚焦事件
-	function amtf_activeTextClick() {
-		$('#comment_text').prop('rows','6');
-		$('#comment1').css('display','none');
-		$('.comment2').css('display','block');
-		$('#comment_text').focus();
-	}
-	// 发言
-	function amtf_activeText(_is){
-		if(_is != 1){
-			if($('#comment_text').val() == '') {
-				$('#comment_text').attr('rows','2');
-				$('#comment1').css('display','block');
-				$('.comment2').css('display','none');
-			} else {
-				$.ajax({
-					url : CONTEXT_PATH + '/f010005/T003',
-					type : 'post',
-					dateType : 'html',
-					async : true,
-					data : {
-						id : '[[${f010005Params.select3.activity_id}]]',
-						text : $('#comment_text').val(),
-					},
-					success : function(result) {
-						if (result.iscomment < 1){
-							md.showNotification('bottom', 'center', '2', '发言失败。。。');
-						} else{
-							amtf_refreshComment();
-						}
-					},
-					error : function(res, textStaus) {
-						setCodeErrList("错误！！！请和管理员联系。。。");
-					},
-				});
-			}
-		} else {
-			if($('#comment_reply').val() == '') {
-				$('#comment_replydiv').remove();
-			} else {
-				$.ajax({
-					url : CONTEXT_PATH + '/f010005/T005',
-					type : 'post',
-					dateType : 'html',
-					async : true,
-					data : {
-						id : _replyid,
-						text : $('#comment_reply').val(),
-					},
-					success : function(result) {
-						if (result.isreply < 1){
-							md.showNotification('bottom', 'center', '2', '发言失败。。。');
-						} else{
-							amtf_refreshComment();
-						}
-					},
-					error : function(res, textStaus) {
-						setCodeErrList("错误！！！请和管理员联系。。。");
-					},
-				});
-			}
+		.btn_login:hover{
+			width: 70px;
+			height: 30px;
+			background-color:#b4b8b956;
+			border-style:none;
+			margin-top: 4px;
+			margin-bottom: 4px;
 		}
-	}
-	// 快速发言
-	function amtf_activeQuickSpeech(_is) {
-		var speechs=new Array();
-		speechs.push('阿弥陀佛🙏');
-		speechs.push('善哉善哉。。。');
-		speechs.push('🙏🙏🙏🙏🙏🙏');
-		speechs.push('说的太对了🙏');
-		if (_is != 1){
-			$('#comment_text').val(speechs[getRandomInt(0,3)]);
-		} else {
-			$('#comment_reply').val(speechs[getRandomInt(0,3)]);
+		.li_bottom{
+			border-bottom :1px solid;
+			border-bottom-color:#b4b8b956;
 		}
-	}
-	// 评论点赞手势变更
-	function amtf_thumbsFocus(_this) {
-		$(_this).removeClass('fa-thumbs-o-up');
-		$(_this).addClass('fa-thumbs-up');
-	}
-	function amtf_thumbsBlur(_this) {
-		$(_this).removeClass('fa-thumbs-up');
-		$(_this).addClass('fa-thumbs-o-up');
-	}
-	//评论点赞
-	function amtf_thumbsClick(_this, _index) {
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T008',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : '[[${f010005Params.select3.activity_id}]]',
-				comment_id : _this.activity_comment_id.toString(),
-			},
-			success : function(result) {
-				if(result.comment_fabulous == 'insert0'){
-					md.showNotification('bottom', 'center', '2', '评论点赞失败。。。');
-				} else if(result.comment_fabulous == 'delete0') {
-					md.showNotification('bottom', 'center', '2', '取消评论点赞失败。。。');
-				} else {
-					if (result.comment_fabulous != '0') {
-						$('#comment_fabulous_count' + _index).text(result.comment_fabulous);
-					} else {
-						$('#comment_fabulous_count' + _index).text('');
-					}
+		.li_top{
+			border-top :1px solid;
+			border-top-color:#b4b8b956;
+			padding-top: 3px;
+		}
+		.dis_none{
+			display:none;
+		}
+		.dis_block{
+			display:block;
+		}
+	</style>
+	<script type="text/javascript">
+		var _replyid='';
+		$(function(){
+			if('[[${f010005Params.fabulous}]]' === '1'){
+				$('#fabulous').css('color','#ff5656');
+			}
+			if('[[${f010005Params.insert10}]]' === '1'){
+				$('#setusetactivity').css('color','rgb(21, 158, 255)');
+				$('#setusetactivity_a').find('span').eq(0).text('已参加')
+				$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
+			}
+			$('#activity_activitytext').html(htmlRestore('[[${f010005Params.select3.activity_text}]]'));
+			$(document).click( function (e) {  // 在页面任意位置点击而触发此事件
+				if(!$(e.target).hasClass('comment_now')){
+					$('#comment_text').attr('rows','2');
+					$('.comment2').css('display','none');
+					$('#comment1').css('display','block');
 				}
-			},
-			error : function(res, textStaus) {
-				hidediv();
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
-	// 参加活动
-	function amtf_setusetactivity() {
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T001',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : '[[${f010005Params.select3.activity_id}]]',
-			},
-			success : function(result) {
-				if (result.isuseractivity > 0) {
-					md.showNotification('top', 'center', '3', '参加成功。。。');
-					$('#setusetactivity').css('color','rgb(21, 158, 255)');
-					$('#setusetactivity_a').find('span').eq(0).text('已参加')
-					$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
-				} else if (result.isuseractivity == 0) {
+				if(!$(e.target).hasClass('commentreply_now')){
+					$('#comment_replydiv').remove();
+				}
+			})
+		})
+		//查看活动详情
+		function amtf_getactivity(_this) {
+			var newinput = getNewInput('activity_id', _this.activity_id);
+			amtf_form.appendChild(newinput);
+			amtf_submitNew(amtf_form, '/f010005/T002');
+			reomveNewInput('activity_id');
+		}
+		//text聚焦事件
+		function amtf_activeTextClick() {
+			$('#comment_text').prop('rows','6');
+			$('#comment1').css('display','none');
+			$('.comment2').css('display','block');
+			$('#comment_text').focus();
+		}
+		// 发言
+		function amtf_activeText(_is){
+			if(_is != 1){
+				if($('#comment_text').val() == '') {
+					$('#comment_text').attr('rows','2');
+					$('#comment1').css('display','block');
+					$('.comment2').css('display','none');
+				} else {
+					$.ajax({
+						url : CONTEXT_PATH + '/f010005/T003',
+						type : 'post',
+						dateType : 'html',
+						async : true,
+						data : {
+							id : '[[${f010005Params.select3.activity_id}]]',
+							text : $('#comment_text').val(),
+						},
+						success : function(result) {
+							if (result.iscomment < 1){
+								md.showNotification('bottom', 'center', '2', '发言失败。。。');
+							} else{
+								amtf_refreshComment();
+							}
+						},
+						error : function(res, textStaus) {
+							setCodeErrList("错误！！！请和管理员联系。。。");
+						},
+					});
+				}
+			} else {
+				if($('#comment_reply').val() == '') {
+					$('#comment_replydiv').remove();
+				} else {
+					$.ajax({
+						url : CONTEXT_PATH + '/f010005/T005',
+						type : 'post',
+						dateType : 'html',
+						async : true,
+						data : {
+							id : _replyid,
+							text : $('#comment_reply').val(),
+						},
+						success : function(result) {
+							if (result.isreply < 1){
+								md.showNotification('bottom', 'center', '2', '发言失败。。。');
+							} else{
+								amtf_refreshComment();
+							}
+						},
+						error : function(res, textStaus) {
+							setCodeErrList("错误！！！请和管理员联系。。。");
+						},
+					});
+				}
+			}
+		}
+		// 快速发言
+		function amtf_activeQuickSpeech(_is) {
+			var speechs=new Array();
+			speechs.push('阿弥陀佛🙏');
+			speechs.push('善哉善哉。。。');
+			speechs.push('🙏🙏🙏🙏🙏🙏');
+			speechs.push('说的太对了🙏');
+			if (_is != 1){
+				$('#comment_text').val(speechs[getRandomInt(0,3)]);
+			} else {
+				$('#comment_reply').val(speechs[getRandomInt(0,3)]);
+			}
+		}
+		// 评论点赞手势变更
+		function amtf_thumbsFocus(_this) {
+			$(_this).removeClass('fa-thumbs-o-up');
+			$(_this).addClass('fa-thumbs-up');
+		}
+		function amtf_thumbsBlur(_this) {
+			$(_this).removeClass('fa-thumbs-up');
+			$(_this).addClass('fa-thumbs-o-up');
+		}
+		//评论点赞
+		function amtf_thumbsClick(_this, _index) {
+			$.ajax({
+				url : CONTEXT_PATH + '/f010005/T008',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : '[[${f010005Params.select3.activity_id}]]',
+					comment_id : _this.activity_comment_id.toString(),
+				},
+				success : function(result) {
+					if(result.comment_fabulous == 'insert0'){
+						md.showNotification('bottom', 'center', '2', '评论点赞失败。。。');
+					} else if(result.comment_fabulous == 'delete0') {
+						md.showNotification('bottom', 'center', '2', '取消评论点赞失败。。。');
+					} else {
+						if (result.comment_fabulous != '0') {
+							$('#comment_fabulous_count' + _index).text(result.comment_fabulous);
+						} else {
+							$('#comment_fabulous_count' + _index).text('');
+						}
+					}
+				},
+				error : function(res, textStaus) {
+					hidediv();
 					setCodeErrList("错误！！！请和管理员联系。。。");
-				} else {
-					$('#setusetactivity').css('color','');
-					$('#setusetactivity_a').find('span').eq(0).text('参加')
-					$('#setusetactivity_a').find('span').eq(0).css('color','');
-				}
-				$('#useractivity_count').text(result.useractivity_count);
-			},
-			error : function(res, textStaus) {
-				hidediv();
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
-	// 回复按钮押下
-	function amtf_comment_reply(_dom,_this) {
-		if($('#comment_replydiv').html() == undefined){
-			var str='';
-			str +="<div class='card-body d-flex commentreply_now' id='comment_replydiv'>";
-			str +="<div class='commentreply_now'>";
-			str += $("#comment_div img").prop('outerHTML')
-			str += "</div>";
-			str += "<div class='col-sm-10 commentreply_now'>";
-			str += "<textarea class='col-sm-12 m-0 pl-0 commentreply_now' defaultValue='请输入你的评论。。。' cols='40' rows='2' id='comment_reply'></textarea>";
-			str += "</div>";
-			str += "<div class='col-sm-1 pad-0 commentreply_now'>";
-			str += "<button class='btn pad-0 m-0 commentreply_now text-center btn-reddit commentreply2' onclick='amtf_activeText(1)'>发表评论</button>";
-			str += "<button class='btn pad-0 m-0 commentreply_now text-center btn-info commentreply2 mt-2' onclick='amtf_activeQuickSpeech(1)'>快速发言</button>";
-			str += "</div>";
-			str += "</div>";
-			$(_this).parents('li').after(str);
-			_replyid = _dom.activity_comment_id;
+				},
+			});
 		}
-	}
-	//删除评论
-	function amtf_removeReply(_entity,_level) {
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T007',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : '[[${f010005Params.select3.activity_id}]]',
-				comment_id : _entity,
-				level : _level,
-			},
-			success : function(result) {
-				if(result.comment_delete < 1){
-					md.showNotification('bottom', 'center', '2', '删除评论失败。。。');
-				} else {
-					amtf_refreshComment();
-				}
-			},
-			error : function(res, textStaus) {
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
-	//点赞
-	function amtf_activeFabulous() {
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T006',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : '[[${f010005Params.select3.activity_id}]]',
-			},
-			success : function(result) {
-				if(result.fabulous == 'insert0'){
-					md.showNotification('bottom', 'center', '2', '点赞失败。。。');
-				} else if(result.fabulous == 'delete0') {
-					md.showNotification('bottom', 'center', '2', '取消点赞失败。。。');
-				} else if(result.fabulous == 'insert1') {
-					if($('#fabulouscount').text() == '') {
-						$('#fabuloustext').after("<span id=\"fabulouscount\">1</span>");
+		// 参加活动
+		function amtf_setusetactivity() {
+			$.ajax({
+				url : CONTEXT_PATH + '/f010005/T001',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : '[[${f010005Params.select3.activity_id}]]',
+				},
+				success : function(result) {
+					if (result.isuseractivity > 0) {
+						md.showNotification('top', 'center', '3', '参加成功。。。');
+						$('#setusetactivity').css('color','rgb(21, 158, 255)');
+						$('#setusetactivity_a').find('span').eq(0).text('已参加')
+						$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
+					} else if (result.isuseractivity == 0) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
 					} else {
-						$('#fabulouscount').text(parseInt($('#fabulouscount').text()) + 1);
+						$('#setusetactivity').css('color','');
+						$('#setusetactivity_a').find('span').eq(0).text('参加')
+						$('#setusetactivity_a').find('span').eq(0).css('color','');
 					}
-					$('#fabulous').css('color','#ff5656');
-				} else if(result.fabulous == 'delete1') {
-					if((parseInt($('#fabulouscount').text()) - 1) == 0) {
-						$('#fabulouscount').remove();
-					} else {
-						$('#fabulouscount').text(parseInt($('#fabulouscount').text()) - 1);
-					}
-					$('#fabulous').css('color','');
-				}
-			},
-			error : function(res, textStaus) {
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
-	//举报
-	function amtf_getActivityReport() {
-		$('#activity_report').modal('show');
-	}
-	//刷新评论
-	function amtf_refreshComment() {
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T004',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : '[[${f010005Params.select3.activity_id}]]',
-			},
-			success : function(result) {
-				if(result != ''){
-					$('#commentselect5').replaceWith(result);
-					$('#comment_reply').val('');
-				}
-			},
-			error : function(res, textStaus) {
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
-	// 关注按钮的鼠标悬停
-	function amtf_attentionMouseMove(_this) {
-		if($(_this).text() != '关注'){
-			$(_this).text('取消关注');
-			$(_this).css('color','red');
+					$('#useractivity_count').text(result.useractivity_count);
+				},
+				error : function(res, textStaus) {
+					hidediv();
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
 		}
-	}
-	// 关注按钮的鼠标离开
-	function amtf_attentionMouseOut(_this) {
-		if($(_this).text() != '关注'){
-			$(_this).text('已关注');
-			$(_this).css('color','');
-		}
-	}
-	// 关注按钮的鼠标点击
-	function amtf_attentionClick(_this) {
-		$.ajax({
-			url : CONTEXT_PATH + '/f010005/T009',
-			type : 'post',
-			dateType : 'html',
-			async : true,
-			data : {
-				id : _this.user_email,
-			},
-			success : function(result) {
-				if(result.attention == 'insert0'){
-					md.showNotification('bottom', 'center', '2', '关注失败。。。');
-				} else if(result.attention == 'delete0') {
-					md.showNotification('bottom', 'center', '2', '取消关注失败。。。');
-				} else if(result.attention == 'insert1') {
-					$('#attention_btn').removeClass('btn-reddit');
-					$('#attention_btn').text('已关注');
-				} else if(result.attention == 'delete1') {
-					$('#attention_btn').addClass('btn-reddit');
-					$('#attention_btn').text('关注');
-				}
-			},
-			error : function(res, textStaus) {
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			},
-		});
-	}
-	//TA的主页
-	function amtf_goToHomePage(_this) {
-		var newinput = getNewInput('user', _this.user_email);
-		amtf_form.appendChild(newinput);
-		amtf_submit(amtf_form, '/f010011');
-		reomveNewInput('user');
-	}
-	window.onload = function(){
-		var main = new Vue({
-			el: '#main',
-			data: {
-				user_name: ''
+		// 回复按钮押下
+		function amtf_comment_reply(_dom,_this) {
+			if($('#comment_replydiv').html() == undefined){
+				var str='';
+				str +="<div class='card-body d-flex commentreply_now' id='comment_replydiv'>";
+				str +="<div class='commentreply_now'>";
+				str += $("#comment_div img").prop('outerHTML')
+				str += "</div>";
+				str += "<div class='col-sm-10 commentreply_now'>";
+				str += "<textarea class='col-sm-12 m-0 pl-0 commentreply_now' defaultValue='请输入你的评论。。。' cols='40' rows='2' id='comment_reply'></textarea>";
+				str += "</div>";
+				str += "<div class='col-sm-1 pad-0 commentreply_now'>";
+				str += "<button class='btn pad-0 m-0 commentreply_now text-center btn-reddit commentreply2' onclick='amtf_activeText(1)'>发表评论</button>";
+				str += "<button class='btn pad-0 m-0 commentreply_now text-center btn-info commentreply2 mt-2' onclick='amtf_activeQuickSpeech(1)'>快速发言</button>";
+				str += "</div>";
+				str += "</div>";
+				$(_this).parents('li').after(str);
+				_replyid = _dom.activity_comment_id;
 			}
-		})
-	}
-</script>
+		}
+		//删除评论
+		function amtf_removeReply(_entity,_level) {
+			$.ajax({
+				url : CONTEXT_PATH + '/f010005/T007',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : '[[${f010005Params.select3.activity_id}]]',
+					comment_id : _entity,
+					level : _level,
+				},
+				success : function(result) {
+					if(result.comment_delete < 1){
+						md.showNotification('bottom', 'center', '2', '删除评论失败。。。');
+					} else {
+						amtf_refreshComment();
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		//点赞
+		function amtf_activeFabulous() {
+			$.ajax({
+				url : CONTEXT_PATH + '/f010005/T006',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : '[[${f010005Params.select3.activity_id}]]',
+				},
+				success : function(result) {
+					if(result.fabulous == 'insert0'){
+						md.showNotification('bottom', 'center', '2', '点赞失败。。。');
+					} else if(result.fabulous == 'delete0') {
+						md.showNotification('bottom', 'center', '2', '取消点赞失败。。。');
+					} else if(result.fabulous == 'insert1') {
+						if($('#fabulouscount').text() == '') {
+							$('#fabuloustext').after("<span id=\"fabulouscount\">1</span>");
+						} else {
+							$('#fabulouscount').text(parseInt($('#fabulouscount').text()) + 1);
+						}
+						$('#fabulous').css('color','#ff5656');
+					} else if(result.fabulous == 'delete1') {
+						if((parseInt($('#fabulouscount').text()) - 1) == 0) {
+							$('#fabulouscount').remove();
+						} else {
+							$('#fabulouscount').text(parseInt($('#fabulouscount').text()) - 1);
+						}
+						$('#fabulous').css('color','');
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		//举报
+		function amtf_getActivityReport() {
+			$('#activity_report').modal('show');
+		}
+		//刷新评论
+		function amtf_refreshComment() {
+			$.ajax({
+				url : CONTEXT_PATH + '/f010005/T004',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : '[[${f010005Params.select3.activity_id}]]',
+				},
+				success : function(result) {
+					if(result != ''){
+						$('#commentselect5').replaceWith(result);
+						$('#comment_reply').val('');
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		// 关注按钮的鼠标悬停
+		function amtf_attentionMouseMove(_this) {
+			if($(_this).text() != '关注'){
+				$(_this).text('取消关注');
+				$(_this).css('color','red');
+			}
+		}
+		// 关注按钮的鼠标离开
+		function amtf_attentionMouseOut(_this) {
+			if($(_this).text() != '关注'){
+				$(_this).text('已关注');
+				$(_this).css('color','');
+			}
+		}
+		// 关注按钮的鼠标点击
+		function amtf_attentionClick(_this) {
+			$.ajax({
+				url : CONTEXT_PATH + '/f010005/T009',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				data : {
+					id : _this.user_email,
+				},
+				success : function(result) {
+					if(result.attention == 'insert0'){
+						md.showNotification('bottom', 'center', '2', '关注失败。。。');
+					} else if(result.attention == 'delete0') {
+						md.showNotification('bottom', 'center', '2', '取消关注失败。。。');
+					} else if(result.attention == 'insert1') {
+						$('#attention_btn').removeClass('btn-reddit');
+						$('#attention_btn').text('已关注');
+					} else if(result.attention == 'delete1') {
+						$('#attention_btn').addClass('btn-reddit');
+						$('#attention_btn').text('关注');
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		//TA的主页
+		function amtf_goToHomePage(_this) {
+			var newinput = getNewInput('user', _this.user_email);
+			amtf_form.appendChild(newinput);
+			amtf_submit(amtf_form, '/f010011');
+			reomveNewInput('user');
+		}
+		window.onload = function(){
+			var main = new Vue({
+				el: '#main',
+				data: {
+					user_name: ''
+				}
+			})
+		}
+	</script>
 </head>
 <body>
-	<div class="wrapper" id="main">
-		<th:block th:replace="navbar :: mynavbar"></th:block>
-		<div class="main-panel">
-			<th:block th:replace="head :: myhead"></th:block>
-			<div class="content">
-				<!-- 活动一览 -->
-				<div class="container-fluid dashboardclass" id="f010005">
-					<div class="container-fluid d-flex">
-						<i-form class="col-sm-12" th:action="@{/f010005}" method="post" style="height:100%;width: 100%" id="amtf_form" enctype="multipart/form-data">
+<div class="wrapper" id="main">
+	<th:block th:replace="navbar :: mynavbar"></th:block>
+	<div class="main-panel">
+		<th:block th:replace="head :: myhead"></th:block>
+		<div class="content">
+			<!-- 活动一览 -->
+			<div class="container-fluid dashboardclass" id="f010005">
+				<div class="container-fluid d-flex">
+					<i-form class="col-sm-12" th:action="@{/f010005}" method="post" style="height:100%;width: 100%" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f010005"/>
 						<div class="row">
 							<div class="col-md-2">
@@ -624,11 +624,11 @@
 								</div>
 							</div>
 						</div>
-						</i-form>
-					</div>
+					</i-form>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

@@ -63,7 +63,7 @@ public class F010005EntityOut extends UserImpl {
 	/**
 	 * 活动评论
 	 */
-	List<CommentListEntity> commentlist;
+	PageInfo<CommentListEntity>  commentlist;
 
 	/**
 	 * 一级评论添加

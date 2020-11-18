@@ -80,7 +80,7 @@ public class F010005Params extends UserImpl {
 	/**
 	 * 活动评论
 	 */
-	private List<CommentListEntity> commentlist;
+	private PageInfo<CommentListEntity>  commentlist;
 
 	/**
 	 * 活动点赞人数

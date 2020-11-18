@@ -59,9 +59,6 @@ public class F010005ServiceImpl implements F010005Service {
 		// 我发布的活动
 		entityout.setSelect2(this.service13(entityIn).getSelect2());
 
-
-
-
 		return entityout;
 	}
 
@@ -239,6 +236,7 @@ public class F010005ServiceImpl implements F010005Service {
 	public F010005EntityOut service05(F010005EntityIn entityin) throws ErrListException {
 		F010005EntityOut entityout = new F010005EntityOut();
 		//活动一级评论
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
 		List<AmtfActivityCommentEntity> select5 = f010005dao.f010005_Select5(NumberUtil.toInt(entityin.getActivity_id()));
 		List<CommentListEntity> commentlist=new ArrayList<CommentListEntity>();
 		select5.removeAll(Collections.singleton(null));
@@ -268,8 +266,8 @@ public class F010005ServiceImpl implements F010005Service {
 				commentlist.add(commentlistentity);
 			}
 			// 排序
-
-			entityout.setCommentlist(commentlist);
+			PageInfo<CommentListEntity> pageInfo = new PageInfo<>(commentlist);
+			entityout.setCommentlist(pageInfo);
 		}
 		return entityout;
 	}
