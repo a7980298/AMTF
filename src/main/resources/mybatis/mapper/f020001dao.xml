@@ -6,7 +6,7 @@
 			 *
 		FROM 
 			AMTF_User
-		WHERE f020001_insert6
+		WHERE
 			USER_power &lt; #{pow}
 	</select>
 	<select id="f020001_Select2" resultType="com.amtf.demo.f010001entity.F010001_Select1Entity">
