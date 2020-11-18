@@ -370,10 +370,18 @@
 		amtf_submit(amtf_form, '/f010011');
 		reomveNewInput('user');
 	}
+	window.onload = function(){
+		var main = new Vue({
+			el: '#main',
+			data: {
+				user_name: ''
+			}
+		})
+	}
 </script>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" id="main">
 		<th:block th:replace="navbar :: mynavbar"></th:block>
 		<div class="main-panel">
 			<th:block th:replace="head :: myhead"></th:block>
@@ -392,7 +400,7 @@
 												<img th:src="@{/imgs/userimg.jpg}" th:if="${f010005Params.select4.imgpath == ''}" id="img1" style="height:34px;"/>
 												<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010005Params.select4.imgpath})}" th:if="${f010005Params.select4.imgpath != ''}" id="img1" style="height:34px;"/>
 												<span>
-													[[${f010005Params.select4.user_name}]]
+													[[${f010005Params.select4.user_name}]]{{ user_name }}
 													<b class="caret"></b>
 												</span>
 											</div>
