@@ -50,6 +50,7 @@
 		// 进行下文提到的其他配置
 		// 将图片大小限制为 3M
 		activity_editor.config.uploadImgMaxSize = 3 * 1024 * 1024
+		// 自己写上传图片
 		activity_editor.config.customUploadImg = function (resultFiles, insertImgFn) {
 			// resultFiles 是 input 中选中的文件列表
 			// insertImgFn 是获取图片 url 后，插入到编辑器的方法
@@ -258,8 +259,8 @@
 									</div>
 								</div>
 								<div class="card-body ">
-									<div class="panel-body" style="height: 850px">
-										<div id="activity_editor" style="height: 800px"></div>
+									<div class="panel-body">
+										<div id="activity_editor"></div>
 									</div>
 									<div class="panel-body text-center">
 										<button class="btn btn-primary btn-lg" onclick="amtf_activity()">发布</button>
