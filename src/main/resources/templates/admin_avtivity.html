@@ -19,7 +19,6 @@
 		// 注册wangEditor插件
 		var E_activity = window.wangEditor;
 		activity_editor = new E_activity('#activity_editor');
-		activity_editor.customConfig.zIndex = 100;
 		activity_editor.customConfig.menus = [
 			'head',  // 标题
 			'bold' /** 粗体*/, 'fontSize' /** 字号 */, 'fontName' /** 字体 */,'italic' /** 斜体 */,
@@ -39,14 +38,20 @@
 			'undo',  // 撤销
 			'redo'  // 重复
 		]
+		//开启debug模式
+		activity_editor.customConfig.debug = true;
+		// 关闭粘贴内容中的样式
+		activity_editor.customConfig.pasteFilterStyle = false
+		// 忽略粘贴内容中的图片
+		activity_editor.customConfig.pasteIgnoreImg = true
 		// 上传路径
-		activity_editor.customConfig.uploadImgServer = '/f020005/T007'
-		activity_editor.customConfig.uploadFileName = 'file'
+
+		activity_editor.customConfig.uploadFileName = 'myFile'
+		activity_editor.customConfig.uploadImgServer = '/amtf/f020005/T002'
 		// 进行下文提到的其他配置
 		// 将图片大小限制为 3M
 		activity_editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024
-		// 限制一次最多上传 5 张图片
-		activity_editor.customConfig.uploadImgMaxLength = 5
+
 		//自定义上传图片事件
 		activity_editor.customConfig.uploadImgHooks = {
 			before: function(xhr, editor, files) {
@@ -57,7 +62,6 @@
 			//此处失败是服务端返回有数据，但自动设置图片出错，一般是返回数据格式问题
 			fail: function(xhr, editor, result) {
 				console.log("上传失败,原因是" + result);
-				console.log(result);
 			},
 			error: function(xhr, editor) {
 				console.log("上传出错");
@@ -65,14 +69,14 @@
 			timeout: function(xhr, editor) {
 				console.log("上传超时");
 			},
-			// 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-			// （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
-			customInsert: function (insertImg, result, editor) {
-				// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
-				// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
-				// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
-				insertImg(result.data.url)
-				// result 必须是一个 JSON 格式字符串！！！否则报错
+			// 图片上传并返回了结果，想要自己把图片插入到编辑器中
+			// 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
+			customInsert: function(insertImgFn, result) {
+				// result 即服务端返回的接口
+				console.log('customInsert', result)
+
+				// insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
+				insertImgFn('/amtf/wangeditorimg/' + result.data[0].replace('C:/wangEdito_Img'))
 			}
 		}
 		activity_editor.create();
@@ -120,12 +124,6 @@
 			}
 		}
 		var formData = new FormData($('#amtf_form')[0]);
-
-		formData.append("activity_img1", $('#activity_img1')[0].files[0]);
-		formData.append("activity_img2", $('#activity_img2')[0].files[0]);
-		formData.append("activity_img3", $('#activity_img3')[0].files[0]);
-		formData.append("activity_img4", $('#activity_img4')[0].files[0]);
-		formData.append("activity_img5", $('#activity_img5')[0].files[0]);
 		formData.set("activity_head", $('#activity_head').val());
 		formData.set("activity_position", $('#activity_position').val());
 		formData.set("activity_check", check);
@@ -237,113 +235,6 @@
 										<div class="col-sm-10">
 											<div class="form-group">
 												<input type="text" class="form-control dateymd" name="activity_endymd" id="activity_endymd">
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-body" style="margin:auto;">
-											<div class="fileinput fileinput-new text-center ml-3" data-provides="fileinput">
-												<div class="fileinput-new thumbnail">
-													<img th:src="@{/img/image_placeholder.jpg}" alt="activity_img1">
-												</div>
-												<div class="fileinput-preview fileinput-exists thumbnail"></div>
-												<div>
-												<span class="btn btn-rose btn-round btn-file">
-													<span class="fileinput-new">选择图片</span>
-													<span class="fileinput-exists">
-														<i class="fa fa-refresh"></i>
-														重选
-													</span>
-													<input type="file" name="activity_img1" id="activity_img1"/>
-												</span>
-													<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-														<i class="fa fa-times"></i>
-														移除
-													</a>
-												</div>
-											</div>
-											<!-- <input id="file-file" type="file" name="file" multiple> -->
-											<div class="fileinput fileinput-new text-center ml-3" data-provides="fileinput">
-												<div class="fileinput-new thumbnail">
-													<img th:src="@{/img/image_placeholder.jpg}" alt="...">
-												</div>
-												<div class="fileinput-preview fileinput-exists thumbnail"></div>
-												<div>
-												<span class="btn btn-rose btn-round btn-file">
-													<span class="fileinput-new">选择图片</span>
-													<span class="fileinput-exists">
-														<i class="fa fa-refresh"></i>
-														重选
-													</span>
-													<input type="file" name="activity_img2" id="activity_img2"/>
-												</span>
-													<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-														<i class="fa fa-times"></i>
-														移除
-													</a>
-												</div>
-											</div>
-											<div class="fileinput fileinput-new text-center ml-3" data-provides="fileinput">
-												<div class="fileinput-new thumbnail">
-													<img th:src="@{/img/image_placeholder.jpg}" alt="...">
-												</div>
-												<div class="fileinput-preview fileinput-exists thumbnail"></div>
-												<div>
-												<span class="btn btn-rose btn-round btn-file">
-													<span class="fileinput-new">选择图片</span>
-													<span class="fileinput-exists">
-														<i class="fa fa-refresh"></i>
-														重选
-													</span>
-													<input type="file" name="activity_img3" id="activity_img3"/>
-												</span>
-													<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-														<i class="fa fa-times"></i>
-														移除
-													</a>
-												</div>
-											</div>
-											<div class="fileinput fileinput-new text-center ml-3"
-												 data-provides="fileinput">
-												<div class="fileinput-new thumbnail">
-													<img th:src="@{/img/image_placeholder.jpg}" alt="...">
-												</div>
-												<div class="fileinput-preview fileinput-exists thumbnail"></div>
-												<div>
-												<span class="btn btn-rose btn-round btn-file">
-													<span class="fileinput-new">选择图片</span>
-													<span class="fileinput-exists">
-														<i class="fa fa-refresh"></i>
-														重选
-													</span>
-													<input type="file" name="activity_img4" id="activity_img4"/>
-												</span>
-													<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-														<i class="fa fa-times"></i>
-														移除
-													</a>
-												</div>
-											</div>
-											<div class="fileinput fileinput-new text-center ml-3"
-												 data-provides="fileinput">
-												<div class="fileinput-new thumbnail">
-													<img th:src="@{/img/image_placeholder.jpg}" alt="...">
-												</div>
-												<div class="fileinput-preview fileinput-exists thumbnail"></div>
-												<div>
-												<span class="btn btn-rose btn-round btn-file">
-													<span class="fileinput-new">选择图片</span>
-													<span class="fileinput-exists">
-														<i class="fa fa-refresh"></i>
-														重选
-													</span>
-													<input type="file" name="activity_img5" id="activity_img5"/>
-												</span>
-													<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-														<i class="fa fa-times"></i>
-														移除
-													</a>
-												</div>
 											</div>
 										</div>
 									</div>

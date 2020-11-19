@@ -60,11 +60,6 @@ public class F020005ServiceImpl implements F020005Service {
 		// 图片上传
 		Integer activity_idInteger = CommonUtil.isEmpty(commondao.common_Select3()) ? 0
 				: commondao.common_Select3() + 1;
-		ImgUtil.activity_CommitImg(entityin.getActivity_img1(), activity_idInteger + "-1");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img2(), activity_idInteger + "-2");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img3(), activity_idInteger + "-3");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img4(), activity_idInteger + "-4");
-		ImgUtil.activity_CommitImg(entityin.getActivity_img5(), activity_idInteger + "-5");
 		// 添加活动
 		int insert6 = f020001dao.f020001_insert6(activity_idInteger, loginfo.getUser_email(),
 				entityin.getActivity_head(), entityin.getActivity_check(),

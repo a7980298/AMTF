@@ -302,7 +302,7 @@
 		}
 		//刷新评论
 		function amtf_refreshComment() {
-			amtf_activity_table('commentselect5','/f010005/T004',[[${f010005Params.commentlist.pageNum}]],'[[${f010005Params.select3.activity_id}]]');
+			amtf_activity_table('commentselect5','/f010005/T004',[[${f010005Params.commentlist.pageNum == null ? 0 : f010005Params.commentlist.pageNum == null}]],'[[${f010005Params.select3.activity_id}]]');
 			$('#comment_reply').val('');
 		}
 		// 关注按钮的鼠标悬停

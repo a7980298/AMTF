@@ -282,7 +282,11 @@ public class F010005ServiceImpl implements F010005Service {
 			pageInfo.setNextPage(pageInfo.getPageNum() == pageInfo.getPages() ? pageInfo.getPageNum() : pageInfo.getPageNum() + 1);
 			pageInfo.setPrePage(pageInfo.getPageNum() < 1 ? pageInfo.getPageNum() : pageInfo.getPageNum() - 1);
 			entityout.setCommentlist(pageInfo);
+		} else {
+			PageInfo<CommentListEntity> pageInfo = new PageInfo<>(commentlist);
+			entityout.setCommentlist(pageInfo);
 		}
+
 		return entityout;
 	}
 

@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ImgUtil {
@@ -113,44 +116,94 @@ public class ImgUtil {
 	}
 	
 	// 图片上传
-		public static void activity_CommitImg(MultipartFile file, String isuser) {
-			// 文件名
-			String fileName = file.getOriginalFilename();
-			if (!CommonUtil.isEmpty(fileName)) {
-				// 后缀名
-				String suffixName = fileName.substring(fileName.lastIndexOf("."));
-				// 上传后的路径
-				String filePath = "C:/activity_imgs/";
+	public static void activity_CommitImg(MultipartFile file, String isuser) {
+		// 文件名
+		String fileName = file.getOriginalFilename();
+		if (!CommonUtil.isEmpty(fileName)) {
+			// 后缀名
+			String suffixName = fileName.substring(fileName.lastIndexOf("."));
+			// 上传后的路径
+			String filePath = "C:/activity_imgs/";
 
-				// 随机一个文件名
-				fileName = ParameterUtil.getSession().getUser_email() + isuser;
+			// 随机一个文件名
+			fileName = ParameterUtil.getSession().getUser_email() + isuser;
 
-				filePath += fileName;
+			filePath += fileName;
 
-				boolean filetextbol = true;
-				// 创建流
-				File dest = null;
-				for (int i = 0; i < suffix.length; i++) {
-					dest = new File(filePath + suffix[i]);
-					// 判断文件夹是否存在
-					if (dest.getParentFile().exists()) {
-						filetextbol = false;
-						dest.delete();
-					}
-				}
-
-				if (filetextbol) {
-					dest = new File(filePath + suffixName);
-					// 新建生成所有目录
-					dest.getParentFile().mkdirs();
-				}
-
-				try {
-					// 将上传文件写到服务器上指定的文件。
-					file.transferTo(dest);
-				} catch (IOException e) {
-					e.printStackTrace();
+			boolean filetextbol = true;
+			// 创建流
+			File dest = null;
+			for (int i = 0; i < suffix.length; i++) {
+				dest = new File(filePath + suffix[i]);
+				// 判断文件夹是否存在
+				if (dest.getParentFile().exists()) {
+					filetextbol = false;
+					dest.delete();
 				}
 			}
+
+			if (filetextbol) {
+				dest = new File(filePath + suffixName);
+				// 新建生成所有目录
+				dest.getParentFile().mkdirs();
+			}
+
+			try {
+				// 将上传文件写到服务器上指定的文件。
+				file.transferTo(dest);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+	}
+	// 富文本图片上传
+	public static String wangEdito_CommitImg(MultipartFile file) {
+		// 文件名
+		String fileName = file.getOriginalFilename();
+		if (!CommonUtil.isEmpty(fileName)) {
+			// 后缀名
+			String suffixName = fileName.substring(fileName.lastIndexOf("."));
+			// 上传后的路径
+			String filePath = "C:/wangEdito_Img/";
+
+			// 随机一个文件名
+			fileName = ImgUtil.getFileName();
+
+			filePath += fileName;
+
+			boolean filetextbol = true;
+			// 创建流
+			File dest = null;
+			for (int i = 0; i < suffix.length; i++) {
+				dest = new File(filePath + suffix[i]);
+				// 判断文件夹是否存在
+				if (dest.getParentFile().exists()) {
+					filetextbol = false;
+					dest.delete();
+				}
+			}
+			if (filetextbol) {
+				dest = new File(filePath + suffixName);
+				// 新建生成所有目录
+				dest.getParentFile().mkdirs();
+			}
+			try {
+				// 将上传文件写到服务器上指定的文件。
+				file.transferTo(dest);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return getImgPath("C:/wangEdito_Img/",fileName);
+		}
+		return null;
+	}
+
+	public static String getFileName() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String timeStr = sdf.format(new Date());
+		String str = RandomStringUtils.random(5,
+				"abcdefghijklmnopqrstuvwxyz1234567890");
+		String name = timeStr + str;
+		return name;
+	}
 }
