@@ -69,7 +69,7 @@ public class F020005Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f020005/T001")
 	@ResponseBody
-	public Map<String, Object> f020005T007(@RequestParam("activity_head") String activity_head,
+	public Map<String, Object> f020005T001(@RequestParam("activity_head") String activity_head,
 										   @RequestParam("activity_position") String activity_position,
 										   @RequestParam("activity_check") String activity_check,
 										   @RequestParam("activity_sttymd") String activity_sttymd,
@@ -94,7 +94,6 @@ public class F020005Controller extends ValiDationUtil {
 		return map;
 	}
 
-
 	/**
 	 * 初始化
 	 *
@@ -103,10 +102,10 @@ public class F020005Controller extends ValiDationUtil {
 	 */
 	@RequestMapping(value = "/f020005/T002", method = RequestMethod.POST)
 	@ResponseBody
-	public WangEditor f020005S002(@RequestParam("myFile") MultipartFile multipartFile,
+	public WangEditor f020005T002(@RequestParam("myFile") MultipartFile multipartFile,
 							  HttpServletRequest request) {
 		try {
-			String[] str = { ImgUtil.wangEdito_CommitImg(multipartFile) };
+			String[] str = { ImgUtil.wangEdito_CommitImg(multipartFile,"C:/wangEdito_ActivityImg/") };
 			WangEditor we = new WangEditor();
 			we.setData(str);
 			return we;
@@ -114,6 +113,5 @@ public class F020005Controller extends ValiDationUtil {
 			System.out.println("上传文件失败"+ e);
 		}
 		return null;
-
 	}
 }

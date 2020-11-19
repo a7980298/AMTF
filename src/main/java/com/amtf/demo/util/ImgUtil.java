@@ -157,14 +157,14 @@ public class ImgUtil {
 		}
 	}
 	// 富文本图片上传
-	public static String wangEdito_CommitImg(MultipartFile file) {
+	public static String wangEdito_CommitImg(MultipartFile file,String url) {
 		// 文件名
 		String fileName = file.getOriginalFilename();
 		if (!CommonUtil.isEmpty(fileName)) {
 			// 后缀名
 			String suffixName = fileName.substring(fileName.lastIndexOf("."));
 			// 上传后的路径
-			String filePath = "C:/wangEdito_Img/";
+			String filePath = url;
 
 			// 随机一个文件名
 			fileName = ImgUtil.getFileName();
@@ -193,7 +193,7 @@ public class ImgUtil {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return getImgPath("C:/wangEdito_Img/",fileName);
+			return getImgPath(url,fileName);
 		}
 		return null;
 	}

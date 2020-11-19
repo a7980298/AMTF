@@ -19,9 +19,9 @@
 		// 注册wangEditor插件
 		var wangEditor = window.wangEditor;
 		var editor = new wangEditor('#editor');
-		editor.customConfig.zIndex = 100;
+		editor.config.zIndex = 100;
 		// 或者 var editor = new E( document.getElementById('editor') )
-		editor.create();
+
 		document.getElementById('textsumbit').addEventListener('click', function () {
 			showdiv();
 			$.ajax({
@@ -47,9 +47,44 @@
 				},
 			});
 		}, false)
+		//开启debug模式
+		editor.config.debug = true;
+		// 关闭粘贴内容中的样式
+		editor.config.pasteFilterStyle = false
+		// 忽略粘贴内容中的图片
+		editor.config.pasteIgnoreImg = true
+		// 上传路径
+		editor.config.uploadFileName = 'myFile'
+		editor.config.uploadImgServer = '/amtf/f020005/T002'
 		// 进行下文提到的其他配置
 		// 将图片大小限制为 3M
-		editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+		editor.config.uploadImgMaxSize = 3 * 1024 * 1024
+		// 自己写上传图片
+		editor.config.customUploadImg = function (resultFiles, insertImgFn) {
+			// resultFiles 是 input 中选中的文件列表
+			// insertImgFn 是获取图片 url 后，插入到编辑器的方法
+			var formData = new FormData($('#amtf_form')[0]);
+			formData.append("myFile", resultFiles[0]);
+			$.ajax({
+				url : CONTEXT_PATH + '/f020004/T002',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				cache: false,
+				processData : false, // 用于对data参数进行序列化处理
+				contentType : false, // 不要设置Content-Type请求头
+				data : formData,
+				success : function(result) {
+					// 上传图片，返回结果，将图片插入到编辑器中
+					insertImgFn('/amtf/wangallnoticesimg/' + result.data[0].replace('C:/wangEdito_AllnoticesImg'));
+				},
+				error : function(res, textStaus) {
+					hidediv();
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		editor.create();
 	});
 </script>
 <body class="" onunload="myFunction()">
