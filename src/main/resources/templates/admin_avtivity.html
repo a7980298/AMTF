@@ -17,11 +17,11 @@
 	var activity_editor;
 	$(function(){
 		// 注册wangEditor插件
-		var E_activity = window.wangEditor;
-		activity_editor = new E_activity('#activity_editor');
-		activity_editor.customConfig.menus = [
+		const E = window.wangEditor;
+		activity_editor = new E('#activity_editor');
+		/*activity_editor.config.menus = [
 			'head',  // 标题
-			'bold' /** 粗体*/, 'fontSize' /** 字号 */, 'fontName' /** 字体 */,'italic' /** 斜体 */,
+			'bold' /!** 粗体*!/, 'fontSize' /!** 字号 *!/, 'fontName' /!** 字体 *!/,'italic' /!** 斜体 *!/,
 			'underline',  // 下划线
 			'strikeThrough',  // 删除线
 			'foreColor',  // 文字颜色
@@ -37,37 +37,70 @@
 			'code',  // 插入代码
 			'undo',  // 撤销
 			'redo'  // 重复
-		]
+		]*/
 		//开启debug模式
-		activity_editor.customConfig.debug = true;
+		activity_editor.config.debug = true;
 		// 关闭粘贴内容中的样式
-		activity_editor.customConfig.pasteFilterStyle = false
+		activity_editor.config.pasteFilterStyle = false
 		// 忽略粘贴内容中的图片
-		activity_editor.customConfig.pasteIgnoreImg = true
+		activity_editor.config.pasteIgnoreImg = true
 		// 上传路径
-
-		activity_editor.customConfig.uploadFileName = 'myFile'
-		activity_editor.customConfig.uploadImgServer = '/amtf/f020005/T002'
+		activity_editor.config.uploadFileName = 'myFile'
+		activity_editor.config.uploadImgServer = '/amtf/f020005/T002'
 		// 进行下文提到的其他配置
 		// 将图片大小限制为 3M
-		activity_editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024
-
+		activity_editor.config.uploadImgMaxSize = 3 * 1024 * 1024
+		activity_editor.config.customUploadImg = function (resultFiles, insertImgFn) {
+			// resultFiles 是 input 中选中的文件列表
+			// insertImgFn 是获取图片 url 后，插入到编辑器的方法
+			var formData = new FormData($('#amtf_form')[0]);
+			formData.append("myFile", resultFiles[0]);
+			$.ajax({
+				url : CONTEXT_PATH + '/f020005/T002',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				cache: false,
+				processData : false, // 用于对data参数进行序列化处理
+				contentType : false, // 不要设置Content-Type请求头
+				data : formData,
+				success : function(result) {
+					// 上传图片，返回结果，将图片插入到编辑器中
+					insertImgFn('/amtf/wangeditorimg/' + result.data[0].replace('C:/wangEdito_Img'));
+				},
+				error : function(res, textStaus) {
+					hidediv();
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
 		//自定义上传图片事件
-		activity_editor.customConfig.uploadImgHooks = {
-			before: function(xhr, editor, files) {
+		activity_editor.config.uploadImgHooks = {
+			// 上传图片之前
+			before: function(xhr) {
+				console.log(xhr)
+
+				// 可阻止图片上传
+				return {
+					prevent: true,
+					msg: '需要提示给用户的错误信息'
+				}
 			},
-			success: function(xhr, editor, result) {
-				console.log("上传成功");
+			// 图片上传并返回了结果，图片插入已成功
+			success: function(xhr) {
+				console.log('success', xhr)
 			},
-			//此处失败是服务端返回有数据，但自动设置图片出错，一般是返回数据格式问题
-			fail: function(xhr, editor, result) {
-				console.log("上传失败,原因是" + result);
+			// 图片上传并返回了结果，但图片插入时出错了
+			fail: function(xhr, editor, resData) {
+				console.log('fail', resData)
 			},
-			error: function(xhr, editor) {
-				console.log("上传出错");
+			// 上传图片出错，一般为 http 请求的错误
+			error: function(xhr, editor, resData) {
+				console.log('error', xhr, resData)
 			},
-			timeout: function(xhr, editor) {
-				console.log("上传超时");
+			// 上传图片超时
+			timeout: function(xhr) {
+				console.log('timeout')
 			},
 			// 图片上传并返回了结果，想要自己把图片插入到编辑器中
 			// 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
@@ -166,80 +199,67 @@
 					<i-form class="" th:action="@{/f020005}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 					<input type="hidden" name="IViewId" value="f020005"/>
 						<div class="col-md-12">
-							<div class="card ">
+							<div class="card">
 								<div class="card-header card-header-rose card-header-icon">
 									<div class="card-icon">
 										<i class="material-icons">assignment</i>
 									</div>
 									<h4 class="card-title">活动举办</h4>
 								</div>
-								<div class="card-body ">
-									<div class="row">
-										<label class="col-sm-2 col-form-label">活动主题</label>
-										<div class="col-sm-10">
-											<div class="form-group">
-												<input type="text" class="form-control" name="activity_head" id="activity_head"/>
-											</div>
-										</div>
+								<div class="row m-auto col-sm-8">
+									<div class="col-sm-12">
+										<input type="text" class="form-control" name="activity_head" id="activity_head" placeholder="活动标题"/>
 									</div>
-									<div class="row">
-										<label class="col-sm-2 col-form-label">举办地点</label>
-										<div class="col-sm-10">
-											<div class="form-group">
-												<input type="text" class="form-control" name="activity_position" id="activity_position">
-											</div>
-										</div>
+								</div>
+								<div class="row m-auto col-sm-8">
+									<div class="col-sm-12">
+										<input type="text" class="form-control" name="activity_position" id="activity_position" placeholder="活动备注">
 									</div>
-									<div class="row">
-										<label class="col-sm-2 col-form-label label-checkbox">参与级别</label>
-										<div class="col-sm-10 checkbox-radios">
+								</div>
+								<div class="row text-center">
+									<div class="col-sm-12">
+										<div class="col-sm-12 checkbox-radios">
 											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input class="form-check-input" type="checkbox" value="0" onclick="amtf_activityCheck(this)" id="activitycheck1" name="activity_check">
 													普通成员
 													<span class="form-check-sign">
-													<span class="check"></span>
-												</span>
+														<span class="check"></span>
+													</span>
 												</label>
-											</div>
-											<div class="form-check form-check-inline">
 												<label class="form-check-label">
 													<input class="form-check-input" type="checkbox" value="1" onclick="amtf_activityCheck(this)" id="activitycheck2" name="activity_check">
 													管理成员
 													<span class="form-check-sign">
-													<span class="check"></span>
-												</span>
+														<span class="check"></span>
+													</span>
 												</label>
-											</div>
-											<div class="form-check form-check-inline">
 												<label class="form-check-label">
-													<input class="form-check-input" type="checkbox" value="2" onclick="amtf_activityCheck(this)" id="activitycheck3" name="activity_check">
+													<input class="form-check-input" type="checkbox" value="2" onclick="amtf_activityCheck(this)" id="activitycheck3" name="activity_check" checked>
 													全体
 													<span class="form-check-sign">
-													<span class="check"></span>
-												</span>
+														<span class="check"></span>
+													</span>
 												</label>
 											</div>
-										</div>
-									</div>
-									<div class="row">
-										<label class="col-sm-2 col-form-label">开始日期</label>
-										<div class="col-sm-10">
-											<div class="form-group">
-												<input type="text" class="form-control dateymd" name="activity_sttymd" id="activity_sttymd">
+											<div class="d-flex m-auto col-sm-12">
+												<div class="row m-auto col-sm-6">
+													<div class="col-sm-12">
+														<input type="text" class="form-control dateymd" name="activity_sttymd" id="activity_sttymd" placeholder="开始日期">
+													</div>
+												</div>
+												<div class="row m-auto col-sm-6">
+													<div class="col-sm-12">
+														<input type="text" class="form-control dateymd" name="activity_endymd" id="activity_endymd" placeholder="结束日期">
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<label class="col-sm-2 col-form-label">结束日期</label>
-										<div class="col-sm-10">
-											<div class="form-group">
-												<input type="text" class="form-control dateymd" name="activity_endymd" id="activity_endymd">
-											</div>
-										</div>
-									</div>
-									<div class="panel-body">
-										<div id="activity_editor"></div>
+								</div>
+								<div class="card-body ">
+									<div class="panel-body" style="height: 850px">
+										<div id="activity_editor" style="height: 800px"></div>
 									</div>
 									<div class="panel-body text-center">
 										<button class="btn btn-primary btn-lg" onclick="amtf_activity()">发布</button>
