@@ -8,7 +8,9 @@ public class NumberUtil {
 	public static int toInt(String obj) {
 		int str = 0;
 		if (!CommonUtil.isEmpty(obj)) {
-			str = Integer.parseInt(obj);
+			if(!"undefined".equals(obj)){
+				str = Integer.parseInt(obj);
+			}
 		}
 		return str;
 	}

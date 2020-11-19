@@ -1,5 +1,7 @@
 package com.amtf.demo.util;
 
+import org.springframework.util.StringUtils;
+
 public class CommonUtil {
 
 	/**
@@ -7,6 +9,9 @@ public class CommonUtil {
 	 */
 	public static boolean isEmpty(Object obj) {
 		if (obj == null) {
+			return true;
+		}
+		if(StringUtils.isEmpty(obj)){
 			return true;
 		}
 		if (Constant.EMPTY.equals(obj)) {

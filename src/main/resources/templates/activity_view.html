@@ -65,7 +65,7 @@
 		})
 		//查看活动详情
 		function amtf_getactivity(_this) {
-			var newinput = getNewInput('activity_id', _this.activity_id);
+			var newinput = getNewInput('activity_id', _this);
 			amtf_form.appendChild(newinput);
 			amtf_submitNew(amtf_form, '/f010005/T002');
 			reomveNewInput('activity_id');
@@ -302,7 +302,7 @@
 		}
 		//刷新评论
 		function amtf_refreshComment() {
-			amtf_activity_table('commentselect5','/f010005/T004',[[${f010005Params.commentlist.pageNum}]],[[${f010005Params.select3.activity_id}]]);
+			amtf_activity_table('commentselect5','/f010005/T004',[[${f010005Params.commentlist.pageNum}]],'[[${f010005Params.select3.activity_id}]]');
 			$('#comment_reply').val('');
 		}
 		// 关注按钮的鼠标悬停
@@ -511,7 +511,7 @@
 															<p>
 																<a href="#" class="lookeye">[[${entity2.user_name}]]&nbsp;回复了：</a>
 																[[${entity2.user_text}]]
-																<a href="#" class="commentreply_now text-center" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${entity1}]],this)">
+																<a href="#" class="commentreply_now text-center" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${entity1.amtfactivitycommententity}]],this)">
 																	回复
 																</a>
 																<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity2.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[${entity2.activity_comment_reply_id}]],'2')">
