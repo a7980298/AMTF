@@ -14,7 +14,7 @@ public class Constant {
 
 	public static final Integer INT_1 = 1;
 
-	public static final Integer PAGESIZE = 1;
+	public static final Integer PAGESIZE = 10;
 
 	public static final Boolean bol_T = true;
 
@@ -29,5 +29,9 @@ public class Constant {
 	public static final String PDF_EXCEL = "C:/amtf_excel/";
 
 	public static final String PDF_EXCEL_DOWNLOAD = "C:/amtf_excel_download/";
+
+	public static final String PATH_WANGEDITO_ACTIVITYIMG = "C:/wangEdito_ActivityImg/";
+
+	public static final String PATH_WANGEDITO_ALLNOTICESIMG = "C:/wangEdito_AllnoticesImg/";
 
 }

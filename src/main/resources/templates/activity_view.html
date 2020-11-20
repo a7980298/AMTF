@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>[[${f010005Params.select3.activity_head}]]</title>
 	<th:block th:replace="import :: myimport"></th:block>
 	<style type="text/css">
 		.lookeye{
@@ -302,7 +302,8 @@
 		}
 		//刷新评论
 		function amtf_refreshComment() {
-			amtf_activity_table('commentselect5','/f010005/T004',[[${f010005Params.commentlist.pageNum == null ? 0 : f010005Params.commentlist.pageNum == null}]],'[[${f010005Params.select3.activity_id}]]');
+			amtf_activity_table('commentselect5','/f010005/T004',$('#activity_table_id').val(),'[[${f010005Params.select3.activity_id}]]');
+			$('#comment_text').val('');
 			$('#comment_reply').val('');
 		}
 		// 关注按钮的鼠标悬停
@@ -475,7 +476,7 @@
 											<button class="btn btn-kv pad-0 m-0 text-center comment_now btn-info comment2 mt-2" onclick="amtf_activeQuickSpeech(0)">快速发言</button>
 										</div>
 									</div>
-									<div class="card-body" id="commentselect5" th:fragment="commentselect5" th:if="${not #lists.isEmpty(f010005Params.commentlist.list)}">
+									<div class="card-body" id="commentselect5" th:fragment="commentselect5" th:style="${not #lists.isEmpty(f010005Params.commentlist.list)? 'display:block' : 'display:none'}">
 										<ul class="navbar-nav">
 											<div th:each="entity1,idx:${f010005Params.commentlist.list}" th:if="${entity1 != null}">
 												<li class="nav-item d-flex" th:classappend="${idx.index == 0 ? '' : 'li_top'}">
@@ -524,7 +525,8 @@
 												</div>
 											</div>
 										</ul>
-										<div class="center-block">
+										<div class="center-block" th:if="${not #lists.isEmpty(f010005Params.commentlist.list)}">
+											<input type="hidden" th:value="${f010005Params.commentlist.pageNum}" id="activity_table_id"/>
 											<th:block th:replace="activity_table :: myactivity_table(${f010005Params.commentlist},'/f010005/T004','commentselect5',${f010005Params.select3.activity_id})"></th:block>
 										</div>
 									</div>

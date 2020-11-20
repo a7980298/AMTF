@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>登录画面</title>
+<title>活动画面</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
 	
@@ -104,7 +104,7 @@
 									</div>
 									<div class="card-body">
 										<div class="toolbar"></div>
-										<div class="material-datatables" id="activitylists" th:fragment="activitylists">
+										<div class="material-datatables" id="activitylists" th:fragment="activitylists" th:style="${not #lists.isEmpty(f010005Params.select9.list)? 'display:block' : 'display:none'}">
 											<table id="activity_datatables" class="table table-hover" cellspacing="0" width="100%" style="width: 100%">
 												<thead>
 													<tr>
@@ -151,7 +151,7 @@
 										<h3 class="card-title"> <small>我参加的活动</small></h3>
                                     </div>
                                     <div class="card-body">
-                                        <div class="material-datatables" id="activitylists_i" th:fragment="activitylists_i">
+                                        <div class="material-datatables" id="activitylists_i" th:fragment="activitylists_i" th:style="${not #lists.isEmpty(f010005Params.select1.list)? 'display:block' : 'display:none'}">
                                             <table id="activity_datatables_i" class="table table-hover" cellspacing="0" width="100%" style="width: 100%">
                                                 <thead>
                                                     <tr>
@@ -182,7 +182,7 @@
 									</div>
 									<div class="card-body">
 										<div class="toolbar"></div>
-										<div class="material-datatables" id="activitylists_s" th:fragment="activitylists_s">
+										<div class="material-datatables" id="activitylists_s" th:fragment="activitylists_s" th:style="${not #lists.isEmpty(f010005Params.select2.list)? 'display:block' : 'display:none'}">
 											<table id="activity_datatables_s" class="table table-hover" cellspacing="0" width="100%" style="width: 100%">
 												<thead>
 													<tr>

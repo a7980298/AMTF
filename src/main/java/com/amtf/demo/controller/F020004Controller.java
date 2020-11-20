@@ -7,6 +7,7 @@ import com.amtf.demo.entityout.F020004EntityOut;
 import com.amtf.demo.f020005entity.WangEditor;
 import com.amtf.demo.params.F020004Params;
 import com.amtf.demo.service.F020004Service;
+import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ImgUtil;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
@@ -86,7 +87,7 @@ public class F020004Controller extends ValiDationUtil {
 		public WangEditor f020004T002(@RequestParam("myFile") MultipartFile multipartFile,
 								  HttpServletRequest request) {
 		try {
-			String[] str = { ImgUtil.wangEdito_CommitImg(multipartFile,"C:/wangEdito_AllnoticesImg/") };
+			String[] str = { ImgUtil.wangEdito_CommitImg(multipartFile, Constant.PATH_WANGEDITO_ALLNOTICESIMG) };
 			WangEditor we = new WangEditor();
 			we.setData(str);
 			return we;

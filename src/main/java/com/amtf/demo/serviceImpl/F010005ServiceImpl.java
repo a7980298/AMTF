@@ -131,12 +131,16 @@ public class F010005ServiceImpl implements F010005Service {
 					if (select2entity.getActivity_id().equals(StringUtil.toStr(select3.getActivity_id()))) {
 						select3.setCount(select2entity.getCount());
 					}
-					select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
-							+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
-							+ select2entity.getActivity_sttymd().substring(6, 8));
-					select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
-							+ select2entity.getActivity_endymd().substring(4, 6) + "-"
-							+ select2entity.getActivity_endymd().substring(6, 8));
+					if(!CommonUtil.isEmpty(select2entity.getActivity_sttymd()) && select2entity.getActivity_sttymd().length() == 8){
+						select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
+								+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
+								+ select2entity.getActivity_sttymd().substring(6, 8));
+					}
+					if(!CommonUtil.isEmpty(select2entity.getActivity_endymd()) && select2entity.getActivity_endymd().length() == 8){
+						select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
+								+ select2entity.getActivity_endymd().substring(4, 6) + "-"
+								+ select2entity.getActivity_endymd().substring(6, 8));
+					}
 					select2entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
 							select2entity.getActivity_name() + select2entity.getActivity_id() + "-1"));
 					select2entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
@@ -150,6 +154,7 @@ public class F010005ServiceImpl implements F010005Service {
 				}
 			}
 			// 按参加人数最多的活动进行排序
+			select2.removeAll(Collections.singleton(null));
 			select2.sort((F010005_Select1Entity obj1, F010005_Select1Entity obj2) ->
 					obj2.getCount() - obj1.getCount());
 			List<F010005_Select1Entity> view_select2 = new ArrayList<F010005_Select1Entity>();
@@ -158,20 +163,23 @@ public class F010005ServiceImpl implements F010005Service {
 					view_select2.add(select2.get(i));
 				}
 			}
-			select2.removeAll(Collections.singleton(null));
-			entityout.setSelect2_2(select2);
+			entityout.setSelect2_2(view_select2);
 		}
 		// 活动一览
 		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
 		if (!CommonUtil.isEmptyList(select9)) {
 			for (F010002_Select9Entity select9entity : select9) {
 				if (!CommonUtil.isEmpty(select9entity)){
-					select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
-							+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
-							+ select9entity.getActivity_sttymd().substring(6, 8));
-					select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
-							+ select9entity.getActivity_endymd().substring(4, 6) + "-"
-							+ select9entity.getActivity_endymd().substring(6, 8));
+					if(!CommonUtil.isEmpty(select9entity.getActivity_sttymd()) && select9entity.getActivity_sttymd().length() == 8) {
+						select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
+								+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
+								+ select9entity.getActivity_sttymd().substring(6, 8));
+					}
+					if(!CommonUtil.isEmpty(select9entity.getActivity_endymd()) && select9entity.getActivity_endymd().length() == 8) {
+						select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
+								+ select9entity.getActivity_endymd().substring(4, 6) + "-"
+								+ select9entity.getActivity_endymd().substring(6, 8));
+					}
 					select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
 							select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
 					select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
@@ -185,6 +193,7 @@ public class F010005ServiceImpl implements F010005Service {
 				}
 			}
 			// 按人数最多的活动进行排序
+			select9.removeAll(Collections.singleton(null));
 			select9.sort((F010002_Select9Entity obj1, F010002_Select9Entity obj2) ->
 					obj2.getCount() - obj1.getCount());
 			List<F010002_Select9Entity> view_select9 = new ArrayList<F010002_Select9Entity>();
@@ -193,8 +202,7 @@ public class F010005ServiceImpl implements F010005Service {
 					view_select9.add(select9.get(i));
 				}
 			}
-			select9.removeAll(Collections.singleton(null));
-			entityout.setSelect9_03(select9);
+			entityout.setSelect9_03(view_select9);
 		}
 		return entityout;
 	}
@@ -471,12 +479,16 @@ public class F010005ServiceImpl implements F010005Service {
 		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
 		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
 		for (F010002_Select9Entity select9entity : select9) {
-			select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
-					+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
-					+ select9entity.getActivity_sttymd().substring(6, 8));
-			select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
-					+ select9entity.getActivity_endymd().substring(4, 6) + "-"
-					+ select9entity.getActivity_endymd().substring(6, 8));
+			if(!CommonUtil.isEmpty(select9entity.getActivity_sttymd()) && select9entity.getActivity_sttymd().length() == 8) {
+				select9entity.setActivity_sttymd(select9entity.getActivity_sttymd().substring(0, 4) + "-"
+						+ select9entity.getActivity_sttymd().substring(4, 6) + "-"
+						+ select9entity.getActivity_sttymd().substring(6, 8));
+			}
+			if(!CommonUtil.isEmpty(select9entity.getActivity_endymd()) && select9entity.getActivity_endymd().length() == 8) {
+				select9entity.setActivity_endymd(select9entity.getActivity_endymd().substring(0, 4) + "-"
+						+ select9entity.getActivity_endymd().substring(4, 6) + "-"
+						+ select9entity.getActivity_endymd().substring(6, 8));
+			}
 			select9entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
 					select9entity.getActivity_name() + select9entity.getActivity_id() + "-1"));
 			select9entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
@@ -509,12 +521,16 @@ public class F010005ServiceImpl implements F010005Service {
 		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
 		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_email());
 		for (F010005_Select1Entity select1entity : select1) {
-			select1entity.setActivity_sttymd(select1entity.getActivity_sttymd().substring(0, 4) + "-"
-					+ select1entity.getActivity_sttymd().substring(4, 6) + "-"
-					+ select1entity.getActivity_sttymd().substring(6, 8));
-			select1entity.setActivity_endymd(select1entity.getActivity_endymd().substring(0, 4) + "-"
-					+ select1entity.getActivity_endymd().substring(4, 6) + "-"
-					+ select1entity.getActivity_endymd().substring(6, 8));
+			if(!CommonUtil.isEmpty(select1entity.getActivity_sttymd()) && select1entity.getActivity_sttymd().length() == 8) {
+				select1entity.setActivity_sttymd(select1entity.getActivity_sttymd().substring(0, 4) + "-"
+						+ select1entity.getActivity_sttymd().substring(4, 6) + "-"
+						+ select1entity.getActivity_sttymd().substring(6, 8));
+			}
+			if(!CommonUtil.isEmpty(select1entity.getActivity_endymd()) && select1entity.getActivity_endymd().length() == 8) {
+				select1entity.setActivity_endymd(select1entity.getActivity_endymd().substring(0, 4) + "-"
+						+ select1entity.getActivity_endymd().substring(4, 6) + "-"
+						+ select1entity.getActivity_endymd().substring(6, 8));
+			}
 			select1entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
 					select1entity.getActivity_name() + select1entity.getActivity_id() + "-1"));
 			select1entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
@@ -546,12 +562,16 @@ public class F010005ServiceImpl implements F010005Service {
 		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(loginfo.getUser_email());
 		for (F010005_Select1Entity select2entity : select2) {
-			select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
-					+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
-					+ select2entity.getActivity_sttymd().substring(6, 8));
-			select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
-					+ select2entity.getActivity_endymd().substring(4, 6) + "-"
-					+ select2entity.getActivity_endymd().substring(6, 8));
+			if(!CommonUtil.isEmpty(select2entity.getActivity_sttymd()) && select2entity.getActivity_sttymd().length() == 8) {
+				select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"
+						+ select2entity.getActivity_sttymd().substring(4, 6) + "-"
+						+ select2entity.getActivity_sttymd().substring(6, 8));
+			}
+			if(!CommonUtil.isEmpty(select2entity.getActivity_endymd()) && select2entity.getActivity_endymd().length() == 8) {
+				select2entity.setActivity_endymd(select2entity.getActivity_endymd().substring(0, 4) + "-"
+						+ select2entity.getActivity_endymd().substring(4, 6) + "-"
+						+ select2entity.getActivity_endymd().substring(6, 8));
+			}
 			select2entity.setActivity_img1(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,
 					select2entity.getActivity_name() + select2entity.getActivity_id() + "-1"));
 			select2entity.setActivity_img2(ImgUtil.getImgPath(Constant.PATH_ACTIVITY,

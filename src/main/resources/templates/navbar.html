@@ -36,7 +36,6 @@
 
 		// 登导航栏页面跳转
 		function amtf_loginhead(_this) {
-			loginshowdiv();
 			var _href = $(_this).attr('href');
 			_href = _href.replace('#', '');
 			if(_href == 'f020001'){
@@ -45,6 +44,7 @@
 			} else if(_href == 'f020005' || _href == 'f020004'){
 				amtf_submitNew(amtf_form, '/' + _href);
 			} else {
+				loginshowdiv();
 				amtf_submit(amtf_form, '/' + _href);
 			}
 		}
