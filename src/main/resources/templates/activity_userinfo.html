@@ -12,10 +12,18 @@
 		$("input[type='text']").attr('disabled',true);
 		$("input[type='email']").attr('disabled',true);
 	})
+	window.onload = function(){
+		var activity_userinfo = new Vue({
+			el: '#main',
+			data: {
+				user_name: ''
+			}
+		})
+	}
 </script>
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper" id="main">
 		<th:block th:replace="navbar :: mynavbar"></th:block>
 		<div class="main-panel">
 			<th:block th:replace="head :: myhead"></th:block>
