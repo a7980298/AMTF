@@ -19,11 +19,8 @@
 		// 注册wangEditor插件
 		var wangEditor = window.wangEditor;
 		var editor = new wangEditor('#editor');
-		editor.config.zIndex = 100;
-		// 或者 var editor = new E( document.getElementById('editor') )
-
+		editor.config.zIndex = 10;
 		document.getElementById('textsumbit').addEventListener('click', function () {
-			showdiv();
 			$.ajax({
 				url: CONTEXT_PATH + '/f020004/T001',
 				type: 'post',
@@ -42,7 +39,6 @@
 					}
 				},
 				error: function (res, textStaus) {
-					hidediv();
 					setCodeErrList("错误！！！请和管理员联系。。。");
 				},
 			});
@@ -51,6 +47,7 @@
 		editor.config.debug = true;
 		// 关闭粘贴内容中的样式
 		editor.config.pasteFilterStyle = false
+		editor.config.height = '780'
 		// 忽略粘贴内容中的图片
 		editor.config.pasteIgnoreImg = true
 		// 上传路径
@@ -79,7 +76,6 @@
 					insertImgFn('/amtf/wangallnoticesimg/' + result.data[0].replace('C:/wangEdito_AllnoticesImg'));
 				},
 				error : function(res, textStaus) {
-					hidediv();
 					setCodeErrList("错误！！！请和管理员联系。。。");
 				},
 			});
@@ -88,43 +84,29 @@
 	});
 </script>
 <body class="" onunload="myFunction()">
-	<div class="wrapper">
-		<th:block th:replace="navbar :: mynavbar"></th:block>
-		<div class="main-panel">
-			<th:block th:replace="head :: myhead"></th:block>
-			<div class="content">
-				<!-- 全体通知 -->
-				<div class="container-fluid dashboardclass" id="main">
-					<i-form class="" th:action="@{/f020004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
-					<input type="hidden" name="IViewId" value="f020004"/>
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header card-header-rose card-header-icon">
-									<div class="card-icon">
-										<i class="material-icons">assignment</i>
-									</div>
-									<h4 class="card-title">全体通知</h4>
-								</div>
-								<div class="row text-center">
-									<label class="col-sm-2 col-form-label"></label>
-									<div class="col-sm-8">
-										<div class="form-group">
-											<input type="text" class="form-control text-center" placeholder="标题" id="texthead">
-											<span class="bmd-help"></span>
-										</div>
-									</div>
-								</div>
-								<div class="panel-body ">
-									<div id="editor"></div>
-									<div class="col-md-12 ml-auto mr-auto">
-										<button type="button" id="textsumbit" class="btn btn-default">发布</button>
-									</div>
-								</div>
+	<div class="wrapper card m-0">
+		<!-- 全体通知 -->
+		<div class="" id="main">
+			<i-form class="" th:action="@{/f020004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+			<input type="hidden" name="IViewId" value="f020004"/>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="row m-auto col-sm-8">
+							<div class="col-sm-11">
+								<input type="text" class="form-control text-center" placeholder="标题" id="texthead">
+							</div>
+							<div class="col-sm-1">
+								<button type="button" id="textsumbit" class="btn btn-info">发布</button>
 							</div>
 						</div>
-					</i-form>
+					</div>
 				</div>
-			</div>
+				<div class="m-auto col-sm-8" style="">
+					<div class="panel-body">
+						<div id="editor"></div>
+					</div>
+				</div>
+			</i-form>
 		</div>
 	</div>
 </body>
