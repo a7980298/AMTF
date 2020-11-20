@@ -114,27 +114,27 @@
 														<th class="">截至时间</th>
 														<th class="">发布时间</th>
 														<th class="text-center ">参加人数</th>
-														<th class="disabled-sorting text-right">操作</th>
+														<!--<th class="disabled-sorting text-right">操作</th>-->
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:each="entity,idx:${f010005Params.select9.list}">
+													<tr th:each="entity,idx:${f010005Params.select9.list}" class="hand" th:onclick="amtf_getactivity([[${entity}]],'1')">
 														<td>[[${entity.activity_head}]]</td>
 														<td>[[${entity.activity_name}]]</td>
 														<td>[[${entity.activity_sttymd}]]</td>
 														<td>[[${entity.activity_endymd}]]</td>
 														<td>[[${entity.activity_time}]]</td>
 														<td class="text-center">[[${entity.count}]]</td>
-														<td class="text-right">
-															<!-- <a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
+														<!--<td class="text-right">
+															&lt;!&ndash; <a href="#" class="btn btn-link btn-info btn-just-icon like" title="加入">
 																<i class="material-icons">favorite</i>
-															</a> -->
+															</a> &ndash;&gt;
 															<a href="#" class="btn btn-link btn-warning btn-just-icon edit" title="查看" th:onclick="amtf_getactivity([[${entity}]],'0')">
 																<i class="material-icons">dvr</i></a>
-															<!--<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
+															&lt;!&ndash;<a href="#" class="btn btn-link btn-danger btn-just-icon remove">
 																<i class="material-icons">close</i>
-															</a> -->
-														</td>
+															</a> &ndash;&gt;
+														</td>-->
 													</tr>
 												</tbody>
 											</table>
@@ -176,7 +176,7 @@
                                         </div>
                                     </div>
                                 </div>
-								<div class="card">
+								<div class="card" th:if="${not #lists.isEmpty(f010005Params.select2.list)}">
 									<div class="card-header card-header-primary card-header-icon">
 										<h3 class="card-title"> <small>我发布的活动</small></h3>
 									</div>
