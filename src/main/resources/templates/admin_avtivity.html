@@ -47,7 +47,8 @@
 		// 上传路径
 		activity_editor.config.uploadFileName = 'myFile'
 		activity_editor.config.uploadImgServer = '/amtf/f020005/T002'
-		activity_editor.config.height = '604'
+		activity_editor.config.height = '700'
+		activity_editor.config.zIndex = '10'
 		// 进行下文提到的其他配置
 		// 将图片大小限制为 3M
 		activity_editor.config.uploadImgMaxSize = 3 * 1024 * 1024
@@ -199,18 +200,18 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="row m-auto col-sm-8">
-							<div class="col-sm-12">
+							<div class="col-sm-11">
 								<input type="text" class="form-control" name="activity_head" id="activity_head" placeholder="活动标题"/>
 							</div>
+							<div class="col-sm-1">
+								<button class="btn btn-info" onclick="amtf_activity()">发布</button>
+							</div>
 						</div>
-						<div class="row m-auto col-sm-8">
+						<!--<div class="row m-auto col-sm-8">
 							<div class="col-sm-12">
 								<input type="text" class="form-control" name="activity_position" id="activity_position" placeholder="活动备注">
 							</div>
-						</div>
-						<div class="panel-body text-center">
-							<button class="btn btn-primary btn-lg" onclick="amtf_activity()">发布</button>
-						</div>
+						</div>-->
 						<div class="row text-center">
 							<div class="col-sm-12">
 								<div class="col-sm-12 checkbox-radios">
@@ -239,12 +240,12 @@
 									</div>
 									<div class="d-flex m-auto col-sm-12">
 										<div class="row m-auto col-sm-6">
-											<div class="col-sm-12">
+											<div class="col-sm-6 ml-auto">
 												<input type="text" class="form-control dateymd" name="activity_sttymd" id="activity_sttymd" placeholder="开始日期">
 											</div>
 										</div>
 										<div class="row m-auto col-sm-6">
-											<div class="col-sm-12">
+											<div class="col-sm-6 mr-auto">
 												<input type="text" class="form-control dateymd" name="activity_endymd" id="activity_endymd" placeholder="结束日期">
 											</div>
 										</div>
@@ -254,7 +255,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-body" style="height: 100%;">
+				<div class="m-auto col-sm-8" style="">
 					<div class="panel-body">
 						<div id="activity_editor"></div>
 					</div>
