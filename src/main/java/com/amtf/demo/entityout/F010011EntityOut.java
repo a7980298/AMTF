@@ -12,4 +12,14 @@ public class F010011EntityOut extends UserImpl {
      * 用户信息
      */
     AmtfUserEntity select1;
+
+    /**
+     * 关注发布人
+     */
+    String isattention;
+
+    /**
+     * 是否关注发布人
+     */
+    Integer attention;
 }

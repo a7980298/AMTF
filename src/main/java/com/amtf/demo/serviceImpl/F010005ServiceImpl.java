@@ -439,11 +439,11 @@ public class F010005ServiceImpl implements F010005Service {
 		//id
 		amtfuserattentionentity.setUser_attention_id(CommonUtil.isEmpty(commondao.common_Select9()) ? 0 : commondao.common_Select9());
 		//关注用户id
-		amtfuserattentionentity.setAttention_id(entityin.getActivity_id());
+		amtfuserattentionentity.setAttention_id(entityin.getAttention_id());
 		//用户id
 		amtfuserattentionentity.setUser_id(loginfo.getUser_email());
 		//查看是否关注了该发布人
-		if(f010005dao.f010005_Select20(entityin.getActivity_id(),loginfo.getUser_email()) < 1){
+		if(f010005dao.f010005_Select20(entityin.getAttention_id(),loginfo.getUser_email()) < 1){
 			//没有关注
 			Integer insert21 = f010005dao.f010005_Insert21(amtfuserattentionentity);
 			if(insert21 < 1){

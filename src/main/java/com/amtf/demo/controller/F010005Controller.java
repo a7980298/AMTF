@@ -255,7 +255,7 @@ public class F010005Controller extends ValiDationUtil {
 		Map<String, Object> map = new HashMap<String, Object>();
 		F010005EntityIn entityin = new F010005EntityIn();
 		//用户id
-		entityin.setActivity_id(id);
+		entityin.setAttention_id(id);
 
 		F010005EntityOut entityOut = f010005service.service10(entityin);
 

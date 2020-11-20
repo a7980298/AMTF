@@ -17,4 +17,9 @@ public class F010011EntityIn extends UserImpl {
 	 * 用户主页信息
 	 */
 	String user;
+
+	/**
+	 * 关注的用户id
+	 */
+	private String attention_id;
 }

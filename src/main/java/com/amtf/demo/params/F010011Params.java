@@ -24,4 +24,9 @@ public class F010011Params extends UserImpl {
 	 * 用户信息
 	 */
 	AmtfUserEntity select1;
+
+	/**
+	 * 是否关注发布人
+	 */
+	Integer attention;
 }

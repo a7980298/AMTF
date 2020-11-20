@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>[[${f010011Params.select1.user_name}]]的主页</title>
@@ -8,15 +8,37 @@
 	
 </style>
 <script type="text/javascript">
-	$(function(){
-		$("input[type='text']").attr('disabled',true);
-		$("input[type='email']").attr('disabled',true);
-	})
 	window.onload = function(){
 		var activity_userinfo = new Vue({
 			el: '#main',
 			data: {
-				user_name: ''
+				follow: "[[${f010011Params.attention < 1 ? '关注' : '已关注'}]]",
+				followclass : {btn:true, 'btn-rose':[[${f010011Params.attention < 1 ? true : false}]], 'btn-round':true},
+				followstyle : '',
+			},
+			methods:{
+				amtf_userInfoFollow(event) {
+					// 发送 POST 请求
+					axios.post(CONTEXT_PATH + '/f010011/T001', {
+						id : '[[${f010011Params.select1.user_email}]]'
+					}).then(function (response) {
+						if(response.data.attention == 'insert0'){
+							md.showNotification('bottom', 'center', '2', '关注失败。。。');
+						} else if(response.data.attention == 'delete0') {
+							md.showNotification('bottom', 'center', '2', '取消关注失败。。。');
+						} else if(response.data.attention == 'insert1') {
+
+							Vue.set(activity_userinfo ,'followclass',{btn : true, 'btn-rose' : false, 'btn-round' : true});
+							Vue.set(activity_userinfo ,'follow','已关注');
+						} else if(response.data.attention == 'delete1') {
+
+							Vue.set(activity_userinfo ,'followclass',{btn : true, 'btn-rose' : true, 'btn-round' : true});
+							Vue.set(activity_userinfo ,'follow','关注');
+						}
+					}).catch(function (error) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					});
+				}
 			}
 		})
 	}
@@ -100,7 +122,7 @@
 										<p class="card-description">
 											暂无
 										</p>
-										<a href="#pablo" class="btn btn-rose btn-round">关注</a>
+										<a href="#pablo" @click="amtf_userInfoFollow"  v-bind:class="followclass" :style="followstyle">{{follow}}</a>
 									</div>
 								</div>
 							</div>

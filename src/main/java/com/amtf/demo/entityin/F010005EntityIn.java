@@ -19,6 +19,11 @@ public class F010005EntityIn extends UserImpl {
 	private String activity_id;
 
 	/**
+	 * 关注的用户id
+	 */
+	private String attention_id;
+
+	/**
 	 * 评论
 	 */
 	private String activity_text;

@@ -11,4 +11,10 @@ import java.util.List;
 public interface F010011Dao {
 
 	AmtfUserEntity f010011_Select1(@Param("email") String email);
+
+	Integer f010011_Select2(@Param("attention_id") String attention_id,@Param("userid") String userid);
+
+	Integer f010011_Insert3(@Param("entity") AmtfUserAttentionEntity entity);
+
+	Integer f010011_Delete4(@Param("entity") AmtfUserAttentionEntity entity);
 }

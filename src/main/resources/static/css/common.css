@@ -1,3 +1,8 @@
+/*侧边栏不显示滚动条*/
+#wrapperid{
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
 .errclass {
 	border: 1px solid red;
 }
