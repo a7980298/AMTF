@@ -12,11 +12,13 @@
 	<body>
 	<ul class="pagination">
 		<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_id}]],[[${_url}]],1)">首页</a></li>
-		<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.hasPreviousPage ? _this.prePage : _this.pages}]])">上一页</a></li>
-		<li class="page-item"><a class="page-link"><span th:text="第+${_this.pageNum}+页" class="col-r"></span></a></li>
-		<li class="page-item"><a class="page-link"><span th:text="共+${_this.pages}+页"></span></a></li>
-		<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.hasNextPage ? _this.nextPage : _this.pages}]])">下一页</a></li>
+		<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.hasPreviousPage ? _this.prePage : _this.pages}]])"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+		<li class="page-item"><a class="page-link" th:if="${_this.prePage != 0}" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.prePage}]])"><span th:text="${_this.prePage}"></span></a></li>
+		<li class="page-item"><a class="page-link"><span th:text="${_this.pageNum}" class="col-r"></span></a></li>
+		<li class="page-item"><a class="page-link" th:if="${_this.nextPage > _this.pageNum}" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.nextPage}]])"><span th:text="${_this.nextPage}"></span></a></li>
+		<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.hasNextPage ? _this.nextPage : _this.pages}]])"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
 		<li class="page-item"><a class="page-link" th:onclick="amtf_table([[${_id}]],[[${_url}]],[[${_this.pages}]])">尾页</a></li>
+		<li class="page-item"><a class="page-link"><span th:text="共+${_this.pages}+页"></span></a></li>
 	</ul>
 	</body>
 </th:block>
