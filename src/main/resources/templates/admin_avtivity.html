@@ -165,7 +165,7 @@
 		formData.set("activity_sttymd", $('#activity_sttymd').val());
 		formData.set("activity_endymd", $('#activity_endymd').val());
 		formData.set("activity_editor", activity_editor.txt.html());
-		showdiv();
+		//showdiv();
 		$.ajax({
 			url : CONTEXT_PATH + '/f020005/T001',
 			type : 'post',
@@ -176,7 +176,7 @@
 			contentType : false, // 不要设置Content-Type请求头
 			data : formData,
 			success : function(result) {
-				hidediv();
+				//hidediv();
 				if(result.isactivity == '1') {
 					setCodeErrList("发布失败，请重试。");
 				} else {
@@ -184,7 +184,7 @@
 				}
 			},
 			error : function(res, textStaus) {
-				hidediv();
+				//hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
