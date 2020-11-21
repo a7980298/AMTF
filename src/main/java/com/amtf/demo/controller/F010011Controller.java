@@ -6,6 +6,7 @@ import com.amtf.demo.entityin.F010005EntityIn;
 import com.amtf.demo.entityin.F010011EntityIn;
 import com.amtf.demo.entityout.F010005EntityOut;
 import com.amtf.demo.entityout.F010011EntityOut;
+import com.amtf.demo.params.F010005Params;
 import com.amtf.demo.params.F010011Params;
 import com.amtf.demo.service.F010011Service;
 import com.amtf.demo.util.ParameterUtil;
@@ -68,5 +69,26 @@ public class F010011Controller extends ValiDationUtil {
 		mapout.put("attention", entityOut.getIsattention());
 
 		return mapout;
+	}
+
+	/**
+	 * 发布人的活动
+	 *
+	 * @parameter F010005Params params
+	 * @return String
+	 */
+	@PostMapping("/f010011/T002")
+	public String f010011T002(@RequestParam(value="id",required=true) String id,@RequestParam(defaultValue = "1") Integer pageNum, Model model) {
+		F010011Params params = new F010011Params();
+		F010011EntityIn entityin = new F010011EntityIn();
+		entityin.setPageNum(pageNum);
+		entityin.setAttention_id(id);
+		F010011EntityOut entityOut = f010011service.service03(entityin);
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f010011Params", params);
+
+		return "activity_userinfo :: activitylists";
 	}
 }

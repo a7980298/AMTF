@@ -40,4 +40,23 @@
 		AND
 			USER_ID = #{entity.user_id}
 	</delete>
+	<!-- 我发布的活动 -->
+	<select id="f010011_Select5" resultType="com.amtf.demo.f010011entity.F010011_Select5Entity">
+		SELECT
+			A1.*,COUNT(B1.ACTIVITY_ID) AS COUNT
+		FROM
+			AMTF_ACTIVITY A1
+		LEFT JOIN
+			AMTF_USERACTIVITY B1
+		ON
+			A1.ACTIVITY_ID = B1.ACTIVITY_ID
+        LEFT JOIN
+			AMTF_ACTIVITY C1
+        ON
+			C1.ACTIVITY_ID = A1.ACTIVITY_ID
+        WHERE
+			C1.ACTIVITY_NAME = #{name}
+		GROUP BY
+			A1.ACTIVITY_ID
+	</select>
 </mapper>

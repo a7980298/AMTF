@@ -2,6 +2,9 @@ package com.amtf.demo.util;
 
 import org.springframework.util.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CommonUtil {
 
 	/**
@@ -73,4 +76,38 @@ public class CommonUtil {
 	 * fieldobj1[i].get(obj); } catch (Exception e) { // TODO Auto-generated catch
 	 * block e.printStackTrace(); } } } } return lists; }
 	 */
+
+	/**
+	 * 筛选字符串
+	 * @param p
+	 * @param str
+	 * @return
+	 */
+	public static String matchResult(String p, String str) {
+		StringBuilder sb = new StringBuilder();
+		Matcher m = Pattern.compile(p,Pattern.CASE_INSENSITIVE).matcher(str);
+		return m.replaceAll("");
+	}
+
+	public static String getTextForty(String text){
+		String htmlStr = text.replaceAll("\"", "'");
+		// 定义script的正则表达式
+		String regEx_script = "<script[^>]*?>[\\s\\S]*?<\\/script>";
+		// 定义style的正则表达式
+		String regEx_style = "<style[^>]*?>[\\s\\S]*?<\\/style>";
+		// 定义HTML标签的正则表达式
+		String regEx_html = "<[^>]+>";
+		// 过滤script标签
+		htmlStr = matchResult(regEx_script,htmlStr);
+		// 过滤style标签
+		htmlStr = matchResult(regEx_style,htmlStr);
+		// 过滤html标签
+		htmlStr = matchResult(regEx_html,htmlStr);
+		// 过滤空格
+		htmlStr = htmlStr.replaceAll("&nbsp;",Constant.EMPTY);
+		if(htmlStr.length() > 40){
+			htmlStr = htmlStr.substring(0,40);
+		}
+		return htmlStr.trim();
+	}
 }

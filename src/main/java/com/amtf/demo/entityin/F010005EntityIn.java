@@ -38,5 +38,8 @@ public class F010005EntityIn extends UserImpl {
 	 */
 	private String level;
 
+	/**
+	 * 分页当前页数
+	 */
 	Integer pageNum;
 }

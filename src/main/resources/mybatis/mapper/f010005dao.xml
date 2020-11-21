@@ -225,7 +225,7 @@
 		AND
 			ACTIVITY_COMMENT_ID = #{entity.activity_comment_id}
 		AND
-			USER_ID = #{entity.user_id}
+			USER_ID = #{entity.user_id}f010005_Select2
 	</delete>
 	<!-- 查看是否关注该用户 -->
 	<select id="f010005_Select20" resultType="int">

@@ -525,7 +525,7 @@
 												</div>
 											</div>
 										</ul>
-										<div class="center-block" th:if="${not #lists.isEmpty(f010005Params.commentlist.list)}">
+										<div class="center-block" th:if="${f010005Params.commentlist.total > 5}">
 											<input type="hidden" th:value="${f010005Params.commentlist.pageNum}" id="activity_table_id"/>
 											<th:block th:replace="activity_table :: myactivity_table(${f010005Params.commentlist},'/f010005/T004','commentselect5',${f010005Params.select3.activity_id})"></th:block>
 										</div>

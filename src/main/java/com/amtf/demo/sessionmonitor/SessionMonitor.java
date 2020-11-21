@@ -48,10 +48,10 @@ public class SessionMonitor implements HttpSessionListener {
 			onlineCount--;
 		}
 		LogInFo loginfo = null;
+		HttpSession session = se.getSession();
+		// 获取当前用户信息
+		loginfo = (LogInFo) session.getAttribute("loginfo");
 		try {
-			HttpSession session = se.getSession();
-			// 获取当前用户信息
-			loginfo = (LogInFo) session.getAttribute("loginfo");
 			// 销毁redis中的数据
 			redisUtils.deleteUser("redis_key", loginfo.getUser_email());
 			commonserviceimpl.users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? 0

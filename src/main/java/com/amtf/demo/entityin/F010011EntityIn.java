@@ -22,4 +22,9 @@ public class F010011EntityIn extends UserImpl {
 	 * 关注的用户id
 	 */
 	private String attention_id;
+
+	/**
+	 * 分页当前页数
+	 */
+	Integer pageNum;
 }

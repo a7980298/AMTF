@@ -476,7 +476,7 @@ public class F010005ServiceImpl implements F010005Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		// 活动一览
-		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE10);
 		List<F010002_Select9Entity> select9 = f010002dao.f010002_Select9(NumberUtil.toInt(loginfo.getUser_power()));
 		for (F010002_Select9Entity select9entity : select9) {
 			if(!CommonUtil.isEmpty(select9entity.getActivity_sttymd()) && select9entity.getActivity_sttymd().length() == 8) {
@@ -518,7 +518,7 @@ public class F010005ServiceImpl implements F010005Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		// 我参加的活动
-		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE5);
 		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_email());
 		for (F010005_Select1Entity select1entity : select1) {
 			if(!CommonUtil.isEmpty(select1entity.getActivity_sttymd()) && select1entity.getActivity_sttymd().length() == 8) {
@@ -559,7 +559,7 @@ public class F010005ServiceImpl implements F010005Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		// 我发布的活动
-		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE);
+		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE5);
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(loginfo.getUser_email());
 		for (F010005_Select1Entity select2entity : select2) {
 			if(!CommonUtil.isEmpty(select2entity.getActivity_sttymd()) && select2entity.getActivity_sttymd().length() == 8) {
