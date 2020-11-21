@@ -1,0 +1,4 @@
+thymeleaf 与 vue 结合使用时,特别是点击事件
+th:@click="|getCourses(${grade.id},subjectId,1)|"
+要加"| | "将前端的方法当作字符串拼接起来，前面加th：就能解析${grade.id} 的值
+同理，绑定class用于样式也能如此
