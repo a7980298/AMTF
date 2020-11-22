@@ -31,4 +31,9 @@ public class F010011EntityOut extends UserImpl {
      * 发布人的活动
      */
     PageInfo<F010011_Select5Entity> select5;
+
+    /**
+     * 热门活动
+     */
+    List<F010011_Select5Entity> select6;
 }

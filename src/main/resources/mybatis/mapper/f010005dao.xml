@@ -257,4 +257,13 @@
 		AND
 			USER_ID = #{entity.user_id}
 	</delete>
+	<!-- 该用户总发布量 -->
+	<select id="f010005_Select23" resultType="int">
+				SELECT
+			COUNT(*)
+		FROM
+			AMTF_ACTIVITY
+        WHERE
+			ACTIVITY_NAME = #{name}
+	</select>
 </mapper>

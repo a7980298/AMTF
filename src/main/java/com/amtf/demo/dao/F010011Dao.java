@@ -20,4 +20,6 @@ public interface F010011Dao {
 	Integer f010011_Delete4(@Param("entity") AmtfUserAttentionEntity entity);
 
 	List<F010011_Select5Entity> f010011_Select5(@Param("name") String name);
+
+	List<F010011_Select5Entity> f010011_Select6(@Param("name") String name);
 }

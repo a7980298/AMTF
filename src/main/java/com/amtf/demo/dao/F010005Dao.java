@@ -60,4 +60,6 @@ public interface F010005Dao {
 	Integer f010005_Insert21(@Param("entity") AmtfUserAttentionEntity entity);
 
 	Integer f010005_Delete22(@Param("entity") AmtfUserAttentionEntity entity);
+
+	Integer f010005_Select23(@Param("name") String name);
 }

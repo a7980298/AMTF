@@ -59,4 +59,22 @@
 		GROUP BY
 			A1.ACTIVITY_ID
 	</select>
+	<!-- 热门活动 -->
+	<select id="f010011_Select6" resultType="com.amtf.demo.f010011entity.F010011_Select5Entity">
+		SELECT
+			A1.*,COUNT(B1.ACTIVITY_ID) AS count
+		FROM
+			AMTF_ACTIVITY A1
+		LEFT JOIN
+			AMTF_USERACTIVITY B1
+		ON
+			A1.ACTIVITY_ID = B1.ACTIVITY_ID
+		WHERE
+			A1.ACTIVITY_NAME = '2428503607@qq.com'
+		AND
+			A1.ACTIVITY_ID &lt; 10
+		GROUP BY
+			A1.ACTIVITY_ID
+		LIMIT 0,5
+	</select>
 </mapper>

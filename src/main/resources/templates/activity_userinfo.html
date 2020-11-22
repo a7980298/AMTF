@@ -28,6 +28,9 @@
 		/*放大*/
 		transform: scale(1.1);
 	}
+	.lookeye{
+		color: #7d8590;
+	}
 </style>
 <script type="text/javascript">
 
@@ -97,8 +100,8 @@
 					<div class="container-fluid">
 					<i-form class="" th:action="@{/f010011}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 					<input type="hidden" name="IViewId" value="f010011"/>
-						<div class="row m-auto col-md-11">
-							<div class="col-md-3">
+						<div class="row m-auto col-md-10">
+							<div class="col-md-2">
 								<div class="card card-profile">
 									<div class="card-avatar">
 										<a href="#pablo">
@@ -115,6 +118,20 @@
 										</p>
 										<a href="#pablo" @click="amtf_userInfoFollow" v-bind:class="followclass" :style="followstyle">{{follow}}</a>
 									</div>
+								</div>
+								<div class="card card-profile">
+									<div class="text-center">
+										<span class="h5">最热活动</span>
+									</div>
+									<table class="table-hover col-sm-12">
+										<tr th:each="entity,idx:${f010011Params.select6}" class="col-sm-12">
+											<td th:onclick="amtf_activityUserInFo([[${entity.activity_id}]])" class="lookeye hand text-left pl-2">
+												[[${entity.activity_head}]]&nbsp;&nbsp;
+												<i class="fa fa-user lookeye" aria-hidden="true"></i>
+												[[${entity.count}]]
+											</td>
+										</tr>
+									</table>
 								</div>
 							</div>
 							<div class="col-md-8">

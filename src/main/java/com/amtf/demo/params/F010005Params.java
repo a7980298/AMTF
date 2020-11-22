@@ -112,5 +112,13 @@ public class F010005Params extends UserImpl {
 	 */
 	String isattention;
 
+	/**
+	 * 当前页数
+	 */
 	Integer pageNum;
+
+	/**
+	 * 发布数量
+	 */
+	Integer activitycount;
 }

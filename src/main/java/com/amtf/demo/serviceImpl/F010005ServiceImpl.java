@@ -113,6 +113,9 @@ public class F010005ServiceImpl implements F010005Service {
 		//查看是否关注该发布人
 		entityout.setAttention(f010005dao.f010005_Select20(select4.getUser_email(),loginfo.getUser_email()));
 
+		//该发布人总发布数量
+		entityout.setActivitycount(f010005dao.f010005_Select23(select4.getUser_email()));
+
 		// 获取评论
         entityin.setPageNum(Constant.INT_0);
 		entityout.setCommentlist(this.service05(entityin).getCommentlist());

@@ -57,6 +57,10 @@ public class F010011ServiceImpl implements F010011Service {
 		entityIn.setAttention_id(select1.getUser_email());
 		entityout.setSelect5(this.service03(entityIn).getSelect5());
 
+		//热门活动
+		List<F010011_Select5Entity> select6 = f010011dao.f010011_Select6(select1.getUser_email());
+		entityout.setSelect6(select6);
+
 		return entityout;
 	}
 
