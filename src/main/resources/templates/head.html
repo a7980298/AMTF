@@ -24,7 +24,7 @@
 			amtf_submit(amtf_form, '/f010002/T003');
 		}
 		//打开详细通知
-		function amtf_getupdontice(_entity) {
+		function amtf_getupdontice(_updnotice_id, _updnotice_head, _updnotice_text) {
 			if ('[[${f010010Params}]]' == ''){
 				$('#getupdontice').modal('show');
 				showdiv();
@@ -34,7 +34,7 @@
 					dateType : 'html',
 					async : true,
 					data : {
-						id : _entity.updnotice_id,
+						id : _updnotice_id,
 					},
 					success : function(result) {
 						hidediv();
@@ -50,8 +50,8 @@
 						setCodeErrList("错误！！！请和管理员联系。。。");
 					},
 				});
-				$('#updnoticehead').text(_entity.updnotice_head);
-				$('#updnoticetext').html(_entity.updnotice_text);
+				$('#updnoticehead').text(_updnotice_head);
+				$('#updnoticetext').html(_updnotice_text);
 			} else {
 				md.showNotification('bottom', 'center', '2', '当前页面不可查看通知。。。');
 			}
@@ -361,7 +361,7 @@
 
 					var table = $('#updontice_datatables').DataTable();
 
-					// Edit record
+					/*// Edit record
 					table.on('click', '.edit', function() {
 						$tr = $(this).closest('tr');
 						var data = table.row($tr).data();
@@ -379,62 +379,8 @@
 					//Like record
 					table.on('click', '.like', function() {
 						alert('你点击了“喜欢”按钮');
-					});
-					
-					/*$('#activity_datatables').DataTable({
-						"pagingType" : "full_numbers",
-						// 禁止排序
-						"ordering": false,
-						// 设置默认的排序
-						"order": [ [ 5, "desc" ] ],
-						// 是否显示情报 就是"当前显示1/100记录"这个信息
-						"info": false,
-						// 件数选择功能 默认true
-						"lengthChange": false,
-						// lengthChange = ture 时件数选择功能
-						// "lengthMenu" : [ [ 10, 25, 50, -1 ],[ 10, 25, 50, "All" ] ],
-						responsive : true,
-						language : {
-							search : "_INPUT_",
-							searchPlaceholder : "搜索记录",
-						}
 					});*/
-
-					/*$('#activity_datatables_i').DataTable({
-						"pagingType" : "full_numbers",
-						// 禁止排序
-						"ordering": false,
-						// 是否允许检索
-						"searching": false,
-						// 设置默认的排序
-						"order": [ [ 3, "desc" ] ],
-						"lengthChange": false,
-						"info": false,
-						responsive : true,
-						language : {
-							search : "_INPUT_",
-							searchPlaceholder : "搜索记录",
-						}
-					});*/
-
-					/*$('#activity_datatables_s').DataTable({
-						"pagingType" : "full_numbers",
-						// 禁止排序
-						"ordering": false,
-						// 是否允许检索
-						"searching": false,
-						// 设置默认的排序
-						"order": [ [ 3, "desc" ] ],
-						"lengthChange": false,
-						"info": false,
-						responsive : true,
-						language : {
-							search : "_INPUT_",
-							searchPlaceholder : "搜索记录",
-						}
-					});*/
-				}
-			);
+				});
 			</script>
 		</body>
 	</th:block>
