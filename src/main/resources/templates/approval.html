@@ -22,86 +22,84 @@
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f010006}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f010006"/>
-						<div class="header text-center">
+						<!--<div class="header text-center">
 							<h3 class="title">认证进程</h3>
-						</div>
+						</div>-->
 						<div class="row">
 							<div class="col-md-12">
-								<div class="card card-timeline card-plain">
-									<div class="card-body">
-										<ul class="timeline">
-											<li class="timeline-inverted">
-												<div class="timeline-badge danger">
-													<i class="fa fa-arrow-up"></i>
+								<div class="card-body">
+									<ul class="timeline">
+										<li class="timeline-inverted">
+											<div class="timeline-badge danger">
+												<i class="fa fa-arrow-up"></i>
+											</div>
+											<div class="timeline-panel">
+												<div class="timeline-heading">
+													<span class="badge badge-pill badge-danger">提交</span>
 												</div>
-												<div class="timeline-panel">
-													<div class="timeline-heading">
-														<span class="badge badge-pill badge-danger">提交</span>
-													</div>
-													<div class="timeline-body">
-														<p>您的认证申请已经提交给管理员,正在由管理员审批。</p>
-													</div>
-													<h6>
-														<i class="ti-time"></i> 可能需要点时间。
-													</h6>
+												<div class="timeline-body">
+													<p>您的认证申请已经提交给管理员,正在由管理员审批。</p>
 												</div>
-											</li>
-											<li th:if="${f010006Params.logInFo.user_attestation &gt; 0}">
-												<div class="timeline-badge success">
-													<i class="material-icons">extension</i>
+												<h6>
+													<i class="ti-time"></i> 可能需要点时间。
+												</h6>
+											</div>
+										</li>
+										<li th:if="${f010006Params.logInFo.user_attestation &gt; 0}">
+											<div class="timeline-badge success">
+												<i class="material-icons">extension</i>
+											</div>
+											<div class="timeline-panel">
+												<div class="timeline-heading">
+													<span class="badge badge-pill badge-success">通过</span>
 												</div>
-												<div class="timeline-panel">
-													<div class="timeline-heading">
-														<span class="badge badge-pill badge-success">通过</span>
-													</div>
-													<div class="timeline-body">
-														<p>您的审批已通过,现在你可已完全使用本网站的全部体验。</p>
-													</div>
+												<div class="timeline-body">
+													<p>您的审批已通过,现在你可已完全使用本网站的全部体验。</p>
 												</div>
-											</li>
-											<li class="timeline-inverted" th:if="${f010006Params.logInFo.user_attestation &gt; 0}">
-												<div class="timeline-badge info">
-													<i class="material-icons">fingerprint</i>
+											</div>
+										</li>
+										<li class="timeline-inverted" th:if="${f010006Params.logInFo.user_attestation &gt; 0}">
+											<div class="timeline-badge info">
+												<i class="material-icons">fingerprint</i>
+											</div>
+											<div class="timeline-panel">
+												<div class="timeline-heading">
+													<span class="badge badge-pill badge-info">提升</span>
 												</div>
-												<div class="timeline-panel">
-													<div class="timeline-heading">
-														<span class="badge badge-pill badge-info">提升</span>
-													</div>
-													<div class="timeline-body">
-														<p>您可以申请成为管理人员,可有一定的权限管理本网站。</p>
-														<p>这个审批可能需要很多时间。</p>
-														<hr>
-													</div>
-													<div class="timeline-footer">
-														<div class="dropdown">
-															<button type="button"
-																class="btn btn-round btn-info dropdown-toggle"
-																data-toggle="dropdown">
-																<i class="material-icons">build</i>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">普通成员</a>
-																<a class="dropdown-item" href="#">管理员</a>
-															</div>
+												<div class="timeline-body">
+													<p>您可以申请成为管理人员,可有一定的权限管理本网站。</p>
+													<p>这个审批可能需要很多时间。</p>
+													<hr>
+												</div>
+												<div class="timeline-footer">
+													<div class="dropdown">
+														<button type="button"
+															class="btn btn-round btn-info dropdown-toggle"
+															data-toggle="dropdown">
+															<i class="material-icons">build</i>
+														</button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="#">普通成员</a>
+															<a class="dropdown-item" href="#">管理员</a>
 														</div>
 													</div>
 												</div>
-											</li>
-											<li th:if="${f010006Params.logInFo.user_attestation == 1}">
-												<div class="timeline-badge warning">
-													<i class="fa fa-handshake-o"></i>
+											</div>
+										</li>
+										<li th:if="${f010006Params.logInFo.user_attestation == 1}">
+											<div class="timeline-badge warning">
+												<i class="fa fa-handshake-o"></i>
+											</div>
+											<div class="timeline-panel">
+												<div class="timeline-heading">
+													<span class="badge badge-pill badge-warning">结果</span>
 												</div>
-												<div class="timeline-panel">
-													<div class="timeline-heading">
-														<span class="badge badge-pill badge-warning">结果</span>
-													</div>
-													<div class="timeline-body">
-														<p>您已经成为本网站的管理员,请遵守条例。不得做出有违条例的动作,涉及违法事项,我方将通知公安机关。</p>
-													</div>
+												<div class="timeline-body">
+													<p>您已经成为本网站的管理员,请遵守条例。不得做出有违条例的动作,涉及违法事项,我方将追究法律责任。</p>
 												</div>
-											</li>
-										</ul>
-									</div>
+											</div>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
