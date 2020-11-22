@@ -14,8 +14,12 @@
 		/*超出部分隐藏*/
 		overflow: hidden;
 	}
+	#img_modal img{
+		/*让鼠标显示缩小镜*/
+		cursor:zoom-out;
+	}
 	#activitylists img{
-		/*让鼠标显示小手*/
+		/*让鼠标显示放大镜*/
 		cursor: zoom-in;
 		/*过渡时间(缓慢放大时间)*/
 		transition:1s;
@@ -37,6 +41,7 @@
 					btn:true, 'btn-rose':[[${f010011Params.attention < 1 ? true : false}]], 'btn-round':true
 				},
 				followstyle : '',
+				maximgmodal : '',
 			},
 			methods:{
 				amtf_userInfoFollow(event) {
@@ -66,7 +71,8 @@
 					reomveNewInput('activity_id');
 				},
 				amtf_img(event) {
-					alert(event.currentTarget.src)
+					$('#img_modal').modal('show');
+					this.maximgmodal = event.currentTarget.src;
 				}
 			}
 		})
@@ -84,9 +90,6 @@
 					<div class="container-fluid">
 					<i-form class="" th:action="@{/f010011}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 					<input type="hidden" name="IViewId" value="f010011"/>
-						<viewer :images="images" style="height: 800px;">
-							<img v-for="item in images" :src="item.src" :key="item.index" height="100">
-						</viewer>
 						<div class="row m-auto col-md-11">
 							<div class="col-md-3">
 								<div class="card card-profile">
@@ -113,14 +116,14 @@
 										<li class="nav-item d-flex" th:each="entity,idx:${f010011Params.select5.list}" th:classappend="${idx.index == 0 ? '' : 'li_top'}">
 											<div class="col-sm-10">
 												<input type="hidden" v-bind:id="1231"/>
-												<a class="h3" th:@click="|amtf_activityUserInFo(${entity.activity_id})|">[[${entity.activity_head}]]</a>
+												<a class="h3" href="#" style="color: rgb(0, 5, 8)" th:@click="|amtf_activityUserInFo(${entity.activity_id})|">[[${entity.activity_head}]]</a>
 												<div class="d-flex">
 													<div class="col-sm-3 pl-0 pb-2" th:if="${entity.cover_img != '' && entity.cover_img != null}" >
 														<img th:src="${entity.cover_img}" class="col-sm-12 pl-0 pr-0" height="88px" @click="amtf_img">
 													</div>
 													<div class="col-sm-12 pl-0 pb-2">
-														<span class="h5" th:v-if="|${entity.cover_text != '' && entity.cover_text != null}|">[[${entity.cover_text}]]</span>
-														<span class="h5" th:v-if="|${entity.cover_text == '' || entity.cover_text == null}|">[[${entity.activity_time}]]</span>
+														<span class="h5" style="color: rgba(0, 0, 0, 0.39)" th:v-if="|${entity.cover_text != '' && entity.cover_text != null}|">[[${entity.cover_text}]]</span>
+														<span class="h5" style="color: rgba(0, 0, 0, 0.39)" th:v-if="|${entity.cover_text == '' || entity.cover_text == null}|">[[${entity.activity_time}]]</span>
 													</div>
 												</div>
 											</div>
@@ -132,6 +135,12 @@
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+						<!-- 图片放大 -->
+						<div class="modal fade" id="img_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-notice img_modal">
+								<img :src="maximgmodal" class="col-sm-12">
 							</div>
 						</div>
 						</i-form>
