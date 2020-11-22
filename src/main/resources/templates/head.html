@@ -175,14 +175,14 @@
 						</div>
 						<ul class="navbar-nav col-sm-3">
 							<li class="nav-item col-sm-2" title="功能">
-								<a class="nav-link" href="javascript:;">
+								<a class="nav-link col-sm-12" href="javascript:;">
 									<i class="material-icons">dashboard</i>
 									<p class="d-lg-none d-md-block">工具包</p>
 								</a>
 							</li>
 							<li class="nav-item dropdown col-sm-2" title="通知" onclick="amtf_updonticeclick()" th:if="${main_params.admin} == null">
 								<div id="select5" th:fragment="select5">
-									<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+									<a class="nav-link col-sm-12" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
 										<i class="material-icons" id="i_notifications">notifications</i>
 										<span class="notification" th:if="${not #lists.isEmpty(main_params.select5)}" id="updontice_size">[[${main_params.select5.size()}]]</span>
@@ -196,7 +196,7 @@
 								</div>
 							</li>
 							<li class="nav-item dropdown col-sm-2" title="个人" th:if="${main_params.admin} == null">
-								<a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
+								<a class="nav-link col-sm-12" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
 									<div class="card-avatar">
 										<div class="photo">

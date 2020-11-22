@@ -51,15 +51,16 @@ public class SessionMonitor implements HttpSessionListener {
 		HttpSession session = se.getSession();
 		// 获取当前用户信息
 		loginfo = (LogInFo) session.getAttribute("loginfo");
-		try {
-			// 销毁redis中的数据
-			redisUtils.deleteUser("redis_key", loginfo.getUser_email());
-			commonserviceimpl.users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? 0
-					: redisUtils.get("redis_key").split(",").length;
-		} catch (Exception e) {
-			System.out.println("销毁" + loginfo.getUser_email() + "失败");
+		if(!CommonUtil.isEmpty(loginfo)){
+			try {
+				// 销毁redis中的数据
+				redisUtils.deleteUser("redis_key", loginfo.getUser_email());
+				commonserviceimpl.users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? 0
+						: redisUtils.get("redis_key").split(",").length;
+			} catch (Exception e) {
+				System.out.println("销毁" + loginfo.getUser_email() + "失败");
+			}
 		}
-
 		// se.getSession().getServletContext().setAttribute("onlineCount", onlineCount);
 	}
 }
