@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>论坛画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
+		<div class="">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 论坛 -->
+				<div class="container-fluid dashboardclass" id="f030001">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f030001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f030001"/>
+							这是论坛
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -7,7 +7,7 @@ CREATE TABLE AMTF_POWER(
 	power_class VARCHAR(50), -- class样式
 	power_short VARCHAR(10) -- 缩写
 )
-insert into test.amtf_power values(1001,'观看视频','影视','0','f010001','fa-television','TV');
+insert into test.amtf_power values(1001,'观看视频','影视','0','f040001','fa-television','TV');
 insert into test.amtf_power values(1005,'现场直播','影视','0','f010010','fa-television','LB');
 insert into test.amtf_power values(1002,'享受音乐','音乐','0','f010009','fa-music','MS');
 insert into test.amtf_power values(1003,'畅所欲言','互动','0','f030001','fa-child','FR');

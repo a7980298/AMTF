@@ -26,7 +26,7 @@ public class F040001Controller extends ValiDationUtil{
 
 		model.addAttribute("f040001Params", params);
 
-		return "f040001";
+		return "video";
 	}
 
 }

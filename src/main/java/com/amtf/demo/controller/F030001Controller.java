@@ -26,7 +26,7 @@ public class F030001Controller extends ValiDationUtil {
 
 		model.addAttribute("f030001Params", params);
 
-		return "f030001";
+		return "forum";
 	}
 
 }
