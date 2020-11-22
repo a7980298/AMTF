@@ -14,8 +14,12 @@
 		/*超出部分隐藏*/
 		overflow: hidden;
 	}
+	#img_modal img{
+		/*让鼠标显示缩小镜*/
+		cursor:zoom-out;
+	}
 	#activitylists img{
-		/*让鼠标显示小手*/
+		/*让鼠标显示放大镜*/
 		cursor: zoom-in;
 		/*过渡时间(缓慢放大时间)*/
 		transition:1s;
@@ -37,6 +41,7 @@
 					btn:true, 'btn-rose':[[${f010011Params.attention < 1 ? true : false}]], 'btn-round':true
 				},
 				followstyle : '',
+				maximgmodal : '',
 			},
 			methods:{
 				amtf_userInfoFollow(event) {
@@ -66,7 +71,8 @@
 					reomveNewInput('activity_id');
 				},
 				amtf_img(event) {
-					alert(event.currentTarget.src)
+					$('#img_modal').modal('show');
+					this.maximgmodal = event.currentTarget.src;
 				}
 			}
 		})
@@ -132,6 +138,12 @@
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+						<!-- 图片放大 -->
+						<div class="modal fade" id="img_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-notice img_modal">
+								<img :src="maximgmodal" class="col-sm-12">
 							</div>
 						</div>
 						</i-form>
