@@ -152,7 +152,7 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink" th:id="${'pagesExamples' + idx.index}">
 										<ul class="nav">
-											<a class="dropdown-item updnotice" th:each="fileInfo,idxs: ${mapkey.value}" data-toggle="modal" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
+											<a class="dropdown-item updnotice col-sm-11" th:each="fileInfo,idxs: ${mapkey.value}" data-toggle="modal" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
 												<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
 												<span class="sidebar-mini"> [[${fileInfo.power_short}]] </span>
 												<span class="sidebar-normal"> [[${fileInfo.power_name}]] </span>
