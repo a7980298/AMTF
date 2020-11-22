@@ -5,10 +5,29 @@
 <title>新闻画面</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
-	
+	.wrapper{
+	}
+	.news{
+		margin: 40px 40px;
+		width: 80%;
+		height: 60%;
+		background-color:white;
+		border: 1px solid #E0E0E0;
+	}
+	.a{
+		position: relative;
+		left: 70%;
+	}
+
 </style>
 <script type="text/javascript">
-	
+	//是否有新闻
+	// function(have){
+	// 	if(have == 0){
+	// 		setCodeSuccess('没有相关数据！');
+	// 	}else{
+	// 	}
+	// }
 </script>
 </head>
 <body>
@@ -19,6 +38,9 @@
 			<div class="content">
 				<!-- 新闻 -->
 				<div class="container-fluid dashboardclass" id="f050001">
+					<div class="news">
+						<a style="margin-left:12px">新闻快讯</a><input style="margin-left:64%"></input><button class="btn btn-default">搜索</button>
+					</div>
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f050001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f050001"/>
