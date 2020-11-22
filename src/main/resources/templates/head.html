@@ -118,9 +118,9 @@
 		</script>
 		</head>
 		<body>
-			<nav class="navbar navbar-expand-lg pt-0 pb-0 mb-0">
+			<nav class="navbar navbar-expand-lg pt-0 pb-0 mb-1">
 				<div class="container-fluid">
-					<div class="navbar-wrapper" th:if="${main_params.admin == ''}">
+					<div class="navbar-wrapper" th:if="${main_params.admin} != null">
 						<div class="navbar-minimize">
 							<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
 								<i class="material-icons text_align-center visible-on-sidebar-regular" title="缩小" id="more_vert">more_vert</i>
@@ -129,7 +129,7 @@
 						</div>
 					</div>
 					<button class="navbar-toggler" type="button" data-togcollapse navbar-collapse justify-content-endgle="collapse" aria-controls="navigation-index"
-						aria-expanded="false" aria-label="Toggle navigation" th:if="${main_params.admin == ''}">
+						aria-expanded="false" aria-label="Toggle navigation" th:if="${main_params.admin} != null">
 						<span class="sr-only">切换 导航</span>
 						<span class="navbar-toggler-icon icon-bar"></span>
 						<span class="navbar-toggler-icon icon-bar"></span>
