@@ -119,7 +119,7 @@
 		</head>
 		<body>
 			<nav class="navbar navbar-expand-lg pt-0 pb-0 mb-1">
-				<div class="container-fluid">
+				<div class="container-fluid" style="min-width: 1456px">
 					<div class="navbar-wrapper" th:if="${main_params.admin} != null">
 						<div class="navbar-minimize">
 							<button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
@@ -141,7 +141,7 @@
 								<img th:src="@{/imgs/head1.jpg}" class="col-sm-12 pt-1 mr-0"/>
 							</a>
 						</div>
-						<div class="input-group no-border col-sm-3">
+						<div class="input-group no-border col-sm-3" style="min-width: 465px">
 							<ul class="navbar-nav" th:each="mapkey,idx:${main_params.navigation_bar}">
 								<li class="nav-item dropdown">
 									<a class="nav-link" data-toggle="dropdown" th:data-target="${'pagesExamples' + idx.index}" aria-haspopup="true" aria-expanded="false" th:href="${'#pagesExamples' + idx.index}" th:title="${mapkey.key}">
