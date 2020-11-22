@@ -154,7 +154,7 @@
 										<ul class="nav">
 											<a class="dropdown-item updnotice col-sm-11" th:each="fileInfo,idxs: ${mapkey.value}" data-toggle="modal" th:href="${'#' + fileInfo.power_path}" onclick="amtf_loginhead(this)">
 												<input type="hidden" th:id="${'ul' + idx.index + '_li' + idxs.index}" th:value="${fileInfo.power_path}"/>
-												<span class="sidebar-mini"> [[${fileInfo.power_short}]] </span>
+												<!--<span class="sidebar-mini"> [[${fileInfo.power_short}]] </span>-->
 												<span class="sidebar-normal"> [[${fileInfo.power_name}]] </span>
 											</a>
 										</ul>
@@ -207,7 +207,7 @@
 									<p class="d-lg-none d-md-block">账户</p>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-									<a class="dropdown-item" href="#f010003" onclick="amtf_loginhead(this)">简况</a>
+									<a class="dropdown-item" href="#f010003" onclick="amtf_loginhead(this)">个人信息</a>
 									<a class="dropdown-item" href="#f010007" onclick="amtf_loginhead(this)">设置</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#" onclick="amtf_golock()">锁定</a>
