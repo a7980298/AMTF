@@ -136,6 +136,11 @@
 						<span class="navbar-toggler-icon icon-bar"></span>
 					</button>
 					<div class="collapse navbar-collapse justify-content-end col-sm-12">
+						<div class="pl-0 ml-auto" style="width: 50px;">
+							<a class="" href="#f010002" onclick="amtf_loginhead(this)" title="主页面" th:if="${main_params.admin}  == null">
+								<img th:src="@{/imgs/head1.jpg}" class="col-sm-12 pt-1 mr-0"/>
+							</a>
+						</div>
 						<div class="input-group no-border col-sm-3">
 							<ul class="navbar-nav" th:each="mapkey,idx:${main_params.navigation_bar}">
 								<li class="nav-item dropdown">
