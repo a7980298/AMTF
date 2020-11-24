@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>问答画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
+		<div class="">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 论坛 -->
+				<div class="container-fluid dashboardclass" id="f060001">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f060001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f060001"/>
+							<div class="row card m-0">
+								<div class="input-group no-border col-sm-12">
+									<div class="m-auto d-flex">
+										<div class="nav-item dropdown">
+											<a class="btn btn-sm btn-reddit" data-toggle="dropdown" data-target="" aria-haspopup="true" aria-expanded="false">
+												我要提问
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row m-auto col-md-11">
+								<div class="col-md-9 pl-0 pr-0">
+									<div class="card card-profile m-1">
+										<div class="col-md-12 d-flex">
+											<div class="text-center col-md-1 h4 pt-3">最新问题</div>
+											<div class="timeline-footer col-md-4 ml-auto">
+												<div class="dropdown">
+													<button type="button" class="btn" data-toggle="dropdown">
+														<span>选择类型</span>
+													</button>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="#">普通成员</a>
+														<a class="dropdown-item" href="#">管理员</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">主页面1</span>
+										</div>
+										<div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">分类页面</span>
+										</div>
+										<table class="table-hover col-sm-12">
+										</table>
+									</div>
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">人最多页面</span>
+										</div>
+										<table class="table-hover col-sm-12">
+										</table>
+									</div>
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">广告页面</span>
+										</div>
+										<table class="table-hover col-sm-12">
+										</table>
+									</div>
+								</div>
+							</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

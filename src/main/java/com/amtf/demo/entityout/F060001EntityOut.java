@@ -10,5 +10,4 @@ import lombok.Setter;
 @Getter
 @Setter
 public class F060001EntityOut {
-	List<F060001_Select1Entity> select1;
 }

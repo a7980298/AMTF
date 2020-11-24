@@ -26,12 +26,7 @@ public class F060001ServiceImpl implements F060001Service {
 	public F060001EntityOut service01(F060001EntityIn entityin) throws ErrListException {
 		F060001EntityOut entityout = new F060001EntityOut();
 
-		List<F060001_Select1Entity> select1entity = f060001dao.f060001_Select1();
 
-		DateUtil.strTostr(select1entity.get(0).getTask_date());
-
-		// 最新任务
-		entityout.setSelect1(select1entity);
 
 		return entityout;
 	}

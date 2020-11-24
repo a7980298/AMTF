@@ -14,5 +14,8 @@ import lombok.Setter;
 @Setter
 
 public class F060001Params {
-	List<F060001_Select1Entity> select1;
+	/**
+	 * 页面id
+	 */
+	private String IViewId;
 }

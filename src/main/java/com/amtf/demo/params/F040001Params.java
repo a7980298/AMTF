@@ -10,5 +10,8 @@ import lombok.Setter;
 @Setter
 
 public class F040001Params {
-
+    /**
+     * 页面id
+     */
+    private String IViewId;
 }

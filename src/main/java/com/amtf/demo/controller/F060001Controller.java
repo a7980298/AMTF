@@ -38,7 +38,7 @@ public class F060001Controller extends ValiDationUtil {
 
 		model.addAttribute("f060001Params", params);
 
-		return "f060001";
+		return "qa";
 	}
 
 }

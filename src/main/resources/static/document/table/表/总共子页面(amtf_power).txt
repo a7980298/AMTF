@@ -17,3 +17,4 @@ insert into test.amtf_power values(1006,'通知中心','任务','0','f010004','f
 insert into test.amtf_power values(9999,'会员管理','管理','1','f020001','fa-pencil-square','AD');
 insert into test.amtf_power values(1007,'活动一栏','任务','0','f010005','fa-th-list','AT');
 insert into test.amtf_power values(1008,'认证进程','任务','0','f010006','fa-check','AS');
+insert into test.amtf_power values(1009,'你问我答','互动','0','f060001','fa-child','QA');
