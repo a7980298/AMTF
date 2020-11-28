@@ -1,0 +1,11 @@
+CREATE TABLE amtf_qa_class(
+	qa_class_id INT NOT NULL, -- id
+	qa_class_name VARCHAR(8) -- 标签类型名
+)
+insert into amtf_qa_class values(1,'生活');
+insert into amtf_qa_class values(2,'爱情');
+insert into amtf_qa_class values(3,'工作');
+insert into amtf_qa_class values(4,'学业');
+insert into amtf_qa_class values(5,'房地产');
+insert into amtf_qa_class values(6,'故事');
+insert into amtf_qa_class values(7,'个人');

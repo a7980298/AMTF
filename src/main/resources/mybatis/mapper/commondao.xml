@@ -73,4 +73,12 @@
 		FROM
 			AMTF_USER_ATTENTION
 	</select>
+	<!-- 获取qa表最大id -->
+	<select id="common_Select10"
+			resultType="int">
+		SELECT
+			MAX(QA_ID)
+		FROM
+			AMTF_QA
+	</select>
 </mapper>

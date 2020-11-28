@@ -8,7 +8,106 @@
 
 </style>
 <script type="text/javascript">
+	var editor;
+	$(function(){
+		// 注册wangEditor插件
+		var wangEditor = window.wangEditor;
+		editor = new wangEditor('#qa_editor');
+		editor.config.menus = [
+			'bold', // 加粗
+			'underline',  // 下划线
+			'justify',  // 对齐方式
+			'image',  // 插入图片
+			'link'  // 链接
+		]
+		editor.config.zIndex = 10;
 
+		//开启debug模式
+		editor.config.debug = true;
+		// 关闭粘贴内容中的样式
+		editor.config.pasteFilterStyle = false
+		editor.config.height = '300'
+		// 忽略粘贴内容中的图片
+		editor.config.pasteIgnoreImg = true
+		// 上传路径
+		editor.config.uploadFileName = 'myFile'
+		editor.config.uploadImgServer = '/amtf/f060005/T001'
+		// 进行下文提到的其他配置
+		// 将图片大小限制为 3M
+		editor.config.uploadImgMaxSize = 3 * 1024 * 1024
+		//聚焦事件
+		editor.config.onfocus = function (newHtml) {
+
+		}
+		//失焦事件
+		editor.config.onblur  = function (newHtml) {
+
+		}
+		editor.config.placeholder = '请描述您的问题，必要时贴上相关图片和信息，尝试过的方法和方式并上传相关截图辅证；';
+		// 自己写上传图片
+		editor.config.customUploadImg = function (resultFiles, insertImgFn) {
+			// resultFiles 是 input 中选中的文件列表
+			// insertImgFn 是获取图片 url 后，插入到编辑器的方法
+			var formData = new FormData($('#amtf_form')[0]);
+			formData.append("myFile", resultFiles[0]);
+			$.ajax({
+				url : CONTEXT_PATH + '/f060001/T002',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				cache: false,
+				processData : false, // 用于对data参数进行序列化处理
+				contentType : false, // 不要设置Content-Type请求头
+				data : formData,
+				success : function(result) {
+					// 上传图片，返回结果，将图片插入到编辑器中
+					insertImgFn('/amtf/wangqaimg/' + result.data[0].replace('C:/wangEdito_QaImg'));
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		editor.create();
+	});
+	// 打开模态框
+	function amtf_qa_Ask(){
+		$('#qa_report').modal('show');
+	}
+	// 发布问题
+	function amtf_qa_EditorSubmit() {
+		var _entity = {};
+		_entity.head = $('#report_head').val();
+		_entity.get_class = $('.getclass_id').eq(0).val() + "," + $('.getclass_id').eq(1).val() + "," + $('.getclass_id').eq(2).val();
+		_entity.text = editor.txt.html();
+		$.ajax({
+			url : CONTEXT_PATH + '/f060001/T001',
+			type : 'post',
+			dateType : 'json',
+			async : false,
+			contentType : "application/json",
+			data : JSON.stringify(_entity),
+			success : function(result) {
+				if (result.insert1 >= 1) {
+					md.showNotification('top', 'center', '3', '发布成功');
+					$('#qa_report').modal('hide');
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
+	// 获取选中的标签
+	function amtf_qa_GetClass (_this){
+		if($('.getclass').length < 3 && $('.getclass').text().indexOf(_this.qa_class_name) == -1){
+			$('#showclass').before("<button type='button' class='btn btn-sm btn-white col-sm-1 getclass'>" + _this.qa_class_name + "<input type='hidden' class='getclass_id' value='" + _this.qa_class_id + "'/><a onclick='amtf_qa_RemoveClass(this)'><i class='material-icons'>close</i></a></button>");
+		}
+	}
+	// 删除选中的标签
+	function amtf_qa_RemoveClass(_this) {
+		$(_this).parent('button').remove();
+	}
 </script>
 </head>
 <body>
@@ -43,9 +142,9 @@
 											<div class="input-group no-border col-sm-1">
 												<div class="m-auto d-flex">
 													<div class="nav-item dropdown">
-														<a class="btn btn-sm btn-reddit" data-toggle="dropdown" data-target="" aria-haspopup="true" aria-expanded="false">
-															我要提问
-														</a>
+														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_qa_Ask()">
+															<span>我要提问</span>
+														</button>
 													</div>
 												</div>
 											</div>
@@ -81,6 +180,55 @@
 										</div>
 										<table class="table-hover col-sm-12">
 										</table>
+									</div>
+								</div>
+							</div>
+							<!-- 提问富文本 -->
+							<div class="modal fade" id="qa_report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-notice">
+									<div class="modal-content" style="width:1000px;">
+										<div class="modal-header" id="report_head">
+											<input class="input col-sm-11" placeholder="问题标题，一句话描述清楚问题，以问号结束"/>
+											<button type="button" class="close col-sm-1" data-dismiss="modal"
+													aria-hidden="true">
+												<i class="material-icons">close</i>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="instruction">
+												<div class="row">
+													<div class="col-md-12">
+														<div id="qa_editor"></div>
+													</div>
+												</div>
+											</div>
+											<div class="instruction">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="nav-item dropdown">
+															<button type="button" class="btn btn-sm btn-white" data-toggle="dropdown" id="showclass">
+																<span>十 添加标签（最多3个）</span>
+															</button>
+															<div class="dropdown-menu">
+																<div class="col-sm-12">
+																	<a class="btn-white" th:each="entity,idx:${f060001Params.qa_class_lists}" th:onclick="amtf_qa_GetClass([[${entity}]])">
+																		[[${entity.qa_class_name}]]
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer justify-content-center col-sm-12 text-right">
+											<button type="button" class="btn h5 col-sm-1 ml-auto" data-dismiss="modal" aria-hidden="true">
+												取消
+											</button>
+											<button type="button" class="btn btn-reddit h5 col-sm-1 ml-4" onclick="amtf_qa_EditorSubmit()">
+												确定
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>

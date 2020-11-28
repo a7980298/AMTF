@@ -36,4 +36,6 @@ public class Constant {
 
 	public static final String PATH_WANGEDITO_ALLNOTICESIMG = "C:/wangEdito_AllnoticesImg/";
 
+	public static final String PATH_WANGEDITO_QAIMG = "C:/wangEdito_QaImg/";
+
 }

@@ -7,4 +7,6 @@ import com.amtf.demo.exception.ErrListException;
 public interface F060001Service {
 
 	public F060001EntityOut service01(F060001EntityIn entityin) throws ErrListException;
+
+	public F060001EntityOut service02(F060001EntityIn entityin) throws ErrListException;
 }

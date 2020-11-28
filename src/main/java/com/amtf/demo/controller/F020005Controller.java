@@ -96,7 +96,7 @@ public class F020005Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 初始化
+	 * wangeditor上传图片
 	 *
 	 * @parameter F020005Params params
 	 * @return String

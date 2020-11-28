@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amtf.demo.dao.F060001Dao">
-	<select id="f060001_Select1" >
-
+	<!-- 发布问题 -->
+	<insert id="f060001_Insert1">
+		INSERT INTO
+			AMTF_QA
+		VALUES(
+			#{entity.qa_id},
+			#{entity.user_id},
+			#{entity.qa_head},
+			#{entity.qa_text},
+			#{entity.qa_class},
+			NOW()
+		)
+	</insert>
+	<!-- 问题标签 -->
+	<select id="f060001_Select2" resultType="com.amtf.demo.commonentity.AmtfQaClassEntity">
+		SELECT
+			*
+		FROM
+			AMTF_QA_CLASS
 	</select>
 </mapper>
