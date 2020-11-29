@@ -1,0 +1,8 @@
+CREATE TABLE AMTF_news(
+	news_user VARCHAR(4), -- 发布人
+	news_name VARCHAR(20), -- 任务名称
+	news_text VARCHAR(800), -- 任务内容
+	news_date DateTime -- 发布时间
+)
+新闻数据检索sql
+select * from AMTF_news Inner join news_user like '%123%'

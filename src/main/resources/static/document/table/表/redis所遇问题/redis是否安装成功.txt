@@ -1,4 +1,5 @@
 在redis安装目录，输入cmd，然后回车，或按住shift，选择在此处打开黑窗口
 输入redis-cli并回车。（redis-cli是客户端程序）如图正常提示进入，并显示正确端口号，则表示服务已经启动
+或输入redis-server.exe redis.windows.conf并回车。（redis-cli是客户端程序）如图正常提示进入，并显示正确端口号，则表示服务已经启动
 设置密码：例 config set requirepass “12345”
 使用服务前需要先通过密码验证。输入“auth 12345”并回车（12345是之前设定的密码）。返回提示OK表示验证通过。
