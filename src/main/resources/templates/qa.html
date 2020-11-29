@@ -78,7 +78,11 @@
 	function amtf_qa_EditorSubmit() {
 		var _entity = {};
 		_entity.head = $('#report_head').val();
-		_entity.get_class = $('.getclass_id').eq(0).val() + "," + $('.getclass_id').eq(1).val() + "," + $('.getclass_id').eq(2).val();
+		if ($('.getclass_id').length == 0) {
+			_entity.get_class = '';
+		} else {
+			_entity.get_class = $('.getclass_id').eq(0).val() + "," + $('.getclass_id').eq(1).val() + "," + $('.getclass_id').eq(2).val();
+		}
 		_entity.text = editor.txt.html();
 		$.ajax({
 			url : CONTEXT_PATH + '/f060001/T001',
@@ -133,8 +137,7 @@
 															<span>选择类型</span>
 														</button>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="#">普通成员</a>
-															<a class="dropdown-item" href="#">管理员</a>
+															<a class="dropdown-item" href="#" th:each="entity,idx:${f060001Params.qa_class_lists}">[[${entity.qa_class_name}]]</a>
 														</div>
 													</div>
 												</div>
@@ -155,7 +158,29 @@
 											<span class="h5">主页面1</span>
 										</div>
 										<div>
-
+										</div>
+									</div>
+									<div class="card card-profile m-1" th:each="entity,idx:${f060001Params.select3}">
+										<div class="text-left col-sm-12">
+											<span class="h4 font-weight-bold">[[${entity.qa_head}]]</span>
+										</div>
+										<div class="col-sm-12 d-flex text-left" style="height: 30px">
+											<div class="col-sm-4 pl-0 ml-0 mr-auto">
+												<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" id="img2" style="height:30px;"/>
+												<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img })}" th:if="${entity.user_img  != ''}" id="img2" style="height:30px;"/>
+												<span>[[${entity.user_name}]]</span>
+												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname1 != '' && entity.qa_classname1 != null}">
+													<span>[[${entity.qa_classname1}]]</span>
+												</button>
+												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname2 != '' && entity.qa_classname2 != null}">
+													<span>[[${entity.qa_classname2}]]</span>
+												</button>
+												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname3 != '' && entity.qa_classname3 != null}">
+													<span>[[${entity.qa_classname3}]]</span>
+												</button>
+											</div>
+										</div>
+										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}">
 										</div>
 									</div>
 								</div>
@@ -187,10 +212,9 @@
 							<div class="modal fade" id="qa_report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-notice">
 									<div class="modal-content" style="width:1000px;">
-										<div class="modal-header" id="report_head">
-											<input class="input col-sm-11" placeholder="问题标题，一句话描述清楚问题，以问号结束"/>
-											<button type="button" class="close col-sm-1" data-dismiss="modal"
-													aria-hidden="true">
+										<div class="modal-header">
+											<input class="input col-sm-11" id="report_head" placeholder="问题标题，一句话描述清楚问题，以问号结束" required="true"/>
+											<button type="button" class="close col-sm-1" data-dismiss="modal" aria-hidden="true">
 												<i class="material-icons">close</i>
 											</button>
 										</div>

@@ -1,12 +1,11 @@
-package com.amtf.demo.commonentity;
+package com.amtf.demo.f060001entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class AmtfQaEntity {
+public class F060001_Select3Entity {
 
 	/**
 	 * id
@@ -31,20 +30,30 @@ public class AmtfQaEntity {
 	/**
 	 *发布的类型1
 	 */
-	private String qa_class1;
+	private String qa_classname1;
 
 	/**
-	 *发布的类型1
+	 *发布的类型2
 	 */
-	private String qa_class2;
+	private String qa_classname2;
 
 	/**
-	 *发布的类型1
+	 *发布的类型3
 	 */
-	private String qa_class3;
+	private String qa_classname3;
 
 	/**
 	 *发布时间
 	 */
 	private String qa_time;
+
+	/**
+	 *发布人姓名
+	 */
+	private String user_name;
+
+	/**
+	 *发布人头像
+	 */
+	private String user_img;
 }

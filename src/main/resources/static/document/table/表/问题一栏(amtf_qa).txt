@@ -3,6 +3,8 @@ CREATE TABLE amtf_qa(
 	user_id VARCHAR(30), -- 发布用户id
 	qa_head VARCHAR(30), -- 发布标题
 	qa_text  blob, -- 发布内容
-    qa_class  VARCHAR(30),-- 发布的类型
+    qa_class1  VARCHAR(10),-- 发布的类型1
+    qa_class2  VARCHAR(10),-- 发布的类型2
+    qa_class3  VARCHAR(10),-- 发布的类型3
 	qa_time DATETIME -- 发布时间
 )
