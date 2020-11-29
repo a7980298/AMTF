@@ -5,11 +5,51 @@
 <title>问答画面</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
-
+.footer{
+	border-top: 1px solid #bdbdbd;
+}
 </style>
 <script type="text/javascript">
 	var editor;
 	$(function(){
+		$('.reply_editor').each(function(){
+			var wangEditor = window.wangEditor;
+			editor = new wangEditor(this);
+			editor.config.height = '200'
+			editor.config.zIndex = 10;
+			editor.config.menus = [
+				'bold', // 加粗
+				'underline',  // 下划线
+				'justify',  // 对齐方式
+				'image',  // 插入图片
+				'link'  // 链接
+			]
+			// 自己写上传图片
+			editor.config.customUploadImg = function (resultFiles, insertImgFn) {
+				// resultFiles 是 input 中选中的文件列表
+				// insertImgFn 是获取图片 url 后，插入到编辑器的方法
+				var formData = new FormData($('#amtf_form')[0]);
+				formData.append("myFile", resultFiles[0]);
+				$.ajax({
+					url : CONTEXT_PATH + '/f060001/T002',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					cache: false,
+					processData : false, // 用于对data参数进行序列化处理
+					contentType : false, // 不要设置Content-Type请求头
+					data : formData,
+					success : function(result) {
+						// 上传图片，返回结果，将图片插入到编辑器中
+						insertImgFn('/amtf/wangqaimg/' + result.data[0].replace('C:/wangEdito_QaImg'));
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			}
+			editor.create();
+		});
 		// 注册wangEditor插件
 		var wangEditor = window.wangEditor;
 		editor = new wangEditor('#qa_editor');
@@ -180,8 +220,12 @@
 												</button>
 											</div>
 										</div>
-										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}">
-										</div>
+										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}"></div>
+										<footer class="col-sm-12 d-flex text-left footer" style="height: 30px">
+											<div class="col-md-12">
+												<div th:id="${'reply_editor' + idx.index}" class="reply_editor"></div>
+											</div>
+										</footer>
 									</div>
 								</div>
 								<div class="col-md-3">
