@@ -24,6 +24,28 @@
 				'image',  // 插入图片
 				'link'  // 链接
 			]
+			$(this).click(function(){
+				$.ajax({
+					url: CONTEXT_PATH + '/f060001/T003',
+					type: 'post',
+					dateType: 'html',
+					async: true,
+					data: {
+						reply_id: replyid,
+						release_text: editor.txt.html()
+					},
+					success: function (result) {
+						if(result.updonticey == '1'){
+							setCodeSuccess('发布成功！');
+						} else {
+							setCodeErrList("错误！！！请和管理员联系。。。");
+						}
+					},
+					error: function (res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			});
 			// 自己写上传图片
 			editor.config.customUploadImg = function (resultFiles, insertImgFn) {
 				// resultFiles 是 input 中选中的文件列表
@@ -152,9 +174,10 @@
 	function amtf_qa_RemoveClass(_this) {
 		$(_this).parent('button').remove();
 	}
+	var replyid;
 	// 回复问题
 	function amtf_qa_QaReply(_id, _index) {
-		alert($('#reply_editor' + _index).txt.html());
+		replyidx = _id;
 	}
 </script>
 </head>
