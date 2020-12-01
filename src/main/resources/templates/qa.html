@@ -195,12 +195,12 @@
 									</div>
 									<div class="card card-profile m-1">
 										<div class="text-center">
-											<span class="h5">主页面1</span>
+											<span class="h5">回答最好的用户页面</span>
 										</div>
 										<div>
 										</div>
 									</div>
-									<div class="card card-profile m-1" th:each="entity,idx:${f060001Params.select3}">
+									<div class="card card-profile m-1 mt-4" th:each="entity,idx:${f060001Params.select3}">
 										<div class="text-left col-sm-12">
 											<span class="h4 font-weight-bold">[[${entity.qa_head}]]</span>
 										</div>
@@ -224,6 +224,9 @@
 										<footer class="col-sm-12 d-flex text-left footer" style="height: 30px">
 											<div class="col-md-12">
 												<div th:id="${'reply_editor' + idx.index}" class="reply_editor"></div>
+												<button type="button" class="btn btn-info h5 col-sm-12 mr-auto">
+													回答
+												</button>
 											</div>
 										</footer>
 									</div>
