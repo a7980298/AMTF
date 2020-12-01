@@ -99,6 +99,8 @@
 			host : 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
 			appkey : "BC-6bb634d86a8c493799745be104a4e0c0", //替换为您的应用appkey
 		});
+		//提示框
+		$(function () { $("[data-toggle='tooltip']").tooltip(); });
 		// 接受信息
 		goEasy.subscribe({
 			channel : "amtf_channel", //替换为您自己的channel

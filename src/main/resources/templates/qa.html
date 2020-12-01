@@ -152,6 +152,7 @@
 	function amtf_qa_RemoveClass(_this) {
 		$(_this).parent('button').remove();
 	}
+
 </script>
 </head>
 <body>
@@ -208,14 +209,14 @@
 											<div class="col-sm-4 pl-0 ml-0 mr-auto">
 												<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" id="img2" style="height:30px;"/>
 												<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img })}" th:if="${entity.user_img  != ''}" id="img2" style="height:30px;"/>
-												<span>[[${entity.user_name}]]</span>
-												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname1 != '' && entity.qa_classname1 != null}">
+												<span data-toggle="tooltip" th:title="${entity.user_name}">[[${entity.user_name}]]</span>
+												<button type="button mr-auto" class="btn btn-sm btn-white" data-toggle="tooltip" th:title="${entity.qa_classname1}" th:if="${entity.qa_classname1 != '' && entity.qa_classname1 != null}">
 													<span>[[${entity.qa_classname1}]]</span>
 												</button>
-												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname2 != '' && entity.qa_classname2 != null}">
+												<button type="button mr-auto" class="btn btn-sm btn-white" data-toggle="tooltip" th:title="${entity.qa_classname2}" th:if="${entity.qa_classname2 != '' && entity.qa_classname2 != null}">
 													<span>[[${entity.qa_classname2}]]</span>
 												</button>
-												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname3 != '' && entity.qa_classname3 != null}">
+												<button type="button mr-auto" class="btn btn-sm btn-white" data-toggle="tooltip" th:title="${entity.qa_classname3}" th:if="${entity.qa_classname3 != '' && entity.qa_classname3 != null}">
 													<span>[[${entity.qa_classname3}]]</span>
 												</button>
 											</div>

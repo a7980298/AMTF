@@ -139,7 +139,7 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-end col-sm-12">
 						<div class="pl-0 ml-auto" style="width: 50px;">
-							<a class="" href="#f010002" onclick="amtf_loginhead(this)" title="主页面" th:if="${main_params.admin}  == null">
+							<a class="" href="#f010002" onclick="amtf_loginhead(this)" data-toggle="tooltip" data-placement="bottom" title="主页面" th:if="${main_params.admin}  == null">
 								<img th:src="@{/imgs/head1.jpg}" class="col-sm-12 pt-1 mr-0"/>
 							</a>
 						</div>
@@ -170,19 +170,19 @@
 							</div>
 							<div class="col-sm-2">
 								<button type="button" class="btn btn-white btn-round btn-just-icon col-sm-2">
-									<i class="material-icons" title="搜索">search</i>
+									<i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="搜索">search</i>
 									<div class="ripple-container"></div>
 								</button>
 							</div>
 						</div>
 						<ul class="navbar-nav col-sm-3">
-							<li class="nav-item col-sm-2" title="功能">
+							<li class="nav-item col-sm-2" data-toggle="tooltip" data-placement="bottom" title="功能">
 								<a class="nav-link col-sm-12" href="javascript:;">
 									<i class="material-icons">dashboard</i>
 									<p class="d-lg-none d-md-block">工具包</p>
 								</a>
 							</li>
-							<li class="nav-item dropdown col-sm-2" title="通知" onclick="amtf_updonticeclick()" th:if="${main_params.admin} == null">
+							<li class="nav-item dropdown col-sm-2" data-toggle="tooltip" data-placement="bottom" title="通知" onclick="amtf_updonticeclick()" th:if="${main_params.admin} == null">
 								<div id="select5" th:fragment="select5">
 									<a class="nav-link col-sm-12" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
@@ -197,7 +197,7 @@
 									</div>
 								</div>
 							</li>
-							<li class="nav-item dropdown col-sm-2" title="个人" th:if="${main_params.admin} == null">
+							<li class="nav-item dropdown col-sm-2" data-toggle="tooltip" data-placement="bottom" title="个人" th:if="${main_params.admin} == null">
 								<a class="nav-link col-sm-12" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
 									<div class="card-avatar">
