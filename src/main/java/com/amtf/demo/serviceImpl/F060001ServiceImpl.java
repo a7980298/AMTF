@@ -73,11 +73,11 @@ public class F060001ServiceImpl implements F060001Service {
 		insert1in.setQa_text(entityin.getSubmitjson().getString("text"));
 		String [] classs=entityin.getSubmitjson().getString("get_class").split(",");
 		//标签1
-		insert1in.setQa_class1(classs.length > 1 ? classs[0] : "");
+		insert1in.setQa_class1(classs.length >= 1 ? classs[0] : "");
 		//标签3
-		insert1in.setQa_class2(classs.length > 2 ? classs[1] : "");
+		insert1in.setQa_class2(classs.length >= 2 ? classs[1] : "");
 		//标签3
-		insert1in.setQa_class3(classs.length > 3 ? classs[2] : "");
+		insert1in.setQa_class3(classs.length >= 3 ? classs[2] : "");
 		//发布人
 		insert1in.setUser_id(loginfo.getUser_email());
 		//发布问题添加
