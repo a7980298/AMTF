@@ -26,7 +26,7 @@
 			amtf_submit(amtf_form, '/f010002/T003');
 		}
 		//打开详细通知
-		function amtf_getupdontice(_updnotice_id, _updnotice_head, _updnotice_text) {
+		function amtf_getupdontice(_this) {
 			if ('[[${f010010Params}]]' == ''){
 				$('#getupdontice').modal('show');
 				showdiv();
@@ -36,7 +36,7 @@
 					dateType : 'html',
 					async : true,
 					data : {
-						id : _updnotice_id,
+						id : _this.updnotice_id,
 					},
 					success : function(result) {
 						hidediv();
@@ -52,8 +52,8 @@
 						setCodeErrList("错误！！！请和管理员联系。。。");
 					},
 				});
-				$('#updnoticehead').text(_updnotice_head);
-				$('#updnoticetext').html(_updnotice_text);
+				$('#updnoticehead').text(_this.updnotice_head);
+				$('#updnoticetext').html(_this.updnotice_text);
 			} else {
 				md.showNotification('bottom', 'center', '2', '当前页面不可查看通知。。。');
 			}
@@ -182,7 +182,7 @@
 									<p class="d-lg-none d-md-block">工具包</p>
 								</a>
 							</li>
-							<li class="nav-item dropdown col-sm-2" data-toggle="tooltip" data-placement="bottom" title="通知" onclick="amtf_updonticeclick()" th:if="${main_params.admin} == null">
+							<li class="nav-item dropdown col-sm-2" onclick="amtf_updonticeclick()" th:if="${main_params.admin} == null">
 								<div id="select5" th:fragment="select5">
 									<a class="nav-link col-sm-12" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
