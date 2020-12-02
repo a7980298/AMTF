@@ -271,7 +271,7 @@
 				}
 				Toast.notice("下播")
 				console.log("下播", id)
-				md.showNotification('bottom', 'center', '2', '主播下播了。。。');
+				Message('warning', '主播下播了');
 			})
 			//在发布本地流时发生。
 			rtc.client.on("stream-published", function (evt) {
@@ -448,7 +448,7 @@
 					}, function (err)  {
 						Toast.error("流初始化失败，请打开控制台查看更多详细信息")
 						console.error("初始化本地流失败" + err)
-						md.showNotification('bottom', 'center', '2', '主播在休息。。。');
+						Message('warning', '主播在休息');
 					})
 				}, function(err) {
 					Toast.error("客户端加入失败，请打开控制台查看更多详细信息")

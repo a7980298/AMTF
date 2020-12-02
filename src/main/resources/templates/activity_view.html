@@ -96,7 +96,7 @@
 						},
 						success : function(result) {
 							if (result.iscomment < 1){
-								md.showNotification('bottom', 'center', '2', '发言失败。。。');
+								Message('error', '发言失败');
 							} else{
 								amtf_refreshComment();
 							}
@@ -121,7 +121,7 @@
 						},
 						success : function(result) {
 							if (result.isreply < 1){
-								md.showNotification('bottom', 'center', '2', '发言失败。。。');
+								Message('error', '发言失败');
 							} else{
 								amtf_refreshComment();
 							}
@@ -172,9 +172,9 @@
 				},
 				success : function(result) {
 					if(result.comment_fabulous == 'insert0'){
-						md.showNotification('bottom', 'center', '2', '评论点赞失败。。。');
+						Message('error', '评论点赞失败');
 					} else if(result.comment_fabulous == 'delete0') {
-						md.showNotification('bottom', 'center', '2', '取消评论点赞失败。。。');
+						Message('error', '取消评论点赞失败');
 					} else {
 						if (result.comment_fabulous != '0') {
 							$('#comment_fabulous_count' + _index).text(result.comment_fabulous);
@@ -201,7 +201,7 @@
 				},
 				success : function(result) {
 					if (result.isuseractivity > 0) {
-						md.showNotification('top', 'center', '3', '参加成功。。。');
+						Message('success', '参加成功');
 						$('#setusetactivity').css('color','rgb(21, 158, 255)');
 						$('#setusetactivity_a').find('span').eq(0).text('已参加')
 						$('#setusetactivity_a').find('span').eq(0).css('color','#63a5f5');
@@ -254,7 +254,7 @@
 				},
 				success : function(result) {
 					if(result.comment_delete < 1){
-						md.showNotification('bottom', 'center', '2', '删除评论失败。。。');
+						Message('error', '删除评论失败');
 					} else {
 						amtf_refreshComment();
 					}
@@ -276,9 +276,9 @@
 				},
 				success : function(result) {
 					if(result.fabulous == 'insert0'){
-						md.showNotification('bottom', 'center', '2', '点赞失败。。。');
+						Message('error', '点赞失败');
 					} else if(result.fabulous == 'delete0') {
-						md.showNotification('bottom', 'center', '2', '取消点赞失败。。。');
+						Message('error', '取消点赞失败');
 					} else if(result.fabulous == 'insert1') {
 						if($('#fabulouscount').text() == '') {
 							$('#fabuloustext').after("<span id=\"fabulouscount\">1</span>");
@@ -336,9 +336,9 @@
 				},
 				success : function(result) {
 					if(result.attention == 'insert0'){
-						md.showNotification('bottom', 'center', '2', '关注失败。。。');
+						Message('error', '关注失败');
 					} else if(result.attention == 'delete0') {
-						md.showNotification('bottom', 'center', '2', '取消关注失败。。。');
+						Message('error', '取消关注失败');
 					} else if(result.attention == 'insert1') {
 						$('#attention_btn').removeClass('btn-reddit');
 						$('#attention_btn').text('已关注');

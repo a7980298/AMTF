@@ -32,7 +32,7 @@
 			},
 			success: function (result) {
 				hidediv();
-				md.showNotification('top','center','3' ,'删除成功。。。')
+				Message('success', '删除成功');
 				$('#select1').replaceWith(result);
 				$('.modal-backdrop').remove();
 			},

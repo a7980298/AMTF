@@ -14,7 +14,7 @@
 		// 点击通知铃铛
 		function amtf_updonticeclick() {
 			if ($('.updnotice').length <= 0) {
-				md.showNotification('bottom', 'center', '2', '当前没有管理员发布通知。。。')
+				Message('warning', '当前没有管理员发布通知');
 			}
 		}
 		// 注销
@@ -55,7 +55,7 @@
 				$('#updnoticehead').text(_this.updnotice_head);
 				$('#updnoticetext').html(_this.updnotice_text);
 			} else {
-				md.showNotification('bottom', 'center', '2', '当前页面不可查看通知。。。');
+				Message('warning', '当前页面不可查看通知');
 			}
 		}
 		// 侧边悬浮设置

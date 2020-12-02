@@ -53,9 +53,9 @@
 						id : '[[${f010011Params.select1.user_email}]]'
 					}).then(function (response) {
 						if(response.data.attention == 'insert0'){
-							md.showNotification('bottom', 'center', '2', '关注失败。。。');
+							Message('error', '关注失败');
 						} else if(response.data.attention == 'delete0') {
-							md.showNotification('bottom', 'center', '2', '取消关注失败。。。');
+							Message('error', '取消关注失败');
 						} else if(response.data.attention == 'insert1') {
 							Vue.set(activity_userinfo.followclass ,'btn-rose',false);
 							Vue.set(activity_userinfo ,'follow','已关注');

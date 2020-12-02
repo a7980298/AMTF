@@ -1,4 +1,9 @@
 function Message(type, message, duration = 2000, isClose = false) {
+	if(type == 'success'){
+		message = "<i class=\"fa fa-check\" style=\"color:white\"></i>" + message;
+	} else if(type == 'error') {
+		message = "<i class=\"fa fa-close\" style=\"color:white\"></i>" + message;
+	}
 	if (!message) {
 		message = type;
 	}
