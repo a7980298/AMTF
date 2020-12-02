@@ -276,9 +276,17 @@
 			reply_editor.create();
 		}
 	}
+	// 监听滚动条
+	function amtf_body_Scroll() {
+		var win_height = $(window).height();
+		if(win_height < $(this).scrollTop()){
+
+
+		}
+	}
 </script>
 </head>
-<body>
+<body id="main_body" onscroll="amtf_body_Scroll()">
 	<div class="wrapper">
 		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
 		<div class="">
