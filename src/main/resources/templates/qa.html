@@ -185,31 +185,53 @@
 	// 回复问题
 	function amtf_qa_QaReply(_this, _id) {
 		if($(_this).text() == '提交'){
-			var _entity={};
-			_entity.id = _id;
-			_entity.txt = reply_editor.txt.html();
-			$.ajax({
-				url : CONTEXT_PATH + '/f060001/T003',
-				type : 'post',
-				dateType : 'json',
-				async : false,
-				contentType : "application/json",
-				data : JSON.stringify(_entity),
-				success : function(result) {
-					if (result.insert4 >= 1) {
-						Message('success', '发布成功');
-						reply_editor.txt.clear();
-					} else {
-						Message('error', '发布失败');
+			if(reply_editor.txt.html().length == 0) {
+				reply_editor.destroy();
+				reply_editor = null;
+				$('#reply_editor').remove();
+				$('.qa_reply').text('回答');
+				$('.qa_reply').each(function(){
+					if($(this).hasClass('btn-reddit')){
+						$(this).removeClass('btn-reddit');
+						$(this).addClass('btn-info');
 					}
-				},
-				error : function(res, textStaus) {
-					setCodeErrList("错误！！！请和管理员联系。。。");
-				},
-			});
+				})
+			} else {
+				var _entity={};
+				_entity.id = _id;
+				_entity.txt = reply_editor.txt.html();
+				$.ajax({
+					url : CONTEXT_PATH + '/f060001/T003',
+					type : 'post',
+					dateType : 'json',
+					async : false,
+					contentType : "application/json",
+					data : JSON.stringify(_entity),
+					success : function(result) {
+						if (result.insert4 >= 1) {
+							Message('success', '发布成功');
+							reply_editor.txt.clear();
+						} else {
+							Message('error', '发布失败');
+						}
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			}
 		} else {
 			$('.qa_reply').text('回答');
+			$('.qa_reply').each(function(){
+				if($(this).hasClass('btn-reddit')){
+					$(this).removeClass('btn-reddit');
+					$(this).addClass('btn-info');
+				}
+			})
+			$(_this).removeClass('btn-info');
+			$(_this).addClass('btn-reddit');
 			$(_this).text('提交');
+
 			if (reply_editor != null ) {
 				reply_editor.destroy();
 				reply_editor = null;
@@ -324,9 +346,9 @@
 										</div>
 										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}"></div>
 										<footer class="col-sm-12 d-flex text-left footer" style="height: 30px">
-											<div class="col-md-12">
+											<div class="col-md-12 text-right">
 												<!--<div th:id="${'reply_editor' + idx.index}" class="reply_editor"></div>-->
-												<button type="button" class="btn btn-info h5 col-sm-12 mr-auto qa_reply" th:onclick="amtf_qa_QaReply(this,[[${entity.qa_id}]])">
+												<button type="button" class="btn btn-info qa_reply" th:onclick="amtf_qa_QaReply(this,[[${entity.qa_id}]])">
 													回答
 												</button>
 											</div>
