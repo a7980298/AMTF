@@ -155,7 +155,7 @@
 			data : JSON.stringify(_entity),
 			success : function(result) {
 				if (result.insert1 >= 1) {
-					md.showNotification('top', 'center', '3', '发布成功');
+					Message('success', '发布成功');
 					$('#qa_report').modal('hide');
 				}
 			},
