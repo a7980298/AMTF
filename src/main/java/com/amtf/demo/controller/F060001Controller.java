@@ -89,4 +89,23 @@ public class F060001Controller extends ValiDationUtil {
 		}
 		return null;
 	}
+
+	/**
+	 * 回答问题
+	 *
+	 * @parameter F060001Params params
+	 * @return String
+	 */
+	@RequestMapping(value = "/f060001/T003", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> f060001T003(@RequestBody JSONObject data, HttpServletRequest request) {
+		F060001EntityIn entityin = new F060001EntityIn();
+		entityin.setSubmitjson(JSONObject.fromObject(data));
+		F060001EntityOut entityOut = f060001service.service03(entityin);
+
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("insert4",entityOut.getInsert4());
+		return maps;
+	}
 }

@@ -81,4 +81,12 @@
 		FROM
 			AMTF_QA
 	</select>
+	<!-- 获取qareply表最大id -->
+	<select id="common_Select11"
+			resultType="int">
+		SELECT
+			MAX(QA_REPLY_ID)
+		FROM
+			amtf_qa_reply
+	</select>
 </mapper>

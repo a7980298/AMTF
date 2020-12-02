@@ -1,0 +1,9 @@
+CREATE TABLE amtf_qa_reply(
+	qa_reply_id INT NOT NULL, -- id
+	qa_id INT NOT NULL, -- 问题id
+	user_id VARCHAR(30), -- 用户id
+	qa_reply_text VARCHAR(500), -- 评论
+	qa_reply_time DATETIME	-- 回答时间
+)
+ALTER TABLE amtf_qa_reply MODIFY  qa_reply_text VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE amtf_qa_reply CHARSET=utf8mb4;

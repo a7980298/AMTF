@@ -18,6 +18,11 @@ public class F060001EntityOut {
     private Integer insert1;
 
     /**
+     * 回答问题是否成功
+     */
+    private int insert4;
+
+    /**
      * 标签类型
      */
     private List<AmtfQaClassEntity> qa_class_lists;

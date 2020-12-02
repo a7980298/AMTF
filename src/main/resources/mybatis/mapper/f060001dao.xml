@@ -58,4 +58,16 @@
 			QA.QA_TIME DESC
 		LIMIT 30
 	</select>
+	<!-- 回答问题 -->
+	<insert id="f060001_Insert4">
+		INSERT INTO
+			amtf_qa_reply
+		VALUES(
+			#{entity.qa_reply_id},
+			#{entity.qa_id},
+			#{entity.user_id},
+			#{entity.qa_reply_text},
+			NOW()
+		)
+	</insert>
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.amtf.demo.commonentity.AmtfQaClassEntity;
 import com.amtf.demo.commonentity.AmtfQaEntity;
+import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +18,6 @@ public interface F060001Dao {
     List<AmtfQaClassEntity> f060001_Select2();
 
     List<F060001_Select3Entity> f060001_Select3();
+
+    Integer f060001_Insert4(@Param("entity") AmtfQaReplyEntity entity);
 }
