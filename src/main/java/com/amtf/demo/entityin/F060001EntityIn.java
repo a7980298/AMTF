@@ -14,4 +14,9 @@ public class F060001EntityIn extends UserImpl{
      * 发布问题
      */
     private JSONObject submitjson;
+
+    /**
+     * 问题id
+     */
+    private String qa_id;
 }

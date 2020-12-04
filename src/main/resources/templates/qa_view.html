@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>问答画面</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+/*.footer{
+	border-top: 1px solid #bdbdbd;
+}*/
+</style>
+<script type="text/javascript">
+	var editor;
+	$(function(){
+		// 注册wangEditor插件
+		var wangEditor = window.wangEditor;
+		editor = new wangEditor('#reply_editor');
+		editor.config.menus = [
+			'bold', // 加粗
+			'underline',  // 下划线
+			'justify',  // 对齐方式
+			'image',  // 插入图片
+			'link'  // 链接
+		]
+		editor.config.zIndex = 10;
+		// 是否开启全屏
+		editor.config.showFullScreen = false;
+		// 开启debug模式
+		editor.config.debug = true;
+		// 关闭粘贴内容中的样式
+		editor.config.pasteFilterStyle = false
+		editor.config.height = '200'
+		// 忽略粘贴内容中的图片
+		editor.config.pasteIgnoreImg = true
+		// 上传路径
+		editor.config.uploadFileName = 'myFile'
+		editor.config.uploadImgServer = '/amtf/f060005/T001'
+		// 进行下文提到的其他配置
+		// 将图片大小限制为 3M
+		editor.config.uploadImgMaxSize = 3 * 1024 * 1024
+		//聚焦事件
+		editor.config.onfocus = function (newHtml) {
+
+		}
+		//失焦事件
+		editor.config.onblur  = function (newHtml) {
+
+		}
+		editor.config.placeholder = '请描述您的问题，必要时贴上相关图片和信息，尝试过的方法和方式并上传相关截图辅证；';
+		// 自己写上传图片
+		editor.config.customUploadImg = function (resultFiles, insertImgFn) {
+			// resultFiles 是 input 中选中的文件列表
+			// insertImgFn 是获取图片 url 后，插入到编辑器的方法
+			var formData = new FormData($('#amtf_form')[0]);
+			formData.append("myFile", resultFiles[0]);
+			$.ajax({
+				url : CONTEXT_PATH + '/f060001/T002',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				cache: false,
+				processData : false, // 用于对data参数进行序列化处理
+				contentType : false, // 不要设置Content-Type请求头
+				data : formData,
+				success : function(result) {
+					// 上传图片，返回结果，将图片插入到编辑器中
+					insertImgFn('/amtf/wangqaimg/' + result.data[0].replace('C:/wangEdito_QaImg'));
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+		editor.create();
+	});
+	// 回复问题
+	function amtf_qa_QaReply(_this, _id) {
+		if(editor.txt.html().length != 0){
+			var _entity={};
+			_entity.id = _id;
+			_entity.txt = editor.txt.html();
+			$.ajax({
+				url : CONTEXT_PATH + '/f060001/T003',
+				type : 'post',
+				dateType : 'json',
+				async : false,
+				contentType : "application/json",
+				data : JSON.stringify(_entity),
+				success : function(result) {
+					if (result.insert4 >= 1) {
+						Message('success', '发布成功');
+						editor.txt.clear();
+					} else {
+						Message('error', '发布失败');
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+	}
+</script>
+</head>
+<body id="main_body" onscroll="amtf_body_Scroll()">
+	<div class="wrapper">
+		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
+		<div class="">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!-- 论坛 -->
+				<div class="container-fluid dashboardclass" id="f060001">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f060001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f060001"/>
+							<div class="row m-auto col-md-11">
+								<div class="col-md-9 pl-0 pr-0">
+									<div class="card card-profile m-1 mt-0">
+										<div class="text-left col-sm-12">
+											 <span class="h4 font-weight-bold">[[${f060001Params.select5.qa_head}]]</span>
+										</div>
+										<div class="col-sm-12 d-flex text-left" style="height: 30px">
+											<div class="col-sm-4 pl-0 ml-0 mr-auto">
+												<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${f060001Params.select5.user_img == ''}" id="img2" style="height:30px;"/>
+												<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${f060001Params.select5.user_img })}" th:if="${f060001Params.select5.user_img  != ''}" id="img2" style="height:30px;"/>
+												<span>[[${f060001Params.select7.user_name}]]</span>
+												<button type="button mr-auto" class="btn btn-sm btn-white" th:each="entity,idx:${f060001Params.select8}">
+													<span>[[${entity.qa_class_name}]]</span>
+												</button>
+											</div>
+										</div>
+										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${f060001Params.select5.qa_text}"></div>
+									</div>
+									<div class="card card-profile m-1 mt-1">
+										<div class="text-left">
+											<span class="ml-3 h5">[[${f060001Params.select6.size()}]]个回复</span>
+										</div>
+									</div>
+									<div class="card-profile m-1 mt-1 text-left" style="background-color:#e8e8e8;">
+										<div class="col-sm-12 ml-0 mt-0 mb-0 mr-0" th:each="entity,idx:${f060001Params.select6}">
+											<div class="col-sm-12 d-flex mt-0" style="height: 30px" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right ml-auto' : 'text-left mr-auto'}">
+												<div class="col-sm-12 pl-0 ml-0 mr-auto mt-3">
+													<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" style="height:30px;"/>
+													<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img })}" th:if="${entity.user_img  != ''}" style="height:30px;"/>
+													<span>[[${entity.user_name}]]</span>
+												</div>
+											</div>
+											<div class="mt-4 mb-1 col-sm-12" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right' : 'text-left'}">
+												<div th:utext="${entity.qa_reply_text}" style="background-color: #e9edf6;" class="card mt-1 mb-1 col-sm-6" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right ml-auto' : 'text-left mr-auto'}"></div>
+											</div>
+										</div>
+									</div>
+									<div class="card card-profile m-1 mt-1">
+										<footer class="col-sm-12 d-flex footer" style="height: 30px">
+											<div class="col-md-12 text-right">
+												<div id="reply_editor" class="reply_editor text-left"></div>
+												<button type="button" class="btn btn-info qa_reply" th:onclick="amtf_qa_QaReply(this,[[${f060001Params.select5.qa_id}]])">
+													回答
+												</button>
+											</div>
+										</footer>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">个人信息</span>
+										</div>
+										<table class="table-hover col-sm-12">
+										</table>
+									</div>
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">最新问题</span>
+										</div>
+										<table class="table-hover col-sm-12">
+										</table>
+									</div>
+									<div class="card card-profile m-1">
+										<div class="text-center">
+											<span class="h5">广告页面</span>
+										</div>
+										<table class="table-hover col-sm-12">
+										</table>
+									</div>
+								</div>
+							</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

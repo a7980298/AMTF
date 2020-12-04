@@ -70,4 +70,40 @@
 			NOW()
 		)
 	</insert>
+	<!-- 详细问题 -->
+	<select id="f060001_Select5" resultType="com.amtf.demo.commonentity.AmtfQaEntity">
+		SELECT
+			*
+		FROM
+			AMTF_QA
+		WHERE
+			QA_ID = #{id}
+	</select>
+	<!-- 详细回答 -->
+	<select id="f060001_Select6" resultType="com.amtf.demo.commonentity.AmtfQaReplyEntity">
+		SELECT
+			*
+		FROM
+			AMTF_QA_REPLY
+		WHERE
+			QA_ID = #{id}
+	</select>
+	<!-- 获取用户信息 -->
+	<select id="f060001_Select7" resultType="com.amtf.demo.commonentity.AmtfUserEntity">
+		SELECT
+			*
+		FROM
+			AMTF_USER
+		WHERE
+			USER_EMAIL = #{id}
+	</select>
+	<!-- 获取问题标签 -->
+	<select id="f060001_Select8" resultType="com.amtf.demo.commonentity.AmtfQaClassEntity">
+		SELECT
+			*
+		FROM
+			AMTF_QA_CLASS
+		WHERE
+			QA_CLASS_ID IN(#{class1},#{class2},#{class3})
+	</select>
 </mapper>

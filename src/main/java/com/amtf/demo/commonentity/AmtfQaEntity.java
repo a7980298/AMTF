@@ -47,4 +47,9 @@ public class AmtfQaEntity {
 	 *发布时间
 	 */
 	private String qa_time;
+
+	/**
+	 *头像路径
+	 */
+	private String user_img;
 }

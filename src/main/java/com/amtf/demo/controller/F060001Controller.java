@@ -50,6 +50,7 @@ public class F060001Controller extends ValiDationUtil {
 
 		return "qa";
 	}
+
 	/**
 	 * 发布问题
 	 *
@@ -69,6 +70,7 @@ public class F060001Controller extends ValiDationUtil {
 		maps.put("insert1",entityOut.getInsert1());
 		return maps;
 	}
+
 	/**
 	 * wangeditor上传图片
 	 *
@@ -107,5 +109,28 @@ public class F060001Controller extends ValiDationUtil {
 
 		maps.put("insert4",entityOut.getInsert4());
 		return maps;
+	}
+
+	/**
+	 * 详细问题
+	 *
+	 * @parameter F060001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f060001/T004")
+	public String f060001T004(F060001Params params, Model model) {
+
+		F060001EntityIn entityin = new F060001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F060001EntityOut entityOut = f060001service.service04(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f060001Params", params);
+
+		return "qa_view.html";
 	}
 }

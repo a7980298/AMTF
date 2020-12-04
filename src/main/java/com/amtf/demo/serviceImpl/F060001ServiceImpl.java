@@ -1,7 +1,9 @@
 package com.amtf.demo.serviceImpl;
 
+import com.amtf.demo.commonentity.AmtfQaClassEntity;
 import com.amtf.demo.commonentity.AmtfQaEntity;
 import com.amtf.demo.commonentity.AmtfQaReplyEntity;
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.dao.CommonDao;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import com.amtf.demo.user.LogInFo;
@@ -116,6 +118,43 @@ public class F060001ServiceImpl implements F060001Service {
 		int insert4 = f060001dao.f060001_Insert4(qareplyentity);
 
 		entityout.setInsert4(insert4);
+
+		return entityout;
+	}
+
+	/**
+	 * 详细问题
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F060001EntityOut service04(F060001EntityIn entityin) throws ErrListException {
+		F060001EntityOut entityout = new F060001EntityOut();
+
+		// 详细问题
+		AmtfQaEntity select5 = f060001dao.f060001_Select5(NumberUtil.toInt(entityin.getQa_id()));
+		//获取头像
+		select5.setUser_img(ImgUtil.getImgPath(select5.getUser_id()));
+		entityout.setSelect5(select5);
+
+		// 问题回复
+		List<AmtfQaReplyEntity> select6 = f060001dao.f060001_Select6(NumberUtil.toInt(entityin.getQa_id()));
+		select6.forEach(entity->{
+			//头像路径
+			entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
+			//姓名
+			entity.setUser_name(f060001dao.f060001_Select7(entity.getUser_id()).getUser_name());
+		});
+		entityout.setSelect6(select6);
+
+		// 获取用户信息
+		AmtfUserEntity select7 = f060001dao.f060001_Select7(select5.getUser_id());
+		entityout.setSelect7(select7);
+
+		// 获取用户标签
+		List<AmtfQaClassEntity> select8 = f060001dao.f060001_Select8(select5.getQa_class1(),select5.getQa_class2(),select5.getQa_class3());
+		entityout.setSelect8(select8);
 
 		return entityout;
 	}

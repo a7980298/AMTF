@@ -5,9 +5,9 @@
 <title>问答画面</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
-.footer{
+/*.footer{
 	border-top: 1px solid #bdbdbd;
-}
+}*/
 </style>
 <script type="text/javascript">
 	var editor;
@@ -86,7 +86,7 @@
 			'link'  // 链接
 		]
 		editor.config.zIndex = 10;
-
+		editor.config.showFullScreen = false;
 		//开启debug模式
 		editor.config.debug = true;
 		// 关闭粘贴内容中的样式
@@ -237,7 +237,7 @@
 				reply_editor = null;
 				$('#reply_editor').remove();
 			}
-			$(_this).before('<div id="reply_editor"></div>');
+			$(_this).before('<div id="reply_editor" class="text-left"></div>');
 			var wangEditor = window.wangEditor;
 			reply_editor = new wangEditor('#reply_editor');
 			reply_editor.config.height = '200'
@@ -249,6 +249,8 @@
 				'image',  // 插入图片
 				'link'  // 链接
 			]
+
+			reply_editor.config.showFullScreen = false;
 			// 自己写上传图片
 			reply_editor.config.customUploadImg = function (resultFiles, insertImgFn) {
 				// resultFiles 是 input 中选中的文件列表
@@ -284,6 +286,13 @@
 
 		}
 	}
+	// 详细回答
+    function amtf_qa_QADetailed(_entity) {
+        var newinput = getNewInput('qa_id', _entity);
+        amtf_form.appendChild(newinput);
+        amtf_submit(amtf_form, '/f060001/T004');
+        reomveNewInput('qa_id');
+    }
 </script>
 </head>
 <body id="main_body" onscroll="amtf_body_Scroll()">
@@ -334,7 +343,9 @@
 									</div>
 									<div class="card card-profile m-1 mt-4" th:each="entity,idx:${f060001Params.select3}">
 										<div class="text-left col-sm-12">
-											<span class="h4 font-weight-bold">[[${entity.qa_head}]]</span>
+                                            <a th:onclick="amtf_qa_QADetailed([[${entity.qa_id}]])">
+											    <span class="h4 font-weight-bold">[[${entity.qa_head}]]</span>
+                                            </a>
 										</div>
 										<div class="col-sm-12 d-flex text-left" style="height: 30px">
 											<div class="col-sm-4 pl-0 ml-0 mr-auto">
@@ -355,7 +366,6 @@
 										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}"></div>
 										<footer class="col-sm-12 d-flex text-left footer" style="height: 30px">
 											<div class="col-md-12 text-right">
-												<!--<div th:id="${'reply_editor' + idx.index}" class="reply_editor"></div>-->
 												<button type="button" class="btn btn-info qa_reply" th:onclick="amtf_qa_QaReply(this,[[${entity.qa_id}]])">
 													回答
 												</button>

@@ -32,4 +32,14 @@ public class AmtfQaReplyEntity {
 	 *发布时间
 	 */
 	private String qa_reply_time ;
+
+	/**
+	 *图片路径
+	 */
+	private String user_img ;
+
+	/**
+	 * 回答人姓名
+	 */
+	private String user_name;
 }
