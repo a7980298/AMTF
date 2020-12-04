@@ -376,17 +376,31 @@
 								<div class="col-md-3">
 									<div class="card card-profile m-1">
 										<div class="text-center">
-											<span class="h5">分类页面</span>
+											<span class="h5">问题类型</span>
 										</div>
-										<table class="table-hover col-sm-12">
-										</table>
+										<div class="text-center">
+											<table class="table-hover col-sm-12">
+												<tr th:each="entity,idx:${f060001Params.select11}" class="col-sm-12">
+													<td class="lookeye hand">
+														[[${entity.qa_class_name}]]
+													</td>
+												</tr>
+											</table>
+										</div>
 									</div>
 									<div class="card card-profile m-1">
 										<div class="text-center">
-											<span class="h5">人最多页面</span>
+											<span class="h5">回复最多</span>
 										</div>
-										<table class="table-hover col-sm-12">
-										</table>
+										<div class="text-left">
+											<table class="table-hover col-sm-12">
+												<tr th:onclick="amtf_qa_QADetailed([[${entity.qa_id}]])" th:each="entity,idx:${f060001Params.select12}" class="col-sm-12">
+													<td class="lookeye hand">
+														[[${entity.qa_head}]]
+													</td>
+												</tr>
+											</table>
+										</div>
 									</div>
 									<div class="card card-profile m-1">
 										<div class="text-center">

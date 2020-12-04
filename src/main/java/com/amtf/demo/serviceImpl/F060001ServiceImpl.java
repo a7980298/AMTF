@@ -5,6 +5,7 @@ import com.amtf.demo.commonentity.AmtfQaEntity;
 import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.dao.CommonDao;
+import com.amtf.demo.f060001entity.F060001_Select12Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
@@ -53,6 +54,15 @@ public class F060001ServiceImpl implements F060001Service {
 			select3entity.setUser_img(ImgUtil.getImgPath(select3entity.getUser_id()));
 		}
 		entityout.setSelect3(select3);
+
+		//获取标签分类
+		List<AmtfQaClassEntity> select11 = f060001dao.f060001_Select11();
+		entityout.setSelect11(select11);
+
+		//回复最多的问题
+		List<F060001_Select12Entity> select12 = f060001dao.f060001_Select12();
+		entityout.setSelect12(select12);
+
 		return entityout;
 	}
 

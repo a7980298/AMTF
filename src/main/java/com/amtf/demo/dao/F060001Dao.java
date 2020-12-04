@@ -6,6 +6,7 @@ import com.amtf.demo.commonentity.AmtfQaClassEntity;
 import com.amtf.demo.commonentity.AmtfQaEntity;
 import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.f060001entity.F060001_Select12Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -33,4 +34,8 @@ public interface F060001Dao {
     Integer f060001_Select9(@Param("id") String id);
 
     Integer f060001_Select10(@Param("id") String id);
+
+    List<AmtfQaClassEntity> f060001_Select11();
+
+    List<F060001_Select12Entity> f060001_Select12();
 }

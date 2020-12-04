@@ -124,4 +124,28 @@
 		WHERE
 			USER_ID = #{id}
 	</select>
+	<!-- 标签分类 -->
+	<select id="f060001_Select11" resultType="com.amtf.demo.commonentity.AmtfQaClassEntity">
+		SELECT
+			*
+		FROM
+			AMTF_QA_CLASS
+	</select>
+	<!-- 回复最多的问题 -->
+	<select id="f060001_Select12" resultType="com.amtf.demo.f060001entity.F060001_Select12Entity">
+		SELECT
+			QA.*
+			,COUNT(REPLY.QA_ID) AS COUNT
+		FROM
+			AMTF_QA QA
+		LEFT JOIN
+			AMTF_QA_REPLY REPLY
+		ON
+			QA.QA_ID = REPLY.QA_ID
+		GROUP BY
+			QA.QA_ID
+		ORDER BY
+			COUNT DESC
+		LIMIT 10
+	</select>
 </mapper>

@@ -6,6 +6,7 @@ import com.amtf.demo.commonentity.AmtfQaClassEntity;
 import com.amtf.demo.commonentity.AmtfQaEntity;
 import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.f060001entity.F060001_Select12Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -66,4 +67,14 @@ public class F060001Params {
 	 * 回答数量
 	 */
 	private Integer select10;
+
+	/**
+	 * 标签分类
+	 */
+	private List<AmtfQaClassEntity> select11;
+
+	/**
+	 * 回复最多的问题
+	 */
+	private List<F060001_Select12Entity> select12;
 }
