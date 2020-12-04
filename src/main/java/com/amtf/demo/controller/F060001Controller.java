@@ -1,6 +1,12 @@
 package com.amtf.demo.controller;
 
+import com.amtf.demo.entityin.F010002EntityIn;
+import com.amtf.demo.entityin.F010005EntityIn;
+import com.amtf.demo.entityout.F010002EntityOut;
+import com.amtf.demo.entityout.F010005EntityOut;
 import com.amtf.demo.f020005entity.WangEditor;
+import com.amtf.demo.params.F010002Params;
+import com.amtf.demo.params.F010005Params;
 import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ImgUtil;
 import net.sf.json.JSON;
@@ -131,6 +137,30 @@ public class F060001Controller extends ValiDationUtil {
 
 		model.addAttribute("f060001Params", params);
 
-		return "qa_view.html";
+		return "qa_view";
 	}
+
+	/**
+	 * 刷新回复
+	 * @parameter F060001params
+	 * @return String
+	 */
+	@PostMapping("/f060001/T005")
+	public String f060001T005(@RequestParam("qa_id") String qa_id, Model model) {
+		F060001Params params = new F060001Params();
+
+		F060001EntityIn entityin = new F060001EntityIn();
+
+		entityin.setQa_id(qa_id);
+
+		F060001EntityOut entityOut = f060001service.service05(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f060001Params", params);
+
+		return "qa_view :: select6";
+	}
+
 }

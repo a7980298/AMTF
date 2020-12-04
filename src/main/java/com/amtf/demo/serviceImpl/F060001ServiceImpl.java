@@ -158,4 +158,26 @@ public class F060001ServiceImpl implements F060001Service {
 
 		return entityout;
 	}
+
+	/**
+	 * 刷新回复
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F060001EntityOut service05(F060001EntityIn entityin) throws ErrListException {
+		F060001EntityOut entityout = new F060001EntityOut();
+		// 问题回复
+		List<AmtfQaReplyEntity> select6 = f060001dao.f060001_Select6(NumberUtil.toInt(entityin.getQa_id()));
+		select6.forEach(entity->{
+			//头像路径
+			entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
+			//姓名
+			entity.setUser_name(f060001dao.f060001_Select7(entity.getUser_id()).getUser_name());
+		});
+		entityout.setSelect6(select6);
+
+		return entityout;
+	}
 }

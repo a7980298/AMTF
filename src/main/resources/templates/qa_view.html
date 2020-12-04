@@ -89,7 +89,12 @@
 				success : function(result) {
 					if (result.insert4 >= 1) {
 						Message('success', '发布成功');
-						editor.txt.clear();
+						setTimeout(function(){
+							var newinput = getNewInput('qa_id', _id);
+							amtf_form.appendChild(newinput);
+							amtf_submit(amtf_form, '/f060001/T004');
+							reomveNewInput('qa_id');
+						}, 2000);
 					} else {
 						Message('error', '发布失败');
 					}
@@ -102,7 +107,7 @@
 	}
 </script>
 </head>
-<body id="main_body" onscroll="amtf_body_Scroll()">
+<body id="main_body" >
 	<div class="wrapper">
 		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
 		<div class="">
@@ -121,7 +126,7 @@
 										</div>
 										<div class="col-sm-12 d-flex text-left" style="height: 30px">
 											<div class="col-sm-4 pl-0 ml-0 mr-auto">
-												<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${f060001Params.select5.user_img == ''}" id="img2" style="height:30px;"/>
+												<img class="img" th:src="@{/imgs/userimg.jpg}" th:if="${f060001Params.select5.user_img == ''}" id="img2" style="height:30px;"/>
 												<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${f060001Params.select5.user_img })}" th:if="${f060001Params.select5.user_img  != ''}" id="img2" style="height:30px;"/>
 												<span>[[${f060001Params.select7.user_name}]]</span>
 												<button type="button mr-auto" class="btn btn-sm btn-white" th:each="entity,idx:${f060001Params.select8}">
@@ -133,19 +138,19 @@
 									</div>
 									<div class="card card-profile m-1 mt-1">
 										<div class="text-left">
-											<span class="ml-3 h5">[[${f060001Params.select6.size()}]]个回复</span>
+											<span class="ml-3 h5"><span class="col-r">[[${f060001Params.select6.size()}]]</span>个回复</span>
 										</div>
 									</div>
 									<div class="card-profile m-1 mt-1 text-left" style="background-color:#e8e8e8;">
-										<div class="col-sm-12 ml-0 mt-0 mb-0 mr-0" th:each="entity,idx:${f060001Params.select6}">
-											<div class="col-sm-12 d-flex mt-0" style="height: 30px" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right ml-auto' : 'text-left mr-auto'}">
+										<div class="col-sm-12 ml-0 mt-0 mb-0 mr-0" th:each="entity,idx:${f060001Params.select6}" id="select6" th:fragment="select6">
+											<div class="col-sm-12 d-flex mt-0 ml-0 pl-0 pr-0" style="height: 30px" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right ml-auto' : 'text-left mr-auto'}">
 												<div class="col-sm-12 pl-0 ml-0 mr-auto mt-3">
 													<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" style="height:30px;"/>
 													<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img })}" th:if="${entity.user_img  != ''}" style="height:30px;"/>
 													<span>[[${entity.user_name}]]</span>
 												</div>
 											</div>
-											<div class="mt-4 mb-1 col-sm-12" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right' : 'text-left'}">
+											<div class="mt-4 mb-1 col-sm-12 ml-0 pl-0 pr-0" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right' : 'text-left'}">
 												<div th:utext="${entity.qa_reply_text}" style="background-color: #e9edf6;" class="card mt-1 mb-1 col-sm-6" th:classappend="${entity.user_id == f060001Params.select5.user_id ? 'text-right ml-auto' : 'text-left mr-auto'}"></div>
 											</div>
 										</div>

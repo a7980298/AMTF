@@ -11,7 +11,7 @@ function Message(type, message, duration = 2000, isClose = false) {
 	if (isClose) {
 		closeHTML = '<a href="#" class="close" data-dismiss="alert">&times;</a>';
 	}
-	let messageHTML = '<div class="alert alert-warning fade in" style="position: absolute; top: 34px; left: 50%; min-width: 200px; text-align: center;">' +
+	let messageHTML = '<div class="alert alert-warning fade in" style="position: fixed; top: 34px; left: 50%; min-width: 200px; text-align: center;">' +
 		closeHTML + message +
 		'</div>';
 	//必须先放入body里，否则removeClass和addClass失效
