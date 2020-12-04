@@ -53,4 +53,14 @@ public class F060001EntityOut {
      * 用户标签
      */
     private List<AmtfQaClassEntity> select8;
+
+    /**
+     * 提问数量
+     */
+    private Integer select9;
+
+    /**
+     * 回答数量
+     */
+    private Integer select10;
 }

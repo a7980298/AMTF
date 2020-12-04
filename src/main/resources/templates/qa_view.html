@@ -105,6 +105,13 @@
 			});
 		}
 	}
+	// 详细回答
+	function amtf_qa_QADetailed(_entity) {
+		var newinput = getNewInput('qa_id', _entity);
+		amtf_form.appendChild(newinput);
+		amtf_submit(amtf_form, '/f060001/T004');
+		reomveNewInput('qa_id');
+	}
 </script>
 </head>
 <body id="main_body" >
@@ -167,19 +174,37 @@
 									</div>
 								</div>
 								<div class="col-md-3">
-									<div class="card card-profile m-1">
-										<div class="text-center">
-											<span class="h5">个人信息</span>
+									<div class="card card-profile m-1 h5">
+										<div class="photo">
+											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="img" style="height:34px;"/>
+											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" th:if="${main_params.logInFo.imgpath != ''}" class="img" style="height:34px;"/>
+											<span>
+												[[${main_params.logInFo.user_name}]]
+												<b class="caret"></b>
+											</span>
 										</div>
-										<table class="table-hover col-sm-12">
-										</table>
+										<div class="d-flex">
+											<div class="text-left ml-2">我的提问：</div>
+											<div class="text-right ml-auto mr-2">[[${f060001Params.select9}]]</div>
+										</div>
+										<div class="d-flex">
+											<div class="text-left ml-2">我的回答：</div>
+											<div class="text-right ml-auto mr-2">[[${f060001Params.select10}]]</div>
+										</div>
 									</div>
 									<div class="card card-profile m-1">
 										<div class="text-center">
 											<span class="h5">最新问题</span>
 										</div>
-										<table class="table-hover col-sm-12">
-										</table>
+										<div class="text-left">
+											<table class="table-hover col-sm-12">
+												<tr th:onclick="amtf_qa_QADetailed([[${entity.qa_id}]])" th:each="entity,idx:${f060001Params.select3}" class="col-sm-12">
+													<td class="lookeye hand">
+														[[${entity.qa_head}]]
+													</td>
+												</tr>
+											</table>
+										</div>
 									</div>
 									<div class="card card-profile m-1">
 										<div class="text-center">

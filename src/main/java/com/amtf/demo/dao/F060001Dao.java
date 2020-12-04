@@ -29,4 +29,8 @@ public interface F060001Dao {
     AmtfUserEntity f060001_Select7(@Param("id") String id);
 
     List<AmtfQaClassEntity> f060001_Select8(@Param("class1") String class1,@Param("class2") String class2,@Param("class3") String class3);
+
+    Integer f060001_Select9(@Param("id") String id);
+
+    Integer f060001_Select10(@Param("id") String id);
 }

@@ -131,7 +131,8 @@ public class F060001ServiceImpl implements F060001Service {
 	@Override
 	public F060001EntityOut service04(F060001EntityIn entityin) throws ErrListException {
 		F060001EntityOut entityout = new F060001EntityOut();
-
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
 		// 详细问题
 		AmtfQaEntity select5 = f060001dao.f060001_Select5(NumberUtil.toInt(entityin.getQa_id()));
 		//获取头像
@@ -156,6 +157,25 @@ public class F060001ServiceImpl implements F060001Service {
 		List<AmtfQaClassEntity> select8 = f060001dao.f060001_Select8(select5.getQa_class1(),select5.getQa_class2(),select5.getQa_class3());
 		entityout.setSelect8(select8);
 
+		// 提问数量
+		Integer select9 = f060001dao.f060001_Select9(loginfo.getUser_email());
+		entityout.setSelect9(select9);
+
+		// 回答数量
+		Integer select10 = f060001dao.f060001_Select10(loginfo.getUser_email());
+		entityout.setSelect10(select10);
+
+		// 获取最新问题
+		List<F060001_Select3Entity> select3 = f060001dao.f060001_Select3();
+		List<F060001_Select3Entity> newselect3 = f060001dao.f060001_Select3();
+		for (int i = 0;i < select3.size(); i++){
+			if(i<10){
+				newselect3.add(select3.get(i));
+			} else {
+				break;
+			}
+		}
+		entityout.setSelect3(newselect3);
 		return entityout;
 	}
 

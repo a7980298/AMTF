@@ -106,4 +106,22 @@
 		WHERE
 			QA_CLASS_ID IN(#{class1},#{class2},#{class3})
 	</select>
+	<!-- 提问数量 -->
+	<select id="f060001_Select9" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_QA
+		WHERE
+			USER_ID = #{id}
+	</select>
+	<!-- 回答数量 -->
+	<select id="f060001_Select10" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_QA_REPLY
+		WHERE
+			USER_ID = #{id}
+	</select>
 </mapper>
