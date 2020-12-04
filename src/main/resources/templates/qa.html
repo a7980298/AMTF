@@ -335,10 +335,17 @@
 										</div>
 									</div>
 									<div class="card card-profile m-1">
-										<div class="text-center">
-											<span class="h5">回答最好的用户页面</span>
-										</div>
-										<div>
+										<div class="col-md-12 d-flex">
+											<div class="col-sm-3 d-flex" th:each="entity,idx:${f060001Params.select13}">
+												<div class="col-md-5 pr-0 text-right">
+													<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.imgpath == ''}" style="height:30px;"/>
+													<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.imgpath })}" th:if="${entity.imgpath  != ''}" style="height:30px;"/>
+												</div>
+												<div class="col-md-7 text-left pl-0">
+													<span>[[${entity.user_name}]]</span><br>
+													<span>回复了：[[${entity.count}]]</span>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="card card-profile m-1 mt-4" th:each="entity,idx:${f060001Params.select3}">

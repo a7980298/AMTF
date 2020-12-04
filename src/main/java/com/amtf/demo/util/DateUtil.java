@@ -58,4 +58,9 @@ public class DateUtil {
 
 		str.replace("-", "").replace(" ", "").replace(":", "");
 	}
+
+	public static String strTostrT(String str) {
+
+		return  str.replace("-", "").replace(" ", "").replace(":", "");
+	}
 }

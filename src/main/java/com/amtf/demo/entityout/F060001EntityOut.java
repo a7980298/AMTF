@@ -8,6 +8,7 @@ import com.amtf.demo.commonentity.AmtfQaEntity;
 import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f060001entity.F060001_Select12Entity;
+import com.amtf.demo.f060001entity.F060001_Select13Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import lombok.Getter;
 import lombok.Setter;
@@ -74,4 +75,9 @@ public class F060001EntityOut {
      * 回复最多的问题
      */
     private List<F060001_Select12Entity> select12;
+
+    /**
+     * 回复最多的用户
+     */
+    private List<F060001_Select13Entity> select13;
 }

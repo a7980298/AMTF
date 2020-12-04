@@ -6,12 +6,10 @@ import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.dao.CommonDao;
 import com.amtf.demo.f060001entity.F060001_Select12Entity;
+import com.amtf.demo.f060001entity.F060001_Select13Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import com.amtf.demo.user.LogInFo;
-import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.ImgUtil;
-import com.amtf.demo.util.NumberUtil;
-import com.amtf.demo.util.ParameterUtil;
+import com.amtf.demo.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +62,12 @@ public class F060001ServiceImpl implements F060001Service {
 		List<F060001_Select12Entity> select12 = f060001dao.f060001_Select12();
 		entityout.setSelect12(select12);
 
+		//回复最多的用户
+		List<F060001_Select13Entity> select13 = f060001dao.f060001_Select13();
+		select13.forEach(entity->{
+			entity.setImgpath(ImgUtil.getImgPath(entity.getUser_email()));
+		});
+		entityout.setSelect13(select13);
 		return entityout;
 	}
 

@@ -148,4 +148,21 @@
 			COUNT DESC
 		LIMIT 10
 	</select>
+	<!-- 回复最多的用户 -->
+	<select id="f060001_Select13" resultType="com.amtf.demo.f060001entity.F060001_Select13Entity">
+		SELECT
+			USERS.*
+			,COUNT(REPLY.USER_ID) AS COUNT
+ 		FROM
+			AMTF_USER USERS
+		LEFT JOIN
+			AMTF_QA_REPLY REPLY
+		ON
+			USERS.USER_EMAIL = REPLY.USER_ID
+		GROUP BY
+			USERS.USER_EMAIL
+		ORDER BY
+			COUNT DESC
+		LIMIT 5
+	</select>
 </mapper>
