@@ -23,6 +23,7 @@ import com.amtf.demo.service.F060001Service;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -177,7 +178,7 @@ public class F060001ServiceImpl implements F060001Service {
 
 		// 获取最新问题
 		List<F060001_Select3Entity> select3 = f060001dao.f060001_Select3();
-		List<F060001_Select3Entity> newselect3 = f060001dao.f060001_Select3();
+		List<F060001_Select3Entity> newselect3 = new ArrayList<F060001_Select3Entity>();
 		for (int i = 0;i < select3.size(); i++){
 			if(i<10){
 				newselect3.add(select3.get(i));
