@@ -293,6 +293,26 @@
         amtf_submit(amtf_form, '/f060001/T004');
         reomveNewInput('qa_id');
     }
+    // 选择标签类型
+	function amtf_qa_GetClass(_classid) {
+		$.ajax({
+			url : CONTEXT_PATH + '/f060001/T005',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				class_id : _classid,
+			},
+			success : function(result) {
+				if(result != ''){
+					$('#select3').replaceWith(result);
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
 </script>
 </head>
 <body id="main_body" onscroll="amtf_body_Scroll()">
@@ -318,7 +338,7 @@
 															<span>选择类型</span>
 														</button>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="#" th:each="entity,idx:${f060001Params.qa_class_lists}">[[${entity.qa_class_name}]]</a>
+															<a class="dropdown-item" href="#" th:onclick="amtf_qa_GetClass([[${entity.qa_class_id}]])" th:each="entity,idx:${f060001Params.qa_class_lists}">[[${entity.qa_class_name}]]</a>
 														</div>
 													</div>
 												</div>
@@ -348,36 +368,38 @@
 											</div>
 										</div>
 									</div>
-									<div class="card card-profile m-1 mt-4" th:each="entity,idx:${f060001Params.select3}">
-										<div class="text-left col-sm-12">
-                                            <a th:onclick="amtf_qa_QADetailed([[${entity.qa_id}]])">
-											    <span class="h4 font-weight-bold">[[${entity.qa_head}]]</span>
-                                            </a>
-										</div>
-										<div class="col-sm-12 d-flex text-left" style="height: 30px">
-											<div class="col-sm-4 pl-0 ml-0 mr-auto">
-												<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" id="img2" style="height:30px;"/>
-												<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img })}" th:if="${entity.user_img  != ''}" id="img2" style="height:30px;"/>
-												<span>[[${entity.user_name}]]</span>
-												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname1 != '' && entity.qa_classname1 != null}">
-													<span>[[${entity.qa_classname1}]]</span>
-												</button>
-												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname2 != '' && entity.qa_classname2 != null}">
-													<span>[[${entity.qa_classname2}]]</span>
-												</button>
-												<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname3 != '' && entity.qa_classname3 != null}">
-													<span>[[${entity.qa_classname3}]]</span>
-												</button>
+									<div id="select3" th:fragment="select3">
+										<div class="card card-profile m-1 mt-4" th:each="entity,idx:${f060001Params.select3}" >
+											<div class="text-left col-sm-12">
+												<a th:onclick="amtf_qa_QADetailed([[${entity.qa_id}]])">
+													<span class="h4 font-weight-bold">[[${entity.qa_head}]]</span>
+												</a>
 											</div>
-										</div>
-										<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}"></div>
-										<footer class="col-sm-12 d-flex text-left footer" style="height: 30px">
-											<div class="col-md-12 text-right">
-												<button type="button" class="btn btn-info qa_reply" th:onclick="amtf_qa_QaReply(this,[[${entity.qa_id}]])">
-													回答
-												</button>
+											<div class="col-sm-12 d-flex text-left" style="height: 30px">
+												<div class="col-sm-4 pl-0 ml-0 mr-auto">
+													<img class="img " th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" id="img2" style="height:30px;"/>
+													<img class="img mr-auto" th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img })}" th:if="${entity.user_img  != ''}" id="img2" style="height:30px;"/>
+													<span>[[${entity.user_name}]]</span>
+													<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname1 != '' && entity.qa_classname1 != null}">
+														<span>[[${entity.qa_classname1}]]</span>
+													</button>
+													<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname2 != '' && entity.qa_classname2 != null}">
+														<span>[[${entity.qa_classname2}]]</span>
+													</button>
+													<button type="button mr-auto" class="btn btn-sm btn-white" th:if="${entity.qa_classname3 != '' && entity.qa_classname3 != null}">
+														<span>[[${entity.qa_classname3}]]</span>
+													</button>
+												</div>
 											</div>
-										</footer>
+											<div class="col-sm-12 text-left" style="height: 30px" th:utext="${entity.qa_text}"></div>
+											<footer class="col-sm-12 d-flex text-left footer" style="height: 30px">
+												<div class="col-md-12 text-right">
+													<button type="button" class="btn btn-info qa_reply" th:onclick="amtf_qa_QaReply(this,[[${entity.qa_id}]])">
+														回答
+													</button>
+												</div>
+											</footer>
+										</div>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -387,7 +409,7 @@
 										</div>
 										<div class="text-center">
 											<table class="table-hover col-sm-12">
-												<tr th:each="entity,idx:${f060001Params.select11}" class="col-sm-12">
+												<tr th:each="entity,idx:${f060001Params.select11}" class="col-sm-12" th:onclick="amtf_qa_GetClass([[${entity.qa_class_id}]])">
 													<td class="lookeye hand">
 														[[${entity.qa_class_name}]]
 													</td>

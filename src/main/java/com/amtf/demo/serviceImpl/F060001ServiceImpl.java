@@ -203,15 +203,13 @@ public class F060001ServiceImpl implements F060001Service {
 	@Override
 	public F060001EntityOut service05(F060001EntityIn entityin) throws ErrListException {
 		F060001EntityOut entityout = new F060001EntityOut();
-		// 问题回复
-		List<AmtfQaReplyEntity> select6 = f060001dao.f060001_Select6(NumberUtil.toInt(entityin.getQa_id()));
-		select6.forEach(entity->{
-			//头像路径
-			entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
-			//姓名
-			entity.setUser_name(f060001dao.f060001_Select7(entity.getUser_id()).getUser_name());
-		});
-		entityout.setSelect6(select6);
+
+		List<F060001_Select3Entity> select3 = f060001dao.f060001_Select14(entityin.getClass_id());
+		for (F060001_Select3Entity select3entity: select3) {
+			//获取头像
+			select3entity.setUser_img(ImgUtil.getImgPath(select3entity.getUser_id()));
+		}
+		entityout.setSelect3(select3);
 
 		return entityout;
 	}

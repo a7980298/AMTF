@@ -19,4 +19,9 @@ public class F060001EntityIn extends UserImpl{
      * 问题id
      */
     private String qa_id;
+
+    /**
+     * 标签选择
+     */
+    private String class_id;
 }

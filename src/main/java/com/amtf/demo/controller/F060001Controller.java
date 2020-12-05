@@ -141,17 +141,17 @@ public class F060001Controller extends ValiDationUtil {
 	}
 
 	/**
-	 * 刷新回复
+	 * 根据标签选择刷新问题
 	 * @parameter F060001params
 	 * @return String
 	 */
 	@PostMapping("/f060001/T005")
-	public String f060001T005(@RequestParam("qa_id") String qa_id, Model model) {
+	public String f060001T005(@RequestParam("class_id") String class_id, Model model) {
 		F060001Params params = new F060001Params();
 
 		F060001EntityIn entityin = new F060001EntityIn();
 
-		entityin.setQa_id(qa_id);
+		entityin.setClass_id(class_id);
 
 		F060001EntityOut entityOut = f060001service.service05(entityin);
 
@@ -160,7 +160,6 @@ public class F060001Controller extends ValiDationUtil {
 
 		model.addAttribute("f060001Params", params);
 
-		return "qa_view :: select6";
+		return "qa :: select3";
 	}
-
 }
