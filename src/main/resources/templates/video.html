@@ -2,13 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>视频画面</title>
+<title>观看视频</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
 
 </style>
 <script type="text/javascript">
-
+	$(function() {
+		$('#file0').change(function() {
+			//获取视频途径
+			var objUrl = getObjectURL(this.files[0]);
+			//判断是否存在
+			if (objUrl) {
+				$("#lookviedo").attr("src", objUrl);
+				$("#lookviedo").show();
+			}
+		});
+	})
+	function amtf_video_Commit () {
+		amtf_submit(amtf_form, '/f040001/T001');
+	}
 </script>
 </head>
 <body>
@@ -22,7 +35,10 @@
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f040001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f040001"/>
-							这是视频
+							<video src="" controls id="lookviedo"></video>
+							<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">上传视频</button>
+							<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;"/>
+							<button class="btn" onclick="amtf_video_Commit()">上传</button>
 						</i-form>
 					</div>
 				</div>

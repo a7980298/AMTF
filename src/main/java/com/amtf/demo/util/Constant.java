@@ -38,4 +38,5 @@ public class Constant {
 
 	public static final String PATH_WANGEDITO_QAIMG = "C:/wangEdito_QaImg/";
 
+	public static final String PATH_VIDEO_COMMIT = "C:/video_commit/";
 }

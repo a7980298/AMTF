@@ -1,5 +1,8 @@
 package com.amtf.demo.controller;
 
+import com.amtf.demo.entityin.F040001EntityIn;
+import com.amtf.demo.entityout.F040001EntityOut;
+import com.amtf.demo.util.ParameterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,28 @@ public class F040001Controller extends ValiDationUtil{
 	@RequestMapping("/f040001")
 	public String f040001S001(F040001Params params, Model model) {
 
+		model.addAttribute("f040001Params", params);
+
+		return "video";
+	}
+
+	/**
+	 * 上传视频
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T001")
+	public String f040001T001(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service02(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+		
 		model.addAttribute("f040001Params", params);
 
 		return "video";

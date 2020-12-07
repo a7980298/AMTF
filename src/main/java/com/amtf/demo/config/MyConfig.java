@@ -45,6 +45,7 @@ public class MyConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/temp-rainy/**").addResourceLocations("file:D:/temp-rainy/");
 		registry.addResourceHandler("/excel/**").addResourceLocations("file:C:/amtf_excel_download/");
 		registry.addResourceHandler("/gif/**").addResourceLocations("classpath:/static/gif/");
+		registry.addResourceHandler("/videocommit/**").addResourceLocations("file:C:/video_commit/");
 	}
 
 	/**
