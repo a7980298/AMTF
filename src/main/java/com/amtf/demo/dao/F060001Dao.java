@@ -43,4 +43,6 @@ public interface F060001Dao {
     List<F060001_Select13Entity> f060001_Select13();
 
     List<F060001_Select3Entity> f060001_Select14(@Param("class_id") String class_id);
+
+    List<F060001_Select3Entity> f060001_Select15(@Param("class_id") String class_id);
 }

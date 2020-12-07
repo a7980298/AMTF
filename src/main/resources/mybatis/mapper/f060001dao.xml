@@ -202,4 +202,40 @@
 			QA.QA_TIME DESC
 		LIMIT 30
 	</select>
+	<!-- 标签一栏 -->
+	<select id="f060001_Select15" resultType="com.amtf.demo.f060001entity.F060001_Select3Entity">
+		SELECT
+			QA.*,
+    		USERS.USER_NAME AS USER_NAME,
+    		(SELECT
+    			QA_CLASS_NAME
+    		FROM
+    			AMTF_QA_CLASS
+    		WHERE QA_CLASS_ID = QA.QA_CLASS1
+    		) AS QA_CLASSNAME1,
+   			(SELECT
+   				QA_CLASS_NAME
+   			FROM
+   				AMTF_QA_CLASS
+   			WHERE
+   				QA_CLASS_ID = QA.QA_CLASS2
+   			) AS QA_CLASSNAME2,
+   			(SELECT
+   				QA_CLASS_NAME
+   			FROM
+   				AMTF_QA_CLASS
+   			WHERE
+   				QA_CLASS_ID = QA.QA_CLASS3
+   			) AS QA_CLASSNAME3
+		FROM
+			AMTF_QA QA
+		LEFT JOIN
+			AMTF_USER USERS
+		ON
+			QA.USER_ID = USERS.USER_EMAIL
+		WHERE
+			#{class_id} IN (QA.QA_CLASS1,QA.QA_CLASS2,QA.QA_CLASS3)
+		ORDER BY
+			QA.QA_TIME DESC
+	</select>
 </mapper>

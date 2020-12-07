@@ -24,4 +24,9 @@ public class F060001EntityIn extends UserImpl{
      * 标签选择
      */
     private String class_id;
+
+    /**
+     * 分页当前页数
+     */
+    Integer pageNum;
 }

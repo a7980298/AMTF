@@ -5,11 +5,15 @@ import com.amtf.demo.commonentity.AmtfQaEntity;
 import com.amtf.demo.commonentity.AmtfQaReplyEntity;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.dao.CommonDao;
+import com.amtf.demo.f010002entity.F010002_Select9Entity;
 import com.amtf.demo.f060001entity.F060001_Select12Entity;
 import com.amtf.demo.f060001entity.F060001_Select13Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.*;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -210,6 +214,59 @@ public class F060001ServiceImpl implements F060001Service {
 			select3entity.setUser_img(ImgUtil.getImgPath(select3entity.getUser_id()));
 		}
 		entityout.setSelect3(select3);
+
+		return entityout;
+	}
+
+	/**
+	 * 标签一栏
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F060001EntityOut service06(F060001EntityIn entityin) throws ErrListException {
+		F060001EntityOut entityout = new F060001EntityOut();
+		entityin.setPageNum(Constant.INT_0);
+		// 标签一栏
+		entityout.setSelect3_pageInfo(this.service07(entityin).getSelect3_pageInfo());
+
+		//获取标签分类
+		List<AmtfQaClassEntity> select11 = f060001dao.f060001_Select11();
+		entityout.setSelect11(select11);
+
+		//回复最多的问题
+		List<F060001_Select12Entity> select12 = f060001dao.f060001_Select12();
+		entityout.setSelect12(select12);
+
+		entityout.setClass_id(entityin.getClass_id());
+
+		// 获取标签类型
+		entityout.setQa_class_lists(f060001dao.f060001_Select2());
+
+		return entityout;
+	}
+
+	/**
+	 * 刷新标签一栏
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F060001EntityOut service07(F060001EntityIn entityin) throws ErrListException {
+		F060001EntityOut entityout = new F060001EntityOut();
+		Page page = PageHelper.startPage(entityin.getPageNum(),10);
+		List<F060001_Select3Entity> select3 = f060001dao.f060001_Select15(entityin.getClass_id());
+		for (F060001_Select3Entity select3entity: select3) {
+			//获取头像
+			select3entity.setUser_img(ImgUtil.getImgPath(select3entity.getUser_id()));
+		}
+		PageInfo<F060001_Select3Entity> pageInfo = new PageInfo<>(select3);
+
+		entityout.setSelect3_pageInfo(pageInfo);
+
+		entityout.setClass_id(entityin.getClass_id());
 
 		return entityout;
 	}

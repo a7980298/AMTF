@@ -9,6 +9,7 @@ import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f060001entity.F060001_Select12Entity;
 import com.amtf.demo.f060001entity.F060001_Select13Entity;
 import com.amtf.demo.f060001entity.F060001_Select3Entity;
+import com.github.pagehelper.PageInfo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Getter;
@@ -83,4 +84,14 @@ public class F060001Params {
 	 * 回复最多的用户
 	 */
 	private List<F060001_Select13Entity> select13;
+
+	/**
+	 * 标签id
+	 */
+	private String class_id;
+
+	/**
+	 * 分页标签一栏
+	 */
+	private PageInfo<F060001_Select3Entity> select3_pageInfo;
 }

@@ -1,12 +1,12 @@
 package com.amtf.demo.controller;
 
 import com.amtf.demo.entityin.F010002EntityIn;
-import com.amtf.demo.entityin.F010005EntityIn;
+import com.amtf.demo.entityin.F060001EntityIn;
 import com.amtf.demo.entityout.F010002EntityOut;
-import com.amtf.demo.entityout.F010005EntityOut;
+import com.amtf.demo.entityout.F060001EntityOut;
 import com.amtf.demo.f020005entity.WangEditor;
 import com.amtf.demo.params.F010002Params;
-import com.amtf.demo.params.F010005Params;
+import com.amtf.demo.params.F060001Params;
 import com.amtf.demo.util.Constant;
 import com.amtf.demo.util.ImgUtil;
 import net.sf.json.JSON;
@@ -162,4 +162,51 @@ public class F060001Controller extends ValiDationUtil {
 
 		return "qa :: select3";
 	}
+
+	/**
+	 * 标签一栏
+	 *
+	 * @parameter F060001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f060001/T006")
+	public String f060001T006(F060001Params params, Model model) {
+
+		F060001EntityIn entityin = new F060001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F060001EntityOut entityOut = f060001service.service06(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f060001Params", params);
+
+		return "qa_class";
+	}
+
+	/**
+	 * 刷新标签一栏
+	 *
+	 * @parameter F060001Params params
+	 * @return String
+	 */
+	@PostMapping("/f060001/T007")
+	public String f060001T007(@RequestParam(value="id",required=true) String id,@RequestParam(defaultValue = "1") Integer pageNum, Model model) {
+		F060001Params params = new F060001Params();
+
+		F060001EntityIn entityin = new F060001EntityIn();
+		entityin.setClass_id(id);
+		entityin.setPageNum(pageNum);
+		F060001EntityOut entityOut = f060001service.service07(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f060001Params", params);
+
+		return "qa_class :: select3";
+	}
+
 }

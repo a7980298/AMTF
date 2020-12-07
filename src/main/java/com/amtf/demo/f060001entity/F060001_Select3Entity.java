@@ -30,6 +30,21 @@ public class F060001_Select3Entity {
 	/**
 	 *发布的类型1
 	 */
+	private String qa_class1;
+
+	/**
+	 *发布的类型1
+	 */
+	private String qa_class2;
+
+	/**
+	 *发布的类型1
+	 */
+	private String qa_class3;
+
+	/**
+	 *发布的类型1
+	 */
 	private String qa_classname1;
 
 	/**
