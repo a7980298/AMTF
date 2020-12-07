@@ -19,8 +19,14 @@
 			}
 		});
 	})
+	// 上传
 	function amtf_video_Commit () {
 		amtf_submit(amtf_form, '/f040001/T001');
+	}
+
+	// 打开模态框
+	function amtf_video_Ask(){
+		$('#video_report').modal('show');
 	}
 </script>
 </head>
@@ -35,10 +41,63 @@
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f040001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f040001"/>
-							<video src="" controls id="lookviedo"></video>
-							<button type="button" id="i-check" value="" class="btn" onclick="$('#file0').click();" width="30px" height="20px">上传视频</button>
-							<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;"/>
-							<button class="btn" onclick="amtf_video_Commit()">上传</button>
+							<div class="row m-auto col-md-11">
+								<div class="col-md-9 pl-0 pr-0">
+									<div class="card card-profile m-1">
+										<div class="col-md-12 d-flex">
+											<div class="text-center col-md-10 h3 mt-1 text-left font-weight-bold">最新视频</div>
+											<div class="input-group no-border col-sm-1">
+												<div class="m-auto d-flex">
+													<div class="nav-item dropdown">
+														<button type="button" class="btn btn-sm" data-toggle="dropdown">
+															<span>选择视频类型</span>
+														</button>
+														<div class="dropdown-menu">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="input-group no-border col-sm-1">
+												<div class="m-auto d-flex">
+													<div class="nav-item dropdown">
+														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
+															<span>我要上传</span>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 上传视频modal -->
+							<div class="modal fade" id="video_report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-notice">
+									<div class="modal-content" style="width:1000px;">
+										<div class="modal-header">
+											<button type="button" class="close col-sm-1" data-dismiss="modal" aria-hidden="true">
+												<i class="material-icons">close</i>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="instruction">
+												<div class="row">
+													<video src="" controls id="lookviedo"></video>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer justify-content-center col-sm-12 text-right">
+											<button type="button" id="i-check" value="" class="btn h5 col-sm-1 ml-auto" onclick="$('#file0').click();" width="30px" height="20px">
+												选择
+											</button>
+											<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;"/>
+											<button class="btn btn-reddit h5 col-sm-1 ml-4" onclick="amtf_video_Commit()">
+												上传
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</i-form>
 					</div>
 				</div>
