@@ -408,7 +408,8 @@ function openSocket(_user_email) {
 		socket.onmessage = function(msg) {
 			var data;
 			try{
-				data = JSON.parse(msg.data);
+				/*data = JSON.parse(msg.data);*/
+				data = msg.data;
 				var userimg;
 				if(data.fromUserId == ''){
 					userimg = '/amtf/imgs/userimg.jpg';
