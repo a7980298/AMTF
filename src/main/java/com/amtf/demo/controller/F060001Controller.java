@@ -7,9 +7,9 @@ import com.amtf.demo.entityout.F060001EntityOut;
 import com.amtf.demo.f020005entity.WangEditor;
 import com.amtf.demo.params.F010002Params;
 import com.amtf.demo.params.F060001Params;
-import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.ImgUtil;
+import com.amtf.demo.util.*;
 import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +20,12 @@ import com.amtf.demo.entityin.F060001EntityIn;
 import com.amtf.demo.entityout.F060001EntityOut;
 import com.amtf.demo.params.F060001Params;
 import com.amtf.demo.service.F060001Service;
-import com.amtf.demo.util.ParameterUtil;
-import com.amtf.demo.util.ValiDationUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -69,10 +69,26 @@ public class F060001Controller extends ValiDationUtil {
 							HttpServletRequest request) {
 		F060001EntityIn entityin = new F060001EntityIn();
 		entityin.setSubmitjson(JSONObject.fromObject(data));
-		F060001EntityOut entityOut = f060001service.service02(entityin);
-
 		Map<String,Object> maps = new HashMap<String,Object>();
-
+		List<String> err=new ArrayList<String>();
+		// 错误信息
+		if(entityin.getSubmitjson().getString("head").length() > 25){
+			err.add("标签长度不能超过25位");
+		}
+		if(entityin.getSubmitjson().getString("head").length() <= 0){
+			err.add("标签必须入力");
+		}
+		if(entityin.getSubmitjson().getString("text").length() <= 0){
+			err.add("内容必须入力");
+		}
+		if(entityin.getSubmitjson().getString("get_class").length() <= 0){
+			err.add("标签必须选择");
+		}
+		maps.put("ErrMessage",err);
+		if(!CommonUtil.isEmptyList(err)){
+			return maps;
+		}
+		F060001EntityOut entityOut = f060001service.service02(entityin);
 		maps.put("insert1",entityOut.getInsert1());
 		return maps;
 	}
@@ -112,6 +128,15 @@ public class F060001Controller extends ValiDationUtil {
 		F060001EntityOut entityOut = f060001service.service03(entityin);
 
 		Map<String,Object> maps = new HashMap<String,Object>();
+		List<String> err=new ArrayList<String>();
+		// 错误信息
+		if(entityin.getSubmitjson().getString("txt").length() <= 0){
+			err.add("内容必须入力");
+		}
+		maps.put("ErrMessage",err);
+		if(!CommonUtil.isEmptyList(err)){
+			return maps;
+		}
 
 		maps.put("insert4",entityOut.getInsert4());
 		return maps;

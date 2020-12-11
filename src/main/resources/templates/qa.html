@@ -103,11 +103,16 @@
 			contentType : "application/json",
 			data : JSON.stringify(_entity),
 			success : function(result) {
-				if (result.insert1 >= 1) {
-					Message('success', '发布成功');
-					$('#qa_report').modal('hide');
+				if(result.ErrMessage != ""){
+					let errlist = result.ErrMessage;
+					Message('error', errlist[0]);
 				} else {
-					Message('error', '发布失败');
+					if (result.insert1 >= 1) {
+						Message('success', '发布成功');
+						$('#qa_report').modal('hide');
+					} else {
+						Message('error', '发布失败');
+					}
 				}
 			},
 			error : function(res, textStaus) {
@@ -116,7 +121,7 @@
 		});
 	}
 	// 获取选中的标签
-	function amtf_qa_GetClass (_this){
+	function amtf_qa_SetClass (_this){
 		if($('.getclass').length < 3 && $('.getclass').text().indexOf(_this.qa_class_name) == -1){
 			$('#showclass').before("<button type='button' class='btn btn-sm btn-white col-sm-1 getclass'>" + _this.qa_class_name + "<input type='hidden' class='getclass_id' value='" + _this.qa_class_id + "'/><a onclick='amtf_qa_RemoveClass(this)'><i class='material-icons'>close</i></a></button>");
 		}
@@ -154,11 +159,16 @@
 					contentType : "application/json",
 					data : JSON.stringify(_entity),
 					success : function(result) {
-						if (result.insert4 >= 1) {
-							Message('success', '发布成功');
-							reply_editor.txt.clear();
+						if(result.ErrMessage != ""){
+							let errlist = result.ErrMessage;
+							Message('error', errlist[0]);
 						} else {
-							Message('error', '发布失败');
+							if (result.insert4 >= 1) {
+								Message('success', '发布成功');
+								reply_editor.txt.clear();
+							} else {
+								Message('error', '发布失败');
+							}
 						}
 					},
 					error : function(res, textStaus) {
@@ -422,7 +432,7 @@
 															</button>
 															<div class="dropdown-menu">
 																<div class="col-sm-12">
-																	<a class="btn-white" th:each="entity,idx:${f060001Params.qa_class_lists}" th:onclick="amtf_qa_GetClass([[${entity}]])">
+																	<a class="btn-white" th:each="entity,idx:${f060001Params.qa_class_lists}" th:onclick="amtf_qa_SetClass([[${entity}]])">
 																		[[${entity.qa_class_name}]]
 																	</a>
 																</div>

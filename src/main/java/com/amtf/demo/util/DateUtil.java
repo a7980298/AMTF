@@ -61,6 +61,6 @@ public class DateUtil {
 
 	public static String strTostrT(String str) {
 
-		return  str.replace("-", "").replace(" ", "").replace(":", "");
+		return  str.replace("-", "").replace("/", "").replace(" ", "").replace(":", "");
 	}
 }

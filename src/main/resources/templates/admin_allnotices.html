@@ -31,10 +31,15 @@
 					release_name: editor.txt.html()
 				},
 				success: function (result) {
-					if(result.updonticey == '1'){
-						setCodeSuccess('发布成功！');
+					if(result.ErrMessage != ""){
+						let errlist = result.ErrMessage;
+						Message('error', errlist[0]);
 					} else {
-						setCodeErrList("错误！！！请和管理员联系。。。");
+						if (result.updonticey == '1') {
+							Message('success', '发布成功！');
+						} else {
+							Message('error', '发布失败');
+						}
 					}
 				},
 				error: function (res, textStaus) {

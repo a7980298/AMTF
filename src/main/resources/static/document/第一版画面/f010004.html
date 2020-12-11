@@ -45,8 +45,8 @@
 						</tr>
 						<tr>
 							<td colspan="2" class="text-center">
-								<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" width="80px" height="80px" id="img1"/>
-								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" th:if="${f010002Params.logInFo.imgpath != ''}" width="80px" height="80px" id="img1"/>
+								<img th:src="@{/imgs/userimg.jpg}" th:if="${f010002Params.logInFo.imgpath == ''}" class="img" width="80px" height="80px" id="img1"/>
+								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010002Params.logInFo.imgpath})}" class="img" th:if="${f010002Params.logInFo.imgpath != ''}" width="80px" height="80px" id="img1"/>
 							</td>
 						</tr>
 							<tr>

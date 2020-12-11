@@ -178,10 +178,15 @@
 			data : formData,
 			success : function(result) {
 				//hidediv();
-				if(result.isactivity == '1') {
-					setCodeErrList("发布失败，请重试。");
+				if(result.ErrMessage != ""){
+					let errlist = result.ErrMessage;
+					Message('error', errlist[0]);
 				} else {
-					setCodeSuccess("发布成功。。。");
+					if (result.isactivity == '1') {
+						setCodeErrList("发布失败，请重试。");
+					} else {
+						setCodeSuccess("发布成功。。。");
+					}
 				}
 			},
 			error : function(res, textStaus) {

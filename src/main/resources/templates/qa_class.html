@@ -101,11 +101,16 @@
 			contentType : "application/json",
 			data : JSON.stringify(_entity),
 			success : function(result) {
-				if (result.insert1 >= 1) {
-					Message('success', '发布成功');
-					$('#qa_report').modal('hide');
+				if(result.ErrMessage != ""){
+					let errlist = result.ErrMessage;
+					Message('error', errlist[0]);
 				} else {
-					Message('error', '发布失败');
+					if (result.insert1 >= 1) {
+						Message('success', '发布成功');
+						$('#qa_report').modal('hide');
+					} else {
+						Message('error', '发布失败');
+					}
 				}
 			},
 			error : function(res, textStaus) {

@@ -8,10 +8,7 @@ import com.amtf.demo.entityout.F020005EntityOut;
 import com.amtf.demo.f020005entity.WangEditor;
 import com.amtf.demo.params.F020005Params;
 import com.amtf.demo.service.F020005Service;
-import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.ImgUtil;
-import com.amtf.demo.util.ParameterUtil;
-import com.amtf.demo.util.ValiDationUtil;
+import com.amtf.demo.util.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.ErrorManager;
 
 @Controller
@@ -76,7 +71,6 @@ public class F020005Controller extends ValiDationUtil {
 										   @RequestParam("activity_sttymd") String activity_sttymd,
 										   @RequestParam("activity_endymd") String activity_endymd,
 										   @RequestParam("activity_editor") String activity_editor, HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
 		F020005EntityIn entityin = new F020005EntityIn();
 		// 活动标题
 		entityin.setActivity_head(activity_head);
@@ -90,9 +84,38 @@ public class F020005Controller extends ValiDationUtil {
 		entityin.setActivity_endymd(activity_endymd);
 		// 活动内容
 		entityin.setActivity_editor(activity_editor);
+		Map<String,Object> maps = new HashMap<String,Object>();
+		List<String> err=new ArrayList<String>();
+		// 错误信息
+		if(entityin.getActivity_head().length() <= 0){
+			err.add("标题必须入力");
+		}
+		if(entityin.getActivity_position().length() <= 0){
+			err.add("地址必须入力");
+		}
+		if(entityin.getActivity_check().length() <= 0){
+			err.add("级别必须选择");
+		}
+		if(entityin.getActivity_sttymd().length() <= 0){
+			err.add("开始日期必须入力");
+		}
+		if(entityin.getActivity_endymd().length() <= 0){
+			err.add("结束日期必须入力");
+		}
+		if(entityin.getActivity_editor().length() <= 0){
+			err.add("内容必须入力");
+		}
+		if(NumberUtil.toInt(DateUtil.strTostrT(entityin.getActivity_sttymd())) > NumberUtil.toInt(DateUtil.strTostrT(entityin.getActivity_endymd()))){
+			err.add("结束日期大于开始日期");
+		}
+		maps.put("ErrMessage",err);
+		if(!CommonUtil.isEmptyList(err)){
+			return maps;
+		}
+
 		F020005EntityOut entityOut = f020005service.service02(entityin);
-		map.put("isactivity", entityOut.getIsactivity());
-		return map;
+		maps.put("isactivity", entityOut.getIsactivity());
+		return maps;
 	}
 
 	/**

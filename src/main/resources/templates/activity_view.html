@@ -386,8 +386,8 @@
 									<div class="card-body">
 										<div class="material-datatables">
 											<div class="photo">
-												<img th:src="@{/imgs/userimg.jpg}" th:if="${f010005Params.select4.imgpath == ''}" id="img1" style="height:34px;"/>
-												<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010005Params.select4.imgpath})}" th:if="${f010005Params.select4.imgpath != ''}" id="img1" style="height:34px;"/>
+												<img th:src="@{/imgs/userimg.jpg}" th:if="${f010005Params.select4.imgpath == ''}" class="img" id="img1" style="height:34px;"/>
+												<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010005Params.select4.imgpath})}" class="img" th:if="${f010005Params.select4.imgpath != ''}" id="img1" style="height:34px;"/>
 												<span>
 													[[${f010005Params.select4.user_name}]]{{ user_name }}
 													<b class="caret"></b>
@@ -468,8 +468,8 @@
 								<div class="card m-1">
 									<div class="card-body d-flex comment_now" id="comment_div" >
 										<div class="comment_now">
-											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="comment_now" id="img1" style="height:34px;"/>
-											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" class="comment_now" th:if="${main_params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
+											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="comment_now img" id="img1" style="height:34px;"/>
+											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" class="comment_now img" th:if="${main_params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
 										</div>
 										<div class="col-sm-10 comment_now">
 											<textarea class="col-sm-12 m-0 pl-0 comment_now" defaultValue="请输入你的评论。。。" cols="40" rows="2" onclick="amtf_activeTextClick()" id="comment_text"></textarea>
@@ -509,8 +509,8 @@
 												<div th:each="entity2,idxs: ${entity1.amtfactivitycommentreplyentity}" class="pl-4">
 													<li class="nav-item d-flex" th:classappend="${idxs.index == 0 ? '' : 'li_top'}">
 														<div>
-															<img th:src="@{/imgs/userimg.jpg}" th:if="${entity2.imgpath == ''}" id="img1" style="height:34px;"/>
-															<img th:src="@{/istatic/{fileNmame}(fileNmame=${entity2.imgpath})}" th:if="${entity2.imgpath != ''}" id="img1" style="height:34px;"/>
+															<img th:src="@{/imgs/userimg.jpg}" th:if="${entity2.imgpath == ''}" class="img" id="img1" style="height:34px;"/>
+															<img th:src="@{/istatic/{fileNmame}(fileNmame=${entity2.imgpath})}" class="img" th:if="${entity2.imgpath != ''}" id="img1" style="height:34px;"/>
 														</div>
 														<div class="col-sm-10">
 															<p>

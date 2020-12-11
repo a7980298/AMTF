@@ -177,8 +177,8 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a class="navbar-brand" href="#">
-								<img th:src="@{/imgs/userimg.jpg}" height="100%" th:if="${f020001Params.logInFo.imgpath == ''}" onclick="amtf_openimg(this)" id="img1"/>
-								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="100%" th:if="${f020001Params.logInFo.imgpath != ''}" onclick="amtf_openimg(this)" id="img1"/>
+								<img th:src="@{/imgs/userimg.jpg}" class="img" height="100%" th:if="${f020001Params.logInFo.imgpath == ''}" onclick="amtf_openimg(this)" id="img1"/>
+								<img th:src="@{/istatic/{fileNmame}(fileNmame=${f020001Params.logInFo.imgpath})}" height="100%" class="img" th:if="${f020001Params.logInFo.imgpath != ''}" onclick="amtf_openimg(this)" id="img1"/>
 							</a>
 						</li>
 						<li>
