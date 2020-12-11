@@ -134,7 +134,14 @@
 	<!-- 回复最多的问题 -->
 	<select id="f060001_Select12" resultType="com.amtf.demo.f060001entity.F060001_Select12Entity">
 		SELECT
-			QA.*
+			QA.QA_ID
+            ,QA.USER_ID
+            ,QA.QA_HEAD
+            ,QA.QA_TEXT
+            ,QA.QA_CLASS1
+            ,QA.QA_CLASS2
+            ,QA.QA_CLASS3
+            ,QA.QA_TIME
 			,COUNT(REPLY.QA_ID) AS COUNT
 		FROM
 			AMTF_QA QA
@@ -151,7 +158,19 @@
 	<!-- 回复最多的用户 -->
 	<select id="f060001_Select13" resultType="com.amtf.demo.f060001entity.F060001_Select13Entity">
 		SELECT
-			USERS.*
+			USERS.User_id
+            ,USERS.User_Email
+            ,USERS.User_Account
+			,USERS.User_Password
+			,USERS.User_Name
+		    ,USERS.User_Country
+			,USERS.User_Province
+			,USERS.User_City
+			,USERS.User_Postcode
+			,USERS.User_Phone
+			,USERS.User_Introduce
+			,USERS.User_Attestation
+			,USERS.User_power
 			,COUNT(REPLY.USER_ID) AS COUNT
  		FROM
 			AMTF_USER USERS
@@ -168,8 +187,15 @@
 	<!-- 根据标签获取问题 -->
 	<select id="f060001_Select14" resultType="com.amtf.demo.f060001entity.F060001_Select3Entity">
 		SELECT
-			QA.*,
-    		USERS.USER_NAME AS USER_NAME,
+			QA.QA_ID
+            ,QA.USER_ID
+            ,QA.QA_HEAD
+            ,QA.QA_TEXT
+            ,QA.QA_CLASS1
+            ,QA.QA_CLASS2
+            ,QA.QA_CLASS3
+            ,QA.QA_TIME
+    		,USERS.USER_NAME AS USER_NAME,
     		(SELECT
     			QA_CLASS_NAME
     		FROM
@@ -205,8 +231,15 @@
 	<!-- 标签一栏 -->
 	<select id="f060001_Select15" resultType="com.amtf.demo.f060001entity.F060001_Select3Entity">
 		SELECT
-			QA.*,
-    		USERS.USER_NAME AS USER_NAME,
+			QA.QA_ID
+            ,QA.USER_ID
+            ,QA.QA_HEAD
+            ,QA.QA_TEXT
+            ,QA.QA_CLASS1
+            ,QA.QA_CLASS2
+            ,QA.QA_CLASS3
+            ,QA.QA_TIME
+            ,USERS.USER_NAME AS USER_NAME,
     		(SELECT
     			QA_CLASS_NAME
     		FROM
