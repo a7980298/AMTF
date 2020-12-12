@@ -127,4 +127,16 @@ public class F010001Controller extends ValiDationUtil {
 
 		return entityOut.getVerifyCode();
 	}
+
+	/**
+	 * 跳转画面
+	 *
+	 * @parameter F010001Params params
+	 * @return String
+	 */
+	@PostMapping("/f010001/T004")
+	public String f010001T004(F010001Params params, Model model) throws ErrListException {
+		model.addAttribute("f010001Params", params);
+		return params.getLogin_html();
+	}
 }

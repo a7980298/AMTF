@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<th:block th:replace="import :: myimport"></th:block>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/apple-icon.png}">
+		<link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+		<link th:href="@{/demo/demo.css}" rel="stylesheet" />
+		<title>
+			介绍
+		</title>
+		<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+		<style>
+			.padding-15{
+				padding: 15px !important;
+			}
+			.dispaly_none{
+				display: none;
+			}
+			.display_block{
+				display: block;
+			}
+		</style>
+		<script type="text/javascript">
+			// 登陆页面head选中样式变换
+			function amtf_loginhead(_this) {
+				$('.loginhead').each(function(){
+					$(this).parent().removeClass('active');
+					var _href = $(this).attr('href');
+					if (typeof(_href) != "undefined"){
+						_href = _href.replace('#','');
+						$('#' + _href).removeClass('show');
+						$('#' + _href).removeClass('collapse');
+						$('#' + _href).removeClass('container');
+						$('#' + _href).addClass('dispaly_none');
+					}
+				});
+				$(_this).parent().addClass('active');
+				var _href = $(_this).attr('href');
+				_href = _href.replace('#','');
+				$('#' + _href).removeClass('dispaly_none');
+				$('#' + _href).addClass('container');
+				if (_href == 'userregister') {
+					var newinput = getNewInput('login_html', 'register');
+				} else if (_href == 'userlogin') {
+					var newinput = getNewInput('login_html', 'login');
+				} else if (_href == 'pricing') {
+					var newinput = getNewInput('login_html', 'pricing');
+				} else if (_href == 'locking') {
+					var newinput = getNewInput('login_html', 'locking');
+				}
+				amtf_form.appendChild(newinput);
+				amtf_submit(amtf_form, '/f010001/T004');
+				reomveNewInput('login_html');
+			}
+			// 解锁
+			function amtf_setlock() {
+				amtf_submit(amtf_formlock , '/f010001/T001');
+			}
+		</script>
+	</head>
+	<body class="off-canvas-sidebar">
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+			<div class="container">
+				<div class="navbar-wrapper">
+					<a class="navbar-brand" href="javascript:;" id="logintext">介绍 页面</a>
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+						aria-label="Toggle navigation">
+					<span class="sr-only">切换 导航</span>
+					<span class="navbar-toggler-icon icon-bar"></span>
+					<span class="navbar-toggler-icon icon-bar"></span>
+					<span class="navbar-toggler-icon icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link loginhead" data-toggle="collapse" href="#pricing" onclick="amtf_loginhead(this)">
+								<i class="material-icons">dashboard</i>
+								产品介绍
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link loginhead" data-toggle="collapse" href="#userregister" onclick="amtf_loginhead(this)" id="userregister_id">
+								<i class="material-icons">person_add</i>
+								注冊
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link loginhead" data-toggle="collapse" href="#userlogin" id="userlogin_id" onclick="amtf_loginhead(this)">
+								<i class="material-icons">fingerprint</i>
+								登录
+							</a>
+						</li>
+						<li class="nav-item" th:if="${f010001Params.logInFo != null}">
+							<a href="#locking" class="nav-link loginhead" onclick="amtf_loginhead(this)" id="lockingid">
+								<i class="material-icons">lock_open</i>
+								锁定
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- End Navbar -->
+		<div class="wrapper wrapper-full-page">
+			<div class="page-header login-page header-filter" filter-color="black" id="login_image" style="background-image: url('/amtf/img/bg-pricing.jpg'); background-size: cover; background-position: top center;">
+				<!--   可以使用: data-color="blue | purple | green | orange | red | rose " 更改过滤器页面的颜色 -->
+				<div class="container" data-toggle="collapse" id="locking" th:if="${f010001Params.logInFo != null}">
+					<i-form class="" th:action="@{/f010001}" method="post" id="amtf_form">
+						<div class="row">
+							<div class="col-md-4 ml-auto mr-auto">
+								<div class="card card-profile text-center card-hidden">
+									<div class="card-header ">
+										<div class="card-avatar">
+											<a href="#pablo">
+												<img th:src="@{/imgs/userimg.jpg}" th:if="${f010001Params.logInFo.imgpath == ''}" id="img1"/>
+												<img th:src="@{/istatic/{fileNmame}(fileNmame=${f010001Params.logInFo.imgpath})}" th:if="${f010001Params.logInFo.imgpath != ''}" id="img1"/>
+											</a>
+										</div>
+									</div>
+									<div class="card-body ">
+										<h4 class="card-title">[[${f010001Params.logInFo.user_account}]]</h4>
+										<input type="hidden" name="user_account" th:value="${f010001Params.logInFo.user_account}"/>
+										<input type="hidden" name="locking" th:value="${f010001Params.locking}"/>
+										<div class="form-group">
+											<!-- <label for="exampleInput1" class="bmd-label-floating">输入 密码</label> -->
+											<input type="password" class="form-control" id="exampleInput1" placeholder="输入 密码..." name="user_password">
+										</div>
+									</div>
+									<div class="card-footer justify-content-center">
+										<a href="#pablo" class="btn btn-rose btn-round" onclick="amtf_setlock()" id="lock_submit">解锁</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</i-form>
+				</div>
+				<footer class="footer">
+					<div class="container">
+						<nav class="float-left">
+							<ul>
+								<li>
+									<a href="#">
+										加入我们
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										关于我们
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										博客
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										许可证
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="copyright float-right">
+							&copy;
+							<script>
+								document.write(new Date().getFullYear())
+							</script>
+							<a href="#" target="_blank">, 王意鑫</a>制作的网站
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				md.checkFullPageBackgroundImage();
+				setTimeout(function() {
+					// after 1000 ms we add the class animated to the login/register card
+					$('.card').removeClass('card-hidden');
+				}, 700);
+			});
+		</script>
+	</body>
+</html>

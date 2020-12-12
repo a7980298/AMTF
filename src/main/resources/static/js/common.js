@@ -102,7 +102,8 @@ function amtf_submitAdmin(form,action) {
 //打开模态框显示错误信息
 function setCodeErrList(codeErrList){
 	if (codeErrList != null && codeErrList != '') {
-		swal({
+		Message('error', codeErrList);
+		/*swal({
 			title: codeErrList,
 			text: "",
 			type: "warning",
@@ -114,7 +115,7 @@ function setCodeErrList(codeErrList){
 			inputPlaceholder: ""
 		},
 		function () {});
-		$('.swal2-container').css('z-index','9999999999');
+		$('.swal2-container').css('z-index','9999999999');*/
 	}
 }
 
@@ -122,7 +123,8 @@ function setCodeErrList(codeErrList){
 function setCodeSuccess(codeSuccess){
 	if (codeSuccess != null && codeSuccess != '') {
 		if (codeSuccess != null && codeSuccess != '') {
-			swal({
+			Message('success', codeSuccess);
+			/*swal({
 				title: codeSuccess,
 				text: "",
 				type: "input",
@@ -134,7 +136,7 @@ function setCodeSuccess(codeSuccess){
 				inputPlaceholder: ""
 			},
 			function () {});
-			$('.swal2-container').css('z-index','9999999999');
+			$('.swal2-container').css('z-index','9999999999');*/
 		}
 	}
 }
