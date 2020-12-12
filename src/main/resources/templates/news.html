@@ -8,18 +8,13 @@
 	.wrapper{
 	}
 	.head{
-		margin: 40px 40px;
 		width: 80%;
 		height: 20%;
 		background-color:white;
 		border: 1px solid #E0E0E0;
 	}
 	.a{
-		position: relative;
-		margin: 0px 40px;
-		width: 90%;
-		height: 50%;
-		background-color:white;
+		margin: 40px 40px;
 	}
 
 </style>
@@ -40,49 +35,17 @@
 			<th:block th:replace="head :: myhead"></th:block>
 			<div class="content">
 				<!-- 新闻 -->
-				<div class="container-fluid dashboardclass" id="f050001">
-					<div class="head">
-						<a style="margin-left:12px">新闻快讯</a><input style="margin-left:64%"></input><button class="btn btn-default">搜索</button>
-						<table class="a">
-							<tr id="01">
-								<td class="text-left" id="11"></td>
-								<td class="text-right" id="12"></td>
-							</tr>
-							<tr id="02">
-								<td class="text-left" id="21"></td>
-								<td class="text-right" id="22"></td>
-							</tr>
-							<tr id="03">
-								<td class="text-left" id="31"></td>
-								<td class="text-right" id="32"></td>
-							</tr>
-							<tr id="04">
-								<td class="text-left" id="41"></td>
-								<td class="text-right" id="42"></td>
-							</tr>
-							<tr id="05">
-								<td class="text-left" id="51"></td>
-								<td class="text-right" id="52"></td>
-							</tr>
-							<tr id="06">
-								<td class="text-left" id="61"></td>
-								<td class="text-right" id="62"></td>
-							</tr>
-							<tr id="07">
-								<td class="text-left" id="71"></td>
-								<td class="text-right" id="72"></td>
-							</tr>
-							<tr id="08">
-								<td class="text-left" id="81"></td>
-								<td class="text-right" id="82"></td>
-							</tr>
-							<tr id="09">
-								<td class="text-left" id="91"></td>
-								<td class="text-right" id="92"></td>
-							</tr>
-							<tr id="10">
-								<td class="text-left" id="101"></td>
-								<td class="text-right" id="102"></td>
+				<div class="card card-profile m-1 head" id="f050001">
+					<div class="col-md-12 d-flex">
+						<a class="h5">新闻快讯</a>
+						<input></input>
+						<button class="btn btn-sm">搜索</button>
+					</div>
+					<div class="col-md-10">
+						<table>
+							<tr id="01" class="card card-profile m-1" th:each="newsentity,idx:${f050001Params.news_list}">
+								<td class="text-left" >[[${newsentity.news_name}]]</td>
+								<td class="text-right" >[[${newsentity.}news_date]]</td>
 							</tr>
 						</table>
 					</div>

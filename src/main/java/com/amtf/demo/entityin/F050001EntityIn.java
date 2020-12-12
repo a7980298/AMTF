@@ -1,6 +1,7 @@
 package com.amtf.demo.entityin;
 
 import com.amtf.demo.user.UserImpl;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,4 +12,10 @@ public class F050001EntityIn extends UserImpl{
      * 页面id
      */
     private String IViewId;
+
+    /**
+     * 新闻标题
+     */
+    private String Newsname;
+
 }
