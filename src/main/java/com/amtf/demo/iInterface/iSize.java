@@ -14,6 +14,10 @@ import javax.validation.Payload;
 import com.amtf.demo.iInterface.iSize.SizeValidator;
 import com.amtf.demo.util.CommonUtil;
 
+/**
+ *
+ * @author 灵尘雨
+ */
 //表明该注解标记的元素可以被Javadoc 或类似的工具文档化
 @Documented
 @Constraint(validatedBy = SizeValidator.class)
@@ -30,6 +34,8 @@ public @interface iSize {
 
 	int max();
 
+	boolean isempty();
+
 	String name();
 
 	Class<?>[] groups() default {};
@@ -38,7 +44,7 @@ public @interface iSize {
 
 	public class SizeValidator implements ConstraintValidator<iSize, String> {
 
-		public static final String message = "必须在";
+		public static final String message = "必须";
 
 		// 错误信息
 		private String msg;
@@ -47,40 +53,48 @@ public @interface iSize {
 
 		private String name;
 
+		private boolean isempty;
+
+		@Override
 		public void initialize(iSize constraintAnnotation) {
 			// 获取注解中的值
 			msg = message;
 			min = CommonUtil.isEmpty(constraintAnnotation.min()) ? 0 : constraintAnnotation.min();
 			max = constraintAnnotation.max();
 			name = constraintAnnotation.name();
+			isempty = constraintAnnotation.isempty();
 		}
 
 		@Override
 		public boolean isValid(String value, ConstraintValidatorContext context) {
 			if (CommonUtil.isEmpty(value)) {
-				return true;
-			}
-			// 如果最小值不是0
-			if (min != 0) {
-				// 判断是否大于规定范围
-				if (value.length() < min || value.length() > max) {
-					// 创建约束信息
-					String mes = name + msg + min + "~" + max + "之间";
-					context.disableDefaultConstraintViolation();
-					context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();
-					return false;
-				}
+				String mes = name + msg + "输入";
+				context.disableDefaultConstraintViolation();
+				context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();
+				return false;
 			} else {
-				// 判断是否大于规定范围
-				if (value.length() > max) {
-					// 创建约束信息
-					String mes = name + msg + max + "之内";
-					context.disableDefaultConstraintViolation();
-					context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();
-					return false;
+				// 如果最小值不是0
+				if (min != 0) {
+					// 判断是否大于规定范围
+					if (value.length() < min || value.length() > max) {
+						// 创建约束信息
+						String mes = name + msg + min + "~" + max + "之间";
+						context.disableDefaultConstraintViolation();
+						context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();
+						return false;
+					}
+				} else {
+					// 判断是否大于规定范围
+					if (value.length() > max) {
+						// 创建约束信息
+						String mes = name + msg + max + "之内";
+						context.disableDefaultConstraintViolation();
+						context.buildConstraintViolationWithTemplate(mes).addConstraintViolation();
+						return false;
+					}
 				}
 			}
-			return false;
+			return true;
 		}
 	}
 }
