@@ -25,8 +25,8 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 账户
 	 */
-	@iName(value = "1111232323")
-	@iSize(name = "账户", max = 3, min = 0 ,isempty = true)
+	/*@iName(value = "1111232323")
+	@iSize(name = "账户", max = 3, min = 0 ,isempty = true)*/
 	private String user_account;
 	/**
 	 * 密码
@@ -47,12 +47,12 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 注册账号
 	 */
-	@iSize(name = "注册账户", max = 3, min = 0, isempty = true)
+	/*@iSize(name = "注册账户", max = 3, min = 0, isempty = true)*/
 	public String regist_user_name;
 	/**
 	 * 注册密码
 	 */
-	@iSize(name = "注册密码", max = 3, min = 0, isempty = true)
+	/*@iSize(name = "注册密码", max = 3, min = 0, isempty = true)*/
 	public String regist_user_password;
 
 	/**
@@ -70,7 +70,7 @@ public class F010001Params extends UserImpl {
 	/**
 	 * 注册电话号码
 	 */
-	@iSize(name = "电话号码", max = 30, min = 0, isempty = true)
+	/*@iSize(name = "电话号码", max = 30, min = 0, isempty = true)*/
 	public String phone_number;
 	/**
 	 * 是否跳转02画面
