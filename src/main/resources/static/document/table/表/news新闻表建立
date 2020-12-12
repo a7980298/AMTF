@@ -6,3 +6,7 @@ CREATE TABLE AMTF_news(
 )
 新闻数据检索sql
 select * from AMTF_news Inner join news_user like '%123%'
+
+insert into amtf_news values('stt','震惊！川建国即将下台','gdsdgsgsgsdgsd','2019/06/13');
+insert into amtf_news values('stt','震惊！川建国即将下台','gdsdgsgsgsdgsd','2019/06/13');
+insert into amtf_news values('stt','震惊！川建国即将下台','gdsdgsgsgsdgsd','2019/06/13');
