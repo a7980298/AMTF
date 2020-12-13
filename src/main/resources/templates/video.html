@@ -5,9 +5,27 @@
 <title>观看视频</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
-
+	.swiper-container {
+	//你可以在这里设置宽高
+	width: 50%;
+		height: 50%;
+	}
+	.swiper-slide {
+		text-align: center;
+		font-size: 18px;
+		/* Center slide text vertically */
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+	}
 </style>
-<script type="text/javascript">
+<script type="text/javascript" language="javascript">
 	$(function() {
 		$('#file0').change(function() {
 			//获取视频途径
@@ -30,6 +48,24 @@
 	function amtf_video_Ask(){
 		$('#video_report').modal('show');
 	}
+$(function(){
+	var swiper = new Swiper('.swiper-container', {
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay: {
+			delay: 2500,
+			disableOnInteraction: false,
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+	});
+})
 </script>
 </head>
 <body>
@@ -44,7 +80,7 @@
 						<i-form class="" th:action="@{/f040001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f040001"/>
 							<div class="row m-auto col-md-11">
-								<div class="col-md-9 pl-0 pr-0">
+								<div class="col-md-12 pl-0 pr-0">
 									<div class="card card-profile m-1">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-10 h3 mt-1 text-left font-weight-bold">最新视频</div>
@@ -69,6 +105,20 @@
 												</div>
 											</div>
 										</div>
+									</div>
+								</div>
+								<div class="col-md-12 pl-0 pr-0">
+									<div class="swiper-container col-md-12 h-50">
+										<div class="swiper-wrapper col-md-12 h-100">
+											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/login.jpg}" alt=""></div>
+											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/lock.jpg}" alt=""></div>
+											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/register.jpg}" alt=""></div>
+										</div>
+										<!-- 分页 -->
+										<div class="swiper-pagination"></div>
+										<!-- 切换 -->
+										<!--<div class="swiper-button-next"></div>
+										<div class="swiper-button-prev"></div>-->
 									</div>
 								</div>
 							</div>
