@@ -79,11 +79,16 @@ $(function(){
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f040001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f040001"/>
-							<div class="row m-auto col-md-11">
+							<div class="row m-auto col-md-12">
 								<div class="col-md-12 pl-0 pr-0">
 									<div class="card card-profile m-1">
 										<div class="col-md-12 d-flex">
-											<div class="text-center col-md-10 h3 mt-1 text-left font-weight-bold">最新视频</div>
+											<div class="text-center col-md-10 h3 mt-1 text-left font-weight-bold">
+												<div class="input-group col-md-4 m-auto">
+													<input type="text" class="form-control input-field" placeholder="输入搜索内容">
+													<button class="btn btn-sm btn-info">搜索</button>
+												</div>
+											</div>
 											<div class="input-group no-border col-sm-1">
 												<div class="m-auto d-flex">
 													<div class="nav-item dropdown">
@@ -108,7 +113,7 @@ $(function(){
 									</div>
 								</div>
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="swiper-container col-md-12 h-50">
+									<div class="swiper-container col-md-12 h-40">
 										<div class="swiper-wrapper col-md-12 h-100">
 											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/login.jpg}" alt=""></div>
 											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/lock.jpg}" alt=""></div>
@@ -119,6 +124,18 @@ $(function(){
 										<!-- 切换 -->
 										<!--<div class="swiper-button-next"></div>
 										<div class="swiper-button-prev"></div>-->
+									</div>
+									<div class="col-md-12 pl-0 pr-0">
+										<div class="card card-profile m-1">
+											<div class="col-md-12 d-flex">
+												<div class="text-center col-md-10 h3 mt-1 text-left font-weight-bold">
+													<div class="input-group col-md-4 m-auto">
+														<input type="text" class="form-control input-field" placeholder="输入搜索内容">
+														<button class="btn btn-sm btn-info">搜索</button>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
