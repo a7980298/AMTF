@@ -24,6 +24,10 @@
 		-webkit-align-items: center;
 		align-items: center;
 	}
+	.video_class:hover{
+
+		color: #ff4040c9;
+	}
 </style>
 <script type="text/javascript" language="javascript">
 	$(function() {
@@ -85,8 +89,11 @@ $(function(){
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
 												<div class="input-group col-md-4 m-auto">
-													<input type="text" class="form-control input-field" placeholder="输入搜索内容">
-													<button class="btn btn-sm btn-info">搜索</button>
+													<input type="text" class="form-control input-field" placeholder="搜索视频">
+													<button class="btn btn-sm btn-info">
+														<i class="fa fa-search"></i>
+														搜索
+													</button>
 												</div>
 											</div>
 											<div class="input-group no-border col-sm-1">
@@ -134,8 +141,16 @@ $(function(){
 									<div class="col-md-12 pl-0 pr-0">
 										<div class="card card-profile m-1">
 											<div class="col-md-12 d-flex">
-												<div class="text-center col-md-10 h3 mt-1 text-left font-weight-bold">
-													标签
+												<div class="col-md-5 h4 mt-1 text-left font-weight-bold">
+													<span th:each="entity,idx:${f040001Params.select1}" class="col-sm-4 hand video_class" onclick="">
+														<i th:class="${'fa ' + entity.video_class_img}" style="color: #ff4040c9"></i>
+														[[${entity.video_class_name}]]
+													</span>
+												</div>
+											</div>
+											<div class="col-md-12 d-flex">
+												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
+													<p class="text-left">今日热门</p>
 												</div>
 											</div>
 										</div>

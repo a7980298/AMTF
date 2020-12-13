@@ -1,0 +1,11 @@
+CREATE TABLE amtf_video_class(
+	video_class_id INT NOT NULL, -- id
+	video_class_name VARCHAR(8), -- 标签类型名
+	video_class_img VARCHAR(100) -- 标签图形
+)
+insert into amtf_video_class values(1,'专辑',' fa-universal-access');
+insert into amtf_video_class values(2,'电视剧','fa-television');
+insert into amtf_video_class values(3,'电影','fa-film');
+insert into amtf_video_class values(4,'小视频','fa-video-camera');
+insert into amtf_video_class values(5,'纪录片','fa-wpexplorer');
+insert into amtf_video_class values(6,'少儿','fa-reddit-alien');

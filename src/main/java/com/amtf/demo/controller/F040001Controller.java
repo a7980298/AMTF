@@ -27,6 +27,15 @@ public class F040001Controller extends ValiDationUtil{
 	@RequestMapping("/f040001")
 	public String f040001S001(F040001Params params, Model model) {
 
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service01(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
 		model.addAttribute("f040001Params", params);
 
 		return "video";
