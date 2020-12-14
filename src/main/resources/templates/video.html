@@ -25,8 +25,13 @@
 		align-items: center;
 	}
 	.video_class:hover{
-
 		color: #ff4040c9;
+	}
+	.modal input[type=text],.video_textarea {
+		border: 1px solid #afafaf26;
+	}
+	.modal input[type=text]:focus,.video_textarea:focus {
+		border: 1px solid #ff4040c9;
 	}
 </style>
 <script type="text/javascript" language="javascript">
@@ -40,6 +45,9 @@
 				$("#lookvideo").show();
 				$('#lookvideodiv').removeClass('d-none');
 				$('#commitvideodiv').addClass('d-none');
+				$('#video_head').val(this.files[0].name.substring(0,this.files[0].name.indexOf('.')));
+				$('#video_head').focus();
+				$('#modal_btn').removeClass('d-none');
 			}
 		});
 	})
@@ -47,29 +55,43 @@
 	function amtf_video_Commit () {
 		amtf_submit(amtf_form, '/f040001/T001');
 	}
-
+	// 返回
+	function amtf_video_Return(){
+		$('#commitvideodiv').removeClass('d-none');
+		$('#lookvideodiv').addClass('d-none');
+		$('#modal_btn').addClass('d-none');
+		$("#lookvideo").attr("src", '');
+	}
 	// 打开模态框
 	function amtf_video_Ask(){
 		$('#video_report').modal('show');
 	}
-$(function(){
-	var swiper = new Swiper('.swiper-container', {
-		spaceBetween: 30,
-		centeredSlides: true,
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction: false,
-		},
-		pagination: {
-			el: '.swiper-pagination',
-			clickable: true,
-		},
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-	});
-})
+	// 选择上传标签
+	function amtf_vider_GetClass(_this) {
+		let _headval = $('#video_head').val();
+		let _thisval = '#' + $(_this).text().replace(/(^\s*)|(\s*$)/g, "");
+		if(_headval.indexOf(_thisval) == -1){
+			$('#video_head').val(_headval + _thisval);
+		}
+	}
+	$(function(){
+		var swiper = new Swiper('.swiper-container', {
+			spaceBetween: 30,
+			centeredSlides: true,
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
+	})
 </script>
 </head>
 <body>
@@ -85,7 +107,7 @@ $(function(){
 						<input type="hidden" name="IViewId" value="f040001"/>
 							<div class="row m-auto col-md-12">
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="swiper-container col-md-12 h-40">
+									<div class="swiper-container col-md-12 h-30">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
 												<div class="input-group col-md-4 m-auto">
@@ -110,8 +132,8 @@ $(function(){
 												<div class="m-auto d-flex">
 													<div class="nav-item dropdown">
 														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
-															<i class="fa fa-youtube-play"></i>
-															<span>我要上传</span>
+															<i class="fa fa-cloud-upload"></i>
+															<span>快速上传</span>
 														</button>
 													</div>
 												</div>
@@ -200,14 +222,20 @@ $(function(){
 											<div class="instruction">
 												<div class="row d-none" id="lookvideodiv" style="height: 300px">
 													<div class="col-sm-10">
-														<div class="col-sm-12">
+														<div class="col-sm-12 h-100">
 															<span>标题*</span>
-															<div>
-																<input type="text" class="input-field w-100" style="150px"/>
+															<div class="h-20">
+																<input id="video_head" type="text" class="input-field w-100 h-100" style="150px"/>
 															</div>
-															<div>
-																标签
-
+															<div class="h-20">
+																<span th:each="entity,idx:${f040001Params.select1}" class="col-sm-4 hand video_class" onclick="amtf_vider_GetClass(this)">
+																	<i th:class="${'fa ' + entity.video_class_img}" style="color: #ff4040c9"></i>
+																	[[${entity.video_class_name}]]
+																</span>
+															</div>
+															<span>简介</span>
+															<div class="h-75">
+																<textarea id="" type="text" class="input-field w-100 h-100 video_textarea" style="150px"></textarea>
 															</div>
 														</div>
 													</div>
@@ -223,12 +251,12 @@ $(function(){
 												</div>
 											</div>
 										</div>
-										<div class="modal-footer justify-content-center col-sm-12 text-right">
-											<!--<button type="button" id="i-check" value="" class="btn h5 col-sm-1 ml-auto" onclick="$('#file0').click();" width="30px" height="20px">
-												选择
-											</button>-->
+										<div class="modal-footer justify-content-center col-sm-12 text-right mt-4 d-none" id="modal_btn">
+											<button type="button" id="i-check" value="" class="btn h5 col-sm-1 ml-auto btn-sm" onclick="amtf_video_Return()" width="30px" height="20px">
+												返回
+											</button>
 											<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;"/>
-											<button class="btn btn-reddit h5 col-sm-1 ml-4" onclick="amtf_video_Commit()">
+											<button class="btn btn-reddit h5 col-sm-1 ml-4 mr-auto btn-sm" onclick="amtf_video_Commit()">
 												上传
 											</button>
 										</div>
