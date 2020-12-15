@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amtf.demo.dao.F040001Dao">
+	<!-- 获取标签 -->
 	<select id="f040001_Select1" resultType="com.amtf.demo.commonentity.AmtfVideoClassEntity">
 		SELECT
 			*
 		FROM
 			AMTF_VIDEO_CLASS
+	</select>
+	<!-- 上传视频 -->
+	<insert id="f040001_Insert2">
+		INSERT INTO
+			AMTF_VIDEO
+		VALUES(
+			#{entity.video_id}
+			,#{entity.user_id}
+			,#{entity.video_head}
+			,#{entity.video_text}
+			,#{entity.video_class}
+			,#{entity.video_path}
+			,NOW()
+		)
+	</insert>
+	<!-- 今日热门 -->
+	<select id="f040001_Select3" resultType="com.amtf.demo.commonentity.AmtfVideoEntity">
+		SELECT
+			VIDEO.VIDEO_ID
+			,VIDEO.USER_ID
+			,VIDEO.VIDEO_HEAD
+			,VIDEO.VIDEO_TEXT
+			,VIDEO.VIDEO_PATH
+			,VIDEO.VIDEO_CLASS
+			,VIDEO.VIDEO_TIME
+			,CLASS.VIDEO_CLASS_NAME AS VIDEO_CLASS_NAME
+		FROM
+			AMTF_VIDEO_CLASS CLASS
+		LEFT JOIN
+			AMTF_VIDEO VIDEO
+		ON
+			VIDEO.VIDEO_CLASS LIKE CONCAT(CONCAT('%',CLASS.VIDEO_CLASS_NAME),'%')
+		WHERE
+			CLASS.VIDEO_CLASS_NAME = #{getclass}
+		LIMIT 8
 	</select>
 </mapper>

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.amtf.demo.params.F040001Params;
 import com.amtf.demo.service.F040001Service;
 import com.amtf.demo.util.ValiDationUtil;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class F040001Controller extends ValiDationUtil{
@@ -48,19 +52,17 @@ public class F040001Controller extends ValiDationUtil{
 	 * @return String
 	 */
 	@RequestMapping("/f040001/T001")
-	public String f040001T001(F040001Params params, Model model) {
+	@ResponseBody
+	public Map<String,Object> f040001T001(F040001Params params, Model model) {
 		F040001EntityIn entityin = new F040001EntityIn();
 
 		ParameterUtil.copyParameter(entityin, params);
 
 		F040001EntityOut entityOut = f040001service.service02(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
 
-		// 将值copy赋值
-		ParameterUtil.copyParameter(params, entityOut);
-		
-		model.addAttribute("f040001Params", params);
-
-		return "video";
+		maps.put("video_commit",entityOut.getInsert2());
+		return maps;
 	}
 
 }

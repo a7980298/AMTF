@@ -1,6 +1,7 @@
 package com.amtf.demo.util;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -44,13 +45,11 @@ public class VideoUtil {
 			boolean filetextbol = true;
 			// 创建流
 			File dest = null;
-			for (int i = 0; i < suffix.length; i++) {
-				dest = new File(filePath + suffix[i]);
-				// 判断文件夹是否存在
-				if (dest.getParentFile().exists()) {
-					filetextbol = false;
-					dest.delete();
-				}
+			dest = new File(filePath + suffixName);
+			// 判断文件夹是否存在
+			if (dest.getParentFile().exists()) {
+				filetextbol = false;
+				dest.delete();
 			}
 			if (filetextbol) {
 				dest = new File(filePath + suffixName);
@@ -63,7 +62,7 @@ public class VideoUtil {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return getVideoPath(url,fileName);
+			return (fileName + suffixName);
 		}
 		return null;
 	}

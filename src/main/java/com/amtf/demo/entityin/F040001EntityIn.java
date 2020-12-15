@@ -18,4 +18,14 @@ public class F040001EntityIn extends UserImpl{
      * 上传视频
      */
     public MultipartFile commit_video;
+
+    /**
+     * 上传的标题
+     */
+    private String video_head;
+
+    /**
+     * 上传的简介
+     */
+    private String video_body;
 }

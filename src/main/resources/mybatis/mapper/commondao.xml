@@ -87,6 +87,14 @@
 		SELECT
 			MAX(QA_REPLY_ID)
 		FROM
-			amtf_qa_reply
+			AMTF_QA_REPLY
+	</select>
+	<!-- 获取video表最大id -->
+	<select id="common_Select12"
+			resultType="int">
+		SELECT
+			MAX(VIDEO_ID)
+		FROM
+			AMTF_VIDEO
 	</select>
 </mapper>

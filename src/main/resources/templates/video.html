@@ -38,7 +38,7 @@
 	$(function() {
 		$('#file0').change(function() {
 			//获取视频途径
-			var objUrl = getObjectURL(this.files[0]);
+			let objUrl = getObjectURL(this.files[0]);
 			//判断是否存在
 			if (objUrl) {
 				$("#lookvideo").attr("src", objUrl);
@@ -53,7 +53,32 @@
 	})
 	// 上传
 	function amtf_video_Commit () {
-		amtf_submit(amtf_form, '/f040001/T001');
+		let formData = new FormData($('#amtf_form')[0]);
+		formData.append("commit_video", $('#file0')[0].files[0]);
+		formData.append('video_head',$('#video_head').val());
+		formData.append('video_body',$('#video_body').val());
+		$.ajax({
+			url : CONTEXT_PATH + '/f040001/T001',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			cache: false,
+			processData : false, // 用于对data参数进行序列化处理
+			contentType : false, // 不要设置Content-Type请求头
+			data : formData,
+			success : function(result) {
+				if(result.video_commit > 0){
+					Message('success', '上传成功');
+					$('#video_report').modal('hide');
+					amtf_video_Return();
+				} else {
+					Message('error', '上传失败');
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
 	}
 	// 返回
 	function amtf_video_Return(){
@@ -69,7 +94,7 @@
 	// 选择上传标签
 	function amtf_vider_GetClass(_this) {
 		let _headval = $('#video_head').val();
-		let _thisval = '#' + $(_this).text().replace(/(^\s*)|(\s*$)/g, "");
+		let _thisval = '#' + $(_this).text().replace(/(^\s*)|(\s*$)/g, "") + '#';
 		if(_headval.indexOf(_thisval) == -1){
 			$('#video_head').val(_headval + _thisval);
 		}
@@ -179,6 +204,12 @@
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">原创专辑</p>
 												</div>
+												<div class="d-flex">
+													<div th:each="entity,idx:${f040001Params.albumList}">
+														<video
+
+													</div>
+												</div>
 											</div>
 											<div class="col-md-12 d-flex">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
@@ -235,7 +266,7 @@
 															</div>
 															<span>简介</span>
 															<div class="h-75">
-																<textarea id="" type="text" class="input-field w-100 h-100 video_textarea" style="150px"></textarea>
+																<textarea id="video_body" type="text" class="input-field w-100 h-100 video_textarea" style="150px"></textarea>
 															</div>
 														</div>
 													</div>

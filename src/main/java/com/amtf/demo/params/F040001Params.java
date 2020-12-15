@@ -1,6 +1,7 @@
 package com.amtf.demo.params;
 
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
+import com.amtf.demo.commonentity.AmtfVideoEntity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Getter;
@@ -28,4 +29,19 @@ public class F040001Params {
      * 视频分类
      */
     private List<AmtfVideoClassEntity> select1;
+
+    /**
+     * 上传的标题
+     */
+    private String video_head;
+
+    /**
+     * 上传的简介
+     */
+    private String video_body;
+
+    /**
+     * 专辑一栏
+     */
+    private List<AmtfVideoEntity> albumList;
 }

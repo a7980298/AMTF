@@ -1,0 +1,12 @@
+CREATE TABLE amtf_video(
+	video_id INT NOT NULL, -- id
+	user_id VARCHAR(30), -- 用户id
+	video_head VARCHAR(100), -- 标题
+	video_text VARCHAR(500), -- 简介
+	video_class VARCHAR(30), -- 标签
+	video_path VARCHAR(50), -- 路径名称
+	video_time DATETIME	-- 发布时间
+)
+ALTER TABLE amtf_video MODIFY  video_text VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE amtf_video CHARSET=utf8mb4;
+alter table amtf_videoadd primary key video_id 
