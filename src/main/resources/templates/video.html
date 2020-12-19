@@ -48,15 +48,52 @@
 				$('#video_head').val(this.files[0].name.substring(0,this.files[0].name.indexOf('.')));
 				$('#video_head').focus();
 				$('#modal_btn').removeClass('d-none');
+				getVideoBase64();
+			}
+		});
+		$('#upimgfile').change(function(){
+			//获取视频途径
+			let objUrl = getObjectURL(this.files[0]);
+			if (objUrl) {
+				$("#lookvideo").addClass('d-none');
+				$('#video_upimg').removeClass('d-none');
+				$("#video_upimg").attr("src", objUrl);
 			}
 		});
 	})
+	function getVideoBase64() {
+		return new Promise(function (resolve, reject) {
+			let dataURL = '';
+			let video = document.getElementById('lookvideo');
+			video.addEventListener('loadeddata', function () {
+				let canvas = document.createElement("canvas"),
+						width = video.videoWidth, //canvas的尺寸和图片一样
+						height = video.videoHeight;
+				canvas.width = width;
+				canvas.height = height;
+				canvas.getContext("2d").drawImage(video, 0, 0, width, height); //绘制canvas
+				dataURL = canvas.toDataURL('image/jpeg'); //转换为base64
+				let img = document.createElement('img');
+				img.src = dataURL;
+				img.id = 'commit_video_img';
+
+				document.getElementById('main_body').appendChild(img);
+				resolve(dataURL);
+			});
+		})
+	}
 	// 上传
 	function amtf_video_Commit () {
 		let formData = new FormData($('#amtf_form')[0]);
 		formData.append("commit_video", $('#file0')[0].files[0]);
 		formData.append('video_head',$('#video_head').val());
 		formData.append('video_body',$('#video_body').val());
+		if(!$('#video_upimg').hasClass('d-none')){
+			let file2 = $('#video_upimg')[0]
+			formData.append('video_upimg',file2);
+		}
+		let file1 = $('#commit_video_img').prop('src');
+		formData.append('video_img',file1);
 		$.ajax({
 			url : CONTEXT_PATH + '/f040001/T001',
 			type : 'post',
@@ -100,6 +137,7 @@
 		}
 	}
 	$(function(){
+		// 滑动图片
 		var swiper = new Swiper('.swiper-container', {
 			spaceBetween: 30,
 			centeredSlides: true,
@@ -117,9 +155,14 @@
 			},
 		});
 	})
+	// 修改封面
+	function amtf_upVideoImg() {
+
+
+	}
 </script>
 </head>
-<body>
+<body id="main_body">
 	<div class="wrapper">
 		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
 		<div class="">
@@ -206,7 +249,7 @@
 												</div>
 												<div class="d-flex">
 													<div th:each="entity,idx:${f040001Params.albumList}">
-														<video
+
 
 													</div>
 												</div>
@@ -272,7 +315,8 @@
 													</div>
 													<div class="col-sm-2">
 														<video src="" class="ml-auto w-100" id="lookvideo" style="height: 100%"></video>
-														<div class="text-center col-w" style="background-color: black">修改封面</div>
+														<img src="" class="ml-auto w-100 d-none" id="video_upimg" style="height: 100%"/>
+														<div class="text-center col-w" style="background-color: black" onclick="$('#upimgfile').click();">修改封面</div>
 													</div>
 												</div>
 												<div class="row" id="commitvideodiv">
@@ -287,6 +331,7 @@
 												返回
 											</button>
 											<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;"/>
+											<input type="file" name="commit_video_up" id="upimgfile" multiple="multiple" style="display:none;"/>
 											<button class="btn btn-reddit h5 col-sm-1 ml-4 mr-auto btn-sm" onclick="amtf_video_Commit()">
 												上传
 											</button>

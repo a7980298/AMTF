@@ -19,6 +19,7 @@
 			,#{entity.video_text}
 			,#{entity.video_class}
 			,#{entity.video_path}
+			,#{entity.video_img}
 			,NOW()
 		)
 	</insert>

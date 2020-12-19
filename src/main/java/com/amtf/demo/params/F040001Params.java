@@ -41,6 +41,16 @@ public class F040001Params {
     private String video_body;
 
     /**
+     * 上传的默认封面图片
+     */
+    private String video_img;
+
+    /**
+     * 上传的更改封面图片
+     */
+    private MultipartFile video_upimg;
+
+    /**
      * 专辑一栏
      */
     private List<AmtfVideoEntity> albumList;

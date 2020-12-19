@@ -1,13 +1,20 @@
 package com.amtf.demo.util;
 
+import Decoder.BASE64Decoder;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
+import org.bytedeco.javacv.FFmpegFrameGrabber;
+import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.Java2DFrameConverter;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 public class VideoUtil {
 
@@ -26,7 +33,10 @@ public class VideoUtil {
 		}
 		return "";
 	}
-
+	// 图片上传
+	public static String commitImg(MultipartFile file,String url) {
+		return  commitView(file,url);
+	}
 	// 视频上传
 	public static String commitView(MultipartFile file,String url) {
 		// 文件名
@@ -74,5 +84,39 @@ public class VideoUtil {
 				"abcdefghijklmnopqrstuvwxyz1234567890");
 		String name = timeStr + str;
 		return name;
+	}
+
+	public static String GenerateImage(String imgStr, String imgFilePath){
+		if (imgStr == null){
+			// 图像数据为空
+			return "";
+		}
+		BASE64Decoder decoder = new BASE64Decoder();
+
+		// Base64解码,对字节数组字符串进行Base64解码并生成图片
+		imgStr = imgStr.replaceAll(" ", "+");
+		System.out.println(imgStr);
+		String dbUrl = "";
+		try{
+			byte[] b = decoder.decodeBuffer(imgStr.replace("data:image/jpeg;base64,", ""));
+			for (int i = 0; i < b.length; ++i) {
+				// 调整异常数据
+				if (b[i] < 0) {
+					b[i] += 256;
+				}
+			}
+			String imgName = getVideoFileName()+".jpg";
+			// 生成jpeg图片D:\test\attendance\src\main\webapp\assets\images\leave
+			//新生成的图片
+			imgFilePath = imgFilePath + imgName;
+			OutputStream out = new FileOutputStream(imgFilePath);
+			out.write(b);
+			out.flush();
+			out.close();
+			dbUrl = imgName;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return dbUrl;
 	}
 }

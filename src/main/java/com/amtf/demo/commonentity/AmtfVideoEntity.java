@@ -31,9 +31,14 @@ public class AmtfVideoEntity {
 	private String video_text ;
 
 	/**
-	 * 路径
+	 * 视频路径
 	 */
 	private String video_path;
+
+	/**
+	 * 封面路径
+	 */
+	private String video_img;
 
 	/**
 	 * 标签

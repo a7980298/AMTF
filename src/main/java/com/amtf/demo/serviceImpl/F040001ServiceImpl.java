@@ -8,10 +8,7 @@ import com.amtf.demo.dao.CommonDao;
 import com.amtf.demo.dao.F040001Dao;
 import com.amtf.demo.dao.F050001Dao;
 import com.amtf.demo.user.LogInFo;
-import com.amtf.demo.util.CommonUtil;
-import com.amtf.demo.util.Constant;
-import com.amtf.demo.util.ParameterUtil;
-import com.amtf.demo.util.VideoUtil;
+import com.amtf.demo.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,6 +78,14 @@ public class F040001ServiceImpl implements F040001Service {
 		videoentity.setVideo_head(entityin.getVideo_head());
 		// 简介
 		videoentity.setVideo_text(entityin.getVideo_body());
+		// 封面图片
+		String imgpath=Constant.EMPTY;
+		if(!CommonUtil.isEmpty(entityin.getVideo_upimg())){
+			imgpath = VideoUtil.commitImg(entityin.getVideo_upimg(),Constant.PATH_VIDEOIMG_COMMIT);
+		} else {
+			imgpath = VideoUtil.GenerateImage(entityin.getVideo_img(),Constant.PATH_VIDEOIMG_COMMIT);
+		}
+		videoentity.setVideo_img(imgpath);
 		// 路径
 		videoentity.setVideo_path(VideoUtil.commitView(entityin.getCommit_video(), Constant.PATH_VIDEO_COMMIT));
 		// 获取标签
