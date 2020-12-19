@@ -35,6 +35,11 @@ public class F040001EntityIn extends UserImpl{
     private String video_img;
 
     /**
+     * 上传视频时长
+     */
+    private String video_duration;
+
+    /**
      * 上传的更改封面图片
      */
     private MultipartFile video_upimg;

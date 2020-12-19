@@ -78,6 +78,8 @@ public class F040001ServiceImpl implements F040001Service {
 		videoentity.setVideo_head(entityin.getVideo_head());
 		// 简介
 		videoentity.setVideo_text(entityin.getVideo_body());
+		// 时长
+		videoentity.setVideo_duration(entityin.getVideo_duration());
 		// 封面图片
 		String imgpath=Constant.EMPTY;
 		if(!CommonUtil.isEmpty(entityin.getVideo_upimg())){

@@ -20,6 +20,7 @@
 			,#{entity.video_class}
 			,#{entity.video_path}
 			,#{entity.video_img}
+			,#{entity.video_duration}
 			,NOW()
 		)
 	</insert>
@@ -31,7 +32,9 @@
 			,VIDEO.VIDEO_HEAD
 			,VIDEO.VIDEO_TEXT
 			,VIDEO.VIDEO_PATH
+			,VIDEO.VIDEO_IMG
 			,VIDEO.VIDEO_CLASS
+			,VIDEO.VIDEO_DURATION
 			,VIDEO.VIDEO_TIME
 			,CLASS.VIDEO_CLASS_NAME AS VIDEO_CLASS_NAME
 		FROM

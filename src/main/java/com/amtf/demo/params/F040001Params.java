@@ -51,6 +51,11 @@ public class F040001Params {
     private MultipartFile video_upimg;
 
     /**
+     * 上传视频时长
+     */
+    private String video_duration;
+
+    /**
      * 专辑一栏
      */
     private List<AmtfVideoEntity> albumList;

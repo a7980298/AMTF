@@ -51,6 +51,11 @@ public class AmtfVideoEntity {
 	private Date video_time;
 
 	/**
+	 * 视频时长
+	 */
+	private String video_duration;
+
+	/**
 	 * 标签分类
 	 */
 	private String video_class_name;

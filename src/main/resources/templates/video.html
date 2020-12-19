@@ -91,6 +91,11 @@
 	function amtf_video_Commit () {
 		let formData = new FormData($('#amtf_form')[0]);
 		formData.append("commit_video", $('#file0')[0].files[0]);
+		let duration = document.getElementById("lookvideo").duration;
+		var hour = parseInt((duration)/3600) == 0 ? '' : parseInt((duration)/3600) ;
+		var minute = parseInt((duration%3600)/60) ? '' : parseInt((duration%3600)/60);
+		var second = Math.ceil(duration%60) ? '' : Math.ceil(duration%60);
+		formData.append("video_duration", hour + "小时" + minute + "分" + second + "秒");
 		formData.append('video_head',$('#video_head').val());
 		formData.append('video_body',$('#video_body').val());
 		if(!$('#video_upimg').hasClass('d-none')){
@@ -243,48 +248,49 @@
 													</span>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex mt-4">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">今日热门</p>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
-												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
+											<div class="col-md-12 d-flex mt-3">
+												<div class="col-md-5 h3 mt-1 mb-0 text-left font-weight-bold">
 													<p class="text-left">原创专辑</p>
-												</div>
-												<div class="d-flex">
-													<div th:each="entity,idx:${f040001Params.albumList}">
-
-
+													<div class="d-flex col-md-12 h5 ml-0 mb-0 pl-0" th:if="${not #lists.isEmpty(f040001Params.albumList)}">
+														<div th:each="entity,idx:${f040001Params.albumList}" class="col-sm-4 pl-0" style="height: 150px">
+															<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="w-100 h-75 hand" onlick=""/>
+															<span class="d-flex" style="margin-top: -23px;color: white;font-size: 2px">[[${entity.video_duration}]]</span>
+															<span>[[${entity.video_text}]]</span>
+														</div>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">热点小视频</p>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">电视剧场</p>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">电影</p>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">少儿</p>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">纪录片</p>
 												</div>
 											</div>
-											<div class="col-md-12 d-flex">
+											<div class="col-md-12 d-flex mt-3">
 												<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 													<p class="text-left">为您精选</p>
 												</div>

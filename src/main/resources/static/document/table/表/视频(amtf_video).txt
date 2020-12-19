@@ -6,6 +6,7 @@ CREATE TABLE amtf_video(
 	video_class VARCHAR(30), -- 标签
 	video_path VARCHAR(250), -- 路径名称
 	video_img VARCHAR(250), -- 封面名称
+	video_duration VARCHAR(50), -- 视频时长
 	video_time DATETIME	-- 发布时间
 )
 ALTER TABLE amtf_video MODIFY  video_text VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
