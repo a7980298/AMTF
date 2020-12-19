@@ -33,6 +33,10 @@
 	.modal input[type=text]:focus,.video_textarea:focus {
 		border: 1px solid #ff4040c9;
 	}
+	#video_list img:hover{
+		/*放大*/
+		transform: scale(1.1);
+	}
 </style>
 <script type="text/javascript" language="javascript">
 	$(function() {
@@ -92,10 +96,10 @@
 		let formData = new FormData($('#amtf_form')[0]);
 		formData.append("commit_video", $('#file0')[0].files[0]);
 		let duration = document.getElementById("lookvideo").duration;
-		var hour = parseInt((duration)/3600) == 0 ? '' : parseInt((duration)/3600) ;
-		var minute = parseInt((duration%3600)/60) ? '' : parseInt((duration%3600)/60);
-		var second = Math.ceil(duration%60) ? '' : Math.ceil(duration%60);
-		formData.append("video_duration", hour + "小时" + minute + "分" + second + "秒");
+		let hour = parseInt((duration)/3600) == 0 ? '' : parseInt((duration)/3600) + "小时" ;
+		let minute = parseInt((duration%3600)/60) == 0 ? '' : parseInt((duration%3600)/60) + "分";
+		let second = Math.ceil(duration%60)  == 0 ? '' : Math.ceil(duration%60) + "秒";
+		formData.append("video_duration", hour  + minute  + second );
 		formData.append('video_head',$('#video_head').val());
 		formData.append('video_body',$('#video_body').val());
 		if(!$('#video_upimg').hasClass('d-none')){
@@ -238,7 +242,7 @@
 										<!--<div class="swiper-button-next"></div>
 										<div class="swiper-button-prev"></div>-->
 									</div>
-									<div class="col-md-12 pl-0 pr-0">
+									<div class="col-md-12 pl-0 pr-0" id="video_list">
 										<div class="card card-profile m-1">
 											<div class="col-md-12 d-flex">
 												<div class="col-md-5 h4 mt-1 text-left font-weight-bold">
@@ -327,7 +331,7 @@
 													<div class="col-sm-2">
 														<video src="" class="ml-auto w-100" id="lookvideo" style="height: 100%"></video>
 														<img src="" class="ml-auto w-100 d-none" id="video_upimg" style="height: 100%"/>
-														<div class="text-center col-w" style="background-color: black" onclick="$('#upimgfile').click();">修改封面</div>
+														<div class="text-center col-w hand" style="background-color: black" onclick="$('#upimgfile').click();">修改封面</div>
 													</div>
 												</div>
 												<div class="row" id="commitvideodiv">
