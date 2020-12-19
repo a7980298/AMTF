@@ -39,35 +39,36 @@
 	}
 </style>
 <script type="text/javascript" language="javascript">
-	$(function() {
-		$('#file0').change(function() {
-			$('#commitvideodiv').addClass('d-none');
+	function amtf_fileVideo(_this) {
+		$('#commitvideodiv').addClass('d-none');
+		$('#lookvideodiv').removeClass('d-none');
+		$('#modal_btn').removeClass('d-none');
+		//获取视频途径
+		let objUrl = getObjectURL($(_this)[0].files[0]);
+		//判断是否存在
+		if (objUrl) {
+			$("#lookvideo").attr("src", objUrl);
+			$("#lookvideo").show();
 			$('#lookvideodiv').removeClass('d-none');
+			$('#commitvideodiv').addClass('d-none');
+			$('#video_head').val($(_this)[0].files[0].name.substring(0,$(_this)[0].files[0].name.indexOf('.')));
+			$('#video_head').focus();
 			$('#modal_btn').removeClass('d-none');
-			//获取视频途径
-			let objUrl = getObjectURL(this.files[0]);
-			//判断是否存在
-			if (objUrl) {
-				$("#lookvideo").attr("src", objUrl);
-				$("#lookvideo").show();
-				$('#lookvideodiv').removeClass('d-none');
-				$('#commitvideodiv').addClass('d-none');
-				$('#video_head').val(this.files[0].name.substring(0,this.files[0].name.indexOf('.')));
-				$('#video_head').focus();
-				$('#modal_btn').removeClass('d-none');
-				getVideoBase64();
-			}
-		});
-		$('#upimgfile').change(function(){
-			//获取视频途径
-			let objUrl = getObjectURL(this.files[0]);
-			if (objUrl) {
-				$("#lookvideo").addClass('d-none');
-				$('#video_upimg').removeClass('d-none');
-				$("#video_upimg").attr("src", objUrl);
-			}
-		});
-	})
+			getVideoBase64();
+		}
+
+	}
+
+	$('#upimgfile').change(function(){
+		//获取视频途径
+		let objUrl = getObjectURL(this.files[0]);
+		if (objUrl) {
+			$("#lookvideo").addClass('d-none');
+			$('#video_upimg').removeClass('d-none');
+			$("#video_upimg").attr("src", objUrl);
+		}
+	});
+
 	function getVideoBase64() {
 		return new Promise(function (resolve, reject) {
 			let dataURL = '';
@@ -137,6 +138,14 @@
 		$('#lookvideodiv').addClass('d-none');
 		$('#modal_btn').addClass('d-none');
 		$("#lookvideo").attr("src", '');
+		$('#file0').val('');
+		$('#file0')[0].files[0] = '';
+		var test = document.getElementById('file0');
+		if (test.outerHTML) {
+			test.outerHTML = test.outerHTML;
+		} else { // FF(包括3.5)
+			test.value = "";
+		}
 	}
 	// 打开模态框
 	function amtf_video_Ask(){
@@ -345,7 +354,7 @@
 											<button type="button" id="i-check" value="" class="btn h5 col-sm-1 ml-auto btn-sm" onclick="amtf_video_Return()" width="30px" height="20px">
 												返回
 											</button>
-											<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;"/>
+											<input type="file" name="commit_video" id="file0" multiple="multiple" style="display:none;" onChange="amtf_fileVideo(this)"/>
 											<input type="file" name="commit_video_up" id="upimgfile" multiple="multiple" style="display:none;"/>
 											<button class="btn btn-reddit h5 col-sm-1 ml-4 mr-auto btn-sm" onclick="amtf_video_Commit()">
 												上传
