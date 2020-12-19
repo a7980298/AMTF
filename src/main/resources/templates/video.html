@@ -37,6 +37,9 @@
 <script type="text/javascript" language="javascript">
 	$(function() {
 		$('#file0').change(function() {
+			$('#commitvideodiv').addClass('d-none');
+			$('#lookvideodiv').removeClass('d-none');
+			$('#modal_btn').removeClass('d-none');
 			//获取视频途径
 			let objUrl = getObjectURL(this.files[0]);
 			//判断是否存在
@@ -71,12 +74,14 @@
 						height = video.videoHeight;
 				canvas.width = width;
 				canvas.height = height;
-				canvas.getContext("2d").drawImage(video, 0, 0, width, height); //绘制canvas
-				dataURL = canvas.toDataURL('image/jpeg'); //转换为base64
+				//绘制canvas
+				canvas.getContext("2d").drawImage(video, 0, 0, width, height);
+				//转换为base64
+				dataURL = canvas.toDataURL('image/jpeg');
 				let img = document.createElement('img');
 				img.src = dataURL;
 				img.id = 'commit_video_img';
-
+				img.style = 'display:none';
 				document.getElementById('main_body').appendChild(img);
 				resolve(dataURL);
 			});
@@ -89,7 +94,7 @@
 		formData.append('video_head',$('#video_head').val());
 		formData.append('video_body',$('#video_body').val());
 		if(!$('#video_upimg').hasClass('d-none')){
-			let file2 = $('#video_upimg')[0]
+			let file2 = $('#upimgfile')[0].files[0];
 			formData.append('video_upimg',file2);
 		}
 		let file1 = $('#commit_video_img').prop('src');
