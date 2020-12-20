@@ -116,4 +116,18 @@ public class F040001ServiceImpl implements F040001Service {
 
 		return entityOut;
 	}
+
+	/**
+	 * 观看视频
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service03(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+
+
+		return entityOut;
+	}
 }

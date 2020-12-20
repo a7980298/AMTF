@@ -65,4 +65,26 @@ public class F040001Controller extends ValiDationUtil{
 		return maps;
 	}
 
+	/**
+	 * 观看视频
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T002")
+	public String f040001T002(F040001Params params, Model model) {
+
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service03(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f040001Params", params);
+
+		return "video_view";
+	}
 }

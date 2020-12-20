@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>观看视频</title>
+<th:block th:replace="import :: myimport"></th:block>
+<style type="text/css">
+	.swiper-container {
+	//你可以在这里设置宽高
+	width: 50%;
+		height: 50%;
+	}
+	.swiper-slide {
+		text-align: center;
+		font-size: 18px;
+		/* Center slide text vertically */
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+	}
+	.video_class:hover{
+		color: #ff4040c9;
+	}
+	.modal input[type=text],.video_textarea {
+		border: 1px solid #afafaf26;
+	}
+	.modal input[type=text]:focus,.video_textarea:focus {
+		border: 1px solid #ff4040c9;
+	}
+	#video_list img:hover{
+		/*放大*/
+		transform: scale(1.1);
+	}
+</style>
+<script type="text/javascript" language="javascript">
+
+</script>
+</head>
+<body id="main_body">
+	<div class="wrapper">
+		<!--<th:block th:replace="navbar :: mynavbar"></th:block>-->
+		<div class="">
+			<th:block th:replace="head :: myhead"></th:block>
+			<div class="content">
+				<!--视频 -->
+				<div class="container-fluid dashboardclass" id="f040001">
+					<div class="container-fluid">
+						<i-form class="" th:action="@{/f040001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+						<input type="hidden" name="IViewId" value="f040001"/>
+							<div class="row m-auto col-md-12">
+								<div class="col-md-12 pl-0 pr-0">
+									<div class="swiper-container col-md-12 h-30">
+										<div class="col-md-12 d-flex">
+											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
+												<div class="input-group col-md-4 m-auto">
+													<input type="text" class="form-control input-field" placeholder="搜索视频">
+													<button class="btn btn-sm btn-info">
+														<i class="fa fa-search"></i>
+														搜索
+													</button>
+												</div>
+											</div>
+											<div class="input-group no-border col-sm-1">
+												<div class="m-auto d-flex">
+													<div class="nav-item dropdown">
+														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
+															<i class="fa fa-history"></i>
+															<span>观看历史</span>
+														</button>
+													</div>
+												</div>
+											</div>
+											<div class="input-group no-border col-sm-1">
+												<div class="m-auto d-flex">
+													<div class="nav-item dropdown">
+														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
+															<i class="fa fa-cloud-upload"></i>
+															<span>快速上传</span>
+														</button>
+													</div>
+												</div>
+											</div>
+											<div class="input-group no-border col-sm-1">
+												<div class="m-auto d-flex">
+													<div class="nav-item dropdown">
+														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
+															<i class="fa fa-cloud-download"></i>
+															<span>我的下载</span>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12 h-100" style="height: 400px">
+											<video class="w-100 h-100"></video>
+										</div>
+									</div>
+								</div>
+							</div>
+						</i-form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

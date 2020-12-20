@@ -183,6 +183,13 @@
 
 
 	}
+	// 观看视频
+	function amtf_videoView(_entity) {
+		var newinput = getNewInput('video_id', _entity.video_id);
+		amtf_form.appendChild(newinput);
+		amtf_submitNew(amtf_form, '/f040001/T002');
+		reomveNewInput('video_id');
+	}
 </script>
 </head>
 <body id="main_body">
@@ -271,7 +278,7 @@
 													<p class="text-left">原创专辑</p>
 													<div class="d-flex col-md-12 h5 ml-0 mb-0 pl-0" th:if="${not #lists.isEmpty(f040001Params.albumList)}">
 														<div th:each="entity,idx:${f040001Params.albumList}" class="col-sm-4 pl-0" style="height: 150px">
-															<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="w-100 h-75 hand" onlick=""/>
+															<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="w-100 h-75 hand" th:onclick="amtf_videoView([[${entity}]])"/>
 															<span class="d-flex" style="margin-top: -23px;color: white;font-size: 2px">[[${entity.video_duration}]]</span>
 															<span>[[${entity.video_text}]]</span>
 														</div>
