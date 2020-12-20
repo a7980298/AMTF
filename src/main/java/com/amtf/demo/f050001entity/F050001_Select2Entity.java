@@ -1,5 +1,11 @@
 package com.amtf.demo.f050001entity;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class F050001_Select2Entity {
     /**
      * 发布用户
