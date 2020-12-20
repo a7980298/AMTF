@@ -7,4 +7,25 @@
 		FROM
 			AMTF_NEWs
 	</select>
+	<select id="f050001_Select2" resultType="com.amtf.demo.commonentity.AmtfNewsEntity">
+		SELECT
+			*
+		FROM
+			AMTF_NEWs
+		WHERE
+		AMTF_NEWs.news_name
+		= like '#{name}'
+	</select>
+	<insert id="f050001_Insert1" resultType="com.amtf.demo.commonentity.AmtfNewsEntity">
+		Insert
+			into
+		FROM
+			AMTF_NEWs
+		values(
+		#{news_user}
+		,#{news_name}
+		,#{news_text}
+		,#{news_date}
+		)
+	</insert>
 </mapper>

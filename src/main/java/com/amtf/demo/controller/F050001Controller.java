@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class F050001Controller extends ValiDationUtil{
@@ -35,10 +37,56 @@ public class F050001Controller extends ValiDationUtil{
 		F050001EntityOut entityOut = f050001service.service01(entityin);
 		// 然后将返回的实体类赋值给params
 		ParameterUtil.copyParameter(params, entityOut);
-
+		// 将params里的数据传给f050001Params
 		model.addAttribute("f050001Params", params);
 
 		return "news";
+	}
+	/**
+	 * 关键字检索新闻
+	 *
+	 * @parameter F050001Params params
+	 * @return String
+	 */
+	@RequestMapping(value ="/f050001/T001", method = RequestMethod.POST)
+	@ResponseBody
+	public String f050001T001(F050001Params params, Model model) {
+		//新建一个entityin来接收前台传给后台的值
+	    F050001EntityIn entityIn = new F050001EntityIn();
+	    //将画面上的param值全部给entityin
+		ParameterUtil.copyParameter(entityIn,params);
+		//新建一个entityout来接收后台传给前台的值
+		F050001EntityOut entityOut = f050001service.service02(entityIn);
+		//将画面上的entityOut值全部给param
+		ParameterUtil.copyParameter(params,entityOut);
+		model.addAttribute("f050001Params", params);
+
+		return "news";
+
+	}
+
+	/**
+	 * 添加新闻
+	 *
+	 * @parameter F050001Params params
+	 * @return String
+	 */
+
+	@RequestMapping(value ="/f050001/T002", method = RequestMethod.POST)
+	@ResponseBody
+	public String f050001T002(F050001Params params, Model model) {
+		//新建一个entityin来接收前台传给后台的值
+		F050001EntityIn entityIn = new F050001EntityIn();
+		//将画面上的param值全部给entityin
+		ParameterUtil.copyParameter(entityIn,params);
+		//新建一个entityout来接收后台传给前台的值
+		F050001EntityOut entityOut = f050001service.service03(entityIn);
+		//将画面上的entityOut值全部给param
+		ParameterUtil.copyParameter(params,entityOut);
+		model.addAttribute("f050001Params", params);
+
+		return "news";
+
 	}
 
 }

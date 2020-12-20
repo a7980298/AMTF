@@ -40,12 +40,13 @@
 						<a class="h5">新闻快讯</a>
 						<input></input>
 						<button class="btn btn-sm">搜索</button>
+						<button class="btn btn-sm">新闻编辑</button>
 					</div>
 					<div class="col-md-10">
 						<table>
 							<tr id="01" class="card card-profile m-1" th:each="newsentity,idx:${f050001Params.news_list}">
 								<td class="text-left" >[[${newsentity.news_name}]]</td>
-								<td class="text-right" >[[${newsentity.}news_date]]</td>
+								<td class="text-right" >[[${newsentity.news_date}]]</td>
 							</tr>
 						</table>
 					</div>

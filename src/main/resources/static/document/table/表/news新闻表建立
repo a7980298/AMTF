@@ -7,6 +7,5 @@ CREATE TABLE AMTF_news(
 新闻数据检索sql
 select * from AMTF_news Inner join news_user like '%123%'
 
-insert into amtf_news values('stt','震惊！川建国即将下台','gdsdgsgsgsdgsd','2019/06/13');
-insert into amtf_news values('stt','震惊！川建国即将下台','gdsdgsgsgsdgsd','2019/06/13');
-insert into amtf_news values('stt','震惊！川建国即将下台','gdsdgsgsgsdgsd','2019/06/13');
+insert into amtf_news values('stt','震惊！川建国即将下台','据相关人员爆料，建国于1月2号卸任。','2019/06/13');
+insert into amtf_news values('stt','美国队长是卧底？！','九头蛇万岁！','2019/06/13');
