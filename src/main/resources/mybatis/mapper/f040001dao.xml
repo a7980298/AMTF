@@ -54,6 +54,27 @@
 		FROM
 			AMTF_VIDEO
 		WHERE
-			video_id = #{video_id}
+			VIDEO_ID = #{video_id}
+	</select>
+	<!-- 查找用户信息 -->
+	<select id="f040001_Select5" resultType="com.amtf.demo.commonentity.AmtfUserEntity">
+		SELECT
+			*
+		FROM
+			AMTF_USER
+		WHERE
+			USER_EMAIL = #{user_id}
+	</select>
+	<!-- 获取名字略同的视频 -->
+	<select id="f040001_Select6" resultType="com.amtf.demo.commonentity.AmtfVideoEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO
+		WHERE
+			VIDEO_HEAD LIKE "%"#{video_head}"%"
+		AND
+			VIDEO_ID != #{video_id}
+		LIMIT 8
 	</select>
 </mapper>

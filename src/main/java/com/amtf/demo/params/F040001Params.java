@@ -1,5 +1,6 @@
 package com.amtf.demo.params;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
 import com.amtf.demo.commonentity.AmtfVideoEntity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -69,4 +70,14 @@ public class F040001Params {
      * 视频详情
      */
     private AmtfVideoEntity videoView;
+
+    /**
+     * 作者信息
+     */
+    private AmtfUserEntity videoAuthor;
+
+    /**
+     * 标题略同的视频
+     */
+    private List<AmtfVideoEntity> videoSimilar;
 }

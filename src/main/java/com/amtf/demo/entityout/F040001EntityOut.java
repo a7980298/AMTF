@@ -1,5 +1,6 @@
 package com.amtf.demo.entityout;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
 import com.amtf.demo.commonentity.AmtfVideoEntity;
 import lombok.Getter;
@@ -29,4 +30,14 @@ public class F040001EntityOut {
      * 视频详情
      */
     private AmtfVideoEntity videoView;
+
+    /**
+     * 作者信息
+     */
+    private AmtfUserEntity videoAuthor;
+
+    /**
+     * 标题略同的视频
+     */
+    private List<AmtfVideoEntity> videoSimilar;
 }

@@ -102,11 +102,36 @@
 												<video class="col-md-12" controls style="height: 600px" th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}" th:poster="@{/videoimg/{videoimg}(videoimg = ${f040001Params.videoView.video_img})}"></video>
 											</div>
 										</div>
-										<div class="col-md-12 pl-0 pr-0" id="">
+										<div class="col-md-12 pl-0 pr-0">
 											<div class="card card-profile m-1">
 												<div class="col-md-12 d-flex mt-3">
 													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 														<p class="text-left">作者</p>
+														<div class="col-12 pl-0 d-flex">
+															<div>
+																<img th:src="@{/imgs/userimg.jpg}" th:if="${f040001Params.videoAuthor.imgpath == ''}" id="img1" style="height:38px;"/>
+																<img th:src="@{/istatic/{fileNmame}(fileNmame=${f040001Params.videoAuthor.imgpath})}" th:if="${f040001Params.videoAuthor.imgpath != ''}" id="img1" style="height:38px;"/>
+																<span class="h5">[[${f040001Params.videoAuthor.user_name}]]</span>
+															</div>
+														</div>
+														<div class="col-12 pl-0 d-flex">
+															<span class="h4">简介：</span><p class="h5">[[${f040001Params.videoView.video_text}]]</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12 pl-0 pr-0" >
+											<div class="card card-profile m-1">
+												<div class="col-md-12 d-flex mt-3">
+													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
+														<p class="text-left">为你推荐</p>
+														<div class="col-12 pl-0 d-flex">
+															<div class="col-sm-4 pl-0 pr-1" th:each="entity,idx:${f040001Params.videoSimilar}" >
+																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" style="height: 265px;width: 220px;"/>
+																<p class="h5">[[${entity.video_head}]]</p>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>

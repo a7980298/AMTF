@@ -2,6 +2,7 @@ package com.amtf.demo.serviceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
 import com.amtf.demo.commonentity.AmtfVideoEntity;
 import com.amtf.demo.dao.CommonDao;
@@ -74,8 +75,6 @@ public class F040001ServiceImpl implements F040001Service {
 		videoentity.setVideo_id(CommonUtil.isEmpty(commondao.common_Select12()) ? 0 : (commondao.common_Select12() + 1));
 		// 用户id
 		videoentity.setUser_id(loginfo.getUser_email());
-		// 标题
-		videoentity.setVideo_head(entityin.getVideo_head());
 		// 简介
 		videoentity.setVideo_text(entityin.getVideo_body());
 		// 时长
@@ -92,7 +91,8 @@ public class F040001ServiceImpl implements F040001Service {
 		videoentity.setVideo_path(VideoUtil.commitView(entityin.getCommit_video(), Constant.PATH_VIDEO_COMMIT));
 		// 获取标签
 		String video_class = entityin.getVideo_head().substring(entityin.getVideo_head().indexOf("#"),entityin.getVideo_head().length());
-		String  class_list = "";
+		String  class_list = Constant.EMPTY,
+				class_head = Constant.EMPTY;
 		// idxcount -> #号出现的次数
 		// idx -> #号出现的上一次下标
 		int idxcount = 0,idx = 0;
@@ -102,11 +102,24 @@ public class F040001ServiceImpl implements F040001Service {
 				idxcount += 1;
 				// 是否是第二个#
 				if(idxcount % 2 == 0){
-					class_list += video_class.substring(idx + 1, i);
+					class_list += video_class.substring(idx + 1, i) + ",";
 					idx = i;
 				}
 			}
 		}
+		String head = entityin.getVideo_head();
+		if(class_list.length() > 0) {
+			String[] clas = class_list.split(",");
+			for (String cla : clas){
+				cla = cla.replaceAll(cla,Constant.EMPTY);
+				String cl = "#" + cla + "#";
+				head = head.replaceAll(cl,Constant.EMPTY);
+				head = head.replaceAll(cla,Constant.EMPTY);
+				head = head.replaceAll("#",Constant.EMPTY);
+			}
+		}
+		// 标题
+		videoentity.setVideo_head(head);
 		// 标签
 		videoentity.setVideo_class(class_list);
 
@@ -126,17 +139,28 @@ public class F040001ServiceImpl implements F040001Service {
 	@Override
 	public F040001EntityOut service03(F040001EntityIn entityin) throws ErrListException {
 		F040001EntityOut entityOut = new F040001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
 		// 视频id不是空
 		if(!CommonUtil.isEmpty(entityin.getVideo_id())){
 			// 获取视频详情
 			List<AmtfVideoEntity> select4 = f040001dao.f040001_Select4(entityin.getVideo_id());
 			// 取第一条
 			if(!CommonUtil.isEmptyList(select4)){
+				AmtfVideoEntity video = select4.get(0);
 				// 视频详细信息
-				entityOut.setVideoView(select4.get(0));
+				entityOut.setVideoView(video);
+				// 获取作者信息
+				AmtfUserEntity select5 = f040001dao.f040001_Select5(video.getUser_id());
+				select5.setImgpath(ImgUtil.getImgPath(select5.getUser_email()));
+				entityOut.setVideoAuthor(select5);
+				// 获取名字相同的视频
+				List<AmtfVideoEntity> select6 = f040001dao.f040001_Select6(video.getVideo_head(),video.getVideo_id());
+				entityOut.setVideoSimilar(select6);
+				// 获取评论信息
+
 			}
 		}
-
 		return entityOut;
 	}
 }

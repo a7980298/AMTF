@@ -1,5 +1,6 @@
 package com.amtf.demo.dao;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
 import com.amtf.demo.commonentity.AmtfVideoEntity;
 import com.amtf.demo.f010001entity.F010001_Select1Entity;
@@ -18,4 +19,8 @@ public interface F040001Dao {
     List<AmtfVideoEntity> f040001_Select3(@Param("getclass")String getclass);
 
     List<AmtfVideoEntity> f040001_Select4(@Param("video_id")String video_id);
+
+    AmtfUserEntity f040001_Select5(@Param("user_id")String user_id);
+
+    List<AmtfVideoEntity> f040001_Select6(@Param("video_head")String video_head,@Param("video_id")Integer video_id);
 }
