@@ -43,4 +43,9 @@ public class F040001EntityIn extends UserImpl{
      * 上传的更改封面图片
      */
     private MultipartFile video_upimg;
+
+    /**
+     *  视频id
+     */
+    private String video_id;
 }

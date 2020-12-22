@@ -59,4 +59,9 @@ public class F040001Params {
      * 专辑一栏
      */
     private List<AmtfVideoEntity> albumList;
+
+    /**
+     *  视频id
+     */
+    private String video_id;
 }

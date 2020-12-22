@@ -16,4 +16,6 @@ public interface F040001Dao {
     Integer f040001_Insert2(@Param("entity")AmtfVideoEntity entity);
 
     List<AmtfVideoEntity> f040001_Select3(@Param("getclass")String getclass);
+
+    List<AmtfVideoEntity> f040001_Select4(@Param("video_id")String video_id);
 }

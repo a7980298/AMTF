@@ -16,7 +16,7 @@
 		AMTF_NEWs.news_name
 		= like '#{name}'
 	</select>
-	<insert id="f050001_Insert1" resultType="com.amtf.demo.commonentity.AmtfNewsEntity">
+	<insert id="f050001_Insert1">
 		Insert
 			into
 		FROM

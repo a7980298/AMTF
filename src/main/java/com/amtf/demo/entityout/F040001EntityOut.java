@@ -24,4 +24,9 @@ public class F040001EntityOut {
      * 专辑一栏
      */
     private List<AmtfVideoEntity> albumList;
+
+    /**
+     * 视频详情
+     */
+    private AmtfVideoEntity videoView;
 }

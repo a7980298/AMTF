@@ -47,4 +47,13 @@
 			CLASS.VIDEO_CLASS_NAME = #{getclass}
 		LIMIT 8
 	</select>
+	<!-- 查找视频 -->
+	<select id="f040001_Select4" resultType="com.amtf.demo.commonentity.AmtfVideoEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO
+		WHERE
+			video_id = #{video_id}
+	</select>
 </mapper>

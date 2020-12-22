@@ -126,7 +126,16 @@ public class F040001ServiceImpl implements F040001Service {
 	@Override
 	public F040001EntityOut service03(F040001EntityIn entityin) throws ErrListException {
 		F040001EntityOut entityOut = new F040001EntityOut();
-
+		// 视频id不是空
+		if(!CommonUtil.isEmpty(entityin.getVideo_id())){
+			// 获取视频详情
+			List<AmtfVideoEntity> select4 = f040001dao.f040001_Select4(entityin.getVideo_id());
+			// 取第一条
+			if(!CommonUtil.isEmptyList(select4)){
+				// 视频详细信息
+				entityOut.setVideoView(select4.get(0));
+			}
+		}
 
 		return entityOut;
 	}
