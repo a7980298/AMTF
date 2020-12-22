@@ -283,6 +283,11 @@
 															<span>[[${entity.video_head}]]</span>
 														</div>
 													</div>
+													<div class="d-flex col-md-12 h5 ml-0 mb-0 pl-0 pr-0" th:if="${#lists.isEmpty(f040001Params.albumList)}">
+														<div class="col-md-12 m-auto" style="color: #42423f4d">
+															<!--<i class="fa fa-file-video-o"></i>-->找不到相关视频。。。
+														</div>
+													</div>
 												</div>
 											</div>
 											<div class="col-md-12 d-flex mt-3">
