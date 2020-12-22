@@ -1,0 +1,6 @@
+CREATE TABLE amtf_video_history(
+	video_history_id INT NOT NULL, -- id
+	video_id INT NOT NULL, -- 视频id
+	user_id VARCHAR(30), -- 用户id
+	video_history_time DATETIME	-- 观看时间
+)

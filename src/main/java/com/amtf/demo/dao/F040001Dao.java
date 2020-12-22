@@ -3,6 +3,7 @@ package com.amtf.demo.dao;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
 import com.amtf.demo.commonentity.AmtfVideoEntity;
+import com.amtf.demo.commonentity.AmtfVideoHistoryEntity;
 import com.amtf.demo.f010001entity.F010001_Select1Entity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -23,4 +24,6 @@ public interface F040001Dao {
     AmtfUserEntity f040001_Select5(@Param("user_id")String user_id);
 
     List<AmtfVideoEntity> f040001_Select6(@Param("video_head")String video_head,@Param("video_id")Integer video_id);
+
+    Integer f040001_Insert7(@Param("entity") AmtfVideoHistoryEntity entity);
 }

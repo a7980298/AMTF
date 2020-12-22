@@ -97,4 +97,12 @@
 		FROM
 			AMTF_VIDEO
 	</select>
+	<!-- 获取videohistory表最大id -->
+	<select id="common_Select13"
+			resultType="int">
+		SELECT
+			MAX(video_history_id )
+		FROM
+			amtf_video_history
+	</select>
 </mapper>

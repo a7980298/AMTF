@@ -77,4 +77,15 @@
 			VIDEO_ID != #{video_id}
 		LIMIT 8
 	</select>
+	<!-- 添加观看历史 -->
+	<insert id="f040001_Insert6">
+		INSERT INTO
+			AMTF_VIDEO_HISTORY
+		VALUES(
+			#{entity.video_history_id}
+			,#{entity.video_id}
+			,#{entity.user_id}
+			,now()
+		)
+	</insert>
 </mapper>

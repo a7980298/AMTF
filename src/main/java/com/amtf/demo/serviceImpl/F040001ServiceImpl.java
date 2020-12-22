@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.commonentity.AmtfVideoClassEntity;
 import com.amtf.demo.commonentity.AmtfVideoEntity;
+import com.amtf.demo.commonentity.AmtfVideoHistoryEntity;
 import com.amtf.demo.dao.CommonDao;
 import com.amtf.demo.dao.F040001Dao;
 import com.amtf.demo.dao.F050001Dao;
@@ -158,7 +159,15 @@ public class F040001ServiceImpl implements F040001Service {
 				List<AmtfVideoEntity> select6 = f040001dao.f040001_Select6(video.getVideo_head(),video.getVideo_id());
 				entityOut.setVideoSimilar(select6);
 				// 获取评论信息
-
+				// 添加观看历史
+				AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
+				// id
+				amtfvideohistoryentity.setVideo_history_id(CommonUtil.isEmpty(commondao.common_Select13()) ? 0 : (commondao.common_Select13() + 1));
+				// 视频id
+				amtfvideohistoryentity.setVideo_id(video.getVideo_id());
+				// 用户id
+				amtfvideohistoryentity.setUser_id(loginfo.getUser_email());
+				f040001dao.f040001_Insert7(amtfvideohistoryentity);
 			}
 		}
 		return entityOut;
