@@ -85,7 +85,7 @@
 			#{entity.video_history_id}
 			,#{entity.video_id}
 			,#{entity.user_id}
-			,now()
+			,NOW()
 		)
 	</insert>
 </mapper>
