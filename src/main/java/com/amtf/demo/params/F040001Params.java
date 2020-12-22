@@ -64,4 +64,9 @@ public class F040001Params {
      *  视频id
      */
     private String video_id;
+
+    /**
+     * 视频详情
+     */
+    private AmtfVideoEntity videoView;
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>观看视频</title>
+<title>[[${f040001Params.videoView.video_head}]]</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
 	.swiper-container {
@@ -55,7 +55,7 @@
 						<input type="hidden" name="IViewId" value="f040001"/>
 							<div class="row m-auto col-md-12">
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="swiper-container col-md-12 h-30">
+									<div class="col-md-12">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
 												<div class="input-group col-md-4 m-auto">
@@ -97,8 +97,19 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-12 h-100" style="height: 400px">
-											<video class="w-100 h-100" th:src="@{videoView.video_path}" th:poster="${videoView.video_img}"></video>
+										<div class="col-md-12">
+											<div class="m-auto col-12">
+												<video class="col-md-12" controls style="height: 600px" th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}" th:poster="@{/videoimg/{videoimg}(videoimg = ${f040001Params.videoView.video_img})}"></video>
+											</div>
+										</div>
+										<div class="col-md-12 pl-0 pr-0" id="">
+											<div class="card card-profile m-1">
+												<div class="col-md-12 d-flex mt-3">
+													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
+														<p class="text-left">作者</p>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
