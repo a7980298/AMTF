@@ -51,30 +51,18 @@
 													</div>
 												</div>
 											</div>
-											<div class="input-group no-border col-sm-1">
-												<div class="m-auto d-flex">
-													<div class="nav-item dropdown">
-														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
-															<i class="fa fa-cloud-upload"></i>
-															<span>快速上传</span>
-														</button>
-													</div>
-												</div>
-											</div>
-											<!--<div class="input-group no-border col-sm-1">
-												<div class="m-auto d-flex">
-													<div class="nav-item dropdown">
-														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
-															<i class="fa fa-cloud-download"></i>
-															<span>我的下载</span>
-														</button>
-													</div>
-												</div>
-											</div>-->
 										</div>
 										<div class="col-md-12">
 											<div class="m-auto col-12">
 												<video class="col-md-12" controls style="height: 600px" th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}" th:poster="@{/videoimg/{videoimg}(videoimg = ${f040001Params.videoView.video_img})}"></video>
+												<div class="d-flex col-md-12">
+													<div class="col-md-11 pr-0 mr-0">
+														<textarea id="video_body" type="text" class="input-field w-100 h-100 video_textarea" placeholder="请写下你的评论。。。"></textarea>
+													</div>
+													<div class="col-md-1 pl-0 ml-0">
+														<button class="btn btn-lg m-0 btn-info">发言</button>
+													</div>
+												</div>
 											</div>
 										</div>
 										<div class="col-md-12 pl-0 pr-0">
@@ -106,6 +94,18 @@
 																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="img-transform hand" style="height: 265px;width: 200px;" th:onclick="amtf_videoView([[${entity}]])"/>
 																<span class="h5">[[${entity.video_head}]]</span>
 															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12 pl-0 pr-0" >
+											<div class="card card-profile m-1">
+												<div class="col-md-12 d-flex mt-3">
+													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
+														<p class="text-left">评论</p>
+														<div class="col-12 pl-0 d-flex">
+
 														</div>
 													</div>
 												</div>
