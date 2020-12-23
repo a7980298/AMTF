@@ -11,6 +11,11 @@ import com.amtf.demo.dao.F040001Dao;
 import com.amtf.demo.dao.F050001Dao;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +28,12 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparingLong;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 
 @Service
 @RequiredArgsConstructor
@@ -153,10 +164,16 @@ public class F040001ServiceImpl implements F040001Service {
 				entityOut.setVideoView(video);
 				// 获取作者信息
 				AmtfUserEntity select5 = f040001dao.f040001_Select5(video.getUser_id());
+				// 获取作者头像
 				select5.setImgpath(ImgUtil.getImgPath(select5.getUser_email()));
 				entityOut.setVideoAuthor(select5);
 				// 获取名字相同的视频
-				List<AmtfVideoEntity> select6 = f040001dao.f040001_Select6(video.getVideo_head(),video.getVideo_id());
+				List<AmtfVideoEntity> select6 = new ArrayList<AmtfVideoEntity>();
+				try {
+					select6 = videoLike(video,select6,true);
+				}catch (Exception e){
+
+				}
 				entityOut.setVideoSimilar(select6);
 				// 获取评论信息
 				// 添加观看历史
@@ -171,5 +188,56 @@ public class F040001ServiceImpl implements F040001Service {
 			}
 		}
 		return entityOut;
+	}
+
+	/**
+	 * 获取名字略同的视频
+	 * @param video
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public List<AmtfVideoEntity> videoLike(AmtfVideoEntity video,List<AmtfVideoEntity> list,boolean isbreak){
+		while (isbreak){
+			// 获取包含标题的视频
+			List<AmtfVideoEntity> select6 = f040001dao.f040001_Select6(video.getVideo_head(),video.getVideo_id());
+			if(!CommonUtil.isEmptyList(select6)){
+				list.addAll(select6);
+			}
+			// 如果没有
+			if(CommonUtil.isEmptyList(list) || list.size() < 8){
+				// 如果标题不是最后一位
+				if(video.getVideo_head().length() != Constant.INT_1){
+					// 标题缩减继续查找
+					video.setVideo_head(video.getVideo_head().substring(0,video.getVideo_head().length() - 1));
+				} else {
+					// 如果标题是最后一位，获取标签相同
+					select6= f040001dao.f040001_Select3(video.getVideo_class().split(",")[0]);
+					if(!CommonUtil.isEmptyList(select6)){
+						list.addAll(select6);
+					}
+					// 如果还是为空就查询最新的视频
+					if(CommonUtil.isEmptyList(list)){
+						list = f040001dao.f040001_Select8();
+					}
+				}
+			} else if(list.size() >= 8){
+				// 根据id去重
+				list = list.stream().collect(collectingAndThen(
+						toCollection(() -> new TreeSet<>(comparingLong(AmtfVideoEntity::getVideo_id))), ArrayList::new)
+				);
+				if(list.size() < 8){
+					video.setVideo_head(video.getVideo_head().substring(0,video.getVideo_head().length() - 1));
+					videoLike(video,list,isbreak);
+				} else if(list.size() > 8){
+					for (int i = list.size(); i < 8; i--) {
+						list.remove(list.size() - 1);
+					}
+				} else {
+					isbreak = false;
+				}
+			}
+		}
+		return list;
 	}
 }

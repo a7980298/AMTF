@@ -26,4 +26,6 @@ public interface F040001Dao {
     List<AmtfVideoEntity> f040001_Select6(@Param("video_head")String video_head,@Param("video_id")Integer video_id);
 
     Integer f040001_Insert7(@Param("entity") AmtfVideoHistoryEntity entity);
+
+    List<AmtfVideoEntity> f040001_Select8();
 }

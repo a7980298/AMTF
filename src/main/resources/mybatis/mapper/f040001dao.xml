@@ -78,7 +78,7 @@
 		LIMIT 8
 	</select>
 	<!-- 添加观看历史 -->
-	<insert id="f040001_Insert6">
+	<insert id="f040001_Insert7">
 		INSERT INTO
 			AMTF_VIDEO_HISTORY
 		VALUES(
@@ -88,4 +88,14 @@
 			,NOW()
 		)
 	</insert>
+	<!-- 获取名字略同的视频 -->
+	<select id="f040001_Select8" resultType="com.amtf.demo.commonentity.AmtfVideoEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO
+		ORDER BY
+			VIDEO_TIME
+		LIMIT 8
+	</select>
 </mapper>

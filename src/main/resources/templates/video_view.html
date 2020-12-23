@@ -127,9 +127,9 @@
 													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
 														<p class="text-left">为你推荐</p>
 														<div class="col-12 pl-0 d-flex">
-															<div class="col-sm-4 pl-0 pr-1" th:each="entity,idx:${f040001Params.videoSimilar}" >
-																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" style="height: 265px;width: 220px;"/>
-																<p class="h5">[[${entity.video_head}]]</p>
+															<div class="pl-0 pr-3" th:each="entity,idx:${f040001Params.videoSimilar}" style="width: 220px;">
+																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" style="height: 265px;width: 200px;"/>
+																<span class="h5">[[${entity.video_head}]]</span>
 															</div>
 														</div>
 													</div>
