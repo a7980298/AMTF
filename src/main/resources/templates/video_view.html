@@ -39,7 +39,13 @@
 	}
 </style>
 <script type="text/javascript" language="javascript">
-
+	// 观看视频
+	function amtf_videoView(_entity) {
+		var newinput = getNewInput('video_id', _entity.video_id);
+		amtf_form.appendChild(newinput);
+		amtf_submitNew(amtf_form, '/f040001/T002');
+		reomveNewInput('video_id');
+	}
 </script>
 </head>
 <body id="main_body">
@@ -128,7 +134,7 @@
 														<p class="text-left">为你推荐</p>
 														<div class="col-12 pl-0 d-flex">
 															<div class="pl-0 pr-3" th:each="entity,idx:${f040001Params.videoSimilar}" style="width: 220px;">
-																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" style="height: 265px;width: 200px;"/>
+																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="img-transform hand" style="height: 265px;width: 200px;" th:onclick="amtf_videoView([[${entity}]])"/>
 																<span class="h5">[[${entity.video_head}]]</span>
 															</div>
 														</div>
