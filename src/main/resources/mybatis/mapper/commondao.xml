@@ -101,8 +101,16 @@
 	<select id="common_Select13"
 			resultType="int">
 		SELECT
-			MAX(video_history_id )
+			MAX(VIDEO_HISTORY_ID )
 		FROM
-			amtf_video_history
+			AMTF_VIDEO_HISTORY
+	</select>
+	<!-- 获取videobarrage表最大id -->
+	<select id="common_Select14"
+			resultType="int">
+		SELECT
+			MAX(VIDEO_BARRAGE_ID )
+		FROM
+			AMTF_VIDEO_BARRAGE
 	</select>
 </mapper>

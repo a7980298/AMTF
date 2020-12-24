@@ -80,4 +80,29 @@ public class F040001Params {
      * 标题略同的视频
      */
     private List<AmtfVideoEntity> videoSimilar;
+
+    /**
+     * 发言的内容
+     */
+    private String video_barrage_text;
+
+    /**
+     * 颜色
+     */
+    private String video_barrage_color;
+
+    /**
+     * 字体大小
+     */
+    private String video_barrage_size;
+
+    /**
+     * 弹幕位置
+     */
+    private String video_barrage_position;
+
+    /**
+     * 弹幕时间
+     */
+    private String video_barrage_time;
 }

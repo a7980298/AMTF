@@ -48,4 +48,29 @@ public class F040001EntityIn extends UserImpl{
      *  视频id
      */
     private String video_id;
+
+    /**
+     * 发言的内容
+     */
+    private String video_barrage_text;
+
+    /**
+     * 颜色
+     */
+    private String video_barrage_color;
+
+    /**
+     * 字体大小
+     */
+    private String video_barrage_size;
+
+    /**
+     * 弹幕位置
+     */
+    private String video_barrage_position;
+
+    /**
+     * 弹幕时间
+     */
+    private String video_barrage_time;
 }

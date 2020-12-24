@@ -98,4 +98,29 @@
 			VIDEO_TIME
 		LIMIT 8
 	</select>
+	<!-- 添加弹幕 -->
+	<insert id="f040001_Insert9">
+		INSERT INTO
+			AMTF_VIDEO_BARRAGE
+		VALUES(
+			#{entity.video_barrage_id}
+			,#{entity.video_id}
+			,#{entity.user_id}
+			,#{entity.video_barrage_text}
+			,#{entity.video_barrage_color}
+			,#{entity.video_barrage_size}
+			,#{entity.video_barrage_position}
+			,#{entity.video_barrage_time}
+			,NOW()
+		)
+	</insert>
+	<!-- 获取弹幕 -->
+	<select id="f040001_Select10" resultType="com.amtf.demo.commonentity.AmtfVideoBarrageEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO_BARRAGE
+		WHERE
+			VIDEO_ID = #{video_id}
+	</select>
 </mapper>

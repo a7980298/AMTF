@@ -2,10 +2,7 @@ package com.amtf.demo.serviceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.amtf.demo.commonentity.AmtfUserEntity;
-import com.amtf.demo.commonentity.AmtfVideoClassEntity;
-import com.amtf.demo.commonentity.AmtfVideoEntity;
-import com.amtf.demo.commonentity.AmtfVideoHistoryEntity;
+import com.amtf.demo.commonentity.*;
 import com.amtf.demo.dao.CommonDao;
 import com.amtf.demo.dao.F040001Dao;
 import com.amtf.demo.dao.F050001Dao;
@@ -168,13 +165,16 @@ public class F040001ServiceImpl implements F040001Service {
 				select5.setImgpath(ImgUtil.getImgPath(select5.getUser_email()));
 				entityOut.setVideoAuthor(select5);
 				// 获取名字相同的视频
-				List<AmtfVideoEntity> select6 = new ArrayList<AmtfVideoEntity>();
+				List<AmtfVideoEntity> select6list = new ArrayList<AmtfVideoEntity>();
+				AmtfVideoEntity select6entity = new AmtfVideoEntity();
+				select6entity.setVideo_head(video.getVideo_head());
+				select6entity.setVideo_id(video.getVideo_id());
 				try {
-					select6 = videoLike(video,select6,true);
+					select6list = videoLike(select6entity,select6list,true);
 				}catch (Exception e){
 
 				}
-				entityOut.setVideoSimilar(select6);
+				entityOut.setVideoSimilar(select6list);
 				// 获取评论信息
 				// 添加观看历史
 				AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
@@ -239,5 +239,69 @@ public class F040001ServiceImpl implements F040001Service {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * 添加弹幕
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service04(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+
+		AmtfVideoBarrageEntity amtfvideobarrageentity = new AmtfVideoBarrageEntity();
+		// 弹幕id
+		amtfvideobarrageentity.setVideo_barrage_id(CommonUtil.isEmpty(commondao.common_Select14()) ? 0 : commondao.common_Select14() + 1);
+		// 视频id
+		amtfvideobarrageentity.setVideo_id(NumberUtil.toInt(entityin.getVideo_id()));
+		// 发言人
+		amtfvideobarrageentity.setUser_id(loginfo.getUser_email());
+		// 发言的内容
+		amtfvideobarrageentity.setVideo_barrage_text(entityin.getVideo_barrage_text());
+		// 颜色
+		amtfvideobarrageentity.setVideo_barrage_color(entityin.getVideo_barrage_color());
+		// 字体大小
+		amtfvideobarrageentity.setVideo_barrage_size(entityin.getVideo_barrage_size());
+		// 弹幕位置
+		amtfvideobarrageentity.setVideo_barrage_position(entityin.getVideo_barrage_position());
+		// 弹幕时间
+		amtfvideobarrageentity.setVideo_barrage_time(entityin.getVideo_barrage_time());
+		// 添加弹幕信息
+		Integer insert9 = f040001dao.f040001_Insert9(amtfvideobarrageentity);
+
+		entityOut.setInsert9(insert9);
+		return entityOut;
+	}
+
+	/**
+	 * 获取弹幕
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service05(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+
+		List<AmtfVideoBarrageEntity> barrageList = f040001dao.f040001_Select10(NumberUtil.toInt(entityin.getVideo_id()));
+		List<AmtfVideoBarrageViewEntity> amtfvideobarrageviewlist = new ArrayList<AmtfVideoBarrageViewEntity>();
+		barrageList.forEach(entity ->{
+			AmtfVideoBarrageViewEntity amtfvideobarrageviewentity = new AmtfVideoBarrageViewEntity();
+			amtfvideobarrageviewentity.setColor(entity.getVideo_barrage_color());
+			amtfvideobarrageviewentity.setText(entity.getVideo_barrage_text());
+			amtfvideobarrageviewentity.setPosition(entity.getVideo_barrage_position());
+			amtfvideobarrageviewentity.setTime(entity.getVideo_barrage_time());
+			amtfvideobarrageviewentity.setSize(entity.getVideo_barrage_size());
+			amtfvideobarrageviewlist.add(amtfvideobarrageviewentity);
+
+		});
+
+		entityOut.setBarrageList(amtfvideobarrageviewlist);
+
+		return entityOut;
 	}
 }

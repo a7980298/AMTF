@@ -1,8 +1,6 @@
 package com.amtf.demo.entityout;
 
-import com.amtf.demo.commonentity.AmtfUserEntity;
-import com.amtf.demo.commonentity.AmtfVideoClassEntity;
-import com.amtf.demo.commonentity.AmtfVideoEntity;
+import com.amtf.demo.commonentity.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,4 +38,14 @@ public class F040001EntityOut {
      * 标题略同的视频
      */
     private List<AmtfVideoEntity> videoSimilar;
+
+    /**
+     * 弹幕是否添加成功
+     */
+    private Integer insert9;
+
+    /**
+     * 弹幕信息
+     */
+    private List<AmtfVideoBarrageViewEntity> barrageList;
 }

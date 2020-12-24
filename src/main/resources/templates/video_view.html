@@ -8,12 +8,124 @@
 
 </style>
 <script type="text/javascript" language="javascript">
+	$(function(){
+		var myPlayer = videojs(document.getElementById('example_video_1'),{
+			// 语言
+			language: 'zh-CN',
+			playbackRates: [0.5, 1, 1.5, 2],
+			controlBar:{
+				durationDisplay:true
+			}
+		})
+		var isObtain = true;
+		myPlayer.ready(function () {
+			var myPlayer = this;
+			myPlayer.play();
+			//设置弹幕属性
+			$("#danmu").danmu({
+				/*left: $('#example_video_1').offset().left + 8,*/
+				top: $('#example_video_1').offset().top,
+				height: $('#example_video_1').height(),//$("#my-player").height(),
+				width:  $('#example_video_1').width(),
+				zindex: 100,
+				speed: 7500,
+				opacity: 1,
+				font_size_small: 16,
+				font_size_big: 24,
+				top_botton_danmu_time: 6000
+			});
+			var myPlayer = this;
+			//每次播放都会进入这个函数
+			myPlayer.on("play", function () {
+				//设置弹幕出发的起始位置
+				$("#danmu").height($('#example_video_1').offset().top);
+				/*$("#danmu").width(950);*/
+
+				//从服务器获取弹幕信息
+				if(isObtain){
+					//这个data是json数据，由后端的 list集合(里面的元素是每条弹幕消息)转过来的json数据
+					$.get(CONTEXT_PATH + '/f040001/T004' ,{
+						video_id: [[${f040001Params.videoView.video_id}]]
+					}, function (data) {
+						$('#danmu').danmu("addDanmu", data.barrageList);
+					}, "json");
+					//保证只获取一次，不会应该视频的重新播放再次去获取数据，造成弹幕重复
+					isObtain = false;
+				}
+				//设置弹幕与视频同步
+				var whereYouAt = myPlayer.currentTime();
+				console.log(whereYouAt);
+				$('#danmu').danmu("setTime", Math.floor(whereYouAt * 10));
+				// 开启弹幕
+				$('#danmu').danmu('danmuResume');
+			});
+
+			myPlayer.on("pause", function () {
+				//暂停播放时，停止弹幕
+				$('#danmu').danmu('danmuPause');
+			});
+			myPlayer.on("progress", function () {
+				console.log("progress");
+			})
+		});
+	});
+
 	// 观看视频
 	function amtf_videoView(_entity) {
 		var newinput = getNewInput('video_id', _entity.video_id);
 		amtf_form.appendChild(newinput);
 		amtf_submitNew(amtf_form, '/f040001/T002');
 		reomveNewInput('video_id');
+	}
+
+	// 弹幕发言
+	function amtf_video_Send() {
+		var text = document.getElementById('video_text').value;
+		var time = $('#danmu').data("nowTime") + 1;
+		var color = "red";
+		var position = "0";
+		var size = "1";
+		if (text != "") {
+
+			$('#danmu').danmu("addDanmu",
+					{text: text, color: color, size: size, position: position, time: time, isnew: ""});
+			//将弹幕消息发送到后端，存到数据库中
+			$.post(CONTEXT_PATH + '/f040001/T003', {
+				video_id: [[${f040001Params.videoView.video_id}]],
+				video_barrage_text: text,
+				video_barrage_color: 'while',
+				video_barrage_size: size,
+				video_barrage_position: position,
+				video_barrage_time: time
+			}, function (data) {
+				if(data.isbarrage <= 0){
+					Message('error', '发言失败');
+				}
+			}, "json");
+		}
+		document.getElementById('video_text').value = '';
+	}
+
+	function changehide() {
+		// 通过透明度控制是否显示弹幕
+		if (document.getElementById("ishide").checked) {
+			jQuery('#danmu').data("opacity", 1);
+			jQuery(".flying").css({
+				"opacity": 1
+			});
+		} else {
+			jQuery('#danmu').data("opacity", 0);
+			jQuery(".flying").css({
+				"opacity": 0
+			});
+		}
+	}
+
+	function settime() {
+		var t = document.getElementById("set_time").value;
+		t = parseInt(t);
+		console.log(t);
+		$('#danmu').data("nowtime", t);
 	}
 </script>
 </head>
@@ -54,13 +166,19 @@
 										</div>
 										<div class="col-md-12">
 											<div class="m-auto col-12">
-												<video class="col-md-12" controls style="height: 600px" th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}" th:poster="@{/videoimg/{videoimg}(videoimg = ${f040001Params.videoView.video_img})}"></video>
+												<!--显示弹幕-->
+												<div id="danmu" class="flying" style="pointer-events:none;"></div>
+												<video id="example_video_1" class="video-js vjs-default-skin vjs-big-play-centered col-md-12" controls preload="none" style="height: 600px"
+													   th:poster="@{/videoimg/{videoimg}(videoimg = ${f040001Params.videoView.video_img})}"
+													   data-setup="{}">
+													<source th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}"/>
+												</video>
 												<div class="d-flex col-md-12">
 													<div class="col-md-11 pr-0 mr-0">
-														<textarea id="video_body" type="text" class="input-field w-100 h-100 video_textarea" placeholder="请写下你的评论。。。"></textarea>
+														<textarea id="video_text" type="text" class="input-field w-100 h-100 video_textarea" placeholder="请写下你的评论。。。"></textarea>
 													</div>
 													<div class="col-md-1 pl-0 ml-0">
-														<button class="btn btn-lg m-0 btn-info">发言</button>
+														<button class="btn btn-lg m-0 btn-info" onclick="amtf_video_Send()">发言</button>
 													</div>
 												</div>
 											</div>

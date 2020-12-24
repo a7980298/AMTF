@@ -1,0 +1,11 @@
+CREATE TABLE amtf_video_barrage(
+	video_barrage_id INT NOT NULL, -- id
+	video_id INT NOT NULL, -- 视频id
+	user_id VARCHAR(30), -- 发言人id
+	video_barrage_text VARCHAR(60),-- 发言的内容
+	video_barrage_color VARCHAR(10),-- 颜色
+	video_barrage_size CHAR(1),-- 字体大小
+	video_barrage_position CHAR(1),-- 弹幕位置
+	video_barrage_time VARCHAR(1000), -- 弹幕时间
+	video_barrage_newtime DATETIME	-- 发言时间
+)

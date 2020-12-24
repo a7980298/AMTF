@@ -87,4 +87,44 @@ public class F040001Controller extends ValiDationUtil{
 
 		return "video_view";
 	}
+
+	/**
+	 * 发送弹幕
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T003")
+	@ResponseBody
+	public Map<String,Object> f040001T003(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service04(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("isbarrage",entityOut.getInsert9());
+		return maps;
+	}
+
+	/**
+	 * 获取弹幕
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T004")
+	@ResponseBody
+	public Map<String,Object> f040001T004(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service05(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("barrageList",entityOut.getBarrageList());
+		return maps;
+	}
 }
