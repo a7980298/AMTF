@@ -123,4 +123,25 @@
 		WHERE
 			VIDEO_ID = #{video_id}
 	</select>
+	<!-- 添加评论 -->
+	<insert id="f040001_Insert11">
+		INSERT INTO
+			AMTF_VIDEO_COMMENT
+		VALUES(
+			#{entity.video_comment_id}
+			,#{entity.video_id}
+			,#{entity.user_id}
+			,#{entity.video_comment_text}
+			,NOW()
+		)
+	</insert>
+	<!-- 获取评论 -->
+	<select id="f040001_Select12" resultType="com.amtf.demo.commonentity.AmtfVideoCommentEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO_COMMENT
+		WHERE
+			VIDEO_ID = #{video_id}
+	</select>
 </mapper>

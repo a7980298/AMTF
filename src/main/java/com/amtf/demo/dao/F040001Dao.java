@@ -29,4 +29,8 @@ public interface F040001Dao {
     Integer f040001_Insert9(@Param("entity") AmtfVideoBarrageEntity entity);
 
     List<AmtfVideoBarrageEntity> f040001_Select10(@Param("video_id")Integer video_id);
+
+    Integer f040001_Insert11(@Param("entity") AmtfVideoCommentEntity entity);
+
+    List<AmtfVideoCommentEntity> f040001_Select12(@Param("video_id")Integer video_id);
 }

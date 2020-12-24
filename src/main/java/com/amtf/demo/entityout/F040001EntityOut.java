@@ -48,4 +48,14 @@ public class F040001EntityOut {
      * 弹幕信息
      */
     private List<AmtfVideoBarrageViewEntity> barrageList;
+
+    /**
+     * 评论信息
+     */
+    private List<AmtfVideoCommentEntity> commentList;
+
+    /**
+     * 发布评论是否成功
+     */
+    private Integer insert11;
 }

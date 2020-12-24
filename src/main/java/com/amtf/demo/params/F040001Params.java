@@ -1,8 +1,6 @@
 package com.amtf.demo.params;
 
-import com.amtf.demo.commonentity.AmtfUserEntity;
-import com.amtf.demo.commonentity.AmtfVideoClassEntity;
-import com.amtf.demo.commonentity.AmtfVideoEntity;
+import com.amtf.demo.commonentity.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Getter;
@@ -105,4 +103,14 @@ public class F040001Params {
      * 弹幕时间
      */
     private String video_barrage_time;
+
+    /**
+     * 评论信息
+     */
+    private List<AmtfVideoCommentEntity> commentList;
+
+    /**
+     * 发布评论
+     */
+    private String video_comment_text;
 }

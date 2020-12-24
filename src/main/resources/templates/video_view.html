@@ -5,7 +5,19 @@
 <title>[[${f040001Params.videoView.video_head}]]</title>
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
-
+	.img_h{
+		width: 66px;
+		height:51px;
+		border: 2px solid rgba(0, 0, 0, 0.07);
+		border-radius:20px;
+	}
+	.history_name{
+		font-size: initial;
+	}
+	.history_data{
+		color: rgba(0, 0, 0, 0.62);
+		font-size: smaller;
+	}
 </style>
 <script type="text/javascript" language="javascript">
 	$(function(){
@@ -28,6 +40,7 @@
 			//设置弹幕属性
 			$("#danmu").danmu({
 				/*left: $('#example_video_1').offset().left + 8,*/
+				left: 15,
 				top: $('#example_video_1').offset().top,
 				height: $('#example_video_1').height(),//$("#my-player").height(),
 				width:  $('#example_video_1').width(),
@@ -136,6 +149,31 @@
 		console.log(t);
 		$('#danmu').data("nowtime", t);
 	}
+
+	// 发表评论
+	function amtf_video_Comment() {
+		$.ajax({
+			url : CONTEXT_PATH + '/f040001/T005',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			cache: false,
+			data : {
+				video_id: [[${f040001Params.videoView.video_id}]],
+				video_comment_text : $('#video_comment_text').val()
+			},
+			success : function(result) {
+				if(result.iscomment > 0){
+					Message('success', '发表成功');
+				} else {
+					Message('error', '发表失败');
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
 </script>
 </head>
 <body id="main_body">
@@ -184,10 +222,10 @@
 												</video>
 												<div class="d-flex col-md-12">
 													<div class="col-md-11 pr-0 mr-0">
-														<textarea id="video_text" type="text" class="input-field w-100 h-100 video_textarea" placeholder="请写下你的评论。。。"></textarea>
+														<textarea id="video_text" type="text" class="input-field w-100 h-100 video_textarea" placeholder="发条弹幕。。。"></textarea>
 													</div>
 													<div class="col-md-1 pl-0 ml-0">
-														<button class="btn btn-lg m-0 btn-info" onclick="amtf_video_Send()">发言</button>
+														<button class="btn btn-lg m-0 btn-info" onclick="amtf_video_Send()">发表</button>
 													</div>
 												</div>
 											</div>
@@ -229,10 +267,37 @@
 										<div class="col-md-12 pl-0 pr-0" >
 											<div class="card card-profile m-1">
 												<div class="col-md-12 d-flex mt-3">
-													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
+													<div class="col-md-12 h3 mt-1 text-left font-weight-bold">
 														<p class="text-left">评论</p>
-														<div class="col-12 pl-0 d-flex">
-
+														<div class="col-12 pl-0 h5 d-flex">
+															<div class="col-md-11 pr-0 mr-0">
+																<textarea id="video_comment_text" type="text" class="input-field w-100 h-100 video_textarea" placeholder="请写下你的评论。。。"></textarea>
+															</div>
+															<div class="col-md-1">
+																<button class="btn btn-lg m-0 btn-info" onclick="amtf_video_Comment()">发布评论</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12 pl-0 pr-0" >
+											<div class="card card-profile m-1">
+												<div class="col-md-12 d-flex mt-3">
+													<div class="col-md-12 h3 mt-1 text-left font-weight-bold">
+														<p class="text-left">全部评论</p>
+														<div class="col-12 pl-0 h5">
+															<div th:each="entity,idx:${f040001Params.commentList}" class="d-flex mb-2 col-12" style="border-bottom: 2px solid rgba(0, 0, 0, 0.08)">
+																<div class="">
+																	<img th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" class="img_h"/>
+																	<img th:src="@{/istatic/{fileNmame}(fileNmame=${entity.user_img})}" class="img_h" th:if="${entity.user_img != ''}"/>
+																</div>
+																<div class="col-10 mt-2">
+																	<span class="history_name">[[${entity.user_name}]]</span>
+																	<span class="ml-1 history_data">[[${entity.nowtime}]]</span><br>
+																	<span>[[${entity.video_comment_text}]]</span>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>

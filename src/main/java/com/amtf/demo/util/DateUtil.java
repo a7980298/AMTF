@@ -8,7 +8,11 @@ public class DateUtil {
 
 	public final static String DATE_TOSTR2 = "yyyy/MM/dd HH:mm:ss";
 
+	public final static String DATE_TOSTR_YMDHM = "yyyy-MM-dd HH:mm";
+
 	public final static String DATE_TOSTR3 = "yyyy-MM-dd";
+
+	public final static String DATE_TOSTR_YMD = "yyyy/MM/dd";
 
 	public final static String DATE_TOSTR4 = "yyyy-MM";
 

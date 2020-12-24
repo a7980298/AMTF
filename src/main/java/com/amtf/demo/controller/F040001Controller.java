@@ -127,4 +127,24 @@ public class F040001Controller extends ValiDationUtil{
 		maps.put("barrageList",entityOut.getBarrageList());
 		return maps;
 	}
+
+	/**
+	 * 发表评论
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T005")
+	@ResponseBody
+	public Map<String,Object> f040001T005(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service06(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("iscomment",entityOut.getInsert11());
+		return maps;
+	}
 }

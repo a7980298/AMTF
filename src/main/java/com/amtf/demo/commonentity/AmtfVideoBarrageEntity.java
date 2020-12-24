@@ -26,6 +26,16 @@ public class AmtfVideoBarrageEntity {
 	private String user_id;
 
 	/**
+	 * 用户名
+	 */
+	private String user_name;
+
+	/**
+	 * 用户头像
+	 */
+	private String user_img;
+
+	/**
 	 * 发言的内容
 	 */
 	private String video_barrage_text;
@@ -54,4 +64,9 @@ public class AmtfVideoBarrageEntity {
 	 * 发布时间
 	 */
 	private Date video_barrage_newtime;
+
+	/**
+	 * 发布时间
+	 */
+	private String nowtime;
 }

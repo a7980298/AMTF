@@ -113,4 +113,12 @@
 		FROM
 			AMTF_VIDEO_BARRAGE
 	</select>
+	<!-- 获取videocomment表最大id -->
+	<select id="common_Select15"
+			resultType="int">
+		SELECT
+			MAX(VIDEO_COMMENT_ID )
+		FROM
+			AMTF_VIDEO_COMMENT
+	</select>
 </mapper>

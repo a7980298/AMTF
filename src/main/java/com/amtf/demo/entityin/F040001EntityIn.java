@@ -73,4 +73,9 @@ public class F040001EntityIn extends UserImpl{
      * 弹幕时间
      */
     private String video_barrage_time;
+
+    /**
+     * 发布评论
+     */
+    private String video_comment_text;
 }
