@@ -12,7 +12,11 @@
 		var myPlayer = videojs(document.getElementById('example_video_1'),{
 			// 语言
 			language: 'zh-CN',
+			// 快进
 			playbackRates: [0.5, 1, 1.5, 2],
+			// 自动播放
+			autoplay: false,
+			// 播放总长
 			controlBar:{
 				durationDisplay:true
 			}
@@ -34,40 +38,38 @@
 				font_size_big: 24,
 				top_botton_danmu_time: 6000
 			});
-			var myPlayer = this;
-			//每次播放都会进入这个函数
-			myPlayer.on("play", function () {
-				//设置弹幕出发的起始位置
-				$("#danmu").height($('#example_video_1').offset().top);
-				/*$("#danmu").width(950);*/
-
-				//从服务器获取弹幕信息
-				if(isObtain){
-					//这个data是json数据，由后端的 list集合(里面的元素是每条弹幕消息)转过来的json数据
-					$.get(CONTEXT_PATH + '/f040001/T004' ,{
-						video_id: [[${f040001Params.videoView.video_id}]]
-					}, function (data) {
-						$('#danmu').danmu("addDanmu", data.barrageList);
-					}, "json");
-					//保证只获取一次，不会应该视频的重新播放再次去获取数据，造成弹幕重复
-					isObtain = false;
-				}
-				//设置弹幕与视频同步
-				var whereYouAt = myPlayer.currentTime();
-				console.log(whereYouAt);
-				$('#danmu').danmu("setTime", Math.floor(whereYouAt * 10));
-				// 开启弹幕
-				$('#danmu').danmu('danmuResume');
-			});
-
-			myPlayer.on("pause", function () {
-				//暂停播放时，停止弹幕
-				$('#danmu').danmu('danmuPause');
-			});
-			myPlayer.on("progress", function () {
-				console.log("progress");
-			})
 		});
+		//每次播放都会进入这个函数
+		myPlayer.on("play", function () {
+			//设置弹幕出发的起始位置
+			$("#danmu").height($('#example_video_1').offset().top);
+			/*$("#danmu").width(950);*/
+
+			//从服务器获取弹幕信息
+			if(isObtain){
+				//这个data是json数据，由后端的 list集合(里面的元素是每条弹幕消息)转过来的json数据
+				$.get(CONTEXT_PATH + '/f040001/T004' ,{
+					video_id: [[${f040001Params.videoView.video_id}]]
+				}, function (data) {
+					$('#danmu').danmu("addDanmu", data.barrageList);
+				}, "json");
+				//保证只获取一次，不会应该视频的重新播放再次去获取数据，造成弹幕重复
+				isObtain = false;
+			}
+			//设置弹幕与视频同步
+			var whereYouAt = myPlayer.currentTime();
+			console.log(whereYouAt);
+			$('#danmu').danmu("setTime", Math.floor(whereYouAt * 10));
+			// 开启弹幕
+			$('#danmu').danmu('danmuResume');
+		});
+		myPlayer.on("pause", function () {
+			//暂停播放时，停止弹幕
+			$('#danmu').danmu('danmuPause');
+		});
+		myPlayer.on("progress", function () {
+			console.log("progress");
+		})
 	});
 
 	// 观看视频
