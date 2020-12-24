@@ -67,6 +67,13 @@
 			//暂停播放时，停止弹幕
 			$('#danmu').danmu('danmuPause');
 		});
+		myPlayer.on("ended", function () {
+			// 视频结束,是否还有弹幕没有显示
+			if($('#danmu').data("paused")){
+				// 继续显示
+				$('#danmu').danmu('danmuResume');
+			}
+		});
 		myPlayer.on("progress", function () {
 			console.log("progress");
 		})
