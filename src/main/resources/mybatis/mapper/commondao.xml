@@ -129,4 +129,12 @@
 		FROM
 			AMTF_VIDEO_COMMENT_REPLY
 	</select>
+	<!-- 获取videocommentpraise表最大id -->
+	<select id="common_Select17"
+			resultType="int">
+		SELECT
+			MAX(VIDEO_COMMENT_PRAISE_ID )
+		FROM
+			AMTF_VIDEO_COMMENT_PRAISE
+	</select>
 </mapper>

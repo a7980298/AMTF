@@ -68,4 +68,9 @@ public class F040001EntityOut {
      * 回复评论
      */
     private List<AmtfVideoCommentReplyEntity> replylist;
+
+    /**
+     * 评论是否点赞
+     */
+    private Integer select15;
 }

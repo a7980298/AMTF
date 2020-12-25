@@ -37,4 +37,12 @@ public interface F040001Dao {
     Integer f040001_Insert13(@Param("entity") AmtfVideoCommentReplyEntity entity);
 
     List<AmtfVideoCommentReplyEntity> f040001_Select14(@Param("video_id")Integer video_id,@Param("video_comment_id")Integer video_comment_id);
+
+    AmtfVideoPraiseEntity f040001_Select15(@Param("video_id")Integer video_id,@Param("video_comment_id")Integer video_comment_id,@Param("user_id")String user_id);
+
+    Integer f040001_Delete16(@Param("video_id")Integer video_id,@Param("video_comment_id")Integer video_comment_id,@Param("user_id")String user_id);
+
+    Integer f040001_Insert17(@Param("entity") AmtfVideoPraiseEntity entity);
+
+    Integer f040001_Select18(@Param("video_id")Integer video_id,@Param("video_comment_id")Integer video_comment_id);
 }

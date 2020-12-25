@@ -349,6 +349,13 @@ public class F040001ServiceImpl implements F040001Service {
 			entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
 			// 发布时间
 			entity.setNowtime(DateUtil.dateToStr(entity.getVideo_comment_time(),DateUtil.DATE_TOSTR_YMD));
+			// 点赞人数
+			Integer sumpraise = f040001dao.f040001_Select18(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entity.getVideo_comment_id()));
+			entity.setSumpraise(StringUtil.toStr(sumpraise == 0 ? "" : sumpraise));
+			// 判断当前用户是否点赞
+			if(!CommonUtil.isEmpty(f040001dao.f040001_Select15(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entity.getVideo_comment_id()),entity.getUser_id()))){
+				entity.setIspraise(Constant.STR_1);
+			}
 		});
 		entityOut.setCommentList(commentList);
 		return entityOut;
@@ -405,6 +412,44 @@ public class F040001ServiceImpl implements F040001Service {
 			entity.setNowtime(DateUtil.dateToStr(entity.getVideo_comment_reply_time(),DateUtil.DATE_TOSTR_YMD));
 		});
 		entityOut.setReplylist(replylist);
+		return entityOut;
+	}
+
+	/**
+	 * 评论点赞
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service10(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+
+		AmtfVideoPraiseEntity select15 = f040001dao.f040001_Select15(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()),loginfo.getUser_email());
+
+		if(!CommonUtil.isEmpty(select15)){
+			Integer delete16 = f040001dao.f040001_Delete16(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()),loginfo.getUser_email());
+			if(delete16 > 0){
+				entityOut.setSelect15(Constant.INT_1);
+			}
+		} else {
+			AmtfVideoPraiseEntity amtfvideopraiseentity = new AmtfVideoPraiseEntity();
+			// id
+			amtfvideopraiseentity.setVideo_comment_praise_id(CommonUtil.isEmpty(commondao.common_Select17()) ? 0 : commondao.common_Select17() + 1);
+			// 视频id
+			amtfvideopraiseentity.setVideo_id(NumberUtil.toInt(entityin.getVideo_id()));
+			// 评论id
+			amtfvideopraiseentity.setVideo_comment_id(NumberUtil.toInt(entityin.getVideo_comment_id()));
+			// 用户id
+			amtfvideopraiseentity.setUser_id(loginfo.getUser_email());
+			Integer insert17 = f040001dao.f040001_Insert17(amtfvideopraiseentity);
+			if(insert17 > 0){
+				entityOut.setSelect15(Constant.INT_2);
+			}
+		}
+
 		return entityOut;
 	}
 }

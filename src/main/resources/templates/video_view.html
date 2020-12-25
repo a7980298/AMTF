@@ -313,6 +313,32 @@
 		$('#comment_reply_id' + _id).remove();
 		$('#comment_reply_open' + _id).text('展开回复>');
 	}
+
+	// 点赞
+	function amtf_comment_Praise(_commentid, _idx) {
+		$.ajax({
+			url : CONTEXT_PATH + '/f040001/T009',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				video_id: [[${f040001Params.videoView.video_id}]],
+				video_comment_id: _commentid,
+			},
+			success : function(result) {
+				if(result.ispraise == 1){
+					let sumpraise =  $('#comment_praise' + _idx).text() == 1 ? '' :parseInt($('#comment_praise' + _idx).text()) - 1
+					$('#comment_praise' + _idx).text(sumpraise);
+				} else if(result.ispraise == 2) {
+					let sumpraise = ($('#comment_praise' + _idx).text() == '' ? 0 : parseInt($('#comment_praise' + _idx).text())) + 1
+					$('#comment_praise' + _idx).text(sumpraise);
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
 </script>
 </head>
 <body id="main_body">
@@ -444,9 +470,9 @@
 																		</span>
 																	</div>
 																	<div class="mt-2">
-																		<span class="fa_hover hand">
+																		<span class="hand" th:classappend="${entity.ispraise == '1' ? 'fa_hover_h' : 'fa_hover'}" th:onclick="amtf_comment_Praise([[${entity.video_comment_id}]],[[${idx.index}]])">
 																			<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-																			赞
+																			赞<span th:id="${'comment_praise' + idx.index}">[[${entity.sumpraise}]]</span>
 																		</span>
 																		<span class="ml-2 fa_hover hand comment_reply" th:onclick="amtf_video_Reply(this,[[${idx.index}]])">
 																			<i class="fa fa-comment" aria-hidden="true"></i>

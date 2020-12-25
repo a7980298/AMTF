@@ -1,0 +1,7 @@
+CREATE TABLE amtf_video_comment_praise(
+	video_comment_praise_id INT NOT NULL, -- id
+	video_comment_id INT NOT NULL, -- 评论id
+	video_id INT NOT NULL, -- 视频id
+	user_id VARCHAR(30), -- 点赞人id
+	video_comment_praise_time DATETIME	-- 点赞时间
+)

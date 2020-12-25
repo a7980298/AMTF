@@ -49,4 +49,14 @@ public class AmtfVideoCommentEntity {
 	 * 发布时间
 	 */
 	private String nowtime;
+
+	/**
+	 * 点赞数量
+	 */
+	private String sumpraise;
+
+	/**
+	 * 本用户是否点赞
+	 */
+	private String ispraise;
 }

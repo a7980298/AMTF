@@ -14,6 +14,8 @@ public class Constant {
 
 	public static final Integer INT_1 = 1;
 
+	public static final Integer INT_2 = 2;
+
 	public static final Integer PAGESIZE5 = 5;
 
 	public static final Integer PAGESIZE10 = 10;

@@ -172,4 +172,51 @@
 		ORDER BY
 			VIDEO_COMMENT_REPLY_TIME
 	</select>
+	<!-- 查询是否点赞 -->
+	<select id="f040001_Select15" resultType="com.amtf.demo.commonentity.AmtfVideoPraiseEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO_COMMENT_PRAISE
+		WHERE
+			VIDEO_ID = #{video_id}
+		AND
+			VIDEO_COMMENT_ID = #{video_comment_id}
+		AND
+			USER_ID = #{user_id}
+	</select>
+	<!-- 取消评论点赞 -->
+	<delete id="f040001_Delete16">
+		DELETE FROM
+			AMTF_VIDEO_COMMENT_PRAISE
+		WHERE
+			VIDEO_ID = #{video_id}
+		AND
+			VIDEO_COMMENT_ID = #{video_comment_id}
+		AND
+			USER_ID = #{user_id}
+	</delete>
+	<!-- 添加评论点赞 -->
+	<insert id="f040001_Insert17">
+		INSERT INTO
+			AMTF_VIDEO_COMMENT_PRAISE
+		VALUES(
+			#{entity.video_comment_praise_id}
+			,#{entity.video_comment_id}
+			,#{entity.video_id}
+			,#{entity.user_id}
+			,NOW()
+		)
+	</insert>
+	<!-- 查找点赞数量 -->
+	<select id="f040001_Select18" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_VIDEO_COMMENT_PRAISE
+		WHERE
+			VIDEO_ID = #{video_id}
+		AND
+			VIDEO_COMMENT_ID = #{video_comment_id}
+	</select>
 </mapper>

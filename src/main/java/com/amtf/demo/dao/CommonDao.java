@@ -36,4 +36,6 @@ public interface CommonDao {
 	Integer common_Select15();
 
 	Integer common_Select16();
+
+	Integer common_Select17();
 }
