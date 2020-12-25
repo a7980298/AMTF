@@ -18,6 +18,14 @@
 		color: rgba(0, 0, 0, 0.62);
 		font-size: smaller;
 	}
+	.fa_hover{
+		font-size: 15px;
+		color: #898989;
+	}
+	.fa_hover:hover{
+		font-size: 15px;
+		color: #ff9800;
+	}
 </style>
 <script type="text/javascript" language="javascript">
 	$(function(){
@@ -220,11 +228,11 @@
 													   data-setup="{}">
 													<source th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}"/>
 												</video>
-												<div class="d-flex col-md-12">
+												<div class="d-flex col-md-12 mt-2">
 													<div class="col-md-11 pr-0 mr-0">
 														<textarea id="video_text" type="text" class="input-field w-100 h-100 video_textarea" placeholder="发条弹幕。。。"></textarea>
 													</div>
-													<div class="col-md-1 pl-0 ml-0">
+													<div class="col-md-1">
 														<button class="btn btn-lg m-0 btn-info" onclick="amtf_video_Send()">发表</button>
 													</div>
 												</div>
@@ -234,7 +242,7 @@
 											<div class="card card-profile m-1">
 												<div class="col-md-12 d-flex mt-3">
 													<div class="col-md-5 h3 mt-1 text-left font-weight-bold">
-														<p class="text-left">作者</p>
+														<p class="text-left">[[${f040001Params.videoView.video_head}]]</p>
 														<div class="col-12 pl-0 d-flex">
 															<div>
 																<img th:src="@{/imgs/userimg.jpg}" th:if="${f040001Params.videoAuthor.imgpath == ''}" id="img1" style="height:38px;"/>
@@ -294,8 +302,20 @@
 																</div>
 																<div class="col-10 mt-2">
 																	<span class="history_name">[[${entity.user_name}]]</span>
-																	<span class="ml-1 history_data">[[${entity.nowtime}]]</span><br>
-																	<span>[[${entity.video_comment_text}]]</span>
+																	<span class="ml-1 history_data">[[${entity.nowtime}]]</span>
+																	<div class="mt-2">
+																		<span>[[${entity.video_comment_text}]]</span>
+																	</div>
+																	<div class="mt-2">
+																		<span class="fa_hover hand">
+																			<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+																			赞
+																		</span>
+																		<span class="ml-2 fa_hover hand">
+																			<i class="fa fa-comment" aria-hidden="true"></i>
+																			回复
+																		</span>
+																	</div>
 																</div>
 															</div>
 														</div>
