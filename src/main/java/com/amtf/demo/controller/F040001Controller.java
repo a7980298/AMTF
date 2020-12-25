@@ -1,16 +1,21 @@
 package com.amtf.demo.controller;
 
 import com.amtf.demo.entityin.F040001EntityIn;
+import com.amtf.demo.entityin.F060001EntityIn;
 import com.amtf.demo.entityout.F040001EntityOut;
+import com.amtf.demo.entityout.F060001EntityOut;
+import com.amtf.demo.params.F060001Params;
 import com.amtf.demo.util.ParameterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amtf.demo.params.F040001Params;
 import com.amtf.demo.service.F040001Service;
 import com.amtf.demo.util.ValiDationUtil;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -145,6 +150,69 @@ public class F040001Controller extends ValiDationUtil{
 		Map<String,Object> maps = new HashMap<String,Object>();
 
 		maps.put("iscomment",entityOut.getInsert11());
+		return maps;
+	}
+
+	/**
+	 * 刷新评论
+	 * @parameter F060001params
+	 * @return String
+	 */
+	@PostMapping("/f040001/T006")
+	public String f040001T006(@RequestParam("video_id") String video_id, Model model) {
+		F040001Params params = new F040001Params();
+
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		entityin.setVideo_id(video_id);
+
+		F040001EntityOut entityOut = f040001service.service07(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		model.addAttribute("f040001Params", params);
+
+		return "video_view :: commentList";
+	}
+
+	/**
+	 * 添加回复评论
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T007")
+	@ResponseBody
+	public Map<String,Object> f040001T007(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service08(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("isrcommentreply",entityOut.getInsert13());
+		return maps;
+	}
+
+	/**
+	 * 展开回复
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T008")
+	@ResponseBody
+	public Map<String,Object> f040001T008(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service09(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("replylist",entityOut.getReplylist());
 		return maps;
 	}
 }

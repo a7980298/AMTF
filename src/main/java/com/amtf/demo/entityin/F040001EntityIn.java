@@ -78,4 +78,14 @@ public class F040001EntityIn extends UserImpl{
      * 发布评论
      */
     private String video_comment_text;
+
+    /**
+     * 评论id
+     */
+    private String video_comment_id;
+
+    /**
+     * 回复评论内容
+     */
+    private String video_comment_reply_text;
 }

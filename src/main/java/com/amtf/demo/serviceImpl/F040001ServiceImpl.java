@@ -172,16 +172,7 @@ public class F040001ServiceImpl implements F040001Service {
 				select6list = videoLike(select6entity,select6list,true);
 				entityOut.setVideoSimilar(select6list);
 				// 获取评论信息
-				List<AmtfVideoCommentEntity> historyList = f040001dao.f040001_Select12(NumberUtil.toInt(entityin.getVideo_id()));
-				historyList.forEach(entity ->{
-					// 名字
-					entity.setUser_name(f040001dao.f040001_Select5(entity.getUser_id()).getUser_name());
-					// 头像
-					entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
-					// 发布时间
-					entity.setNowtime(DateUtil.dateToStr(entity.getVideo_comment_time(),DateUtil.DATE_TOSTR_YMD));
-				});
-				entityOut.setCommentList(historyList);
+				entityOut.setCommentList(this.service07(entityin).getCommentList());
 				// 添加观看历史
 				AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
 				// id
@@ -338,6 +329,82 @@ public class F040001ServiceImpl implements F040001Service {
 		amtfvideocommententity.setVideo_comment_text(entityin.getVideo_comment_text());
 		Integer insert11 = f040001dao.f040001_Insert11(amtfvideocommententity);
 		entityOut.setInsert11(insert11);
+		return entityOut;
+	}
+
+	/**
+	 * 刷新评论
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service07(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+		List<AmtfVideoCommentEntity> commentList = f040001dao.f040001_Select12(NumberUtil.toInt(entityin.getVideo_id()));
+		commentList.forEach(entity ->{
+			// 名字
+			entity.setUser_name(f040001dao.f040001_Select5(entity.getUser_id()).getUser_name());
+			// 头像
+			entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
+			// 发布时间
+			entity.setNowtime(DateUtil.dateToStr(entity.getVideo_comment_time(),DateUtil.DATE_TOSTR_YMD));
+		});
+		entityOut.setCommentList(commentList);
+		return entityOut;
+	}
+
+	/**
+	 * 添加回复评论
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service08(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+
+		AmtfVideoCommentReplyEntity amtfvideocommentreplyentity = new AmtfVideoCommentReplyEntity();
+		// id
+		amtfvideocommentreplyentity.setVideo_comment_reply_id(CommonUtil.isEmpty(commondao.common_Select16()) ? 0 : commondao.common_Select16() + 1);
+		// 视频id
+		amtfvideocommentreplyentity.setVideo_id(entityin.getVideo_id());
+		// 评论id
+		amtfvideocommentreplyentity.setVideo_comment_id(NumberUtil.toInt(entityin.getVideo_comment_id()));
+		// 用户id
+		amtfvideocommentreplyentity.setUser_id(loginfo.getUser_email());
+		// 内容
+		amtfvideocommentreplyentity.setVideo_comment_reply_text(entityin.getVideo_comment_reply_text());
+
+		Integer insert13 = f040001dao.f040001_Insert13(amtfvideocommentreplyentity);
+
+		entityOut.setInsert13(insert13);
+
+		return entityOut;
+	}
+
+	/**
+	 * 展开回复
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service09(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+		// 获取回复评论
+		List<AmtfVideoCommentReplyEntity> replylist = f040001dao.f040001_Select14(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()));
+		replylist.forEach(entity ->{
+			// 名字
+			entity.setUser_name(f040001dao.f040001_Select5(entity.getUser_id()).getUser_name());
+			// 头像
+			entity.setUser_img(ImgUtil.getImgPath(entity.getUser_id()));
+			// 发布时间
+			entity.setNowtime(DateUtil.dateToStr(entity.getVideo_comment_reply_time(),DateUtil.DATE_TOSTR_YMD));
+		});
+		entityOut.setReplylist(replylist);
 		return entityOut;
 	}
 }

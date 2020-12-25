@@ -143,5 +143,33 @@
 			AMTF_VIDEO_COMMENT
 		WHERE
 			VIDEO_ID = #{video_id}
+		ORDER BY
+			VIDEO_COMMENT_TIME
+	</select>
+	<!-- 添加回复评论 -->
+	<insert id="f040001_Insert13">
+		INSERT INTO
+			AMTF_VIDEO_COMMENT_REPLY
+		VALUES(
+			#{entity.video_comment_reply_id}
+			,#{entity.video_comment_id}
+			,#{entity.video_id}
+			,#{entity.user_id}
+			,#{entity.video_comment_reply_text}
+			,NOW()
+		)
+	</insert>
+	<!-- 查询回复评论 -->
+	<select id="f040001_Select14" resultType="com.amtf.demo.commonentity.AmtfVideoCommentReplyEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO_COMMENT_REPLY
+		WHERE
+			VIDEO_ID = #{video_id}
+		AND
+			VIDEO_COMMENT_ID = #{video_comment_id}
+		ORDER BY
+			VIDEO_COMMENT_REPLY_TIME
 	</select>
 </mapper>

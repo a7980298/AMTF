@@ -58,4 +58,14 @@ public class F040001EntityOut {
      * 发布评论是否成功
      */
     private Integer insert11;
+
+    /**
+     * 回复评论是否成功
+     */
+    private Integer insert13;
+
+    /**
+     * 回复评论
+     */
+    private List<AmtfVideoCommentReplyEntity> replylist;
 }

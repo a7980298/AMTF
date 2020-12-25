@@ -22,4 +22,10 @@ public interface F040001Service {
 	public F040001EntityOut service05(F040001EntityIn entityin) throws ErrListException;
 
 	public F040001EntityOut service06(F040001EntityIn entityin) throws ErrListException;
+
+	public F040001EntityOut service07(F040001EntityIn entityin) throws ErrListException;
+
+	public F040001EntityOut service08(F040001EntityIn entityin) throws ErrListException;
+
+	public F040001EntityOut service09(F040001EntityIn entityin) throws ErrListException;
 }

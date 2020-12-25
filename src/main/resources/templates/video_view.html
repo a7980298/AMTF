@@ -22,9 +22,25 @@
 		font-size: 15px;
 		color: #898989;
 	}
+	.fa_hover_h{
+		font-size: 15px;
+		color: #ff9800;
+	}
 	.fa_hover:hover{
 		font-size: 15px;
 		color: #ff9800;
+	}
+	.video_btn_reply{
+		width: 80px;
+		height: 100%;
+		background-color: #ff9800;
+		border: 0px;
+		color: white;
+	}
+	.comment_reply_open{
+		background-color: rgba(0,0,0,.12);
+		color: #6c757d;
+		font-size: 13px;
 	}
 </style>
 <script type="text/javascript" language="javascript">
@@ -173,6 +189,23 @@
 			success : function(result) {
 				if(result.iscomment > 0){
 					Message('success', '发表成功');
+					$.ajax({
+						url : CONTEXT_PATH + '/f040001/T006',
+						type : 'post',
+						dateType : 'html',
+						async : true,
+						data : {
+							video_id: [[${f040001Params.videoView.video_id}]],
+						},
+						success : function(result) {
+							if(result != ''){
+								$('#commentList').replaceWith(result);
+							}
+						},
+						error : function(res, textStaus) {
+							setCodeErrList("错误！！！请和管理员联系。。。");
+						},
+					});
 				} else {
 					Message('error', '发表失败');
 				}
@@ -181,6 +214,104 @@
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
+	}
+	var comment_id;
+	// 回复
+	function amtf_video_Reply(_this, idx) {
+		$('#video_reply_text').remove();
+		$('#video_reply_btn').remove();
+		$('.comment_reply').text('');
+		$('.comment_reply').removeClass('fa_hover_h');
+		$('.comment_reply').addClass('fa_hover');
+		$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
+		let str = '';
+		str += '<div class="d-flex col-12 pl-0">' +
+				'<div class="col-11 pl-0 pr-0">' +
+				'<textarea id="video_reply_text" type="text" class="input-field w-100 h-100 video_textarea"></textarea>' +
+				'</div>';
+		str += '<div class="col-1 pl-0">' +
+				'<button id="video_reply_btn" class="video_btn_reply text-center">回复</button>' +
+				'</div>' +
+				'</div>';
+		$(_this).after(str);
+		$(_this).text('');
+		$(_this).removeClass('fa_hover');
+		$(_this).addClass('fa_hover_h');
+		$(_this).append('<i class="fa fa-comment" aria-hidden="true"></i>收起');
+		$('#video_reply_text').focus();
+		comment_id = idx;
+		$('#video_reply_btn').click(function(){
+			$.ajax({
+				url : CONTEXT_PATH + '/f040001/T007',
+				type : 'post',
+				dateType : 'html',
+				async : true,
+				cache: false,
+				data : {
+					video_id: [[${f040001Params.videoView.video_id}]],
+					video_comment_id: comment_id,
+					video_comment_reply_text : $('#video_reply_text').val()
+				},
+				success : function(result) {
+					if(result.isrcommentreply > 0){
+						Message('success', '回复成功');
+						$('#video_reply_text').remove();
+						$('#video_reply_btn').remove();
+						$('.comment_reply').text('');
+						$('.comment_reply').removeClass('fa_hover_h');
+						$('.comment_reply').addClass('fa_hover');
+						$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
+					} else {
+						Message('error', '回复失败');
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		});
+	}
+
+	// 展开回复
+	function amtf_video_CommentOpen(_this, _id) {
+		$.ajax({
+			url : CONTEXT_PATH + '/f040001/T008',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				video_id: [[${f040001Params.videoView.video_id}]],
+				video_comment_id: _id,
+			},
+			success : function(result) {
+				if(result.replylist != ''){
+					$(_this).text('');
+					let src = '<div id="comment_reply_id'+ _id +'">' +
+								'<div class="comment_reply_open">';
+							src += '<span>更多回复>>></span><br>';
+							for (let i = 0;i < result.replylist.length; i++){
+								src += '<div class="mt-1" style="border-bottom: 1px solid #898989">' +
+											'<span>' + result.replylist[i].user_name + ':</span>' +
+											'<span class="ml-2">' + result.replylist[i].video_comment_reply_text + '</span>' +
+											'<br>' +
+											'<span>赞-回复-' + result.replylist[i].nowtime + '</span>' +
+										'</div>';
+							}
+					src += '</div>';
+					src += '<div class="col-1 m-auto hand" onclick="amtf_video_CommentClose(' + _id + ')">收起回复</div></div>';
+					$(_this).after(src);
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
+
+	// 关闭回复
+	function amtf_video_CommentClose(_id) {
+		$('#comment_reply_id' + _id).remove();
+		$('#comment_reply_open' + _id).text('展开回复>');
 	}
 </script>
 </head>
@@ -294,7 +425,7 @@
 												<div class="col-md-12 d-flex mt-3">
 													<div class="col-md-12 h3 mt-1 text-left font-weight-bold">
 														<p class="text-left">全部评论</p>
-														<div class="col-12 pl-0 h5">
+														<div class="col-12 pl-0 h5" id="commentList" th:fragment="commentList">
 															<div th:each="entity,idx:${f040001Params.commentList}" class="d-flex mb-2 col-12" style="border-bottom: 2px solid rgba(0, 0, 0, 0.08)">
 																<div class="">
 																	<img th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" class="img_h"/>
@@ -303,18 +434,24 @@
 																<div class="col-10 mt-2">
 																	<span class="history_name">[[${entity.user_name}]]</span>
 																	<span class="ml-1 history_data">[[${entity.nowtime}]]</span>
+																	<input type="hidden" th:value="${entity.video_comment_id}" th:id="${'video_comment_id' + idx.index}"/>
 																	<div class="mt-2">
 																		<span>[[${entity.video_comment_text}]]</span>
+																	</div>
+																	<div class="mt-2">
+																		<span class="hand" th:id="${'comment_reply_open' + idx.index}" th:onclick="amtf_video_CommentOpen(this,[[${entity.video_comment_id}]])">
+																			展开回复>
+																		</span>
 																	</div>
 																	<div class="mt-2">
 																		<span class="fa_hover hand">
 																			<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 																			赞
 																		</span>
-																		<span class="ml-2 fa_hover hand">
+																		<span class="ml-2 fa_hover hand comment_reply" th:onclick="amtf_video_Reply(this,[[${idx.index}]])">
 																			<i class="fa fa-comment" aria-hidden="true"></i>
 																			回复
-																		</span>
+																		</span><br>
 																	</div>
 																</div>
 															</div>
