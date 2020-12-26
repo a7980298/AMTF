@@ -341,8 +341,10 @@ public class F040001ServiceImpl implements F040001Service {
 	@Override
 	public F040001EntityOut service07(F040001EntityIn entityin) throws ErrListException {
 		F040001EntityOut entityOut = new F040001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
 		List<AmtfVideoCommentEntity> commentList = f040001dao.f040001_Select12(NumberUtil.toInt(entityin.getVideo_id()));
-		commentList.forEach(entity ->{
+		for (AmtfVideoCommentEntity entity:commentList) {
 			// 名字
 			entity.setUser_name(f040001dao.f040001_Select5(entity.getUser_id()).getUser_name());
 			// 头像
@@ -353,10 +355,13 @@ public class F040001ServiceImpl implements F040001Service {
 			Integer sumpraise = f040001dao.f040001_Select18(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entity.getVideo_comment_id()));
 			entity.setSumpraise(StringUtil.toStr(sumpraise == 0 ? "" : sumpraise));
 			// 判断当前用户是否点赞
-			if(!CommonUtil.isEmpty(f040001dao.f040001_Select15(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entity.getVideo_comment_id()),entity.getUser_id()))){
+			AmtfVideoPraiseEntity amtfvideopraiseentity = f040001dao.f040001_Select15(
+															NumberUtil.toInt(entityin.getVideo_id()),
+															NumberUtil.toInt(entity.getVideo_comment_id()), loginfo.getUser_email());
+			if(!CommonUtil.isEmpty(amtfvideopraiseentity)){
 				entity.setIspraise(Constant.STR_1);
 			}
-		});
+		}
 		entityOut.setCommentList(commentList);
 		return entityOut;
 	}

@@ -329,9 +329,13 @@
 				if(result.ispraise == 1){
 					let sumpraise =  $('#comment_praise' + _idx).text() == 1 ? '' :parseInt($('#comment_praise' + _idx).text()) - 1
 					$('#comment_praise' + _idx).text(sumpraise);
+					$('#praise_click' + _idx).removeClass('fa_hover_h');
+					$('#praise_click' + _idx).addClass('fa_hover');
 				} else if(result.ispraise == 2) {
 					let sumpraise = ($('#comment_praise' + _idx).text() == '' ? 0 : parseInt($('#comment_praise' + _idx).text())) + 1
 					$('#comment_praise' + _idx).text(sumpraise);
+					$('#praise_click' + _idx).removeClass('fa_hover');
+					$('#praise_click' + _idx).addClass('fa_hover_h');
 				}
 			},
 			error : function(res, textStaus) {
@@ -470,7 +474,7 @@
 																		</span>
 																	</div>
 																	<div class="mt-2">
-																		<span class="hand" th:classappend="${entity.ispraise == '1' ? 'fa_hover_h' : 'fa_hover'}" th:onclick="amtf_comment_Praise([[${entity.video_comment_id}]],[[${idx.index}]])">
+																		<span class="hand" th:classappend="${entity.ispraise == '1' ? 'fa_hover_h' : 'fa_hover'}" th:id="${'praise_click' + idx.index}" th:onclick="amtf_comment_Praise([[${entity.video_comment_id}]],[[${idx.index}]])">
 																			<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 																			赞<span th:id="${'comment_praise' + idx.index}">[[${entity.sumpraise}]]</span>
 																		</span>
