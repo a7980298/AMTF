@@ -6,9 +6,8 @@
 <th:block th:replace="import :: myimport"></th:block>
 <style type="text/css">
 	.swiper-container {
-	//你可以在这里设置宽高
-	width: 50%;
-		height: 50%;
+		width: 100%;
+		height: 560px;
 	}
 	.swiper-slide {
 		text-align: center;
@@ -273,9 +272,9 @@
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f040001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 						<input type="hidden" name="IViewId" value="f040001"/>
-							<div class="row m-auto col-md-12">
+							<div class="col-md-12 m-auto">
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="swiper-container col-md-12 h-30">
+									<div class="col-md-12 h-30">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
 												<div class="input-group col-md-4 m-auto d-flex input_search_div">
@@ -320,16 +319,18 @@
 												</div>
 											</div>-->
 										</div>
-										<div class="swiper-wrapper col-md-12 h-100">
-											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/login.jpg}" alt=""></div>
-											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/lock.jpg}" alt=""></div>
-											<div class="swiper-slide col-md-12 h-100"><img class="col-md-12 h-100" th:src="@{/img/register.jpg}" alt=""></div>
+										<div class="swiper-container">
+											<div class="swiper-wrapper col-md-12">
+												<div class="swiper-slide col-md-12"><img class="col-md-12" th:src="@{/img/login.jpg}" alt=""></div>
+												<div class="swiper-slide col-md-12"><img class="col-md-12" th:src="@{/img/lock.jpg}" alt=""></div>
+												<div class="swiper-slide col-md-12"><img class="col-md-12" th:src="@{/img/register.jpg}" alt=""></div>
+											</div>
+											<!-- 分页 -->
+											<div class="swiper-pagination"></div>
+											<!-- 切换 -->
+											<!--<div class="swiper-button-next"></div>
+											<div class="swiper-button-prev"></div>-->
 										</div>
-										<!-- 分页 -->
-										<div class="swiper-pagination"></div>
-										<!-- 切换 -->
-										<!--<div class="swiper-button-next"></div>
-										<div class="swiper-button-prev"></div>-->
 									</div>
 									<div class="col-md-12 pl-0 pr-0" id="video_list">
 										<div class="card card-profile m-1">
