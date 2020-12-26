@@ -220,56 +220,63 @@
 	function amtf_video_Reply(_this, idx) {
 		$('#video_reply_text').remove();
 		$('#video_reply_btn').remove();
-		$('.comment_reply').text('');
-		$('.comment_reply').removeClass('fa_hover_h');
-		$('.comment_reply').addClass('fa_hover');
-		$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
-		let str = '';
-		str += '<div class="d-flex col-12 pl-0">' +
-				'<div class="col-11 pl-0 pr-0">' +
-				'<textarea id="video_reply_text" type="text" class="input-field w-100 h-100 video_textarea"></textarea>' +
-				'</div>';
-		str += '<div class="col-1 pl-0">' +
-				'<button id="video_reply_btn" class="video_btn_reply text-center">回复</button>' +
-				'</div>' +
-				'</div>';
-		$(_this).after(str);
-		$(_this).text('');
-		$(_this).removeClass('fa_hover');
-		$(_this).addClass('fa_hover_h');
-		$(_this).append('<i class="fa fa-comment" aria-hidden="true"></i>收起');
-		$('#video_reply_text').focus();
-		comment_id = idx;
-		$('#video_reply_btn').click(function(){
-			$.ajax({
-				url : CONTEXT_PATH + '/f040001/T007',
-				type : 'post',
-				dateType : 'html',
-				async : true,
-				cache: false,
-				data : {
-					video_id: [[${f040001Params.videoView.video_id}]],
-					video_comment_id: comment_id,
-					video_comment_reply_text : $('#video_reply_text').val()
-				},
-				success : function(result) {
-					if(result.isrcommentreply > 0){
-						Message('success', '回复成功');
-						$('#video_reply_text').remove();
-						$('#video_reply_btn').remove();
-						$('.comment_reply').text('');
-						$('.comment_reply').removeClass('fa_hover_h');
-						$('.comment_reply').addClass('fa_hover');
-						$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
-					} else {
-						Message('error', '回复失败');
-					}
-				},
-				error : function(res, textStaus) {
-					setCodeErrList("错误！！！请和管理员联系。。。");
-				},
+		if($(_this).text().indexOf('收起') != -1){
+			$('.comment_reply').text('');
+			$('.comment_reply').removeClass('fa_hover_h');
+			$('.comment_reply').addClass('fa_hover');
+			$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
+		} else {
+			$('.comment_reply').text('');
+			$('.comment_reply').removeClass('fa_hover_h');
+			$('.comment_reply').addClass('fa_hover');
+			$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
+			let str = '';
+			str += '<div class="d-flex col-12 pl-0">' +
+					'<div class="col-11 pl-0 pr-0">' +
+					'<textarea id="video_reply_text" type="text" class="input-field w-100 h-100 video_textarea"></textarea>' +
+					'</div>';
+			str += '<div class="col-1 pl-0">' +
+					'<button id="video_reply_btn" class="video_btn_reply text-center">回复</button>' +
+					'</div>' +
+					'</div>';
+			$(_this).after(str);
+			$(_this).text('');
+			$(_this).removeClass('fa_hover');
+			$(_this).addClass('fa_hover_h');
+			$(_this).append('<i class="fa fa-comment" aria-hidden="true"></i>收起');
+			$('#video_reply_text').focus();
+			comment_id = idx;
+			$('#video_reply_btn').click(function(){
+				$.ajax({
+					url : CONTEXT_PATH + '/f040001/T007',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					cache: false,
+					data : {
+						video_id: [[${f040001Params.videoView.video_id}]],
+						video_comment_id: comment_id,
+						video_comment_reply_text : $('#video_reply_text').val()
+					},
+					success : function(result) {
+						if(result.isrcommentreply > 0){
+							Message('success', '回复成功');
+							$('#video_reply_text').remove();
+							$('#video_reply_btn').remove();
+							$('.comment_reply').text('');
+							$('.comment_reply').removeClass('fa_hover_h');
+							$('.comment_reply').addClass('fa_hover');
+							$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
+						} else {
+							Message('error', '回复失败');
+						}
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
 			});
-		});
+		}
 	}
 
 	// 展开回复
