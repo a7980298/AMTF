@@ -32,7 +32,7 @@
 		}
 	}
 	function amtf_news_add(){
-		
+		$('#news_report').modal('show');
 	}
 </script>
 </head>
@@ -66,6 +66,53 @@
 								<td><button class="btn btn-sm">查看</button></td>
 							</tr>
 						</table>
+					</div>
+					<div id="news_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog" style="max-width: 100%">
+							<div class="modal-content m-auto" style="width:1000px;">
+								<div class="modal-header">
+									<input class="input col-sm-11" id="report_head" placeholder="新聞標題" required="true"/>
+									<button type="button" class="close col-sm-1" data-dismiss="modal" aria-hidden="true">
+										<i class="material-icons">close</i>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="instruction">
+										<div class="row">
+											<div class="col-md-12">
+												<div id="news_editor"></div>
+											</div>
+										</div>
+									</div>
+									<div class="instruction">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="nav-item dropdown">
+													<button type="button" class="btn btn-sm btn-white" data-toggle="dropdown" id="showclass">
+														<span>十 添加标签（最多3个）</span>
+													</button>
+													<div class="dropdown-menu">
+														<div class="col-sm-12">
+															<a class="btn-white" th:each="entity,idx:${f050001Params.add_news_list}" th:onclick="amtf_qa_SetClass([[${entity}]])">
+																[[${entity.qa_class_name}]]
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer justify-content-center col-sm-12 text-right">
+									<button type="button" class="btn h5 col-sm-1 ml-auto" data-dismiss="modal" aria-hidden="true">
+										取消
+									</button>
+									<button type="button" class="btn btn-reddit h5 col-sm-1 ml-4" onclick="amtf_qa_EditorSubmit()">
+										确定
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f050001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
