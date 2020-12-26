@@ -275,23 +275,7 @@
 			success : function(result) {
 				if(result.iscomment > 0){
 					Message('success', '发表成功');
-					$.ajax({
-						url : CONTEXT_PATH + '/f040001/T006',
-						type : 'post',
-						dateType : 'html',
-						async : true,
-						data : {
-							video_id: [[${f040001Params.videoView.video_id}]],
-						},
-						success : function(result) {
-							if(result != ''){
-								$('#commentList').replaceWith(result);
-							}
-						},
-						error : function(res, textStaus) {
-							setCodeErrList("错误！！！请和管理员联系。。。");
-						},
-					});
+					amtf_video_CommentPublish();
 				} else {
 					Message('error', '发表失败');
 				}
@@ -301,6 +285,27 @@
 			},
 		});
 	}
+	// 刷新评论
+	function amtf_video_CommentPublish() {
+		$.ajax({
+			url : CONTEXT_PATH + '/f040001/T006',
+			type : 'post',
+			dateType : 'html',
+			async : true,
+			data : {
+				video_id: [[${f040001Params.videoView.video_id}]],
+			},
+			success : function(result) {
+				if(result != ''){
+					$('#commentList').replaceWith(result);
+				}
+			},
+			error : function(res, textStaus) {
+				setCodeErrList("错误！！！请和管理员联系。。。");
+			},
+		});
+	}
+
 	var comment_id;
 	// 回复
 	function amtf_video_Reply(_this, idx) {
@@ -353,6 +358,7 @@
 							$('.comment_reply').removeClass('fa_hover_h');
 							$('.comment_reply').addClass('fa_hover');
 							$('.comment_reply').append('<i class="fa fa-comment" aria-hidden="true"></i>回复');
+							amtf_video_CommentPublish();
 						} else {
 							Message('error', '回复失败');
 						}
@@ -557,6 +563,9 @@
 													<div class="col-md-12 h3 mt-1 text-left font-weight-bold">
 														<p class="text-left">全部评论</p>
 														<div class="col-12 pl-0 h5" id="commentList" th:fragment="commentList">
+															<div class="mb-2 col-12" th:if="${#lists.isEmpty(f040001Params.commentList)}">
+																暂无评论。。。
+															</div>
 															<div th:each="entity,idx:${f040001Params.commentList}" class="d-flex mb-2 col-12" style="border-bottom: 2px solid rgba(0, 0, 0, 0.08)">
 																<div class="">
 																	<img th:src="@{/imgs/userimg.jpg}" th:if="${entity.user_img == ''}" class="img_h"/>
@@ -579,7 +588,7 @@
 																			<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 																			赞<span th:id="${'comment_praise' + idx.index}">[[${entity.sumpraise}]]</span>
 																		</span>
-																		<span class="ml-2 fa_hover hand comment_reply" th:onclick="amtf_video_Reply(this,[[${idx.index}]])">
+																		<span class="ml-2 fa_hover hand comment_reply" th:onclick="amtf_video_Reply(this,[[${entity.video_comment_id}]])">
 																			<i class="fa fa-comment" aria-hidden="true"></i>
 																			回复
 																		</span><br>
