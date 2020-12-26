@@ -272,4 +272,37 @@
 			VIDEO.VIDEO_TIME DESC
 		LIMIT 8
 	</select>
+	<!-- 查看是否看过该视频 -->
+	<select id="f040001_Select22" resultType="com.amtf.demo.commonentity.AmtfVideoHistoryEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO_HISTORY
+		WHERE
+			VIDEO_ID = #{video_id}
+		AND
+			USER_ID = #{user_id}
+		LIMIT 1
+	</select>
+	<!-- 修改观看时间 -->
+	<update id="f040001_Update23">
+		UPDATE
+			AMTF_VIDEO_HISTORY
+		SET
+			VIDEO_HISTORY_TIME = NOW()
+		WHERE
+			VIDEO_ID = #{video_id}
+		AND
+			USER_ID = #{user_id}
+	</update>
+	<!-- 查看观看历史 -->
+	<select id="f040001_Select24" resultType="com.amtf.demo.commonentity.AmtfVideoHistoryEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO_HISTORY
+		WHERE
+			USER_ID = #{user_id}
+		LIMIT 10
+	</select>
 </mapper>

@@ -113,4 +113,9 @@ public class F040001EntityOut {
      * 搜索标题略同
      */
     private List<AmtfVideoEntity> search_headlist;
+
+    /**
+     * 观看历史
+     */
+    private List<AmtfVideoHistoryEntity> videohistory;
 }

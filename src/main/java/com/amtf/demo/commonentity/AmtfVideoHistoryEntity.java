@@ -26,6 +26,16 @@ public class AmtfVideoHistoryEntity {
 	private String user_id;
 
 	/**
+	 * 视频标题
+	 */
+	private String video_head;
+
+	/**
+	 * 视频封面
+	 */
+	private String video_img;
+
+	/**
 	 * 发布时间
 	 */
 	private Date video_history_time ;

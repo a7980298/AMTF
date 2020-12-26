@@ -65,10 +65,16 @@ public class F040001ServiceImpl implements F040001Service {
 	@Override
 	public F040001EntityOut service01(F040001EntityIn entityin) throws ErrListException {
 		F040001EntityOut entityOut = new F040001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
 
 		// 获取视频标签分类
 		List<AmtfVideoClassEntity> select1 = f040001dao.f040001_Select1();
 		entityOut.setSelect1(select1);
+
+		// 获取观看历史
+		List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_email());
+		entityOut.setVideohistory(videohistory);
 
 		// 获取点赞数最多的视频
 		List<AmtfVideoEntity> sumpraise = f040001dao.f040001_Select20();
@@ -212,15 +218,30 @@ public class F040001ServiceImpl implements F040001Service {
 				entityOut.setVideoSimilar(select6list);
 				// 获取评论信息
 				entityOut.setCommentList(this.service07(entityin).getCommentList());
-				// 添加观看历史
-				AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
-				// id
-				amtfvideohistoryentity.setVideo_history_id(CommonUtil.isEmpty(commondao.common_Select13()) ? 0 : (commondao.common_Select13() + 1));
-				// 视频id
-				amtfvideohistoryentity.setVideo_id(video.getVideo_id());
-				// 用户id
-				amtfvideohistoryentity.setUser_id(loginfo.getUser_email());
-				f040001dao.f040001_Insert7(amtfvideohistoryentity);
+				if(CommonUtil.isEmpty(f040001dao.f040001_Select22(video.getVideo_id(),loginfo.getUser_email()))){
+					// 添加观看历史
+					AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
+					// id
+					amtfvideohistoryentity.setVideo_history_id(CommonUtil.isEmpty(commondao.common_Select13()) ? 0 : (commondao.common_Select13() + 1));
+					// 视频id
+					amtfvideohistoryentity.setVideo_id(video.getVideo_id());
+					// 用户id
+					amtfvideohistoryentity.setUser_id(loginfo.getUser_email());
+					f040001dao.f040001_Insert7(amtfvideohistoryentity);
+				} else {
+					f040001dao.f040001_Update23(video.getVideo_id(),loginfo.getUser_email());
+				}
+				// 获取观看历史
+				List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_email());
+				for (AmtfVideoHistoryEntity historyentity : videohistory) {
+					List<AmtfVideoEntity> videos = f040001dao.f040001_Select4(StringUtil.toStr(historyentity.getVideo_id()));
+					// 视频封面
+					historyentity.setVideo_img(videos.get(0).getVideo_img());
+					// 视频标题
+					historyentity.setVideo_head(videos.get(0).getVideo_head());
+				}
+
+				entityOut.setVideohistory(videohistory);
 			}
 		}
 		return entityOut;

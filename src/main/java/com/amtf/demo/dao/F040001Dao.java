@@ -51,4 +51,10 @@ public interface F040001Dao {
     List<AmtfVideoEntity> f040001_Select20();
 
     List<AmtfVideoEntity> f040001_Select21();
+
+    AmtfVideoHistoryEntity f040001_Select22(@Param("video_id")Integer video_id,@Param("user_id")String user_id);
+
+    Integer f040001_Update23(@Param("video_id")Integer video_id,@Param("user_id")String user_id);
+
+    List<AmtfVideoHistoryEntity> f040001_Select24(@Param("user_id")String user_id);
 }

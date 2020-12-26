@@ -163,4 +163,9 @@ public class F040001Params {
      * 回复评论
      */
     private List<AmtfVideoCommentReplyEntity> replylist;
+
+    /**
+     * 观看历史
+     */
+    private List<AmtfVideoHistoryEntity> videohistory;
 }
