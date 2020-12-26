@@ -42,9 +42,87 @@
 		color: #6c757d;
 		font-size: 13px;
 	}
+	.input_search_show{
+		position: absolute;
+		float: left;
+		background-color: white;
+		width: 100%;
+		z-index: 999;
+		margin-top: 39px;
+		font-size: 15px;
+		font-style: italic;
+		font-family: none;
+		text-align: left;
+	}
+	.input_search{
+		border: 0px;
+		font-size: 15px;
+		width: 100%;
+		font-style: italic;
+		font-family: none;
+		border-right: 0px;
+		float: left;
+	}
+	.input_search_div{
+		border-radius: 57px;
+		background-color: white;
+		padding-right: 0px;
+		border-right-width:1px;
+	}
+	.input_search_btn{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 100%;
+		float: right;
+		border-bottom-right-radius: 17px;
+		border-top-right-radius: 17px;
+		border: 0px;
+		width: 100%;
+		color: white;
+		background-color: #ff4500;
+		padding-left: 0px;
+		padding-right: 0px;
+		font-style: initial;
+	}
 </style>
 <script type="text/javascript" language="javascript">
 	$(function(){
+		$('.input_search').change(function () {
+			var _val = $('#ipt_search').val();
+			if(_val != ''){
+				$.ajax({
+					url : CONTEXT_PATH + '/f040001/T010',
+					type : 'post',
+					dateType : 'html',
+					async : true,
+					data : {
+						video_head: _val,
+					},
+					success : function(result) {
+						if(result.searchlist != ''){
+							if(!$(this).next().hasClass('show')){
+								let _val = $('#ipt_search').val();
+								let str = "";
+								str += "<div class='input_search_show'>";
+								for (let i = 0; i < result.searchlist.length; i++){
+									let _head = result.searchlist[i].video_head;
+									_val ='<span class="hand" onclick="amtf_videoView_Search(' + result.searchlist[i].video_id + ')">' + _head.replace(_val,'<span style="color:red">'+_val+'</span>') + '</span>';
+									str += 	_val;
+								}
+								str += "</div>";
+								$('#ipt_search').after(str);
+							}
+						}
+					},
+					error : function(res, textStaus) {
+						setCodeErrList("错误！！！请和管理员联系。。。");
+					},
+				});
+			}
+		})
+	/*	$('.input_search').blur(function () {
+			$(this).next().remove();
+		})*/
 		var myPlayer = videojs(document.getElementById('example_video_1'),{
 			// 语言
 			language: 'zh-CN',
@@ -124,6 +202,14 @@
 		reomveNewInput('video_id');
 	}
 
+	// 观看视频
+	function amtf_videoView_Search(_video_id) {
+		var newinput = getNewInput('video_id', _video_id);
+		amtf_form.appendChild(newinput);
+		amtf_submit(amtf_form, '/f040001/T002');
+		reomveNewInput('video_id');
+	}
+
 	// 弹幕发言
 	function amtf_video_Send() {
 		var text = document.getElementById('video_text').value;
@@ -132,7 +218,6 @@
 		var position = "0";
 		var size = "1";
 		if (text != "") {
-
 			$('#danmu').danmu("addDanmu",
 					{text: text, color: color, size: size, position: position, time: time, isnew: ""});
 			//将弹幕消息发送到后端，存到数据库中
@@ -353,8 +438,7 @@
 
 	// 搜索
 	function amtf_video_Search() {
-		$('#ipt_search_history').removeClass('d-none');
-		$('.typeahead').typeahead()
+
 	}
 </script>
 </head>
@@ -374,14 +458,12 @@
 									<div class="col-md-12">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
-												<div class="input-group col-md-4 m-auto d-flex">
-													<div class="col-10 pr-0">
-														<input type="text" id="ipt_search" class="form-control input-field nav-link" placeholder="搜索视频" >
-
+												<div class="input-group col-md-4 m-auto d-flex input_search_div">
+													<div class="col-10 pr-0 pl-0">
+														<input type="text" id="ipt_search" class="input_search" autocomplete="off" placeholder="搜索视频">
 													</div>
-													<div class="col-2 pl-0">
-														<button class="btn btn-sm btn-info">
-															<i class="fa fa-search"></i>
+													<div class="col-2 pl-0 pr-0">
+														<button class="btn-sm btn-reddit input_search_btn hand">
 															搜索
 														</button>
 													</div>

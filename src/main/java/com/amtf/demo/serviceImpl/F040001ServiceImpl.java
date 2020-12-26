@@ -169,6 +169,7 @@ public class F040001ServiceImpl implements F040001Service {
 				AmtfVideoEntity select6entity = new AmtfVideoEntity();
 				select6entity.setVideo_head(video.getVideo_head());
 				select6entity.setVideo_id(video.getVideo_id());
+				select6entity.setVideo_class(video.getVideo_class());
 				select6list = videoLike(select6entity,select6list,true);
 				entityOut.setVideoSimilar(select6list);
 				// 获取评论信息
@@ -455,6 +456,22 @@ public class F040001ServiceImpl implements F040001Service {
 			}
 		}
 
+		return entityOut;
+	}
+
+	/**
+	 * 搜索提示
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F040001EntityOut service11(F040001EntityIn entityin) throws ErrListException {
+		F040001EntityOut entityOut = new F040001EntityOut();
+		if(!CommonUtil.isEmpty(entityin.getVideo_head())){
+			List<AmtfVideoEntity> select19 = f040001dao.f040001_Select19(entityin.getVideo_head());
+			entityOut.setSearch_headlist(select19);
+		}
 		return entityOut;
 	}
 }

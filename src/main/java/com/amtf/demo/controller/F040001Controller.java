@@ -235,4 +235,24 @@ public class F040001Controller extends ValiDationUtil{
 		maps.put("ispraise",entityOut.getSelect15());
 		return maps;
 	}
+
+	/**
+	 * 评论点赞
+	 *
+	 * @parameter F040001Params params
+	 * @return String
+	 */
+	@RequestMapping("/f040001/T010")
+	@ResponseBody
+	public Map<String,Object> f040001T010(F040001Params params, Model model) {
+		F040001EntityIn entityin = new F040001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F040001EntityOut entityOut = f040001service.service11(entityin);
+		Map<String,Object> maps = new HashMap<String,Object>();
+
+		maps.put("searchlist",entityOut.getSearch_headlist());
+		return maps;
+	}
 }

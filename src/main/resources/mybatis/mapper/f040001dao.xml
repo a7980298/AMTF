@@ -219,4 +219,14 @@
 		AND
 			VIDEO_COMMENT_ID = #{video_comment_id}
 	</select>
+	<!-- 视频搜索标题提示 -->
+	<select id="f040001_Select19" resultType="com.amtf.demo.commonentity.AmtfVideoEntity">
+		SELECT
+			*
+		FROM
+			AMTF_VIDEO
+		WHERE
+			VIDEO_HEAD LIKE "%"#{video_head}"%"
+		LIMIT 8
+	</select>
 </mapper>

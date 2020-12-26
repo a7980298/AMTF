@@ -73,4 +73,9 @@ public class F040001EntityOut {
      * 评论是否点赞
      */
     private Integer select15;
+
+    /**
+     * 搜索标题略同
+     */
+    private List<AmtfVideoEntity> search_headlist;
 }
