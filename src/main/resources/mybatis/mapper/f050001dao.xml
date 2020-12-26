@@ -13,8 +13,7 @@
 		FROM
 			AMTF_NEWs
 		WHERE
-		AMTF_NEWs.news_name
-		= like '#{name}'
+		AMTF_NEWs.news_name like CONCAT(CONCAT('%',#{name}),'%')
 	</select>
 	<insert id="f050001_Insert1">
 		Insert

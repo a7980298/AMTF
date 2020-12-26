@@ -19,11 +19,6 @@ public class F050001EntityOut {
     private List<F050001_Select1Entity> news_list;
 
     /**
-     * 查找指定新闻信息
-     */
-    private List<F050001_Select2Entity> news_list1;
-
-    /**
      * 添加新闻信息
      */
     private List<F050001_Select2Entity> news_list2;

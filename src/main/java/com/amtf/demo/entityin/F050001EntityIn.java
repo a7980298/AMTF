@@ -14,8 +14,7 @@ public class F050001EntityIn extends UserImpl{
     private String IViewId;
 
     /**
-     * 新闻标题
+     *检索新闻标题
      */
-    private String Newsname;
-
+    private String news_title_name;
 }
