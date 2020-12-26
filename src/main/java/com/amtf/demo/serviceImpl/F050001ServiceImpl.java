@@ -75,12 +75,12 @@ public class F050001ServiceImpl implements F050001Service {
 		// 新建一个F050001EntityOut，并命名
 		F050001EntityOut entityout = new F050001EntityOut();
 		// 新建一个List的Entity来接收后台传回来的数据
-		List<AmtfNewsEntity> lists1 = f050001dao.f050001_Select2();
+		List<AmtfNewsEntity> lists1 = f050001dao.f050001_Select2(entityin.getNews_title_name());
 		// 新建一个List的Entity
-		List<F050001_Select2Entity> newsout = new ArrayList<F050001_Select2Entity>();
+		List<F050001_Select1Entity> newsout = new ArrayList<F050001_Select1Entity>();
 		// 因为后台传回的时间是date类型，前台显示有问题，所以建一个循环用list来接收传回来的数据（为了将date转化为数字类型）
 		for (AmtfNewsEntity newsEntity : lists1) {
-			F050001_Select2Entity out = new F050001_Select2Entity();
+			F050001_Select1Entity out = new F050001_Select1Entity();
 			out.setNews_name(newsEntity.getNews_name());
 			out.setNews_text(newsEntity.getNews_text());
 			out.setNews_user(newsEntity.getNews_user());
@@ -88,7 +88,7 @@ public class F050001ServiceImpl implements F050001Service {
 			newsout.add(out);
 		}
 		// 获取新闻信息(将SQL语句查询到的信息通过一个List传给实体类entityout)
-		entityout.setNews_list1(newsout);
+		entityout.setNews_list(newsout);
 		return entityout;
 	}
 	/**

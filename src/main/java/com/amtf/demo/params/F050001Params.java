@@ -2,6 +2,7 @@ package com.amtf.demo.params;
 
 import com.amtf.demo.commonentity.AmtfNewsEntity;
 import com.amtf.demo.f050001entity.F050001_Insert1Entity;
+import com.amtf.demo.f050001entity.F050001_Select2Entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -49,5 +50,10 @@ public class F050001Params {
      * 新闻发布
      */
     private List<F050001_Insert1Entity> add_news_list;
+
+    /**
+     * 新闻检索数据
+     */
+    private String news_title_name;
 
 }

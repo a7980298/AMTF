@@ -11,7 +11,7 @@ import java.util.List;
 public interface F050001Dao {
 	List<AmtfNewsEntity> f050001_Select1();
 
-	List<AmtfNewsEntity> f050001_Select2();
+	List<AmtfNewsEntity> f050001_Select2(@Param("name")String name);
 
 	List<AmtfNewsEntity> f050001_Insert1();
 

@@ -49,7 +49,6 @@ public class F050001Controller extends ValiDationUtil{
 	 * @return String
 	 */
 	@RequestMapping(value ="/f050001/T001", method = RequestMethod.POST)
-	@ResponseBody
 	public String f050001T001(F050001Params params, Model model) {
 		//新建一个entityin来接收前台传给后台的值
 	    F050001EntityIn entityIn = new F050001EntityIn();

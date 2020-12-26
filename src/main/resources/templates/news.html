@@ -16,16 +16,24 @@
 	.a{
 		margin: 40px 40px;
 	}
+	.wenben{
+		position: absolute;
+		right: 0px;
+	}
 
 </style>
 <script type="text/javascript">
-	//是否有新闻
-	// function(have){
-	// 	if(have == 0){
-	// 		setCodeSuccess('没有相关数据！');
-	// 	}else{
-	// 	}
-	// }
+	 //搜索指定新闻
+	function amtf_news_Search(){
+	 	if(document.getElementById('news_title_name').value == "") {
+			Message('error', '搜索条件不能为空！');
+		}else{
+			amtf_submit(amtf_form, '/f050001/T001');
+		}
+	}
+	function amtf_news_add(){
+		$('#news_report').modal('show');
+	}
 </script>
 </head>
 <body>
@@ -35,20 +43,76 @@
 			<th:block th:replace="head :: myhead"></th:block>
 			<div class="content">
 				<!-- 新闻 -->
+				<i-form class="" th:action="@{/f050001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 				<div class="card card-profile m-1 head" id="f050001">
-					<div class="col-md-12 d-flex">
+					<div class="col-md-12 d-flex" >
 						<a class="h5">新闻快讯</a>
-						<input></input>
-						<button class="btn btn-sm">搜索</button>
-						<button class="btn btn-sm">新闻编辑</button>
+						<div class="wenben">
+						<input name="news_title_name" id="news_title_name"></input>
+						<button class="btn btn-sm" onclick="amtf_news_Search()">搜索</button>
+						<button class="btn btn-sm" onclick="amtf_news_add()">新闻编辑</button>
+						</div>
 					</div>
-					<div class="col-md-10">
-						<table>
-							<tr id="01" class="card card-profile m-1" th:each="newsentity,idx:${f050001Params.news_list}">
-								<td class="text-left" >[[${newsentity.news_name}]]</td>
-								<td class="text-right" >[[${newsentity.news_date}]]</td>
+					<div class="col-md-12">
+						<table class="table table-striped table-hover">
+							<tr>
+								<td class="text-left">新闻标题</td>
+								<td class="text-left">发布时间</td>
+								<td>操作</td>
+							</tr>
+							<tr id="01" th:each="newsentity,idx:${f050001Params.news_list}">
+								<td class="text-left" wight="100%">[[${newsentity.news_name}]]</td>
+								<td class="text-left" wight="100%">[[${newsentity.news_date}]]</td>
+								<td><button class="btn btn-sm">查看</button></td>
 							</tr>
 						</table>
+					</div>
+					<div id="news_report" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog" style="max-width: 100%">
+							<div class="modal-content m-auto" style="width:1000px;">
+								<div class="modal-header">
+									<input class="input col-sm-11" id="report_head" placeholder="新聞標題" required="true"/>
+									<button type="button" class="close col-sm-1" data-dismiss="modal" aria-hidden="true">
+										<i class="material-icons">close</i>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="instruction">
+										<div class="row">
+											<div class="col-md-12">
+												<div id="news_editor"></div>
+											</div>
+										</div>
+									</div>
+									<div class="instruction">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="nav-item dropdown">
+													<button type="button" class="btn btn-sm btn-white" data-toggle="dropdown" id="showclass">
+														<span>十 添加标签（最多3个）</span>
+													</button>
+													<div class="dropdown-menu">
+														<div class="col-sm-12">
+															<a class="btn-white" th:each="entity,idx:${f050001Params.add_news_list}" th:onclick="amtf_qa_SetClass([[${entity}]])">
+																[[${entity.qa_class_name}]]
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer justify-content-center col-sm-12 text-right">
+									<button type="button" class="btn h5 col-sm-1 ml-auto" data-dismiss="modal" aria-hidden="true">
+										取消
+									</button>
+									<button type="button" class="btn btn-reddit h5 col-sm-1 ml-4" onclick="amtf_qa_EditorSubmit()">
+										确定
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="container-fluid">
 						<i-form class="" th:action="@{/f050001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
@@ -56,6 +120,7 @@
 						</i-form>
 					</div>
 				</div>
+				</i-form>
 			</div>
 		</div>
 	</div>
