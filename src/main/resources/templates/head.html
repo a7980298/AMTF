@@ -178,14 +178,14 @@
 						</div>
 						<ul class="navbar-nav col-sm-3">
 							<li class="nav-item col-sm-2">
-								<a class="nav-link col-sm-12" href="javascript:;">
+								<a class="nav-link col-sm-12 m-auto" href="javascript:;">
 									<i class="material-icons">dashboard</i>
 									<p class="d-lg-none d-md-block">工具包</p>
 								</a>
 							</li>
 							<li class="nav-item dropdown col-sm-2" onclick="amtf_updonticeclick()" th:if="${main_params.admin} == null">
-								<div id="select5" th:fragment="select5">
-									<a class="nav-link col-sm-12" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+								<div id="select5" class="m-auto" th:fragment="select5">
+									<a class="nav-link col-sm-12 m-auto" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
 										<i class="material-icons" id="i_notifications">notifications</i>
 										<span class="notification" th:if="${not #lists.isEmpty(main_params.select5)}" id="updontice_size">[[${main_params.select5.size()}]]</span>
@@ -198,13 +198,13 @@
 									</div>
 								</div>
 							</li>
-							<li class="nav-item dropdown col-sm-2" th:if="${main_params.admin} == null">
-								<a class="nav-link col-sm-12" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
+							<li class="nav-item dropdown col-sm-3" th:if="${main_params.admin} == null">
+								<a class="nav-link col-sm-12 m-0 p-0" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
-									<div class="card-avatar">
-										<div class="photo">
-											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" id="img1" style="height:34px;"/>
-											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" th:if="${main_params.logInFo.imgpath != ''}" id="img1" style="height:34px;"/>
+									<div class="card-avatar col-sm-12 m-0 p-0">
+										<div class="photo col-sm-12 m-0 p-0">
+											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="img" id="img1"/>
+											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" class="img" th:if="${main_params.logInFo.imgpath != ''}" id="img1"/>
 										</div>
 									</div>
 									<p class="d-lg-none d-md-block">账户</p>
