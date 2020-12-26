@@ -220,7 +220,7 @@
 	function amtf_video_Reply(_this, idx) {
 		$('#video_reply_text').remove();
 		$('#video_reply_btn').remove();
-		if($(_this).text().indexOf('收起') != -1){
+		if($(_this).text().indexOf('收起') != -1 ){
 			$('.comment_reply').text('');
 			$('.comment_reply').removeClass('fa_hover_h');
 			$('.comment_reply').addClass('fa_hover');
@@ -350,6 +350,12 @@
 			},
 		});
 	}
+
+	// 搜索
+	function amtf_video_Search() {
+		$('#ipt_search_history').removeClass('d-none');
+		$('.typeahead').typeahead()
+	}
 </script>
 </head>
 <body id="main_body">
@@ -368,12 +374,17 @@
 									<div class="col-md-12">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
-												<div class="input-group col-md-4 m-auto">
-													<input type="text" class="form-control input-field" placeholder="搜索视频">
-													<button class="btn btn-sm btn-info">
-														<i class="fa fa-search"></i>
-														搜索
-													</button>
+												<div class="input-group col-md-4 m-auto d-flex">
+													<div class="col-10 pr-0">
+														<input type="text" id="ipt_search" class="form-control input-field nav-link" placeholder="搜索视频" >
+
+													</div>
+													<div class="col-2 pl-0">
+														<button class="btn btn-sm btn-info">
+															<i class="fa fa-search"></i>
+															搜索
+														</button>
+													</div>
 												</div>
 											</div>
 											<div class="input-group no-border col-sm-1">
