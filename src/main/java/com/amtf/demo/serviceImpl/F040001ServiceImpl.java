@@ -46,6 +46,16 @@ public class F040001ServiceImpl implements F040001Service {
 	private final CommonDao commondao;
 
 	private final String GETCLASS_1 = "专辑";
+
+	private final String GETCLASS_2 = "电视剧";
+
+	private final String GETCLASS_3 = "电影";
+
+	private final String GETCLASS_4 = "小视频";
+
+	private final String GETCLASS_5 = "纪录片";
+
+	private final String GETCLASS_6 = "少儿";
 	/**
 	 * 初始化
 	 * @param entityin
@@ -60,9 +70,37 @@ public class F040001ServiceImpl implements F040001Service {
 		List<AmtfVideoClassEntity> select1 = f040001dao.f040001_Select1();
 		entityOut.setSelect1(select1);
 
+		// 获取点赞数最多的视频
+		List<AmtfVideoEntity> sumpraise = f040001dao.f040001_Select20();
+		entityOut.setSumpraise(sumpraise);
+
 		// 获取专辑视频的前8个
 		List<AmtfVideoEntity> albumList = f040001dao.f040001_Select3(GETCLASS_1);
 		entityOut.setAlbumList(albumList);
+
+		// 获取电视剧视频的前8个
+		List<AmtfVideoEntity> albumList2 = f040001dao.f040001_Select3(GETCLASS_2);
+		entityOut.setAlbumList2(albumList2);
+
+		// 获取电影视频的前8个
+		List<AmtfVideoEntity> albumList3 = f040001dao.f040001_Select3(GETCLASS_3);
+		entityOut.setAlbumList3(albumList3);
+
+		// 获取小视频视频的前8个
+		List<AmtfVideoEntity> albumList4 = f040001dao.f040001_Select3(GETCLASS_4);
+		entityOut.setAlbumList4(albumList4);
+
+		// 获取纪录片视频的前8个
+		List<AmtfVideoEntity> albumList5 = f040001dao.f040001_Select3(GETCLASS_5);
+		entityOut.setAlbumList5(albumList5);
+
+		// 获取少儿视频的前8个
+		List<AmtfVideoEntity> albumList6 = f040001dao.f040001_Select3(GETCLASS_6);
+		entityOut.setAlbumList6(albumList6);
+
+		// 获取推荐视频
+		List<AmtfVideoEntity> recommendvideo = f040001dao.f040001_Select21();
+		entityOut.setRecommendvideo(recommendvideo);
 
 		return entityOut;
 	}

@@ -47,4 +47,8 @@ public interface F040001Dao {
     Integer f040001_Select18(@Param("video_id")Integer video_id,@Param("video_comment_id")Integer video_comment_id);
 
     List<AmtfVideoEntity> f040001_Select19(@Param("video_head")String video_head);
+
+    List<AmtfVideoEntity> f040001_Select20();
+
+    List<AmtfVideoEntity> f040001_Select21();
 }

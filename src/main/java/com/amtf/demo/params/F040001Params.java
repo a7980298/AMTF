@@ -55,9 +55,44 @@ public class F040001Params {
     private String video_duration;
 
     /**
+     * 点赞人数最多的视频
+     */
+    private List<AmtfVideoEntity> sumpraise;
+
+    /**
      * 专辑一栏
      */
     private List<AmtfVideoEntity> albumList;
+
+    /**
+     * 电视剧一栏
+     */
+    private List<AmtfVideoEntity> albumList2;
+
+    /**
+     * 电影一栏
+     */
+    private List<AmtfVideoEntity> albumList3;
+
+    /**
+     * 小视频一栏
+     */
+    private List<AmtfVideoEntity> albumList4;
+
+    /**
+     * 纪录片一栏
+     */
+    private List<AmtfVideoEntity> albumList5;
+
+    /**
+     * 少儿一栏
+     */
+    private List<AmtfVideoEntity> albumList6;
+
+    /**
+     * 推荐视频
+     */
+    private List<AmtfVideoEntity> recommendvideo;
 
     /**
      *  视频id
