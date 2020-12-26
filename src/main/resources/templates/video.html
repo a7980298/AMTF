@@ -33,8 +33,86 @@
 	.modal input[type=text]:focus,.video_textarea:focus {
 		border: 1px solid #ff4040c9;
 	}
+	.input_search_show{
+		position: absolute;
+		float: left;
+		background-color: white;
+		width: 100%;
+		z-index: 999;
+		margin-top: 39px;
+		font-size: 15px;
+		font-style: italic;
+		font-family: none;
+		text-align: left;
+	}
+	.input_search{
+		border: 0px;
+		font-size: 15px;
+		width: 100%;
+		font-style: italic;
+		font-family: none;
+		border-right: 0px;
+		float: left;
+	}
+	.input_search_div{
+		border-radius: 57px;
+		background-color: white;
+		padding-right: 0px;
+		border-right-width:1px;
+	}
+	.input_search_btn{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 100%;
+		float: right;
+		border-bottom-right-radius: 17px;
+		border-top-right-radius: 17px;
+		border: 0px;
+		width: 100%;
+		color: white;
+		background-color: #ff4500;
+		padding-left: 0px;
+		padding-right: 0px;
+		font-style: initial;
+	}
 </style>
 <script type="text/javascript" language="javascript">
+	function amtf_video_SearchInput() {
+		var _val = $('#ipt_search').val();
+		if (_val != '') {
+			$('#input_search_show').remove();
+			$.ajax({
+				url: CONTEXT_PATH + '/f040001/T010',
+				type: 'post',
+				dateType: 'html',
+				async: true,
+				data: {
+					video_head: _val,
+				},
+				success: function (result) {
+					if (result.searchlist != '') {
+						if (!$(this).next().hasClass('show')) {
+							let _val = $('#ipt_search').val();
+							let str = "";
+							str += "<div class='input_search_show' id='input_search_show'>";
+							for (let i = 0; i < result.searchlist.length; i++) {
+								let _head = result.searchlist[i].video_head;
+								let _addval = '<span class="hand" onclick="amtf_videoView(' + result.searchlist[i].video_id + ')">' + _head.replace(_val, '<span style="color:red">' + _val + '</span>') + '</span><br>';
+								str += _addval;
+							}
+							str += "</div>";
+							$('#ipt_search').after(str);
+						}
+					}
+				},
+				error: function (res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		} else {
+			$('#input_search_show').remove();
+		}
+	}
 	function amtf_fileVideo(_this) {
 		$('#commitvideodiv').addClass('d-none');
 		$('#lookvideodiv').removeClass('d-none');
@@ -174,11 +252,7 @@
 			},
 		});
 	})
-	// 修改封面
-	function amtf_upVideoImg() {
 
-
-	}
 	// 观看视频
 	function amtf_videoView(_entity) {
 		var newinput = getNewInput('video_id', _entity.video_id);
@@ -204,12 +278,15 @@
 									<div class="swiper-container col-md-12 h-30">
 										<div class="col-md-12 d-flex">
 											<div class="text-center col-md-9 h3 mt-1 text-left font-weight-bold">
-												<div class="input-group col-md-4 m-auto">
-													<input type="text" class="form-control input-field" placeholder="搜索视频">
-													<button class="btn btn-sm btn-info">
-														<i class="fa fa-search"></i>
-														搜索
-													</button>
+												<div class="input-group col-md-4 m-auto d-flex input_search_div">
+													<div class="col-10 pr-0 pl-0">
+														<input type="text" id="ipt_search" class="input_search" autocomplete="off" placeholder="搜索视频" oninput="amtf_video_SearchInput()">
+													</div>
+													<div class="col-2 pl-0 pr-0">
+														<button class="btn-sm btn-reddit input_search_btn hand">
+															搜索
+														</button>
+													</div>
 												</div>
 											</div>
 											<div class="input-group no-border col-sm-1">
