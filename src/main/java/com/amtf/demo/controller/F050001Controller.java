@@ -1,19 +1,25 @@
 package com.amtf.demo.controller;
 
 import com.amtf.demo.entityin.F050001EntityIn;
-import com.amtf.demo.entityin.F060001EntityIn;
 import com.amtf.demo.entityout.F050001EntityOut;
-import com.amtf.demo.entityout.F060001EntityOut;
 import com.amtf.demo.params.F050001Params;
 import com.amtf.demo.service.F050001Service;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.ValiDationUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class F050001Controller extends ValiDationUtil{
@@ -73,19 +79,17 @@ public class F050001Controller extends ValiDationUtil{
 
 	@RequestMapping(value ="/f050001/T002", method = RequestMethod.POST)
 	@ResponseBody
-	public String f050001T002(F050001Params params, Model model) {
+	public Map<String,Object> f050001T002(@RequestBody JSONObject data,
+										  HttpServletRequest request) {
 		//新建一个entityin来接收前台传给后台的值
 		F050001EntityIn entityIn = new F050001EntityIn();
-		//将画面上的param值全部给entityin
-		ParameterUtil.copyParameter(entityIn,params);
-		//新建一个entityout来接收后台传给前台的值
+		//将json数据
+		entityIn.setSubmitjson(JSONObject.fromObject(data));
+		Map<String,Object> maps = new HashMap<String,Object>();
+		List<String> err=new ArrayList<String>();
 		F050001EntityOut entityOut = f050001service.service03(entityIn);
-		//将画面上的entityOut值全部给param
-		ParameterUtil.copyParameter(params,entityOut);
-		model.addAttribute("f050001Params", params);
-
-		return "news";
-
+		maps.put("insert1",entityOut.getInsert1());
+		return maps;
 	}
 
 }

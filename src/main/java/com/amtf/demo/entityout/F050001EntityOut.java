@@ -14,6 +14,11 @@ import java.util.List;
 public class F050001EntityOut {
 
     /**
+     * 发布是否成功
+     */
+    private Integer insert1;
+
+    /**
      * 查找所有新闻信息
      */
     private List<F050001_Select1Entity> news_list;
