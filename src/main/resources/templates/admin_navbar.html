@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="admin_navbar">
+	<head>
+	<meta charset="UTF-8"/>
+	<title>管理页面</title>
+	<th:block th:replace="vue-import :: vue-import"></th:block>
+	<style type="text/css">
+
+	</style>
+	</head>
+	<body class="">
+			<el-aside width="200px" style="background-color: rgb(238, 241, 246);overflow-y:hidden">
+				<el-menu :default-openeds="['1', '3']" th:each="mapkey,idx:${main_params.navigation_bar}">
+					<el-submenu index="1">
+						<template slot="title">
+							<i th:class="${mapkey.value[0].power_class}"></i>
+							[[${mapkey.key}]]
+						</template>
+						<el-menu-item-group th:each="fileInfo,idxs: ${mapkey.value}">
+							<el-menu-item index="1-2">[[${fileInfo.power_name}]]</el-menu-item>
+						</el-menu-item-group>
+					</el-submenu>
+				</el-menu>
+			</el-aside>
+	</body>
+</th:block>
+</html>
