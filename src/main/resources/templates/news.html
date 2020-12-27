@@ -47,19 +47,7 @@
 			 'justify',  // 对齐方式
 			 'image',  // 插入图片
 		 ]
-		 editor.config.zIndex = 10;
-		 editor.config.showFullScreen = false;
-		 //开启debug模式
-		 editor.config.debug = true;
-		 // 关闭粘贴内容中的样式
-		 editor.config.pasteFilterStyle = false
-		 editor.config.height = '300'
-		 // 忽略粘贴内容中的图片
-		 editor.config.pasteIgnoreImg = true
-		 // 上传路径
-		 // 进行下文提到的其他配置
-		 // 将图片大小限制为 3M
-		 editor.config.uploadImgMaxSize = 3 * 1024 * 1024
+		 editor.create();
 	 });
 
 </script>
