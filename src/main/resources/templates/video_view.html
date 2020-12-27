@@ -40,6 +40,7 @@
 		background-color: #ff9800;
 		border: 0px;
 		color: white;
+		border-radius: 5px;
 	}
 	.comment_reply_open{
 		background-color: rgba(0,0,0,.12);
@@ -445,7 +446,7 @@
 											'<span>' + result.replylist[i].user_name + ':</span>' +
 											'<span class="ml-2">' + result.replylist[i].video_comment_reply_text + '</span>' +
 											'<br>' +
-											'<span>赞-回复-' + result.replylist[i].nowtime + '</span>' +
+											'<span class="hand">赞</span>-<span class="hand">回复</span>-<span>' + result.replylist[i].nowtime + '</span>' +
 										'</div>';
 							}
 					src += '</div>';
