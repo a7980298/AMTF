@@ -88,6 +88,21 @@
 		padding-right: 0px;
 		font-style: initial;
 	}
+	.input_search_btn:hover{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 100%;
+		float: right;
+		border-bottom-right-radius: 17px;
+		border-top-right-radius: 17px;
+		border: 0px;
+		width: 100%;
+		color: white;
+		background-color: #ff0000;
+		padding-left: 0px;
+		padding-right: 0px;
+		font-style: initial;
+	}
 	.history-div:hover{
 		background-color: rgba(212, 212, 212, 0.42);
 	}
@@ -95,6 +110,9 @@
 		border-radius:14px;
 		border:0;
 		background-color:#e2e2e2;
+	}
+	.search_list:hover{
+		background-color: rgba(212, 212, 212, 0.42);
 	}
 </style>
 <script type="text/javascript" language="javascript">
@@ -198,7 +216,7 @@
 							str += "<div class='input_search_show' id='input_search_show'>";
 							for (let i = 0; i < result.searchlist.length; i++) {
 								let _head = result.searchlist[i].video_head;
-								let _addval = '<span class="hand" onclick="amtf_videoView_Search(' + result.searchlist[i].video_id + ')">' + _head.replace(_val, '<span style="color:red">' + _val + '</span>') + '</span><br>';
+								let _addval = '<div class="hand search_list" onclick="amtf_videoView_Search(' + result.searchlist[i].video_id + ')">' + _head.replace(_val, '<span style="color:red">' + _val + '</span>') + '</div>';
 								str += _addval;
 							}
 							str += "</div>";
