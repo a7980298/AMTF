@@ -74,8 +74,28 @@
 		padding-right: 0px;
 		font-style: initial;
 	}
+	.history-div:hover{
+		background-color: rgba(212, 212, 212, 0.42);
+	}
+	.history_data{
+		color: rgba(0, 0, 0, 0.62);
+		font-size: smaller;
+	}
+	.history_data:hover{
+		color: #ef861a;
+		font-size: smaller;
+	}
 </style>
 <script type="text/javascript" language="javascript">
+	$(function(){
+		// 观看历史
+		$("#askfocus_show").hide();
+		$(".showhistory").hover(function(){
+			$("#askfocus_show").show();
+		},function(){
+			$("#askfocus_show").hide();
+		})
+	})
 	function amtf_video_SearchInput() {
 		var _val = $('#ipt_search').val();
 		if (_val != '') {
@@ -290,11 +310,21 @@
 											</div>
 											<div class="input-group no-border col-sm-1">
 												<div class="m-auto d-flex">
-													<div class="nav-item dropdown">
-														<button type="button" class="btn btn-sm btn-reddit" onclick="amtf_video_Ask()">
+													<div class="showhistory" id="askfocus">
+														<button type="button" class="btn btn-sm btn-reddit">
 															<i class="fa fa-history"></i>
 															<span>观看历史</span>
 														</button>
+													</div>
+													<div class="pt-0 hand showhistory" style="width: 310px;position: absolute;z-index: 999;margin-top:40px;background-color: white;box-shadow:rgba(108, 117, 125, 0.35) 0px 2px 0px;border-radius:3px" id="askfocus_show">
+														<div class="ml-1 mb-1 mt-1 d-flex history-div" th:each="entity,idx:${f040001Params.videohistory}"  th:onclick="amtf_videoView([[${entity}]])">
+															<div>
+																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="hand" style="height: 80px;width: 140px;"/>
+															</div>
+															<div style="height: 80px;width: 160px;">
+																<span class="h5 history_data" >[[${entity.video_head}]]</span>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>

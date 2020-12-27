@@ -88,6 +88,14 @@
 		padding-right: 0px;
 		font-style: initial;
 	}
+	.history-div:hover{
+		background-color: rgba(212, 212, 212, 0.42);
+	}
+	.video_textarea{
+		border-radius:14px;
+		border:0;
+		background-color:#e2e2e2;
+	}
 </style>
 <script type="text/javascript" language="javascript">
 	$(function(){
@@ -455,11 +463,6 @@
 			},
 		});
 	}
-
-
-/*	function amtf_video_AskOut(_this) {
-		$('#askfocus_show').addClass('d-none');
-	}*/
 </script>
 </head>
 <body id="main_body">
@@ -497,8 +500,8 @@
 															<span>观看历史</span>
 														</button>
 													</div>
-													<div class="pt-0 hand showhistory" style="width: 310px;position: absolute;z-index: 999;margin-top:40px;background-color: white" id="askfocus_show">
-														<div class="ml-1 mt-1 d-flex" th:each="entity,idx:${f040001Params.videohistory}"  th:onclick="amtf_videoView([[${entity}]])">
+													<div class="pt-0 hand showhistory" style="width: 310px;position: absolute;z-index: 999;margin-top:40px;background-color: white;box-shadow:rgba(108, 117, 125, 0.35) 0px 2px 0px;border-radius:3px" id="askfocus_show">
+														<div class="ml-1 mb-1 mt-1 d-flex history-div" th:each="entity,idx:${f040001Params.videohistory}"  th:onclick="amtf_videoView([[${entity}]])">
 															<div>
 																<img th:src="@{/videoimg/{fileNmame}(fileNmame=${entity.video_img})}" class="hand" style="height: 80px;width: 140px;"/>
 															</div>
@@ -519,12 +522,12 @@
 													   data-setup="{}">
 													<source th:src="@{/videocommit/{videopath}(videopath = ${f040001Params.videoView.video_path})}"/>
 												</video>
-												<div class="d-flex col-md-12 mt-2">
-													<div class="col-md-11 pr-0 mr-0">
+												<div class="d-flex col-md-12 mt-2 ml-0 mr-0 p-0">
+													<div class="col-md-11 pr-0 mr-0 pl-0">
 														<textarea id="video_text" type="text" class="input-field w-100 h-100 video_textarea" placeholder="发条弹幕。。。"></textarea>
 													</div>
 													<div class="col-md-1">
-														<button class="btn btn-lg m-0 btn-info" onclick="amtf_video_Send()">发表</button>
+														<button class="btn btn-lg m-0 btn-info w-100" onclick="amtf_video_Send()">发表</button>
 													</div>
 												</div>
 											</div>

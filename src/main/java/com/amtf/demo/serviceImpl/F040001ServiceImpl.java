@@ -72,10 +72,6 @@ public class F040001ServiceImpl implements F040001Service {
 		List<AmtfVideoClassEntity> select1 = f040001dao.f040001_Select1();
 		entityOut.setSelect1(select1);
 
-		// 获取观看历史
-		List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_email());
-		entityOut.setVideohistory(videohistory);
-
 		// 获取点赞数最多的视频
 		List<AmtfVideoEntity> sumpraise = f040001dao.f040001_Select20();
 		entityOut.setSumpraise(sumpraise);
@@ -107,6 +103,18 @@ public class F040001ServiceImpl implements F040001Service {
 		// 获取推荐视频
 		List<AmtfVideoEntity> recommendvideo = f040001dao.f040001_Select21();
 		entityOut.setRecommendvideo(recommendvideo);
+
+		// 获取观看历史
+		List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_email());
+		for (AmtfVideoHistoryEntity historyentity : videohistory) {
+			List<AmtfVideoEntity> videos = f040001dao.f040001_Select4(StringUtil.toStr(historyentity.getVideo_id()));
+			// 视频封面
+			historyentity.setVideo_img(videos.get(0).getVideo_img());
+			// 视频标题
+			historyentity.setVideo_head(videos.get(0).getVideo_head());
+		}
+
+		entityOut.setVideohistory(videohistory);
 
 		return entityOut;
 	}
