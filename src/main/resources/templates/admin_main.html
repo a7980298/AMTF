@@ -8,12 +8,12 @@
 
 </style>
 </head>
-<body class="">
-	<div class="wrapper">
+<body>
+	<div class="wrapper" id="admin_id">
 		<i-form class="" th:action="@{/f020001}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 		<input type="hidden" name="IViewId" value="f020001"/>
 			<div id="app">
-				<el-container style="height: 500px; border: 1px solid #eee">
+				<el-container>
 					<th:block th:replace="admin_navbar :: admin_navbar"></th:block>
 					<th:block th:replace="admin_head :: admin_head"></th:block>
 				</el-container>
@@ -23,18 +23,14 @@
 </body>
 <script type="text/javascript">
 	new Vue({
-		el: '#app',
+		el: '#admin_id',
 		data: {
 
 		},
-		methods:function (){
-			axios.post(CONTEXT_PATH + '/f020001', {
-
-			}).then(function (response) {
-
-			}).catch(function (error) {
-				setCodeErrList("错误！！！请和管理员联系。。。");
-			});
+		methods: {
+			amtf_loginhead(event) {
+				alert(event)
+			}
 		}
 	})
 </script>
