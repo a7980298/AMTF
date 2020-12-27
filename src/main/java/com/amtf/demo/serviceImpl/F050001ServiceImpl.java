@@ -11,11 +11,10 @@ import com.amtf.demo.entityout.F060001EntityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f050001entity.F050001_Insert1Entity;
 import com.amtf.demo.f050001entity.F050001_Select1Entity;
-import com.amtf.demo.f050001entity.F050001_Select2Entity;
-import com.amtf.demo.f060001entity.F060001_Select3Entity;
-import com.amtf.demo.service.F040001Service;
 import com.amtf.demo.service.F050001Service;
+import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.DateUtil;
+import com.amtf.demo.util.ParameterUtil;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,18 +101,18 @@ public class F050001ServiceImpl implements F050001Service {
 	public F050001EntityOut service03(F050001EntityIn entityin) throws ErrListException {
 		F050001EntityOut entityout = new F050001EntityOut();
 		// 新建一个List的Entity来接收后台传回来的数据
-		List<AmtfNewsEntity> lists = f050001dao.f050001_Insert1();
-		List<F050001_Insert1Entity> newsout = new ArrayList<F050001_Insert1Entity>();
-	/*	for (AmtfNewsEntity newsEntity : lists2) {
-			F050001_Insert1Entity out = new F050001_Insert1Entity();
-			out.setNews_name(newsEntity.getNews_name());
-			out.setNews_text(newsEntity.getNews_text());
-			out.setNews_user(newsEntity.getNews_user());
-			out.setNews_date(DateUtil.dateToStr(newsEntity.getNews_date(), DateUtil.DATE_TOSTR3));
-			newsout.add(out);
-		}
-		// 获取新闻信息(将SQL语句查询到的信息通过一个List传给实体类entityout)
-		entityout.setNews_list2(newsout);*/
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		AmtfNewsEntity insert1 = new AmtfNewsEntity();
+		//标题
+		insert1.setNews_name(entityin.getSubmitjson().getString("head"));
+		//内容
+		insert1.setNews_text(entityin.getSubmitjson().getString("body"));
+		//发布人
+		insert1.setNews_user(loginfo.getUser_name());
+
+		Integer insert1in = f050001dao.f050001_Insert1(insert1);
+		entityout.setInsert1(insert1in);
 		return entityout;
 	}
 }

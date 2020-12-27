@@ -47,8 +47,44 @@
 			 'justify',  // 对齐方式
 			 'image',  // 插入图片
 		 ]
+		 //创建插件
 		 editor.create();
 	 });
+	 //新闻发布
+	 function amtf_news_EditorSubmit(){
+	 	//新建一个数组来接收新闻标题和新闻内容
+	 	var news_add ={};
+	 	//获取新闻标题
+		 news_add.head = $('#report_news_head').val();
+		 //获取新闻内容
+		 news_add.body = editor.txt.html();
+		 //新闻内容是否为空
+	 	if ($('#report_news_head').val() == ""){
+			Message('error', '新闻标题不能为空！');
+		}else{
+			$.ajax({
+				url : CONTEXT_PATH + '/f050001/T002',
+				type : 'post',
+				dateType : 'json',
+				async : false,
+				contentType : "application/json",
+				data : JSON.stringify(news_add),
+				success : function(result) {
+					if (result.insert1 >= 1) {
+						Message('success', '发布成功');
+						reply_editor.txt.clear();
+					}else{
+						Message('error', '发布失败');
+					}
+				},
+				error : function(res, textStaus) {
+					setCodeErrList("错误！！！请和管理员联系。。。");
+				},
+			});
+		}
+
+
+	 }
 
 </script>
 </head>
@@ -77,8 +113,8 @@
 								<td>操作</td>
 							</tr>
 							<tr id="01" th:each="newsentity,idx:${f050001Params.news_list}">
-								<td class="text-left" wight="100%">[[${newsentity.news_name}]]</td>
-								<td class="text-left" wight="100%">[[${newsentity.news_date}]]</td>
+								<td class="text-left">[[${newsentity.news_name}]]</td>
+								<td class="text-left">[[${newsentity.news_date}]]</td>
 								<td><button class="btn btn-sm">查看</button></td>
 							</tr>
 						</table>
@@ -87,7 +123,7 @@
 						<div class="modal-dialog" style="max-width: 100%">
 							<div class="modal-content m-auto" style="width:1000px;">
 								<div class="modal-header">
-									<input class="input col-sm-11" id="report_head" placeholder="新聞標題" required="true"/>
+									<input class="input col-sm-11" id="report_news_head" name="news_title_name" placeholder="新聞標題" required="true"/>
 									<button type="button" class="close col-sm-1" data-dismiss="modal" aria-hidden="true">
 										<i class="material-icons">close</i>
 									</button>

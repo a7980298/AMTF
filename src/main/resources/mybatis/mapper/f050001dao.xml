@@ -16,15 +16,13 @@
 		AMTF_NEWs.news_name like CONCAT(CONCAT('%',#{name}),'%')
 	</select>
 	<insert id="f050001_Insert1">
-		Insert
-			into
-		FROM
+		Insert into
 			AMTF_NEWs
 		values(
-		#{news_user}
-		,#{news_name}
-		,#{news_text}
-		,#{news_date}
+		#{entity.news_user}
+		,#{entity.news_name}
+		,#{entity.news_text}
+		,sysdate()
 		)
 	</insert>
 </mapper>
