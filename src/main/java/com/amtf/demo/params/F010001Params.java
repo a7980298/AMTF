@@ -92,9 +92,4 @@ public class F010001Params extends UserImpl {
 	 * 锁定
 	 */
 	public String locking;
-
-	/**
-	 * 跳转画面id
-	 */
-	private String login_html;
 }

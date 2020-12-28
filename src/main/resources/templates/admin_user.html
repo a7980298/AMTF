@@ -14,10 +14,12 @@
 			<div id="app">
 				<el-container>
 					<th:block th:replace="admin_navbar :: admin_navbar"></th:block>
-					<el-main>
+					<el-main style="padding-top: 0px">
+						<th:block th:replace="admin_head :: admin_head"></th:block>
 						<el-table
 								:data="tableData"
-								style="width: 100%">
+								style="width: 100%"
+								v-loading="loading">
 							<el-table-column
 									label="账户"
 									width="180">
@@ -78,19 +80,27 @@
 								:visible.sync="dialogVisible"
 								width="30%"
 								:before-close="handleClose">
-							<div class="block">
-								<div class="block">
-									<el-avatar :size="50" :src="dialog_src"></el-avatar>
-								</div>
-								<span>{{dialog_name}}</span>
-							</div>
+							<el-row :gutter="20">
+								<el-col :span="5">
+									<div class="block">
+										<div class="block">
+											<el-avatar :size="80" :src="dialog_src"></el-avatar>
+										</div>
+									</div>
+								</el-col>
+								<el-col :span="8">
+									<div class="block">
+										<span>{{dialog_name}}</span>
+									</div>
+								</el-col>
+							</el-row>
 							<span slot="footer" class="dialog-footer">
-								<el-button @click="dialogVisible = false">取 消</el-button>
+								<!--<el-button @click="dialogVisible = false">取 消</el-button>-->
 								<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
 							</span>
 						</el-dialog>
 					</el-main>
-					<th:block th:replace="admin_head :: admin_head"></th:block>
+
 				</el-container>
 			</div>
 		</i-form>

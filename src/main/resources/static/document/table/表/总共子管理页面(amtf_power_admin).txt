@@ -7,7 +7,7 @@ CREATE TABLE AMTF_POWER_ADMIN(
 	power_class VARCHAR(50), -- class样式
 	power_short VARCHAR(10) -- 缩写
 )
-insert into test.AMTF_POWER_ADMIN values(1001,'操作','人员管理','1','f020003','el-icon-user-solid','u');
+insert into test.AMTF_POWER_ADMIN values(1001,'操作','人员管理','1','admin_user','el-icon-user-solid','u');
 -- insert into test.AMTF_POWER_ADMIN values(1002,'查詢','人员管理','1','','el-icon-user-solid','S');
 -- insert into test.AMTF_POWER_ADMIN values(1003,'認證','人员管理','1','','el-icon-user-solid,'Y');
 -- insert into test.AMTF_POWER_ADMIN values(1004,'權限升級','人员管理','1','','el-icon-user-solid','UP');
@@ -18,9 +18,9 @@ insert into test.AMTF_POWER_ADMIN values(1005,'操作','功能管理','1','','el
 -- insert into test.AMTF_POWER_ADMIN values(1008,'刪除','功能管理','1','','el-icon-share','D');
 -- insert into test.AMTF_POWER_ADMIN values(1009,'增加','功能管理','1','','el-icon-share','I');
 
-insert into test.AMTF_POWER_ADMIN values(1010,'发布通知','通知','1','f020004','el-icon-s-opportunity','RF');
+insert into test.AMTF_POWER_ADMIN values(1010,'发布通知','通知','1','admin_allnotices','el-icon-s-opportunity','RF');
 -- insert into test.AMTF_POWER_ADMIN values(1011,'范围','通知','1','','el-icon-s-opportunity','EF');
-insert into test.AMTF_POWER_ADMIN values(1012,'活动举办','通知','1','f020005','el-icon-s-opportunity','HD');
+insert into test.AMTF_POWER_ADMIN values(1012,'活动举办','通知','1','admin_avtivity','el-icon-s-opportunity','HD');
 
 insert into test.AMTF_POWER_ADMIN values(1012,'常规 表格','表格','1','','el-icon-s-order','RT');
 insert into test.AMTF_POWER_ADMIN values(1013,'扩展 表格','表格','1','','el-icon-s-order','ET');

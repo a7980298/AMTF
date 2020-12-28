@@ -30,4 +30,8 @@ public class UserImpl {
 	 */
 	PageInfo pageInfo;
 
+	/**
+	 * 跳转画面id
+	 */
+	private String login_html;
 }

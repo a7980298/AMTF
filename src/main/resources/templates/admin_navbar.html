@@ -23,13 +23,20 @@
 		</body>
 		<script type="text/javascript">
 			function amtf_loginhead(_path) {
+				// 生成name
+				var tempInput = document.createElement("input");
+				tempInput.type = "hidden";
+				tempInput.name = 'login_html';
+				tempInput.value = _path;
 				const CONTEXT_PATH = "/amtf";
 				const TARGET = "_self";
 				let form = document.createElement("form");
 				form.id = 'amtf_form';
-				form.action = CONTEXT_PATH + '/' + _path;
+				form.action = CONTEXT_PATH + '/going/admin';
+				form.method = 'post';
 				form.target = TARGET;
 				document.getElementById('navbarvue').appendChild(form);
+				form.appendChild(tempInput);
 				form.submit();
 			}
 		</script>

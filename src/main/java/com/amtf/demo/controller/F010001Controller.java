@@ -1,5 +1,6 @@
 package com.amtf.demo.controller;
 
+import com.amtf.demo.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,9 +135,23 @@ public class F010001Controller extends ValiDationUtil {
 	 * @parameter F010001Params params
 	 * @return String
 	 */
-	@PostMapping("/f010001/T004")
+	@PostMapping("/going")
 	public String f010001T004(F010001Params params, Model model) throws ErrListException {
-		model.addAttribute("f010001Params", params);
+		model.addAttribute("going", params);
+		return params.getLogin_html();
+	}
+
+	/**
+	 * 跳转画面-管理页面
+	 *
+	 * @parameter F010001Params params
+	 * @return String
+	 */
+	@PostMapping("/going/admin")
+	public String f010001T005(F010001Params params, Model model) throws ErrListException {
+		if(params.getLogin_html().contains("f020001")){
+			params.setLogin_html(params.getLogin_html().replaceAll("f020001", Constant.EMPTY));
+		}
 		return params.getLogin_html();
 	}
 }
