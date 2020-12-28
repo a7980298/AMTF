@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -115,10 +116,22 @@ public class F020001ServiceImpl implements F020001Service {
 		return entityOut;
 	}
 
+	/**
+	 *
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
 	@Override
 	public F020001EntityOut service02(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
-
+		AmtfUserEntity userHistory = null;
+		if(!CommonUtil.isEmpty(entityin.getUserId())){
+			userHistory = f020001dao.f020001_Select8(entityin.getUserId());
+		} else {
+			entityOut.setMessage("未查到数据，请刷新。");
+		}
+		entityOut.setUserHistory(userHistory);
 		return entityOut;
 	}
 
@@ -223,7 +236,7 @@ public class F020001ServiceImpl implements F020001Service {
 		loginfo = ParameterUtil.getSession();
 
 		// 刪除指定用戶
-		int delect4 = f020001dao.f020001_Delect4(entityin.getUserid());
+		int delect4 = f020001dao.f020001_Delect4(entityin.getUserId());
 		// 沒有刪除成功
 		if (delect4 <= 0) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "删除数据时发生错误!");

@@ -88,4 +88,13 @@
 		WHERE 
 			power_pow &lt;= CONVERT(#{pow} USING gb2312)
 	</select>
+	<!-- 根据id查询用户信息 -->
+	<select id="f020001_Select8" resultType="com.amtf.demo.commonentity.AmtfUserEntity">
+		SELECT
+			 *
+		FROM
+			AMTF_USER
+		WHERE
+			USER_EMAIL = #{userId}
+	</select>
 </mapper>

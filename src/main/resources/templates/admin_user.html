@@ -7,7 +7,7 @@
 <style type="text/css">
 
 </style>
-<body class="" onunload="myFunction()">
+<body class="">
 	<div class="wrapper" id="admin_id">
 		<i-form class="" th:action="@{/f020003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 			<input type="hidden" name="IViewId" value="f020001"/>
@@ -84,14 +84,24 @@
 								<el-col :span="5">
 									<div class="block">
 										<div class="block">
-											<el-avatar :size="80" :src="dialog_src"></el-avatar>
+											<el-avatar :size="80" :src="dialog.src"></el-avatar>
 										</div>
 									</div>
 								</el-col>
-								<el-col :span="8">
-									<div class="block">
-										<span>{{dialog_name}}</span>
-									</div>
+								<el-col :span="19">
+									<el-row>
+										<el-col :span="12">
+											<span>姓名：{{dialog.name}}</span>
+										</el-col>
+										<el-col :span="12">
+											<span>邮箱：{{dialog.email}}</span>
+										</el-col>
+									</el-row>
+									<el-row>
+										<el-col :span="24">
+											<span>座右铭：{{dialog.introduce}}</span>
+										</el-col>
+									</el-row>
 								</el-col>
 							</el-row>
 							<span slot="footer" class="dialog-footer">
@@ -112,8 +122,12 @@
 		data: {
 			tableData:'',
 			dialogVisible:false,
-			dialog_name:'',
-			dialog_src:'',
+			dialog:{
+				name:'',
+				src:'',
+				email:'',
+				introduce:'',
+			}
 		},
 		methods: {
 			amtf_loginhead(event) {
@@ -121,16 +135,34 @@
 			},
 			handleDelete(idx,row) {
 				if(this.tableData[idx].user_path == ''){
-					this.dialog_src = '/amtf/imgs/userimg.jpg';
+					this.dialog.src = '/amtf/imgs/userimg.jpg';
 				} else {
-					this.dialog_src = '/amtf/istatic/' + this.tableData[idx].user_path;
+					this.dialog.src = '/amtf/istatic/' + this.tableData[idx].user_path;
 				}
-
-				this.dialog_name = this.tableData[idx].user_name;
-				this.dialogVisible=true;
+				this.dialog.name = this.tableData[idx].user_name;
+				this.dialog.email = this.tableData[idx].user_email;
+				axios.post('/amtf/Vf020001/getUser',{
+					userId:this.tableData[idx].user_email
+				}).then(response => {
+					if(response.data.message != ''){
+						this.Message('error',response.data.message);
+					} else {
+						//绑定数据！
+						this.tableData = response.data.select1;
+						this.dialogVisible=true;
+					}
+				})
 			},
-			adminMian (){
-				alert(123)
+			// 消息框
+			Message(type,message) {
+				if(type == 'error'){
+					this.$message.error(message);
+				} else {
+					this.$message({
+						message: message,
+						type: type
+					});
+				}
 			}
 		},
 		created()

@@ -22,6 +22,11 @@ public class F020001EntityIn extends UserImpl {
 	/**
 	 * 用户id
 	 */
+	private String userId;
+
+	/**
+	 * 用户id
+	 */
 	private Integer user_id;
 
 	/**
@@ -116,7 +121,4 @@ public class F020001EntityIn extends UserImpl {
 	 * 通知信息
 	 */
 	List<F020001_Select5Entity> select5;
-	
-
-
 }

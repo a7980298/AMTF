@@ -3,6 +3,7 @@ package com.amtf.demo.entityout;
 import java.util.List;
 import java.util.Map;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f020001entity.F020001_Select1Entity;
 import com.amtf.demo.f020001entity.F020001_Select5Entity;
 import com.amtf.demo.f020001entity.F020001_Select7Entity;
@@ -18,6 +19,11 @@ public class F020001EntityOut extends UserImpl {
 	 * 页面id
 	 */
 	private String IViewId;
+
+	/**
+	 * 用户信息
+	 */
+	private AmtfUserEntity userHistory;
 
 	/**
 	 * 用户id

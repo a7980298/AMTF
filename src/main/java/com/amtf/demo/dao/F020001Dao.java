@@ -2,6 +2,7 @@ package com.amtf.demo.dao;
 
 import java.util.List;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +30,6 @@ public interface F020001Dao {
 			@Param("text") String text);
 
 	List<F020001_Select7Entity> f020001_Select7(@Param("pow") Integer pow);
+
+	AmtfUserEntity f020001_Select8(@Param("userId") String userId);
 }

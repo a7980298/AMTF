@@ -3,6 +3,7 @@ package com.amtf.demo.params;
 import java.util.List;
 import java.util.Map;
 
+import com.amtf.demo.commonentity.AmtfUserEntity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,21 @@ public class F020001Params extends UserImpl {
 	private String IViewId;
 
 	/**
+	 * 可操作的用户信息
+	 */
+	private List<F020001_Select1Entity> select1;
+
+	/**
+	 * 用户id
+	 */
+	private String userId;
+
+	/**
+	 * 用户信息
+	 */
+	private AmtfUserEntity userHistory;
+
+	/**
 	 * 姓名
 	 */
 	private String user_name;
@@ -33,11 +49,6 @@ public class F020001Params extends UserImpl {
 	 * 用户图片
 	 */
 	private String imgPath;
-
-	/**
-	 * 可操作的用户信息
-	 */
-	private List<F020001_Select1Entity> select1;
 
 	/**
 	 * 用户搜索的名字

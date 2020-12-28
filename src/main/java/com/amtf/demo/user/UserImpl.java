@@ -21,6 +21,11 @@ public class UserImpl {
 	private List<String> messageList;
 
 	/**
+	 * 错误信息
+	 */
+	private String message;
+
+	/**
 	 * 管理页面
 	 */
 	private Admin admin;
