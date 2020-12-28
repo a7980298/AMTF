@@ -144,11 +144,11 @@
 				axios.post('/amtf/Vf020001/getUser',{
 					userId:this.tableData[idx].user_email
 				}).then(response => {
-					if(response.data.message != ''){
+					if(response.data.message != '' && response.data.message != null){
 						this.Message('error',response.data.message);
 					} else {
 						//绑定数据！
-						this.tableData = response.data.select1;
+						this.dialog.introduce = response.data.userHistory.user_introduce
 						this.dialogVisible=true;
 					}
 				})
