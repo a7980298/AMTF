@@ -23,4 +23,6 @@ public interface F010001Dao {
 
 	int f010001_Select5(@Param("email") String email);
 
+	List<F010001_Select2Entity> f010001_Select6(@Param("pow") Integer pow);
+
 }

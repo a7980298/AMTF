@@ -65,6 +65,11 @@ public class CommonServie {
 		for (F010001_Select2Entity f010001_select2entity2 : select2) {
 			navigation_bar_redis += f010001_select2entity2.getPower_path() + ",";
 		}
+		// 获取管理页面
+		List<F010001_Select2Entity> select6 = f010001dao.f010001_Select6(NumberUtil.toInt(loginfo.getUser_power()));
+		for (F010001_Select2Entity f010001_select6entity : select6) {
+			navigation_bar_redis += f010001_select6entity.getPower_path() + ",";
+		}
 		redisUtils.set(loginfo.getUser_email() + "navigation_bar", navigation_bar_redis);
 
 		// 将导航栏数据整合成map

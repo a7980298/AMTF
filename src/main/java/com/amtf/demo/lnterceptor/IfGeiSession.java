@@ -25,6 +25,8 @@ public class IfGeiSession implements HandlerInterceptor {
 
 	private static final String ADMINVIEWID ="f020";
 
+	private static final String ADMINVIEWID_1 ="admin";
+
 	/**
 	 * 在请求处理之前进行调用（Controller方法调用之前
 	 * @param request
@@ -48,7 +50,7 @@ public class IfGeiSession implements HandlerInterceptor {
 				// 获取访问路径
 				String servletpath = request.getServletPath();
 				// 判断访问路径是否是管理页面
-				if (servletpath.contains("/f020001")) {
+				if (servletpath.equals("/f020001")) {
 					LogInFo logInFo = (LogInFo) account;
 					// 获取该用户的访问权限
 					String navigation_bar = redisUtils.get(logInFo.getUser_email() + "navigation_bar");
@@ -56,7 +58,7 @@ public class IfGeiSession implements HandlerInterceptor {
 						boolean b = false;
 						String[] navigation_bars = navigation_bar.split(",");
 						for (String string : navigation_bars) {
-							if (string.equals(servletpath.split("/")[1])) {
+							if (string.equals(servletpath.split("/")[1]) || servletpath.split("/")[1].contains("admin")) {
 								b = true;
 							}
 						}
@@ -84,7 +86,7 @@ public class IfGeiSession implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		// 更新头部和导航栏
 		if (!CommonUtil.isEmpty(ParameterUtil.getSession())) {
-			if(request.getRequestURI().contains(ADMINVIEWID)){
+			if(request.getRequestURI().contains(ADMINVIEWID) || request.getRequestURI().contains(ADMINVIEWID_1)){
 				commonservie.CommonServie2();
 			} else {
 				commonservie.CommonServie1();

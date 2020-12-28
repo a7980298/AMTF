@@ -11,7 +11,7 @@
 		AND
 			USER_PASSWORD=#{userpwd}
 	</select>
-	
+	<!-- 根据权限可页面 -->
 	<select id="f010001_Select2" resultType="com.amtf.demo.f010001entity.F010001_Select2Entity">
 		SELECT
 			 *
@@ -71,5 +71,14 @@
 		WHERE
 			User_Email = #{email}
 	</select>
-	
+
+	<!-- 根据权限可管理页面 -->
+	<select id="f010001_Select6" resultType="com.amtf.demo.f010001entity.F010001_Select2Entity">
+		SELECT
+			 *
+		FROM
+			AMTF_POWER_ADMIN
+		WHERE
+			power_pow &lt;= CONVERT(#{pow} USING gb2312)
+	</select>
 </mapper>
