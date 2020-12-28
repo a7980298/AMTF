@@ -4,8 +4,8 @@
 		<head>
 		<meta charset="UTF-8"/>
 		</head>
-		<body id="navbarvue">
-			<el-aside width="200px" style="background-color: #1989fb;overflow-y:hidden">
+		<body id="navBarVue">
+			<el-aside width="200px" style="overflow-y:hidden">
 				<el-menu :default-openeds="['1', '3']" th:each="mapkey,idx:${main_params.navigation_bar}">
 					<el-submenu index="1">
 						<template slot="title">
@@ -31,11 +31,10 @@
 				const CONTEXT_PATH = "/amtf";
 				const TARGET = "_self";
 				let form = document.createElement("form");
-				form.id = 'amtf_form';
 				form.action = CONTEXT_PATH + '/going/admin';
 				form.method = 'post';
 				form.target = TARGET;
-				document.getElementById('navbarvue').appendChild(form);
+				document.getElementById('navBarVue').appendChild(form);
 				form.appendChild(tempInput);
 				form.submit();
 			}
