@@ -1,0 +1,4 @@
+MySQL错误:You are using safe update mode and you tried to update a table without a WHERE that uses a K
+运行以下sql文
+SET SQL_SAFE_UPDATES = 0;
+
