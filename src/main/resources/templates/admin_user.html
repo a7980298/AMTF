@@ -52,17 +52,18 @@
 									width="180">
 								<template slot-scope="scope">
 									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation == '0'">未认证</span>
-									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">认证</span>
+									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">已认证</span>
 									<el-popconfirm
 											confirm-button-text='确定'
 											cancel-button-text='取消'
 											icon="el-icon-info"
 											icon-color="red"
 											title="当前是认证状态，确定修改-未认证-吗？"
-											:class="scope.row.user_attestation == '0' ? 'd-none' : ''">
-										<el-button icon="el-icon-s-check" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+											:class="scope.row.user_attestation == '0' ? 'd-none' : ''"
+											@confirm="modificationStatusConfirmation(scope.$index, scope.row)">
+										<el-button icon="el-icon-check" type="success" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
 									</el-popconfirm>
-									<el-button icon="el-icon-s-check" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+									<el-button icon="el-icon-close" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
 								</template>
 							</el-table-column>
 							<el-table-column
@@ -202,9 +203,9 @@
 				this.userNameId = 'userNameId' + idx;
 
 			},
-			getCellClass({ row, column, columnIndex }){
+			modificationStatusConfirmation(idx, row){
 				if(row.user_attestation == '1'){
-					return 'attestationColorSuccess'
+					row.user_attestation = '0';
 				}
 			},
 			//用户主页
@@ -212,11 +213,10 @@
 
 			},
 			//修改认证状态
-			certificationStatus(idx,row){
+			certificationStatus(idx, row){
 				if(row.user_attestation == '0'){
 					row.user_attestation = '1';
 				}
-
 			},
 			// 消息框
 			Message(type,message) {
