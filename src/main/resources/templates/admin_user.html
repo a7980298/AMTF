@@ -21,12 +21,18 @@
 					<th:block th:replace="admin_navbar :: admin_navbar"></th:block>
 					<el-main style="padding-top: 0px">
 						<th:block th:replace="admin_head :: admin_head"></th:block>
+						<!--
+							:data -> data.user_name.toLowerCase().includes(search.toLowerCase()) ->将输入框模糊匹配user_name的值
+						-->
 						<el-table
-								:data="tableData"
-								style="width: 100%"
+								:data="tableData.filter(data => !search || data.user_name.toLowerCase().includes(search.toLowerCase()) || data.user_account.toLowerCase().includes(search.toLowerCase()))"
+								:style="tableData.length > 12 ? 'width: 100%;height=800' : 'width: 100%;'"
 								v-loading="loading"
-								:cell-class-name="getCellClass"
-								height="800">
+								:cell-class-name="getCellClass">
+							<el-table-column
+									type="selection"
+									width="55">
+							</el-table-column>
 							<el-table-column
 									label="账户"
 									width="180">
@@ -96,7 +102,19 @@
 											@click="viewUserInformation(scope.$index, scope.row)">查看</el-button>
 								</template>
 							</el-table-column>
+							<el-table-column
+									align="right">
+								<template slot="header" slot-scope="scope">
+									<el-input
+											v-model="search"
+											size="mini"
+											placeholder="输入关键字搜索"/>
+								</template>
+							</el-table-column>
 						</el-table>
+						<div style="margin-top: 20px">
+							<el-button type="primary" @click="toggleSelection()">选中-认证</el-button>
+						</div>
 						<el-dialog
 								title="基本信息"
 								:visible.sync="dialogVisible"
@@ -159,6 +177,7 @@
 			tableData:'',
 			dialogVisible:false,
 			userNameId:'',
+			search: '',
 			dialog:{
 				name:'',
 				src:'',
