@@ -5,7 +5,12 @@
 <title>人员管理页面</title>
 <th:block th:replace="vue-import :: vue-import"></th:block>
 <style type="text/css">
-
+	.colorSuccess{
+		color: #07bf07;
+	}
+	.d-none{
+		display: none;
+	}
 </style>
 <body class="">
 	<div class="wrapper" id="admin_id">
@@ -19,7 +24,8 @@
 						<el-table
 								:data="tableData"
 								style="width: 100%"
-								v-loading="loading">
+								v-loading="loading"
+								:cell-class-name="getCellClass">
 							<el-table-column
 									label="账户"
 									width="180">
@@ -45,16 +51,18 @@
 									label="认证"
 									width="180">
 								<template slot-scope="scope">
-									<span style="margin-left: 10px" class="attestationColor" v-if="scope.row.user_attestation == '0'">未认证</span>
-									<span style="margin-left: 10px" class="attestationColor" v-if="scope.row.user_attestation != '0'">认证</span>
+									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation == '0'">未认证</span>
+									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">认证</span>
 									<el-popconfirm
 											confirm-button-text='确定'
 											cancel-button-text='取消'
 											icon="el-icon-info"
 											icon-color="red"
-											title="当前是认证状态，确定修改-未认证-吗？">
+											title="当前是认证状态，确定修改-未认证-吗？"
+											:class="scope.row.user_attestation == '0' ? 'd-none' : ''">
 										<el-button icon="el-icon-s-check" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
 									</el-popconfirm>
+									<el-button icon="el-icon-s-check" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
 								</template>
 							</el-table-column>
 							<el-table-column
@@ -145,8 +153,6 @@
 			tableData:'',
 			dialogVisible:false,
 			userNameId:'',
-			attestationColorWhite:'color:white',
-			attestationColorSuccess:'color:green',
 			dialog:{
 				name:'',
 				src:'',
@@ -196,6 +202,11 @@
 				this.userNameId = 'userNameId' + idx;
 
 			},
+			getCellClass({ row, column, columnIndex }){
+				if(row.user_attestation == '1'){
+					return 'attestationColorSuccess'
+				}
+			},
 			//用户主页
 			goToHomepage(){
 
@@ -204,9 +215,8 @@
 			certificationStatus(idx,row){
 				if(row.user_attestation == '0'){
 					row.user_attestation = '1';
-				} else {
-
 				}
+
 			},
 			// 消息框
 			Message(type,message) {
