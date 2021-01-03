@@ -97,4 +97,31 @@
 		WHERE
 			USER_EMAIL = #{userId}
 	</select>
+	<!-- 获取参加活动的次数 -->
+	<select id="f020001_Select9" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_USERACTIVITY
+		WHERE
+			USERACTIVITY_NAME = #{userId}
+	</select>
+	<!-- 发布问题的次数 -->
+	<select id="f020001_Select10" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_QA
+		WHERE
+			USER_ID = #{userId}
+	</select>
+	<!-- 发布视频的次数 -->
+	<select id="f020001_Select11" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_VIDEO
+		WHERE
+			USER_ID = #{userId}
+	</select>
 </mapper>

@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.f020001entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,6 @@ import com.amtf.demo.entityin.F020001EntityIn;
 import com.amtf.demo.entityout.F020001EntityOut;
 import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f010001entity.F010001_Select1Entity;
-import com.amtf.demo.f020001entity.F020001_Select1Entity;
-import com.amtf.demo.f020001entity.F020001_Select2EntityIn;
-import com.amtf.demo.f020001entity.F020001_Select5Entity;
-import com.amtf.demo.f020001entity.F020001_Select7Entity;
 import com.amtf.demo.service.F020001Service;
 import com.amtf.demo.user.LogInFo;
 import com.amtf.demo.util.CommonUtil;
@@ -117,7 +114,7 @@ public class F020001ServiceImpl implements F020001Service {
 	}
 
 	/**
-	 *
+	 * 获取用户信息
 	 * @param entityin
 	 * @return
 	 * @throws ErrListException
@@ -125,9 +122,21 @@ public class F020001ServiceImpl implements F020001Service {
 	@Override
 	public F020001EntityOut service02(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
-		AmtfUserEntity userHistory = null;
+
+		F020001_UserHistoryEntity userHistory = new F020001_UserHistoryEntity();
+
 		if(!CommonUtil.isEmpty(entityin.getUserId())){
-			userHistory = f020001dao.f020001_Select8(entityin.getUserId());
+			AmtfUserEntity select8 = f020001dao.f020001_Select8(entityin.getUserId());
+			//介绍
+			userHistory.setUserIntroduce(select8.getUser_introduce());
+			//认证
+			userHistory.setUserAttestation(Constant.INT_1.equals(select8.getUser_attestation()) ? "已认证":"未认证");
+			//获取参加的活动
+			userHistory.setNumberOfActivities(f020001dao.f020001_Select9(entityin.getUserId()));
+			//发布的问题
+			userHistory.setNumberOfQuestions(f020001dao.f020001_Select10(entityin.getUserId()));
+			//发布的视频
+			userHistory.setNumberOfVideo(f020001dao.f020001_Select11(entityin.getUserId()));
 		} else {
 			entityOut.setMessage("未查到数据，请刷新。");
 		}

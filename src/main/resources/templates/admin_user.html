@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8"/>
 <title>人员管理页面</title>
@@ -36,7 +36,7 @@
 										<p>电话: {{ scope.row.user_phone }}</p>
 										<p>邮箱: {{ scope.row.user_email }}</p>
 										<div slot="reference" class="name-wrapper">
-											<el-tag size="medium">{{ scope.row.user_name }}</el-tag>
+											<el-tag size="medium" v-bind:id="'userNameId' + scope.$index">{{ scope.row.user_name }}</el-tag>
 										</div>
 									</el-popover>
 								</template>
@@ -45,8 +45,16 @@
 									label="认证"
 									width="180">
 								<template slot-scope="scope">
-									<span style="margin-left: 10px" v-if="scope.row.user_attestation == '0'">未认证</span>
-									<span style="margin-left: 10px" v-if="scope.row.user_attestation != '0'">认证</span>
+									<span style="margin-left: 10px" class="attestationColor" v-if="scope.row.user_attestation == '0'">未认证</span>
+									<span style="margin-left: 10px" class="attestationColor" v-if="scope.row.user_attestation != '0'">认证</span>
+									<el-popconfirm
+											confirm-button-text='确定'
+											cancel-button-text='取消'
+											icon="el-icon-info"
+											icon-color="red"
+											title="当前是认证状态，确定修改-未认证-吗？">
+										<el-button icon="el-icon-s-check" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+									</el-popconfirm>
 								</template>
 							</el-table-column>
 							<el-table-column
@@ -68,15 +76,15 @@
 								<template slot-scope="scope">
 									<el-button
 											size="small"
-											@click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+											@click="editUser(scope.$index, scope.row)">编辑</el-button>
 									<el-button
 											size="small"
-											@click="handleDelete(scope.$index, scope.row)">查看</el-button>
+											@click="viewUserInformation(scope.$index, scope.row)">查看</el-button>
 								</template>
 							</el-table-column>
 						</el-table>
 						<el-dialog
-								title="详细信息"
+								title="基本信息"
 								:visible.sync="dialogVisible"
 								width="30%"
 								:before-close="handleClose">
@@ -85,21 +93,35 @@
 									<div class="block">
 										<div class="block">
 											<el-avatar :size="80" :src="dialog.src"></el-avatar>
+											<el-link type="primary" :click="goToHomepage">进入TA的主页</el-link>
 										</div>
 									</div>
 								</el-col>
 								<el-col :span="19">
 									<el-row>
-										<el-col :span="12">
+										<el-col :span="24">
 											<span>姓名：{{dialog.name}}</span>
 										</el-col>
-										<el-col :span="12">
+									</el-row>
+									<el-row>
+										<el-col :span="24">
 											<span>邮箱：{{dialog.email}}</span>
 										</el-col>
 									</el-row>
 									<el-row>
 										<el-col :span="24">
-											<span>座右铭：{{dialog.introduce}}</span>
+											<span>座右铭：{{dialog.userIntroduce}}</span>
+										</el-col>
+									</el-row>
+									<el-row>
+										<el-col :span="8">
+											<span>参加的活动：{{dialog.numberOfActivities}}</span>
+										</el-col>
+										<el-col :span="8">
+											<span>发布的问题：{{dialog.numberOfQuestions}}</span>
+										</el-col>
+										<el-col :span="8">
+											<span>发布的视频：{{dialog.numberOfVideo}}</span>
 										</el-col>
 									</el-row>
 								</el-col>
@@ -122,36 +144,69 @@
 		data: {
 			tableData:'',
 			dialogVisible:false,
+			userNameId:'',
+			attestationColorWhite:'color:white',
+			attestationColorSuccess:'color:green',
 			dialog:{
 				name:'',
 				src:'',
 				email:'',
-				introduce:'',
+				userIntroduce:'',
+				numberOfActivities:'',
+				numberOfQuestions:'',
+				numberOfVideo:''
 			}
 		},
 		methods: {
-			amtf_loginhead(event) {
-				alert(event)
-			},
-			handleDelete(idx,row) {
+			//用户基本信息
+			viewUserInformation(idx,row) {
 				if(this.tableData[idx].user_path == ''){
 					this.dialog.src = '/amtf/imgs/userimg.jpg';
 				} else {
 					this.dialog.src = '/amtf/istatic/' + this.tableData[idx].user_path;
 				}
+				//姓名
 				this.dialog.name = this.tableData[idx].user_name;
+				//邮箱
 				this.dialog.email = this.tableData[idx].user_email;
+				//获取基本信息
 				axios.post('/amtf/Vf020001/getUser',{
 					userId:this.tableData[idx].user_email
 				}).then(response => {
 					if(response.data.message != '' && response.data.message != null){
 						this.Message('error',response.data.message);
 					} else {
-						//绑定数据！
-						this.dialog.introduce = response.data.userHistory.user_introduce
-						this.dialogVisible=true;
+						//自我介绍
+						if(response.data.userHistory.userIntroduce != ''){
+							this.dialog.userIntroduce = response.data.userHistory.userIntroduce;
+						}
+						//参加活动次数
+						this.dialog.numberOfActivities = response.data.userHistory.numberOfActivities;
+						//发布问题次数
+						this.dialog.numberOfQuestions = response.data.userHistory.numberOfQuestions;
+						//发布视频次数
+						this.dialog.numberOfVideo = response.data.userHistory.numberOfVideo;
+						//打开模态框
+						this.dialogVisible = true;
 					}
 				})
+			},
+			//编辑用户
+			editUser(idx,row){
+				this.userNameId = 'userNameId' + idx;
+
+			},
+			//用户主页
+			goToHomepage(){
+
+			},
+			//修改认证状态
+			certificationStatus(idx,row){
+				if(row.user_attestation == '0'){
+					row.user_attestation = '1';
+				} else {
+
+				}
 			},
 			// 消息框
 			Message(type,message) {
@@ -165,10 +220,11 @@
 				}
 			}
 		},
+		//初期化获取数据
 		created()
 		{
 			axios.post('/amtf/Vf020001').then(response => {
-				//绑定数据！
+				//绑定数据
 				this.tableData = response.data.select1;
 			})
 		}

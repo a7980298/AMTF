@@ -7,6 +7,7 @@ import com.amtf.demo.commonentity.AmtfUserEntity;
 import com.amtf.demo.f020001entity.F020001_Select1Entity;
 import com.amtf.demo.f020001entity.F020001_Select5Entity;
 import com.amtf.demo.f020001entity.F020001_Select7Entity;
+import com.amtf.demo.f020001entity.F020001_UserHistoryEntity;
 import com.amtf.demo.user.UserImpl;
 
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class F020001EntityOut extends UserImpl {
 	/**
 	 * 用户信息
 	 */
-	private AmtfUserEntity userHistory;
+	private F020001_UserHistoryEntity userHistory;
 
 	/**
 	 * 用户id

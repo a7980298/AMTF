@@ -32,4 +32,10 @@ public interface F020001Dao {
 	List<F020001_Select7Entity> f020001_Select7(@Param("pow") Integer pow);
 
 	AmtfUserEntity f020001_Select8(@Param("userId") String userId);
+
+	Integer f020001_Select9(@Param("userId") String userId);
+
+	Integer f020001_Select10(@Param("userId") String userId);
+
+	Integer f020001_Select11(@Param("userId") String userId);
 }

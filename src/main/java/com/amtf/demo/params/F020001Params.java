@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.amtf.demo.commonentity.AmtfUserEntity;
+import com.amtf.demo.f020001entity.F020001_UserHistoryEntity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +39,7 @@ public class F020001Params extends UserImpl {
 	/**
 	 * 用户信息
 	 */
-	private AmtfUserEntity userHistory;
+	private F020001_UserHistoryEntity userHistory;
 
 	/**
 	 * 姓名
