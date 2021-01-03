@@ -11,6 +11,19 @@
 	.d-none{
 		display: none;
 	}
+	.el-dropdown-link {
+		cursor: pointer;
+		color: #409EFF;
+	}
+	.el-icon-arrow-down {
+		font-size: 12px;
+	}
+	.demonstration {
+		display: block;
+		color: #8492a6;
+		font-size: 14px;
+		margin-bottom: 20px;
+	}
 </style>
 <body class="">
 	<div class="wrapper" id="admin_id">
@@ -28,7 +41,8 @@
 								:data="tableData.filter(data => !search || data.user_name.toLowerCase().includes(search.toLowerCase()) || data.user_account.toLowerCase().includes(search.toLowerCase()))"
 								:style="tableData.length > 12 ? 'width: 100%;height=800' : 'width: 100%;'"
 								v-loading="loading"
-								:cell-class-name="getCellClass">
+								:cell-class-name="getCellClass"
+								@selection-change="handleSelectionChange">
 							<el-table-column
 									type="selection"
 									width="55">
@@ -74,7 +88,7 @@
 											@confirm="modificationStatusConfirmation(scope.$index, scope.row)">
 										<el-button icon="el-icon-check" type="success" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
 									</el-popconfirm>
-									<el-button icon="el-icon-close" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+									<el-button icon="el-icon-remove" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
 								</template>
 							</el-table-column>
 							<el-table-column
@@ -94,9 +108,16 @@
 							</el-table-column>
 							<el-table-column label="操作">
 								<template slot-scope="scope">
-									<el-button
-											size="small"
-											@click="editUser(scope.$index, scope.row)">编辑</el-button>
+									<el-dropdown trigger="click">
+										<span class="el-dropdown-link">
+											编辑<i class="el-icon-arrow-down el-icon--right"></i>
+										</span>
+										<el-dropdown-menu slot="dropdown">
+											<el-dropdown-item icon="el-icon-plus">升级</el-dropdown-item>
+											<el-dropdown-item icon="el-icon-close">禁用</el-dropdown-item>
+											<el-dropdown-item icon="el-icon-check">正常</el-dropdown-item>
+										</el-dropdown-menu>
+									</el-dropdown>
 									<el-button
 											size="small"
 											@click="viewUserInformation(scope.$index, scope.row)">查看</el-button>
@@ -108,12 +129,13 @@
 									<el-input
 											v-model="search"
 											size="mini"
-											placeholder="输入关键字搜索"/>
+											placeholder="输入账户或姓名搜索"/>
 								</template>
 							</el-table-column>
 						</el-table>
 						<div style="margin-top: 20px">
-							<el-button type="primary" @click="toggleSelection()">选中-认证</el-button>
+							<el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLogining">选中-认证</el-button>
+							<el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLogining">刷新</el-button>
 						</div>
 						<el-dialog
 								title="基本信息"
@@ -158,13 +180,8 @@
 									</el-row>
 								</el-col>
 							</el-row>
-							<span slot="footer" class="dialog-footer">
-								<!--<el-button @click="dialogVisible = false">取 消</el-button>-->
-								<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-							</span>
 						</el-dialog>
 					</el-main>
-
 				</el-container>
 			</div>
 		</i-form>
@@ -186,11 +203,14 @@
 				numberOfActivities:'',
 				numberOfQuestions:'',
 				numberOfVideo:''
-			}
+			},
+			multipleSelection: [],
+			selectLogining: false,
+			refreshLogining: false,
 		},
 		methods: {
 			//用户基本信息
-			viewUserInformation(idx,row) {
+			viewUserInformation(idx, row) {
 				if(this.tableData[idx].user_path == ''){
 					this.dialog.src = '/amtf/imgs/userimg.jpg';
 				} else {
@@ -204,8 +224,8 @@
 				axios.post('/amtf/Vf020001/getUser',{
 					userId:this.tableData[idx].user_email
 				}).then(response => {
-					if(response.message != '' && response.data != null){
-						this.Message('error',response.data.message);
+					if(response.message != '' && response.message != null){
+						this.Message('error',response.message);
 					} else {
 						//自我介绍
 						if(response.data.userHistory.userIntroduce != ''){
@@ -249,14 +269,14 @@
 					userAttestation:userAttestation
 				}).then(response => {
 					if(response.message != '' && response.message != null){
-						this.Message('error',response.data.message);
+						this.Message('error',response.message);
 					} else {
 						row.user_attestation = userAttestation;
 					}
 				})
 			},
 			// 消息框
-			Message(type,message) {
+			Message(type, message) {
 				if(type == 'error'){
 					this.$message.error(message);
 				} else {
@@ -266,9 +286,41 @@
 					});
 				}
 			},
+			Notify(title, message, type){
+				this.$notify({
+					title: title,
+					message: message,
+					type: type
+				});
+			},
 			//筛选
 			filterAttestation(value, row){
 				return row.user_attestation === value;
+			},
+			//选中
+			handleSelectionChange(val) {
+				this.multipleSelection = val;
+			},
+			//选中认证
+			selectCertification(){
+				this.selectLogining = true;
+				this.multipleSelection.forEach(entity => {
+					if(entity.user_attestation == '0'){
+						this.upAttestation(entity.user_email, '1', entity);
+					}
+				})
+				this.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
+				this.selectLogining = false;
+			},
+			//刷新
+			refresh(){
+				this.refreshLogining = true;
+				axios.post('/amtf/Vf020001').then(response => {
+					//绑定数据
+					this.tableData = response.data.select1;
+					this.Notify('成功', '已成功刷新了会员数据。。。', 'success');
+					this.refreshLogining = false;
+				})
 			}
 		},
 		//初期化获取数据
