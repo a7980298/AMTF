@@ -25,7 +25,8 @@
 								:data="tableData"
 								style="width: 100%"
 								v-loading="loading"
-								:cell-class-name="getCellClass">
+								:cell-class-name="getCellClass"
+								height="800">
 							<el-table-column
 									label="账户"
 									width="180">
@@ -48,8 +49,12 @@
 								</template>
 							</el-table-column>
 							<el-table-column
+									prop="tag"
 									label="认证"
-									width="180">
+									width="180"
+									:filters="[{ text: '已认证', value: '1' }, { text: '未认证', value: '0' }]"
+									:filter-method="filterAttestation "
+									filter-placement="bottom-end">
 								<template slot-scope="scope">
 									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation == '0'">未认证</span>
 									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">已认证</span>
@@ -180,7 +185,7 @@
 				axios.post('/amtf/Vf020001/getUser',{
 					userId:this.tableData[idx].user_email
 				}).then(response => {
-					if(response.data.message != '' && response.data.message != null){
+					if(response.message != '' && response.data != null){
 						this.Message('error',response.data.message);
 					} else {
 						//自我介绍
@@ -205,7 +210,7 @@
 			},
 			modificationStatusConfirmation(idx, row){
 				if(row.user_attestation == '1'){
-					row.user_attestation = '0';
+					this.upAttestation(this.tableData[idx].user_email, '0', row);
 				}
 			},
 			//用户主页
@@ -215,8 +220,21 @@
 			//修改认证状态
 			certificationStatus(idx, row){
 				if(row.user_attestation == '0'){
-					row.user_attestation = '1';
+					this.upAttestation(this.tableData[idx].user_email, '1', row);
 				}
+			},
+			//认证状态修改axios
+			upAttestation(userid, userAttestation, row){
+				axios.post('/amtf/Vf020001/upattestation',{
+					userId:userid,
+					userAttestation:userAttestation
+				}).then(response => {
+					if(response.message != '' && response.message != null){
+						this.Message('error',response.data.message);
+					} else {
+						row.user_attestation = userAttestation;
+					}
+				})
 			},
 			// 消息框
 			Message(type,message) {
@@ -228,6 +246,10 @@
 						type: type
 					});
 				}
+			},
+			//筛选
+			filterAttestation(value, row){
+				return row.user_attestation === value;
 			}
 		},
 		//初期化获取数据

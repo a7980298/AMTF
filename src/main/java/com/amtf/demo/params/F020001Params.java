@@ -37,10 +37,17 @@ public class F020001Params extends UserImpl {
 	private String userId;
 
 	/**
+	 * 认证状态
+	 */
+	private String userAttestation;
+
+	/**
 	 * 用户信息
 	 */
 	private F020001_UserHistoryEntity userHistory;
 
+
+	/*----------------------------------------------------------------------------------------*/
 	/**
 	 * 姓名
 	 */

@@ -3,6 +3,7 @@ package com.amtf.demo.controller;
 
 import com.amtf.demo.entityin.F020001EntityIn;
 import com.amtf.demo.entityout.F020001EntityOut;
+import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.params.F020001Params;
 import com.amtf.demo.service.F020001Service;
 import com.amtf.demo.util.ParameterUtil;
@@ -57,11 +58,42 @@ public class F020001ControllerVue extends ValiDationUtil {
 
 		ParameterUtil.copyParameter(entityin, params);
 
-		F020001EntityOut entityOut = f020001service.service02(entityin);
+		try {
+			F020001EntityOut entityOut = f020001service.service02(entityin);
+			// 将值copy赋值
+			ParameterUtil.copyParameter(params, entityOut);
+		}catch (ErrListException e){
+			return e;
+		}
+		return params;
+	}
 
-		// 将值copy赋值
-		ParameterUtil.copyParameter(params, entityOut);
+	/**
+	 * 查询用户信息
+	 *
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@PostMapping("/Vf020001/upattestation")
+	@ResponseBody
+	public Object f020001T002(@RequestBody Map map, Model model) {
+		F020001Params params = new F020001Params();
+		//用户id
+		params.setUserId(StringUtil.toStr(map.get("userId")));
+		//认证状态
+		params.setUserAttestation(StringUtil.toStr(map.get("userAttestation")));
 
+		F020001EntityIn entityin = new F020001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		try {
+			F020001EntityOut entityOut = f020001service.service04(entityin);
+			// 将值copy赋值
+			ParameterUtil.copyParameter(params, entityOut);
+		}catch (ErrListException e){
+			return e;
+		}
 		return params;
 	}
 }

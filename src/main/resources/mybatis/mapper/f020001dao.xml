@@ -124,4 +124,13 @@
 		WHERE
 			USER_ID = #{userId}
 	</select>
+	<!-- 修改认证状态 -->
+	<update id="f020001_Update12">
+		UPDATE
+			AMTF_USER
+		SET
+			USER_ATTESTATION = #{userAttestation}
+		WHERE
+			USER_EMAIL = #{userId}
+	</update>
 </mapper>

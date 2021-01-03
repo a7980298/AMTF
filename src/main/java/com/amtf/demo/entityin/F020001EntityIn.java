@@ -25,6 +25,13 @@ public class F020001EntityIn extends UserImpl {
 	private String userId;
 
 	/**
+	 * 认证状态
+	 */
+	private String userAttestation;
+
+	/*----------------------------------------------------------------------------------------*/
+
+	/**
 	 * 用户id
 	 */
 	private Integer user_id;

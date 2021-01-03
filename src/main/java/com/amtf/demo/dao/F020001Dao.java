@@ -38,4 +38,6 @@ public interface F020001Dao {
 	Integer f020001_Select10(@Param("userId") String userId);
 
 	Integer f020001_Select11(@Param("userId") String userId);
+
+	Integer f020001_Update12(@Param("userId") String userId, @Param("userAttestation") String userAttestation);
 }

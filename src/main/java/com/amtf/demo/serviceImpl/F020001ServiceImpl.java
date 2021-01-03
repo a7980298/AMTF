@@ -138,7 +138,7 @@ public class F020001ServiceImpl implements F020001Service {
 			//发布的视频
 			userHistory.setNumberOfVideo(f020001dao.f020001_Select11(entityin.getUserId()));
 		} else {
-			entityOut.setMessage("未查到数据，请刷新。");
+			throw new ErrListException(entityin, entityin.getIViewId(), "未查到数据，请刷新。");
 		}
 		entityOut.setUserHistory(userHistory);
 		return entityOut;
@@ -193,13 +193,18 @@ public class F020001ServiceImpl implements F020001Service {
 	}
 
 	/**
-	 * 发布通知
+	 * 更改认证状态
 	 */
 	@Override
 	public F020001EntityOut service04(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
-
-
+		if (Constant.STR_0.equals(entityin.getUserAttestation()) || Constant.STR_1.equals(entityin.getUserAttestation())){
+			if(f020001dao.f020001_Update12(entityin.getUserId(),entityin.getUserAttestation()) <=0 ){
+				throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
+			}
+		} else {
+			throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
+		}
 		return entityOut;
 	}
 
