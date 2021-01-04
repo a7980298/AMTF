@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<th:block th:fragment="admin_navbar">
-		<head>
-		<meta charset="UTF-8"/>
-		</head>
-		<body id="navBarVue">
-			<el-aside width="200px" style="overflow-y:hidden">
-				<el-menu :default-openeds="['1', '3']" th:each="mapkey,idx:${main_params.navigation_bar}">
-					<el-submenu index="1">
-						<template slot="title">
-							<i th:class="${mapkey.value[0].power_class}"></i>
-							[[${mapkey.key}]]
-						</template>
-						<el-menu-item-group th:each="fileInfo,idxs: ${mapkey.value}">
-							<el-menu-item index="1-2" th:onclick="amtf_loginhead([[${fileInfo.power_path}]])">
-								[[${fileInfo.power_name}]]
-							</el-menu-item>
-						</el-menu-item-group>
-					</el-submenu>
-				</el-menu>
-			</el-aside>
-		</body>
+		<el-aside width="200px" style="overflow-y:hidden" id="adminNavBarId">
+			<el-menu :default-openeds="['1', '3']" th:each="mapkey,idx:${main_params.navigation_bar}">
+				<el-submenu index="1">
+					<template slot="title">
+						<i th:class="${mapkey.value[0].power_class}"></i>
+						[[${mapkey.key}]]
+					</template>
+					<el-menu-item-group th:each="fileInfo,idxs: ${mapkey.value}">
+						<el-menu-item index="1-2" th:onclick="amtf_loginhead([[${fileInfo.power_path}]])">
+							[[${fileInfo.power_name}]]
+						</el-menu-item>
+					</el-menu-item-group>
+				</el-submenu>
+			</el-menu>
+		</el-aside>
 		<script type="text/javascript">
 			function amtf_loginhead(_path) {
 				// 生成name
@@ -34,10 +29,23 @@
 				form.action = CONTEXT_PATH + '/going/admin';
 				form.method = 'post';
 				form.target = TARGET;
-				document.getElementById('navBarVue').appendChild(form);
+				document.getElementById('adminNavBarId').appendChild(form);
 				form.appendChild(tempInput);
 				form.submit();
 			}
+			var nvBarVue = new Vue({
+				el: '#adminNavBarId',
+				data: {
+				},
+				methods: {
+
+				},
+				//初期化获取数据
+				created()
+				{
+
+				}
+			})
 		</script>
 	</th:block>
 </html>

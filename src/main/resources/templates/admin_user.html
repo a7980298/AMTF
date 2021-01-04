@@ -29,161 +29,157 @@
 	<div class="wrapper" id="admin_id">
 		<i-form class="" th:action="@{/f020003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
 			<input type="hidden" name="IViewId" value="f020001"/>
-			<div id="app">
-				<el-container>
-					<th:block th:replace="admin_navbar :: admin_navbar"></th:block>
-					<el-main style="padding-top: 0px">
-						<th:block th:replace="admin_head :: admin_head"></th:block>
-						<!--
-							:data -> data.user_name.toLowerCase().includes(search.toLowerCase()) ->将输入框模糊匹配user_name的值
-						-->
-						<el-table
-								:data="tableData.filter(data => !search || data.user_name.toLowerCase().includes(search.toLowerCase()) || data.user_account.toLowerCase().includes(search.toLowerCase()))"
-								:style="tableData.length > 12 ? 'width: 100%;height=800' : 'width: 100%;'"
-								v-loading="loading"
-								:cell-class-name="getCellClass"
-								@selection-change="handleSelectionChange">
-							<el-table-column
-									type="selection"
-									width="55">
-							</el-table-column>
-							<el-table-column
-									label="账户"
-									width="180">
-								<template slot-scope="scope">
-									<span style="margin-left: 10px">{{ scope.row.user_account }}</span>
-								</template>
-							</el-table-column>
-							<el-table-column
-									label="姓名"
-									width="180">
-								<template slot-scope="scope">
-									<el-popover trigger="hover" placement="top">
-										<p>姓名: {{ scope.row.user_name }}</p>
-										<p>电话: {{ scope.row.user_phone }}</p>
-										<p>邮箱: {{ scope.row.user_email }}</p>
-										<div slot="reference" class="name-wrapper">
-											<el-tag size="medium" v-bind:id="'userNameId' + scope.$index">{{ scope.row.user_name }}</el-tag>
-										</div>
-									</el-popover>
-								</template>
-							</el-table-column>
-							<el-table-column
-									prop="tag"
-									label="认证"
-									width="180"
-									:filters="[{ text: '已认证', value: '1' }, { text: '未认证', value: '0' }]"
-									:filter-method="filterAttestation "
-									filter-placement="bottom-end">
-								<template slot-scope="scope">
-									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation == '0'">未认证</span>
-									<span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">已认证</span>
-									<el-popconfirm
-											confirm-button-text='确定'
-											cancel-button-text='取消'
-											icon="el-icon-info"
-											icon-color="red"
-											title="当前是认证状态，确定修改-未认证-吗？"
-											:class="scope.row.user_attestation == '0' ? 'd-none' : ''"
-											@confirm="modificationStatusConfirmation(scope.$index, scope.row)">
-										<el-button icon="el-icon-check" type="success" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
-									</el-popconfirm>
-									<el-button icon="el-icon-remove" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
-								</template>
-							</el-table-column>
-							<el-table-column
-									label="住址"
-									width="180">
-								<template slot-scope="scope">
-									<span style="margin-left: 10px">{{ scope.row.user_country }}-{{scope.row.user_province}}-{{scope.row.user_city}}</span>
-								</template>
-							</el-table-column>
-							<el-table-column
-									label="权限"
-									width="180">
-								<template slot-scope="scope">
-									<span style="margin-left: 10px" v-if="scope.row.user_power == '0'">普通用户</span>
-									<span style="margin-left: 10px" v-if="scope.row.user_power != '0'">管理员</span>
-								</template>
-							</el-table-column>
-							<el-table-column label="操作">
-								<template slot-scope="scope">
-									<el-dropdown trigger="click">
-										<span class="el-dropdown-link">
-											编辑<i class="el-icon-arrow-down el-icon--right"></i>
-										</span>
-										<el-dropdown-menu slot="dropdown">
-											<el-dropdown-item icon="el-icon-plus">升级</el-dropdown-item>
-											<el-dropdown-item icon="el-icon-close">禁用</el-dropdown-item>
-											<el-dropdown-item icon="el-icon-check">正常</el-dropdown-item>
-										</el-dropdown-menu>
-									</el-dropdown>
-									<el-button
-											size="small"
-											@click="viewUserInformation(scope.$index, scope.row)">查看</el-button>
-								</template>
-							</el-table-column>
-							<el-table-column
-									align="right">
-								<template slot="header" slot-scope="scope">
-									<el-input
-											v-model="search"
-											size="mini"
-											placeholder="输入账户或姓名搜索"/>
-								</template>
-							</el-table-column>
-						</el-table>
-						<div style="margin-top: 20px">
-							<el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLogining">选中-认证</el-button>
-							<el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLogining">刷新</el-button>
-						</div>
-						<el-dialog
-								title="基本信息"
-								:visible.sync="dialogVisible"
-								width="30%"
-								:before-close="handleClose">
-							<el-row :gutter="20">
-								<el-col :span="5">
-									<div class="block">
-										<div class="block">
-											<el-avatar :size="80" :src="dialog.src"></el-avatar>
-											<el-link type="primary" :click="goToHomepage">进入TA的主页</el-link>
-										</div>
-									</div>
-								</el-col>
-								<el-col :span="19">
-									<el-row>
-										<el-col :span="24">
-											<span>姓名：{{dialog.name}}</span>
-										</el-col>
-									</el-row>
-									<el-row>
-										<el-col :span="24">
-											<span>邮箱：{{dialog.email}}</span>
-										</el-col>
-									</el-row>
-									<el-row>
-										<el-col :span="24">
-											<span>座右铭：{{dialog.userIntroduce}}</span>
-										</el-col>
-									</el-row>
-									<el-row>
-										<el-col :span="8">
-											<span>参加的活动：{{dialog.numberOfActivities}}</span>
-										</el-col>
-										<el-col :span="8">
-											<span>发布的问题：{{dialog.numberOfQuestions}}</span>
-										</el-col>
-										<el-col :span="8">
-											<span>发布的视频：{{dialog.numberOfVideo}}</span>
-										</el-col>
-									</el-row>
-								</el-col>
-							</el-row>
-						</el-dialog>
-					</el-main>
-				</el-container>
-			</div>
+            <el-container>
+                <th:block th:replace="admin_navbar :: admin_navbar"></th:block>
+                <el-main style="padding-top: 0px">
+                    <th:block th:replace="admin_head :: admin_head"></th:block>
+                    <!--:data -> data.user_name.toLowerCase().includes(search.toLowerCase()) ->将输入框模糊匹配user_name的值-->
+                    <el-table
+                            :data="tableData.filter(data => !search || data.user_name.toLowerCase().includes(search.toLowerCase()) || data.user_account.toLowerCase().includes(search.toLowerCase()))"
+                            :style="tableData.length > 12 ? 'width: 100%;height=800' : 'width: 100%;'"
+                            v-loading="userTableLoading"
+                            :cell-class-name="getCellClass"
+                            @selection-change="handleSelectionChange">
+                        <el-table-column
+                                type="selection"
+                                width="55">
+                        </el-table-column>
+                        <el-table-column
+                                label="账户"
+                                width="180">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.user_account }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                label="姓名"
+                                width="180">
+                            <template slot-scope="scope">
+                                <el-popover trigger="hover" placement="top">
+                                    <p>姓名: {{ scope.row.user_name }}</p>
+                                    <p>电话: {{ scope.row.user_phone }}</p>
+                                    <p>邮箱: {{ scope.row.user_email }}</p>
+                                    <div slot="reference" class="name-wrapper">
+                                        <el-tag size="medium" v-bind:id="'userNameId' + scope.$index">{{ scope.row.user_name }}</el-tag>
+                                    </div>
+                                </el-popover>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="tag"
+                                label="认证"
+                                width="180"
+                                :filters="[{ text: '已认证', value: '1' }, { text: '未认证', value: '0' }]"
+                                :filter-method="filterAttestation "
+                                filter-placement="bottom-end">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation == '0'">未认证</span>
+                                <span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">已认证</span>
+                                <el-popconfirm
+                                        confirm-button-text='确定'
+                                        cancel-button-text='取消'
+                                        icon="el-icon-info"
+                                        icon-color="red"
+                                        title="当前是认证状态，确定修改-未认证-吗？"
+                                        :class="scope.row.user_attestation == '0' ? 'd-none' : ''"
+                                        @confirm="modificationStatusConfirmation(scope.$index, scope.row)">
+                                    <el-button icon="el-icon-check" type="success" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+                                </el-popconfirm>
+                                <el-button icon="el-icon-remove" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                label="住址"
+                                width="180">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.user_country }}-{{scope.row.user_province}}-{{scope.row.user_city}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                label="权限"
+                                width="180">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px" v-if="scope.row.user_power == '0'">普通用户</span>
+                                <span style="margin-left: 10px" v-if="scope.row.user_power != '0'">管理员</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作">
+                            <template slot-scope="scope">
+                                <el-dropdown trigger="click">
+                                    <span class="el-dropdown-link">
+                                        编辑<i class="el-icon-arrow-down el-icon--right"></i>
+                                    </span>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item icon="el-icon-plus">升级</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-close">禁用</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-check">正常</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                                <el-button
+                                        size="small"
+                                        @click="viewUserInformation(scope.$index, scope.row)">查看</el-button>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                align="right">
+                            <template slot="header" slot-scope="scope">
+                                <el-input
+                                        v-model="search"
+                                        size="mini"
+                                        placeholder="输入账户或姓名搜索"/>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div style="margin-top: 20px">
+                        <el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLogining">选中-认证</el-button>
+                        <el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLogining">刷新</el-button>
+                    </div>
+                    <el-dialog
+                            title="基本信息"
+                            :visible.sync="dialogVisible"
+                            width="30%"
+                            :before-close="handleClose">
+                        <el-row :gutter="20">
+                            <el-col :span="5">
+                                <div class="block">
+                                    <div class="block">
+                                        <el-avatar :size="80" :src="dialog.src"></el-avatar>
+                                        <el-link type="primary" :click="goToHomepage">进入TA的主页</el-link>
+                                    </div>
+                                </div>
+                            </el-col>
+                            <el-col :span="19">
+                                <el-row>
+                                    <el-col :span="24">
+                                        <span>姓名：{{dialog.name}}</span>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="24">
+                                        <span>邮箱：{{dialog.email}}</span>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="24">
+                                        <span>座右铭：{{dialog.userIntroduce}}</span>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="8">
+                                        <span>参加的活动：{{dialog.numberOfActivities}}</span>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <span>发布的问题：{{dialog.numberOfQuestions}}</span>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <span>发布的视频：{{dialog.numberOfVideo}}</span>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                        </el-row>
+                    </el-dialog>
+                </el-main>
+            </el-container>
 		</i-form>
 	</div>
 </body>
@@ -206,7 +202,8 @@
 			},
 			multipleSelection: [],
 			selectLogining: false,
-			refreshLogining: false,
+            refreshLogining: false,
+            userTableLoading: false,
 		},
 		methods: {
 			//用户基本信息
@@ -225,7 +222,7 @@
 					userId:this.tableData[idx].user_email
 				}).then(response => {
 					if(response.message != '' && response.message != null){
-						this.Message('error',response.message);
+                        headVue.Message('error',response.message);
 					} else {
 						//自我介绍
 						if(response.data.userHistory.userIntroduce != ''){
@@ -269,29 +266,11 @@
 					userAttestation:userAttestation
 				}).then(response => {
 					if(response.message != '' && response.message != null){
-						this.Message('error',response.message);
+                        headVue.Message('error',response.message);
 					} else {
 						row.user_attestation = userAttestation;
 					}
 				})
-			},
-			// 消息框
-			Message(type, message) {
-				if(type == 'error'){
-					this.$message.error(message);
-				} else {
-					this.$message({
-						message: message,
-						type: type
-					});
-				}
-			},
-			Notify(title, message, type){
-				this.$notify({
-					title: title,
-					message: message,
-					type: type
-				});
 			},
 			//筛选
 			filterAttestation(value, row){
@@ -309,17 +288,19 @@
 						this.upAttestation(entity.user_email, '1', entity);
 					}
 				})
-				this.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
+                headVue.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
 				this.selectLogining = false;
 			},
 			//刷新
 			refresh(){
+                this.userTableLoading = true;
 				this.refreshLogining = true;
 				axios.post('/amtf/Vf020001').then(response => {
 					//绑定数据
 					this.tableData = response.data.select1;
-					this.Notify('成功', '已成功刷新了会员数据。。。', 'success');
+                    headVue.Notify('成功', '已成功刷新了会员数据。。。', 'success');
 					this.refreshLogining = false;
+                    this.userTableLoading = false;
 				})
 			}
 		},

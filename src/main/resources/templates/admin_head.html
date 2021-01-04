@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<th:block th:fragment="admin_head">
-		<head>
-		<meta charset="UTF-8"/>
-		<style type="text/css">
-
-		</style>
-		</head>
-		<body>
-			<div id="adminHeadId">
-				<el-header style="text-align: right; font-size: 12px;">
-					<el-row :gutter="20">
-						<el-col :span="2" style="text-align: left">
-							<span onclick="adminMian()">
-								<el-link :underline="false">管理页面</el-link>
-							</span>
-						</el-col>
-						<el-col :span="22">
-							<el-dropdown>
-								<i class="el-icon-setting" style="margin-right: 15px"></i>
-								<el-dropdown-menu slot="dropdown">
-									<el-dropdown-item>设置</el-dropdown-item>
-								</el-dropdown-menu>
-							</el-dropdown>
-							<span>[[${main_params.logInFo.user_name}]]</span>
-						</el-col>
-					</el-row>
-				</el-header>
-			</div>
-		</body>
+		<el-header style="text-align: right; font-size: 12px;" id="adminHeadId">
+			<el-row :gutter="20">
+				<el-col :span="2" style="text-align: left">
+					<span onclick="adminMian()">
+						<el-link :underline="false">管理页面</el-link>
+					</span>
+				</el-col>
+				<el-col :span="22">
+					<el-dropdown>
+						<i class="el-icon-setting" style="margin-right: 15px"></i>
+						<el-dropdown-menu slot="dropdown">
+							<el-dropdown-item>设置</el-dropdown-item>
+						</el-dropdown-menu>
+					</el-dropdown>
+					<span>[[${main_params.logInFo.user_name}]]</span>
+				</el-col>
+			</el-row>
+		</el-header>
 		<script type="text/javascript">
 			// 返回管理页面主画面
 			function adminMian() {
@@ -42,6 +32,36 @@
 				document.getElementById('adminHeadId').appendChild(form);
 				form.submit();
 			}
+			var headVue = new Vue({
+				el: '#adminHeadId',
+				data: {
+				},
+				methods: {
+					// 消息框
+					Message(type, message) {
+						if (type == 'error') {
+							this.$message.error(message);
+						} else {
+							this.$message({
+								message: message,
+								type: type
+							});
+						}
+					},
+					Notify(title, message, type) {
+						this.$notify({
+							title: title,
+							message: message,
+							type: type
+						});
+					},
+				},
+				//初期化获取数据
+				created()
+				{
+
+				}
+			})
 		</script>
 	</th:block>
 </html>
