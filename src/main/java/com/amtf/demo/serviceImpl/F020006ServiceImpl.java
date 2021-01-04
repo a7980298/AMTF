@@ -54,6 +54,9 @@ public class F020006ServiceImpl implements F020006Service {
 	@Override
 	public F020006EntityOut service02(F020006EntityIn entityin) throws ErrListException {
 		F020006EntityOut entityOut = new F020006EntityOut();
+
+
+
 		return entityOut;
 	}
 }

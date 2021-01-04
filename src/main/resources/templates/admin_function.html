@@ -68,12 +68,15 @@
             pages:[],
             pagesShow: [],
             saveLoading: false,
-            pagesLoading: false
+            pagesLoading: false,
+            pagesSave: []
 		},
 		methods: {
+		    //穿梭框
             handleChange(value, direction, movedKeys) {
 
             },
+            //保存按钮押下
             save(){
                 this.saveLogining = true;
                 this.pagesLoading = true;
@@ -92,13 +95,14 @@
 		created()
 		{
             axios.post('/amtf/Vf020006').then(response => {
-                //绑定数据
+                //总页面
                 for (let i = 0; i < response.data.totalClientPage.length; i++) {
                     this.pages.push({
                         key: response.data.totalClientPage[i].power_id,
                         label: response.data.totalClientPage[i].power_name
                     });
                 }
+                //显示的页面
                 for (let i = 0; i < response.data.clientPageDisplayed.length; i++) {
                     this.pagesShow.push(
                         response.data.clientPageDisplayed[i].power_id
