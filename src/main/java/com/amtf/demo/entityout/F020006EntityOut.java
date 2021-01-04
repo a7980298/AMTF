@@ -25,4 +25,9 @@ public class F020006EntityOut extends UserImpl {
 	 * 客户端显示的页面
 	 */
 	private List<AmtfPowerEntity> clientPageDisplayed;
+
+	/**
+	 * 修改页面显示成功条数
+	 */
+	private Integer pageCount;
 }

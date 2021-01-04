@@ -4,11 +4,13 @@ package com.amtf.demo.controller;
 import com.amtf.demo.entityin.F020006EntityIn;
 import com.amtf.demo.entityout.F020006EntityOut;
 import com.amtf.demo.exception.ErrListException;
+import com.amtf.demo.params.F020001Params;
 import com.amtf.demo.params.F020006Params;
 import com.amtf.demo.service.F020006Service;
 import com.amtf.demo.util.ParameterUtil;
 import com.amtf.demo.util.StringUtil;
 import com.amtf.demo.util.ValiDationUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +59,11 @@ public class F020006ControllerVue extends ValiDationUtil {
 	 */
 	@PostMapping("/Vf020006/upPage")
 	@ResponseBody
-	public Object f020006T001(F020006Params params, Model model) {
+	public Object f020006T001(@RequestBody Map map, Model model) {
+
+		F020006Params params = new F020006Params();
+
+		params.setPagesShow(StringUtil.toStr(map.get("pagesShow")));
 
 		F020006EntityIn entityin = new F020006EntityIn();
 

@@ -72,21 +72,20 @@
             pagesSave: []
 		},
 		methods: {
-		    //穿梭框
+		    //穿梭框点击后
             handleChange(value, direction, movedKeys) {
-
             },
             //保存按钮押下
             save(){
                 this.saveLogining = true;
                 this.pagesLoading = true;
                 axios.post('/amtf/Vf020006/upPage',{
-                    userId:this.tableData[idx].user_email
+                    pagesShow: this.pagesShow
                 }).then(response => {
                     if(response.message != '' && response.message != null){
                         headVue.Message('error',response.message);
                     } else {
-
+                        headVue.Message('success','成功更新了' + response.data.pageCount + '条');
                     }
                 })
             }

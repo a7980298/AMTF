@@ -12,4 +12,20 @@
 			POWER_SHOW = #{power_show}
 		</if>
 	</select>
+	<!-- 修改数据 -->
+	<update id="f020006_Update2">
+		UPDATE AMTF_POWER
+		SET
+			POWER_SHOW = '0'
+		WHERE
+			POWER_id != 0
+	</update>
+	<!-- 修改数据 -->
+	<update id="f020006_Update3">
+		UPDATE AMTF_POWER
+		SET
+			POWER_SHOW = '1'
+		WHERE
+			POWER_id = #{power_id}
+	</update>
 </mapper>
