@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amtf.demo.dao.F020006Dao">
+	<!-- 问题标签 -->
+	<select id="f020006_Select1" resultType="com.amtf.demo.commonentity.AmtfPowerEntity">
+		SELECT
+			*
+		FROM
+			AMTF_POWER
+		<if test="power_show != ''">
+		WHERE
+			POWER_SHOW = #{power_show}
+		</if>
+	</select>
+</mapper>

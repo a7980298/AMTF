@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8"/>
+<title>人员管理页面</title>
+<th:block th:replace="vue-import :: vue-import"></th:block>
+<style type="text/css">
+	.colorSuccess{
+		color: #07bf07;
+	}
+	.d-none{
+		display: none;
+	}
+	.el-dropdown-link {
+		cursor: pointer;
+		color: #409EFF;
+	}
+	.el-icon-arrow-down {
+		font-size: 12px;
+	}
+	.demonstration {
+		display: block;
+		color: #8492a6;
+		font-size: 14px;
+		margin-bottom: 20px;
+	}
+</style>
+<body class="">
+	<div class="wrapper" id="admin_id">
+		<i-form class="" th:action="@{/f020003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+			<input type="hidden" name="IViewId" value="f020001"/>
+            <el-container>
+                <th:block th:replace="admin_navbar :: admin_navbar"></th:block>
+                <el-main style="padding-top: 0px">
+                    <th:block th:replace="admin_head :: admin_head"></th:block>
+                    <p style="text-align: center; margin: 0 0 20px">客户端可用画面显示</p>
+                    <div style="text-align: center">
+                        <el-transfer
+                                style="text-align: left; display: inline-block"
+                                v-model="pagesShow"
+                                filterable
+                                :render-content="renderFunc"
+                                :titles="['总画面', '显示画面']"
+                                :button-texts="['隐藏', '显示']"
+                                :format="{
+                                    noChecked: '${total}',
+                                    hasChecked: '${checked}/${total}'
+                                }"
+                                @change="handleChange"
+                                :data="pages"
+                                :loading="pagesLoading">
+                            <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
+                            <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>
+                        </el-transfer>
+                    </div>
+                    <p style="text-align: center; margin: 0 0 20px">
+                        <el-button type="primary" icon="el-icon-check" @click="save" :loading="saveLoading">保存</el-button>
+                    </p>
+                </el-main>
+            </el-container>
+		</i-form>
+	</div>
+</body>
+<script type="text/javascript">
+	new Vue({
+		el: '#admin_id',
+		data: {
+            pages:[],
+            pagesShow: [],
+            saveLoading: false,
+            pagesLoading: false
+		},
+		methods: {
+            handleChange(value, direction, movedKeys) {
+
+            },
+            save(){
+                this.saveLogining = true;
+                this.pagesLoading = true;
+                axios.post('/amtf/Vf020006/upPage',{
+                    userId:this.tableData[idx].user_email
+                }).then(response => {
+                    if(response.message != '' && response.message != null){
+                        headVue.Message('error',response.message);
+                    } else {
+
+                    }
+                })
+            }
+		},
+		//初期化获取数据
+		created()
+		{
+            axios.post('/amtf/Vf020006').then(response => {
+                //绑定数据
+                for (let i = 0; i < response.data.totalClientPage.length; i++) {
+                    this.pages.push({
+                        key: response.data.totalClientPage[i].power_id,
+                        label: response.data.totalClientPage[i].power_name
+                    });
+                }
+                for (let i = 0; i < response.data.clientPageDisplayed.length; i++) {
+                    this.pagesShow.push(
+                        response.data.clientPageDisplayed[i].power_id
+                    );
+                }
+            })
+		}
+	})
+</script>
+</html>

@@ -107,7 +107,7 @@
                             <template slot-scope="scope">
                                 <el-dropdown trigger="click">
                                     <span class="el-dropdown-link">
-                                        编辑<i class="el-icon-arrow-down el-icon--right"></i>
+                                        账户状态<i class="el-icon-arrow-down el-icon--right"></i>
                                     </span>
                                     <el-dropdown-menu slot="dropdown">
                                         <el-dropdown-item icon="el-icon-plus">升级</el-dropdown-item>
@@ -131,8 +131,8 @@
                         </el-table-column>
                     </el-table>
                     <div style="margin-top: 20px">
-                        <el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLogining">选中-认证</el-button>
-                        <el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLogining">刷新</el-button>
+                        <el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLoading">选中-认证</el-button>
+                        <el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLoading">刷新</el-button>
                     </div>
                     <el-dialog
                             title="基本信息"
@@ -201,8 +201,8 @@
 				numberOfVideo:''
 			},
 			multipleSelection: [],
-			selectLogining: false,
-            refreshLogining: false,
+			selectLoading: false,
+            refreshLoading: false,
             userTableLoading: false,
 		},
 		methods: {
@@ -282,24 +282,24 @@
 			},
 			//选中认证
 			selectCertification(){
-				this.selectLogining = true;
+				this.selectLoading = true;
 				this.multipleSelection.forEach(entity => {
 					if(entity.user_attestation == '0'){
 						this.upAttestation(entity.user_email, '1', entity);
 					}
 				})
                 headVue.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
-				this.selectLogining = false;
+				this.selectLoading = false;
 			},
 			//刷新
 			refresh(){
                 this.userTableLoading = true;
-				this.refreshLogining = true;
+				this.refreshLoading = true;
 				axios.post('/amtf/Vf020001').then(response => {
 					//绑定数据
 					this.tableData = response.data.select1;
                     headVue.Notify('成功', '已成功刷新了会员数据。。。', 'success');
-					this.refreshLogining = false;
+					this.refreshLoading = false;
                     this.userTableLoading = false;
 				})
 			}
