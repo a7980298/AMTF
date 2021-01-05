@@ -30,4 +30,9 @@ public class F020006EntityOut extends UserImpl {
 	 * 修改页面显示成功条数
 	 */
 	private Integer pageCount;
+
+	/**
+	 * 权限
+	 */
+	private String userPower;
 }

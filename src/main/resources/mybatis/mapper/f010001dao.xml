@@ -18,7 +18,9 @@
 		FROM 
 			AMTF_POWER
 		WHERE 
-			power_pow &lt;= CONVERT(#{pow} USING gb2312)
+			POWER_POW &lt;= CONVERT(#{pow} USING gb2312)
+		AND
+			POWER_SHOW = '1'
 	</select>
 	
 	<select id="f010001_Select3" resultType="com.amtf.demo.f010001entity.F010001_Select3Entity">

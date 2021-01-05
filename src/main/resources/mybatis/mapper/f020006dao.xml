@@ -19,6 +19,8 @@
 			POWER_SHOW = '0'
 		WHERE
 			POWER_id != 0
+		AND
+			POWER_POW &lt; CONVERT(#{pow} USING gb2312)
 	</update>
 	<!-- 修改数据 -->
 	<update id="f020006_Update3">

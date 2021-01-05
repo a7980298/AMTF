@@ -37,6 +37,8 @@ public class F020006ServiceImpl implements F020006Service {
 	@Override
 	public F020006EntityOut service01(F020006EntityIn entityin) throws ErrListException {
 		F020006EntityOut entityOut = new F020006EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
 		//获取所有客户端页面
 		List<AmtfPowerEntity> totalClientPage = f020006dao.f020006_Select1(Constant.EMPTY);
 		entityOut.setTotalClientPage(totalClientPage);
@@ -44,6 +46,8 @@ public class F020006ServiceImpl implements F020006Service {
 		List<AmtfPowerEntity> clientPageDisplayed = f020006dao.f020006_Select1(Constant.STR_1);
 		entityOut.setClientPageDisplayed(clientPageDisplayed);
 
+		//权限
+		entityOut.setUserPower(StringUtil.toStr(loginfo.getUser_power()));
 		return entityOut;
 	}
 
@@ -56,12 +60,14 @@ public class F020006ServiceImpl implements F020006Service {
 	@Override
 	public F020006EntityOut service02(F020006EntityIn entityin) throws ErrListException {
 		F020006EntityOut entityOut = new F020006EntityOut();
+        LogInFo loginfo = new LogInFo();
+        loginfo = ParameterUtil.getSession();
 		//去除 [] 符号
 		entityin.setPagesShow(StringUtils.strip(entityin.getPagesShow(),"[]"));
 		//根据逗号分隔成数组
 		String[] pagesShows = entityin.getPagesShow().replaceAll(" ","").split(",");
 		//将所有页面更改未不显示
-		f020006dao.f020006_Update2();
+		f020006dao.f020006_Update2(loginfo.getUser_power());
 		//将显示的页面更改
 		Integer pageCount = 0;
 		for (String str:pagesShows) {
