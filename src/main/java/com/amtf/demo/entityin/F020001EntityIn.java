@@ -29,6 +29,11 @@ public class F020001EntityIn extends UserImpl {
 	 */
 	private String userAttestation;
 
+	/**
+	 * 账户状态
+	 */
+	private String userStatus;
+
 	/*----------------------------------------------------------------------------------------*/
 
 	/**

@@ -133,4 +133,13 @@
 		WHERE
 			USER_EMAIL = #{userId}
 	</update>
+	<!-- 修改账户状态 -->
+	<update id="f020001_Update13">
+		UPDATE
+			AMTF_USER
+		SET
+			USER_STATUS = #{userStatus}
+		WHERE
+			USER_EMAIL = #{userId}
+	</update>
 </mapper>

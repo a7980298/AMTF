@@ -112,9 +112,9 @@
                                         <i class="el-icon-arrow-down el-icon--right"></i>
                                     </span>
                                     <el-dropdown-menu slot="dropdown">
-                                        <el-dropdown-item icon="el-icon-plus" command="upgrade" style="color: #409EFF">升级</el-dropdown-item>
-                                        <el-dropdown-item icon="el-icon-close" v-if="scope.row.user_status != '1'" command="disable" style="color: #909399">禁用</el-dropdown-item>
-                                        <el-dropdown-item icon="el-icon-check" v-if="scope.row.user_status != '0'" command="normal" style="color: #67C23A">正常</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-plus" :command="statusCommandItem(scope.$index, 2)" style="color: #409EFF">升级</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-close" v-if="scope.row.user_status != '1'" :command="statusCommandItem(scope.$index, 1)" style="color: #909399">禁用</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-check" v-if="scope.row.user_status != '0'" :command="statusCommandItem(scope.$index, 0)" style="color: #67C23A">正常</el-dropdown-item>
                                     </el-dropdown-menu>
                                 </el-dropdown>
                                 <el-button
@@ -207,7 +207,8 @@
             refreshLoading: false,
             userTableLoading: false,
             selectDisabled: true,
-            refreshDisabled: true
+            refreshDisabled: true,
+            statusClickIndex:''
 		},
 		methods: {
 			//用户基本信息
@@ -266,7 +267,7 @@
 			},
 			//认证状态修改axios
 			upAttestation(userid, userAttestation, row){
-				axios.post('/amtf/Vf020001/upattestation',{
+				axios.post('/amtf/Vf020001/upAttestation',{
 					userId:userid,
 					userAttestation:userAttestation
 				}).then(response => {
@@ -314,7 +315,26 @@
 			},
             //状态更改
             statusCommand(command){
-                this.$message('click on item ' + command);
+			    if(command.command == '2'){
+
+                } else {
+                    axios.post('/amtf/Vf020001/upStatus',{
+                        userId:this.tableData[command.index].user_email,
+                        userStatus:command.command
+                    }).then(response => {
+                        if(response.message != '' && response.message != null){
+                            headVue.Message('error',response.message);
+                        } else {
+                            this.tableData[command.index].user_status = command.command;
+                        }
+                    })
+                }
+            },
+            statusCommandItem(idx, command){
+                return {
+                    'index': idx,
+                    'command':command
+                }
             }
 		},
 		//初期化获取数据

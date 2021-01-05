@@ -201,7 +201,7 @@ public class F020001ServiceImpl implements F020001Service {
 	public F020001EntityOut service04(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
 		if (Constant.STR_0.equals(entityin.getUserAttestation()) || Constant.STR_1.equals(entityin.getUserAttestation())){
-			if(f020001dao.f020001_Update12(entityin.getUserId(),entityin.getUserAttestation()) <=0 ){
+			if(f020001dao.f020001_Update12(entityin.getUserId(),entityin.getUserAttestation()) <= 0 ){
 				throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
 			}
 		} else {
@@ -294,12 +294,18 @@ public class F020001ServiceImpl implements F020001Service {
 	}
 
 	/**
-	 * 活动发布
+	 * 修改用户的账户状态
 	 */
 	@Override
 	public F020001EntityOut service07(F020001EntityIn entityin) throws ErrListException {
 		F020001EntityOut entityOut = new F020001EntityOut();
-
+		if (Constant.STR_0.equals(entityin.getUserStatus()) || Constant.STR_1.equals(entityin.getUserStatus())) {
+			if(f020001dao.f020001_Update13(entityin.getUserId(), entityin.getUserStatus()) <= 0 ){
+				throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
+			}
+		} else {
+			throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
+		}
 
 		return entityOut;
 	}

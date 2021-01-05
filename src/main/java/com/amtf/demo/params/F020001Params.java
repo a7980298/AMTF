@@ -42,6 +42,11 @@ public class F020001Params extends UserImpl {
 	private String userAttestation;
 
 	/**
+	 * 账户状态
+	 */
+	private String userStatus;
+
+	/**
 	 * 用户信息
 	 */
 	private F020001_UserHistoryEntity userHistory;
