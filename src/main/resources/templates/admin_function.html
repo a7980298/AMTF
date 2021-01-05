@@ -98,7 +98,7 @@
                 for (let i = 0; i < response.data.totalClientPage.length; i++) {
                     this.pages.push({
                         key: response.data.totalClientPage[i].power_id,
-                        label: response.data.totalClientPage[i].power_name,
+                        label: response.data.totalClientPage[i].power_type + " - " + response.data.totalClientPage[i].power_name,
                         disabled: parseInt(response.data.totalClientPage[i].power_pow) >= parseInt(response.data.userPower)
                     });
                 }
