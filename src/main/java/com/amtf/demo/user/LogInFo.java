@@ -73,6 +73,11 @@ public class LogInFo {
 	private Integer user_power;
 
 	/**
+	 * 状态
+	 */
+	private String user_status;
+
+	/**
 	 * 头像路径
 	 */
 	private String imgpath;

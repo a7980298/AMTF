@@ -71,4 +71,9 @@ public class F010001_Select1Entity {
 	 */
 	private Integer user_power;
 
+	/**
+	 * 状态
+	 */
+	private String user_status;
+
 }

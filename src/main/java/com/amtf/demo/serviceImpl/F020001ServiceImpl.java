@@ -88,6 +88,8 @@ public class F020001ServiceImpl implements F020001Service {
 			f02_select.setUser_power(StringUtil.toStr(select1.get(i).getUser_power()));
 			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
+			// 状态
+			f02_select.setUser_status(select1.get(i).getUser_status());
 
 			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
 

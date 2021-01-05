@@ -72,6 +72,14 @@ public class F020001_Select1Entity {
 	 */
 	private String user_power;
 
+	/**
+	 * 状态
+	 */
+	private String user_status;
+
+	/**
+	 * 头像
+	 */
 	private String user_path;
 
 }

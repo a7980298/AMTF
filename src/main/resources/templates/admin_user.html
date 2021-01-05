@@ -73,7 +73,7 @@
                                 :filter-method="filterAttestation "
                                 filter-placement="bottom-end">
                             <template slot-scope="scope">
-                                <span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation == '0'">未认证</span>
+                                <span style="margin-left: 10px" v-if="scope.row.user_attestation == '0'">未认证</span>
                                 <span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">已认证</span>
                                 <el-popconfirm
                                         confirm-button-text='确定'
@@ -85,7 +85,7 @@
                                         @confirm="modificationStatusConfirmation(scope.$index, scope.row)">
                                     <el-button icon="el-icon-check" type="success" slot="reference" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
                                 </el-popconfirm>
-                                <el-button icon="el-icon-remove" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
+                                <el-button icon="el-icon-minus" type="info" :class="scope.row.user_attestation == '1' ? 'd-none' : ''" circle @click="certificationStatus(scope.$index, scope.row)" size="mini"></el-button>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -105,14 +105,16 @@
                         </el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
-                                <el-dropdown trigger="click">
+                                <el-dropdown trigger="click" @command="statusCommand">
                                     <span class="el-dropdown-link">
-                                        账户状态<i class="el-icon-arrow-down el-icon--right"></i>
+                                        <span style="color: #67C23A" v-if="scope.row.user_status == '0'">正常</span>
+                                        <span style="color: #909399" v-if="scope.row.user_status == '1'">禁用</span>
+                                        <i class="el-icon-arrow-down el-icon--right"></i>
                                     </span>
                                     <el-dropdown-menu slot="dropdown">
-                                        <el-dropdown-item icon="el-icon-plus">升级</el-dropdown-item>
-                                        <el-dropdown-item icon="el-icon-close">禁用</el-dropdown-item>
-                                        <el-dropdown-item icon="el-icon-check">正常</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-plus" command="upgrade" style="color: #409EFF">升级</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-close" v-if="scope.row.user_status != '1'" command="disable" style="color: #909399">禁用</el-dropdown-item>
+                                        <el-dropdown-item icon="el-icon-check" v-if="scope.row.user_status != '0'" command="normal" style="color: #67C23A">正常</el-dropdown-item>
                                     </el-dropdown-menu>
                                 </el-dropdown>
                                 <el-button
@@ -131,8 +133,8 @@
                         </el-table-column>
                     </el-table>
                     <div style="margin-top: 20px">
-                        <el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLoading">选中-认证</el-button>
-                        <el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLoading">刷新</el-button>
+                        <el-button type="primary" icon="el-icon-circle-check" @click="selectCertification()" :loading="selectLoading" :disabled="selectDisabled">选中-认证</el-button>
+                        <el-button type="primary" icon="el-icon-refresh" @click="refresh" :loading="refreshLoading" :disabled="refreshDisabled">刷新</el-button>
                     </div>
                     <el-dialog
                             title="基本信息"
@@ -204,6 +206,8 @@
 			selectLoading: false,
             refreshLoading: false,
             userTableLoading: false,
+            selectDisabled: true,
+            refreshDisabled: true
 		},
 		methods: {
 			//用户基本信息
@@ -244,6 +248,7 @@
 				this.userNameId = 'userNameId' + idx;
 
 			},
+            //修改认证状态-未认证
 			modificationStatusConfirmation(idx, row){
 				if(row.user_attestation == '1'){
 					this.upAttestation(this.tableData[idx].user_email, '0', row);
@@ -253,7 +258,7 @@
 			goToHomepage(){
 
 			},
-			//修改认证状态
+			//修改认证状态-认证
 			certificationStatus(idx, row){
 				if(row.user_attestation == '0'){
 					this.upAttestation(this.tableData[idx].user_email, '1', row);
@@ -283,12 +288,16 @@
 			//选中认证
 			selectCertification(){
 				this.selectLoading = true;
-				this.multipleSelection.forEach(entity => {
-					if(entity.user_attestation == '0'){
-						this.upAttestation(entity.user_email, '1', entity);
-					}
-				})
-                headVue.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
+				if(this.multipleSelection.length > 0 ){
+                    this.multipleSelection.forEach(entity => {
+                        if(entity.user_attestation == '0'){
+                            this.upAttestation(entity.user_email, '1', entity);
+                        }
+                    })
+                    headVue.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
+                } else {
+                    headVue.Message('info','请选择需要认证的用户。。。');
+                }
 				this.selectLoading = false;
 			},
 			//刷新
@@ -302,7 +311,11 @@
 					this.refreshLoading = false;
                     this.userTableLoading = false;
 				})
-			}
+			},
+            //状态更改
+            statusCommand(command){
+                this.$message('click on item ' + command);
+            }
 		},
 		//初期化获取数据
 		created()
@@ -310,6 +323,10 @@
 			axios.post('/amtf/Vf020001').then(response => {
 				//绑定数据
 				this.tableData = response.data.select1;
+				if(this.tableData.length > 0){
+                    this.selectDisabled = false;
+                    this.refreshDisabled = false;
+                }
 			})
 		}
 	})

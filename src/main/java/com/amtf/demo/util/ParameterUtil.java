@@ -118,6 +118,8 @@ public class ParameterUtil {
 					!CommonUtil.isEmpty(user.getUser_attestation()) ? NumberUtil.toInt(user.getUser_attestation()) : 0);
 			// 权限
 			loginfo.setUser_power(!CommonUtil.isEmpty(user.getUser_power()) ? user.getUser_power() : 0);
+			// 状态
+			loginfo.setUser_status(!CommonUtil.isEmpty(user.getUser_status()) ? user.getUser_status() : Constant.STR_0);
 			// 设置存在时长10分钟
 			session.setMaxInactiveInterval(10 * 60);
 			// 存入session

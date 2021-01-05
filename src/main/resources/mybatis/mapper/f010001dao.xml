@@ -45,7 +45,8 @@
 				User_Phone, 
 				User_Introduce, 
 				User_Attestation, 
-				User_power
+				User_power,
+				user_status
 			)
 		VALUES(
 			#{entityin.userid},
@@ -60,7 +61,8 @@
 			'',
 			'',
 			'0',
-			0
+			0,
+			'0'
 		)
 	</insert>
 	
