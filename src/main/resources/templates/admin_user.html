@@ -189,8 +189,14 @@
                             center>
                         <el-row :gutter="20">
                             <el-row style="margin-bottom:20px">
-                                <el-col :span="12">
-                                    <el-select v-model="levelOptionsValue" placeholder="请选择级别">
+                                <el-col :span="13">
+                                    <p style="text-align: left; margin: 0 0 20px">
+                                        不同等级可进行不同的操作，如果你要为当前用户提升或降低等级（提升等级只能在你的权限之下），请选择右边下拉框中的选项。
+                                        如果中途废止或启用升级权限，可以选中开关按钮进行切换。（废止权限后用户的级别是0级，并且级别是0级后不可再废止也不可再提交。）
+                                    </p>
+                                </el-col>
+                                <el-col :span="6">
+                                    <el-select v-model="levelOptionsValue" placeholder="请选择级别" @change="levelOptionsChange">
                                         <el-option
                                                 v-for="item in levelOptions"
                                                 :key="item.value"
@@ -199,26 +205,28 @@
                                         </el-option>
                                     </el-select>
                                 </el-col>
-                                <el-col :span="12">
-                                    <el-tooltip :content="'改变 状态: ' + upgradeFlg" placement="top">
-                                        <el-switch
-                                                v-model="upgradeFlg"
-                                                active-color="#13ce66"
-                                                inactive-color="#ff4949"
-                                                active-value="100"
-                                                inactive-value="0">
-                                        </el-switch>
-                                    </el-tooltip>
+                                <el-col :span="4">
+                                    <el-switch
+                                            v-model="upgradeFlg"
+                                            active-text="启用"
+                                            inactive-text="停止"
+                                            :disabled="upgradeDisabled">
+                                    </el-switch>
                                 </el-col>
                             </el-row>
-                            <el-row>
+                            <el-row style="margin-bottom:20px">
                                 <el-col :span="24">
-                                    <el-steps :active="1">
-                                        <el-step title="提交申请" description="申请权限提升"></el-step>
-                                        <el-step title="上级确认" description="已提交给管理员"></el-step>
+                                    <el-steps :active="0">
+                                        <el-step title="设置等级" description="权限提升"></el-step>
+                                        <el-step title="升级" description="升级中，请稍等"></el-step>
                                         <el-step title="成功升级" description="权限已升级"></el-step>
                                     </el-steps>
                                 </el-col>
+                            </el-row>
+                            <el-row>
+                                <p style="text-align: center; margin: 0 0 20px">
+                                    <el-button type="primary" @click="levelClick" :loading="levelLoading" :disabled="levelBtnDisabled">提交</el-button>
+                                </p>
                             </el-row>
                         </el-row>
                     </el-dialog>
@@ -234,7 +242,9 @@
 			tableData: '',
             basicInformationVisible: false,
             userUpgradeVisible: false,
-            upgradeFlg: '停止提交',
+            levelBtnDisabled: true,
+            upgradeFlg: true,
+            upgradeDisabled: true,
 			userNameId: '',
 			search: '',
 			dialog:{
@@ -250,6 +260,7 @@
 			selectLoading: false,
             refreshLoading: false,
             userTableLoading: false,
+            levelLoading: false,
             selectDisabled: true,
             refreshDisabled: true,
             statusClickIndex: '',
@@ -362,8 +373,10 @@
             //状态更改
             statusCommand(command){
 			    if(command.command == '2'){
-                    this.levelOptionsValue = '等级-' + this.tableData[command.index].user_power;
+			        let power = this.tableData[command.index].user_power;
+                    this.levelOptionsValue = '等级-' + power;
                     this.userUpgradeVisible = true;
+                    this.levelOptionsChange(power);
                 } else {
                     axios.post('/amtf/Vf020001/upStatus',{
                         userId:this.tableData[command.index].user_email,
@@ -382,6 +395,20 @@
                     'index': idx,
                     'command':command
                 }
+            },
+            //升级提交
+            levelClick(){
+
+            },
+            //选中级别
+            levelOptionsChange(value){
+			    if(value != 0){
+			        this.levelBtnDisabled = false;
+			        this.upgradeDisabled = false;
+                } else {
+                    this.levelBtnDisabled = true;
+                    this.upgradeDisabled = true;
+                }
             }
 		},
 		//初期化获取数据
@@ -397,8 +424,8 @@
                 let power = response.data.logInFo.user_power;
 				for (let i = 0; i < parseInt(power); i++){
                     this.levelOptions.push({
-                        label: i,
-                        value: '等级-' + i
+                        label: '等级-' + i,
+                        value: i
                     })
                 }
 			})
