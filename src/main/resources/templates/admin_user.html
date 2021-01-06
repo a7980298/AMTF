@@ -138,9 +138,10 @@
                     </div>
                     <el-dialog
                             title="基本信息"
-                            :visible.sync="dialogVisible"
+                            :visible.sync="basicInformationVisible"
                             width="30%"
-                            :before-close="handleClose">
+                            :before-close="handleClose"
+                            center>
                         <el-row :gutter="20">
                             <el-col :span="5">
                                 <div class="block">
@@ -180,6 +181,47 @@
                             </el-col>
                         </el-row>
                     </el-dialog>
+                    <el-dialog
+                            title="用户升级"
+                            :visible.sync="userUpgradeVisible"
+                            width="50%"
+                            :before-close="handleClose"
+                            center>
+                        <el-row :gutter="20">
+                            <el-row style="margin-bottom:20px">
+                                <el-col :span="12">
+                                    <el-select v-model="levelOptionsValue" placeholder="请选择级别">
+                                        <el-option
+                                                v-for="item in levelOptions"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </el-col>
+                                <el-col :span="12">
+                                    <el-tooltip :content="'改变 状态: ' + upgradeFlg" placement="top">
+                                        <el-switch
+                                                v-model="upgradeFlg"
+                                                active-color="#13ce66"
+                                                inactive-color="#ff4949"
+                                                active-value="100"
+                                                inactive-value="0">
+                                        </el-switch>
+                                    </el-tooltip>
+                                </el-col>
+                            </el-row>
+                            <el-row>
+                                <el-col :span="24">
+                                    <el-steps :active="1">
+                                        <el-step title="提交申请" description="申请权限提升"></el-step>
+                                        <el-step title="上级确认" description="已提交给管理员"></el-step>
+                                        <el-step title="成功升级" description="权限已升级"></el-step>
+                                    </el-steps>
+                                </el-col>
+                            </el-row>
+                        </el-row>
+                    </el-dialog>
                 </el-main>
             </el-container>
 		</i-form>
@@ -189,9 +231,11 @@
 	new Vue({
 		el: '#admin_id',
 		data: {
-			tableData:'',
-			dialogVisible:false,
-			userNameId:'',
+			tableData: '',
+            basicInformationVisible: false,
+            userUpgradeVisible: false,
+            upgradeFlg: '停止提交',
+			userNameId: '',
 			search: '',
 			dialog:{
 				name:'',
@@ -208,7 +252,9 @@
             userTableLoading: false,
             selectDisabled: true,
             refreshDisabled: true,
-            statusClickIndex:''
+            statusClickIndex: '',
+            levelOptions: [],
+            levelOptionsValue: ''
 		},
 		methods: {
 			//用户基本信息
@@ -240,7 +286,7 @@
 						//发布视频次数
 						this.dialog.numberOfVideo = response.data.userHistory.numberOfVideo;
 						//打开模态框
-						this.dialogVisible = true;
+						this.basicInformationVisible = true;
 					}
 				})
 			},
@@ -316,7 +362,8 @@
             //状态更改
             statusCommand(command){
 			    if(command.command == '2'){
-
+                    this.levelOptionsValue = '等级-' + this.tableData[command.index].user_power;
+                    this.userUpgradeVisible = true;
                 } else {
                     axios.post('/amtf/Vf020001/upStatus',{
                         userId:this.tableData[command.index].user_email,
@@ -346,6 +393,13 @@
 				if(this.tableData.length > 0){
                     this.selectDisabled = false;
                     this.refreshDisabled = false;
+                }
+                let power = response.data.logInFo.user_power;
+				for (let i = 0; i < parseInt(power); i++){
+                    this.levelOptions.push({
+                        label: i,
+                        value: '等级-' + i
+                    })
                 }
 			})
 		}
