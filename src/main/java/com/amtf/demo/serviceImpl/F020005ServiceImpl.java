@@ -57,11 +57,9 @@ public class F020005ServiceImpl implements F020005Service {
 
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
-		// 图片上传
-		Integer activity_idInteger = CommonUtil.isEmpty(commondao.common_Select3()) ? 0
-				: commondao.common_Select3() + 1;
+
 		// 添加活动
-		int insert6 = f020001dao.f020001_insert6(activity_idInteger, loginfo.getUser_email(),
+		int insert6 = f020001dao.f020001_insert6(loginfo.getUser_email(),
 				entityin.getActivity_head(), entityin.getActivity_check(),
 				NumberUtil.toInt(entityin.getActivity_sttymd().replace("/", "")),
 				NumberUtil.toInt(entityin.getActivity_endymd().replace("/", "")), entityin.getActivity_editor());

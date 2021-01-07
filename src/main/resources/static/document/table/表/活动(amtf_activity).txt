@@ -1,10 +1,10 @@
 CREATE TABLE amtf_activity(
-	activity_id INT NOT NULL, -- id
-	activity_name VARCHAR(30) NOT NULL, -- 管理员姓名
-	activity_head VARCHAR(30), -- 活动标题
-	activity_check INT, -- 参与级别
-	activity_sttymd INT, -- 开始日期
-	activity_endymd INT, -- 结束日期
-	activity_text BLOB, -- 活动内容
-	activity_time DATETIME	-- 发布时间
+	activity_id INT NOT NULL primary key auto_increment comment"id主键",
+	activity_name VARCHAR(30) NOT NULL comment"管理员姓名",
+	activity_head VARCHAR(30) NOT NULL comment"活动标题",
+	activity_check INT NOT NULL comment"参与级别",
+	activity_sttymd INT NOT NULL comment"开始日期",
+	activity_endymd INT NOT NULL comment"结束日期",
+	activity_text BLOB NOT NULL comment"活动内容",
+	activity_time DATETIME NOT NULL comment"发布时间"
 )

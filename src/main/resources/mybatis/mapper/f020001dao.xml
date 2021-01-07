@@ -35,12 +35,15 @@
 	</select>
 	<!-- 发布通知 -->
 	<insert id="f020001_insert3">
-		INSERT 
-		INTO
-			AMTF_UPDNOTICE
+		INSERT INTO
+			AMTF_UPDNOTICE(
+				updnotice_name
+				,updnotice_head
+				,updnotice_text
+				,updnotice_time
+			)
 		VALUES(
-			#{id}
-			,#{name}
+			#{name}
 			,#{head}
 			,#{text}
 			,NOW()
@@ -65,12 +68,18 @@
 	</select>
 	<!-- 发布活动 -->
 	<insert id="f020001_insert6">
-		INSERT 
-		INTO
-			AMTF_ACTIVITY
+		INSERT INTO
+			AMTF_ACTIVITY(
+				activity_name
+				,activity_head
+				,activity_check
+				,activity_sttymd
+				,activity_endymd
+				,activity_text
+				,activity_time
+			)
 		VALUES(
-			#{id}
-			,#{name}
+			#{name}
 			,#{head}
 			,#{check}
 			,#{sttymd}
@@ -130,6 +139,7 @@
 			AMTF_USER
 		SET
 			USER_ATTESTATION = #{userAttestation}
+			,USER_POWER = #{userAttestation}
 		WHERE
 			USER_EMAIL = #{userId}
 	</update>

@@ -132,8 +132,6 @@ public class F040001ServiceImpl implements F040001Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfVideoEntity videoentity = new AmtfVideoEntity();
-		// id
-		videoentity.setVideo_id(CommonUtil.isEmpty(commondao.common_Select12()) ? 0 : (commondao.common_Select12() + 1));
 		// 用户id
 		videoentity.setUser_id(loginfo.getUser_email());
 		// 简介
@@ -229,8 +227,6 @@ public class F040001ServiceImpl implements F040001Service {
 				if(CommonUtil.isEmpty(f040001dao.f040001_Select22(video.getVideo_id(),loginfo.getUser_email()))){
 					// 添加观看历史
 					AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
-					// id
-					amtfvideohistoryentity.setVideo_history_id(CommonUtil.isEmpty(commondao.common_Select13()) ? 0 : (commondao.common_Select13() + 1));
 					// 视频id
 					amtfvideohistoryentity.setVideo_id(video.getVideo_id());
 					// 用户id
@@ -319,8 +315,6 @@ public class F040001ServiceImpl implements F040001Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfVideoBarrageEntity amtfvideobarrageentity = new AmtfVideoBarrageEntity();
-		// 弹幕id
-		amtfvideobarrageentity.setVideo_barrage_id(CommonUtil.isEmpty(commondao.common_Select14()) ? 0 : commondao.common_Select14() + 1);
 		// 视频id
 		amtfvideobarrageentity.setVideo_id(NumberUtil.toInt(entityin.getVideo_id()));
 		// 发言人
@@ -387,8 +381,6 @@ public class F040001ServiceImpl implements F040001Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfVideoCommentEntity amtfvideocommententity = new AmtfVideoCommentEntity();
-		// id
-		amtfvideocommententity.setVideo_comment_id(CommonUtil.isEmpty(commondao.common_Select15()) ? 0 : commondao.common_Select15() + 1);
 		// 用户id
 		amtfvideocommententity.setUser_id(loginfo.getUser_email());
 		// 视频id
@@ -447,8 +439,6 @@ public class F040001ServiceImpl implements F040001Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfVideoCommentReplyEntity amtfvideocommentreplyentity = new AmtfVideoCommentReplyEntity();
-		// id
-		amtfvideocommentreplyentity.setVideo_comment_reply_id(CommonUtil.isEmpty(commondao.common_Select16()) ? 0 : commondao.common_Select16() + 1);
 		// 视频id
 		amtfvideocommentreplyentity.setVideo_id(entityin.getVideo_id());
 		// 评论id
@@ -509,8 +499,6 @@ public class F040001ServiceImpl implements F040001Service {
 			}
 		} else {
 			AmtfVideoPraiseEntity amtfvideopraiseentity = new AmtfVideoPraiseEntity();
-			// id
-			amtfvideopraiseentity.setVideo_comment_praise_id(CommonUtil.isEmpty(commondao.common_Select17()) ? 0 : commondao.common_Select17() + 1);
 			// 视频id
 			amtfvideopraiseentity.setVideo_id(NumberUtil.toInt(entityin.getVideo_id()));
 			// 评论id

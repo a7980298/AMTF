@@ -1,7 +1,7 @@
 CREATE TABLE amtf_video_class(
-	video_class_id INT NOT NULL, -- id
-	video_class_name VARCHAR(8), -- 标签类型名
-	video_class_img VARCHAR(100) -- 标签图形
+	video_class_id INT NOT NULL primary key auto_increment comment"id主键",
+	video_class_name VARCHAR(8) comment"标签类型名",
+	video_class_img VARCHAR(100) comment"标签图形"
 )
 insert into amtf_video_class values(1,'专辑',' fa-universal-access');
 insert into amtf_video_class values(2,'电视剧','fa-television');

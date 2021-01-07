@@ -76,9 +76,7 @@ public class F010005ServiceImpl implements F010005Service {
 			f010005dao.f010005_Delete14(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email());
 			insert10 = -1;
 		} else {
-			insert10 = f010002dao.f010002_Insert10(
-					CommonUtil.isEmpty(commondao.common_Select4()) ? 0 : commondao.common_Select4() + 1,
-					NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email());
+			insert10 = f010002dao.f010002_Insert10(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email());
 		}
 		entityout.setInsert10(StringUtil.toStr(insert10));
 
@@ -223,8 +221,7 @@ public class F010005ServiceImpl implements F010005Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfActivityCommentEntity amtfactivitycommententity = new AmtfActivityCommentEntity();
-		//评论id
-		amtfactivitycommententity.setActivity_comment_id(CommonUtil.isEmpty(commondao.common_Select5()) ? 0 : commondao.common_Select5() + 1);
+
 		//活动id
 		amtfactivitycommententity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
 		//用户
@@ -314,8 +311,6 @@ public class F010005ServiceImpl implements F010005Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfActivityCommentReplyEntity amtfactivitycommentreplyentity = new AmtfActivityCommentReplyEntity();
-		//回复id
-		amtfactivitycommentreplyentity.setActivity_comment_reply_id(CommonUtil.isEmpty(commondao.common_Select6()) ? 0 : commondao.common_Select6() + 1);
 		//评论id
 		amtfactivitycommentreplyentity.setActivity_comment_id(NumberUtil.toInt(entityin.getActivity_id()));
 		//用户
@@ -342,8 +337,6 @@ public class F010005ServiceImpl implements F010005Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		AmtfActivityFabulousEntity amtfactivityfabulousentity = new AmtfActivityFabulousEntity();
-		// id
-		amtfactivityfabulousentity.setActivity_fabulous_id(CommonUtil.isEmpty(commondao.common_Select7()) ? 0 : commondao.common_Select7());
 		// 活动
 		amtfactivityfabulousentity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
 		// userid
@@ -397,8 +390,6 @@ public class F010005ServiceImpl implements F010005Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		AmtfActivityCommentFabulousEntity amtfactivitycommentfabulousentity=new AmtfActivityCommentFabulousEntity();
-		//id
-		amtfactivitycommentfabulousentity.setActivity_comment_fabulous_id(CommonUtil.isEmpty(commondao.common_Select8()) ? 0 : commondao.common_Select8());
 		//活动id
 		amtfactivitycommentfabulousentity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
 		//评论id
@@ -439,8 +430,6 @@ public class F010005ServiceImpl implements F010005Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfUserAttentionEntity amtfuserattentionentity= new AmtfUserAttentionEntity();
-		//id
-		amtfuserattentionentity.setUser_attention_id(CommonUtil.isEmpty(commondao.common_Select9()) ? 0 : commondao.common_Select9());
 		//关注用户id
 		amtfuserattentionentity.setAttention_id(entityin.getAttention_id());
 		//用户id

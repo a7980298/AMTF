@@ -1,10 +1,11 @@
 CREATE TABLE amtf_video_comment(
-	video_comment_id INT NOT NULL, -- id
-	video_id INT NOT NULL, -- 视频id
-	user_id VARCHAR(30), -- 发言人id
-	video_comment_text VARCHAR(300),-- 发言的内容
-	video_comment_time DATETIME	-- 发言时间
+	video_comment_id INT NOT NULL primary key auto_increment comment"id主键",
+	video_id INT NOT NULL comment"视频id",
+	user_id VARCHAR(30) comment"发言人id",
+	video_comment_text VARCHAR(300) comment"发言的内容",
+	video_comment_time DATETIME comment"发言时间"
 )
-
 ALTER TABLE amtf_video_comment MODIFY  video_comment_text  VARCHAR(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE amtf_video_comment CHARSET=utf8mb4;
+
+ALTER TABLE `amtf_video_comment` ADD INDEX video_comment_video_id ( `video_id` )

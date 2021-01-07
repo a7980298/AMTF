@@ -77,8 +77,6 @@ public class F010011ServiceImpl implements F010011Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfUserAttentionEntity amtfuserattentionentity= new AmtfUserAttentionEntity();
-		//id
-		amtfuserattentionentity.setUser_attention_id(CommonUtil.isEmpty(commondao.common_Select9()) ? 0 : commondao.common_Select9());
 		//关注用户id
 		amtfuserattentionentity.setAttention_id(entityin.getAttention_id());
 		//用户id

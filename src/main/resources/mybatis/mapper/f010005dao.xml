@@ -74,10 +74,15 @@
 	<!-- 发表一级评论 -->
 	<insert id="f010005_Insert6">
 		INSERT INTO
-			AMTF_ACTIVITY_COMMENT
+			AMTF_ACTIVITY_COMMENT(
+				activity_id
+				,user_id
+				,user_name
+				,user_text
+				,activity_comment_time
+			)
 		VALUES(
-			#{entity.activity_comment_id}
-			,#{entity.activity_id}
+			#{entity.activity_id}
 			,#{entity.user_id}
 			,#{entity.user_name}
 			,#{entity.user_text}
@@ -96,10 +101,15 @@
 	<!-- 发表二级评论 -->
 	<insert id="f010005_Insert8">
 		INSERT INTO
-			AMTF_ACTIVITY_COMMENT_REPLY
+			AMTF_ACTIVITY_COMMENT_REPLY(
+				activity_comment_id
+				,user_id
+				,user_name
+				,user_text
+				,activity_comment_reply_time
+			)
 		VALUES(
-			#{entity.activity_comment_reply_id}
-			,#{entity.activity_comment_id}
+			#{entity.activity_comment_id}
 			,#{entity.user_id}
 			,#{entity.user_name}
 			,#{entity.user_text}
@@ -117,10 +127,13 @@
 	<!-- 活动点赞 -->
 	<insert id="f010005_Insert10">
 		INSERT INTO
-			AMTF_ACTIVITY_FABULOUS
+			AMTF_ACTIVITY_FABULOUS(
+				activity_id
+				,user_id
+				,activity_fabulous_time
+			)
 		VALUES(
-			#{entity.activity_fabulous_id}
-			,#{entity.activity_id}
+			#{entity.activity_id}
 			,#{entity.user_id}
 			,NOW());
 	</insert>
@@ -208,10 +221,14 @@
 	<!-- 评论点赞 -->
 	<insert id="f010005_Insert18">
 		INSERT INTO
-			AMTF_ACTIVITY_COMMENT_FABULOUS
+			AMTF_ACTIVITY_COMMENT_FABULOUS(
+				activity_id
+				,activity_comment_id
+				,user_id
+				,activity_comment_fabulous_time
+			)
 		VALUES(
-			#{entity.activity_comment_fabulous_id}
-			,#{entity.activity_id}
+			#{entity.activity_id}
 			,#{entity.activity_comment_id}
 			,#{entity.user_id}
 			,NOW());
@@ -241,10 +258,13 @@
 	<!-- 关注该用户 -->
 	<insert id="f010005_Insert21">
 		INSERT INTO
-			AMTF_USER_ATTENTION
+			AMTF_USER_ATTENTION(
+				attention_id
+				,user_id
+				,user_attention_time
+			)
 		VALUES(
-			#{entity.user_attention_id}
-			,#{entity.attention_id}
+			#{entity.attention_id}
 			,#{entity.user_id}
 			,NOW());
 	</insert>

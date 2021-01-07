@@ -33,7 +33,7 @@
 	<!-- 注册 -->
 	<insert id="f010001_Insert4" parameterType="com.amtf.demo.f010001entity.F010001_Insert4EntityIn">
 		INSERT INTO
-			AMTF_User(User_id, 
+			AMTF_User(
 				User_Email,
 				User_Account, 
 				User_Password, 
@@ -49,7 +49,6 @@
 				user_status
 			)
 		VALUES(
-			#{entityin.userid},
 			#{entityin.useremail},
 			#{entityin.useraccount},
 			#{entityin.userpwd},

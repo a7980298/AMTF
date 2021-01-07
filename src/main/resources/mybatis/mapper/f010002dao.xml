@@ -62,10 +62,11 @@
 	<!-- 查看过的通知插入 -->
 	<insert id="f010002_Insert6">
 		INSERT INTO 
-			AMTF_UPDNOTICEOVER 
+			AMTF_UPDNOTICEOVER(
+				updnoticeover_upid
+			)
 		VALUES(
-			#{id}
-			,#{upid}
+			#{upid}
 			)
 	</insert>
 	
@@ -107,10 +108,12 @@
 	<!-- 参加活动 -->
 	<insert id="f010002_Insert10">
 		INSERT INTO 
-			AMTF_USERACTIVITY 
+			AMTF_USERACTIVITY(
+				activity_id
+				,useractivity_name
+			)
 		VALUES(
-			#{id}
-			,#{acid}
+			#{acid}
 			,#{name}
 			)
 	</insert>

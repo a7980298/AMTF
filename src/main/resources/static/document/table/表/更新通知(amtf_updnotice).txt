@@ -1,7 +1,7 @@
 CREATE TABLE amtf_updnotice(
-	updnotice_id INT NOT NULL, -- id
-	updnotice_name VARCHAR(30) NOT NULL, -- 管理员姓名
-	updnotice_head VARCHAR(30), -- 更新标题
-	updnotice_text BLOB, -- 更新内容
-	updnotice_time DATETIME	-- 更新时间
+	updnotice_id INT NOT NULL primary key auto_increment comment"id主键",
+	updnotice_name VARCHAR(30) NOT NULL comment"管理员姓名",
+	updnotice_head VARCHAR(30) NOT NULL comment"更新标题",
+	updnotice_text BLOB NOT NULL comment"更新内容",
+	updnotice_time DATETIME	NOT NULL comment"更新时间"
 )

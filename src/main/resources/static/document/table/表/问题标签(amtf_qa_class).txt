@@ -1,6 +1,6 @@
 CREATE TABLE amtf_qa_class(
-	qa_class_id INT NOT NULL, -- id
-	qa_class_name VARCHAR(8) -- 标签类型名
+	qa_class_id INT NOT NULL primary key auto_increment comment"id主键",
+	qa_class_name VARCHAR(8) comment"标签类型名"
 )
 insert into amtf_qa_class values(1,'生活');
 insert into amtf_qa_class values(2,'爱情');

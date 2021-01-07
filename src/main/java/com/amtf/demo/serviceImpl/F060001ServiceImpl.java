@@ -88,8 +88,6 @@ public class F060001ServiceImpl implements F060001Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfQaEntity insert1in = new AmtfQaEntity();
-		//id
-		insert1in.setQa_id(CommonUtil.isEmpty(commondao.common_Select10()) ? 0 : commondao.common_Select10() + 1);
 		//标题
 		insert1in.setQa_head(entityin.getSubmitjson().getString("head"));
 		//内容
@@ -124,8 +122,6 @@ public class F060001ServiceImpl implements F060001Service {
 		loginfo = ParameterUtil.getSession();
 
 		AmtfQaReplyEntity qareplyentity = new AmtfQaReplyEntity();
-		// id
-		qareplyentity.setQa_reply_id(CommonUtil.isEmpty(commondao.common_Select11()) ? 0 : commondao.common_Select11() + 1);
 		// 问题id
 		qareplyentity.setQa_id(NumberUtil.toInt(entityin.getSubmitjson().getString("id")));
 		// 回答人id

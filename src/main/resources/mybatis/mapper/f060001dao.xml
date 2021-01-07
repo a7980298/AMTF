@@ -4,16 +4,23 @@
 	<!-- 发布问题 -->
 	<insert id="f060001_Insert1">
 		INSERT INTO
-			AMTF_QA
+			AMTF_QA(
+				user_id
+				,qa_head
+				,qa_text
+				,qa_class1
+				,qa_class2
+				,qa_class3
+				,qa_time
+			)
 		VALUES(
-			#{entity.qa_id},
-			#{entity.user_id},
-			#{entity.qa_head},
-			#{entity.qa_text},
-			#{entity.qa_class1},
-			#{entity.qa_class2},
-			#{entity.qa_class3},
-			NOW()
+			#{entity.user_id}
+			,#{entity.qa_head}
+			,#{entity.qa_text}
+			,#{entity.qa_class1}
+			,#{entity.qa_class2}
+			,#{entity.qa_class3}
+			,NOW()
 		)
 	</insert>
 	<!-- 问题标签 -->
@@ -61,13 +68,17 @@
 	<!-- 回答问题 -->
 	<insert id="f060001_Insert4">
 		INSERT INTO
-			amtf_qa_reply
+			amtf_qa_reply(
+				qa_id
+				,user_id
+				,qa_reply_text
+				,qa_reply_time
+			)
 		VALUES(
-			#{entity.qa_reply_id},
-			#{entity.qa_id},
-			#{entity.user_id},
-			#{entity.qa_reply_text},
-			NOW()
+			#{entity.qa_id}
+			,#{entity.user_id}
+			,#{entity.qa_reply_text}
+			,NOW()
 		)
 	</insert>
 	<!-- 详细问题 -->

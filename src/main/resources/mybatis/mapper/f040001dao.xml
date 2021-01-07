@@ -11,10 +11,18 @@
 	<!-- 上传视频 -->
 	<insert id="f040001_Insert2">
 		INSERT INTO
-			AMTF_VIDEO
+			AMTF_VIDEO(
+				user_id
+				,video_head
+				,video_text
+				,video_class
+				,video_path
+				,video_img
+				,video_duration
+				,video_time
+			)
 		VALUES(
-			#{entity.video_id}
-			,#{entity.user_id}
+			#{entity.user_id}
 			,#{entity.video_head}
 			,#{entity.video_text}
 			,#{entity.video_class}
@@ -80,10 +88,13 @@
 	<!-- 添加观看历史 -->
 	<insert id="f040001_Insert7">
 		INSERT INTO
-			AMTF_VIDEO_HISTORY
+			AMTF_VIDEO_HISTORY(
+				video_id
+				,user_id
+				,video_history_time
+			)
 		VALUES(
-			#{entity.video_history_id}
-			,#{entity.video_id}
+			#{entity.video_id}
 			,#{entity.user_id}
 			,NOW()
 		)
@@ -101,10 +112,18 @@
 	<!-- 添加弹幕 -->
 	<insert id="f040001_Insert9">
 		INSERT INTO
-			AMTF_VIDEO_BARRAGE
+			AMTF_VIDEO_BARRAGE(
+				video_id
+				,user_id
+				,video_barrage_text
+				,video_barrage_color
+				,video_barrage_size
+				,video_barrage_position
+				,video_barrage_time
+				,video_barrage_newtime
+			)
 		VALUES(
-			#{entity.video_barrage_id}
-			,#{entity.video_id}
+			#{entity.video_id}
 			,#{entity.user_id}
 			,#{entity.video_barrage_text}
 			,#{entity.video_barrage_color}
@@ -126,10 +145,14 @@
 	<!-- 添加评论 -->
 	<insert id="f040001_Insert11">
 		INSERT INTO
-			AMTF_VIDEO_COMMENT
+			AMTF_VIDEO_COMMENT(
+				video_id
+				,user_id
+				,video_comment_text
+				,video_comment_time
+			)
 		VALUES(
-			#{entity.video_comment_id}
-			,#{entity.video_id}
+			#{entity.video_id}
 			,#{entity.user_id}
 			,#{entity.video_comment_text}
 			,NOW()
@@ -149,10 +172,15 @@
 	<!-- 添加回复评论 -->
 	<insert id="f040001_Insert13">
 		INSERT INTO
-			AMTF_VIDEO_COMMENT_REPLY
+			AMTF_VIDEO_COMMENT_REPLY(
+				video_comment_id
+				,video_id
+				,user_id
+				,video_comment_reply_text
+				,video_comment_reply_time
+			)
 		VALUES(
-			#{entity.video_comment_reply_id}
-			,#{entity.video_comment_id}
+			#{entity.video_comment_id}
 			,#{entity.video_id}
 			,#{entity.user_id}
 			,#{entity.video_comment_reply_text}
@@ -199,10 +227,14 @@
 	<!-- 添加评论点赞 -->
 	<insert id="f040001_Insert17">
 		INSERT INTO
-			AMTF_VIDEO_COMMENT_PRAISE
+			AMTF_VIDEO_COMMENT_PRAISE(
+				video_comment_id
+				,video_id
+				,user_id
+				,video_comment_praise_time
+			)
 		VALUES(
-			#{entity.video_comment_praise_id}
-			,#{entity.video_comment_id}
+			#{entity.video_comment_id}
 			,#{entity.video_id}
 			,#{entity.user_id}
 			,NOW()

@@ -99,8 +99,8 @@
                                 label="权限"
                                 width="180">
                             <template slot-scope="scope">
-                                <span style="margin-left: 10px" v-if="scope.row.user_power == '0'">普通用户</span>
-                                <span style="margin-left: 10px" v-if="scope.row.user_power != '0'">管理员</span>
+                                <span style="margin-left: 10px" v-if="scope.row.user_power == '0'">未认证用户</span>
+                                <span style="margin-left: 10px" v-if="scope.row.user_power != '0'">{{scope.row.user_power}}级用户</span>
                             </template>
                         </el-table-column>
                         <el-table-column label="操作">

@@ -24,10 +24,13 @@
 	<!-- 关注该用户 -->
 	<insert id="f010011_Insert3">
 		INSERT INTO
-			AMTF_USER_ATTENTION
+			AMTF_USER_ATTENTION(
+				attention_id
+				,user_id
+				,user_attention_time
+			)
 		VALUES(
-			#{entity.user_attention_id}
-			,#{entity.attention_id}
+			#{entity.attention_id}
 			,#{entity.user_id}
 			,NOW());
 	</insert>

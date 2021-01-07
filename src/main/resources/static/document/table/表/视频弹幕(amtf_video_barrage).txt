@@ -1,11 +1,15 @@
 CREATE TABLE amtf_video_barrage(
-	video_barrage_id INT NOT NULL, -- id
-	video_id INT NOT NULL, -- 视频id
-	user_id VARCHAR(30), -- 发言人id
-	video_barrage_text VARCHAR(60),-- 发言的内容
-	video_barrage_color VARCHAR(10),-- 颜色
-	video_barrage_size CHAR(1),-- 字体大小
-	video_barrage_position CHAR(1),-- 弹幕位置
-	video_barrage_time VARCHAR(1000), -- 弹幕时间
-	video_barrage_newtime DATETIME	-- 发言时间
+	video_barrage_id INT NOT NULL primary key auto_increment comment"id主键",
+	video_id INT NOT NULL comment"视频id",
+	user_id VARCHAR(30) comment"发言人id",
+	video_barrage_text VARCHAR(60) comment"发言的内容",
+	video_barrage_color VARCHAR(10) comment"颜色",
+	video_barrage_size CHAR(1) comment"字体大小",
+	video_barrage_position CHAR(1) comment"弹幕位置",
+	video_barrage_time VARCHAR(1000) comment"弹幕时间",
+	video_barrage_newtime DATETIME comment"发言时间"
 )
+ALTER TABLE amtf_video_barrage MODIFY  video_barrage_text  VARCHAR(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE amtf_video_barrage CHARSET=utf8mb4;
+
+ALTER TABLE `amtf_video_barrage` ADD INDEX video_barrage_video_id ( `video_id` )
