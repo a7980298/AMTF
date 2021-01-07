@@ -7,9 +7,9 @@ CREATE TABLE AMTF_POWER_ADMIN(
 	power_class VARCHAR(50), -- class样式
 	power_short VARCHAR(10) -- 缩写
 )
-insert into test.AMTF_POWER_ADMIN values(1001,'人员操作','人员管理','1','admin_user','el-icon-user-solid','u');
-insert into test.AMTF_POWER_ADMIN values(1002,'发布页面','功能管理','1','admin_function','el-icon-share','S');
-insert into test.AMTF_POWER_ADMIN values(1003,'发布通知','通知','1','admin_allnotices','el-icon-s-opportunity','RF');
-insert into test.AMTF_POWER_ADMIN values(1004,'活动举办','通知','1','admin_avtivity','el-icon-s-opportunity','HD');
+insert into test.AMTF_POWER_ADMIN values(1001,'人员操作','人员管理','2','admin_user','el-icon-user-solid','u');
+insert into test.AMTF_POWER_ADMIN values(1002,'发布页面','功能管理','2','admin_function','el-icon-share','S');
+insert into test.AMTF_POWER_ADMIN values(1003,'发布通知','通知','2','admin_allnotices','el-icon-s-opportunity','RF');
+insert into test.AMTF_POWER_ADMIN values(1004,'活动举办','通知','2','admin_avtivity','el-icon-s-opportunity','HD');
 
 

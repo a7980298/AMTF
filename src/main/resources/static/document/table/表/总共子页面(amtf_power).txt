@@ -9,14 +9,14 @@ CREATE TABLE AMTF_POWER(
 	power_show CHAR(1), -- 是否显示
 	primary key (power_id)
 )
-insert into test.amtf_power values(1001,'观看视频','影视','0','f040001','fa-television','TV','1');
-insert into test.amtf_power values(1005,'现场直播','影视','0','f010010','fa-television','LB','1');
-insert into test.amtf_power values(1002,'享受音乐','音乐','0','f010009','fa-music','MS','1');
-insert into test.amtf_power values(1003,'畅所欲言','互动','0','f030001','fa-child','FR','1');
-insert into test.amtf_power values(1010,'畅想快聊','互动','0','f010008','fa-child','LT','1');
-insert into test.amtf_power values(1004,'最新资讯','新闻','0','f050001','fa-newspaper-o','NS','1');
-insert into test.amtf_power values(1006,'通知中心','任务','0','f010004','fa-wpforms','TS','1');
-insert into test.amtf_power values(9999,'会员管理','管理','1','f020001','fa-pencil-square','AD','1');
-insert into test.amtf_power values(1007,'活动一栏','任务','0','f010005','fa-th-list','AT','1');
-insert into test.amtf_power values(1008,'认证进程','任务','0','f010006','fa-check','AS','1');
-insert into test.amtf_power values(1009,'你问我答','互动','0','f060001','fa-child','QA','1');
+insert into test.amtf_power values(1001,'观看视频','影视','1','f040001','fa-television','TV','1');
+insert into test.amtf_power values(1005,'现场直播','影视','1','f010010','fa-television','LB','1');
+insert into test.amtf_power values(1002,'享受音乐','音乐','1','f010009','fa-music','MS','1');
+insert into test.amtf_power values(1003,'畅所欲言','互动','1','f030001','fa-child','FR','1');
+insert into test.amtf_power values(1010,'畅想快聊','互动','1','f010008','fa-child','LT','1');
+insert into test.amtf_power values(1004,'最新资讯','新闻','1','f050001','fa-newspaper-o','NS','1');
+insert into test.amtf_power values(1006,'通知中心','任务','1','f010004','fa-wpforms','TS','1');
+insert into test.amtf_power values(9999,'会员管理','管理','2','f020001','fa-pencil-square','AD','1');
+insert into test.amtf_power values(1007,'活动一栏','任务','1','f010005','fa-th-list','AT','1');
+insert into test.amtf_power values(1008,'认证进程','任务','1','f010006','fa-check','AS','1');
+insert into test.amtf_power values(1009,'你问我答','互动','1','f060001','fa-child','QA','1');

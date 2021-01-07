@@ -332,6 +332,7 @@
                         headVue.Message('error',response.message);
 					} else {
 						row.user_attestation = userAttestation;
+                        row.user_power = userAttestation;
 					}
 				})
 			},
@@ -409,6 +410,16 @@
                     this.levelBtnDisabled = true;
                     this.upgradeDisabled = true;
                 }
+            },
+            //等級下拉框刷新
+            levelOptionsPush(power){
+			    this.levelOptions = [];
+                for (let i = 0; i < parseInt(power); i++){
+                    this.levelOptions.push({
+                        label: '等级-' + i,
+                        value: i
+                    })
+                }
             }
 		},
 		//初期化获取数据
@@ -422,12 +433,7 @@
                     this.refreshDisabled = false;
                 }
                 let power = response.data.logInFo.user_power;
-				for (let i = 0; i < parseInt(power); i++){
-                    this.levelOptions.push({
-                        label: '等级-' + i,
-                        value: i
-                    })
-                }
+                this.levelOptionsPush(power);
 			})
 		}
 	})
