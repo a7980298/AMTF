@@ -12,6 +12,11 @@ public class F010001_Select1Entity {
 	private Integer user_id;
 
 	/**
+	 * No
+	 */
+	private String user_no;
+
+	/**
 	 * Email
 	 */
 	private String user_email;

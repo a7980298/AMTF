@@ -203,8 +203,8 @@
 									aria-expanded="false">
 									<div class="card-avatar col-sm-12 m-0 p-0">
 										<div class="photo col-sm-12 m-0 p-0">
-											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="img" id="img1"/>
-											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" class="img" th:if="${main_params.logInFo.imgpath != ''}" id="img1"/>
+											<img th:src="@{/imgs/userimg.jpg}" th:if="${main_params.logInFo.imgpath == ''}" class="img" id="img1" style="height: 30px"/>
+											<img th:src="@{/istatic/{fileNmame}(fileNmame=${main_params.logInFo.imgpath})}" class="img" style="height: 30px" th:if="${main_params.logInFo.imgpath != ''}" id="img1"/>
 										</div>
 									</div>
 									<p class="d-lg-none d-md-block">账户</p>

@@ -39,7 +39,7 @@ public class LogInLimit {
 		String redis_key = redisUtils.get("redis_key");
 		// 判断是否有用户登录中
 		if (CommonUtil.isEmpty(redis_key)) {
-			redisUtils.set("redis_key", loginfoget.getUser_email());
+			redisUtils.set("redis_key", loginfoget.getUser_no());
 			users = 1;
 		} else {
 			try {
@@ -48,7 +48,7 @@ public class LogInLimit {
 				// 判断用户人数是否超过1人
 				if (users < 2) {
 					// 没有超过则登录
-					redisUtils.addUser("redis_key", loginfoget.getUser_email());
+					redisUtils.addUser("redis_key", loginfoget.getUser_no());
 					users = redis_key.split(",").length;
 					return;
 				}
@@ -58,7 +58,7 @@ public class LogInLimit {
 					lock.newCondition().await(2, TimeUnit.SECONDS);
 					// 如果没有超过则登录
 					if (users < 2) {
-						redisUtils.addUser("redis_key", loginfoget.getUser_email());
+						redisUtils.addUser("redis_key", loginfoget.getUser_no());
 						users = redis_key.split(",").length;
 						return;
 					}

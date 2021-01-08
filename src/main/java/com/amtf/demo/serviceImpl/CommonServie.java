@@ -70,7 +70,7 @@ public class CommonServie {
 		for (F010001_Select2Entity f010001_select6entity : select6) {
 			navigation_bar_redis += f010001_select6entity.getPower_path() + ",";
 		}
-		redisUtils.set(loginfo.getUser_email() + "navigation_bar", navigation_bar_redis);
+		redisUtils.set(loginfo.getUser_no() + "navigation_bar", navigation_bar_redis);
 
 		// 将导航栏数据整合成map
 		Map<String, List<F010001_Select2Entity>> navigation_bar = select2.stream()
@@ -85,7 +85,7 @@ public class CommonServie {
 							return value1;
 						}));
 		// 获取未读通知
-		List<F010002_Select4Entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
+		List<F010002_Select4Entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_no());
 		commonparams.setLogInFo(loginfo);
 		commonparams.setNavigation_bar(navigation_bar);
 		// 未读通知
@@ -101,7 +101,7 @@ public class CommonServie {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
+		String imgpath = ImgUtil.getImgPath(loginfo.getUser_no());
 
 		loginfo.setImgpath(imgpath);
 		//用户信息

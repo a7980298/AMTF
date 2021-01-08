@@ -1,5 +1,6 @@
 CREATE TABLE AMTF_User(
       user_id int not null primary key auto_increment  comment"id主键",
+      user_no char(24) not null comment"用户唯一标识",
       user_email varchar(30) not null comment"Email",
       user_account varchar(20) not null comment"账户",
       user_password varchar(80) not null comment"密码",
@@ -14,10 +15,10 @@ CREATE TABLE AMTF_User(
       user_power char(1) not null comment"权限",
       user_status char(1) comment"状态"
   )
-ALTER TABLE `AMTF_User` ADD INDEX user_email ( `user_email` )
+ALTER TABLE `AMTF_User` ADD INDEX user_no ( `user_no` )
 ALTER TABLE `AMTF_User` ADD INDEX User_Account ( `User_Account` )
 -- ALTER TABLE AMTF_User ADD FOREIGN KEY (outerKey_user_user_email) REFERENCES class(user_email);
-insert into amtf_user(user_email,user_account,user_password,user_name,user_country,user_province,user_city,user_postcode,user_phone,user_introduce,user_attestation,user_power,user_status)
-values('2428503607@qq.com','123','202cb962ac59075b964b07152d234b70','王意鑫','中国','河南','开封市','475000','18438742726','爱打篮球和看书','1','2','0');
-insert into amtf_user(user_email,user_account,user_password,user_name,user_country,user_province,user_city,user_postcode,user_phone,user_introduce,user_attestation,user_power,user_status)
+insert into amtf_user(user_no,user_email,user_account,user_password,user_name,user_country,user_province,user_city,user_postcode,user_phone,user_introduce,user_attestation,user_power,user_status)
+values('202101010808082428503607','2428503607@qq.com','123','202cb962ac59075b964b07152d234b70','王意鑫','中国','河南','开封市','475000','18438742726','爱打篮球和看书','1','2','0');
+insert into amtf_user(user_no,user_email,user_account,user_password,user_name,user_country,user_province,user_city,user_postcode,user_phone,user_introduce,user_attestation,user_power,user_status)
  values('1220875539@qq.com','222','202cb962ac59075b964b07152d234b70','王意鑫1','中国','河南','开封市','475000','18438742726','爱打篮球和看书','0','0','0');

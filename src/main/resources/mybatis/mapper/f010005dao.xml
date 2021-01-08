@@ -55,7 +55,7 @@
 		FROM
 			AMTF_USER
 		WHERE
-			USER_EMAIL = #{email}
+			USER_NO = #{email}
 	</select>
 	<!-- 活动评论 -->
 	<select id="f010005_Select5" resultType="com.amtf.demo.commonentity.AmtfActivityCommentEntity">

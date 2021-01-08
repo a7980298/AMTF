@@ -59,7 +59,7 @@ public class F020005ServiceImpl implements F020005Service {
 		loginfo = ParameterUtil.getSession();
 
 		// 添加活动
-		int insert6 = f020001dao.f020001_insert6(loginfo.getUser_email(),
+		int insert6 = f020001dao.f020001_insert6(loginfo.getUser_no(),
 				entityin.getActivity_head(), entityin.getActivity_check(),
 				NumberUtil.toInt(entityin.getActivity_sttymd().replace("/", "")),
 				NumberUtil.toInt(entityin.getActivity_endymd().replace("/", "")), entityin.getActivity_editor());

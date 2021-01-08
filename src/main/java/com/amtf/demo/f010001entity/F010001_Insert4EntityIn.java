@@ -9,6 +9,8 @@ public class F010001_Insert4EntityIn {
 
 	private int userid;
 
+	private String usereno;
+
 	private String useremail;
 	
 	private String useraccount;

@@ -46,19 +46,19 @@ public class F010011ServiceImpl implements F010011Service {
 		loginfo = ParameterUtil.getSession();
 		//获取主页信息
 		AmtfUserEntity select1 = f010011dao.f010011_Select1(entityIn.getUser());
-		String imgpath = ImgUtil.getImgPath(select1.getUser_email());
+		String imgpath = ImgUtil.getImgPath(select1.getUser_no());
 		select1.setImgpath(imgpath);
 		entityout.setSelect1(select1);
 
 		//查看是否关注该发布人
-		entityout.setAttention(f010011dao.f010011_Select2(select1.getUser_email(),loginfo.getUser_email()));
+		entityout.setAttention(f010011dao.f010011_Select2(select1.getUser_no(),loginfo.getUser_no()));
 		// 发布人的活动
 		entityIn.setPageNum(Constant.INT_0);
-		entityIn.setAttention_id(select1.getUser_email());
+		entityIn.setAttention_id(select1.getUser_no());
 		entityout.setSelect5(this.service03(entityIn).getSelect5());
 
 		//热门活动
-		List<F010011_Select5Entity> select6 = f010011dao.f010011_Select6(select1.getUser_email());
+		List<F010011_Select5Entity> select6 = f010011dao.f010011_Select6(select1.getUser_no());
 		entityout.setSelect6(select6);
 
 		return entityout;
@@ -80,9 +80,9 @@ public class F010011ServiceImpl implements F010011Service {
 		//关注用户id
 		amtfuserattentionentity.setAttention_id(entityin.getAttention_id());
 		//用户id
-		amtfuserattentionentity.setUser_id(loginfo.getUser_email());
+		amtfuserattentionentity.setUser_id(loginfo.getUser_no());
 		//查看是否关注了该发布人
-		if(f010011dao.f010011_Select2(entityin.getAttention_id(),loginfo.getUser_email()) < 1){
+		if(f010011dao.f010011_Select2(entityin.getAttention_id(),loginfo.getUser_no()) < 1){
 			//没有关注
 			Integer insert2 = f010011dao.f010011_Insert3(amtfuserattentionentity);
 			if(insert2 < 1){

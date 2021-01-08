@@ -87,6 +87,8 @@ public class ParameterUtil {
 		if (!CommonUtil.isEmpty(user)) {
 			// 用户id
 			loginfo.setUser_id(!CommonUtil.isEmpty(user.getUser_id()) ? user.getUser_id() : Constant.INT_0);
+			// No
+			loginfo.setUser_no(!CommonUtil.isEmpty(user.getUser_no()) ? user.getUser_no() : Constant.EMPTY);
 			// Email
 			loginfo.setUser_email(!CommonUtil.isEmpty(user.getUser_email()) ? user.getUser_email() : Constant.EMPTY);
 			// 账户
@@ -135,7 +137,7 @@ public class ParameterUtil {
 			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 					.getRequest();
 			loginfo = (LogInFo) request.getSession().getAttribute("loginfo");
-			String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
+			String imgpath = ImgUtil.getImgPath(loginfo.getUser_no());
 			loginfo.setImgpath(imgpath);
 		} catch (Exception e) {
 		}

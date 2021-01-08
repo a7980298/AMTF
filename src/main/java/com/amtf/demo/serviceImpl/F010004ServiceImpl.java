@@ -52,7 +52,7 @@ public class F010004ServiceImpl implements F010004Service {
 		}
 		entityout.setSelect4(select4entity);
 		// 获取未读通知
-		List<F010002_Select4Entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_email());
+		List<F010002_Select4Entity> select5 = f010002dao.f010002_Select5(loginfo.getUser_no());
 
 		// 未读通知
 		entityout.setSelect5(select5);

@@ -13,6 +13,11 @@ public class F060001_Select13Entity {
 	private Integer user_id;
 
 	/**
+	 * No
+	 */
+	private String user_no;
+
+	/**
 	 * Email
 	 */
 	private String user_email;

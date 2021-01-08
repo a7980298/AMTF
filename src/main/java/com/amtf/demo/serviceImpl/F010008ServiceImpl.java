@@ -40,7 +40,7 @@ public class F010008ServiceImpl implements F010008Service {
 				: redisUtils.get("redis_key").split(",");
 		List<WebSockerUsers> userList = new ArrayList<WebSockerUsers>();
 		for (int i = 0; i < users.length; i++) {
-			if (loginfo.getUser_email().equals(users[i])) {
+			if (loginfo.getUser_no().equals(users[i])) {
 				continue;
 			}
 			WebSockerUsers websockerusers = new WebSockerUsers();

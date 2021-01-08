@@ -77,7 +77,7 @@ public class F020003ServiceImpl implements F020003Service {
 			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
 
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_no());
 
 			f02_select.setUser_path(path);
 
@@ -159,7 +159,7 @@ public class F020003ServiceImpl implements F020003Service {
 			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
 			// 照片路徑
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_no());
 
 			f02_select.setUser_path(path);
 

@@ -104,7 +104,7 @@
 		FROM
 			AMTF_USER
 		WHERE
-			USER_EMAIL = #{userId}
+			USER_NO = #{userId}
 	</select>
 	<!-- 获取参加活动的次数 -->
 	<select id="f020001_Select9" resultType="java.lang.Integer">
@@ -141,7 +141,7 @@
 			USER_ATTESTATION = #{userAttestation}
 			,USER_POWER = #{userAttestation}
 		WHERE
-			USER_EMAIL = #{userId}
+			USER_NO = #{userId}
 	</update>
 	<!-- 修改账户状态 -->
 	<update id="f020001_Update13">
@@ -150,6 +150,6 @@
 		SET
 			USER_STATUS = #{userStatus}
 		WHERE
-			USER_EMAIL = #{userId}
+			USER_NO = #{userId}
 	</update>
 </mapper>

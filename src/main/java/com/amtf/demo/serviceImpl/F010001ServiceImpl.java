@@ -122,11 +122,10 @@ public class F010001ServiceImpl implements F010001Service {
 			}
 			// 注册
 			F010001_Insert4EntityIn insert4entityin = new F010001_Insert4EntityIn();
-			Integer common_select1 = commdao.common_Select1();
-			insert4entityin.setUserid(CommonUtil.isEmpty(common_select1) ? 0 : common_select1 + 1);
+			insert4entityin.setUsereno(CommonUtil.getUserNo());
+			insert4entityin.setUseremail(entityIn.getRegist_user_email());
 			insert4entityin.setUseraccount(entityIn.getRegist_user_name());
 			insert4entityin.setUserpwd(DigestUtils.md5DigestAsHex(entityIn.getRegist_user_password().getBytes()));
-			insert4entityin.setUseremail(entityIn.getRegist_user_email());
 			int insert4 = f010001dao.f010001_Insert4(insert4entityin);
 			if (insert4 <= 0) {
 				throw new ErrListException(entityIn, entityIn.getIViewId(), "注册失败!");

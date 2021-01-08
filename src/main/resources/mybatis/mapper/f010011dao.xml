@@ -8,7 +8,7 @@
 		FROM
 			AMTF_USER
 		WHERE
-			USER_EMAIL = #{email}
+			USER_NO = #{email}
 	</select>
 	<!-- 查看是否关注该用户 -->
 	<select id="f010011_Select2" resultType="int">

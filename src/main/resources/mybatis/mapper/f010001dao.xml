@@ -33,22 +33,24 @@
 	<!-- 注册 -->
 	<insert id="f010001_Insert4" parameterType="com.amtf.demo.f010001entity.F010001_Insert4EntityIn">
 		INSERT INTO
-			AMTF_User(
-				User_Email,
-				User_Account, 
-				User_Password, 
-				User_Name, 
-				User_Country, 
-				User_Province, 
-				User_City, 
-				User_Postcode, 
-				User_Phone, 
-				User_Introduce, 
-				User_Attestation, 
-				User_power,
-				user_status
+			AMTF_USER(
+				USER_NO,
+				USER_EMAIL,
+				USER_ACCOUNT,
+				USER_PASSWORD,
+				USER_NAME,
+				USER_COUNTRY,
+				USER_PROVINCE,
+				USER_CITY,
+				USER_POSTCODE,
+				USER_PHONE,
+				USER_INTRODUCE,
+				USER_ATTESTATION,
+				USER_POWER,
+				USER_STATUS
 			)
 		VALUES(
+			#{entityin.usereno},
 			#{entityin.useremail},
 			#{entityin.useraccount},
 			#{entityin.userpwd},
@@ -72,7 +74,7 @@
 		FROM
 			AMTF_User
 		WHERE
-			User_Email = #{email}
+			USER_NO = #{email}
 	</select>
 
 	<!-- 根据权限可管理页面 -->

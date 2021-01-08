@@ -71,7 +71,7 @@
 		FROM
 			AMTF_USER
 		WHERE
-			USER_EMAIL = #{user_id}
+			USER_NO = #{user_id}
 	</select>
 	<!-- 获取名字略同的视频 -->
 	<select id="f040001_Select6" resultType="com.amtf.demo.commonentity.AmtfVideoEntity">

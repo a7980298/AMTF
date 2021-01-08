@@ -64,7 +64,7 @@ public class F020001ServiceImpl implements F020001Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		String imgpath = ImgUtil.getImgPath(loginfo.getUser_email());
+		String imgpath = ImgUtil.getImgPath(loginfo.getUser_no());
 
 		loginfo.setImgpath(imgpath);
 
@@ -91,14 +91,14 @@ public class F020001ServiceImpl implements F020001Service {
 			// 状态
 			f02_select.setUser_status(select1.get(i).getUser_status());
 
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_no());
 
 			f02_select.setUser_path(path);
 
 			select1_view.add(f02_select);
 		}
 
-		List<F020001_Select5Entity> select5 = f020001dao.f020001_Select5(loginfo.getUser_email());
+		List<F020001_Select5Entity> select5 = f020001dao.f020001_Select5(loginfo.getUser_no());
 
 		entityOut.setSelect5(select5);
 
@@ -182,7 +182,7 @@ public class F020001ServiceImpl implements F020001Service {
 
 			f02_select.setUser_power(StringUtil.toStr(select1.get(i).getUser_power()));
 
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_no());
 
 			f02_select.setUser_path(path);
 
@@ -279,7 +279,7 @@ public class F020001ServiceImpl implements F020001Service {
 			// 郵箱
 			f02_select.setUser_email(select1.get(i).getUser_email());
 			// 照片路徑
-			String path = ImgUtil.getImgPath(select1.get(i).getUser_email());
+			String path = ImgUtil.getImgPath(select1.get(i).getUser_no());
 
 			f02_select.setUser_path(path);
 

@@ -109,7 +109,7 @@ public class F050001ServiceImpl implements F050001Service {
 		//内容
 		insert1.setNews_text(entityin.getSubmitjson().getString("body"));
 		//发布人
-		insert1.setNews_user(loginfo.getUser_name());
+		insert1.setNews_user(loginfo.getUser_no());
 
 		Integer insert1in = f050001dao.f050001_Insert1(insert1);
 		entityout.setInsert1(insert1in);

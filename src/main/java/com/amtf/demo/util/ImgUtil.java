@@ -83,7 +83,7 @@ public class ImgUtil {
 
 			if (Constant.STR_1.equals(isuser)) {
 				filePath = "C:/imgs/";
-				fileName = ParameterUtil.getSession().getUser_email();
+				fileName = ParameterUtil.getSession().getUser_no();
 			} 
 
 			filePath += fileName;

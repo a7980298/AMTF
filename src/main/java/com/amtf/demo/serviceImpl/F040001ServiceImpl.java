@@ -105,7 +105,7 @@ public class F040001ServiceImpl implements F040001Service {
 		entityOut.setRecommendvideo(recommendvideo);
 
 		// 获取观看历史
-		List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_email());
+		List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_no());
 		for (AmtfVideoHistoryEntity historyentity : videohistory) {
 			List<AmtfVideoEntity> videos = f040001dao.f040001_Select4(StringUtil.toStr(historyentity.getVideo_id()));
 			// 视频封面
@@ -133,7 +133,7 @@ public class F040001ServiceImpl implements F040001Service {
 
 		AmtfVideoEntity videoentity = new AmtfVideoEntity();
 		// 用户id
-		videoentity.setUser_id(loginfo.getUser_email());
+		videoentity.setUser_id(loginfo.getUser_no());
 		// 简介
 		videoentity.setVideo_text(entityin.getVideo_body());
 		// 时长
@@ -212,7 +212,7 @@ public class F040001ServiceImpl implements F040001Service {
 				// 获取作者信息
 				AmtfUserEntity select5 = f040001dao.f040001_Select5(video.getUser_id());
 				// 获取作者头像
-				select5.setImgpath(ImgUtil.getImgPath(select5.getUser_email()));
+				select5.setImgpath(ImgUtil.getImgPath(select5.getUser_no()));
 				entityOut.setVideoAuthor(select5);
 				// 获取名字相同的视频
 				List<AmtfVideoEntity> select6list = new ArrayList<AmtfVideoEntity>();
@@ -224,19 +224,19 @@ public class F040001ServiceImpl implements F040001Service {
 				entityOut.setVideoSimilar(select6list);
 				// 获取评论信息
 				entityOut.setCommentList(this.service07(entityin).getCommentList());
-				if(CommonUtil.isEmpty(f040001dao.f040001_Select22(video.getVideo_id(),loginfo.getUser_email()))){
+				if(CommonUtil.isEmpty(f040001dao.f040001_Select22(video.getVideo_id(),loginfo.getUser_no()))){
 					// 添加观看历史
 					AmtfVideoHistoryEntity amtfvideohistoryentity = new AmtfVideoHistoryEntity();
 					// 视频id
 					amtfvideohistoryentity.setVideo_id(video.getVideo_id());
 					// 用户id
-					amtfvideohistoryentity.setUser_id(loginfo.getUser_email());
+					amtfvideohistoryentity.setUser_id(loginfo.getUser_no());
 					f040001dao.f040001_Insert7(amtfvideohistoryentity);
 				} else {
-					f040001dao.f040001_Update23(video.getVideo_id(),loginfo.getUser_email());
+					f040001dao.f040001_Update23(video.getVideo_id(),loginfo.getUser_no());
 				}
 				// 获取观看历史
-				List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_email());
+				List<AmtfVideoHistoryEntity> videohistory = f040001dao.f040001_Select24(loginfo.getUser_no());
 				for (AmtfVideoHistoryEntity historyentity : videohistory) {
 					List<AmtfVideoEntity> videos = f040001dao.f040001_Select4(StringUtil.toStr(historyentity.getVideo_id()));
 					// 视频封面
@@ -281,6 +281,9 @@ public class F040001ServiceImpl implements F040001Service {
 					if(CommonUtil.isEmptyList(list)){
 						list = f040001dao.f040001_Select8();
 					}
+					if(list.size() <= 8){
+						isbreak = false;
+					}
 				}
 			} else if(list.size() >= 8){
 				// 根据id去重
@@ -318,7 +321,7 @@ public class F040001ServiceImpl implements F040001Service {
 		// 视频id
 		amtfvideobarrageentity.setVideo_id(NumberUtil.toInt(entityin.getVideo_id()));
 		// 发言人
-		amtfvideobarrageentity.setUser_id(loginfo.getUser_email());
+		amtfvideobarrageentity.setUser_id(loginfo.getUser_no());
 		// 发言的内容
 		amtfvideobarrageentity.setVideo_barrage_text(entityin.getVideo_barrage_text());
 		// 颜色
@@ -382,7 +385,7 @@ public class F040001ServiceImpl implements F040001Service {
 
 		AmtfVideoCommentEntity amtfvideocommententity = new AmtfVideoCommentEntity();
 		// 用户id
-		amtfvideocommententity.setUser_id(loginfo.getUser_email());
+		amtfvideocommententity.setUser_id(loginfo.getUser_no());
 		// 视频id
 		amtfvideocommententity.setVideo_id(entityin.getVideo_id());
 		// 发布内容
@@ -417,7 +420,7 @@ public class F040001ServiceImpl implements F040001Service {
 			// 判断当前用户是否点赞
 			AmtfVideoPraiseEntity amtfvideopraiseentity = f040001dao.f040001_Select15(
 															NumberUtil.toInt(entityin.getVideo_id()),
-															NumberUtil.toInt(entity.getVideo_comment_id()), loginfo.getUser_email());
+															NumberUtil.toInt(entity.getVideo_comment_id()), loginfo.getUser_no());
 			if(!CommonUtil.isEmpty(amtfvideopraiseentity)){
 				entity.setIspraise(Constant.STR_1);
 			}
@@ -444,7 +447,7 @@ public class F040001ServiceImpl implements F040001Service {
 		// 评论id
 		amtfvideocommentreplyentity.setVideo_comment_id(NumberUtil.toInt(entityin.getVideo_comment_id()));
 		// 用户id
-		amtfvideocommentreplyentity.setUser_id(loginfo.getUser_email());
+		amtfvideocommentreplyentity.setUser_id(loginfo.getUser_no());
 		// 内容
 		amtfvideocommentreplyentity.setVideo_comment_reply_text(entityin.getVideo_comment_reply_text());
 
@@ -490,10 +493,10 @@ public class F040001ServiceImpl implements F040001Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 
-		AmtfVideoPraiseEntity select15 = f040001dao.f040001_Select15(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()),loginfo.getUser_email());
+		AmtfVideoPraiseEntity select15 = f040001dao.f040001_Select15(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()),loginfo.getUser_no());
 
 		if(!CommonUtil.isEmpty(select15)){
-			Integer delete16 = f040001dao.f040001_Delete16(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()),loginfo.getUser_email());
+			Integer delete16 = f040001dao.f040001_Delete16(NumberUtil.toInt(entityin.getVideo_id()),NumberUtil.toInt(entityin.getVideo_comment_id()),loginfo.getUser_no());
 			if(delete16 > 0){
 				entityOut.setSelect15(Constant.INT_1);
 			}
@@ -504,7 +507,7 @@ public class F040001ServiceImpl implements F040001Service {
 			// 评论id
 			amtfvideopraiseentity.setVideo_comment_id(NumberUtil.toInt(entityin.getVideo_comment_id()));
 			// 用户id
-			amtfvideopraiseentity.setUser_id(loginfo.getUser_email());
+			amtfvideopraiseentity.setUser_id(loginfo.getUser_no());
 			Integer insert17 = f040001dao.f040001_Insert17(amtfvideopraiseentity);
 			if(insert17 > 0){
 				entityOut.setSelect15(Constant.INT_2);

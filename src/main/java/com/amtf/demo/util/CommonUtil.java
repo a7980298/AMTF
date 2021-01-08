@@ -1,7 +1,10 @@
 package com.amtf.demo.util;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -109,5 +112,18 @@ public class CommonUtil {
 			htmlStr = htmlStr.substring(0,40);
 		}
 		return htmlStr.trim();
+	}
+
+	/**
+	 * 获取一个年月日时分秒加末尾10个随机数的用户no
+	 * @return
+	 */
+	public static String getUserNo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String timeStr = sdf.format(new Date());
+		String str = RandomStringUtils.random(10,
+				"abcdefghijklmnopqrstuvwxyz1234567890");
+		String name = timeStr + str;
+		return name;
 	}
 }

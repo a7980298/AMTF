@@ -72,11 +72,11 @@ public class F010005ServiceImpl implements F010005Service {
 		LogInFo loginfo = new LogInFo();
 		loginfo = ParameterUtil.getSession();
 		int insert10 = 0;
-		if (f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email()) > 0) {
-			f010005dao.f010005_Delete14(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email());
+		if (f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_no()) > 0) {
+			f010005dao.f010005_Delete14(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_no());
 			insert10 = -1;
 		} else {
-			insert10 = f010002dao.f010002_Insert10(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email());
+			insert10 = f010002dao.f010002_Insert10(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_no());
 		}
 		entityout.setInsert10(StringUtil.toStr(insert10));
 
@@ -104,25 +104,25 @@ public class F010005ServiceImpl implements F010005Service {
 
 		// 活动发布人信息
 		AmtfUserEntity select4 = f010005dao.f010005_Select4(select3.getActivity_name());
-		String imgpath = ImgUtil.getImgPath(select4.getUser_email());
+		String imgpath = ImgUtil.getImgPath(select4.getUser_no());
 		select4.setImgpath(imgpath);
 		entityout.setSelect4(select4);
 
 		//查看是否关注该发布人
-		entityout.setAttention(f010005dao.f010005_Select20(select4.getUser_email(),loginfo.getUser_email()));
+		entityout.setAttention(f010005dao.f010005_Select20(select4.getUser_no(),loginfo.getUser_no()));
 
 		//该发布人总发布数量
-		entityout.setActivitycount(f010005dao.f010005_Select23(select4.getUser_email()));
+		entityout.setActivitycount(f010005dao.f010005_Select23(select4.getUser_no()));
 
 		// 获取评论
         entityin.setPageNum(Constant.INT_0);
 		entityout.setCommentlist(this.service05(entityin).getCommentlist());
 
 		//是否点赞
-		entityout.setFabulous(StringUtil.toStr(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email())));
+		entityout.setFabulous(StringUtil.toStr(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_no())));
 		
 		//是否参加
-		entityout.setInsert10(StringUtil.toStr(f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_email())));
+		entityout.setInsert10(StringUtil.toStr(f010002dao.f010002_Select11(NumberUtil.toInt(entityin.getActivity_id()), loginfo.getUser_no())));
 
 		// 我发布的活动
 		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(select3.getActivity_name());
@@ -225,7 +225,7 @@ public class F010005ServiceImpl implements F010005Service {
 		//活动id
 		amtfactivitycommententity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
 		//用户
-		amtfactivitycommententity.setUser_id(loginfo.getUser_email());
+		amtfactivitycommententity.setUser_id(loginfo.getUser_no());
 		//用户名字
 		amtfactivitycommententity.setUser_name(loginfo.getUser_name());
 		//评论
@@ -314,7 +314,7 @@ public class F010005ServiceImpl implements F010005Service {
 		//评论id
 		amtfactivitycommentreplyentity.setActivity_comment_id(NumberUtil.toInt(entityin.getActivity_id()));
 		//用户
-		amtfactivitycommentreplyentity.setUser_id(loginfo.getUser_email());
+		amtfactivitycommentreplyentity.setUser_id(loginfo.getUser_no());
 		//用户名字
 		amtfactivitycommentreplyentity.setUser_name(loginfo.getUser_name());
 		//评论
@@ -340,8 +340,8 @@ public class F010005ServiceImpl implements F010005Service {
 		// 活动
 		amtfactivityfabulousentity.setActivity_id(NumberUtil.toInt(entityin.getActivity_id()));
 		// userid
-		amtfactivityfabulousentity.setUser_id(loginfo.getUser_email());
-		if(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email()) == 0){
+		amtfactivityfabulousentity.setUser_id(loginfo.getUser_no());
+		if(f010005dao.f010005_Select11(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_no()) == 0){
 			// 添加点赞
 			Integer insert10 = f010005dao.f010005_Insert10(amtfactivityfabulousentity);
 			if(insert10 < 1){
@@ -350,7 +350,7 @@ public class F010005ServiceImpl implements F010005Service {
 				entityout.setFabulous("insert1");
 			}
 		} else {
-			Integer delete12 = f010005dao.f010005_Delete12(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_email());
+			Integer delete12 = f010005dao.f010005_Delete12(NumberUtil.toInt(entityin.getActivity_id()),loginfo.getUser_no());
 			if(delete12 < 1){
 				entityout.setFabulous("delete0");
 			} else {
@@ -395,9 +395,9 @@ public class F010005ServiceImpl implements F010005Service {
 		//评论id
 		amtfactivitycommentfabulousentity.setActivity_comment_id(NumberUtil.toInt(entityin.getComment_id()));
 		//user
-		amtfactivitycommentfabulousentity.setUser_id(loginfo.getUser_email());
+		amtfactivitycommentfabulousentity.setUser_id(loginfo.getUser_no());
 		//查看是否点赞
-		if(f010005dao.f010005_Select17(NumberUtil.toInt(entityin.getActivity_id()),NumberUtil.toInt(entityin.getComment_id()),loginfo.getUser_email()) < 1){
+		if(f010005dao.f010005_Select17(NumberUtil.toInt(entityin.getActivity_id()),NumberUtil.toInt(entityin.getComment_id()),loginfo.getUser_no()) < 1){
 			//没有点赞
 			Integer insert18 = f010005dao.f010005_Insert18(amtfactivitycommentfabulousentity);
 			if(insert18 < 1){
@@ -433,9 +433,9 @@ public class F010005ServiceImpl implements F010005Service {
 		//关注用户id
 		amtfuserattentionentity.setAttention_id(entityin.getAttention_id());
 		//用户id
-		amtfuserattentionentity.setUser_id(loginfo.getUser_email());
+		amtfuserattentionentity.setUser_id(loginfo.getUser_no());
 		//查看是否关注了该发布人
-		if(f010005dao.f010005_Select20(entityin.getAttention_id(),loginfo.getUser_email()) < 1){
+		if(f010005dao.f010005_Select20(entityin.getAttention_id(),loginfo.getUser_no()) < 1){
 			//没有关注
 			Integer insert21 = f010005dao.f010005_Insert21(amtfuserattentionentity);
 			if(insert21 < 1){
@@ -511,7 +511,7 @@ public class F010005ServiceImpl implements F010005Service {
 		loginfo = ParameterUtil.getSession();
 		// 我参加的活动
 		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE5);
-		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_email());
+		List<F010005_Select1Entity> select1 = f010005dao.f010005_Select1(loginfo.getUser_no());
 		for (F010005_Select1Entity select1entity : select1) {
 			if(!CommonUtil.isEmpty(select1entity.getActivity_sttymd()) && select1entity.getActivity_sttymd().length() == 8) {
 				select1entity.setActivity_sttymd(select1entity.getActivity_sttymd().substring(0, 4) + "-"
@@ -552,7 +552,7 @@ public class F010005ServiceImpl implements F010005Service {
 		loginfo = ParameterUtil.getSession();
 		// 我发布的活动
 		PageHelper.startPage(entityin.getPageNum(),Constant.PAGESIZE5);
-		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(loginfo.getUser_email());
+		List<F010005_Select1Entity> select2 = f010005dao.f010005_Select2(loginfo.getUser_no());
 		for (F010005_Select1Entity select2entity : select2) {
 			if(!CommonUtil.isEmpty(select2entity.getActivity_sttymd()) && select2entity.getActivity_sttymd().length() == 8) {
 				select2entity.setActivity_sttymd(select2entity.getActivity_sttymd().substring(0, 4) + "-"

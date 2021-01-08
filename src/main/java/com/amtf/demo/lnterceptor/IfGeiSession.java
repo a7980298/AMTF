@@ -53,7 +53,7 @@ public class IfGeiSession implements HandlerInterceptor {
 				if (servletpath.equals("/f020001")) {
 					LogInFo logInFo = (LogInFo) account;
 					// 获取该用户的访问权限
-					String navigation_bar = redisUtils.get(logInFo.getUser_email() + "navigation_bar");
+					String navigation_bar = redisUtils.get(logInFo.getUser_no() + "navigation_bar");
 					if (!CommonUtil.isEmpty(navigation_bar)) {
 						boolean b = false;
 						String[] navigation_bars = navigation_bar.split(",");

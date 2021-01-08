@@ -54,11 +54,11 @@ public class SessionMonitor implements HttpSessionListener {
 		if(!CommonUtil.isEmpty(loginfo)){
 			try {
 				// 销毁redis中的数据
-				redisUtils.deleteUser("redis_key", loginfo.getUser_email());
+				redisUtils.deleteUser("redis_key", loginfo.getUser_no());
 				commonserviceimpl.users = CommonUtil.isEmpty(redisUtils.get("redis_key")) ? 0
 						: redisUtils.get("redis_key").split(",").length;
 			} catch (Exception e) {
-				System.out.println("销毁" + loginfo.getUser_email() + "失败");
+				System.out.println("销毁" + loginfo.getUser_no() + "失败");
 			}
 		}
 		// se.getSession().getServletContext().setAttribute("onlineCount", onlineCount);

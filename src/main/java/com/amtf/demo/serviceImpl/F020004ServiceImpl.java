@@ -68,7 +68,7 @@ public class F020004ServiceImpl implements F020004Service {
 		// 参数：管道标识，发送内容
 		goEasy.publish("amtf_channel", id + "," + entityin.getRelease_head() + "," + entityin.getRelease_name());
 		try {
-			f020001dao.f020001_insert3(id, loginfo.getUser_email(), entityin.getRelease_head(),
+			f020001dao.f020001_insert3(id, loginfo.getUser_no(), entityin.getRelease_head(),
 					entityin.getRelease_name());
 		} catch (Exception e) {
 			throw new ErrListException(entityin, entityin.getIViewId(), "发布通知时出现错误!");

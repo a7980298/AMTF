@@ -106,7 +106,7 @@
 		FROM
 			AMTF_USER
 		WHERE
-			USER_EMAIL = #{id}
+			USER_NO = #{id}
 	</select>
 	<!-- 获取问题标签 -->
 	<select id="f060001_Select8" resultType="com.amtf.demo.commonentity.AmtfQaClassEntity">
@@ -169,28 +169,29 @@
 	<!-- 回复最多的用户 -->
 	<select id="f060001_Select13" resultType="com.amtf.demo.f060001entity.F060001_Select13Entity">
 		SELECT
-			USERS.User_id
-            ,USERS.User_Email
-            ,USERS.User_Account
-			,USERS.User_Password
-			,USERS.User_Name
-		    ,USERS.User_Country
-			,USERS.User_Province
-			,USERS.User_City
-			,USERS.User_Postcode
-			,USERS.User_Phone
-			,USERS.User_Introduce
-			,USERS.User_Attestation
-			,USERS.User_power
+			USERS.USER_ID
+			,USERS.USER_NO
+            ,USERS.USER_EMAIL
+            ,USERS.USER_ACCOUNT
+			,USERS.USER_PASSWORD
+			,USERS.USER_NAME
+		    ,USERS.USER_COUNTRY
+			,USERS.USER_PROVINCE
+			,USERS.USER_CITY
+			,USERS.USER_POSTCODE
+			,USERS.USER_PHONE
+			,USERS.USER_INTRODUCE
+			,USERS.USER_ATTESTATION
+			,USERS.USER_POWER
 			,COUNT(REPLY.USER_ID) AS COUNT
  		FROM
 			AMTF_USER USERS
 		LEFT JOIN
 			AMTF_QA_REPLY REPLY
 		ON
-			USERS.USER_EMAIL = REPLY.USER_ID
+			USERS.USER_NO = REPLY.USER_ID
 		GROUP BY
-			USERS.USER_EMAIL
+			USERS.USER_NO
 		ORDER BY
 			COUNT DESC
 		LIMIT 5

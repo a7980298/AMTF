@@ -69,7 +69,7 @@ public class F060001ServiceImpl implements F060001Service {
 		//回复最多的用户
 		List<F060001_Select13Entity> select13 = f060001dao.f060001_Select13();
 		select13.forEach(entity->{
-			entity.setImgpath(ImgUtil.getImgPath(entity.getUser_email()));
+			entity.setImgpath(ImgUtil.getImgPath(entity.getUser_no()));
 		});
 		entityout.setSelect13(select13);
 		return entityout;
@@ -100,7 +100,7 @@ public class F060001ServiceImpl implements F060001Service {
 		//标签3
 		insert1in.setQa_class3(classs.length >= 3 ? classs[2] : "");
 		//发布人
-		insert1in.setUser_id(loginfo.getUser_email());
+		insert1in.setUser_id(loginfo.getUser_no());
 		//发布问题添加
 		int insert1 = f060001dao.f060001_Insert1(insert1in);
 
@@ -125,7 +125,7 @@ public class F060001ServiceImpl implements F060001Service {
 		// 问题id
 		qareplyentity.setQa_id(NumberUtil.toInt(entityin.getSubmitjson().getString("id")));
 		// 回答人id
-		qareplyentity.setUser_id(loginfo.getUser_email());
+		qareplyentity.setUser_id(loginfo.getUser_no());
 		// 回答内容
 		qareplyentity.setQa_reply_text(entityin.getSubmitjson().getString("txt"));
 
@@ -173,11 +173,11 @@ public class F060001ServiceImpl implements F060001Service {
 		entityout.setSelect8(select8);
 
 		// 提问数量
-		Integer select9 = f060001dao.f060001_Select9(loginfo.getUser_email());
+		Integer select9 = f060001dao.f060001_Select9(loginfo.getUser_no());
 		entityout.setSelect9(select9);
 
 		// 回答数量
-		Integer select10 = f060001dao.f060001_Select10(loginfo.getUser_email());
+		Integer select10 = f060001dao.f060001_Select10(loginfo.getUser_no());
 		entityout.setSelect10(select10);
 
 		// 获取最新问题

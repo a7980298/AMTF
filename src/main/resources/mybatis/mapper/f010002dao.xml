@@ -31,7 +31,7 @@
 		WHERE
 			User_id = #{loginfo.user_id}
 		AND
-			User_Email = #{loginfo.user_email}
+			USER_NO = #{loginfo.user_no}
 	</update>
 	
 	<select id="f010002_Select3" resultType="com.amtf.demo.f010001entity.F010001_Select1Entity">
