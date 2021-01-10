@@ -11,6 +11,11 @@ public class F020001_Select1Entity {
 	 * 用户id
 	 */
 	private Integer user_id;
+
+	/**
+	 * no
+	 */
+	private String user_no;
 	
 	/**
 	 * Email

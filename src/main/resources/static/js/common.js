@@ -422,7 +422,7 @@ function openSocket(_user_email) {
 			} catch {
 				var _entity = new Array(); 
 				_entity =msg.data.split(',');
-				if(_entity[0] != _user_email && _entity[0] != '连接成功'){
+				if(_entity[0] != _user_no && _entity[0] != '连接成功'){
 					var _istext = '';
 					$('#adduser').find('span').each(function(){
 						if($(this).text() == _entity[0]){

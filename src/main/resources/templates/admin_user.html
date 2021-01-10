@@ -281,7 +281,7 @@
 				this.dialog.email = this.tableData[idx].user_email;
 				//获取基本信息
 				axios.post('/amtf/Vf020001/getUser',{
-					userId:this.tableData[idx].user_email
+					userId:this.tableData[idx].user_no
 				}).then(response => {
 					if(response.message != '' && response.message != null){
                         headVue.Message('error',response.message);
@@ -309,7 +309,7 @@
             //修改认证状态-未认证
 			modificationStatusConfirmation(idx, row){
 				if(row.user_attestation == '1'){
-					this.upAttestation(this.tableData[idx].user_email, '0', row);
+					this.upAttestation(this.tableData[idx].user_no, '0', row);
 				}
 			},
 			//用户主页
@@ -319,7 +319,7 @@
 			//修改认证状态-认证
 			certificationStatus(idx, row){
 				if(row.user_attestation == '0'){
-					this.upAttestation(this.tableData[idx].user_email, '1', row);
+					this.upAttestation(this.tableData[idx].user_no, '1', row);
 				}
 			},
 			//认证状态修改axios
@@ -350,7 +350,7 @@
 				if(this.multipleSelection.length > 0 ){
                     this.multipleSelection.forEach(entity => {
                         if(entity.user_attestation == '0'){
-                            this.upAttestation(entity.user_email, '1', entity);
+                            this.upAttestation(entity.user_no, '1', entity);
                         }
                     })
                     headVue.Message('success','已全部完成，未防止有遗漏，请点击左下角刷新本页面。。。');
@@ -380,7 +380,7 @@
                     this.levelOptionsChange(power);
                 } else {
                     axios.post('/amtf/Vf020001/upStatus',{
-                        userId:this.tableData[command.index].user_email,
+                        userId:this.tableData[command.index].user_no,
                         userStatus:command.command
                     }).then(response => {
                         if(response.message != '' && response.message != null){

@@ -126,7 +126,7 @@ public class ImgUtil {
 			String filePath = "C:/activity_imgs/";
 
 			// 随机一个文件名
-			fileName = ParameterUtil.getSession().getUser_email() + isuser;
+			fileName = ParameterUtil.getSession().getUser_no() + isuser;
 
 			filePath += fileName;
 

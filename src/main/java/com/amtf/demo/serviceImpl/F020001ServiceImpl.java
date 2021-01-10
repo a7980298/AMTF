@@ -74,8 +74,10 @@ public class F020001ServiceImpl implements F020001Service {
 
 		for (int i = 0; i < select1.size(); i++) {
 			F020001_Select1Entity f02_select = new F020001_Select1Entity();
-			// 賬戶
+			// 账户
 			f02_select.setUser_account(select1.get(i).getUser_account());
+			// no
+			f02_select.setUser_no(select1.get(i).getUser_no());
 			// 是否认证
 			f02_select.setUser_attestation(select1.get(i).getUser_attestation());
 			// 用户id
@@ -129,8 +131,12 @@ public class F020001ServiceImpl implements F020001Service {
 
 		if(!CommonUtil.isEmpty(entityin.getUserId())){
 			AmtfUserEntity select8 = f020001dao.f020001_Select8(entityin.getUserId());
-			//介绍
-			userHistory.setUserIntroduce(select8.getUser_introduce());
+			if(!CommonUtil.isEmpty(select8)){
+				//介绍
+				userHistory.setUserIntroduce(select8.getUser_introduce());
+			} else {
+				userHistory.setUserIntroduce(Constant.EMPTY);
+			}
 			//认证
 			userHistory.setUserAttestation(Constant.INT_1.equals(select8.getUser_attestation()) ? "已认证":"未认证");
 			//获取参加的活动

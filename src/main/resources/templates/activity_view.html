@@ -332,7 +332,7 @@
 				dateType : 'html',
 				async : true,
 				data : {
-					id : _this.user_email,
+					id : _this.user_no,
 				},
 				success : function(result) {
 					if(result.attention == 'insert0'){
@@ -354,7 +354,7 @@
 		}
 		//TA的主页
 		function amtf_goToHomePage(_this) {
-			var newinput = getNewInput('user', _this.user_email);
+			var newinput = getNewInput('user', _this.user_no);
 			amtf_form.appendChild(newinput);
 			amtf_submit(amtf_form, '/f010011');
 			reomveNewInput('user');
@@ -495,7 +495,7 @@
 															<a href="#" class="commentreply_now" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${entity1.amtfactivitycommententity}]],this)">
 																回复
 															</a>
-															<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity1.amtfactivitycommententity.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[${entity1.amtfactivitycommententity.activity_comment_id}]],'1')">
+															<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity1.amtfactivitycommententity.user_id == main_params.logInFo.user_no}" th:onclick="amtf_removeReply([[${entity1.amtfactivitycommententity.activity_comment_id}]],'1')">
 																删除
 															</a>
 															<i class="fa fa-exclamation lookeye hand ml-2" aria-hidden="true" title="举报" onclick="amtf_getActivityReport()"></i>
@@ -519,7 +519,7 @@
 																<a href="#" class="commentreply_now text-center" style="color: #00a5bb" th:onclick="amtf_comment_reply([[${entity1.amtfactivitycommententity}]],this)">
 																	回复
 																</a>
-																<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity2.user_id == main_params.logInFo.user_email}" th:onclick="amtf_removeReply([[${entity2.activity_comment_reply_id}]],'2')">
+																<a href="#" class="ml-2" style="color: #00a5bb" th:if="${entity2.user_id == main_params.logInFo.user_no}" th:onclick="amtf_removeReply([[${entity2.activity_comment_reply_id}]],'2')">
 																	删除
 																</a>
 																<i class="fa fa-exclamation lookeye hand ml-2" aria-hidden="true" title="举报" onclick="amtf_getActivityReport()"></i>

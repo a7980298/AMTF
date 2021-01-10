@@ -50,7 +50,7 @@
 				amtf_userInfoFollow(event) {
 					// 发送 POST 请求
 					axios.post(CONTEXT_PATH + '/f010011/T001', {
-						id : '[[${f010011Params.select1.user_email}]]'
+						id : '[[${f010011Params.select1.user_no}]]'
 					}).then(function (response) {
 						if(response.data.attention == 'insert0'){
 							Message('error', '关注失败');
