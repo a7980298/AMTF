@@ -1,19 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<th:block th:replace="import :: myimport"></th:block>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/apple-icon.png}">
-<link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="UTF-8"/>
 <title>管理页面</title>
-<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-<link th:href="@{/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
-</head>
+<th:block th:replace="import :: myimport"></th:block>
+<th:block th:replace="vue-import :: vue-import"></th:block>
 <style type="text/css">
 
 </style>
 <script type="text/javascript">
+
+</script>
+<body class="">
+	<div class="wrapper" id="adminId" style="background-color:#fff">
+		<!-- 全体通知 -->
+		<div class="" id="main" style="height: 100%;">
+			<i-form class="h-100" th:action="@{/f020005}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+			<input type="hidden" name="IViewId" value="f020005"/>
+				<div class="col-md-12">
+					<div class="mb-2 mt-1">
+						<div class="row m-auto col-sm-8">
+							<div class="col-sm-11">
+								<el-input
+										type="text"
+										placeholder="活动标题"
+										v-model="activityHead"
+										maxlength="20"
+										show-word-limit
+								>
+								</el-input>
+								<input type="hidden" name="activity_head" id="activity_head" :value="activityHead"/>
+							</div>
+							<div class="col-sm-1">
+								<el-button type="primary" @click="saveActivity">发布<i class="el-icon-upload el-icon--right"></i></el-button>
+							</div>
+						</div>
+						<div class="row text-center">
+							<div class="col-sm-12">
+								<div class="col-sm-12 checkbox-radios">
+									<div class="form-check form-check-inline">
+										<el-radio v-model="radioMember" label="0" border>普通成员</el-radio>
+										<el-radio v-model="radioMember" label="1" border>管理成员</el-radio>
+										<el-radio v-model="radioMember" label="2" border>全体成员</el-radio>
+										<input type="hidden" id="activityCheck" :value="radioMember">
+									</div>
+									<div class="d-flex m-auto col-sm-12">
+										<div class="row m-auto col-sm-6">
+											<div class="col-sm-6 ml-auto">
+												<el-date-picker
+														v-model="sttYmd"
+														type="date"
+														placeholder="开始日期"
+														@change="sttYmdChange"
+														format="yyyy 年 MM 月 dd 日"
+														value-format="yyyy/MM/dd">
+												</el-date-picker>
+												<input type="hidden"name="activity_sttymd" id="activity_sttymd" :value="sttYmd"/>
+											</div>
+										</div>
+										<div class="row m-auto col-sm-6">
+											<div class="col-sm-6 mr-auto">
+												<el-date-picker
+														v-model="endYmd"
+														type="date"
+														placeholder="结束日期"
+														@change="sttYmdChange"
+														format="yyyy 年 MM 月 dd 日"
+														value-format="yyyy/MM/dd">
+												</el-date-picker>
+												<input type="hidden"name="activity_sttymd" id="activity_endymd" :value="endYmd"/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="m-auto col-sm-8" style="">
+					<div class="panel-body">
+						<div id="activity_editor"></div>
+					</div>
+				</div>
+			</i-form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var headVue = new Vue({
+		el: '#adminId',
+		data: {
+			sttYmd: '',
+			endYmd: '',
+			radioMember: '2',
+			activityHead: ''
+		},
+		methods: {
+			// 消息框
+			Message(type, message) {
+				if (type == 'error') {
+					this.$message.error(message);
+				} else {
+					this.$message({
+						message: message,
+						type: type
+					});
+				}
+			},
+			Notify(title, message, type) {
+				this.$notify({
+					title: title,
+					message: message,
+					type: type
+				});
+			},
+			//发布活动
+			saveActivity(){
+				amtf_activity();
+			}
+		},
+		//初期化获取数据
+		created()
+		{
+
+		}
+	})
 	var activity_editor;
 	$(function(){
 		// 注册wangEditor插件
@@ -55,8 +166,7 @@
 					insertImgFn('/amtf/wangactivityimg/' + result.data[0].replace('C:/wangEdito_ActivityImg'));
 				},
 				error : function(res, textStaus) {
-					hidediv();
-					setCodeErrList("错误！！！请和管理员联系。。。");
+					headVue.Message('error','错误！！！请和管理员联系。。。');
 				},
 			});
 		}
@@ -118,27 +228,9 @@
 			}
 		})
 	});
-	// 活动的check限制
-	function amtf_activityCheck(_this) {
-		if($(_this).is(':checked') && $(_this).val() == '2'){
-			$('#activitycheck1').removeAttr('checked');
-			$('#activitycheck2').removeAttr('checked');
-		} else {
-			$('#activitycheck3').removeAttr('checked');
-		}
-	}
 	// 活动发布
 	function amtf_activity() {
-		var check;
-		if($('#activitycheck3').is(':checked') || $('#activitycheck1').is(':checked') && $('#activitycheck2').is(':checked')){
-			check = '0';
-		} else {
-			if($('#activitycheck1').is(':checked')) {
-				check = '0';
-			} else if($('#activitycheck2').is(':checked')) {
-				check = '1';
-			}
-		}
+		var check = $('#activityCheck').val();
 		var formData = new FormData($('#amtf_form')[0]);
 		formData.set("activity_head", $('#activity_head').val());
 		formData.set("activity_position", $('#activity_position').val());
@@ -160,92 +252,19 @@
 			success : function(result) {
 				if(result.ErrMessage != ""){
 					let errlist = result.ErrMessage;
-					Message('error', errlist[0]);
+					headVue.Message('error',errlist[0]);
 				} else {
 					if (result.isactivity == '1') {
-						setCodeErrList("发布失败，请重试。");
+						headVue.Message('error','发布失败，请重试。');
 					} else {
-						setCodeSuccess("发布成功。。。");
+						headVue.Message('success','发布成功。。。');
 					}
 				}
 			},
 			error : function(res, textStaus) {
-				setCodeErrList("错误！！！请和管理员联系。。。");
+				headVue.Message('error','错误！！！请和管理员联系。。。');
 			},
 		});
 	}
 </script>
-<body class="" onunload="myFunction()">
-	<div class="wrapper card m-0">
-		<!-- 全体通知 -->
-		<div class="" id="main" style="height: 100%;">
-			<i-form class="h-100" th:action="@{/f020005}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
-			<input type="hidden" name="IViewId" value="f020005"/>
-				<div class="col-md-12">
-					<div class="card">
-						<div class="row m-auto col-sm-8">
-							<div class="col-sm-11">
-								<input type="text" class="form-control" name="activity_head" id="activity_head" placeholder="活动标题"/>
-							</div>
-							<div class="col-sm-1">
-								<button class="btn btn-info" onclick="amtf_activity()">发布</button>
-							</div>
-						</div>
-						<!--<div class="row m-auto col-sm-8">
-							<div class="col-sm-12">
-								<input type="text" class="form-control" name="activity_position" id="activity_position" placeholder="活动备注">
-							</div>
-						</div>-->
-						<div class="row text-center">
-							<div class="col-sm-12">
-								<div class="col-sm-12 checkbox-radios">
-									<div class="form-check form-check-inline">
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" value="0" onclick="amtf_activityCheck(this)" id="activitycheck1" name="activity_check">
-											普通成员
-											<span class="form-check-sign">
-												<span class="check"></span>
-											</span>
-										</label>
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" value="1" onclick="amtf_activityCheck(this)" id="activitycheck2" name="activity_check">
-											管理成员
-											<span class="form-check-sign">
-												<span class="check"></span>
-											</span>
-										</label>
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" value="2" onclick="amtf_activityCheck(this)" id="activitycheck3" name="activity_check" checked>
-											全体
-											<span class="form-check-sign">
-												<span class="check"></span>
-											</span>
-										</label>
-									</div>
-									<div class="d-flex m-auto col-sm-12">
-										<div class="row m-auto col-sm-6">
-											<div class="col-sm-6 ml-auto">
-												<input type="text" class="form-control dateymd" name="activity_sttymd" id="activity_sttymd" placeholder="开始日期">
-											</div>
-										</div>
-										<div class="row m-auto col-sm-6">
-											<div class="col-sm-6 mr-auto">
-												<input type="text" class="form-control dateymd" name="activity_endymd" id="activity_endymd" placeholder="结束日期">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="m-auto col-sm-8" style="">
-					<div class="panel-body">
-						<div id="activity_editor"></div>
-					</div>
-				</div>
-			</i-form>
-		</div>
-	</div>
-</body>
 </html>
