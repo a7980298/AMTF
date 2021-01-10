@@ -24,7 +24,10 @@
 				tempInput.name = 'login_html';
 				tempInput.value = _path;
 				const CONTEXT_PATH = "/amtf";
-				const TARGET = "_self";
+				let TARGET = "_self";
+				if(_path == 'admin_avtivity' || _path == 'admin_allnotices'){
+					TARGET = '_blank';
+				}
 				let form = document.createElement("form");
 				form.action = CONTEXT_PATH + '/going/admin';
 				form.method = 'post';

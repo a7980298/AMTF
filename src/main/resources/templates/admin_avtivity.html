@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <th:block th:replace="import :: myimport"></th:block>
 <head>
 <meta charset="utf-8" />
@@ -19,25 +19,6 @@
 		// 注册wangEditor插件
 		const E = window.wangEditor;
 		activity_editor = new E('#activity_editor');
-		/*activity_editor.config.menus = [
-			'head',  // 标题
-			'bold' /!** 粗体*!/, 'fontSize' /!** 字号 *!/, 'fontName' /!** 字体 *!/,'italic' /!** 斜体 *!/,
-			'underline',  // 下划线
-			'strikeThrough',  // 删除线
-			'foreColor',  // 文字颜色
-			'backColor',  // 背景颜色
-			'link',  // 插入链接
-			'list',  // 列表
-			'justify',  // 对齐方式
-			'quote',  // 引用
-			'emoticon',  // 表情   打开后支持表情功能
-			'image',  // 插入图片
-			'table',  // 表格
-			'video',  // 插入视频
-			'code',  // 插入代码
-			'undo',  // 撤销
-			'redo'  // 重复
-		]*/
 		//开启debug模式
 		activity_editor.config.debug = true;
 		// 关闭粘贴内容中的样式
@@ -64,8 +45,10 @@
 				dateType : 'html',
 				async : true,
 				cache: false,
-				processData : false, // 用于对data参数进行序列化处理
-				contentType : false, // 不要设置Content-Type请求头
+				// 用于对data参数进行序列化处理
+				processData : false,
+				// 不要设置Content-Type请求头
+				contentType : false,
 				data : formData,
 				success : function(result) {
 					// 上传图片，返回结果，将图片插入到编辑器中
@@ -108,9 +91,6 @@
 			// 图片上传并返回了结果，想要自己把图片插入到编辑器中
 			// 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
 			customInsert: function(insertImgFn, result) {
-				// result 即服务端返回的接口
-				console.log('customInsert', result)
-
 				// insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
 				insertImgFn('/amtf/wangeditorimg/' + result.data[0].replace('C:/wangEdito_Img'))
 			}
@@ -166,18 +146,18 @@
 		formData.set("activity_sttymd", $('#activity_sttymd').val());
 		formData.set("activity_endymd", $('#activity_endymd').val());
 		formData.set("activity_editor", activity_editor.txt.html());
-		//showdiv();
 		$.ajax({
 			url : CONTEXT_PATH + '/f020005/T001',
 			type : 'post',
 			dateType : 'html',
 			async : true,
 			cache: false,
-			processData : false, // 用于对data参数进行序列化处理
-			contentType : false, // 不要设置Content-Type请求头
+			// 用于对data参数进行序列化处理
+			processData : false,
+			// 不要设置Content-Type请求头
+			contentType : false,
 			data : formData,
 			success : function(result) {
-				//hidediv();
 				if(result.ErrMessage != ""){
 					let errlist = result.ErrMessage;
 					Message('error', errlist[0]);
@@ -190,7 +170,6 @@
 				}
 			},
 			error : function(res, textStaus) {
-				//hidediv();
 				setCodeErrList("错误！！！请和管理员联系。。。");
 			},
 		});
