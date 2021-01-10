@@ -100,8 +100,7 @@
                                 label="权限"
                                 width="180">
                             <template slot-scope="scope">
-                                <span style="margin-left: 10px" v-if="scope.row.user_power == '0'">未认证用户</span>
-                                <span style="margin-left: 10px" v-if="scope.row.user_power != '0'">{{scope.row.user_power}}级用户</span>
+                                <span style="margin-left: 10px">{{scope.row.user_power}}级用户</span>
                             </template>
                         </el-table-column>
                         <el-table-column label="操作">
@@ -427,6 +426,7 @@
                         headVue.Message('error',response.message);
                     } else {
                         this.stepBar = 4;
+                        this.tableData[this.getIndex].user_power = this.levelOptionsValue;
                     }
                 })
             },
