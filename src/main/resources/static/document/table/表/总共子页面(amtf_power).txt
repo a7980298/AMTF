@@ -1,13 +1,12 @@
 CREATE TABLE AMTF_POWER(
-	power_id INT NOT NULL, -- 画面序号
-	power_name VARCHAR(50), -- 画面名称
-	power_type VARCHAR(20), -- 画面类型
-	power_pow int,	-- 权限
-	power_path VARCHAR(50), -- 画面路径
-	power_class VARCHAR(50), -- class样式
-	power_short VARCHAR(10), -- 缩写
-	power_show CHAR(1), -- 是否显示
-	primary key (power_id)
+	power_id INT NOT NULL primary key comment"画面序号",
+	power_name VARCHAR(50) comment"画面名称",
+	power_type VARCHAR(20) comment"画面类型",
+	power_pow int comment"权限",
+	power_path VARCHAR(50) comment"画面路径",
+	power_class VARCHAR(50) comment"class样式",
+	power_short VARCHAR(10) comment"缩写",
+	power_show CHAR(1) comment"是否显示"
 )
 insert into test.amtf_power values(1001,'观看视频','影视','1','f040001','fa-television','TV','1');
 insert into test.amtf_power values(1005,'现场直播','影视','1','f010010','fa-television','LB','1');

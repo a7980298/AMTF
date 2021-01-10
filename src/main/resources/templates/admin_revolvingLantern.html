@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8"/>
+<title>背景图片设置</title>
+<th:block th:replace="vue-import :: vue-import"></th:block>
+<style type="text/css">
+	.colorSuccess{
+		color: #07bf07;
+	}
+	.d-none{
+		display: none;
+	}
+	.el-dropdown-link {
+		cursor: pointer;
+		color: #409EFF;
+	}
+	.el-icon-arrow-down {
+		font-size: 12px;
+	}
+	.demonstration {
+		display: block;
+		color: #8492a6;
+		font-size: 14px;
+		margin-bottom: 20px;
+	}
+</style>
+<body class="">
+	<div class="wrapper" id="admin_id">
+		<i-form class="" th:action="@{/f020003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+			<input type="hidden" name="IViewId" value="f020001"/>
+            <el-container>
+                <th:block th:replace="admin_navbar :: admin_navbar"></th:block>
+                <el-main style="padding-top: 0px">
+                    <th:block th:replace="admin_head :: admin_head"></th:block>
+                    <el-row>
+                        <p style="text-align: center; margin: 0 0 20px">主画面走马灯设置</p>
+                        <div style="text-align: center">
+                            <template>
+                                <el-carousel :interval="4000" type="card" height="200px">
+                                    <el-carousel-item v-for="item in 6" :key="item">
+                                        <h3 class="medium">{{ item }}</h3>
+                                    </el-carousel-item>
+                                </el-carousel>
+                            </template>
+                        </div>
+                    </el-row>
+                    <el-divider></el-divider>
+                    <el-row>
+                        <p style="text-align: center; margin: 0 0 20px">视频画面走马灯设置</p>
+                        <div style="text-align: center">
+                            <template>
+                                <el-carousel :interval="4000" type="card" height="200px">
+                                    <el-carousel-item v-for="item in 6" :key="item">
+                                        <h3 class="medium">{{ item }}</h3>
+                                    </el-carousel-item>
+                                </el-carousel>
+                            </template>
+                        </div>
+                    </el-row>
+                </el-main>
+            </el-container>
+		</i-form>
+	</div>
+</body>
+<script type="text/javascript">
+	new Vue({
+		el: '#admin_id',
+		data: {
+
+		},
+		methods: {
+
+		},
+		//初期化获取数据
+		created()
+		{
+
+		}
+	})
+</script>
+</html>

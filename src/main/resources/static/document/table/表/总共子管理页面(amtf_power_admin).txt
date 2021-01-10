@@ -1,14 +1,17 @@
 CREATE TABLE AMTF_POWER_ADMIN(
-	power_id INT NOT NULL, -- 画面序号
-	power_name VARCHAR(50), -- 画面名称
-	power_type VARCHAR(20), -- 画面类型
-	power_pow int,	-- 权限
-	power_path VARCHAR(50), -- 画面路径
-	power_class VARCHAR(50), -- class样式
-	power_short VARCHAR(10) -- 缩写
+	power_id INT NOT NULL primary key comment"画面序号",
+	power_name VARCHAR(50) comment"画面名称",
+	power_type VARCHAR(20) comment"画面类型",
+	power_pow int comment"权限",
+	power_path VARCHAR(50) comment"画面路径",
+	power_class VARCHAR(50) comment"class样式",
+	power_short VARCHAR(10) comment"缩写"
 )
 insert into test.AMTF_POWER_ADMIN values(1001,'人员操作','人员管理','2','admin_user','el-icon-user-solid','u');
 insert into test.AMTF_POWER_ADMIN values(1002,'发布页面','功能管理','2','admin_function','el-icon-share','S');
+insert into test.AMTF_POWER_ADMIN values(1005,'走马灯','功能管理','2','admin_revolvingLantern','el-icon-crop','S');
+insert into test.AMTF_POWER_ADMIN values(1007,'活动日历','功能管理','2','admin_eventCalendar','el-icon-s-claim','S');
+insert into test.AMTF_POWER_ADMIN values(1006,'背景','功能管理','2','admin_backgroundImg','el-icon-picture-outline','S');
 insert into test.AMTF_POWER_ADMIN values(1003,'发布通知','通知','2','admin_allnotices','el-icon-s-opportunity','RF');
 insert into test.AMTF_POWER_ADMIN values(1004,'活动举办','通知','2','admin_avtivity','el-icon-s-opportunity','HD');
 
