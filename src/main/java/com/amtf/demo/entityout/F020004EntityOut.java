@@ -11,4 +11,9 @@ public class F020004EntityOut extends UserImpl {
 	 * 页面id
 	 */
 	private String IViewId;
+
+	/**
+	 * 发布成功flg
+	 */
+	private String noticesFlg;
 }

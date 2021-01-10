@@ -2,15 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
-<title>管理页面</title>
+<title>发布活动</title>
 <th:block th:replace="import :: myimport"></th:block>
 <th:block th:replace="vue-import :: vue-import"></th:block>
 <style type="text/css">
 
 </style>
-<script type="text/javascript">
-
-</script>
 <body class="">
 	<div class="wrapper" id="adminId" style="background-color:#fff">
 		<!-- 全体通知 -->
@@ -118,11 +115,6 @@
 			saveActivity(){
 				amtf_activity();
 			}
-		},
-		//初期化获取数据
-		created()
-		{
-
 		}
 	})
 	var activity_editor;
@@ -250,9 +242,8 @@
 			contentType : false,
 			data : formData,
 			success : function(result) {
-				if(result.ErrMessage != ""){
-					let errlist = result.ErrMessage;
-					headVue.Message('error',errlist[0]);
+				if(result.message != "" && result.message != null){
+					headVue.Message('error', result.message);
 				} else {
 					if (result.isactivity == '1') {
 						headVue.Message('error','发布失败，请重试。');

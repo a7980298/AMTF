@@ -5,6 +5,7 @@ import com.amtf.demo.entityin.F020005EntityIn;
 import com.amtf.demo.entityin.F020005EntityIn;
 import com.amtf.demo.entityout.F020005EntityOut;
 import com.amtf.demo.entityout.F020005EntityOut;
+import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f020005entity.WangEditor;
 import com.amtf.demo.params.F020005Params;
 import com.amtf.demo.service.F020005Service;
@@ -65,7 +66,7 @@ public class F020005Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f020005/T001")
 	@ResponseBody
-	public Map<String, Object> f020005T001(@RequestParam("activity_head") String activity_head,
+	public Object f020005T001(@RequestParam("activity_head") String activity_head,
 										   @RequestParam("activity_position") String activity_position,
 										   @RequestParam("activity_check") String activity_check,
 										   @RequestParam("activity_sttymd") String activity_sttymd,
@@ -86,36 +87,36 @@ public class F020005Controller extends ValiDationUtil {
 		entityin.setActivity_editor(activity_editor);
 		Map<String,Object> maps = new HashMap<String,Object>();
 		List<String> err=new ArrayList<String>();
-		// 错误信息
-		if(entityin.getActivity_head().length() <= 0){
-			err.add("标题必须入力");
-		}
-		if(entityin.getActivity_position().length() <= 0){
-			err.add("地址必须入力");
-		}
-		if(entityin.getActivity_check().length() <= 0){
-			err.add("级别必须选择");
-		}
-		if(entityin.getActivity_sttymd().length() <= 0){
-			err.add("开始日期必须入力");
-		}
-		if(entityin.getActivity_endymd().length() <= 0){
-			err.add("结束日期必须入力");
-		}
-		if(entityin.getActivity_editor().length() <= 0){
-			err.add("内容必须入力");
-		}
-		if(NumberUtil.toInt(DateUtil.strTostrT(entityin.getActivity_sttymd())) > NumberUtil.toInt(DateUtil.strTostrT(entityin.getActivity_endymd()))){
-			err.add("结束日期大于开始日期");
-		}
-		maps.put("ErrMessage",err);
-		if(!CommonUtil.isEmptyList(err)){
-			return maps;
+		try{
+			// 错误信息
+			if(entityin.getActivity_head().length() <= 0){
+				err.add("标题必须入力");
+			}
+			if(entityin.getActivity_position().length() <= 0){
+				err.add("地址必须入力");
+			}
+			if(entityin.getActivity_check().length() <= 0){
+				err.add("级别必须选择");
+			}
+			if(entityin.getActivity_sttymd().length() <= 0){
+				err.add("开始日期必须入力");
+			}
+			if(entityin.getActivity_endymd().length() <= 0){
+				err.add("结束日期必须入力");
+			}
+			if(entityin.getActivity_editor().length() <= 0){
+				err.add("内容必须入力");
+			}
+			if(NumberUtil.toInt(DateUtil.strTostrT(entityin.getActivity_sttymd())) > NumberUtil.toInt(DateUtil.strTostrT(entityin.getActivity_endymd()))){
+				err.add("结束日期大于开始日期");
+			}
+		}catch (ErrListException e) {
+			return e;
 		}
 
 		F020005EntityOut entityOut = f020005service.service02(entityin);
-		maps.put("isactivity", entityOut.getIsactivity());
-		return maps;
+
+		return entityOut;
 	}
 
 	/**

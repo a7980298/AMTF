@@ -1,52 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="import :: myimport"></th:block>
 <head>
-<meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/apple-icon.png}">
-<link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>管理页面</title>
-<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-<link th:href="@{/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
-</head>
+<meta charset="UTF-8"/>
+<title>发布通知</title>
+<th:block th:replace="import :: myimport"></th:block>
+<th:block th:replace="vue-import :: vue-import"></th:block>
 <style type="text/css">
 
 </style>
 <script type="text/javascript">
+
+</script>
+<body class="">
+	<div class="wrapper card m-0" id="adminId">
+		<!-- 全体通知 -->
+		<div class="" id="main">
+			<i-form class="" th:action="@{/f020004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+			<input type="hidden" name="IViewId" value="f020004"/>
+				<div class="col-md-12">
+					<div class="mb-2">
+						<div class="row m-auto col-sm-8">
+							<div class="col-sm-11">
+								<el-input
+										type="text"
+										placeholder="通知标题"
+										v-model="noticeHead"
+										maxlength="20"
+										show-word-limit
+								>
+								</el-input>
+								<input type="hidden" name="noticeHeadName" id="noticeHeadId" :value="noticeHead"/>
+							</div>
+							<div class="col-sm-1">
+								<el-button type="primary" @click="saveNotice">发布<i class="el-icon-upload el-icon--right"></i></el-button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="m-auto col-sm-8" style="">
+					<div class="panel-body">
+						<div id="editor"></div>
+					</div>
+				</div>
+			</i-form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var headVue = new Vue({
+		el: '#adminId',
+		data: {
+			noticeHead: ''
+		},
+		methods: {
+			// 消息框
+			Message(type, message) {
+				if (type == 'error') {
+					this.$message.error(message);
+				} else {
+					this.$message({
+						message: message,
+						type: type
+					});
+				}
+			},
+			Notify(title, message, type) {
+				this.$notify({
+					title: title,
+					message: message,
+					type: type
+				});
+			},
+			//发布活动
+			saveNotice(){
+				amtf_allnotices();
+			}
+		}
+	})
+	var editor;
 	$(function(){
-		//initFileInput("file-file", CONTEXT_PATH + "/f020001/T004");
 		// 注册wangEditor插件
 		var wangEditor = window.wangEditor;
-		var editor = new wangEditor('#editor');
+		editor = new wangEditor('#editor');
 		editor.config.zIndex = 10;
-		document.getElementById('textsumbit').addEventListener('click', function () {
-			$.ajax({
-				url: CONTEXT_PATH + '/f020004/T001',
-				type: 'post',
-				dateType: 'html',
-				async: true,
-				data: {
-					release_head: $('#texthead').val(),
-					release_name: editor.txt.html()
-				},
-				success: function (result) {
-					if(result.ErrMessage != ""){
-						let errlist = result.ErrMessage;
-						Message('error', errlist[0]);
-					} else {
-						if (result.updonticey == '1') {
-							Message('success', '发布成功！');
-						} else {
-							Message('error', '发布失败');
-						}
-					}
-				},
-				error: function (res, textStaus) {
-					setCodeErrList("错误！！！请和管理员联系。。。");
-				},
-			});
-		}, false)
 		//开启debug模式
 		editor.config.debug = true;
 		// 关闭粘贴内容中的样式
@@ -80,38 +116,34 @@
 					insertImgFn('/amtf/wangallnoticesimg/' + result.data[0].replace('C:/wangEdito_AllnoticesImg'));
 				},
 				error : function(res, textStaus) {
-					setCodeErrList("错误！！！请和管理员联系。。。");
+					headVue.Message('error','错误！！！请和管理员联系。。。');
 				},
 			});
 		}
 		editor.create();
 	});
+	function amtf_allnotices() {
+		$.ajax({
+			url: CONTEXT_PATH + '/f020004/T001',
+			type: 'post',
+			dateType: 'html',
+			async: true,
+			data: {
+				release_head: $('#noticeHeadId').val(),
+				release_name: editor.txt.html()
+			},
+			success: function (result) {
+				if(result.message != "" && result.message != null){
+					headVue.Message('error', result.message);
+				} else {
+					headVue.Message('success','发布成功！');
+				}
+			},
+			error: function (res, textStaus) {
+				headVue.Message('error','错误！！！请和管理员联系。。。');
+			},
+		});
+
+	}
 </script>
-<body class="" onunload="myFunction()">
-	<div class="wrapper card m-0">
-		<!-- 全体通知 -->
-		<div class="" id="main">
-			<i-form class="" th:action="@{/f020004}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
-			<input type="hidden" name="IViewId" value="f020004"/>
-				<div class="col-md-12">
-					<div class="card">
-						<div class="row m-auto col-sm-8">
-							<div class="col-sm-11">
-								<input type="text" class="form-control text-center" placeholder="标题" id="texthead">
-							</div>
-							<div class="col-sm-1">
-								<button type="button" id="textsumbit" class="btn btn-info">发布</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="m-auto col-sm-8" style="">
-					<div class="panel-body">
-						<div id="editor"></div>
-					</div>
-				</div>
-			</i-form>
-		</div>
-	</div>
-</body>
 </html>

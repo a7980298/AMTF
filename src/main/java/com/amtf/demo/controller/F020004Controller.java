@@ -4,6 +4,7 @@ package com.amtf.demo.controller;
 import com.amtf.demo.entityin.F020004EntityIn;
 import com.amtf.demo.entityin.F020004EntityIn;
 import com.amtf.demo.entityout.F020004EntityOut;
+import com.amtf.demo.exception.ErrListException;
 import com.amtf.demo.f020005entity.WangEditor;
 import com.amtf.demo.params.F020004Params;
 import com.amtf.demo.service.F020004Service;
@@ -60,31 +61,26 @@ public class F020004Controller extends ValiDationUtil {
 	 */
 	@RequestMapping("/f020004/T001")
 	@ResponseBody
-	public Map<String, Object> f020004T001(@RequestParam("release_name") String release_name,
+	public Object f020004T001(@RequestParam("release_name") String release_name,
 										   @RequestParam("release_head") String release_head, Model model) {
 
 		F020004EntityIn entityin = new F020004EntityIn();
 		entityin.setRelease_head(release_head);
 		entityin.setRelease_name(release_name);
-		Map<String,Object> maps = new HashMap<String,Object>();
-		List<String> err=new ArrayList<String>();
-		// 错误信息
-		if(entityin.getRelease_head().length() <= 0){
-			err.add("标题必须入力");
+		F020004EntityOut entityOut = new F020004EntityOut();
+		try{
+			// 错误信息
+			if(entityin.getRelease_head().length() <= 0){
+				throw new ErrListException(entityin, entityin.getIViewId(), "标题必须入力");
+			}
+			if(entityin.getRelease_name().length() <= 0){
+				throw new ErrListException(entityin, entityin.getIViewId(), "内容必须入力");
+			}
+			entityOut = f020004service.service02(entityin);
+		}catch (ErrListException e) {
+			return e;
 		}
-		if(entityin.getRelease_name().length() <= 0){
-			err.add("内容必须入力");
-		}
-		maps.put("ErrMessage",err);
-		if(!CommonUtil.isEmptyList(err)){
-			return maps;
-		}
-		f020004service.service02(entityin);
-		Map<String, Object> map = new HashMap<String, Object>();
-		String name = "1";
-		map.put("updonticey", name);
-
-		return map;
+		return entityOut;
 	}
 
 	/**
