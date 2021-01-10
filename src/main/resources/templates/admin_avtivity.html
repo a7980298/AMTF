@@ -43,6 +43,23 @@
 									</div>
 									<div class="d-flex m-auto col-sm-12">
 										<div class="row m-auto col-sm-6">
+											<div class="col-sm-12 m-auto">
+												<div class="block">
+													<el-date-picker
+															v-model="value1"
+															type="daterange"
+															range-separator="~"
+															start-placeholder="开始日期"
+															end-placeholder="结束日期"
+															value-format="yyyy/MM/dd"
+															format="yyyy 年 MM 月 dd 日">
+													</el-date-picker>
+													<input type="hidden"name="activity_sttymd" id="activity_sttymd" :value="value1[0]"/>
+													<input type="hidden"name="activity_sttymd" id="activity_endymd" :value="value1[1]"/>
+												</div>
+											</div>
+										</div>
+										<!--<div class="row m-auto col-sm-6">
 											<div class="col-sm-6 ml-auto">
 												<el-date-picker
 														v-model="sttYmd"
@@ -67,7 +84,7 @@
 												</el-date-picker>
 												<input type="hidden"name="activity_sttymd" id="activity_endymd" :value="endYmd"/>
 											</div>
-										</div>
+										</div>-->
 									</div>
 								</div>
 							</div>
@@ -87,10 +104,11 @@
 	var headVue = new Vue({
 		el: '#adminId',
 		data: {
-			sttYmd: '',
+			sttYmd: new Date(),
 			endYmd: '',
 			radioMember: '2',
-			activityHead: ''
+			activityHead: '',
+			value1: ''
 		},
 		methods: {
 			// 消息框
