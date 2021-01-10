@@ -315,4 +315,26 @@ public class F020001ServiceImpl implements F020001Service {
 
 		return entityOut;
 	}
+
+	/**
+	 * 修改用户的等级
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F020001EntityOut service08(F020001EntityIn entityin) throws ErrListException {
+		F020001EntityOut entityOut = new F020001EntityOut();
+		LogInFo loginfo = new LogInFo();
+		loginfo = ParameterUtil.getSession();
+		if (NumberUtil.toInt(loginfo.getUser_power()) > NumberUtil.toInt(entityin.getLevelOptionsValue())) {
+			if(f020001dao.f020001_Update14(entityin.getUserId(), entityin.getLevelOptionsValue()) <= 0 ){
+				throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
+			}
+		} else {
+			throw new ErrListException(entityin, entityin.getIViewId(), "修改失败，请刷新重试。。。");
+		}
+
+		return entityOut;
+	}
 }

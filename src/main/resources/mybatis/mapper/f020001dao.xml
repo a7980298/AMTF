@@ -152,4 +152,13 @@
 		WHERE
 			USER_NO = #{userId}
 	</update>
+	<!-- 修改账户等级 -->
+	<update id="f020001_Update14">
+		UPDATE
+			AMTF_USER
+		SET
+			USER_POWER = #{levelOptionsValue}
+		WHERE
+			USER_NO = #{userId}
+    </update>
 </mapper>

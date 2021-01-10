@@ -51,6 +51,11 @@ public class F020001Params extends UserImpl {
 	 */
 	private F020001_UserHistoryEntity userHistory;
 
+	/**
+	 * 等级选择
+	 */
+	private String levelOptionsValue;
+
 
 	/*----------------------------------------------------------------------------------------*/
 	/**

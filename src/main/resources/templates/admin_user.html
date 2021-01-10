@@ -209,14 +209,14 @@
                                     <el-switch
                                             v-model="upgradeFlg"
                                             active-text="启用"
-                                            inactive-text="停止"
+                                            inactive-text="禁用"
                                             :disabled="upgradeDisabled">
                                     </el-switch>
                                 </el-col>
                             </el-row>
                             <el-row style="margin-bottom:20px">
                                 <el-col :span="24">
-                                    <el-steps :active="0">
+                                    <el-steps :active="stepBar">
                                         <el-step title="设置等级" description="权限提升"></el-step>
                                         <el-step title="升级" description="升级中，请稍等"></el-step>
                                         <el-step title="成功升级" description="权限已升级"></el-step>
@@ -225,7 +225,7 @@
                             </el-row>
                             <el-row>
                                 <p style="text-align: center; margin: 0 0 20px">
-                                    <el-button type="primary" @click="levelClick" :loading="levelLoading" :disabled="levelBtnDisabled">提交</el-button>
+                                    <el-button type="primary" @click="levelClick" :loading="levelLoading" :disabled="levelBtnDisabled">升级</el-button>
                                 </p>
                             </el-row>
                         </el-row>
@@ -265,7 +265,9 @@
             refreshDisabled: true,
             statusClickIndex: '',
             levelOptions: [],
-            levelOptionsValue: ''
+            levelOptionsValue: '',
+            getIndex: '',
+            stepBar: 0
 		},
 		methods: {
 			//用户基本信息
@@ -377,19 +379,24 @@
 			        let power = this.tableData[command.index].user_power;
                     this.levelOptionsValue = '等级-' + power;
                     this.userUpgradeVisible = true;
+                    this.stepBar = 0;
                     this.levelOptionsChange(power);
                 } else {
                     axios.post('/amtf/Vf020001/upStatus',{
-                        userId:this.tableData[command.index].user_no,
-                        userStatus:command.command
+                        userId: this.tableData[command.index].user_no,
+                        userStatus: command.command
                     }).then(response => {
                         if(response.message != '' && response.message != null){
                             headVue.Message('error',response.message);
                         } else {
+                            if(command.index == '1'){
+
+                            }
                             this.tableData[command.index].user_status = command.command;
                         }
                     })
                 }
+			    this.getIndex = command.index;
             },
             statusCommandItem(idx, command){
                 return {
@@ -399,17 +406,23 @@
             },
             //升级提交
             levelClick(){
-
+                this.stepBar = 2;
+                axios.post('/amtf/Vf020001/modifyLevel',{
+                    userId: this.tableData[this.getIndex].user_no,
+                    levelOptionsValue: this.levelOptionsValue
+                }).then(response => {
+                    this.stepBar = 3;
+                    if(response.message != '' && response.message != null){
+                        headVue.Message('error',response.message);
+                    } else {
+                        this.stepBar = 4;
+                    }
+                })
             },
             //选中级别
             levelOptionsChange(value){
-			    if(value != 0){
-			        this.levelBtnDisabled = false;
-			        this.upgradeDisabled = false;
-                } else {
-                    this.levelBtnDisabled = true;
-                    this.upgradeDisabled = true;
-                }
+                this.levelBtnDisabled = false;
+                this.upgradeDisabled = false;
             },
             //等級下拉框刷新
             levelOptionsPush(power){

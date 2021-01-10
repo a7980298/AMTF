@@ -128,4 +128,33 @@ public class F020001ControllerVue extends ValiDationUtil {
 		}
 		return params;
 	}
+
+	/**
+	 * 修改用户的等级
+	 *
+	 * @parameter F020001Params params
+	 * @return String
+	 */
+	@PostMapping("/Vf020001/modifyLevel")
+	@ResponseBody
+	public Object f020001T004(@RequestBody Map map, Model model) {
+		F020001Params params = new F020001Params();
+		//用户id
+		params.setUserId(StringUtil.toStr(map.get("userId")));
+		//等级
+		params.setLevelOptionsValue(StringUtil.toStr(map.get("levelOptionsValue")));
+
+		F020001EntityIn entityin = new F020001EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		try {
+			F020001EntityOut entityOut = f020001service.service08(entityin);
+			// 将值copy赋值
+			ParameterUtil.copyParameter(params, entityOut);
+		}catch (ErrListException e){
+			return e;
+		}
+		return params;
+	}
 }

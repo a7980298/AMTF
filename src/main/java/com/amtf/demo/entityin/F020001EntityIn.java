@@ -34,6 +34,11 @@ public class F020001EntityIn extends UserImpl {
 	 */
 	private String userStatus;
 
+	/**
+	 * 等级选择
+	 */
+	private String levelOptionsValue;
+
 	/*----------------------------------------------------------------------------------------*/
 
 	/**
