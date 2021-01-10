@@ -71,7 +71,8 @@
                                 width="180"
                                 :filters="[{ text: '已认证', value: '1' }, { text: '未认证', value: '0' }]"
                                 :filter-method="filterAttestation "
-                                filter-placement="bottom-end">
+                                filter-placement="bottom-end"
+                                >
                             <template slot-scope="scope">
                                 <span style="margin-left: 10px" v-if="scope.row.user_attestation == '0'">未认证</span>
                                 <span style="margin-left: 10px" :class="scope.row.user_attestation == '0' ? '' : 'colorSuccess'" v-if="scope.row.user_attestation != '0'">已认证</span>
@@ -196,7 +197,7 @@
                                     </p>
                                 </el-col>
                                 <el-col :span="6">
-                                    <el-select v-model="levelOptionsValue" placeholder="请选择级别" @change="levelOptionsChange">
+                                    <el-select v-model="levelOptionsValue" :disabled="levelSelectDisabled" placeholder="请选择级别" @change="levelOptionsChange">
                                         <el-option
                                                 v-for="item in levelOptions"
                                                 :key="item.value"
@@ -210,7 +211,8 @@
                                             v-model="upgradeFlg"
                                             active-text="启用"
                                             inactive-text="禁用"
-                                            :disabled="upgradeDisabled">
+                                            :disabled="upgradeDisabled"
+                                            @change="userDisableFlg">
                                     </el-switch>
                                 </el-col>
                             </el-row>
@@ -267,7 +269,9 @@
             levelOptions: [],
             levelOptionsValue: '',
             getIndex: '',
-            stepBar: 0
+            getCommand: '',
+            stepBar: 0,
+            levelSelectDisabled: false
 		},
 		methods: {
 			//用户基本信息
@@ -373,7 +377,7 @@
                     this.userTableLoading = false;
 				})
 			},
-            //状态更改
+            //状态点击
             statusCommand(command){
 			    if(command.command == '2'){
 			        let power = this.tableData[command.index].user_power;
@@ -381,22 +385,29 @@
                     this.userUpgradeVisible = true;
                     this.stepBar = 0;
                     this.levelOptionsChange(power);
+                    if( this.tableData[command.index].user_status == '1'){
+                        this.upgradeFlg = false;
+                        this.levelSelectDisabled = true;
+                        this.levelBtnDisabled = true;
+                    }
                 } else {
-                    axios.post('/amtf/Vf020001/upStatus',{
-                        userId: this.tableData[command.index].user_no,
-                        userStatus: command.command
-                    }).then(response => {
-                        if(response.message != '' && response.message != null){
-                            headVue.Message('error',response.message);
-                        } else {
-                            if(command.index == '1'){
-
-                            }
-                            this.tableData[command.index].user_status = command.command;
-                        }
-                    })
+                    this.upStatus(command.index, command.command);
                 }
 			    this.getIndex = command.index;
+			    this.getCommand = command.command;
+            },
+            //修改状态
+            upStatus(index, command){
+                axios.post('/amtf/Vf020001/upStatus',{
+                    userId: this.tableData[index].user_no,
+                    userStatus: command
+                }).then(response => {
+                    if(response.message != '' && response.message != null){
+                        headVue.Message('error',response.message);
+                    } else {
+                        this.tableData[index].user_status = command;
+                    }
+                })
             },
             statusCommandItem(idx, command){
                 return {
@@ -432,6 +443,18 @@
                         label: '等级-' + i,
                         value: i
                     })
+                }
+            },
+            //开关按钮
+            userDisableFlg(){
+			    if(!this.upgradeFlg){
+                    this.levelSelectDisabled = true;
+                    this.levelBtnDisabled = true;
+                    this.upStatus(this.getIndex, '1');
+                } else {
+                    this.levelSelectDisabled = false;
+                    this.levelBtnDisabled = false;
+                    this.upStatus(this.getIndex, '0');
                 }
             }
 		},
