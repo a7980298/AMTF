@@ -110,9 +110,13 @@ public class F020001ServiceImpl implements F020001Service {
 
 		entityOut.setAdmin(ParameterUtil.getAdmin());
 
-		String[] online = redisUtils.get("redis_key").split(",");
+		String[] onlines = redisUtils.get("redis_key").split(",");
 
-		entityOut.setOnline(StringUtil.toStr(online.length));
+		Integer online = onlines.length;
+
+		Integer countuser = f020001dao.f020001_Select15();
+
+		entityOut.setOnline(StringUtil.toStr((online * 1.0)/ (countuser * 1.0) * 100));
 
 		return entityOut;
 	}

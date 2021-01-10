@@ -30,9 +30,6 @@ public class F010002ServiceImpl implements F010002Service {
 	@Autowired
 	private final F010002Dao f010002dao;
 
-	@Resource
-	private RedisUtils redisUtils;
-
 	/**
 	 * 初期化
 	 */

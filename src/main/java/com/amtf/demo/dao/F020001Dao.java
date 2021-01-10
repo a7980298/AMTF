@@ -44,4 +44,6 @@ public interface F020001Dao {
 	Integer f020001_Update13(@Param("userId") String userId, @Param("userStatus") String userStatus);
 
 	Integer f020001_Update14(@Param("userId") String userId, @Param("levelOptionsValue") String levelOptionsValue);
+
+	Integer f020001_Select15();
 }

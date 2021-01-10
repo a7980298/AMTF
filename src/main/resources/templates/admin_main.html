@@ -17,7 +17,7 @@
 					<th:block th:replace="admin_navbar :: admin_navbar"></th:block>
 					<el-main style="padding-top: 0px">
 						<th:block th:replace="admin_head :: admin_head"></th:block>
-						<el-progress type="circle" :percentage="100 "></el-progress>
+						<el-progress type="circle" :percentage="countUser "></el-progress>
 					</el-main>
 				</el-container>
 			</div>
@@ -28,12 +28,20 @@
 	new Vue({
 		el: '#admin_id',
 		data: {
-
+			countUser: 0
 		},
 		methods: {
 			amtf_loginhead(event) {
 				alert(event)
 			}
+		},
+		//初期化获取数据
+		created()
+		{
+			axios.post('/amtf/Vf020001').then(response => {
+				//绑定数据
+				this.countUser = response.data.online;
+			})
 		}
 	})
 </script>

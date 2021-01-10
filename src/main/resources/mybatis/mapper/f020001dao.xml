@@ -161,4 +161,11 @@
 		WHERE
 			USER_NO = #{userId}
     </update>
+	<!--查询用户总人数-->
+	<select id="f020001_Select15" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			AMTF_USER
+    </select>
 </mapper>
