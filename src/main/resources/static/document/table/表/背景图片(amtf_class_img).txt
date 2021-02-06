@@ -1,0 +1,6 @@
+CREATE TABLE amtf_class_img(
+	class_img_id INT NOT NULL primary key auto_increment comment"id主键",
+	img_class VARCHAR(30) comment"分类",
+	img_path VARCHAR(100) comment"路径",
+	img_time DATETIME  comment"发布时间"
+)

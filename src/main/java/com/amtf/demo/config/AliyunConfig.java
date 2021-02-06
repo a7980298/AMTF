@@ -1,4 +1,4 @@
-package com.amtf.demo.config;
+package com.tuanzi.config;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
@@ -7,9 +7,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-
 /**
- * oss
+ * @desc
+ *
+ * @author
+ * @date 2021/2/6
  */
 @Configuration
 @PropertySource(value = {"classpath:application.properties"})
