@@ -31,7 +31,7 @@ public class OssUtil {
      * @desc 文件上传
      * @date 2021-02-06 17:36
      */
-    public FileUploadResult upload(MultipartFile uploadFile) {
+    public FileUploadResultEntity upload(MultipartFile uploadFile) {
         // 校验图片格式
         boolean isLegal = false;
         for (String type : IMAGE_TYPE) {
@@ -42,7 +42,7 @@ public class OssUtil {
             }
         }
         //封装Result对象，并且将文件的byte数组放置到result对象中
-        FileUploadResult fileUploadResult = new FileUploadResult();
+        FileUploadResultEntity fileUploadResult = new FileUploadResultEntity();
         if (!isLegal) {
             fileUploadResult.setStatus("error");
             return fileUploadResult;
@@ -93,10 +93,10 @@ public class OssUtil {
      * @desc 删除文件
      * @date 2021-02-06 17:36
      */
-    public FileUploadResult delete(String objectName) {
+    public FileUploadResultEntity delete(String objectName) {
         // 根据BucketName,objectName删除文件
         ossClient.deleteObject(aliyunConfig.getBucketName(), objectName);
-        FileUploadResult fileUploadResult = new FileUploadResult();
+        FileUploadResultEntity fileUploadResult = new FileUploadResultEntity();
         fileUploadResult.setName(objectName);
         fileUploadResult.setStatus("removed");
         fileUploadResult.setResponse("success");

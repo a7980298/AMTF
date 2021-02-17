@@ -5,7 +5,7 @@ import com.amtf.demo.dao.F020007Dao;
 import com.amtf.demo.entityin.F020007EntityIn;
 import com.amtf.demo.entityout.F020007EntityOut;
 import com.amtf.demo.exception.ErrListException;
-import com.amtf.demo.oss.FileUploadResult;
+import com.amtf.demo.oss.FileUploadResultEntity;
 import com.amtf.demo.service.F020007Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,6 @@ public class F020007ServiceImpl implements F020007Service {
 
 	@Autowired
 	private final F020007Dao f020007dao;
-
-	@Autowired
-	private FileUploadResult fileUploadResult;
 
 	/**
 	 * 初始化
