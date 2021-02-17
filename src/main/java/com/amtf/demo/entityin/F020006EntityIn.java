@@ -19,4 +19,14 @@ public class F020006EntityIn extends UserImpl {
 	 */
 	private String pagesShow;
 
+	/**
+	 * 修改后的页面类型
+	 */
+	private String upPagesType;
+
+	/**
+	 * 修改后的页面名字
+	 */
+	private String upPagesName;
+
 }

@@ -81,4 +81,27 @@ public class F020006ServiceImpl implements F020006Service {
 		entityOut.setPageCount(pageCount);
 		return entityOut;
 	}
+
+	/**
+	 * 修改页面类型和名字
+	 * @param entityin
+	 * @return
+	 * @throws ErrListException
+	 */
+	@Override
+	public F020006EntityOut service03(F020006EntityIn entityin) throws ErrListException {
+		if(CommonUtil.isEmpty(entityin.getUpPagesName())){
+			throw new ErrListException(entityin, entityin.getIViewId(), "页面名字不能为空!");
+		}
+
+		F020006EntityOut entityOut = new F020006EntityOut();
+		try {
+			if(f020006dao.f020006_Update4(NumberUtil.toInt(entityin.getPagesShow()), entityin.getUpPagesName(), entityin.getUpPagesType()) < 1){
+				throw new ErrListException(entityin, entityin.getIViewId(), "更新失败。。。");
+			}
+		}catch (ErrListException e){
+			throw new ErrListException(entityin, entityin.getIViewId(), "更新失败。。。");
+		}
+		return entityOut;
+	}
 }

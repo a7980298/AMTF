@@ -78,7 +78,7 @@
                                 label="操作"
                                 width="100">
                             <template slot-scope="scope">
-                                <el-button type="text" size="small" @click="upMenuName(scope.row)">编辑</el-button>
+                                <el-button type="text" size="small" @click="upMenuName(scope.$index)">编辑</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -144,6 +144,7 @@
             pagesSave: [],
             menuTableData: [],
             upMenuDrawer: false,
+            upMenuDrawerRowIndex: '',
             upMenuDrawerType: '',
             upMenuDrawerName: '',
             submitMenuDrawerLoading: false,
@@ -168,10 +169,11 @@
                 })
             },
             //修改页面名字
-            upMenuName(dataRow){
+            upMenuName(rowIndex){
                 this.upMenuDrawer = true;
-                this.upMenuDrawerType = dataRow.menuType;
-                this.upMenuDrawerName = dataRow.menuName;
+                this.upMenuDrawerRowIndex = rowIndex;
+                this.upMenuDrawerType = this.menuTableData[rowIndex].menuType;
+                this.upMenuDrawerName = this.menuTableData[rowIndex].menuName;
             },
             //关闭抽屉
             clearMenuDrawer(){
@@ -180,8 +182,28 @@
             },
             //提交修改页面
             submitMenuDrawer(){
-
-
+                this.submitMenuDrawerLoading = true;
+                axios.post('/amtf/Vf020006/upPageNameOrType',{
+                    pagesShow: this.menuTableData[this.upMenuDrawerRowIndex].id,
+                    upPagesType: this.upMenuDrawerType,
+                    upPagesName: this.upMenuDrawerName
+                }).then(response => {
+                    if(response.message != '' && response.message != null){
+                        headVue.Message('error',response.message);
+                    } else {
+                        headVue.Message('success','更新成功');
+                        this.menuTableData[this.upMenuDrawerRowIndex].menuType = this.upMenuDrawerType;
+                        this.menuTableData[this.upMenuDrawerRowIndex].menuName = this.upMenuDrawerName;
+                        for(let i = 0; i < this.pages.length; i++){
+                            let entity = this.pages[i];
+                            if(entity.key == this.menuTableData[this.upMenuDrawerRowIndex].id){
+                                this.pages[i].label = this.upMenuDrawerType + " - " + this.upMenuDrawerName;
+                            }
+                        }
+                    }
+                })
+                this.submitMenuDrawerLoading = false;
+                this.upMenuDrawer = false;
             }
 		},
 		//初期化获取数据

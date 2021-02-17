@@ -76,4 +76,34 @@ public class F020006ControllerVue extends ValiDationUtil {
 
 		return params;
 	}
+
+	/**
+	 * 修改页面名字和类型
+	 *
+	 * @parameter F020006Params params
+	 * @return String
+	 */
+	@PostMapping("/Vf020006/upPageNameOrType")
+	@ResponseBody
+	public Object f020006T002(@RequestBody Map map, Model model) {
+
+		F020006Params params = new F020006Params();
+
+		params.setPagesShow(StringUtil.toStr(map.get("pagesShow")));
+
+		params.setUpPagesType(StringUtil.toStr(map.get("upPagesType")));
+
+		params.setUpPagesName(StringUtil.toStr(map.get("upPagesName")));
+
+		F020006EntityIn entityin = new F020006EntityIn();
+
+		ParameterUtil.copyParameter(entityin, params);
+
+		F020006EntityOut entityOut = f020006service.service03(entityin);
+
+		// 将值copy赋值
+		ParameterUtil.copyParameter(params, entityOut);
+
+		return params;
+	}
 }

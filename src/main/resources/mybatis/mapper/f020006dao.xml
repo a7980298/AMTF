@@ -18,7 +18,7 @@
 		SET
 			POWER_SHOW = '0'
 		WHERE
-			POWER_id != 0
+			POWER_ID != 0
 		AND
 			POWER_POW &lt; CONVERT(#{pow} USING gb2312)
 	</update>
@@ -28,6 +28,15 @@
 		SET
 			POWER_SHOW = '1'
 		WHERE
-			POWER_id = #{power_id}
+			POWER_ID = #{power_id}
+	</update>
+	<!-- 修改页面类型和名字 -->
+	<update id="f020006_Update4">
+		UPDATE AMTF_POWER
+		SET
+			POWER_NAME = #{power_name},
+			POWER_TYPE = #{power_type}
+		WHERE
+			POWER_ID = #{power_id}
 	</update>
 </mapper>

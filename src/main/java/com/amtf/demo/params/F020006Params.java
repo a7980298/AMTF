@@ -42,4 +42,14 @@ public class F020006Params extends UserImpl {
 	 * 权限
 	 */
 	private String userPower;
+
+	/**
+	 * 修改后的页面类型
+	 */
+	private String upPagesType;
+
+	/**
+	 * 修改后的页面名字
+	 */
+	private String upPagesName;
 }

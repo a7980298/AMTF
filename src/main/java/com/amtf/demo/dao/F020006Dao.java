@@ -14,4 +14,6 @@ public interface F020006Dao {
     Integer f020006_Update2(@Param("pow") Integer pow);
 
     Integer f020006_Update3(@Param("power_id") Integer power_id);
+
+    Integer f020006_Update4(@Param("power_id") Integer power_id,@Param("power_name") String power_name,@Param("power_type") String power_type);
 }
