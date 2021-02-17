@@ -95,25 +95,37 @@
                             <el-form :model="form">
                                 <div class="demo-drawer__content">
                                     <el-form :model="form">
-                                        <el-row :gutter="20">
-                                            <el-col :span="8">
-                                                <el-card class="box-card text-center">
-                                                    {{ upMenuDrawerType }}
-                                                </el-card>
+                                        <el-row :gutter="20" style="margin-left:10%">
+                                            <el-col :span="20">
+                                                <el-select v-model="upMenuDrawerType" placeholder="请选择">
+                                                    <el-option
+                                                            v-for="item in menuDrawerTypeLists"
+                                                            :key="item"
+                                                            :label="item"
+                                                            :value="item">
+                                                    </el-option>
+                                                </el-select>
                                             </el-col>
-                                            <el-col :span="8">
-                                                <el-card class="box-card text-center">
-                                                    {{ upMenuDrawerName }}
-                                                </el-card>
+                                        </el-row>
+                                        <el-row :gutter="20" style="margin-left:10%;margin-top: 40%">
+                                            <el-col :span="20">
+                                                <el-input
+                                                        type="text"
+                                                        placeholder="请输入内容"
+                                                        maxlength="6"
+                                                        show-word-limit
+                                                        v-model="upMenuDrawerName">
+                                                    <template slot="prepend">页面名</template>
+                                                </el-input>
                                             </el-col>
                                         </el-row>
                                     </el-form>
                                 </div>
                             </el-form>
-                            <div class="demo-drawer__footer">
-                                <el-button @click="clearMenuDrawer">取 消</el-button>
-                                <el-button type="primary" @click="submitMenuDrawer" :loading="submitMenuDrawerLoading">{{ submitMenuDrawerLoading ? '提交中 ...' : '确 定' }}</el-button>
-                            </div>
+                        </div>
+                        <div class="demo-drawer__footer" style="margin-top: 60%;margin-left: 10%">
+                            <el-button @click="clearMenuDrawer" style="width: 221px">取 消</el-button>
+                            <el-button type="primary" @click="submitMenuDrawer" :loading="submitMenuDrawerLoading" style="width: 221px">{{ submitMenuDrawerLoading ? '提交中 ...' : '确 定' }}</el-button>
                         </div>
                     </el-drawer>
                 </el-main>
@@ -134,7 +146,8 @@
             upMenuDrawer: false,
             upMenuDrawerType: '',
             upMenuDrawerName: '',
-            submitMenuDrawerLoading: false
+            submitMenuDrawerLoading: false,
+            menuDrawerTypeLists: []
 		},
 		methods: {
 		    //穿梭框点击后
@@ -188,6 +201,9 @@
                         menuName: response.data.totalClientPage[i].power_name,
                         menuGrade:response.data.totalClientPage[i].power_pow
                     });
+                    if(this.menuDrawerTypeLists.indexOf(response.data.totalClientPage[i].power_type) == -1){
+                        this.menuDrawerTypeLists.push(response.data.totalClientPage[i].power_type);
+                    }
                 }
                 //显示的页面
                 for (let i = 0; i < response.data.clientPageDisplayed.length; i++) {
