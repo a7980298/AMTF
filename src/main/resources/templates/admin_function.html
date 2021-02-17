@@ -49,13 +49,39 @@
                                 @change="handleChange"
                                 :data="pages"
                                 :loading="pagesLoading">
-                            <!--<el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
-                            <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>-->
                         </el-transfer>
                     </div>
                     <p style="text-align: center; margin: 0 0 20px">
                         <el-button type="primary" icon="el-icon-check" @click="save" :loading="saveLoading">保存</el-button>
                     </p>
+                    <el-table
+                            :data="menuTableData"
+                            height="430"
+                            border
+                            style="width: 100%">
+                        <el-table-column
+                                prop="menuClass"
+                                label="类型"
+                                width="380">
+                        </el-table-column>
+                        <el-table-column
+                                prop="menuName"
+                                label="画面名"
+                                width="480">
+                        </el-table-column>
+                        <el-table-column
+                                prop="menuGrade"
+                                label="等级">
+                        </el-table-column>
+                        <el-table-column
+                                fixed="right"
+                                label="操作"
+                                width="100">
+                            <template slot-scope="scope">
+                                <el-button type="text" size="small">编辑</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </el-main>
             </el-container>
 		</i-form>
@@ -69,7 +95,8 @@
             pagesShow: [],
             saveLoading: false,
             pagesLoading: false,
-            pagesSave: []
+            pagesSave: [],
+            menuTableData: []
 		},
 		methods: {
 		    //穿梭框点击后
@@ -100,6 +127,11 @@
                         key: response.data.totalClientPage[i].power_id,
                         label: response.data.totalClientPage[i].power_type + " - " + response.data.totalClientPage[i].power_name,
                         disabled: parseInt(response.data.totalClientPage[i].power_pow) >= parseInt(response.data.userPower)
+                    });
+                    this.menuTableData.push({
+                        menuClass: response.data.totalClientPage[i].power_type,
+                        menuName: response.data.totalClientPage[i].power_name,
+                        menuGrade:response.data.totalClientPage[i].power_pow
                     });
                 }
                 //显示的页面
