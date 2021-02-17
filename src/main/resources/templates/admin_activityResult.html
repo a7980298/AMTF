@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8"/>
+<title>发布的活动</title>
+<th:block th:replace="vue-import :: vue-import"></th:block>
+<style type="text/css">
+
+</style>
+<body class="">
+	<div class="wrapper" id="admin_id">
+		<i-form class="" th:action="@{/f020003}" method="post" style="height:100%;" id="amtf_form" enctype="multipart/form-data">
+			<input type="hidden" name="IViewId" value="f020001"/>
+            <el-container>
+                <th:block th:replace="admin_navbar :: admin_navbar"></th:block>
+                <el-main style="padding-top: 0px">
+
+                </el-main>
+            </el-container>
+		</i-form>
+	</div>
+</body>
+<script type="text/javascript">
+	new Vue({
+		el: '#admin_id',
+		data: {
+
+		},
+		methods: {
+
+		},
+		//初期化获取数据
+		created()
+		{
+
+		}
+	})
+</script>
+</html>
