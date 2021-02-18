@@ -1,5 +1,5 @@
 CREATE TABLE amtf_updnoticeover(
-	updnoticeover_id VARCHAR(30) NOT NULL primary key auto_increment comment"通知id",
+	updnoticeover_id INT NOT NULL primary key auto_increment comment"通知id",
 	updnoticeover_upid INT comment"查看的用户名"
 )
 ALTER TABLE `amtf_updnoticeover` ADD INDEX updnoticeover_updnoticeover_upid ( `updnoticeover_upid` )

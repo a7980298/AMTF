@@ -1,8 +1,0 @@
-CREATE TABLE amtf_activity_comment_fabulous(
-	activity_comment_fabulous_id INT NOT NULL primary key auto_increment comment"id主键",
-	activity_id INT NOT NULL comment"活动id",
-	activity_comment_id INT NOT NULL comment"评论id",
-	user_id VARCHAR(30) comment"用户id",
-	activity_comment_fabulous_time DATETIME comment"点赞时间"
-)
-ALTER TABLE `amtf_activity_comment_fabulous` ADD INDEX activity_comment_fabulous_activity_id ( `activity_id` )
