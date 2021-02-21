@@ -19,6 +19,4 @@ ALTER TABLE `AMTF_User` ADD INDEX user_no ( `user_no` )
 ALTER TABLE `AMTF_User` ADD INDEX User_Account ( `User_Account` )
 -- ALTER TABLE AMTF_User ADD FOREIGN KEY (outerKey_user_user_email) REFERENCES class(user_email);
 insert into amtf_user(user_no,user_email,user_account,user_password,user_name,user_country,user_province,user_city,user_postcode,user_phone,user_introduce,user_attestation,user_power,user_status)
-values('202101010808082428503607','2428503607@qq.com','123','202cb962ac59075b964b07152d234b70','王意鑫','中国','河南','开封市','475000','18438742726','爱打篮球和看书','1','2','0');
-insert into amtf_user(user_no,user_email,user_account,user_password,user_name,user_country,user_province,user_city,user_postcode,user_phone,user_introduce,user_attestation,user_power,user_status)
- values('1220875539@qq.com','222','202cb962ac59075b964b07152d234b70','王意鑫1','中国','河南','开封市','475000','18438742726','爱打篮球和看书','0','0','0');
+values('202101010808082428503607','2428503607@qq.com','123','202cb962ac59075b964b07152d234b70','最高管理员','中国','河南','开封市','475000','18438742726','爱打篮球和看书','1','2','0');
